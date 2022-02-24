@@ -41,5 +41,19 @@ module.exports = {
         queryLimit: 1000,
       },
     },
+    {
+      resolve: `gatsby-plugin-csp`,
+      options: {
+        mergeScriptHashes: true, // you can disable scripts sha256 hashes
+        mergeStyleHashes: true, // you can disable styles sha256 hashes
+        directives: {
+          "script-src": "'self' www.google-analytics.com",
+          "style-src": "'self' 'unsafe-inline'",
+          "img-src": "'self' data:"
+          // you can add your directives or override defaults
+        }
+      }
+    },
+    'gatsby-plugin-netlify'
   ]
 };
