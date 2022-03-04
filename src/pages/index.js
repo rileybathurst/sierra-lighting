@@ -199,6 +199,8 @@ const IndexPage = () => {
         <li><a href="https://www.pinterest.com/sierralighting/">pinterest</a></li>
         <li><a href="https://www.tiktok.com/@sierralighting">tiktok</a></li>
         <li><a href="https://www.linkedin.com/company/sierralighting/">linkedin</a></li>
+        <li><a href="https://www.yelp.com/biz/sierra-lighting-calpine/">Yelp</a></li>
+        <li><a href="https://nextdoor.com/pages/sierra-lighting-truckee-ca/recommend/">Nextdoor</a></li>
       </ul>
 
     </main>

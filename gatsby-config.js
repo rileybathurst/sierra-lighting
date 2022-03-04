@@ -44,8 +44,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-csp`,
       options: {
-        mergeScriptHashes: true, // you can disable scripts sha256 hashes
-        mergeStyleHashes: true, // you can disable styles sha256 hashes
+        mergeScriptHashes: false, // you can disable scripts sha256 hashes
+        mergeStyleHashes: false, // you can disable styles sha256 hashes
         directives: {
           "script-src": "'self' www.google-analytics.com",
           "style-src": "'self' 'unsafe-inline'",
