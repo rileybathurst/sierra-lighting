@@ -2,10 +2,22 @@ svg {
   max-width: 5rem;
 }
 
-.village {
-  max-width: 100%;
+.village-container,
+.snowyroof-container {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.village,
+.snowyroof {
   aspect-ratio: 4/3;
 
   img {
   }
+}
+
+header svg {
+  margin: 1.5rem 0.75rem; // 24px 12px
+  // max-width: 30rem;
+  // max-height: 5rem;
 }

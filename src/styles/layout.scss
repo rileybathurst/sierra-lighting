@@ -12,12 +12,20 @@
 /*------------------------------------*/
 
 header {
+  z-index: 2;
+  position: relative; // needed for z-index
+}
+
+.header-container {
+  margin-inline: auto;
   display: grid;
+  max-width: var(--measure);
 
   .stripe {
-    grid-row: 1;
+    grid-row: 1/3;
     grid-column: 1/3;
     z-index: 1;
+    background: var(--honey-8);
   }
 
   svg {
@@ -30,6 +38,8 @@ header {
     grid-row: 1;
     grid-column: 2;
     z-index: 2;
+    max-width: 6rem;
+    justify-self: flex-end;
   }
 
   h2 {
@@ -61,4 +71,22 @@ header {
       flex-direction: column;
     }
   }
+}
+
+/*------------------------------------*/
+//  #MAIN
+/*------------------------------------*/
+
+.trusted,
+.service-area,
+.services,
+.testimonials {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.home-gallery {
+  max-width: var(--measure);
+  margin-inline: auto;
+  display: flex;
 }

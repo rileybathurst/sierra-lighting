@@ -1,0 +1,43 @@
+#slider {
+  margin-inline: auto;
+  max-width: var(--measure);
+  white-space: nowrap;
+  width: 100%;
+  ul {
+    background: peachpuff;
+    overflow-x: hidden;
+
+    li {
+      width: 100%;
+      display: inline-block;
+      animation-duration: 20s;
+      animation-name: slide;
+      animation-iteration-count: infinite;
+    }
+  }
+}
+
+#slider ul li:first-child {
+  background: red;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  20% {
+    transform: translateX(0%);
+  }
+  30% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+  60% {
+    transform: translateX(-0%);
+  }
+  100% {
+    transform: translateX(-0%);
+  }
+}

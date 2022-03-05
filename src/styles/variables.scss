@@ -6,8 +6,11 @@ $pad: 30rem;
 
   --honey: hsl(var(--honey-h), 100%, var(--honey-l));
   --honey-8: hsl(var(--honey-h), 100%, 94%);
+  --honey-1: hsl(var(--honey-h), 100%, 50%);
 
   --denim: 215%;
+
+  --measure: 40rem;
 
   // shadows
   // based on the layers of the atomposhere
