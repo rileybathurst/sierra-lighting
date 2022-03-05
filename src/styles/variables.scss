@@ -1,0 +1,21 @@
+$pad: 30rem;
+
+:root {
+  --honey-h: 35;
+  --honey-l: 94%;
+
+  --honey: hsl(var(--honey-h), 100%, var(--honey-l));
+  --honey-8: hsl(var(--honey-h), 100%, 94%);
+
+  --denim: 215%;
+
+  // shadows
+  // based on the layers of the atomposhere
+  // https://en.wikipedia.org/wiki/Atmosphere_of_Earth
+  --mesosphere: 0 5px 12px hsla(0, 0%, 0%, 0.4),
+    0 18px 32px hsla(0, 0%, 0%, 0.16);
+  --stratosphere: 0 2px 3px hsla(0, 0%, 0%, 0.12),
+    0 3px 6px hsla(0, 0%, 0%, 0.14);
+  --troposphere: 0 2px 3px hsla(0, 0%, 0%, 0.12),
+    0 3px 6px hsla(0, 0%, 0%, 0.14);
+}

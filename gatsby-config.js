@@ -47,7 +47,7 @@ module.exports = {
         mergeScriptHashes: false, // you can disable scripts sha256 hashes
         mergeStyleHashes: false, // you can disable styles sha256 hashes
         directives: {
-          "script-src": "'self' www.google-analytics.com",
+          "script-src": "'self' 'unsafe-inline' www.google-analytics.com",
           "style-src": "'self' 'unsafe-inline'",
           "img-src": "'self' data:"
           // you can add your directives or override defaults

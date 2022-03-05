@@ -1,0 +1,23 @@
+header h2 {
+  background-color: var(--honey-8);
+  margin: 0;
+  padding: 1rem;
+}
+
+.stripe {
+  background: var(--honey-8);
+}
+
+.menu__small {
+  background-color: whitesmoke;
+  box-shadow: var(--troposphere);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--pine-hs), calc(var(--pine-l) - 13%));
+  }
+}
+
+button {
+  background: transparent;
+  border: none;
+}
