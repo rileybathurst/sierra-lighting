@@ -1,16 +1,20 @@
+.slider-container {
+  background-color: var(--honey-8);
+}
+
 #slider {
   margin-inline: auto;
   max-width: var(--measure);
   white-space: nowrap;
   width: 100%;
   ul {
-    background: peachpuff;
+    // background: peachpuff;
     overflow-x: hidden;
 
     li {
       width: 100%;
       display: inline-block;
-      animation-duration: 20s;
+      animation-duration: 30s;
       animation-name: slide;
       animation-iteration-count: infinite;
     }
@@ -18,7 +22,7 @@
 }
 
 #slider ul li:first-child {
-  background: red;
+  // background: red;
 }
 
 @keyframes slide {

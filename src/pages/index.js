@@ -1,10 +1,11 @@
 import * as React from "react"
-import { StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Star from "../images/star";
+import Footer from "../components/footer";
 
 import "../styles/app.scss";
 
@@ -99,45 +100,41 @@ const IndexPage = () => {
           <SnowyRoof />
         </div>
 
-        <section id="slider" className="testimonials">
-          <h2>Testimonials</h2>
+        <div className="slider-container">
+          <section id="slider" className="testimonials">
+            <hr />
+            <h2>Testimonials</h2>
 
 
-          <ul>
             <StaticQuery
               query={query}
               render={data => (
-                <li className="slider">
-                  <div className="five-stars">
-                    <Star />
-                    <Star />
-                    <Star />
-                    <Star />
-                    <Star />
-                  </div>
+                <ul>
                   {data.allStrapiTestimonials.edges[0].node.data.map(testimonial => (
-                    <li key={testimonial.id}>{testimonial.attributes.customer}</li>
+                    <li className="slider">
+                      <div className="five-stars">
+                        <Star />
+                        <Star />
+                        <Star />
+                        <Star />
+                        <Star />
+                      </div>
+                      <p key={testimonial.id}>{testimonial.attributes.customer}</p>
+                    </li>
                   ))}
-                </li>
+                </ul>
               )}
             />
-          </ul>
-        </section>
+            <h3><Link to="#">Read More Reviews</Link></h3>
+          </section>
+        </div>
 
-        <section id="contact" className="contact">
-          Profiles
-          <ul>
-            <li><a href="https://www.facebook.com/sierralighting/">facebook</a></li>
-            <li><a href="https://www.instagram.com/sierralighting/">instagram</a></li>
-            <li><a href="https://www.pinterest.com/sierralighting/">pinterest</a></li>
-            <li><a href="https://www.tiktok.com/@sierralighting">tiktok</a></li>
-            <li><a href="https://www.linkedin.com/company/sierralighting/">linkedin</a></li>
-            <li><a href="https://www.yelp.com/biz/sierra-lighting-calpine/">Yelp</a></li>
-            <li><a href="https://nextdoor.com/pages/sierra-lighting-truckee-ca/recommend/">Nextdoor</a></li>
-          </ul>
-        </section>
+
 
       </main>
+
+      <Footer />
+
     </>
   )
 }

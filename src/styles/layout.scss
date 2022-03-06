@@ -80,7 +80,8 @@ header {
 .trusted,
 .service-area,
 .services,
-.testimonials {
+.testimonials,
+.contact {
   max-width: var(--measure);
   margin-inline: auto;
 }
@@ -89,4 +90,38 @@ header {
   max-width: var(--measure);
   margin-inline: auto;
   display: flex;
+}
+
+/*------------------------------------*/
+//  #FOOTER
+/*------------------------------------*/
+
+#footer-social {
+  max-width: var(--measure);
+  margin-inline: auto;
+
+  ul {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    gap: 0.75rem;
+    justify-content: space-evenly;
+
+    li {
+      list-style: none;
+
+      svg {
+        max-width: 3rem;
+      }
+    }
+  }
+}
+
+.footer-container {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+footer {
+  margin-block-end: 3rem;
 }
