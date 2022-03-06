@@ -51,32 +51,40 @@ const IndexPage = () => {
     <>
       <Seo title="Sierra Lighting" />
       <Header />
-      <div className="village-container">
-        <Village />
-      </div>
       <main>
 
-        <section id="trusted" className="trusted">
-          <hr />{/* this should be down */}
-          <h3>Trusted and local</h3>
-          <p>Sierra Christmas Lights is here to provide beautiful, hassle free holiday and event lighting for your residence or business. We specialize in outdoor Christmas and wedding lights installation, taking pride in the quality, commercial grade materials we sell and maintain for our customers. Let us help make your next holiday or event really shine!</p>
+        <section className="hero">
+          <h2 className="mixta">Dependable holiday, landscape and events light installation</h2>
+
+          <div className="village-container">
+            <Village />
+            <p>The Village at Rancharrah See the Project</p>
+          </div>
+
+          <section id="trusted" className="trusted">
+            <hr />{/* ? should this be down below the h tag */}
+            <h3>Trusted and local</h3>
+            <p>Sierra Christmas Lights is here to provide beautiful, hassle free holiday and event lighting for your residence or business. We specialize in outdoor Christmas and wedding lights installation, taking pride in the quality, commercial grade materials we sell and maintain for our customers. Let us help make your next holiday or event really shine!</p>
+          </section>
         </section>
 
-        <section id="service-area" className="service-area">
-          <hr />
-          <h3>Service Area</h3>
-          <h4>Reno, Truckee, Lake Tahoe, Carson City and Minden</h4>
-          <button>
-            <span>California</span>
-            <span>Nevada</span>
-            <span>+</span>
-          </button>
-        </section>
+        <div className="areas-and-gallery">
+          <section id="service-area" className="service-area">
+            <hr />
+            <h3>Service Area</h3>
+            <h4>Reno, Truckee, Lake Tahoe, Carson City and Minden</h4>
+            <button>
+              <span>California</span>
+              <span>Nevada</span>
+              <span>+</span>
+            </button>
+          </section>
 
-        <div className="home-gallery">
-          <NorthTahoeArts />
-          <NorthTahoeEvents />
-          <InclineChevron />
+          <div className="home-gallery">
+            <NorthTahoeArts />
+            <NorthTahoeEvents />
+            <InclineChevron />
+          </div>
         </div>
 
         <section id="services" className="services">

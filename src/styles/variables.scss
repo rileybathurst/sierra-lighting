@@ -1,4 +1,6 @@
-$pad: 30rem;
+/*------------------------------------*/
+//  #VARIABLES
+/*------------------------------------*/
 
 :root {
   --honey-h: 35;
@@ -12,6 +14,7 @@ $pad: 30rem;
   --denim: hsl(215, 100%, 6%);
 
   --measure: 40rem;
+  --page_width: 80rem; // ? I need some math on this
 
   // shadows
   // based on the layers of the atomposhere
@@ -23,3 +26,7 @@ $pad: 30rem;
   --troposphere: 0 2px 3px hsla(0, 0%, 0%, 0.12),
     0 3px 6px hsla(0, 0%, 0%, 0.14);
 }
+
+// media queries cant use variables
+$pad: 30rem;
+$book: 60rem;

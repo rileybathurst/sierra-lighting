@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from 'react';
 // import MenuList from './menu-list';
 import Hamburger from "../images/hamburger";
 // import Nav from "./nav"
+import MenuList from './menu-list';
 
 function SlideMenu() {
   const [slide, setSlide] = useState('firstload');
@@ -42,10 +43,7 @@ function SlideMenu() {
           className='menu__small'
         >
           <menu>
-            <ul>
-              <li>Home</li>
-              <li>About</li>
-            </ul>
+            <MenuList />
           </menu>
         </nav>
 
@@ -82,10 +80,7 @@ function SlideMenu() {
           className='menu__small'
         >
           <menu>
-            <ul>
-              <li>Home</li>
-              <li>About</li>
-            </ul>
+            <MenuList />
           </menu>
         </nav>
 
@@ -122,10 +117,7 @@ function SlideMenu() {
           className='menu__small'
         >
           <menu>
-            <ul>
-              <li>Home</li>
-              <li>About</li>
-            </ul>
+            <MenuList />
           </menu>
         </nav>
 

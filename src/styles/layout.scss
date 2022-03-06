@@ -11,6 +11,21 @@
 //  #HEADER
 /*------------------------------------*/
 
+.top-bar {
+  text-align: center;
+  z-index: 3;
+  position: relative;
+  background-color: var(--honey-8);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--denim);
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+}
+
 header {
   z-index: 2;
   position: relative; // needed for z-index
@@ -25,7 +40,11 @@ header {
     grid-row: 1/3;
     grid-column: 1/3;
     z-index: 1;
-    // background: var(--honey-8); // ? maybe I dont need this anymore
+    background: var(--honey-8); // needed if the menu is large
+
+    @media (prefers-color-scheme: dark) {
+      background: var(--denim);
+    }
   }
 
   svg {
@@ -77,6 +96,52 @@ header {
 //  #MAIN
 /*------------------------------------*/
 
+/*------------------------------------*/
+//  #HERO
+/*------------------------------------*/
+
+.hero {
+  h2 {
+    margin-inline: auto;
+    max-width: var(--measure);
+    padding-inline: auto;
+  }
+
+  @media (min-width: $book) {
+    max-width: var(--page_width);
+    margin-inline: auto;
+    display: grid;
+    gap: 1rem;
+    padding-inline: 1rem;
+
+    .village-container {
+      grid-row: 1/3;
+      grid-column: 2;
+    }
+  }
+}
+
+/*------------------------------------*/
+//  .areas-and-gallery
+/*------------------------------------*/
+.areas-and-gallery {
+  @media (min-width: $book) {
+    display: grid;
+    max-width: var(--page_width);
+    margin-inline: auto;
+
+    .service-area {
+      grid-row: 1;
+      grid-column: 2;
+    }
+
+    .home-gallery {
+      grid-row: 1;
+      grid-column: 1;
+    }
+  }
+}
+
 .trusted,
 .service-area,
 .services,
@@ -84,12 +149,45 @@ header {
 .contact {
   max-width: var(--measure);
   margin-inline: auto;
+  padding-inline: 1rem;
 }
 
 .home-gallery {
   max-width: var(--measure);
   margin-inline: auto;
   display: flex;
+
+  @media (min-width: $book) {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.village-container {
+  display: grid;
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  p {
+    z-index: 1;
+    align-self: flex-end;
+    // text-align: center;
+    justify-self: center;
+    padding: 0.25rem;
+    border-radius: var(--border-radius);
+    opacity: 0.7;
+    background-color: whitesmoke;
+    border: 1px solid white;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--denim);
+      border: 1px solid black;
+    }
+    // mix-blend-mode: lighten;
+  }
 }
 
 /*------------------------------------*/
