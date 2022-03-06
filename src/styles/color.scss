@@ -1,19 +1,35 @@
+body {
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--denim);
+    color: whitesmoke;
+  }
+}
+
 header h2 {
-  background-color: var(--honey-8);
   margin: 0;
   padding: 1rem;
+  background-color: var(--honey-8);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--denim);
+  }
 }
 
 header {
   background: var(--honey-8);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--denim);
+  }
 }
 
 .menu__small {
   background-color: whitesmoke;
+  opacity: 0.9;
   // box-shadow: var(--troposphere);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--pine-hs), calc(var(--pine-l) - 13%));
+    background-color: var(--denim);
   }
 }
 
@@ -29,4 +45,18 @@ header button svg {
 
 header button svg:hover {
   background-color: var(--honey-1);
+}
+
+/*------------------------------------*/
+//  #LINKS
+/*------------------------------------*/
+
+a {
+  color: var(--honey-1);
+  text-decoration: none;
+  transition: 0.5s ease-in-out;
+}
+
+a:hover {
+  color: var(--honey-8);
 }
