@@ -24,6 +24,7 @@ function SlideMenu() {
           className="button-spinner"
           onClick={() => setSlide('close')}
         >
+          <span className='sr-only'>open menu</span>
           {/* <span
             style={{
               transform: 'translateY(-2rem)',
@@ -63,6 +64,7 @@ function SlideMenu() {
           className="button-spinner"
           onClick={() => setSlide('close')}
         >
+          <span className='sr-only'>open menu</span>
           {/* <span
             style={{ transform: 'translateY(-2rem)' }}
             className="span-styles"
@@ -100,6 +102,7 @@ function SlideMenu() {
           className="button-spinner"
           onClick={() => setSlide('menu')}
         >
+          <span className='sr-only'>open menu</span>
           {/* <span
             style={{ transform: 'translateY(0)' }}
             className="span-styles"

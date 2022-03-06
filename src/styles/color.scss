@@ -56,7 +56,11 @@ header button svg:hover {
 /*------------------------------------*/
 
 a {
-  color: var(--honey-1);
+  color: var(--denim); // ! this isn't what I want it just passes a11y for now
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--honey-1);
+  }
   text-decoration: none;
   transition: 0.5s ease-in-out;
 }

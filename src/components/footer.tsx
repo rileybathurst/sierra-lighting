@@ -28,14 +28,18 @@ const Footer = () => {
         <p><a href="tel:+1-530-414-9899">California Number: (530) 414-9899</a></p>
 
         <form>
-          <label>Name</label>
-          <input type="text" />
-          <label>Email</label>
-          <input type="email" />
-          <label>Phone</label>
-          <input type="tel" />
-          <label>Message</label>
-          <textarea />
+          <label>Name
+            <input type="text" />
+          </label>
+          <label>Email
+            <input type="email" />
+          </label>
+          <label>Phone
+            <input type="tel" />
+          </label>
+          <label>Message
+            <textarea />
+          </label>
           <button>Send</button>
         </form>
 
