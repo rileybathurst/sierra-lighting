@@ -1,6 +1,6 @@
 body {
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim);
+    background-color: var(--denim-1);
     color: whitesmoke;
   }
 }
@@ -8,18 +8,18 @@ body {
 header h2 {
   margin: 0;
   padding: 1rem;
-  background-color: var(--honey-8);
+  background-color: var(--honey-7);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim);
+    background-color: var(--denim-1);
   }
 }
 
 header {
-  background: var(--honey-8);
+  background: var(--honey-7);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim);
+    background-color: var(--denim-1);
   }
 }
 
@@ -29,7 +29,7 @@ header {
   // box-shadow: var(--troposphere);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim);
+    background-color: var(--denim-1);
   }
 }
 
@@ -47,8 +47,8 @@ header button svg {
   transition: 0.5s ease-in-out;
 }
 
-header button svg:hover {
-  background-color: var(--honey-1);
+header button:hover svg {
+  background-color: var(--honey-2);
 }
 
 /*------------------------------------*/
@@ -56,15 +56,15 @@ header button svg:hover {
 /*------------------------------------*/
 
 a {
-  color: var(--denim); // ! this isn't what I want it just passes a11y for now
+  color: var(--honey-2);
 
   @media (prefers-color-scheme: dark) {
-    color: var(--honey-1);
+    color: var(--honey-6);
   }
   text-decoration: none;
   transition: 0.5s ease-in-out;
 }
 
 a:hover {
-  color: var(--honey-8);
+  color: var(--honey-4-a);
 }

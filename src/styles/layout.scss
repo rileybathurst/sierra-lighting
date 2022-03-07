@@ -15,14 +15,16 @@
   text-align: center;
   z-index: 3;
   position: relative;
-  background-color: var(--honey-8);
+  background-color: var(--honey-7);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim);
+    background-color: var(--denim-1);
   }
 
   h2 {
     font-size: 1rem;
+    margin-block: 0;
+    padding-block-start: 1.5rem;
   }
 }
 
@@ -40,10 +42,10 @@ header {
     grid-row: 1/3;
     grid-column: 1/3;
     z-index: 1;
-    background: var(--honey-8); // needed if the menu is large
+    background: var(--honey-7); // needed if the menu is large
 
     @media (prefers-color-scheme: dark) {
-      background: var(--denim);
+      background: var(--denim-1);
     }
   }
 
@@ -100,30 +102,55 @@ header {
 //  #HERO
 /*------------------------------------*/
 
-.hero {
-  h2 {
-    margin-inline: auto;
-    max-width: var(--measure);
-    padding-inline: auto;
-  }
+.hero-container {
+  @media (min-width: $book) {
+    background-color: var(--honey-7);
 
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--denim-1);
+    }
+  }
+}
+
+.hero {
   @media (min-width: $book) {
     max-width: var(--page_width);
     margin-inline: auto;
     display: grid;
     gap: 1rem;
     padding-inline: 1rem;
+    background-color: var(--honey-7);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--denim-1);
+    }
 
     .village-container {
       grid-row: 1/3;
       grid-column: 2;
     }
   }
+
+  h2 {
+    margin-inline: auto;
+    max-width: var(--measure);
+    padding-inline: auto;
+  }
 }
 
 /*------------------------------------*/
 //  .areas-and-gallery
 /*------------------------------------*/
+.areas-and-gallery-container {
+  @media (min-width: $book) {
+    background-color: var(--honey-6);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--denim-2);
+    }
+  }
+}
+
 .areas-and-gallery {
   @media (min-width: $book) {
     display: grid;
@@ -165,6 +192,7 @@ header {
 
 .village-container {
   display: grid;
+  aspect-ratio: 3/2;
 
   > * {
     grid-row: 1;
@@ -183,7 +211,7 @@ header {
     border: 1px solid white;
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(--denim);
+      background-color: var(--denim-1);
       border: 1px solid black;
     }
     // mix-blend-mode: lighten;
@@ -222,4 +250,9 @@ header {
 
 footer {
   margin-block-end: 3rem;
+}
+
+.accordian-spinner {
+  z-index: 2;
+  position: relative;
 }
