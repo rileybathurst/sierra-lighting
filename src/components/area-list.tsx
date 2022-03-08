@@ -1,7 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
-
-import ContactList from "./contact-list"
+import { Link, StaticQuery, graphql } from "gatsby"
 
 const AreaList = () => (
   <>
@@ -40,7 +38,66 @@ const AreaList = () => (
         <li>Spanish Springs</li>
       </ul>
     </section>
+
+    <section>
+      <h3>California</h3>
+
+      <hr />
+
+      <StaticQuery
+        query={query}
+        render={data => (
+          <ul>
+            {
+              data.california.nodes.map(area => (
+                <li className="" key={area.id}>{area.name}</li>
+              ))
+            }
+          </ul>
+        )}
+      />
+    </section>
+
+    <section>
+      <h3>Nevada</h3>
+
+      <hr />
+
+      <StaticQuery
+        query={query}
+        render={data => (
+          <ul>
+            {
+              data.nevada.nodes.map(area => (
+                <li className="" key={area.id}>{area.name}</li>
+              ))
+            }
+          </ul>
+        )}
+      />
+    </section>
+
   </>
 )
 
 export default AreaList
+
+const query = graphql`
+query AreasQuery {
+  california: allStrapiArea(filter: {state: {eq: "california"}}) {
+    nodes {
+      id
+      name
+      state
+    }
+  }
+  
+  nevada: allStrapiArea(filter: {state: {eq: "nevada"}}) {
+    nodes {
+      id
+      name
+      state
+    }
+  }
+}
+`

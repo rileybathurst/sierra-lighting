@@ -1,0 +1,28 @@
+/*------------------*/
+//  # Seo Showcase
+/*------------------*/
+
+// this is only for showing internally
+
+.seo-showcase {
+  .key,
+  .green,
+  .yellow,
+  .red {
+    background-color: lightgray;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+  }
+
+  .green {
+    background-color: green;
+  }
+
+  .yellow {
+    background-color: yellow;
+  }
+
+  .red {
+    background-color: red;
+  }
+}

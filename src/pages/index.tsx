@@ -126,7 +126,7 @@ const IndexPage = () => {
               query={query}
               render={data => (
                 <ul>
-                  {data.allStrapiTestimonials.edges[0].node.data.map(testimonial => (
+                  {data.allStrapiTestimonial.nodes.map(testimonial => (
                     <li className="slider">
                       <div className="five-stars">
                         <Star />
@@ -135,7 +135,9 @@ const IndexPage = () => {
                         <Star />
                         <Star />
                       </div>
-                      <p key={testimonial.id}>{testimonial.attributes.customer}</p>
+                      <p key={testimonial.id}>
+                        {testimonial.customer}
+                      </p>
                     </li>
                   ))}
                 </ul>
@@ -156,18 +158,12 @@ const IndexPage = () => {
 export default IndexPage
 
 const query = graphql`
-      query MyQuery {
-        allStrapiTestimonials {
-        edges {
-        node {
-        data {
-        id
-          attributes {
-            customer
-          }
-        }
-      }
+query MyQuery {
+  allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
+    nodes {
+      id
+      customer
     }
   }
 }
-`;
+`

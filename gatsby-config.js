@@ -1,3 +1,14 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
+const strapiConfig = {
+  apiURL: process.env.STRAPI_API_URL,
+  accessToken: process.env.STRAPI_TOKEN,
+  collectionTypes: ['area', 'testimonial', 'vendor', 'venue', 'new'],
+  singleTypes: [],
+};
+
 module.exports = {
   siteMetadata: {
     title: "Sierra Lighting",
@@ -15,6 +26,8 @@ module.exports = {
     areaServed: 'Tahoe, California', // 📣
     author: 'Sierra Lighting',
     paymentAccepted: 'Cash',
+
+    titleColor: 'red', // testing
   },
   plugins: ["gatsby-plugin-sass", "gatsby-plugin-image", {
     resolve: 'gatsby-plugin-google-analytics',
@@ -33,13 +46,7 @@ module.exports = {
     'gatsby-plugin-netlify',
     {
       resolve: "gatsby-source-strapi",
-      options: {
-        apiURL: "http://45.79.101.19:1340/api",
-        collectionTypes: [
-          "testimonials",
-        ],
-        queryLimit: 1000,
-      },
+      options: strapiConfig,
     },
     {
       resolve: `gatsby-plugin-csp`,
@@ -54,6 +61,5 @@ module.exports = {
         }
       }
     },
-    'gatsby-plugin-netlify'
   ]
 };
