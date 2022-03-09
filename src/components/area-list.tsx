@@ -53,7 +53,7 @@ const AreaList = () => (
             <ul>
               {
                 data.california.nodes.map(area => (
-                  <li className="" key={area.id}>{area.name}</li>
+                  <li className="" key={area.id}><Link to={`/area/${area.slug}`}>{area.name}</Link></li>
                 ))
               }
             </ul>
@@ -63,7 +63,7 @@ const AreaList = () => (
             <ul>
               {
                 data.nevada.nodes.map(area => (
-                  <li className="" key={area.id}>{area.name}</li>
+                  <li className="" key={area.id}><Link to={`/area/${area.slug}`}>{area.name}</Link></li>
                 ))
               }
             </ul>
@@ -106,6 +106,7 @@ query AreasQuery {
       id
       name
       state
+      slug
     }
   }
   
@@ -114,6 +115,7 @@ query AreasQuery {
       id
       name
       state
+      slug
     }
   }
 }

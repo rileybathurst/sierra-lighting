@@ -76,7 +76,7 @@ const WeddingPage = () => {
             {data.allStrapiLight.nodes.map(light => (
 
               <div key={light.id} className="card">
-                <h2>{light.name}</h2>
+                <h2><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
                 <p>{light.description}</p>
               </div>
 
@@ -99,6 +99,7 @@ query WeddingQuery {
       id
       name
       description
+      slug
     }
   }
 }

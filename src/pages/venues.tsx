@@ -21,7 +21,7 @@ const VenuePage = () => {
               {
                 data.allStrapiVenue.nodes.map(venue => (
                   <section className="card" key={venue.id}>
-                    <h2>{venue.name}</h2>
+                    <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
                     <p>{venue.description}</p>
                   </section>
                 ))
@@ -47,6 +47,7 @@ query VenuesQuery {
       id
       name
       description
+      slug
     }
   }
 }

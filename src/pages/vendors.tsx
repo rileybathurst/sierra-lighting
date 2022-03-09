@@ -21,7 +21,7 @@ const VendorsPage = () => {
               {
                 data.allStrapiVendor.nodes.map(vendor => (
                   <section className="card" key={vendor.id}>
-                    <h2>{vendor.name}</h2>
+                    <h2><Link to={`/vendor/${vendor.slug}`}>{vendor.name}</Link></h2>
                     <p>{vendor.description}</p>
                   </section>
                 ))
@@ -41,12 +41,13 @@ const VendorsPage = () => {
 export default VendorsPage
 
 const query = graphql`
-query VendorQuery {
+query VendorsQuery {
   allStrapiVendor(filter: { publishedAt: { ne: null } }) {
     nodes {
       id
       name
       description
+      slug
     }
   }
 }
