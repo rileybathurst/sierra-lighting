@@ -270,4 +270,13 @@ footer {
     // padding-block-end: 1.5rem;
     font-size: 1.25rem;
   }
+
+  .together h3,
+  .together p {
+    display: inline-block;
+  }
+
+  .together p {
+    margin-inline-start: 1rem;
+  }
 }

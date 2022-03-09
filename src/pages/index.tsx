@@ -93,17 +93,17 @@ const IndexPage = () => {
           <hr />
           {/* 📣? I need to think about the H levels here */}
           <h3>Services</h3>
-          <h4>Locally owned and Fully Insured</h4>
-          <h5>Professional Experience</h5>
+          <h4 className="crest">Locally owned and Fully Insured</h4>
+          <h5 className="range">Professional Experience</h5>
           <hr />
-          <h4>Efficient LEDs, House Safe Install</h4>
-          <h5>Quality Materials</h5>
+          <h4 className="crest">Efficient LEDs, House Safe Install</h4>
+          <h5 className="range">Quality Materials</h5>
           <hr />
-          <h4>Installation, Repair &amp; Removal</h4>
-          <h5>Hassle Free</h5>
+          <h4 className="crest">Installation, Repair &amp; Removal</h4>
+          <h5 className="range">Hassle Free</h5>
           <hr />
-          <h4>Repairs Free of Charge</h4>
-          <h5>Guaranteed Upkeep</h5>
+          <h4 className="crest">Repairs Free of Charge</h4>
+          <h5 className="range">Guaranteed Upkeep</h5>
         </section>
 
         <div className="snowyroof-container">

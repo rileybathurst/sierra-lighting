@@ -14,8 +14,9 @@ const TestimonialList = () => (
               <Star /><Star /><Star /><Star /><Star />
             </div>
             <p>{testimonial.review}</p>
-            <h3 className="range">{testimonial.customer}</h3>
-            <p>{testimonial.platform}</p>
+            <div className="together">
+              <h3 className="range">{testimonial.customer}</h3><p>{testimonial.platform}</p>
+            </div>
           </li>
         ))}
       </ul>
