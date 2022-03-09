@@ -14,21 +14,21 @@ const VendorsPage = () => {
       <Header />
       <main className="measure">
 
-        {/* <StaticQuery
+        <StaticQuery
           query={query}
           render={data => (
             <>
               {
-                data.allStrapiVendors.edges[0].node.data.map(vendor => (
+                data.allStrapiVendor.nodes.map(vendor => (
                   <section className="card" key={vendor.id}>
-                    <h2>{vendor.attributes.name}</h2>
-                    <p>{vendor.attributes.description}</p>
+                    <h2>{vendor.name}</h2>
+                    <p>{vendor.description}</p>
                   </section>
                 ))
               }
             </>
           )}
-        /> */}
+        />
 
       </main >
 
@@ -39,24 +39,6 @@ const VendorsPage = () => {
 }
 
 export default VendorsPage
-
-/* const query = graphql`
-  query VendorQuery {
-    allStrapiVendors {
-      edges {
-        node {
-          data {
-            id
-            attributes {
-              name
-              description
-            }
-          }
-        }
-      }
-    }
-  }
-`; */
 
 const query = graphql`
 query VendorQuery {

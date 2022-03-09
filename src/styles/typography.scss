@@ -130,3 +130,14 @@ small {
 .services h4 {
   font-weight: 100;
 }
+
+ol li {
+  margin-block-end: 1.5rem;
+}
+
+.ol-title {
+  display: block;
+  font-size: 1.5rem;
+  @extend .mixta;
+  margin-block-end: 1.5rem;
+}

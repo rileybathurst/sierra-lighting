@@ -14,12 +14,12 @@ const VenuePage = () => {
       <Header />
       <main className="measure">
 
-        {/* <StaticQuery
+        <StaticQuery
           query={query}
           render={data => (
             <>
               {
-                data.allStrapiVenues.nodes.map(venue => (
+                data.allStrapiVenue.nodes.map(venue => (
                   <section className="card" key={venue.id}>
                     <h2>{venue.name}</h2>
                     <p>{venue.description}</p>
@@ -28,7 +28,7 @@ const VenuePage = () => {
               }
             </>
           )}
-        /> */}
+        />
 
       </main >
 
@@ -42,7 +42,7 @@ export default VenuePage
 
 const query = graphql`
 query VenuesQuery {
-  allStrapiVenues(filter: { publishedAt: { ne: null } }) {
+  allStrapiVenue(filter: { publishedAt: { ne: null } }) {
     nodes {
       id
       name

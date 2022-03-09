@@ -1,5 +1,5 @@
 import * as React from "react"
-// import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
 // import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
@@ -52,7 +52,38 @@ const WeddingPage = () => {
         <p>The natural beauty of the Reno Tahoe area make the perfect backdrop for a wedding. Our custom lighting design enhances your decor and the architectural / landscape features of your venue. Wether your aiming for a low key affair or a luxurious event, we work with you to create the perfect mood.</p>
 
         <p>Check out our list of wedding lighting services and some of our favorite Tahoe wedding venues.</p>
+
+        <hr />
+
+        <h3>Have you ever noticed how much lighting can affect the feeling of space?</h3>
+
+        <p>Compare the warm glow of candle light to the blue glare of a fluorescent office and it's clear lighting has a big impact.  A professional lighting design package will highlight your decor and bring out the beauty of your venue.  Well planned lighting is one of the most affordable ways to truly make your special day shine.</p>
+
+        <p>Your venue, decor, flowers, cake and photographer are all big investments. Make the most of them with the right lighting design and these elements will shine even brighter.</p>
+
+        <p>Sierra Christmas Lights approaches every event from a photographic standpoint. Your pictures last forever and we want to be certain they look their best. We communicate with your event designer, planner, florist, photographer, and videographer ahead of your wedding. Once we understand the focal points of an event, we can create a lighting scheme that will best accentuate those details.  We look at the big picture of an event.  When the photographer takes a picture across the room of the couple dancing, they should be lit, along with the centerpieces, the band, and the wall in the back, to highlight all the important focal points of your event.</p>
+
+        <p>We exclusively use modern LED technology, wireless and battery powered where possible.  With wireless LEDs, we are eliminating fire risks from traditional technology, reducing tripping hazards and clutter in your photos.  We use modern RGB technology to create the perfect lighting effects to highlight your decor and create the ideal mood for your big day.  For example, ambers / warm whites add a flattering and romantic glow while deep purple / blue can amp up guests for the dance party portion of the night. You can choose a unified color scheme, select a palette of complimentary colors or even plan changes throughout your event.</p>
+
       </main>
+
+      <hr />
+
+      <StaticQuery
+        query={query}
+        render={data => (
+          <div className="measure">
+            {data.allStrapiLight.nodes.map(light => (
+
+              <div key={light.id} className="card">
+                <h2>{light.name}</h2>
+                <p>{light.description}</p>
+              </div>
+
+            ))}
+          </div>
+        )}
+      />
 
       <Footer />
     </>
@@ -60,3 +91,15 @@ const WeddingPage = () => {
 }
 
 export default WeddingPage
+
+const query = graphql`
+query WeddingQuery {
+  allStrapiLight(filter: { publishedAt: { ne: null } }) {
+    nodes {
+      id
+      name
+      description
+    }
+  }
+}
+`

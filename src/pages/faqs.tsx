@@ -7,13 +7,15 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 
 // markup
-const ContactPage = () => {
+const FaqsPage = () => {
   return (
     <>
       <Seo title="Sierra Lighting" />
       <Header />
-      <main>
-        {/* <h1>Contact</h1> */}
+      <main className="measure">
+
+        <h1>Frequently Asked Questions</h1>
+
       </main>
 
       <Footer />
@@ -22,4 +24,15 @@ const ContactPage = () => {
   )
 }
 
-export default ContactPage
+export default FaqsPage
+
+/* const query = graphql`
+query MyQuery {
+  allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
+    nodes {
+      id
+      customer
+    }
+  }
+}
+` */
