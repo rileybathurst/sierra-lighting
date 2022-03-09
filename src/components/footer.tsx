@@ -20,12 +20,17 @@ const Footer = () => {
   return (
     <footer>
       <section id="contact" className="contact">
-        <h3>Contact</h3>
-        <h4>Say Hello</h4>
 
-        <p><a href="mailto:sierrachristmaslights@gmail.com">sierrachristmaslights@gmail.com</a></p>
-        <p><a href="tel:+1-775-525-1898">Nevada Number: (775) 525-1898</a></p>
-        <p><a href="tel:+1-530-414-9899">California Number: (530) 414-9899</a></p>
+        <hr />
+
+        <h3 className="crest">Contact</h3>
+        <h4 className="range">Say Hello</h4>
+
+        <div className="contact-info">
+          <p><a href="mailto:sierrachristmaslights@gmail.com">sierrachristmaslights@gmail.com</a></p>
+          <p><a href="tel:+1-775-525-1898">Nevada Number: (775) 525-1898</a></p>
+          <p><a href="tel:+1-530-414-9899">California Number: (530) 414-9899</a></p>
+        </div>
 
         <form>
           <label>Name
@@ -55,8 +60,8 @@ const Footer = () => {
           </Link>
         </h4>
 
-        <Logo />
-        <ThisYear />
+        <Link to="/"><Logo /></Link>
+        <p><ThisYear /></p>
       </div>
 
     </footer>

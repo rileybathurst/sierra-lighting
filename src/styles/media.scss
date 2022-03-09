@@ -6,6 +6,14 @@ svg {
   }
 }
 
+a svg {
+  transition: var(--moment);
+}
+
+a svg:hover {
+  fill: var(--honey-3);
+}
+
 .village-container,
 .snowyroof-container {
   max-width: var(--measure);

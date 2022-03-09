@@ -201,19 +201,28 @@ header {
 #footer-social {
   max-width: var(--measure);
   margin-inline: auto;
+  width: calc(100% - 2rem);
 
   ul {
     display: flex;
     flex-flow: row wrap;
-    align-items: baseline;
-    gap: 0.75rem;
-    justify-content: space-evenly;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: space-between;
+    max-width: $pad;
+    padding-inline-start: 0; // reset
 
     li {
       list-style: none;
 
       svg {
-        max-width: 3rem;
+        max-width: 2.5rem;
+        fill: var(--honey-5);
+        fill: hsl(var(--honey), 62%, 62%);
+      }
+
+      a svg:hover {
+        fill: var(--honey-4);
       }
     }
   }
@@ -222,13 +231,43 @@ header {
 .footer-container {
   max-width: var(--measure);
   margin-inline: auto;
+  width: calc(100% - 2rem);
 }
 
 footer {
   margin-block-end: 3rem;
+
+  .logo {
+    margin-block-end: 1.5rem;
+  }
 }
 
 .accordian-spinner {
   z-index: 2;
   position: relative;
+}
+
+/*------------------*/
+//  #TESTIMONIALS
+/*------------------*/
+
+.testimonials {
+  margin-block-start: 1.5rem;
+  padding-block-start: 1.5rem;
+  padding-block-end: 1.5rem;
+
+  hr {
+    padding-block-start: 1.5rem;
+  }
+
+  ul {
+    padding-inline-start: 0;
+  }
+
+  // padding-block-end: 3rem;
+  h3 {
+    display: block;
+    // padding-block-end: 1.5rem;
+    font-size: 1.25rem;
+  }
 }

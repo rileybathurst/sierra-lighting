@@ -4,11 +4,11 @@ import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
-import Star from "../images/star";
 import Footer from "../components/footer";
 
 import "../styles/app.scss";
 import AreaAccordian from "../components/area-accordian";
+import TestimonialList from "../components/testimonial-list";
 
 export function Village() {
   return <StaticImage
@@ -113,31 +113,12 @@ const IndexPage = () => {
         <div className="slider-container">
           <section id="slider" className="testimonials">
             <hr />
-            <h2>Testimonials</h2>
+            <h2 className="crest">Testimonials</h2>
+            <h3 className="range">Thanks From Our Customers</h3>
 
+            <TestimonialList />
 
-            <StaticQuery
-              query={query}
-              render={data => (
-                <ul>
-                  {data.allStrapiTestimonial.nodes.map(testimonial => (
-                    <li className="slider">
-                      <div className="five-stars">
-                        <Star />
-                        <Star />
-                        <Star />
-                        <Star />
-                        <Star />
-                      </div>
-                      <p key={testimonial.id}>
-                        {testimonial.customer}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            />
-            <h3><Link to="#">Read More Reviews</Link></h3>
+            <h3 className="crest"><Link to="#">Read More Reviews</Link></h3>
           </section>
         </div>
 
@@ -151,7 +132,7 @@ const IndexPage = () => {
 
 export default IndexPage
 
-const query = graphql`
+/* const query = graphql`
 query MyQuery {
   allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
     nodes {
@@ -160,4 +141,4 @@ query MyQuery {
     }
   }
 }
-`
+` */

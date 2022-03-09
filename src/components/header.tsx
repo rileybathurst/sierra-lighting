@@ -22,7 +22,7 @@ const Header = () => {
             // crossorigin="use-credentials" // 📣 this has an issue either on or off
             />
           </Helmet>
-          <Logo />
+          <Link to="/"><Logo /></Link>
           <div className="stripe">{/* stay gold */}</div>
           <Menu />
           <BigBoy />
