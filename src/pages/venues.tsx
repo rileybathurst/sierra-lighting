@@ -19,10 +19,10 @@ const VenuePage = () => {
           render={data => (
             <>
               {
-                data.allStrapiVenues.edges[0].node.data.map(venue => (
+                data.allStrapiVenues.nodes.map(venue => (
                   <section className="card" key={venue.id}>
-                    <h2>{venue.attributes.name}</h2>
-                    <p>{venue.attributes.description}</p>
+                    <h2>{venue.name}</h2>
+                    <p>{venue.description}</p>
                   </section>
                 ))
               }
@@ -40,27 +40,9 @@ const VenuePage = () => {
 
 export default VenuePage
 
-/* const query = graphql`
-  query VenuesQuery {
-    allStrapiVenues {
-      edges {
-        node {
-          data {
-            id
-            attributes {
-              name
-              description
-            }
-          }
-        }
-      }
-    }
-  }
-`; */
-
 const query = graphql`
 query VenuesQuery {
-  allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
+  allStrapiVenues(filter: { publishedAt: { ne: null } }) {
     nodes {
       id
       name

@@ -7,6 +7,9 @@ const MenuList = () => (
   <ul>
     <li><Link to="/">Home</Link></li>
     <li><Link to="/residential">Residential</Link></li>
+    <li><Link to="/commercial">Commercial</Link></li>
+    <li><Link to="/wedding">Wedding</Link></li>
+    <li><Link to="/venues">Tahoe Wedding Venues</Link></li>
     <ContactList />
   </ul>
 )

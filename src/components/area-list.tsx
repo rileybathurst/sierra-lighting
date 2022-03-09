@@ -2,6 +2,7 @@ import React from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
 
 const AreaList = () => (
+
   <>
     <section>
       <h5>California</h5>
@@ -44,16 +45,29 @@ const AreaList = () => (
 
       <hr />
 
+      {/* I mean maybe this enough it works */}
       <StaticQuery
         query={query}
         render={data => (
-          <ul>
-            {
-              data.california.nodes.map(area => (
-                <li className="" key={area.id}>{area.name}</li>
-              ))
-            }
-          </ul>
+          <>
+            <ul>
+              {
+                data.california.nodes.map(area => (
+                  <li className="" key={area.id}>{area.name}</li>
+                ))
+              }
+            </ul>
+
+
+            <hr />
+            <ul>
+              {
+                data.nevada.nodes.map(area => (
+                  <li className="" key={area.id}>{area.name}</li>
+                ))
+              }
+            </ul>
+          </>
         )}
       />
     </section>
@@ -63,17 +77,18 @@ const AreaList = () => (
 
       <hr />
 
+      {/* this might be a problem */}
       {/*       <StaticQuery
         query={query}
-        render={data => (
-          <ul>
-            {
-              data.nevada.nodes.map(area => (
-                <li className="" key={area.id}>{area.name}</li>
-              ))
-            }
-          </ul>
-        )}
+        render={data => ( */}
+      {/* <ul>
+        {
+          data.nevada.nodes.map(area => (
+            <li className="" key={area.id}>{area.name}</li>
+          ))
+        }
+      </ul> */}
+      {/*         )}
       /> */}
 
 
@@ -84,7 +99,7 @@ const AreaList = () => (
 
 export default AreaList
 
-const query = graphql`
+export const query = graphql`
 query AreasQuery {
   california: allStrapiArea(filter: {state: {eq: "california"}}) {
     nodes {

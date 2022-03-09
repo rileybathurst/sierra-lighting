@@ -12,7 +12,7 @@ const CommercialPage = () => {
     <>
       <Seo title="Sierra Lighting" />
       <Header />
-      <main>
+      <main className="measure">
 
         <h1>Commercial Christmas Lights amp; Decor</h1>
 
