@@ -19,7 +19,7 @@ function SlideMenu() {
     });
 
     return (
-      <>
+      <div className='menu_s'>
         <button
           className="button-spinner"
           onClick={() => setSlide('close')}
@@ -48,7 +48,7 @@ function SlideMenu() {
           </menu>
         </nav>
 
-      </>
+      </div>
     );
   } else if (slide == "menu") {
 

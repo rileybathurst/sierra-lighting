@@ -78,12 +78,6 @@ const IndexPage = () => {
               <hr />
               <h3>Service Area</h3>
               <h4>Reno, Truckee, Lake Tahoe, Carson City and Minden</h4>
-              <button>
-                <span>California</span>
-                <span>Nevada</span>
-                <span>+</span>
-              </button>
-
               <AreaAccordian />
             </section>
 

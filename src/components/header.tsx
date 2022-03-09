@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 
 import Logo from "../images/logo";
 import Menu from "./menu";
+import BigBoy from "./bigboy";
 
 const Header = () => {
   return (
@@ -24,7 +25,7 @@ const Header = () => {
           <Logo />
           <div className="stripe">{/* stay gold */}</div>
           <Menu />
-          {/* <h2 className="mixta">Dependable holiday, landscape and events light installation</h2> */}
+          <BigBoy />
         </div>
       </header>
     </>

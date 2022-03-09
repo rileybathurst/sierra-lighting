@@ -70,30 +70,6 @@ header {
   }
 }
 
-/* @media (min-width: $pad) {
-  .menu__small {
-    display: none; // off for testing
-  }
-} */
-
-.menu__small {
-  grid-row: 3;
-  grid-column: 1;
-  padding-inline-start: var(--cadence);
-  z-index: -2;
-  // this has a little problem with the header image being infront of the menu
-  // as its in a different parent element
-  height: auto;
-  grid-column: 1/3;
-
-  nav {
-    ul {
-      display: flex;
-      flex-direction: column;
-    }
-  }
-}
-
 /*------------------------------------*/
 //  #MAIN
 /*------------------------------------*/
