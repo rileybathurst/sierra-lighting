@@ -63,7 +63,7 @@ const AreaList = () => (
 
       <hr />
 
-      <StaticQuery
+      {/*       <StaticQuery
         query={query}
         render={data => (
           <ul>
@@ -74,7 +74,7 @@ const AreaList = () => (
             }
           </ul>
         )}
-      />
+      /> */}
 
 
     </section>
