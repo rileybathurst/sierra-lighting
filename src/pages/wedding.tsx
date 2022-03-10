@@ -20,6 +20,9 @@ const WeddingPage = () => {
       <Header />
       <main className="measure">
 
+        <p className="breadcrumbs"><Link to="/">Home</Link> / Wedding</p>
+        <hr />
+
         <h1>Wedding, Event, and Patio Lighting</h1>
 
         <p>Whether it's a wedding, corporate gathering, rehearsal dinner, anniversary, birthday party, or any other special event, we have you covered.</p>

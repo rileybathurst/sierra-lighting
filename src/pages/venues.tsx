@@ -14,6 +14,15 @@ const VenuePage = () => {
       <Header />
       <main className="measure">
 
+        <p className="breadcrumbs">
+          <Link to="/">Home</Link>&nbsp;
+          / <Link to="/wedding">Wedding</Link>&nbsp;
+          / Wedding Venues
+        </p>
+        <hr />
+
+        <h1>Wedding Venues</h1>
+
         <StaticQuery
           query={query}
           render={data => (
@@ -22,6 +31,7 @@ const VenuePage = () => {
                 data.allStrapiVenue.nodes.map(venue => (
                   <section className="card" key={venue.id}>
                     <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                    <hr />
                     <p>{venue.description}</p>
                   </section>
                 ))

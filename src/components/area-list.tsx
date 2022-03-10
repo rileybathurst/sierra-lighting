@@ -8,29 +8,32 @@ const AreaList = () => (
       <StaticQuery
         query={query}
         render={data => (
-          <>
-            <h3>California</h3>
-            <ul>
-              {
-                data.california.nodes.map(area => (
-                  <li className="" key={area.id}>
-                    <Link to={`/area/${area.slug}`}>{area.name}</Link>
-                  </li>
-                ))
-              }
-            </ul>
-
-            <h3>Nevada</h3>
-            <ul>
-              {
-                data.nevada.nodes.map(area => (
-                  <li className="" key={area.id}>
-                    <Link to={`/area/${area.slug}`}>{area.name}</Link>
-                  </li>
-                ))
-              }
-            </ul>
-          </>
+          <div className="states">
+            <div>
+              <h3>California</h3>
+              <ul>
+                {
+                  data.california.nodes.map(area => (
+                    <li className="" key={area.id}>
+                      <Link to={`/area/${area.slug}`}>{area.name}</Link>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+            <div>
+              <h3>Nevada</h3>
+              <ul>
+                {
+                  data.nevada.nodes.map(area => (
+                    <li className="" key={area.id}>
+                      <Link to={`/area/${area.slug}`}>{area.name}</Link>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
         )}
       />
     </section>

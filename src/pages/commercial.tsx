@@ -1,5 +1,5 @@
 import * as React from "react"
-// import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 // import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
@@ -14,7 +14,10 @@ const CommercialPage = () => {
       <Header />
       <main className="measure">
 
-        <h1>Commercial Christmas Lights amp; Decor</h1>
+        <p className="breadcrumbs"><Link to="/">Home</Link> / Commercial</p>
+        <hr />
+
+        <h1>Commercial Christmas Lights &amp; Decor</h1>
 
         <p>Allow us to help your business spread holiday cheer this season. There is a strong sense of goodwill and community during Christmas, and our lighting displays can help enhance those feelings. For many businesses in Reno, Truckee, and Tahoe, Christmastime is THE most important period of the year. An investment in a beautiful lighting display will help your business stand out from the rest and enhance your bottom line during this busy season for years to come.  We can install lights on shopping centers, office buildings, restaurants, municipal buildings, medical facilities, HOA's, schools, car dealerships, and casinos. We also do commercial accent lighting year round.  Please check out our patio lights page for more information.</p>
 

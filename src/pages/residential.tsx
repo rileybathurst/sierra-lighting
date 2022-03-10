@@ -1,5 +1,5 @@
 import * as React from "react"
-// import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 // import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
@@ -13,6 +13,9 @@ const ResidentialPage = () => {
       <Seo title="Sierra Lighting" />
       <Header />
       <main className="measure">
+
+        <p className="breadcrumbs"><Link to="/">Home</Link> / Residential</p>
+        <hr />
 
         <h1>Residential Christmas Lights and Decor</h1>
         <p>It&#39;s the most wonderful time of the year, Christmas, when feelings of joy, love, and giving shine through. Allow Sierra Christmas Lights to further enhance these feelings, and add even more Christmas cheer. Imagine your family gathered around the tree, while your home sparkles and beckons from outside. We are here to help you make the most of this special time of year, while removing any stress of decorating from it.</p>

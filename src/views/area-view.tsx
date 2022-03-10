@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
+import ReactMarkdown from "react-markdown";
+
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -13,8 +15,7 @@ const AreaView = ({ area }) => {
       <main className="measure">
         <article className="single">
           <h1>{area.name}</h1>
-          {/* this needs to be formatted */}
-          <p>{area.description.data.description}</p>
+          <ReactMarkdown children={area.description.data.description} />
         </article>
       </main>
       <Footer />

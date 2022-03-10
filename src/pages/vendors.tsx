@@ -14,6 +14,13 @@ const VendorsPage = () => {
       <Header />
       <main className="measure">
 
+        <p className="breadcrumbs">
+          <Link to="/">Home</Link>&nbsp;
+          / <Link to="/wedding">Wedding</Link>&nbsp;
+          / Wedding Vedors
+        </p>
+        <hr />
+
         <StaticQuery
           query={query}
           render={data => (

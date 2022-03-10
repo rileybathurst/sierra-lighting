@@ -95,6 +95,7 @@ header {
     display: grid;
     gap: 1rem;
     padding-inline: 1rem;
+    padding-block-end: 3rem;
     background-color: var(--honey-7);
 
     @media (prefers-color-scheme: dark) {
@@ -111,6 +112,16 @@ header {
     margin-inline: auto;
     max-width: var(--measure);
     padding-inline: auto;
+  }
+}
+
+/*------------------*/
+//  #SIDEKICK
+/*------------------*/
+
+.service-area {
+  .states {
+    display: flex;
   }
 }
 
@@ -169,6 +180,7 @@ header {
 .village-container {
   display: grid;
   aspect-ratio: 3/2;
+  overflow: hidden;
 
   > * {
     grid-row: 1;
@@ -279,4 +291,12 @@ footer {
   .together p {
     margin-inline-start: 1rem;
   }
+}
+
+/*------------------*/
+//  #BREADCRUMBS
+/*------------------*/
+
+.breadcrumbs {
+  margin-block-start: 1.5rem;
 }

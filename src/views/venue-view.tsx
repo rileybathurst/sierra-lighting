@@ -11,8 +11,18 @@ const VenueView = ({ venue }) => {
       <Seo title="Sierra Lighting" />
       <Header />
       <main className="measure">
+
+        <p className="breadcrumbs">
+          <Link to="/">Home</Link>&nbsp;
+          / <Link to="/wedding">Wedding</Link>&nbsp;
+          / <Link to="/venues">Wedding Venues</Link>&nbsp;
+          / {venue.name}
+        </p>
+        <hr />
+
         <article className="single">
           <h1>{venue.name}</h1>
+          <hr />
           <p>{venue.description}</p>
         </article>
       </main>
