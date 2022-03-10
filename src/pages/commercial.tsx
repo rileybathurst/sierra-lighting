@@ -10,7 +10,10 @@ import Footer from "../components/footer";
 const CommercialPage = () => {
   return (
     <>
-      <Seo title="Sierra Lighting" />
+      <Seo
+        title="Commercial Christmas Lights &amp; Decor"
+        description="Car dealer, casino, medical office, or shopping complex, we decorate them all and more! Contact Sierra Christmas Lights for your turn key holiday lighting needs.  From install to storage, we do it all.  We can decorate with wreaths, bows, figurines, snowflakes, C9 LED bulbs, mini LEDs, and garlands."
+      />
       <Header />
       <main className="measure">
 

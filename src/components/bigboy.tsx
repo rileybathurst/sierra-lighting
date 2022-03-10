@@ -1,11 +1,11 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import MenuList from './menu-list';
+import TopList from './top-list';
 
 function BigBoy() {
   return (
     <div className='bigboy'>
-      <MenuList />
+      <TopList />
     </div>
   );
 }

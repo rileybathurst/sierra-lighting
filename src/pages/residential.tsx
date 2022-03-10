@@ -10,7 +10,10 @@ import Footer from "../components/footer";
 const ResidentialPage = () => {
   return (
     <>
-      <Seo title="Sierra Lighting" />
+      <Seo
+        title="Residential Christmas Lights and Decorations"
+        description="Sierra Christmas Lights installs lights on homes in Reno, Truckee, and Tahoe.  We are a full service company, covering every aspect from from design, intsall, maintenance, takedown, and storage. Our professional crews can hang lights on trees, rooflines and bushes. We hang garlands and wreaths."
+      />
       <Header />
       <main className="measure">
 
