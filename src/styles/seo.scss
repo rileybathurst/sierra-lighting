@@ -9,9 +9,13 @@
   .green,
   .yellow,
   .red {
-    background-color: lightgray;
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
+    background-color: lightgray;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: midnightblue;
+    }
   }
 
   .green {

@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <>
       <div className="top-bar">
-        <h2><Link to="/">Booking now for Christmas 2022</Link></h2>
+        <h2><Link to="/" title="home">Booking now for Christmas 2022</Link></h2>
         <hr />
       </div>{/* how do I get around this being an h1 */}
       <header>
