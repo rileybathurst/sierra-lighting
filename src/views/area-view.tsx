@@ -9,7 +9,7 @@ import Footer from "../components/footer";
 
 function ReactDescription(props) {
   if (props.desc) {
-    return <ReactMarkdown children={props.byline} />;
+    return <ReactMarkdown children={props.desc.data.description} />;
   } else {
     return null;
   }
@@ -24,7 +24,8 @@ const AreaView = ({ area }) => {
         <article className="single">
           <h1>{area.name}</h1>
           {/* <ReactMarkdown children={area.description.data.description} /> */}
-          <ReactDescription desc={area.description.data.description} />
+          {/* <ReactDescription desc={area.description.data.description} /> */}
+          <ReactDescription desc={area.description} />
         </article>
       </main>
       <Footer />
