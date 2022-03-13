@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-import Seo from "../components/seo";
+// import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -12,7 +12,7 @@ const MapsPage = () => {
 
   return (
     <>
-      <Seo title="Sierra Lighting" />
+      {/* <Seo title="Sierra Lighting" /> */}
       <Header />
       <main className="measure">
 
