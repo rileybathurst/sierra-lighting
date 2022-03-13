@@ -8,7 +8,7 @@ import Footer from "../components/footer";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 // markup
-const MapsPage = () => {
+const LeafletPage = () => {
 
   return (
     <>
@@ -36,5 +36,6 @@ const MapsPage = () => {
   )
 }
 
-export default MapsPage
+export default LeafletPage
 
+// export async function getServerData() { }
