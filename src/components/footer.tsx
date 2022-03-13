@@ -93,6 +93,12 @@ const Footer = () => {
 
       <SocialIcons />
 
+      <hr className="measure" />
+
+      <div className="measure">
+        <p>page List</p>
+      </div>
+
       <div className="footer-container">
         {/* I need to add this to an auto update */}
         <h4 className="sr-only">

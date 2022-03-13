@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 
 // import Seo from "../components/seo";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "../src/components/header";
+import Footer from "../src/components/footer";
 
 // local build
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
