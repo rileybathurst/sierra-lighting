@@ -120,7 +120,8 @@ small {
 
 // im going to need a lot more of these
 ::selection {
-  background-color: var(--honey-7);
+  background-color: var(--honey-h-8);
+  background-color: orange;
 }
 
 .two-small-lines {
@@ -135,7 +136,7 @@ small {
 
 hr {
   border: none;
-  border-top: 1px solid var(--honey-4);
+  border-top: 1px solid var(--honey-h-4);
   margin-block: 1.5rem; /* 20px */
 }
 

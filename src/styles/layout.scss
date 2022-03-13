@@ -3,7 +3,12 @@
 /*------------------------------------*/
 
 .measure {
-  max-width: 30rem; //
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+.pad {
+  max-width: $pad; //
   margin-inline: auto;
 }
 
@@ -15,7 +20,7 @@
   text-align: center;
   z-index: 3;
   position: relative;
-  background-color: var(--honey-7);
+  // background-color: whitesmoke;
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-1);
@@ -24,7 +29,11 @@
   h2 {
     font-size: 1rem;
     margin-block: 0;
-    padding-block-start: 1.5rem;
+    padding-block: 0.5rem;
+  }
+
+  hr {
+    margin-block-start: 0;
   }
 }
 
@@ -42,7 +51,7 @@ header {
     grid-row: 1/3;
     grid-column: 1/3;
     z-index: 1;
-    background: var(--honey-7); // needed if the menu is large
+    background: var(--honey-h-8); // needed if the menu is large
 
     @media (prefers-color-scheme: dark) {
       background: var(--denim-1);
@@ -80,7 +89,7 @@ header {
 
 .hero-container {
   @media (min-width: $book) {
-    background-color: var(--honey-7);
+    background-color: var(--honey-h-8);
 
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-1);
@@ -96,7 +105,7 @@ header {
     gap: 1rem;
     padding-inline: 1rem;
     padding-block-end: 3rem;
-    background-color: var(--honey-7);
+    background-color: var(--honey-h-8);
 
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-1);
@@ -234,7 +243,7 @@ header {
       }
 
       a svg:hover {
-        fill: var(--honey-4);
+        fill: var(--honey-h-4);
       }
     }
   }
@@ -299,4 +308,40 @@ footer {
 
 .breadcrumbs {
   margin-block-start: 1.5rem;
+}
+
+.triple {
+  display: flex;
+  gap: 1rem;
+  max-width: $book;
+  margin-inline: auto;
+  margin-block: 3rem;
+
+  > * {
+    width: 33%;
+    box-shadow: var(--troposphere);
+    border-radius: var(--border-radius);
+    border: 1px solid whitesmoke;
+  }
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  margin-block-start: 3rem;
+
+  @media (min-width: $pad) {
+    flex-flow: row wrap;
+  }
+
+  > * {
+    flex: 1;
+  }
+}
+
+.team {
+  @media (min-width: $pad) {
+    border-left: 1px solid orange;
+    padding-inline-start: 1rem;
+  }
 }

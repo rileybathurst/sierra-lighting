@@ -5,18 +5,73 @@
 :root {
   --honey: 35;
 
+  --louie-a: 12%; // 1
+  --louie-b: 25%; // 2
+  --louie-c: 37%; // 3
+  --louie-d: 50%; // 4
+  --louie-e: 63%; // 5
+  --louie-f: 75%; // 6
+  --louie-g: 87%; // 7
+  --louie-h: 100%; // 8
+
   // just working on this idea
 
-  --honey-7: hsl(var(--honey), 100%, 87%); // lightest
+  /*   --honey-h-8: hsl(var(--honey), 100%, 87%); // lightest
+  --honey-h-8-a: hsl(var(--honey), 12%, 100%);
+  --honey-h-8-a: rgb(255, 242, 224);
+  --honey-h-8-a: hsl(35, 100%, 94%);
   --honey-6: hsl(var(--honey), 100%, 75%);
   --honey-5: hsl(var(--honey), 100%, 62%);
-  --honey-4: hsl(var(--honey), 100%, 50%);
+  --honey-h-4: hsl(var(--honey), 100%, 50%);
   --honey-3: hsl(var(--honey), 100%, 37%);
-  --honey-2: hsl(var(--honey), 100%, 25%);
-  --honey-1: hsl(var(--honey), 100%, 12%); // darkest
+  --honey-h-2: hsl(var(--honey), 100%, 25%);
+  --honey-1: hsl(var(--honey), 100%, 12%); // darkest */
 
-  --honey-4-a: hsl(var(--honey), 87%, 50%); // it just feels too neon
+  // --honey-a-4: hsl(var(--honey), 87%, 50%); // it just feels too neon
   // ? maybe this should be the default?
+
+  /*   --honey-a-1: 
+  --honey-b-1: 
+  --honey-a-2:  */
+
+  --honey-a-4: hsl(var(--honey), var(--louie-a), var(--louie-d));
+  --honey-a-8: hsl(var(--honey), var(--louie-a), var(--louie-h));
+
+  --honey-f-7: hsl(var(--honey), var(--louie-f), var(--louie-g));
+
+  --honey-h-1: hsl(var(--honey), var(--louie-h), var(--louie-h));
+  --honey-h-2: hsl(var(--honey), var(--louie-h), var(--louie-b));
+  --honey-h-4: hsl(var(--honey), var(--louie-h), var(--louie-d));
+  --honey-h-8: hsl(var(--honey), var(--louie-h), var(--louie-h));
+  --honey-h-8: hsl(
+    var(--honey),
+    var(--louie-h),
+    97.5%
+  ); // this needs a tweak it goes white
+
+  /*   --l-a: 12%;
+  --l-b: 25%;
+  --l-c: 37%;
+  --l-d: 50%;
+  --l-e: 62%;
+  --l-f: 75%;
+  --l-g: 87%;
+  --l-h: 99%; */
+
+  /*   --c-1: 17;
+  --c-2: 33;
+  --c-3: 50;
+  --c-4: 66;
+  --c-5: 83;
+  --c-6: 99;
+  --c-7: 116;
+  --c-8: 132; */
+
+  // --vitamin_c-lch_h: 70; // lch
+
+  // louies bottom right 71.39, 83.17, 67.20
+  // louie_vitamin_c: lch(var(--l-f), var(--c-5), var(--vitamin_c-h));
+  // aka no where near the top
 
   --denim: 215;
 
@@ -32,6 +87,7 @@
   --page_width: 80rem; // ? I need some math on this
 
   --border-radius: 0.125rem;
+  --card-radius: 0.5rem;
 
   --moment: 0.5s ease-in-out;
 

@@ -3,7 +3,7 @@
 /*------------------------------------*/
 
 a {
-  color: var(--honey-2);
+  color: var(--honey-h-2);
 
   @media (prefers-color-scheme: dark) {
     color: var(--honey-6);
@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-  color: var(--honey-4-a);
+  color: var(--honey-a-4);
 }
 
 .hover-back {
@@ -25,7 +25,7 @@ a:hover {
 }
 
 .hover-back:hover {
-  background-color: var(--honey-7);
+  background-color: var(--honey-h-8);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--honey-6);
@@ -34,4 +34,12 @@ a:hover {
 
 .contact-info a {
   @extend .hover-back;
+}
+
+.bigboy a {
+  @extend .hover-back;
+}
+
+.bigboy a:hover {
+  background-color: var(--honey-h-1);
 }

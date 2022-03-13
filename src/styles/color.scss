@@ -8,7 +8,7 @@ body {
 header h2 {
   margin: 0;
   padding: 1rem;
-  background-color: var(--honey-7);
+  background-color: var(--honey-h-8);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-1);
@@ -16,7 +16,7 @@ header h2 {
 }
 
 header {
-  background: var(--honey-7);
+  background: var(--honey-h-8);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-1);
@@ -48,11 +48,11 @@ header button svg {
 }
 
 header button:hover svg {
-  background-color: var(--honey-2);
+  background-color: var(--honey-h-2);
 }
 
 .testimonials svg {
-  fill: var(--honey-4);
-  outline: 1px solid var(--honey-7);
+  fill: var(--honey-h-4);
+  outline: 1px solid var(--honey-h-8);
   margin-block-end: 1.5rem;
 }

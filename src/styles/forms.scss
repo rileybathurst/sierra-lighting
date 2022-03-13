@@ -21,11 +21,13 @@ form {
   }
 
   label {
+    width: calc(100% - 2rem);
     margin-block-end: 1.25rem;
+    margin-inline: auto;
   }
 
   button {
-    background-color: var(--honey-7);
+    background-color: var(--honey-h-8);
     width: max-content;
     padding-block-start: 0.75rem;
     padding-block-end: 0.5rem;
@@ -33,6 +35,7 @@ form {
     box-shadow: var(--troposphere);
     transition: var(--moment);
     font-family: josefin-sans, sans-serif;
+    margin-inline-start: 1rem;
   }
 
   button:hover,
