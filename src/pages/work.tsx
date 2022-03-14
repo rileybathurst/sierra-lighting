@@ -6,17 +6,14 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import AreaList from "../lists/area-list";
-
-// markup
-const AreasPage = () => {
+const WorkPage = () => {
   return (
     <>
       <Seo title="Sierra Lighting" />
       <Header />
       <main className="measure">
-        <h1>Service Areas</h1>
-        <AreaList />
+        <h1>Jobs</h1>
+        <p>We want to hire people.</p>
       </main>
 
       <Footer />
@@ -25,4 +22,4 @@ const AreasPage = () => {
   )
 }
 
-export default AreasPage
+export default WorkPage

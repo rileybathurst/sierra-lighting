@@ -6,9 +6,6 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
-import "leaflet/dist/leaflet.css";
-
 import "../styles/app.scss";
 import AreaAccordian from "../components/area-accordian";
 import TestimonialList from "../components/testimonial-list";
@@ -62,8 +59,8 @@ const IndexPage = () => {
             <h2 className="mixta">Dependable holiday, landscape and events light installation</h2>
 
             <div className="village-container">
-              <Village />
-              <p>The Village at Rancharrah See the Project</p>
+              <Link to="/project/rancharrah"><Village /></Link>
+              <p><Link to="/project/rancharrah">The Village at Rancharrah See the Project</Link></p>
             </div>
 
             <section id="trusted" className="trusted">

@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Hamburger from "../images/hamburger";
-import AreaList from './area-list';
+import AreaList from '../lists/area-list';
 
 function AreaAccordian() {
   return (

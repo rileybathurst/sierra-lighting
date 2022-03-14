@@ -1,0 +1,14 @@
+/*------------------*/
+//  #FOOTER
+/*------------------*/
+
+.footer_list {
+  display: flex;
+  flex-flow: row wrap;
+  padding-inline-start: 0;
+  gap: 1rem;
+
+  li {
+    list-style: none;
+  }
+}

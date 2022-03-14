@@ -5,6 +5,9 @@ import { StaticImage } from "gatsby-plugin-image"
 import Logo from "../images/logo";
 import Menu from "./menu";
 import SocialIcons from "../components/social-icons";
+import TopBar from "./topbar";
+import TopList from "../lists/top-list";
+import FooterList from "../lists/footer-list";
 
 function ThisYear() {
   let today = new Date().getFullYear();
@@ -68,6 +71,7 @@ const Footer = () => {
               </Link>
             </div>
           </div>
+          <Link to="/work">Work with us</Link>
         </div>
       </div>
 
@@ -96,7 +100,9 @@ const Footer = () => {
       <hr className="measure" />
 
       <div className="measure">
-        <p>page List</p>
+        <ul className="footer_list">
+          <FooterList />
+        </ul>
       </div>
 
       <div className="footer-container">

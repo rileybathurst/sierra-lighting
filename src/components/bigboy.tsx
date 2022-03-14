@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import TopList from './top-list';
+import TopList from '../lists/top-list';
 
 function BigBoy() {
   return (
