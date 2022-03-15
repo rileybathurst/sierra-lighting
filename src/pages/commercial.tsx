@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
@@ -74,6 +74,45 @@ const CommercialPage = () => {
         </div>
       </main>
 
+      <div className="measure">
+        <hr />
+        <h3 className="crest">What have we done</h3>
+        <h2 className="ridge mixta">Projects</h2>
+
+      </div>
+
+      <div className="deck measure">
+
+        <StaticQuery
+          query={query}
+          render={data => (
+            <>
+              {
+                data.allStrapiProject.nodes.map(project => (
+                  <div key={project.id} className="card">
+                    <NorthTahoeEvents />
+                    <div className="paper"></div>
+                    <div className="content">
+                      <hr />
+                      {/* <h3 className="crest">{light.byline}</h3> */}
+                      <h2 className="mixta">
+                        <Link to={`/light/${project.slug}`}>
+                          {project.title}
+                        </Link>
+                      </h2>
+                      <p className="description">
+                        {project.description.data.description}
+                      </p>
+                    </div>
+
+                  </div>
+                ))
+              }
+            </>
+          )}
+        />
+      </div>
+
       <Footer />
 
     </>
@@ -81,3 +120,19 @@ const CommercialPage = () => {
 }
 
 export default CommercialPage
+
+const query = graphql`
+query CommercialProjectQuery {
+  allStrapiProject(filter: {service: {eq: "commercial"}}) {
+    nodes {
+      title
+      description {
+        data {
+          description
+        }
+      }
+      slug
+    }
+  }
+}
+`

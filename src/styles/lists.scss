@@ -7,8 +7,18 @@
   flex-flow: row wrap;
   padding-inline-start: 0;
   gap: 1rem;
+  justify-items: space-between;
+  align-items: space-between;
 
-  li {
-    list-style: none;
+  > ul {
+    padding-inline-start: 0;
+    flex: 1;
+
+    > li {
+      list-style: none;
+      text-align: center;
+      line-height: 1.5rem;
+      padding-block-end: 0.5rem;
+    }
   }
 }

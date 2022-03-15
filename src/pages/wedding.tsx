@@ -71,7 +71,7 @@ const WeddingPage = () => {
           </ul>
           <hr />
 
-          <h3>Patio and Landscape Lighting</h3>
+          {/*           <h3>Patio and Landscape Lighting</h3>
 
           <p>Sierra Christmas Lights can help make your home or business look amazing for the summer season. We offer a variety of lighting options including:</p>
           <ul>
@@ -81,7 +81,39 @@ const WeddingPage = () => {
             <li>Trunk wraps</li>
             <li>Path and driveway illumination</li>
             <li>Have something particular in mind? Just ask!</li>
-          </ul>
+          </ul> */}
+
+          <h3 className="crest">Bringing the shine</h3>
+          <h2 className="ridge mixta">Lighting Styles</h2>
+
+          <div className="deck">
+            <StaticQuery
+              query={query}
+              render={data => (
+                <>
+                  {
+                    data.allStrapiLight.nodes.map(light => (
+                      <div key={light.id} className="card">
+                        <NorthTahoeEvents />
+                        <div className="paper"></div>
+                        <div className="content">
+                          <hr />
+                          <h3 className="crest">{light.byline}</h3>
+                          <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
+                          <p className="description">{light.description}</p>
+                          <p>{light.outdoor}</p>
+                        </div>
+
+                      </div>
+                    ))
+                  }
+                </>
+              )}
+            />
+          </div>
+
+          <p>Have something particular in mind? Just ask!</p>
+
           <hr />
 
           <h3>Wedding Services</h3>
@@ -100,27 +132,38 @@ const WeddingPage = () => {
           <p>Sierra Christmas Lights approaches every event from a photographic standpoint. Your pictures last forever and we want to be certain they look their best. We communicate with your event designer, planner, florist, photographer, and videographer ahead of your wedding. Once we understand the focal points of an event, we can create a lighting scheme that will best accentuate those details.  We look at the big picture of an event.  When the photographer takes a picture across the room of the couple dancing, they should be lit, along with the centerpieces, the band, and the wall in the back, to highlight all the important focal points of your event.</p>
 
           <p>We exclusively use modern LED technology, wireless and battery powered where possible.  With wireless LEDs, we are eliminating fire risks from traditional technology, reducing tripping hazards and clutter in your photos.  We use modern RGB technology to create the perfect lighting effects to highlight your decor and create the ideal mood for your big day.  For example, ambers / warm whites add a flattering and romantic glow while deep purple / blue can amp up guests for the dance party portion of the night. You can choose a unified color scheme, select a palette of complimentary colors or even plan changes throughout your event.</p>
-          <hr />
         </div>
       </main>
 
+      <div className="measure">
+        <hr />
+        <h3 className="crest">What have we done</h3>
+        <h2 className="ridge mixta">Projects</h2>
+
+      </div>
 
       <div className="deck measure">
+
         <StaticQuery
           query={query}
           render={data => (
             <>
               {
-                data.allStrapiLight.nodes.map(light => (
-                  <div key={light.id} className="card">
+                data.allStrapiProject.nodes.map(project => (
+                  <div key={project.id} className="card">
                     <NorthTahoeEvents />
                     <div className="paper"></div>
                     <div className="content">
                       <hr />
-                      <h3 className="crest">{light.byline}</h3>
-                      <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                      <p className="description">{light.description}</p>
-                      <p>{light.outdoor}</p>
+                      {/* <h3 className="crest">{light.byline}</h3> */}
+                      <h2 className="mixta">
+                        <Link to={`/light/${project.slug}`}>
+                          {project.title}
+                        </Link>
+                      </h2>
+                      <p className="description">
+                        {project.description.data.description}
+                      </p>
                     </div>
 
                   </div>
@@ -148,6 +191,18 @@ query WeddingQuery {
       description
       slug
       outdoor
+    }
+  }
+
+  allStrapiProject(filter: {service: {eq: "wedding"}}) {
+    nodes {
+      title
+      description {
+        data {
+          description
+        }
+      }
+      slug
     }
   }
 }

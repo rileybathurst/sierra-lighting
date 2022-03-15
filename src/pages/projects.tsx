@@ -45,7 +45,7 @@ const ProjectsPage = () => {
                           </Link>
                         </h2>
                         {/* this is markdown makdown maybe I should also have something else */}
-                        <p>{project.description.data.description}</p>
+                        {/* <p>{project.description.data.description}</p> */}
                       </div>
                     </div>
                   ))
@@ -67,7 +67,7 @@ export default ProjectsPage
 
 const query = graphql`
 query ProjectsQuery {
-  allStrapiProject(filter: { publishedAt: { ne: null } }) {
+  allStrapiProject {
     nodes {
       id
       title
