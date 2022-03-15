@@ -10,6 +10,14 @@ const VendorView = ({ vendor }) => {
     <>
       <Seo title="Sierra Lighting" />
       <Header />
+
+      <p className="breadcrumbs measure">
+        <Link to="/">Home</Link>&nbsp;
+        / <Link to="/vendors">Vendors</Link>&nbsp;
+        / {vendor.name}
+      </p>
+      <hr className="measure" />
+
       <main className="measure">
         <article className="single">
           <h1>{vendor.name}</h1>

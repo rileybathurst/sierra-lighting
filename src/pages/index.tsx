@@ -120,6 +120,7 @@ const IndexPage = () => {
             <TestimonialList />
 
             <h3 className="crest"><Link to="#">Read More Reviews</Link></h3>
+            <h3 className="crest"><Link to="#">Or help us you buy submitting your own review</Link></h3>
           </section>
         </div>
 

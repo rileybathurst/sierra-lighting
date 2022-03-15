@@ -103,6 +103,8 @@ const Footer = () => {
         <ul className="footer_list">
           <FooterList />
         </ul>
+
+        <hr />
       </div>
 
       <div className="footer-container">
@@ -113,8 +115,10 @@ const Footer = () => {
           </Link>
         </h4>
 
+
+
         <Link to="/"><Logo /></Link>
-        <p><ThisYear /></p>
+        <p>&copy; <ThisYear /></p>
       </div>
 
     </footer>

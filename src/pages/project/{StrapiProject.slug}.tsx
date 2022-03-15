@@ -14,14 +14,26 @@ export const query = graphql`
       }
       slug
     }
+
+    allStrapiProject(filter: {slug: {nin: [$slug] }}) {
+      edges {
+        node {
+          title
+          id
+          slug
+        }
+      }
+    }
   }
 `
 
 const ProjectPage = ({ data }) => {
   const project = data.strapiProject;
+  const other = data.allStrapiProject;
   return (
     <ProjectView
       project={project}
+      other={other}
     />
   );
 };

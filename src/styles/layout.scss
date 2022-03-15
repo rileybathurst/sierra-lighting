@@ -230,7 +230,7 @@ header {
     align-items: center;
     gap: 0.5rem;
     justify-content: space-between;
-    max-width: $pad;
+    max-width: var(--measure);
     padding-inline-start: 0; // reset
 
     li {

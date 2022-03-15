@@ -5,6 +5,7 @@ import { StaticImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import WeddingProjects from "../components/wedding-projects";
 
 export function NorthTahoeEvents() {
   return <StaticImage
@@ -135,44 +136,7 @@ const WeddingPage = () => {
         </div>
       </main>
 
-      <div className="measure">
-        <hr />
-        <h3 className="crest">What have we done</h3>
-        <h2 className="ridge mixta">Projects</h2>
-
-      </div>
-
-      <div className="deck measure">
-
-        <StaticQuery
-          query={query}
-          render={data => (
-            <>
-              {
-                data.allStrapiProject.nodes.map(project => (
-                  <div key={project.id} className="card">
-                    <NorthTahoeEvents />
-                    <div className="paper"></div>
-                    <div className="content">
-                      <hr />
-                      {/* <h3 className="crest">{light.byline}</h3> */}
-                      <h2 className="mixta">
-                        <Link to={`/light/${project.slug}`}>
-                          {project.title}
-                        </Link>
-                      </h2>
-                      <p className="description">
-                        {project.description.data.description}
-                      </p>
-                    </div>
-
-                  </div>
-                ))
-              }
-            </>
-          )}
-        />
-      </div>
+      <WeddingProjects />
 
       <Footer />
     </>
@@ -191,18 +155,6 @@ query WeddingQuery {
       description
       slug
       outdoor
-    }
-  }
-
-  allStrapiProject(filter: {service: {eq: "wedding"}}) {
-    nodes {
-      title
-      description {
-        data {
-          description
-        }
-      }
-      slug
     }
   }
 }

@@ -7,11 +7,11 @@ const FooterList = () => (
       <li className="mixta">Christmas Lights</li>
       <li><Link to="/residential">Residential</Link></li>
       <li><Link to="/commercial">Commercial</Link></li>
-      <li><Link to="/projects">Projects</Link></li>
+      <li><Link to="/projects/christmas-light-projects">Projects</Link></li>
     </ul>
     <ul className="wedding">
       <li className="mixta"><Link to="/wedding">Wedding</Link></li>
-      <li><Link to="/projects">Projects</Link></li>
+      <li><Link to="/projects/wedding-projects">Projects</Link></li>
       <li><Link to="/venues">Venues</Link></li>
       <li><Link to="/vendors">Vendors</Link></li>
     </ul>

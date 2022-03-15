@@ -20,13 +20,16 @@ const TestimonialsPage = () => {
             <ul>
               {data.allStrapiTestimonial.nodes.map(testimonial => (
                 <li key={testimonial.id}>
-                  <h2>{testimonial.question}</h2>
-                  <p>{testimonial.answer}</p>
+                  <h2>{testimonial.customer}</h2>
+                  <p>{testimonial.review}</p>
                 </li>
               ))}
             </ul>
           )}
         />
+
+        {/* <hr /> */}
+        <h3 className="crest"><Link to="#">Help us you buy submitting your own review</Link></h3>
       </main>
 
       <Footer />
