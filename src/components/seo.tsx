@@ -58,7 +58,7 @@ const SEO = ({
         htmlAttributes={{
           lang: 'en-US',
           itemscope: undefined,
-          itemtype: `http://schema.org/${seo.itemtype}`,
+          itemtype: `${seo.itemtype}`,
         }}
       >
         <meta name="description" content={seo.description} />
