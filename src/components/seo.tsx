@@ -7,7 +7,14 @@ import { useLocation } from "@reach/router";
 import { useStaticQuery, graphql } from "gatsby";
 
 // Im not sure what the rules on what goes here vs in the array?
-const SEO = ({ title, description, image, lang }) => {
+const SEO = ({
+  title,
+  description,
+  image,
+  titleColor,
+  itemtype,
+  lang
+}) => {
   const { pathname } = useLocation();
   const { site } = useStaticQuery(query);
   const {
@@ -22,9 +29,10 @@ const SEO = ({ title, description, image, lang }) => {
     openingHours,
     areaServed,
     paymentAccepted,
+    defaultType,
+    // itemtype,
     // can't have .anything secondary level
-
-    titleColor,
+    // titleColor,
   } = site.siteMetadata;
 
   const seo = {
@@ -38,8 +46,8 @@ const SEO = ({ title, description, image, lang }) => {
     telephone: telephone,
     areaServed: areaServed,
     paymentAccepted: paymentAccepted,
-
-    titleColor: titleColor
+    itemtype: itemtype,
+    titleColor: titleColor || defaultType,
   };
 
   return (
@@ -49,6 +57,8 @@ const SEO = ({ title, description, image, lang }) => {
         titleTemplate={titleTemplate}
         htmlAttributes={{
           lang: 'en-US',
+          itemscope: undefined,
+          itemtype: `http://schema.org/${seo.itemtype}`,
         }}
       >
         <meta name="description" content={seo.description} />
@@ -84,13 +94,8 @@ const SEO = ({ title, description, image, lang }) => {
 
       {/* 🚨 this needs to be off in production */}
       <div className="seo-showcase">
-        <p><span className="key">Title</span> = <span className={seo.titleColor}>{seo.titleColor}{seo.title}</span></p>
-        <p><span className="key">Description</span> = <span className={seo.titleColor}>{seo.titleColor}{seo.description}</span></p>
-
-        {/* testing
-        <hr />
-        {seo.titleColor}
-        <hr /> */}
+        <p><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>
+        <p><span className="key">Description</span> = <span className={seo.titleColor}>{seo.description}</span></p>
       </div>
     </>
   );
@@ -113,12 +118,13 @@ SEO.propTypes = {
   location: PropTypes.string,
   slogan: PropTypes.string,
   gsv: PropTypes.string,
-
+  itemtype: PropTypes.string,
   titleColor: PropTypes.string,
 };
 
 SEO.defaultProps = {
   lang: `en`,
+  itemtype: `https://schema.org/WebPage`,
   title: null,
   description: null,
   image: null,
@@ -147,6 +153,8 @@ const query = graphql`
         telephone
         areaServed
         paymentAccepted
+        itemtype
+        defaultType: titleColor
       }
     }
   }

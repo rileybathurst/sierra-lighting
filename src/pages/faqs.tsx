@@ -10,7 +10,13 @@ import Footer from "../components/footer";
 const FaqsPage = () => {
   return (
     <>
-      <Seo title="Sierra Lighting" />
+      <Seo
+        title="Sierra Lighting | FAQs"
+        titleColor="yellow"
+        itemtype="https://schema.org/FAQPage"
+        description="Frequently asked questions about our services and products."
+      />
+
       <Header />
       <main className="measure">
 
@@ -20,9 +26,9 @@ const FaqsPage = () => {
           render={data => (
             <ul>
               {data.allStrapiFar.nodes.map(faq => (
-                <li key={faq.id}>
-                  <h2>{faq.question}</h2>
-                  <p>{faq.answer}</p>
+                <li key={faq.id} itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                  <h2 itemprop="name">{faq.question}</h2>
+                  <p itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">{faq.answer}</p>
                 </li>
               ))}
             </ul>

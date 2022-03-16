@@ -35,6 +35,7 @@ module.exports = {
     areaServed: 'Tahoe, California', // 📣
     author: 'Sierra Lighting',
     paymentAccepted: 'Cash',
+    itemtype: 'website',
 
     titleColor: 'red', // testing
   },
