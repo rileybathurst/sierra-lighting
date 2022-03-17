@@ -13,11 +13,11 @@ const FaqsPage = () => {
       <Seo
         title="Sierra Lighting | FAQs"
         titleColor="yellow"
-        itemtype="https://schema.org/FAQPage"
+        itemType="https://schema.org/FAQPage"
         description="Frequently asked questions about our services and products."
       />
 
-      <Header />
+      {/* <Header /> */}
       <main className="measure">
 
         <h1>Frequently Asked Questions</h1>
@@ -26,10 +26,10 @@ const FaqsPage = () => {
           render={data => (
             <ul>
               {data.allStrapiFar.nodes.map(faq => (
-                <div key={faq.id} itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-                  <h2 itemprop="name">{faq.question}</h2>
-                  <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                    <div itemprop="text">
+                <div key={faq.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                  <h2 itemProp="name">{faq.question}</h2>
+                  <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                    <div itemProp="text">
                       {faq.answer}
                     </div>
                   </div>
@@ -40,7 +40,7 @@ const FaqsPage = () => {
         />
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
 
     </>
   )

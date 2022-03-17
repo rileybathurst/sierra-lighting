@@ -12,7 +12,7 @@ const SEO = ({
   description,
   image,
   titleColor,
-  itemtype,
+  itemType,
   lang
 }) => {
   const { pathname } = useLocation();
@@ -46,7 +46,7 @@ const SEO = ({
     telephone: telephone,
     areaServed: areaServed,
     paymentAccepted: paymentAccepted,
-    itemtype: itemtype,
+    itemType: itemType,
     titleColor: titleColor || defaultType,
   };
 
@@ -57,8 +57,19 @@ const SEO = ({
         titleTemplate={titleTemplate}
         htmlAttributes={{
           lang: 'en-US',
-          itemscope: undefined,
-          itemtype: `${seo.itemtype}`,
+          // capitalization here
+          // https://react-cn.github.io/react/docs/tags-and-attributes.html
+          itemScope: undefined, // has empty brackets needs no brackets // maybe this does work?
+          // itemScope: "", // same as undefined
+          // itemScope, // errors with itemScope is not defined
+          // itemScope: true, // just shows true
+          // itemScope: "itemscope", // just shows true
+          // itemScope: null, // has empty brackets needs no brackets
+          // dangerouslySetInnerHTML{ itemScope: undefined }, // I dont know how to use this
+          // itemScope: "itemscope",
+
+
+          itemType: `${seo.itemType}`,
         }}
       >
         <meta name="description" content={seo.description} />
@@ -90,6 +101,25 @@ const SEO = ({
         )}
         {/* {seo.location && <meta name="location" content={seo.streetAddress + ', ' + seo.addressLocality + ', ' + seo.addressRegion + ', ' + seo.postalCode} />} */}
         {/* the layer down version of this didn't want to work so remove the wrapper */}
+
+
+
+        {/* Google Tag Manager */}
+        {/*         <script>(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NFVF3W7');</script> */}
+        {/* End Google Tag Manager */}
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org/",
+            // "@type": "Recipe",
+          })}
+        </script>
+
+
       </Helmet>
 
       {/* 🚨 this needs to be off in production */}
@@ -118,13 +148,13 @@ SEO.propTypes = {
   location: PropTypes.string,
   slogan: PropTypes.string,
   gsv: PropTypes.string,
-  itemtype: PropTypes.string,
+  itemType: PropTypes.string,
   titleColor: PropTypes.string,
 };
 
 SEO.defaultProps = {
   lang: `en`,
-  itemtype: `https://schema.org/WebPage`,
+  itemType: `https://schema.org/WebPage`,
   title: null,
   description: null,
   image: null,
@@ -153,7 +183,7 @@ const query = graphql`
         telephone
         areaServed
         paymentAccepted
-        itemtype
+        itemType
         defaultType: titleColor
       }
     }

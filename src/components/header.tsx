@@ -10,6 +10,7 @@ import TopBar from "./topbar";
 const Header = () => {
   return (
     <>
+
       <TopBar />
       <header >
         <div className="header-container">
