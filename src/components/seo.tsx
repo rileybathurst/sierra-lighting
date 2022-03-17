@@ -6,14 +6,27 @@ import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
 import { useStaticQuery, graphql } from "gatsby";
 
+function ScopeBool(props) {
+  const ScopeItem = props.itemScope;
+  if (ScopeItem) {
+    return (
+      <>
+        undefined
+      </>
+    );
+  }
+  else return null;
+}
+
 // Im not sure what the rules on what goes here vs in the array?
 const SEO = ({
   title,
   description,
   image,
   titleColor,
+  itemScope,
   itemType,
-  lang
+
 }) => {
   const { pathname } = useLocation();
   const { site } = useStaticQuery(query);
@@ -29,10 +42,6 @@ const SEO = ({
     openingHours,
     areaServed,
     paymentAccepted,
-    defaultType,
-    // itemtype,
-    // can't have .anything secondary level
-    // titleColor,
   } = site.siteMetadata;
 
   const seo = {
@@ -46,8 +55,9 @@ const SEO = ({
     telephone: telephone,
     areaServed: areaServed,
     paymentAccepted: paymentAccepted,
+    itemScope: itemScope,
     itemType: itemType,
-    titleColor: titleColor || defaultType,
+    titleColor: titleColor,
   };
 
   return (
@@ -57,17 +67,16 @@ const SEO = ({
         titleTemplate={titleTemplate}
         htmlAttributes={{
           lang: 'en-US',
-          // capitalization here
-          // https://react-cn.github.io/react/docs/tags-and-attributes.html
-          itemScope: undefined, // has empty brackets needs no brackets // maybe this does work?
-          // itemScope: "", // same as undefined
-          // itemScope, // errors with itemScope is not defined
-          // itemScope: true, // just shows true
-          // itemScope: "itemscope", // just shows true
-          // itemScope: null, // has empty brackets needs no brackets
-          // dangerouslySetInnerHTML{ itemScope: undefined }, // I dont know how to use this
-          // itemScope: "itemscope",
+          // itemScope: undefined, // as was before boolean
+          itemScope: `${seo.itemScope}`, // this doesnt have an off very well
+          // < ScopeBool /> // fails to compile
+          // itemScope: <ScopeBool itemScope={seo.itemScope} />, // compliles but with object and its always there so it doesnt fix anything
 
+          // Im ok with this being here but failing to build
+          // https://reactjs.org/docs/typechecking-with-proptypes.html
+
+          // itemScope: false,
+          // itemScope: { false},
 
           itemType: `${seo.itemType}`,
         }}
@@ -99,33 +108,14 @@ const SEO = ({
         {seo.paymentAccepted && (
           <meta name="paymentAccepted" content={seo.paymentAccepted} />
         )}
-        {/* {seo.location && <meta name="location" content={seo.streetAddress + ', ' + seo.addressLocality + ', ' + seo.addressRegion + ', ' + seo.postalCode} />} */}
-        {/* the layer down version of this didn't want to work so remove the wrapper */}
-
-
-
-        {/* Google Tag Manager */}
-        {/*         <script>(function(w,d,s,l,i){w[l] = w[l] || [];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NFVF3W7');</script> */}
-        {/* End Google Tag Manager */}
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org/",
-            // "@type": "Recipe",
-          })}
-        </script>
-
-
       </Helmet>
 
       {/* 🚨 this needs to be off in production */}
       <div className="seo-showcase">
         <p><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>
         <p><span className="key">Description</span> = <span className={seo.titleColor}>{seo.description}</span></p>
+
+        <p><ScopeBool itemScope={seo.itemScope} /></p>
       </div>
     </>
   );
@@ -148,6 +138,7 @@ SEO.propTypes = {
   location: PropTypes.string,
   slogan: PropTypes.string,
   gsv: PropTypes.string,
+  itemScope: PropTypes.bool,
   itemType: PropTypes.string,
   titleColor: PropTypes.string,
 };
@@ -165,7 +156,7 @@ SEO.defaultProps = {
   telephone: null,
   areaServed: null,
   paymentAccepted: null,
-
+  itemScope: false,
   titleColor: null,
 };
 

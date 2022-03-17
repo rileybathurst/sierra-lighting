@@ -14,10 +14,11 @@ const FaqsPage = () => {
         title="Sierra Lighting | FAQs"
         titleColor="yellow"
         itemType="https://schema.org/FAQPage"
+        itemScope={true}
         description="Frequently asked questions about our services and products."
       />
 
-      {/* <Header /> */}
+      <Header />
       <main className="measure">
 
         <h1>Frequently Asked Questions</h1>
@@ -40,7 +41,7 @@ const FaqsPage = () => {
         />
       </main>
 
-      {/* <Footer /> */}
+      <Footer />
 
     </>
   )
