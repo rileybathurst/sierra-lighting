@@ -25,7 +25,9 @@ const TestimonialsPage = () => {
                   <li key={testimonial.id}>
                     <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link>
                     <h3 itemProp="name">{testimonial.title}</h3>
-                    <h2 itemProp="author">{testimonial.customer}</h2>
+                    <h2 itemProp="author" itemScope itemType="https://schema.org/Person">
+                      <span itemProp="author">{testimonial.customer}</span>
+                    </h2>
                     <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
                     <p itemProp="reviewBody">{testimonial.review}</p>
 
