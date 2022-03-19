@@ -68,15 +68,7 @@ const SEO = ({
         htmlAttributes={{
           lang: 'en-US',
           // itemScope: undefined, // as was before boolean
-          itemScope: `${seo.itemScope}`, // this doesnt have an off very well
-          // < ScopeBool /> // fails to compile
-          // itemScope: <ScopeBool itemScope={seo.itemScope} />, // compliles but with object and its always there so it doesnt fix anything
-
-          // Im ok with this being here but failing to build
-          // https://reactjs.org/docs/typechecking-with-proptypes.html
-
-          // itemScope: false,
-          // itemScope: { false},
+          itemScope: `${seo.itemScope}`, // this seems to be working
 
           itemType: `${seo.itemType}`,
         }}
