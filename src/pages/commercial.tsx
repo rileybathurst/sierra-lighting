@@ -113,7 +113,7 @@ const CommercialPage = () => {
         />
       </div>
 
-      <Footer />
+      {/* <Footer /> */}
 
     </>
   )

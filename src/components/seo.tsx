@@ -137,7 +137,7 @@ SEO.propTypes = {
 
 SEO.defaultProps = {
   lang: `en`,
-  itemType: `https://schema.org/WebPage`,
+  itemType: `https://schema.org/LocalBusiness`,
   title: null,
   description: null,
   image: null,
