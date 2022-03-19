@@ -7,7 +7,7 @@ const TestimonialList = () => (
   <StaticQuery
     query={query}
     render={data => (
-      <ul itemprop="review" itemscope itemtype="https://schema.org/Review">
+      <ul itemProp="review" itemScope itemtype="https://schema.org/Review">
         {data.allStrapiTestimonial.nodes.map(testimonial => (
           <li key={testimonial.id} className="slider">
             <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
