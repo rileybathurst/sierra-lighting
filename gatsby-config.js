@@ -25,9 +25,9 @@ module.exports = {
     url: "https://sierra.lighting", // No trailing slash allowed!
     description:
       "Dependable holiday, landscape and events light installation in Reno, Truckee, Lake Tahoe, Carson City and Minden.", // 📣
-    image: 'src/images/sierra-lighting-og_image.jpg', // 📣 Path to your image you placed in the 'static' folder
-    ogImage: 'src/images/sierra-lighting-og_image.jpg', // 📣
-    twitterImage: 'src/images/sierra-lighting-og_image.jpg', // 📣
+    image: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣 Path to your image you placed in the 'static' folder
+    ogImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
+    twitterImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
     openingHours: 'Mo, Tu, We, Th, Fr 09:00-17:00', // 📣
     telephone: '(530)542-2662', // 📣
     faxNumber: '(530)542-2661', // 📣

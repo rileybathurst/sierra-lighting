@@ -73,8 +73,12 @@ const SEO = ({
           itemType: `${seo.itemType}`,
         }}
       >
+
+        {/* Im sure theres a way to do this with a query */}
+        <meta itemProp="name" content="Sierra Lighting" />
+
         <meta name="description" content={seo.description} />
-        <meta name="image" content={seo.ogImage} />
+        <meta name="image" itemProp="iamge" content={seo.ogImage} />
         <meta property="og:type" content="website" />
         {seo.url && <meta property="og:url" content={seo.url} />}
         {/* {(article ? true : null) && <meta property="og:type" content="article" />} */}
