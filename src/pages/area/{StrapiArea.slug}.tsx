@@ -12,6 +12,7 @@ export const query = graphql`
           description
         }
       }
+      state
       slug
     }
   }

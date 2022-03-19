@@ -17,11 +17,22 @@ const TestimonialsPage = () => {
         <StaticQuery
           query={query}
           render={data => (
-            <ul>
+            <ul itemProp="review" itemScope itemType="https://schema.org/Review">
               {data.allStrapiTestimonial.nodes.map(testimonial => (
                 <li key={testimonial.id}>
-                  <h2>{testimonial.customer}</h2>
-                  <p>{testimonial.review}</p>
+                  <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link>
+                  <h3 itemProp="name">{testimonial.title}</h3>
+                  <h2 itemProp="author">{testimonial.customer}</h2>
+                  <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
+                  <p itemProp="reviewBody">{testimonial.review}</p>
+
+                  <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+                    <p>
+                      <span itemProp="worstRating">1</span>
+                      <span itemProp="ratingValue">{testimonial.stars}</span>/
+                      <span itemProp="bestRating">5</span>stars
+                    </p>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -48,6 +59,9 @@ query TestimonialsQuery {
       customer
       stars
       review
+      title
+      createdAt
+      slug
     }
   }
 }

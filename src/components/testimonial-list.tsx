@@ -7,15 +7,24 @@ const TestimonialList = () => (
   <StaticQuery
     query={query}
     render={data => (
-      <ul>
+      <ul itemprop="review" itemscope itemtype="https://schema.org/Review">
         {data.allStrapiTestimonial.nodes.map(testimonial => (
           <li key={testimonial.id} className="slider">
-            <div className="five-stars">
-              <Star /><Star /><Star /><Star /><Star />
+            <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+              <div className="five-stars">
+                <Star /><Star /><Star /><Star /><Star />
+                <p itemProp="worstRating">{testimonial.stars}</p>
+                <span itemProp="ratingValue">1</span>/
+                <span itemProp="bestRating">5</span>stars
+              </div>
             </div>
             <p>{testimonial.review}</p>
             <div className="together">
-              <h3 className="range">{testimonial.customer}</h3><p>{testimonial.platform}</p>
+              {/* <span itemprop="name">happy camper</span> */}
+              <h3 className="range"><span itemProp="author">{testimonial.customer}</span></h3><p>{testimonial.platform}</p>
+              <p itemProp="datePublished" className="sr-only">{testimonial.createdAt}
+                {testimonial.createdAt}
+              </p>
             </div>
           </li>
         ))}
@@ -34,6 +43,8 @@ query TestimonialListQuery {
       customer
       platform
       review
+      createdAt
+      stars
     }
   }
 }
