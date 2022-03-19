@@ -5,6 +5,14 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
 import { useStaticQuery, graphql } from "gatsby";
+// import { StaticImage } from "gatsby-plugin-image"
+
+/* export function SnowyRoof() {
+  return <StaticImage
+    src={seo.image} // seo is undefined here
+    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
+    className="snowyroof" />
+} */
 
 function ScopeBool(props) {
   const ScopeItem = props.itemScope;
@@ -48,7 +56,7 @@ const SEO = ({
     title: title || defaultTitle,
     description: description || defaultDescription,
     image: `${siteUrl}${image || defaultImage}`,
-    ogImage: ogImage,
+    ogImage: image,
     twitterImage: twitterImage,
     url: `${siteUrl}${pathname}`,
     openingHours: `${openingHours}`,
@@ -78,7 +86,7 @@ const SEO = ({
         <meta itemProp="name" content="Sierra Lighting" />
 
         <meta name="description" content={seo.description} />
-        <meta name="image" itemProp="iamge" content={seo.ogImage} />
+        <meta name="image" itemProp="image" content={seo.ogImage} />
         <meta property="og:type" content="website" />
         {seo.url && <meta property="og:url" content={seo.url} />}
         {/* {(article ? true : null) && <meta property="og:type" content="article" />} */}
@@ -97,9 +105,9 @@ const SEO = ({
         {seo.image && <meta name="twitter:image" content={seo.twitterImage} />}
 
         {seo.openingHours && (
-          <meta name="openingHours" content={seo.openingHours} />
+          <meta name="openingHours" itemProp="openingHours" content={seo.openingHours} />
         )}
-        {seo.telephone && <meta name="telephone" content={seo.telephone} />}
+        {seo.telephone && <meta name="telephone" itemProp="telephone" content={seo.telephone} />}
         {seo.areaServed && <meta name="areaServed" content={seo.areaServed} />}
         {seo.paymentAccepted && (
           <meta name="paymentAccepted" content={seo.paymentAccepted} />
@@ -110,8 +118,10 @@ const SEO = ({
       <div className="seo-showcase">
         <p><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>
         <p><span className="key">Description</span> = <span className={seo.titleColor}>{seo.description}</span></p>
-
-        <p><ScopeBool itemScope={seo.itemScope} /></p>
+        {/* // ? why does this need to be ogImage? */}
+        {/* // regular image doubles the url */}
+        <p><span className="key">Image</span> = </p>
+        <img src={seo.ogImage} />
       </div>
     </>
   );

@@ -6,18 +6,18 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-export function NorthTahoeEvents() {
+export function Residential() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
-    alt="christmas lighting display at North Tahoe Events center"
-    className="northtahoeevents" />
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-1-web-tagged.jpg"
+    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
+    className="residential_image" />
 }
 
-export function InclineChevron() {
+export function Wreath() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Incline-7-web-tagged.jpg"
-    alt="christmas tree in Incline village nevada"
-    className="inclinechevron" />
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-4-web-tagged.jpg"
+    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
+    className="wreath_image" />
 }
 
 export function SnowyRoof() {
@@ -33,7 +33,8 @@ const ResidentialPage = () => {
     <>
       <Seo
         title="Residential Christmas Lights and Decorations"
-        description="Sierra Christmas Lights installs lights on homes in Reno, Truckee, and Tahoe.  We are a full service company, covering every aspect from from design, intsall, maintenance, takedown, and storage. Our professional crews can hang lights on trees, rooflines and bushes. We hang garlands and wreaths."
+        description="Sierra Christmas Lights installs lights on homes in Reno, Truckee, and Tahoe. We are a full service company, covering every aspect from from design, intsall, maintenance, takedown, and storage. Our professional crews can hang lights on trees, rooflines and bushes. We hang garlands and wreaths."
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-1-web-tagged.jpg"
       />
       <Header />
       <main>
@@ -47,8 +48,8 @@ const ResidentialPage = () => {
           <p>It&#39;s the most wonderful time of the year, Christmas, when feelings of joy, love, and giving shine through. Allow Sierra Christmas Lights to further enhance these feelings, and add even more Christmas cheer. Imagine your family gathered around the tree, while your home sparkles and beckons from outside. We are here to help you make the most of this special time of year, while removing any stress of decorating from it.</p>
         </div>
         <div className="triple">
-          <NorthTahoeEvents />
-          <InclineChevron />
+          <Residential />
+          <Wreath />
           <SnowyRoof />
         </div>
 
@@ -63,6 +64,36 @@ const ResidentialPage = () => {
           <h3>Christmas Light Install</h3>
 
           <p>Sierra Christmas Lights is your full service, hassle free lighting solution.  We send our crew of talented lighting technicians to your home for installation.  They will take your vision and turn it into reality using the highest grade commercial LED materials.  Our displays are custom fit to your home, ensuring a seamless, elegant look with no extra bulbs and line cluttering up the visual spectacle. Additionally, the materials we use are super efficient and durable, for a long life and minimal power bill. You no longer have to worry about tipsy ladders, leaning over rooflines, untangling lights and dealing with strands that are out. Relax and enjoy while our crew takes the danger and hassle out of holiday lighting.</p>
+          <hr />
+          <h3 className="crest">Bringing the shine</h3>
+          <h2 className="ridge mixta">Lighting Styles</h2>
+
+
+          <div className="deck">
+            <StaticQuery
+              query={query}
+              render={data => (
+                <>
+                  {
+                    data.allStrapiLight.nodes.map(light => (
+                      <div key={light.id} className="card">
+                        <SnowyRoof />
+                        <div className="paper"></div>
+                        <div className="content">
+                          <hr />
+                          <h3 className="crest">{light.byline}</h3>
+                          <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
+                          <p className="description">{light.description}</p>
+                          <p>{light.outdoor}</p>
+                        </div>
+
+                      </div>
+                    ))
+                  }
+                </>
+              )}
+            />
+          </div>
 
           <hr />
           <h3>Full Season Maintenance and Support</h3>
@@ -92,7 +123,7 @@ const ResidentialPage = () => {
               {
                 data.allStrapiProject.nodes.map(project => (
                   <div key={project.id} className="card">
-                    <NorthTahoeEvents />
+                    <Residential />
                     <div className="paper"></div>
                     <div className="content">
                       <hr />
@@ -134,6 +165,17 @@ query ResidentialProjectQuery {
         }
       }
       slug
+    }
+  }
+
+  allStrapiLight(filter: { publishedAt: { ne: null } }) {
+    nodes {
+      id
+      name
+      byline
+      description
+      slug
+      outdoor
     }
   }
 }

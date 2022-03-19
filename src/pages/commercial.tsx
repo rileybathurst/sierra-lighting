@@ -67,6 +67,37 @@ const CommercialPage = () => {
           <h2>Full Season Maintenance and Support</h2>
 
           <p>Christmas is such a busy time of year for any business owner.  Take holiday lighting off your to do list today by hiring the team at Sierra Christmas Lights.  We source the highest quality LED lights and displays, and exclusively use custom commercial grade materials to ensure the reliability and beauty of your display.  Should there be an issue, we are just a call, text, or email away. Timely fixes are our priority. We have service teams on call located in both Truckee / Tahoe and Reno to ensure prompt service if something goes wrong.</p>
+
+          <hr />
+          <h3 className="crest">Bringing the shine</h3>
+          <h2 className="ridge mixta">Lighting Styles</h2>
+
+          <div className="deck">
+            <StaticQuery
+              query={query}
+              render={data => (
+                <>
+                  {
+                    data.allStrapiLight.nodes.map(light => (
+                      <div key={light.id} className="card">
+                        <SnowyRoof />
+                        <div className="paper"></div>
+                        <div className="content">
+                          <hr />
+                          <h3 className="crest">{light.byline}</h3>
+                          <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
+                          <p className="description">{light.description}</p>
+                          <p>{light.outdoor}</p>
+                        </div>
+
+                      </div>
+                    ))
+                  }
+                </>
+              )}
+            />
+          </div>
+
           <hr />
           <h2>Worry Free Takedown and Storage</h2>
 
@@ -113,7 +144,7 @@ const CommercialPage = () => {
         />
       </div>
 
-      {/* <Footer /> */}
+      <Footer />
 
     </>
   )
@@ -132,6 +163,17 @@ query CommercialProjectQuery {
         }
       }
       slug
+    }
+  }
+
+  allStrapiLight(filter: { publishedAt: { ne: null } }) {
+    nodes {
+      id
+      name
+      byline
+      description
+      slug
+      outdoor
     }
   }
 }

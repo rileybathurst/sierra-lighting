@@ -29,13 +29,13 @@ module.exports = {
     ogImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
     twitterImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
     openingHours: 'Mo, Tu, We, Th, Fr 09:00-17:00', // 📣
-    telephone: '(530)542-2662', // 📣
-    faxNumber: '(530)542-2661', // 📣
-    logo: '/images/icon.png', // ⏰
+    telephone: '(775) 525-1898', // nevada number
+    email: 'sierrachristmaslights@gmail.com',
+    logo: '/images/icon.png', // 📣
     areaServed: 'Tahoe, California', // 📣
     author: 'Sierra Lighting',
     paymentAccepted: 'Cash',
-    itemType: 'website',
+    itemType: 'LocalBusiness',
 
     titleColor: 'red', // testing
   },
@@ -101,6 +101,18 @@ module.exports = {
         enableWebVitalsTracking: true,
         // Defaults to https://www.googletagmanager.com
         selfHostedOrigin: "YOUR_SELF_HOSTED_ORIGIN",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Sierra Lighting`,
+        short_name: `Sierra Lighting`,
+        start_url: `/`,
+        background_color: `#fffaf2`,
+        theme_color: `#fff`,
+        display: `standalone`,
+        icon: "src/images/sierra-lighting-icon.svg",
       },
     },
   ]

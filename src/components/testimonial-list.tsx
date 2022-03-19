@@ -13,9 +13,9 @@ const TestimonialList = () => (
             <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
               <div className="five-stars">
                 <Star /><Star /><Star /><Star /><Star />
-                <p itemProp="worstRating">{testimonial.stars}</p>
-                <span itemProp="ratingValue">1</span>/
-                <span itemProp="bestRating">5</span>stars
+                <p className="sr-only" itemProp="worstRating">{testimonial.stars}</p>
+                <p className="sr-only"><span itemProp="ratingValue">1</span>/</p>
+                <p className="sr-only"><span itemProp="bestRating">5</span>stars</p>
               </div>
             </div>
             <p>{testimonial.review}</p>

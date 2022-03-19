@@ -23,6 +23,10 @@
       animation-name: slide;
       animation-iteration-count: infinite;
     }
+
+    li:hover {
+      animation-play-state: paused; // ! this needs to control the whole series not just one
+    }
   }
 }
 

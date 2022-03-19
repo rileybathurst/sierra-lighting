@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, StaticQuery, graphql } from "gatsby"
+import { Link } from "gatsby"
 
 const FooterList = () => (
   <>
@@ -21,6 +21,7 @@ const FooterList = () => (
       <li><Link to="/work">Work with us</Link></li>
       <li><Link to="/faqs">FAQs</Link></li>
       <li><Link to="/testimonials">Testimonials</Link></li>
+      <li><Link to="/areas">Areas</Link></li>
     </ul>
   </>
 )

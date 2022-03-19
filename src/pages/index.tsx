@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
@@ -107,7 +107,7 @@ const IndexPage = () => {
           <h5 className="range">Guaranteed Upkeep</h5>
         </section>
 
-        <div className="snowyroof-container">
+        <div className="snowyroof-container poster">
           <SnowyRoof />
         </div>
 
@@ -119,8 +119,10 @@ const IndexPage = () => {
 
             <TestimonialList />
 
-            <h3 className="crest"><Link to="/testimonials">Read More Reviews</Link></h3>
-            <h3 className="crest"><Link to="#">Or help us you buy submitting your own review</Link></h3>
+            <div className="testimonial-links">
+              <h3 className="crest"><Link to="/testimonials">Read More Reviews</Link></h3>
+              <h3 className="crest"><Link to="#">Or help us you buy submitting your own review</Link></h3>
+            </div>
           </section>
         </div>
 
