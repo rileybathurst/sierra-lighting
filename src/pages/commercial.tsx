@@ -72,7 +72,7 @@ const CommercialPage = () => {
           <h3 className="crest">Bringing the shine</h3>
           <h2 className="ridge mixta">Lighting Styles</h2>
 
-          <div className="deck">
+          {/* <div className="deck">
             <StaticQuery
               query={query}
               render={data => (
@@ -97,7 +97,7 @@ const CommercialPage = () => {
               )}
             />
           </div>
-
+ */}
           <hr />
           <h2>Worry Free Takedown and Storage</h2>
 

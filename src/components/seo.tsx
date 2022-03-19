@@ -121,7 +121,7 @@ const SEO = ({
         {/* // ? why does this need to be ogImage? */}
         {/* // regular image doubles the url */}
         <p><span className="key">Image</span> = </p>
-        <img src={seo.ogImage} />
+        <img src={seo.ogImage} alt="seo checking" />
       </div>
     </>
   );

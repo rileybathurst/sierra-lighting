@@ -69,7 +69,7 @@ const ResidentialPage = () => {
           <h2 className="ridge mixta">Lighting Styles</h2>
 
 
-          <div className="deck">
+          {/* <div className="deck">
             <StaticQuery
               query={query}
               render={data => (
@@ -93,7 +93,7 @@ const ResidentialPage = () => {
                 </>
               )}
             />
-          </div>
+          </div> */}
 
           <hr />
           <h3>Full Season Maintenance and Support</h3>
