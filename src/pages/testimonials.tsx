@@ -5,6 +5,35 @@ import { StaticImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Star from "../images/star";
+
+/* function ListItems() {
+  const numbers = [1, 2, 3, 4, 5];
+
+  return numbers.map(number => (
+    <Star />
+  ));
+} */
+
+function LoopItems() {
+  const count = [];
+
+  let i = 0;
+  do {
+    i += 1;
+    // console.log(i);
+    count.push(i);
+  } while (i < 5);
+
+
+  // const numrows = [5, 4, 3, 2, 1];
+
+  return (
+    <>
+      {count.map(x => <li key={x}><Star /></li>)}
+    </>
+  );
+}
 
 const TestimonialsPage = () => {
   return (
@@ -20,14 +49,21 @@ const TestimonialsPage = () => {
           <StaticQuery
             query={query}
             render={data => (
-              <ul itemProp="review" itemScope itemType="https://schema.org/Review">
+              <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="testimonials__page">
                 {data.allStrapiTestimonial.nodes.map(testimonial => (
                   <li key={testimonial.id}>
-                    <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link>
-                    <h3 itemProp="name">{testimonial.title}</h3>
-                    <h2 itemProp="author" itemScope itemType="https://schema.org/Person">
+                    <hr />
+                    {/* <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link> */}
+                    <h2 itemProp="name">{testimonial.title}</h2>
+
+                    {/* <ListItems /> */}
+                    <hr />
+                    <ul>
+                      <LoopItems />
+                    </ul>
+                    <h3 itemProp="author" itemScope itemType="https://schema.org/Person">
                       <span itemProp="name">{testimonial.customer}</span>
-                    </h2>
+                    </h3>
                     <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
                     <p itemProp="reviewBody">{testimonial.review}</p>
 
@@ -45,8 +81,36 @@ const TestimonialsPage = () => {
           />
         </div>
 
-        {/* <hr /> */}
-        <h3 className="crest"><Link to="#">Help us you buy submitting your own review</Link></h3>
+        <hr />
+        <h3 className="crest">
+          {/* <Link to="#"> */}
+          Help us you buy submitting your own review
+          {/* </Link> */}
+        </h3>
+        {/* // TODO need the actual links */}
+        <p><Link to="#">Google Review</Link></p>
+        <p><Link to="#">Yelp</Link></p>
+        <p><Link to="#">NextDoor</Link></p>
+
+        <form className="measure">
+          <label>Name
+            <input type="text" />
+          </label>
+          <label>Stars (out of five)
+            <input type="number" />
+          </label>
+          <label>Title
+            <input type="text" />
+          </label>
+          <label>Review
+            <textarea />
+          </label>
+          <label>Email
+            <input type="email" />
+          </label>
+          <button>Send</button>
+        </form>
+
       </main>
 
       <Footer />
