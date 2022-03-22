@@ -6,6 +6,8 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+import CommercialProjects from "../components/commercial-projects";
+
 export function NorthTahoeEvents() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
@@ -72,7 +74,7 @@ const CommercialPage = () => {
           <h3 className="crest">Bringing the shine</h3>
           <h2 className="ridge mixta">Lighting Styles</h2>
 
-          {/* <div className="deck">
+          <div className="deck">
             <StaticQuery
               query={query}
               render={data => (
@@ -97,7 +99,7 @@ const CommercialPage = () => {
               )}
             />
           </div>
- */}
+
           <hr />
           <h2>Worry Free Takedown and Storage</h2>
 
@@ -114,34 +116,7 @@ const CommercialPage = () => {
 
       <div className="deck measure">
 
-        <StaticQuery
-          query={query}
-          render={data => (
-            <>
-              {
-                data.allStrapiProject.nodes.map(project => (
-                  <div key={project.id} className="card">
-                    <NorthTahoeEvents />
-                    <div className="paper"></div>
-                    <div className="content">
-                      <hr />
-                      {/* <h3 className="crest">{light.byline}</h3> */}
-                      <h2 className="mixta">
-                        <Link to={`/light/${project.slug}`}>
-                          {project.title}
-                        </Link>
-                      </h2>
-                      <p className="description">
-                        {project.description.data.description}
-                      </p>
-                    </div>
-
-                  </div>
-                ))
-              }
-            </>
-          )}
-        />
+        <CommercialProjects />
       </div>
 
       <Footer />
@@ -153,19 +128,7 @@ const CommercialPage = () => {
 export default CommercialPage
 
 const query = graphql`
-query CommercialProjectQuery {
-  allStrapiProject(filter: {service: {eq: "commercial"}}) {
-    nodes {
-      title
-      description {
-        data {
-          description
-        }
-      }
-      slug
-    }
-  }
-
+query CommercialLightQuery {
   allStrapiLight(filter: { publishedAt: { ne: null } }) {
     nodes {
       id

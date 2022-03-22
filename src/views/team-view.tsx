@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
-import ReactMarkdown from "react-markdown";
+// import ReactMarkdown from "react-markdown";
 
 import Seo from "../components/seo";
 import Header from "../components/header";

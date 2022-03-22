@@ -6,6 +6,8 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+import ResidentialProjects from "../components/residential-projects";
+
 export function Residential() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-1-web-tagged.jpg"
@@ -69,7 +71,7 @@ const ResidentialPage = () => {
           <h2 className="ridge mixta">Lighting Styles</h2>
 
 
-          {/* <div className="deck">
+          <div className="deck">
             <StaticQuery
               query={query}
               render={data => (
@@ -93,7 +95,7 @@ const ResidentialPage = () => {
                 </>
               )}
             />
-          </div> */}
+          </div>
 
           <hr />
           <h3>Full Season Maintenance and Support</h3>
@@ -116,34 +118,7 @@ const ResidentialPage = () => {
 
       <div className="deck measure">
 
-        <StaticQuery
-          query={query}
-          render={data => (
-            <>
-              {
-                data.allStrapiProject.nodes.map(project => (
-                  <div key={project.id} className="card">
-                    <Residential />
-                    <div className="paper"></div>
-                    <div className="content">
-                      <hr />
-                      {/* <h3 className="crest">{light.byline}</h3> */}
-                      <h2 className="mixta">
-                        <Link to={`/light/${project.slug}`}>
-                          {project.title}
-                        </Link>
-                      </h2>
-                      <p className="description">
-                        {project.description.data.description}
-                      </p>
-                    </div>
-
-                  </div>
-                ))
-              }
-            </>
-          )}
-        />
+        <ResidentialProjects />
       </div>
 
       <Footer />
@@ -155,19 +130,7 @@ const ResidentialPage = () => {
 export default ResidentialPage
 
 const query = graphql`
-query ResidentialProjectQuery {
-  allStrapiProject(filter: {service: {eq: "residential"}}) {
-    nodes {
-      title
-      description {
-        data {
-          description
-        }
-      }
-      slug
-    }
-  }
-
+query ResidentialLightQuery {
   allStrapiLight(filter: { publishedAt: { ne: null } }) {
     nodes {
       id

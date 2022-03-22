@@ -72,18 +72,6 @@ const WeddingPage = () => {
           </ul>
           <hr />
 
-          {/*           <h3>Patio and Landscape Lighting</h3>
-
-          <p>Sierra Christmas Lights can help make your home or business look amazing for the summer season. We offer a variety of lighting options including:</p>
-          <ul>
-            <li>Cafe lights</li>
-            <li>Rope lights</li>
-            <li>Up lighting on landscaping and buildings</li>
-            <li>Trunk wraps</li>
-            <li>Path and driveway illumination</li>
-            <li>Have something particular in mind? Just ask!</li>
-          </ul> */}
-
           <h3 className="crest">Bringing the shine</h3>
           <h2 className="ridge mixta">Lighting Styles</h2>
 
