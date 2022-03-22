@@ -10,7 +10,7 @@ const AreaList = () => (
         render={data => (
           <div className="states">
             <div>
-              <h3>California</h3>
+              {/* <h3>California</h3> */}
               <ul>
                 {
                   data.california.nodes.map(area => (
@@ -22,7 +22,7 @@ const AreaList = () => (
               </ul>
             </div>
             <div>
-              <h3>Nevada</h3>
+              {/* <h3>Nevada</h3> */}
               <ul>
                 {
                   data.nevada.nodes.map(area => (

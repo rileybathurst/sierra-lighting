@@ -2,14 +2,18 @@
 //  #Accordian
 /*------------------*/
 
-summary {
+// TODO this can still be improved
+
+.summary {
   outline: none;
   border-radius: 0.25rem;
   position: relative;
 }
-details[open] summary ~ * {
-  animation: sweep var(--moment);
+
+.details {
+  animation: sweep 3s;
 }
+
 @keyframes sweep {
   0% {
     opacity: 0;
@@ -20,16 +24,42 @@ details[open] summary ~ * {
     margin-top: 0px;
   }
 }
-details > summary::after {
-  position: absolute;
-  content: "+";
-  right: 20px;
+
+.details > .closed,
+.details > .closed *,
+.details > .closed li,
+.details > .closed a {
+  display: block;
+  height: 0;
+  opacity: 0;
 }
-details[open] > summary::after {
-  position: absolute;
-  content: "-";
-  right: 20px;
+
+.details > .open,
+.details > .open * {
+  height: auto;
+  opacity: 1;
 }
-details > summary::-webkit-details-marker {
-  display: none;
+
+.details {
+  ul {
+    padding-inline-start: 0;
+
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.summary h3 {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 2px solid lightgray;
+  // TODO make this good
+
+  > * {
+    flex: 1;
+  }
 }

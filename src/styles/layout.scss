@@ -131,6 +131,11 @@ header {
 .service-area {
   .states {
     display: flex;
+    gap: 1rem;
+
+    > * {
+      flex: 1;
+    }
   }
 }
 

@@ -1,17 +1,36 @@
 
-import React, { useState, useRef, useEffect } from 'react';
-import Hamburger from "../images/hamburger";
+import React, { useState } from 'react';
 import AreaList from '../lists/area-list';
 
 function AreaAccordian() {
-  return (
-    <details open>
-      <summary>California Nevada</summary>
-      <div className="tab-content">
-        <AreaList />
+
+  const [Accordian, setAccordian] = useState('open');
+
+  if (Accordian === 'closed') {
+    return (
+      <div className="details large">
+        <div className="summary" onClick={() => setAccordian('open')}>
+          <h3><span className="cal">California</span><span className="nev">Nevada</span></h3>
+        </div>
+        <div className={`tab-content ${Accordian}`}>
+          {/* {Accordian} */}
+          <AreaList />
+        </div>
       </div>
-    </details>
-  );
+    );
+  } else {
+    return (
+      <div className="details large" >
+        <div className="summary" onClick={() => setAccordian('closed')}>
+          <h3><span className="cal">California</span><span className="nev">Nevada</span></h3>
+        </div>
+        <div className={`tab-content ${Accordian}`}>
+          {/* {Accordian} */}
+          <AreaList />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default AreaAccordian

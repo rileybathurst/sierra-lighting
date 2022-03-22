@@ -77,7 +77,7 @@ const IndexPage = () => {
             <section id="service-area" className="service-area">
               <hr />
               <h3>Service Area</h3>
-              <h4>Reno, Truckee, Lake Tahoe, Carson City and Minden</h4>
+              <h4 className="small">Reno, Truckee, Lake Tahoe, Carson City and Minden</h4>
               <AreaAccordian />
               <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area. Get in touch today!</p>
             </section>

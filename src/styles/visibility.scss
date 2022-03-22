@@ -1,0 +1,20 @@
+/*------------------*/
+//  # Visibility
+/*------------------*/
+
+// small
+.small {
+  // display: none;
+
+  @media (min-width: $book) {
+    display: none;
+  }
+}
+
+// large
+.large {
+  display: none;
+  @media (min-width: $book) {
+    display: initial;
+  }
+}
