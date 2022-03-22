@@ -15,7 +15,7 @@ const FaqsPage = () => {
         titleColor="yellow"
         itemType="https://schema.org/FAQPage"
         itemScope={true}
-        description="Frequently asked questions about our services and products."
+        description="Your go to holiday lights installer in the Reno, Truckee, and North Tahoe area. A list of frequently asked questions. Please reach out for more information and estimates."
       />
 
       <Header />
@@ -38,13 +38,16 @@ const FaqsPage = () => {
 
       <main className="measure">
 
-        <h1>Frequently Asked Questions</h1>
+        <h2 className="crest">What Do You Need To Know</h2>
+        <h1 className="range">Frequently Asked Questions</h1>
+        {/* <hr /> */}
         <StaticQuery
           query={query}
           render={data => (
-            <ul>
+            <ul className="faqs">
               {data.allStrapiFar.nodes.map(faq => (
                 <div key={faq.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                  <hr />
                   <h2 itemProp="name">{faq.question}</h2>
                   <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
                     <div itemProp="text">

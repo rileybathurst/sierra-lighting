@@ -32,3 +32,16 @@
     }
   }
 }
+
+/*------------------*/
+//  #FAQs
+/*------------------*/
+
+.faqs {
+  padding-inline-start: 0; // reset
+
+  h2 {
+    font-size: clamp(1.5rem, 1.667vw, 2.5rem);
+    line-height: clamp(2rem, 1.667vw, 3rem);
+  }
+}

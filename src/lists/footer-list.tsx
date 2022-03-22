@@ -11,7 +11,7 @@ const FooterList = () => (
     </ul>
     <ul className="wedding">
       <li className="mixta"><Link to="/wedding">Wedding</Link></li>
-      <li><Link to="/projects/wedding-projects">Projects</Link></li>
+      <li><Link to="/projects/wedding-projects">Wedding Projects</Link></li>
       <li><Link to="/venues">Venues</Link></li>
       <li><Link to="/vendors">Vendors</Link></li>
     </ul>
