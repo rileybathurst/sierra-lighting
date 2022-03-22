@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from "gatsby";
+import { Link, StaticQuery, graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image"
 
 import Logo from "../images/logo";
@@ -46,38 +46,37 @@ const Footer = () => {
           </div>
         </section>
 
+
+
         <div id="team" className="team measure">
           <h3 className="crest">Who We Are</h3>
           <h4 className="range">Meet Our Team</h4>
+
           <div className="team-heads spin">
-            <div>
-              {/* <Link to="/team#jessica"> */}
-              <Profile />
-              <p itemScope itemProp="Person" itemType="https://schema.org/Person">
-                <span itemProp="name">Rom</span>
-                {/* // TODO should probably have a last name even if its only sr */}
-              </p>
-              {/* </Link> */}
-            </div>
+            <StaticQuery
+              query={query}
+              render={data => (
+                <>
+                  {
+                    data.residential.nodes.map(team => (
 
-            <div>
-              {/* <Link to="/team#kiley"> */}
-              <Profile />
-              <p itemScope itemProp="Person" itemType="https://schema.org/Person">
-                <span itemProp="name">Adam</span>
-              </p>
-              {/* </Link> */}
-            </div>
+                      <div>
+                        <Link to={`/team/${team.slug}`}>
+                          <Profile />
+                          <p itemScope itemProp="Person" itemType="https://schema.org/Person">
+                            <span itemProp="name">{team.name}</span>
+                            {/* // TODO should probably have a last name even if its only sr */}
+                          </p>
+                        </Link>
+                      </div>
 
-            <div>
-              {/* <Link to="/team#rachael"> */}
-              <Profile />
-              <p itemScope itemProp="Person" itemType="https://schema.org/Person">
-                <span itemProp="name">Bex</span>
-              </p>
-              {/* </Link> */}
-            </div>
+                    ))
+                  }
+                </>
+              )}
+            />
           </div>
+
           <Link to="/work">Work with us</Link>
         </div>
       </div>
@@ -133,3 +132,15 @@ const Footer = () => {
 }
 
 export default Footer
+
+const query = graphql`
+query FooterQuery {
+  residential: allStrapiTeam {
+    nodes {
+      id
+      name
+      slug
+    }
+  }
+}
+`
