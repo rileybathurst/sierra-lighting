@@ -116,11 +116,11 @@ const SEO = ({
 
       {/* 🚨 this needs to be off in production */}
       <div className="seo-showcase">
-        <p><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>
-        <p><span className="key">Description</span> = <span className={seo.titleColor}>{seo.description}</span></p>
+        <p key="title"><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>
+        <p key="description"><span className="key">Description</span> = <span className={seo.titleColor}>{seo.description}</span></p>
         {/* // ? why does this need to be ogImage? */}
         {/* // regular image doubles the url */}
-        <p><span className="key">Image</span> = </p>
+        <p key="image"><span className="key">Image</span> = </p>
         <img src={seo.ogImage} alt="seo checking" />
       </div>
     </>

@@ -60,7 +60,7 @@ const Footer = () => {
                   {
                     data.residential.nodes.map(team => (
 
-                      <div>
+                      <div key={team.id}>
                         <Link to={`/team/${team.slug}`}>
                           <Profile />
                           <p itemScope itemProp="Person" itemType="https://schema.org/Person">

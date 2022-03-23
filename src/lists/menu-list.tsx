@@ -15,7 +15,7 @@ const MenuList = () => (
     <li key="areas"><Link to="/areas">Service Areas</Link></li>
     <li key="services"><Link to="/services">Services</Link></li>
     <li key="faqs"><Link to="/faqs">FAQs</Link></li>
-    <li key="contact"><ContactList /></li>
+    <li key="contactlist"><ContactList /></li>
   </ul>
 )
 
