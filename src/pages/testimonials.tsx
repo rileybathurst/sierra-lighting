@@ -5,35 +5,8 @@ import { StaticImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Star from "../images/star";
 
-/* function ListItems() {
-  const numbers = [1, 2, 3, 4, 5];
-
-  return numbers.map(number => (
-    <Star />
-  ));
-} */
-
-function LoopItems() {
-  const count = [];
-
-  let i = 0;
-  do {
-    i += 1;
-    // console.log(i);
-    count.push(i);
-  } while (i < 5);
-
-
-  // const numrows = [5, 4, 3, 2, 1];
-
-  return (
-    <>
-      {count.map(x => <li key={x}><Star /></li>)}
-    </>
-  );
-}
+import TestimonialRanking from "../components/testimonial-ranking";
 
 const TestimonialsPage = () => {
   return (
@@ -42,7 +15,8 @@ const TestimonialsPage = () => {
       <Header />
       <main className="measure">
 
-        <h1>Frequently Asked Questions</h1>
+        <h1>Reviews</h1>
+        <h2>Testimonials</h2>
 
         <div itemProp="mainEntity" itemScope itemType="https://schema.org/LocalBusiness">
           <h1 className="sr-only" itemProp="name">Sierra Lighting</h1>
@@ -56,10 +30,8 @@ const TestimonialsPage = () => {
                     {/* <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link> */}
                     <h2 itemProp="name">{testimonial.title}</h2>
 
-                    {/* <ListItems /> */}
-                    <hr />
-                    <ul>
-                      <LoopItems />
+                    <ul className="testimonials stars">
+                      <TestimonialRanking stars={testimonial.stars} />
                     </ul>
                     <h3 itemProp="author" itemScope itemType="https://schema.org/Person">
                       <span itemProp="name">{testimonial.customer}</span>
@@ -68,7 +40,7 @@ const TestimonialsPage = () => {
                     <p itemProp="reviewBody">{testimonial.review}</p>
 
                     <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
-                      <p>
+                      <p className="sr-only">
                         <span itemProp="worstRating">1</span>
                         <span itemProp="ratingValue">{testimonial.stars}</span>/
                         <span itemProp="bestRating">5</span>stars

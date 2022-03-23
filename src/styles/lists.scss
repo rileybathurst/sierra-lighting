@@ -67,3 +67,9 @@
     }
   }
 }
+
+.stars {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
