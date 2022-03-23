@@ -4,8 +4,7 @@ import { Link } from "gatsby";
 const SocialIcons = () => (
   <section id="footer-social">
     <ul className="measured">
-      {/* yelp */}
-      <li>
+      <li key="yelp">
         <a
           href="https://www.yelp.com/biz/sierra-lighting-calpine/"
           title="Sierra Lighting yelp"
@@ -41,8 +40,7 @@ const SocialIcons = () => (
         </a>
       </li>
 
-      {/* f */}
-      <li>
+      <li key="facebook">
         <a
           href="https://www.facebook.com/sierralighting/"
           title="Sierra Lighting facebook"
@@ -58,8 +56,7 @@ const SocialIcons = () => (
         </a>
       </li>
 
-      {/* instagram */}
-      <li>
+      <li key="instagram">
         <a
           href="https://www.instagram.com/sierralighting/"
           title="Sierra Lighting instagram"
@@ -83,8 +80,7 @@ const SocialIcons = () => (
         </a>
       </li>
 
-      {/* nextdoor */}
-      <li>
+      <li key="nextdoor">
         <a
           href="https://nextdoor.com/pages/sierra-lighting-truckee-ca/recommend/"
           title="Sierra Lighting nextdoor"
@@ -107,8 +103,7 @@ const SocialIcons = () => (
         </a>
       </li>
 
-      {/* pinterest */}
-      <li>
+      <li key="pinterest">
         <a
           href="https://www.pinterest.com/sierralighting/"
           title="Sierra Lighting pinterest"
@@ -120,8 +115,7 @@ const SocialIcons = () => (
         </a>
       </li>
 
-      {/* tiktok */}
-      <li>
+      <li key="tiktok">
         <a
           href="https://www.tiktok.com/@sierralighting"
           title="Sierra Lighting pinterest"
@@ -130,8 +124,7 @@ const SocialIcons = () => (
         </a>
       </li>
 
-      {/* linkedin */}
-      <li>
+      <li key="linkedin">
         <a
           href="https://www.linkedin.com/company/sierralighting/"
           title="Sierra Lighting pinterest"

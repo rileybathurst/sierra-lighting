@@ -5,10 +5,10 @@ import { Link } from "gatsby"
 function TopList() {
   return (
     <ul>
-      <li><Link to="/residential">Residential</Link></li>
-      <li><Link to="/commercial">Commercial</Link></li>
-      <li><Link to="/wedding">Wedding</Link></li>
-      <li><Link to="/contact">Contact</Link></li>
+      <li key="residential"><Link to="/residential">Residential</Link></li>
+      <li key="commercial"><Link to="/commercial">Commercial</Link></li>
+      <li key="wedding"><Link to="/wedding">Wedding</Link></li>
+      <li key="contact"><Link to="/contact">Contact</Link></li>
     </ul>
   );
 }

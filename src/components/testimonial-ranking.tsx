@@ -3,7 +3,7 @@ import { Props } from '@storybook/addon-docs';
 import React, { useState, useRef, useEffect } from 'react';
 import Star from "../images/star";
 
-function LoopItems(props) {
+function TestimonialRanking(props) {
   const count = [];
   const stars = props.stars;
 
@@ -24,12 +24,6 @@ function LoopItems(props) {
         </li>)}
       {/* {props.stars} */}
     </>
-  );
-}
-
-function TestimonialRanking(props) {
-  return (
-    <LoopItems stars={props.stars} />
   );
 }
 

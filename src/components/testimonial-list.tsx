@@ -1,19 +1,22 @@
 import React from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
 
-import Star from "../images/star";
+import TestimonialRanking from "./testimonial-ranking"
 
 const TestimonialList = () => (
   <StaticQuery
     query={query}
     render={data => (
-      <ul itemProp="review" itemScope itemtype="https://schema.org/Review">
+      <ul itemProp="review" itemScope itemType="https://schema.org/Review">
         {data.allStrapiTestimonial.nodes.map(testimonial => (
           <li key={testimonial.id} className="slider">
             <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
               <div className="five-stars">
-                <Star /><Star /><Star /><Star /><Star />
-                {/* // TODO needs the actual counter I've already built */}
+
+                <ul className="testimonials stars">
+                  <TestimonialRanking stars={testimonial.stars} />
+                </ul>
+
                 <p className="sr-only" itemProp="worstRating">{testimonial.stars}</p>
                 <p className="sr-only"><span itemProp="ratingValue">1</span>/</p>
                 <p className="sr-only"><span itemProp="bestRating">5</span>stars</p>

@@ -65,10 +65,10 @@ const WeddingPage = () => {
 
           <p>Our team will:</p>
           <ul>
-            <li>Provide you site plans, renderings, examples of past work</li>
-            <li>Partner with you to design options to meet your budget and expectations</li>
-            <li>Send out our crew of lighting technicians on your schedule to ensure your venue shines</li>
-            <li>Take down everything and restore the site so it looks like we were never there</li>
+            <li key="provide">Provide you site plans, renderings, examples of past work</li>
+            <li key="partner">Partner with you to design options to meet your budget and expectations</li>
+            <li key="send">Send out our crew of lighting technicians on your schedule to ensure your venue shines</li>
+            <li key="take">Take down everything and restore the site so it looks like we were never there</li>
           </ul>
           <hr />
 

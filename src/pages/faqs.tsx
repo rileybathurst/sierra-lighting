@@ -46,7 +46,7 @@ const FaqsPage = () => {
           render={data => (
             <ul className="faqs">
               {data.allStrapiFar.nodes.map(faq => (
-                <div key={faq.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+                <li key={faq.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
                   <hr />
                   <h2 itemProp="name">{faq.question}</h2>
                   <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
@@ -54,7 +54,7 @@ const FaqsPage = () => {
                       {faq.answer}
                     </div>
                   </div>
-                </div>
+                </li>
               ))}
             </ul>
           )}

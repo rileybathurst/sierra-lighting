@@ -17,16 +17,16 @@ const ServicesPage = () => {
         <h1>Services</h1>
         <h2>The Christmas lights services we provide include:</h2>
         <ul>
-          <li>Roof lines hung with damage free attachment methods outlined in high efficiency energy saving C9 LED bulbs</li>
-          <li>Windows and doors outlined in mini LED bulbs or garlands</li>
-          <li>Columns and railings wrapped in mini LED bulbs or garlands</li>
-          <li>Garlands and wreaths either lit or unlit, decorated or plain</li>
-          <li>Trunk wraps in mini LED lights</li>
-          <li>Tree canopies either swirl wrapped or with limbs individually wrapped to create an elegant silhouette</li>
-          <li>Bushes and Shrubs wrapped in mini LED lights</li>
-          <li>Bows and ornaments for that extra detail</li>
-          <li>Lit figurines, snowflakes and trees for special accents</li>
-          <li>Is something missing? Just ask!</li>
+          <li key="roofs">Roof lines hung with damage free attachment methods outlined in high efficiency energy saving C9 LED bulbs</li>
+          <li key="windows">Windows and doors outlined in mini LED bulbs or garlands</li>
+          <li key="columns">Columns and railings wrapped in mini LED bulbs or garlands</li>
+          <li key="garlands">Garlands and wreaths either lit or unlit, decorated or plain</li>
+          <li key="trunks">Trunk wraps in mini LED lights</li>
+          <li key="trees">Tree canopies either swirl wrapped or with limbs individually wrapped to create an elegant silhouette</li>
+          <li key="bushes">Bushes and Shrubs wrapped in mini LED lights</li>
+          <li key="bows">Bows and ornaments for that extra detail</li>
+          <li key="lit">Lit figurines, snowflakes and trees for special accents</li>
+          <li key="missing">Is something missing? Just ask!</li>
         </ul>
 
         <h2>How it Works</h2>
