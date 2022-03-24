@@ -19,39 +19,47 @@ const VendorsPage = () => {
     <>
       <Seo title="Sierra Lighting" />
       <Header />
-      <main className="measure">
+      <main>
 
-        <p className="breadcrumbs">
-          <Link to="/">Home</Link>&nbsp;
-          / <Link to="/wedding">Wedding</Link>&nbsp;
-          / Wedding Vedors
-        </p>
-        <hr />
+        <div className="measure">
+          <p className="breadcrumbs">
+            <Link to="/">Home</Link>&nbsp;/&nbsp;
+            <Link to="/wedding">Wedding</Link>&nbsp;/&nbsp;
+            Wedding Vedors
+          </p>
+          <hr />
 
-        <h2 className="crest">Who we like to work with</h2>
-        <h1 className="mixta">Wedding Vendors</h1>
+          <h2 className="crest">Who we like to work with</h2>
+          <h1 className="mixta">Wedding Vendors</h1>
 
-        <StaticQuery
-          query={query}
-          render={data => (
-            <>
-              {
-                data.allStrapiVendor.nodes.map(vendor => (
-                  <section className="card" key={vendor.id}>
-                    <NorthTahoeEvents />
-                    <div className="paper"></div>
-                    <div className="content">
-                      <hr />
-                      <h2><Link to={`/vendor/${vendor.slug}`}>{vendor.name}</Link></h2>
-                      <p>{vendor.description}</p>
-                    </div>
-                  </section>
+          <hr />
 
-                ))
-              }
-            </>
-          )}
-        />
+          <h3>Photography</h3>
+        </div>
+
+        <div className="deck">
+          <StaticQuery
+            query={query}
+            render={data => (
+              <>
+                {
+                  data.allStrapiVendor.nodes.map(vendor => (
+                    <section className="card" key={vendor.id}>
+                      <NorthTahoeEvents />
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/vendor/${vendor.slug}`}>{vendor.name}</Link></h2>
+                        <p>{vendor.description}</p>
+                      </div>
+                    </section>
+
+                  ))
+                }
+              </>
+            )}
+          />
+        </div>
 
       </main >
 

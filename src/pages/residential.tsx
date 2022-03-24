@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -69,34 +69,42 @@ const ResidentialPage = () => {
           <hr />
           <h3 className="crest">Bringing the shine</h3>
           <h2 className="ridge mixta">Lighting Styles</h2>
+        </div>
 
-
-          <div className="deck">
-            <StaticQuery
-              query={query}
-              render={data => (
-                <>
-                  {
-                    data.allStrapiLight.nodes.map(light => (
-                      <div key={light.id} className="card">
-                        <SnowyRoof />
-                        <div className="paper"></div>
-                        <div className="content">
-                          <hr />
-                          <h3 className="crest">{light.byline}</h3>
-                          <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                          <p className="description">{light.description}</p>
-                          <p>{light.outdoor}</p>
-                        </div>
-
+        <div className="deck">
+          <StaticQuery
+            query={query}
+            render={data => (
+              <>
+                {
+                  data.allStrapiLight.nodes.map(light => (
+                    <div key={light.id} className="card">
+                      <GatsbyImage
+                        image={
+                          light?.image?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={light.venueImage?.alternativeText}
+                        className=""
+                      />
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h3 className="crest">{light.byline}</h3>
+                        <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
+                        <p className="description">{light.excerpt}</p>
+                        <p>{light.outdoor}</p>
                       </div>
-                    ))
-                  }
-                </>
-              )}
-            />
-          </div>
 
+                    </div>
+                  ))
+                }
+              </>
+            )}
+          />
+        </div>
+
+        <div className="measure">
           <hr />
           <h3>Full Season Maintenance and Support</h3>
 
@@ -109,17 +117,7 @@ const ResidentialPage = () => {
         </div>
       </main>
 
-      <div className="measure">
-        <hr />
-        <h3 className="crest">What have we done</h3>
-        <h2 className="ridge mixta">Projects</h2>
-
-      </div>
-
-      <div className="deck measure">
-
-        <ResidentialProjects />
-      </div>
+      <ResidentialProjects />
 
       <Footer />
 
@@ -137,8 +135,18 @@ query ResidentialLightQuery {
       name
       byline
       description
+      excerpt
       slug
       outdoor
+      
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
   }
 }

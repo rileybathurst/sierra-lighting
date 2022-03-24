@@ -5,25 +5,20 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
 import { useStaticQuery, graphql } from "gatsby";
-// import { StaticImage } from "gatsby-plugin-image"
 
-/* export function SnowyRoof() {
-  return <StaticImage
-    src={seo.image} // seo is undefined here
-    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="snowyroof" />
-} */
-
-function ScopeBool(props) {
-  const ScopeItem = props.itemScope;
-  if (ScopeItem) {
-    return (
-      <>
-        undefined
-      </>
-    );
+// https://blog.spotibo.com/meta-description-length/
+// less than 120 characters is good
+// more than 160 characters is bad
+function DescLength(props) {
+  const desc = props.desc;
+  const length = desc.length;
+  if (length <= 120) {
+    return <span className="good">{length} = good</span>;
+  } else if (length > 120 && length <= 160) {
+    return <span className="ok">{length} = ok</span>;
+  } else {
+    return <span className="bad">{length} = bad</span>;
   }
-  else return null;
 }
 
 // Im not sure what the rules on what goes here vs in the array?
@@ -118,6 +113,10 @@ const SEO = ({
       <div className="seo-showcase">
         <p key="title"><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>
         <p key="description"><span className="key">Description</span> = <span className={seo.titleColor}>{seo.description}</span></p>
+
+        <p>Description charachter length = <DescLength desc={seo.description} /></p>
+
+
         {/* // ? why does this need to be ogImage? */}
         {/* // regular image doubles the url */}
         <p key="image"><span className="key">Image</span> = </p>
