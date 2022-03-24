@@ -9,15 +9,44 @@ export const query = graphql`
       name
       description
       slug
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+
+    allStrapiLight(filter: {slug: {nin: [$slug] }}) {
+      nodes {
+        name
+        id
+        slug
+        excerpt
+
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
     }
   }
 `
 
 const LightPage = ({ data }) => {
   const light = data.strapiLight;
+  const other = data.allStrapiLight;
   return (
     <LightView
       light={light}
+      other={other}
     />
   );
 };

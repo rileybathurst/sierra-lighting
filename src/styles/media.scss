@@ -23,9 +23,19 @@ a svg:hover {
 /*------------------*/
 
 .poster {
+  // this might be hero
+  margin-block-end: 3rem;
+  margin-inline: auto; // ! not working
+  max-width: 60rem;
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
   border: 1px solid whitesmoke;
+  display: block;
+  aspect-ratio: 3/2;
+
+  img {
+    width: 100%;
+  }
 }
 
 .home-gallery {
