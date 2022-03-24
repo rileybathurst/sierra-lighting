@@ -18,20 +18,23 @@ const WeddingProjectsPage = () => {
     <>
       <Seo title="Sierra Lighting" />
       <Header />
-      <main className="measure">
+      <main>
 
-        <p className="breadcrumbs">
-          <Link to="/">Home</Link>&nbsp;
-          / <Link to="/projects">Projects</Link>&nbsp;
-          / Wedding Projects
-        </p>
-        <hr />
+        <div className="measure">
+          <p className="breadcrumbs">
+            <Link to="/">Home</Link>&nbsp; / &nbsp;
+            <Link to="/projects">Projects</Link>&nbsp;
+            / Wedding Projects
+          </p>
+          <hr />
+          <h3>Wedding Projects</h3>
+        </div>
 
         <StaticQuery
           query={query}
           render={data => (
             <>
-              <h3>Wedding</h3>
+
               <div className="deck measure">
                 {
                   data.allStrapiProject.nodes.map(project => (

@@ -7,13 +7,41 @@ export const query = graphql`
     strapiArea(slug: { eq: $slug }) {
       id
       name
+      tagline
+
       description {
         data {
           description
         }
       }
+      
       state
       slug
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+
+      venues {
+        id
+        name
+        slug
+        description
+
+        venueImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
     }
   }
 `

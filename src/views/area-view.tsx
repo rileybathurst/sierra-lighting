@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 
@@ -15,10 +16,26 @@ function ReactDescription(props) {
   }
 }
 
+function Venues(props) {
+  const name = props.name;
+  if (props.yes.length !== 0) {
+    return (
+      <div className="measure">
+        <hr />
+        <h3>Wedding Venues in {name}</h3>
+      </div>
+    );
+  } else {
+    return null
+  }
+}
+
 const AreaView = ({ area }) => {
   return (
     <>
-      <Seo title="Sierra Lighting" />
+      <Seo title="Sierra Lighting"
+        description={area.excerpt}
+      />
       <Header />
 
       {/* // ? these are breadcrumbs but we are maybe using additional microdata for location */}
@@ -29,9 +46,19 @@ const AreaView = ({ area }) => {
               <span itemProp="name">Home</span></Link> /&nbsp;
             <meta itemProp="position" content="1" />
           </li>
+
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/areas">
+              <span itemProp="name">{area.state}</span></Link>
+            {/* // TODO capitalize this */}
+            <meta itemProp="position" content="2" />
+          </li>
+
+          &nbsp;/&nbsp;
+
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/faqs">
-              <span itemProp="name">{area.state}</span></Link>
+              <span itemProp="name">{area.name}</span></Link>
             <meta itemProp="position" content="2" />
           </li>
         </ol>
@@ -39,13 +66,57 @@ const AreaView = ({ area }) => {
       </div>
 
 
-      <main className="measure">
-        <article className="single" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-          <h1 itemProp="addressLocality">{area.name}, {area.state}</h1>
+      <main>
+
+        <GatsbyImage
+          image={
+            area?.image?.localFile?.childImageSharp
+              ?.gatsbyImageData
+          }
+          alt={area.image?.alternativeText}
+          className="poster"
+        />
+
+        <article className="measure single" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+          <h2 className="crest">{area.tagline}</h2>
+          <h1 className="range" itemProp="addressLocality">{area.name}, {area.state}</h1>
           {/* // TODO: the state needs to be changed to the abreviation */}
           <ReactDescription desc={area.description} />
         </article>
       </main>
+
+
+      <Venues yes={area.venues} name={area.name} />
+
+      {/* // TODO this could all be behing the venues if statement */}
+      {/* // TODO this could all be behing the venues if statement */}
+      <div className="deck">
+        {
+          area?.venues.map(venue => (
+            <section className="card" key={venue.id}>
+
+              <GatsbyImage
+                image={
+                  venue?.venueImage?.localFile?.childImageSharp
+                    ?.gatsbyImageData
+                }
+                alt={venue.venueImage?.alternativeText}
+                className=""
+              />
+
+              <div className="paper"></div>
+              <div className="content">
+                <hr />
+                <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                <p>{venue.description}</p>
+              </div>
+            </section>
+          ))
+        }
+      </div>
+
+      {/* // TODO if no venues show other places */}
+
       <Footer />
     </>
   );

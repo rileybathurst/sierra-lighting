@@ -28,6 +28,37 @@ const ProjectView = ({ project, other }) => {
     <>
       <Seo title="Sierra Lighting" />
       <Header />
+
+
+
+      <div className="measure">
+        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/">
+              <span itemProp="name">Home</span></Link>
+            <meta itemProp="position" content="1" />
+          </li>
+
+          &nbsp;/&nbsp;
+
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/project">
+              <span itemProp="name">Projects</span></Link>
+            <meta itemProp="position" content="2" />
+          </li>
+
+          &nbsp;/&nbsp;
+
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to={`/project/${project.slug}`}>
+              <span itemProp="name">{project.title}</span></Link>
+            <meta itemProp="position" content="3" />
+          </li>
+        </ol>
+        <hr />
+      </div>
+
+
       <main className="measure">
         <article className="single">
           <h1>{project.title}</h1>

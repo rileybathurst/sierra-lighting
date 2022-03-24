@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../../components/seo";
 import Header from "../../components/header";
@@ -18,11 +18,13 @@ const ChristmasLightsProjectsPage = () => {
     <>
       <Seo title="Sierra Lighting" />
       <Header />
+
       <main className="measure">
 
         <p className="breadcrumbs">
           <Link to="/">Home</Link>&nbsp;
           / Projects
+          / Christmas Lights Projects
         </p>
         <hr />
 
@@ -35,7 +37,16 @@ const ChristmasLightsProjectsPage = () => {
                 {
                   data.residential.nodes.map(project => (
                     <div key={project.id} className="card">
-                      <NorthTahoeEvents />
+
+                      <GatsbyImage
+                        image={
+                          project?.image?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={project.image?.alternativeText}
+                        className=""
+                      />
+
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
@@ -60,7 +71,14 @@ const ChristmasLightsProjectsPage = () => {
                 {
                   data.commercial.nodes.map(project => (
                     <div key={project.id} className="card">
-                      <NorthTahoeEvents />
+                      <GatsbyImage
+                        image={
+                          project?.image?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={project.image?.alternativeText}
+                        className=""
+                      />
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
@@ -108,6 +126,15 @@ query ChristmasLightsProjectsQuery {
         }
       }
       slug
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
   }
   
@@ -121,6 +148,15 @@ query ChristmasLightsProjectsQuery {
         }
       }
       slug
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
   }
 }
