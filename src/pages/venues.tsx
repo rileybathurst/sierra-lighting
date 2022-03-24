@@ -1,6 +1,8 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
+
+//GatsbyImage
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -19,27 +21,43 @@ const VenuePage = () => {
     <>
       <Seo title="Sierra Lighting" />
       <Header />
-      <main className="measure">
+      <main className="venues__page">
 
-        <p className="breadcrumbs">
-          <Link to="/">Home</Link>&nbsp;
-          / <Link to="/wedding">Wedding</Link>&nbsp;
-          / Wedding Venues
-        </p>
-        <hr />
+        <div className="measure">
+          <p className="breadcrumbs">
+            <Link to="/">Home</Link>&nbsp;
+            / <Link to="/wedding">Wedding</Link>&nbsp;
+            / Wedding Venues
+          </p>
+          <hr />
 
-        <h2 className="crest">Where to be</h2>
-        <h1 className="mixta">Wedding Venues</h1>
+          <h2 className="crest">Where to be</h2>
+          <h1 className="mixta">Wedding Venues</h1>
+        </div>
 
-        <div className="deck">
-          <StaticQuery
-            query={query}
-            render={data => (
-              <>
+        <StaticQuery
+          query={query}
+          render={data => (
+            <>
+              <div className="measure">
+                <hr />
+                <h3>South Lake Tahoe, NV.</h3>
+              </div>
+
+              <div className="deck">
                 {
-                  data.allStrapiVenue.nodes.map(venue => (
+                  data.southlake.nodes.map(venue => (
                     <section className="card" key={venue.id}>
-                      <NorthTahoeEvents />
+
+                      <GatsbyImage
+                        image={
+                          venue?.venueImage?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={venue.venueImage?.alternativeText}
+                        className=""
+                      />
+
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
@@ -49,10 +67,221 @@ const VenuePage = () => {
                     </section>
                   ))
                 }
-              </>
-            )}
-          />
-        </div>
+              </div>
+
+              <div className="measure">
+                <hr />
+                <h3>Reno, NV.</h3>
+              </div>
+
+              <div className="deck">
+                {
+                  data.reno.nodes.map(venue => (
+                    <section className="card" key={venue.id}>
+
+                      <GatsbyImage
+                        image={
+                          venue?.venueImage?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={venue.venueImage?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                        <p>{venue.description}</p>
+                      </div>
+                    </section>
+                  ))
+                }
+              </div>
+
+              <div className="measure">
+                <hr />
+                <h3>Incline Village, NV.</h3>
+              </div>
+
+              <div className="deck">
+                {
+                  data.incline.nodes.map(venue => (
+                    <section className="card" key={venue.id}>
+
+                      <GatsbyImage
+                        image={
+                          venue?.venueImage?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={venue.venueImage?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                        <p>{venue.description}</p>
+                      </div>
+                    </section>
+                  ))
+                }
+              </div>
+
+              <div className="measure">
+                <hr />
+                <h3>Truckee, CA.</h3>
+              </div>
+
+              <div className="deck">
+                {
+                  data.truckee.nodes.map(venue => (
+                    <section className="card" key={venue.id}>
+
+                      <GatsbyImage
+                        image={
+                          venue?.venueImage?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={venue.venueImage?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                        <p>{venue.description}</p>
+                      </div>
+                    </section>
+                  ))
+                }
+              </div>
+
+              <div className="measure">
+                <hr />
+                <h3>Olympic Valley, CA.</h3>
+              </div>
+
+              <div className="deck">
+                {
+                  data.olympic.nodes.map(venue => (
+                    <section className="card" key={venue.id}>
+
+                      <GatsbyImage
+                        image={
+                          venue?.venueImage?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={venue.venueImage?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                        <p>{venue.description}</p>
+                      </div>
+                    </section>
+                  ))
+                }
+              </div>
+
+              <div className="measure">
+                <hr />
+                <h3>Donner Summit, CA.</h3>
+              </div>
+
+              <div className="deck">
+                {
+                  data.donner.nodes.map(venue => (
+                    <section className="card" key={venue.id}>
+
+                      <GatsbyImage
+                        image={
+                          venue?.venueImage?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={venue.venueImage?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                        <p>{venue.description}</p>
+                      </div>
+                    </section>
+                  ))
+                }
+              </div>
+
+              <div className="measure">
+                <hr />
+                <h3>Glenbrook, NV.</h3>
+              </div>
+
+              <div className="deck">
+                {
+                  data.glenbrook.nodes.map(venue => (
+                    <section className="card" key={venue.id}>
+
+                      <GatsbyImage
+                        image={
+                          venue?.venueImage?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={venue.venueImage?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                        <p>{venue.description}</p>
+                      </div>
+                    </section>
+                  ))
+                }
+              </div>
+
+              <div className="measure">
+                <hr />
+                <h3>Tahoma and West Shore, CA.</h3>
+              </div>
+
+              <div className="deck">
+                {
+                  data.tahoma.nodes.map(venue => (
+                    <section className="card" key={venue.id}>
+
+                      <GatsbyImage
+                        image={
+                          venue?.venueImage?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={venue.venueImage?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                        <p>{venue.description}</p>
+                      </div>
+                    </section>
+                  ))
+                }
+              </div>
+
+            </>
+          )}
+        />
 
       </main >
 
@@ -66,13 +295,141 @@ export default VenuePage
 
 const query = graphql`
 query VenuesQuery {
-  allStrapiVenue(filter: { publishedAt: { ne: null } }) {
+  southlake: allStrapiVenue(filter: {area: {slug: {eq: "southlake"}}}) {
     nodes {
       id
       name
       description
       slug
+      venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
   }
+  
+  reno: allStrapiVenue(filter: {area: {slug: {eq: "reno"}}}) {
+    nodes {
+      id
+      name
+      description
+      slug
+      venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+  
+  incline: allStrapiVenue(filter: {area: {slug: {eq: "incline"}}}) {
+    nodes {
+      id
+      name
+      description
+      slug
+      venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+  
+  truckee: allStrapiVenue(filter: {area: {slug: {eq: "truckee"}}}) {
+    nodes {
+      id
+      name
+      description
+      slug
+      venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+  
+  olympic: allStrapiVenue(filter: {area: {slug: {eq: "olympic"}}}) {
+    nodes {
+      id
+      name
+      description
+      slug
+      venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+  
+  donner: allStrapiVenue(filter: {area: {slug: {eq: "donner"}}}) {
+    nodes {
+      id
+      name
+      description
+      slug
+      venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+  
+  glenbrook: allStrapiVenue(filter: {area: {slug: {eq: "donner"}}}) {
+    nodes {
+      id
+      name
+      description
+      slug
+      venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+
+  tahoma: allStrapiVenue(filter: {area: {slug: {eq: "donner"}}}) {
+    nodes {
+      id
+      name
+      description
+      slug
+      venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+
 }
 `
