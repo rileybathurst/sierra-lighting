@@ -52,7 +52,7 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`], //, `webp`
+          formats: [`auto`], //, `webp` // this is currently off to get under a ram limit bug
           placeholder: `dominantColor`,
           quality: 50,
           breakpoints: [750, 1080, 1366, 1920],
@@ -86,7 +86,8 @@ module.exports = {
         mergeStyleHashes: false, // you can disable styles sha256 hashes
         directives: {
           "script-src": "'self' 'unsafe-inline' www.google-analytics.com",
-          "style-src": "'self' 'unsafe-inline' use.typekit.net",
+          "style-src": "'self' 'unsafe-inline' use.typekit.net https://p.typekit.net/",
+          "font-src": "'self' 'unsafe-inline' use.typekit.net https://p.typekit.net/",
           "img-src": "'self' data:"
           // you can add your directives or override defaults
         }
