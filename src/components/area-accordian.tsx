@@ -10,7 +10,11 @@ function AreaAccordian() {
     return (
       <div className="details large">
         <div className="summary" onClick={() => setAccordian('open')}>
-          <h3><span className="cal">California</span><span className="nev">Nevada</span></h3>
+          <h3 className='range'>
+            <span className="cal">California</span>
+            <span className="nev">Nevada</span>
+            +
+          </h3>
         </div>
         <div className={`tab-content ${Accordian}`}>
           {/* {Accordian} */}
@@ -22,7 +26,11 @@ function AreaAccordian() {
     return (
       <div className="details large" >
         <div className="summary" onClick={() => setAccordian('closed')}>
-          <h3><span className="cal">California</span><span className="nev">Nevada</span></h3>
+          <h3 className='range'>
+            <span className="cal">California</span>
+            <span className="nev">Nevada</span>
+            -
+          </h3>
         </div>
         <div className={`tab-content ${Accordian}`}>
           {/* {Accordian} */}

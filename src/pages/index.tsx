@@ -76,7 +76,7 @@ const IndexPage = () => {
           <div className="areas-and-gallery">
             <section id="service-area" className="service-area">
               <hr />
-              <h3>Service Area</h3>
+              <h3 className="crest">Service Area</h3>
               <h4 className="small">Reno, Truckee, Lake Tahoe, Carson City and Minden</h4>
               <AreaAccordian />
               <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area. Get in touch today!</p>
@@ -135,14 +135,3 @@ const IndexPage = () => {
 }
 
 export default IndexPage
-
-/* const query = graphql`
-query MyQuery {
-  allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
-    nodes {
-      id
-      customer
-    }
-  }
-}
-` */
