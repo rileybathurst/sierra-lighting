@@ -129,7 +129,7 @@ export default ResidentialPage
 
 const query = graphql`
 query ResidentialLightQuery {
-  allStrapiLight(filter: { publishedAt: { ne: null } }) {
+  allStrapiLight(filter: {residentialchristmas: {eq: true}}) {
     nodes {
       id
       name

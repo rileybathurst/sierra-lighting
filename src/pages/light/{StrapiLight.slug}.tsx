@@ -18,6 +18,21 @@ export const query = graphql`
         }
         alternativeText
       }
+
+      projects {
+        id
+        title
+        slug
+        excerpt
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
     }
 
     allStrapiLight(filter: {slug: {nin: [$slug] }}) {
@@ -35,6 +50,7 @@ export const query = graphql`
           }
           alternativeText
         }
+
       }
     }
   }

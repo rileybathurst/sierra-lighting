@@ -38,14 +38,19 @@ const CommercialPage = () => {
         description="Car dealer, casino, medical office, or shopping complex, we decorate them all and more! Contact Sierra Christmas Lights for your turn key holiday lighting needs.  From install to storage, we do it all.  We can decorate with wreaths, bows, figurines, snowflakes, C9 LED bulbs, mini LEDs, and garlands."
       />
       <Header />
+
+      {/* // TODO make these SEO */}
+      <div className="measure">
+        <p className="breadcrumbs"><Link to="/">Home</Link> / Commercial</p>
+        <hr />
+      </div>
+
       <main>
 
         <div className="measure">
-          <p className="breadcrumbs"><Link to="/">Home</Link> / Commercial</p>
-          <hr />
 
           <h2 className="crest">Christmas Lights For Business:</h2>
-          <h1>Commercial Christmas Lights &amp; Decor</h1>
+          <h1 className="range">Commercial Christmas Lights &amp; Decor</h1>
 
           <p>Allow us to help your business spread holiday cheer this season. There is a strong sense of goodwill and community during Christmas, and our lighting displays can help enhance those feelings. For many businesses in Reno, Truckee, and Tahoe, Christmastime is THE most important period of the year. An investment in a beautiful lighting display will help your business stand out from the rest and enhance your bottom line during this busy season for years to come.  We can install lights on shopping centers, office buildings, restaurants, municipal buildings, medical facilities, HOA's, schools, car dealerships, and casinos. We also do commercial accent lighting year round.  Please check out our patio lights page for more information.</p>
         </div>
@@ -128,7 +133,7 @@ export default CommercialPage
 
 const query = graphql`
 query CommercialLightQuery {
-  allStrapiLight(filter: { publishedAt: { ne: null } }) {
+  allStrapiLight(filter: {commercialchristmas: {eq: true}}) {
     nodes {
       id
       name
