@@ -64,7 +64,7 @@ const LightView = ({ light, other }) => {
 
       <div className="deck measure">
         {other.nodes.map((other) => (
-          <div key={light.id} className="card">
+          <div key={other.id} className="card">
 
             <GatsbyImage
               image={

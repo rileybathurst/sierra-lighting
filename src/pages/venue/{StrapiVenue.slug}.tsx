@@ -9,15 +9,55 @@ export const query = graphql`
       name
       description
       slug
+      
+      area {
+        name
+        state
+      }
+
+      venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+    }
+
+    allStrapiVenue(filter: {slug: {nin: [$slug] }}) {
+      nodes {
+        name
+        id
+        slug
+        description
+
+        venueImage {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+
+        area {
+          name
+          state
+        }
+      }
     }
   }
 `
 
 const VenuePage = ({ data }) => {
   const venue = data.strapiVenue;
+  const other = data.allStrapiVenue;
+
   return (
     <VenueView
       venue={venue}
+      other={other}
     />
   );
 };

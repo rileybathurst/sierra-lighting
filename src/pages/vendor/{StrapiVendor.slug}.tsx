@@ -9,15 +9,31 @@ export const query = graphql`
       name
       description
       slug
+      instagram
+      facebook
+      website
+      pinterest
+      service
+    }
+
+    allStrapiVendor(filter: {slug: {nin: [$slug] }}) {
+      nodes {
+        name
+        id
+        slug
+      }
     }
   }
 `
 
 const VendorPage = ({ data }) => {
   const vendor = data.strapiVendor;
+  const other = data.allStrapiVendor;
+
   return (
     <VendorView
       vendor={vendor}
+      other={other}
     />
   );
 };
