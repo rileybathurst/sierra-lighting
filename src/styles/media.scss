@@ -64,8 +64,14 @@ a svg:hover {
 
 header svg {
   margin: 1.5rem 0.75rem; // 24px 12px
-  // max-width: 30rem;
-  // max-height: 5rem;
+  fill: var(--denim-1);
+  padding: 0.25rem;
+  border-radius: var(--border-radius);
+}
+
+header svg:hover {
+  background: white;
+  fill: black;
 }
 
 /*------------------*/
@@ -79,7 +85,6 @@ header svg {
 
   > div {
     flex: 0 1 4rem; // guess and check
-    margin: 0.5rem 1rem;
     text-align: center;
     display: block;
 

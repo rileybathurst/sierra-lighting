@@ -42,7 +42,7 @@ export function SnowyRoof() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-3-web-tagged.jpg"
     alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="snowyroof" />
+    className="snowyroof poster" />
 }
 
 
@@ -59,8 +59,9 @@ const IndexPage = () => {
             <h2 className="mixta">Dependable holiday, landscape and events light installation</h2>
 
             <div className="village-container">
-              <Link to="/project/rancharrah"><Village /></Link>
-              <p><Link to="/project/rancharrah">The Village at Rancharrah See the Project</Link></p>
+              <Link to="/project/rancharrah"><Village />
+                <p>The Village at Rancharrah See the Project</p>
+              </Link>
             </div>
 
             <section id="trusted" className="trusted">
@@ -90,25 +91,28 @@ const IndexPage = () => {
           </div>
         </div>
 
-        <section id="services" className="services">
-          <hr />
-          {/* 📣? I need to think about the H levels here */}
-          <h3>Services</h3>
-          <h4 className="crest">Locally owned and Fully Insured</h4>
-          <h5 className="range">Professional Experience</h5>
-          <hr />
-          <h4 className="crest">Efficient LEDs, House Safe Install</h4>
-          <h5 className="range">Quality Materials</h5>
-          <hr />
-          <h4 className="crest">Installation, Repair &amp; Removal</h4>
-          <h5 className="range">Hassle Free</h5>
-          <hr />
-          <h4 className="crest">Repairs Free of Charge</h4>
-          <h5 className="range">Guaranteed Upkeep</h5>
-        </section>
+        <div className="services-wrap">
+          <section id="services" className="services">
+            <hr />
+            {/* 📣? I need to think about the H levels here */}
+            <h3>Services</h3>
+            <h4 className="crest">Locally owned and Fully Insured</h4>
+            <h5 className="range">Professional Experience</h5>
+            <hr />
+            <h4 className="crest">Efficient LEDs, House Safe Install</h4>
+            <h5 className="range">Quality Materials</h5>
+            <hr />
+            <h4 className="crest">Installation, Repair &amp; Removal</h4>
+            <h5 className="range">Hassle Free</h5>
+            <hr />
+            <h4 className="crest">Repairs Free of Charge</h4>
+            <h5 className="range">Guaranteed Upkeep</h5>
+          </section>
 
-        <div className="snowyroof-container poster">
-          <SnowyRoof />
+          <div className="snowyroof-container">
+
+            <SnowyRoof />
+          </div>
         </div>
 
         <div className="slider-container">

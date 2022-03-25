@@ -192,7 +192,7 @@ header {
   }
 }
 
-.village-container {
+.village-container a {
   display: grid;
   aspect-ratio: 3/2;
   overflow: hidden;
@@ -359,4 +359,15 @@ footer {
 .testimonial-links {
   display: flex;
   gap: 1rem;
+}
+
+.services-wrap {
+  max-width: var(--page_width);
+  margin-inline: auto;
+  display: flex;
+  flex-flow: row wrap;
+
+  > * {
+    flex: 1 1 30rem;
+  }
 }
