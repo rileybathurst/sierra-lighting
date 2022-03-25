@@ -13,6 +13,15 @@ export const query = graphql`
         }
       }
       slug
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
 
     allStrapiProject(filter: {slug: {nin: [$slug] }}) {
@@ -21,6 +30,15 @@ export const query = graphql`
           title
           id
           slug
+
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
         }
       }
     }

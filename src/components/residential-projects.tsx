@@ -43,7 +43,7 @@ function ResidentialProjects() {
                       <hr />
                       {/* <h3 className="crest">{light.byline}</h3> */}
                       <h2 className="mixta">
-                        <Link to={`/light/${project.slug}`}>
+                        <Link to={`/project/${project.slug}`}>
                           {project.title}
                         </Link>
                       </h2>

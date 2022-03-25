@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image"
+import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 
@@ -58,6 +58,14 @@ const ProjectView = ({ project, other }) => {
         <hr />
       </div>
 
+      <GatsbyImage
+        image={
+          project?.image?.localFile?.childImageSharp
+            ?.gatsbyImageData
+        }
+        alt={project.image?.alternativeText}
+        className="poster"
+      />
 
       <main className="measure">
         <article className="single">
@@ -73,23 +81,29 @@ const ProjectView = ({ project, other }) => {
         <h4>
           <Link to="/projects">Other Projects</Link>
         </h4>
-        <div className="deck measure">
-          {other.edges.map((other) => (
-            <div key={project.id} className="card">
-              <NorthTahoeEvents />
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h3 className="crest">Byline</h3>
-                <h2 className="mixta">
-                  <Link to={`/project/${other.node.slug}`}>
-                    {other?.node?.title}
-                  </Link>
-                </h2>
-              </div>
+      </div>
+      <div className="deck">
+        {other.edges.map((other) => (
+          <div key={other.id} className="card">
+            <GatsbyImage
+              image={
+                other?.node?.image?.localFile?.childImageSharp
+                  ?.gatsbyImageData
+              }
+              alt={other?.node?.alternativeText}
+            />
+            <div className="paper"></div>
+            <div className="content">
+              <hr />
+              <h3 className="crest">Byline</h3>
+              <h2 className="mixta">
+                <Link to={`/project/${other.node.slug}`}>
+                  {other?.node?.title}
+                </Link>
+              </h2>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
       <Footer />
