@@ -1,19 +1,12 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { StaticImage, GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
-export function NorthTahoeEvents() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
-    alt="christmas lighting display at North Tahoe Events center"
-    className="northtahoeevents" />
-}
 
 function ReactDescription(props) {
   if (props.desc) {
@@ -23,13 +16,104 @@ function ReactDescription(props) {
   }
 }
 
+function Lights(props) {
+  const yes = props.yes;
+  const name = props.name;
+
+  const map = yes.map((light, index) => {
+    return (
+      <section className="card" key={index}>
+        <GatsbyImage
+          image={
+            light?.image?.localFile?.childImageSharp
+              ?.gatsbyImageData
+          }
+          alt={light.alternativeText}
+        />
+        <div className="paper"></div>
+        <div className="content">
+          <hr />
+          <h2>
+            <Link to={`/light/${light.slug}`}>
+              {light.name}
+            </Link>
+          </h2>
+          <p>{light.excerpt}</p>
+        </div>
+      </section>
+    );
+  });
+
+  if (props.yes.length !== 0) {
+    return (
+      <>
+        <div className="measure">
+          <hr />
+          <h3>{name} uses these lights</h3>
+        </div>
+
+        <div className="deck">
+          {map}
+        </div>
+      </>
+    );
+  } else {
+    return null
+  }
+}
+
+
+function Other(props) {
+
+  console.log(props.needed.length);
+
+  const map = props.other.nodes.map((project, index) => {
+    return (
+      <section className="card" key={index}>
+        <GatsbyImage
+          image={
+            project?.image?.localFile?.childImageSharp
+              ?.gatsbyImageData
+          }
+          alt={project.alternativeText}
+        />
+        <div className="paper"></div>
+        <div className="content">
+          <hr />
+          <h2>
+            <Link to={`/project/${project.slug}`}>
+              {project.title}
+            </Link>
+          </h2>
+          <p>{project.excerpt}</p>
+        </div>
+      </section>
+    );
+  });
+
+  if (props.needed.length == 0) {
+    return (
+      <>
+        <div className="measure">
+          <hr />
+          <h4>Other Projects</h4>
+        </div>
+
+        <div className="deck">
+          {map}
+        </div>
+      </>
+    );
+  } else {
+    return null
+  }
+}
+
 const ProjectView = ({ project, other }) => {
   return (
     <>
       <Seo title="Sierra Lighting" />
       <Header />
-
-
 
       <div className="measure">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
@@ -42,7 +126,7 @@ const ProjectView = ({ project, other }) => {
           &nbsp;/&nbsp;
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/project">
+            <Link itemProp="item" to="/projects">
               <span itemProp="name">Projects</span></Link>
             <meta itemProp="position" content="2" />
           </li>
@@ -74,10 +158,19 @@ const ProjectView = ({ project, other }) => {
         </article>
       </main>
 
-      <div className="measure">
+      <Lights
+        yes={project.lights}
+        name={project.title}
+      />
+
+      <Other
+        needed={project.lights}
+        other={other}
+      />
+
+      {/* <div className="measure">
         <hr />
 
-        {/* 📣 these will be cards */}
         <h4>
           <Link to="/projects">Other Projects</Link>
         </h4>
@@ -104,7 +197,7 @@ const ProjectView = ({ project, other }) => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
 
       <Footer />
     </>

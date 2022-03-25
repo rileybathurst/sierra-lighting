@@ -22,23 +22,38 @@ export const query = graphql`
         }
         alternativeText
       }
+
+      lights {
+        name
+        id
+        slug
+        excerpt
+
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
     }
 
     allStrapiProject(filter: {slug: {nin: [$slug] }}) {
-      edges {
-        node {
-          title
-          id
-          slug
+      nodes {
+        title
+        id
+        slug
+        excerpt
 
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
             }
-            alternativeText
           }
+          alternativeText
         }
       }
     }
