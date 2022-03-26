@@ -59,6 +59,7 @@ const TestimonialsPage = () => {
           Help us you buy submitting your own review
           {/* </Link> */}
         </h3>
+
         {/* // TODO need the actual links */}
         <p><Link to="#">Google Review</Link></p>
         <p><Link to="#">Yelp</Link></p>

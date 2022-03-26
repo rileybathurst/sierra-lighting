@@ -9,30 +9,32 @@ const AreaList = () => (
         query={query}
         render={data => (
           <div className="states">
-            <div>
-              {/* <h3>California</h3> */}
-              <ul>
-                {
-                  data.california.nodes.map(area => (
-                    <li className="" key={area.id}>
-                      <Link to={`/area/${area.slug}`}>{area.name}</Link>
-                    </li>
-                  ))
-                }
-              </ul>
-            </div>
-            <div>
-              {/* <h3>Nevada</h3> */}
-              <ul>
-                {
-                  data.nevada.nodes.map(area => (
-                    <li className="" key={area.id}>
-                      <Link to={`/area/${area.slug}`}>{area.name}</Link>
-                    </li>
-                  ))
-                }
-              </ul>
-            </div>
+            {/* the state names are sometimes not needed */}
+            <ul>
+              <li key="california" className="state__name">
+                <h3>California</h3>
+              </li>
+              {
+                data.california.nodes.map(area => (
+                  <li className="" key={area.id}>
+                    <Link to={`/area/${area.slug}`}>{area.name}</Link>
+                  </li>
+                ))
+              }
+            </ul>
+
+            <ul>
+              <li key="nevada" className="state__name">
+                <h3>Nevada</h3>
+              </li>
+              {
+                data.nevada.nodes.map(area => (
+                  <li className="" key={area.id}>
+                    <Link to={`/area/${area.slug}`}>{area.name}</Link>
+                  </li>
+                ))
+              }
+            </ul>
           </div>
         )}
       />
