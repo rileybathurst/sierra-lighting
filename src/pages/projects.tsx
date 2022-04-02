@@ -16,15 +16,25 @@ export function NorthTahoeEvents() {
 const ProjectsPage = () => {
   return (
     <>
+      {/* // TODO description and image */}
       <Seo title="Sierra Lighting" />
       <Header />
       <main className="measure">
 
-        <p className="breadcrumbs">
-          <Link to="/">Home</Link>&nbsp;
-          / Projects
-        </p>
-        <hr />
+        <div className="measure">
+          <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <Link itemProp="item" to="/">
+                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+              <meta itemProp="position" content="1" />
+            </li>
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <span itemProp="name">Projects</span>
+              <meta itemProp="position" content="2" />
+            </li>
+          </ol>
+          <hr />
+        </div>
 
         <StaticQuery
           query={query}

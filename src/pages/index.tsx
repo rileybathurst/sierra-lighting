@@ -46,7 +46,7 @@ export function SnowyRoof() {
 }
 
 
-// markup
+
 const IndexPage = () => {
   return (
     <>

@@ -7,7 +7,7 @@ import Footer from "../src/components/footer";
 // local build
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
-// markup
+
 const LeafletPage = () => {
 
   return (

@@ -1,8 +1,6 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
-
-//GatsbyImage
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -15,20 +13,31 @@ export function NorthTahoeEvents() {
     className="northtahoeevents" />
 }
 
-// markup
+
 const lightsPage = () => {
   return (
     <>
+      {/* // TODO description and image */}
       <Seo title="Sierra Lighting" />
       <Header />
       <main className="lights__page">
 
         <div className="measure">
-          <p className="breadcrumbs">
-            <Link to="/">Home</Link>&nbsp;/&nbsp;Lights
-          </p>
+          <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <Link itemProp="item" to="/">
+                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+              <meta itemProp="position" content="1" />
+            </li>
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <span itemProp="name">Lights</span>
+              <meta itemProp="position" content="2" />
+            </li>
+          </ol>
           <hr />
+        </div>
 
+        <div className="measure">
           <h2 className="crest">What we build</h2>
           <h1 className="mixta">Lights</h1>
         </div>

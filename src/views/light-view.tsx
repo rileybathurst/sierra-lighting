@@ -97,36 +97,30 @@ function Other(props) {
 const LightView = ({ light, other }) => {
   return (
     <>
+      {/* // TODO description and image */}
       <Seo title="Sierra Lighting" />
       <Header />
       <main>
 
-        {/* // TODO Breadcrumbs */}
         <div className="measure">
           <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
               <Link itemProp="item" to="/">
-                <span itemProp="name">Home</span></Link>
+                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
               <meta itemProp="position" content="1" />
             </li>
 
-            {/* // ! these shouldn't be here but work out how to do them tidy */}
-            &nbsp;/&nbsp;
-
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
               <Link itemProp="item" to="/lights">
-                <span itemProp="name">Lights</span></Link>
+                <span itemProp="name">lights</span></Link>&nbsp;/&nbsp;
+              {/* // TODO capitalize this */}
               <meta itemProp="position" content="2" />
             </li>
 
-            &nbsp;/&nbsp;
-
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link itemProp="item" to="/faqs">
-                <span itemProp="name">{light.name}</span></Link>
+              <span itemProp="name">{light.name}</span>
               <meta itemProp="position" content="3" />
             </li>
-
           </ol>
           <hr />
         </div>

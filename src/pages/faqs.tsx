@@ -6,7 +6,7 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-// markup
+
 const FaqsPage = () => {
   return (
     <>
@@ -28,8 +28,7 @@ const FaqsPage = () => {
             <meta itemProp="position" content="1" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/faqs">
-              <span itemProp="name">FAQs</span></Link>
+            <span itemProp="name">FAQs</span>
             <meta itemProp="position" content="2" />
           </li>
         </ol>

@@ -11,10 +11,28 @@ import TestimonialRanking from "../components/testimonial-ranking";
 const TestimonialsPage = () => {
   return (
     <>
+    // TODO image and description
       <Seo title="Sierra Lighting" />
       <Header />
+
+      <div className="measure">
+        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/">
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="1" />
+          </li>
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">Testimonials</span>
+            <meta itemProp="position" content="2" />
+          </li>
+        </ol>
+        <hr />
+      </div>
+
       <main className="measure">
 
+        {/* // TODO this needs more */}
         <h1>Reviews</h1>
         <h2>Testimonials</h2>
 

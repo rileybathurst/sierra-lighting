@@ -13,12 +13,29 @@ export function NorthTahoeEvents() {
     className="northtahoeevents" />
 }
 
-// markup
+
 const VendorsPage = () => {
   return (
     <>
+      {/* // TODO description and image */}
       <Seo title="Sierra Lighting" />
       <Header />
+
+      <div className="measure">
+        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/">
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="1" />
+          </li>
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">Wedding Vendors</span>
+            <meta itemProp="position" content="2" />
+          </li>
+        </ol>
+        <hr />
+      </div>
+
       <main>
 
         <div className="measure">

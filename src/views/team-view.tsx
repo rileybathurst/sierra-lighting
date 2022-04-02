@@ -18,22 +18,28 @@ import Footer from "../components/footer";
 const TeamView = ({ team }) => {
   return (
     <>
+      {/* // TODO image and description */}
       <Seo title="Sierra Lighting" />
       <Header />
 
-      {/* // ? these are breadcrumbs but we are maybe using additional microdata for location */}
       <div className="measure">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link> /&nbsp;
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="1" />
           </li>
-          {/* <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/faqs">
-              <span itemProp="name">{area.state}</span></Link>
+
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/team">
+              <span itemProp="name">team</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
-          </li> */}
+          </li>
+
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">{team.name}</span>
+            <meta itemProp="position" content="3" />
+          </li>
         </ol>
         <hr />
       </div>

@@ -112,6 +112,7 @@ function Other(props) {
 const ProjectView = ({ project, other }) => {
   return (
     <>
+      {/* // TODO image and description */}
       <Seo title="Sierra Lighting" />
       <Header />
 
@@ -119,23 +120,18 @@ const ProjectView = ({ project, other }) => {
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="1" />
           </li>
 
-          &nbsp;/&nbsp;
-
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/projects">
-              <span itemProp="name">Projects</span></Link>
+              <span itemProp="name">projects</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
 
-          &nbsp;/&nbsp;
-
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to={`/project/${project.slug}`}>
-              <span itemProp="name">{project.title}</span></Link>
+            <span itemProp="name">{project.name}</span>
             <meta itemProp="position" content="3" />
           </li>
         </ol>

@@ -6,14 +6,32 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-// markup
+
 const ServicesPage = () => {
   return (
     <>
+      {/* // TODO image and description */}
       <Seo title="Sierra Lighting" />
       <Header />
+
+      <div className="measure">
+        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/">
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="1" />
+          </li>
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">Services</span>
+            <meta itemProp="position" content="2" />
+          </li>
+        </ol>
+        <hr />
+      </div>
+
       <main className="measure">
 
+        {/* // TODO seo services */}
         <h1>Services</h1>
         <h2>The Christmas lights services we provide include:</h2>
         <ul>

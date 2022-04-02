@@ -13,13 +13,24 @@ const VenueView = ({ venue, other }) => {
       <Header />
 
       <div className="measure">
-        {/* // TODO Breadcrumbs */}
-        <p className="breadcrumbs">
-          <Link to="/">Home</Link>&nbsp;
-          / <Link to="/wedding">Wedding</Link>&nbsp;
-          / <Link to="/venues">Wedding Venues</Link>&nbsp;
-          / {venue.name}
-        </p>
+        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/">
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="1" />
+          </li>
+
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/venues">
+              <span itemProp="name">venues</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="2" />
+          </li>
+
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">{venue.name}</span>
+            <meta itemProp="position" content="3" />
+          </li>
+        </ol>
         <hr />
       </div>
 

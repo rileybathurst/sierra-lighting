@@ -29,16 +29,31 @@ export function WeddingStars() {
     className="snowyroof" />
 }
 
-// markup
+
 const WeddingPage = () => {
   return (
     <>
+      {/* // TODO image */}
       <Seo
         title="Wedding, Event, and Patio Lighting"
         titleColor="yellow"
-
         description="The natural beauty of the Lake Tahoe area makes the perfect backdrop for a wedding. Check out these Tahoe wedding venues that range from rustic to glamorous. When you're looking for custom, elegant, one of a kind ambiance for you wedding, look no further than Sierra Christmas Lights. Creating beautiful displays is all we do!  We also offer landscape lighting services to make your outdoor space shine all summer long with cafe lights, uplighting, and more."
       />
+
+      <div className="measure">
+        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/">
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="1" />
+          </li>
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">Wedding</span>
+            <meta itemProp="position" content="2" />
+          </li>
+        </ol>
+        <hr />
+      </div>
 
       <Header />
       <main>
@@ -110,7 +125,6 @@ const WeddingPage = () => {
 
         <div className="measure">
           <h3>Have something particular in mind? Just ask!</h3>
-
 
           <hr />
 

@@ -29,19 +29,29 @@ export function SnowyRoof() {
     className="snowyroof" />
 }
 
-// markup
 const CommercialPage = () => {
   return (
     <>
+
       <Seo
         title="Commercial Christmas Lights &amp; Decor"
         description="Car dealer, casino, medical office, or shopping complex, we decorate them all and more! Contact Sierra Christmas Lights for your turn key holiday lighting needs.  From install to storage, we do it all.  We can decorate with wreaths, bows, figurines, snowflakes, C9 LED bulbs, mini LEDs, and garlands."
       />
       <Header />
 
-      {/* // TODO make these SEO */}
+      {/* // TODO image */}
       <div className="measure">
-        <p className="breadcrumbs"><Link to="/">Home</Link> / Commercial</p>
+        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/">
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="1" />
+          </li>
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">Commercial Christmas Lights &amp; Decor</span>
+            <meta itemProp="position" content="2" />
+          </li>
+        </ol>
         <hr />
       </div>
 

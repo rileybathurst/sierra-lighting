@@ -33,6 +33,7 @@ function Venues(props) {
 const AreaView = ({ area }) => {
   return (
     <>
+      {/* // TODO image */}
       <Seo title="Sierra Lighting"
         description={area.excerpt}
       />
@@ -43,28 +44,24 @@ const AreaView = ({ area }) => {
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link> /&nbsp;
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="1" />
           </li>
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/areas">
-              <span itemProp="name">{area.state}</span></Link>
+              <span itemProp="name">{area.state}</span></Link>&nbsp;/&nbsp;
             {/* // TODO capitalize this */}
             <meta itemProp="position" content="2" />
           </li>
 
-          &nbsp;/&nbsp;
-
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/faqs">
-              <span itemProp="name">{area.name}</span></Link>
-            <meta itemProp="position" content="2" />
+            <span itemProp="name">{area.name}</span>
+            <meta itemProp="position" content="3" />
           </li>
         </ol>
         <hr />
       </div>
-
 
       <main>
 
