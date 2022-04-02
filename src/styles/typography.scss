@@ -209,3 +209,17 @@ ol li {
     line-height: 2rem;
   }
 }
+
+.site_title {
+  @extend .mixta;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: 1rem;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  line-height: clamp(2rem, 2.5vw, 3rem);
+  margin-block-start: 1.5rem;
+}
+
+.long-title {
+  white-space: break-spaces;
+}

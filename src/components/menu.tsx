@@ -19,26 +19,18 @@ function SlideMenu() {
     });
 
     return (
-      <div className='menu_s'>
+      <>
         <button
           className="button-spinner"
           onClick={() => setSlide('close')}
         >
           <span className='sr-only'>open menu</span>
-          {/* <span
-            style={{
-              transform: 'translateY(-2rem)',
-            }}
-            className="span-styles"
-          >close<br />menu
-          </span> */}
           <Hamburger />
         </button>
         <nav
           style={{
             transform: 'translateY(-' + amount + 'px)',
             marginBottom: '-' + amount + 'px',
-            // marginBottom: '-134px',
           }}
           ref={ref}
           className='menu__small'
@@ -48,13 +40,11 @@ function SlideMenu() {
           </menu>
         </nav>
 
-      </div>
+      </>
     );
   } else if (slide == "menu") {
 
     useEffect(() => {
-      // console.log('menu');
-      // console.log(ref.current.clientHeight);
       setAmount(ref.current.clientHeight);
     });
 
@@ -65,11 +55,6 @@ function SlideMenu() {
           onClick={() => setSlide('close')}
         >
           <span className='sr-only'>open menu</span>
-          {/* <span
-            style={{ transform: 'translateY(-2rem)' }}
-            className="span-styles"
-          >close<br />menu
-          </span> */}
           <Hamburger />
         </button>
         <nav
@@ -108,7 +93,7 @@ function SlideMenu() {
             className="span-styles"
           >close<br />menu
           </span> */}
-          <Hamburger />
+          <Hamburger class="is-active" />
         </button>
         <nav
           style={{

@@ -56,7 +56,7 @@ const IndexPage = () => {
 
         <div className="hero-container">
           <section className="hero">
-            <h2 className="mixta">Dependable holiday, landscape and events light installation</h2>
+            <h2 className="site_title">Dependable holiday, landscape and events light installation</h2>
 
             <div className="village-container">
               <Link to="/project/rancharrah"><Village />
@@ -127,7 +127,7 @@ const IndexPage = () => {
 
             <div className="testimonial-links">
               <h3 className="crest"><Link to="/testimonials">Read More Reviews</Link></h3>
-              <h3 className="crest"><Link to="#">Or help us you buy submitting your own review</Link></h3>
+              <h3 className="crest"><Link to="#" className="long-title">Or help us you buy submitting your own review</Link></h3>
             </div>
           </section>
         </div>

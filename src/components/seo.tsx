@@ -108,20 +108,20 @@ const SEO = ({
           <meta name="paymentAccepted" content={seo.paymentAccepted} />
         )}
       </Helmet>
-
       {/* 🚨 this needs to be off in production */}
-      <div className="seo-showcase">
-        <p key="title"><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>
-        <p key="description"><span className="key">Description</span> = <span className={seo.titleColor}>{seo.description}</span></p>
-
-        <p>Description charachter length = <DescLength desc={seo.description} /></p>
-
-
-        {/* // ? why does this need to be ogImage? */}
-        {/* // regular image doubles the url */}
-        <p key="image"><span className="key">Image</span> = </p>
-        <img src={seo.ogImage} alt="seo checking" />
-      </div>
+      {process.env.NODE_ENV === "production" ? (
+        // {process.env.NODE_ENV === "development" ? (
+        <div className="seo-showcase">
+          <p key="title"><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>
+          <p key="description"><span className="key">Description</span> = <span className={seo.titleColor}>{seo.description}</span></p>
+          <p>Description charachter length = <DescLength desc={seo.description} /></p>
+          {/* // ? why does this need to be ogImage? */}
+          {/* // regular image doubles the url */}
+          <p key="image"><span className="key">Image</span> = </p>
+          <img src={seo.ogImage} alt="seo checking" />
+        </div>
+      ) : null
+      }
     </>
   );
 };
