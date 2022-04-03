@@ -8,6 +8,7 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "storybook-addon-gatsby",
+    '@storybook/preset-scss',
   ],
   "framework": "@storybook/react",
   "core": {

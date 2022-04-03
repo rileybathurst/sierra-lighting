@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Header } from './Header';
 
+import "../styles/app.scss";
+
 export default {
   title: 'Example/Header',
   component: Header,

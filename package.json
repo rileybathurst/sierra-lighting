@@ -38,7 +38,7 @@
     "react-helmet": "^6.1.0",
     "react-leaflet": "^3.2.5",
     "react-markdown": "^8.0.0",
-    "sass": "^1.49.8",
+    "sass": "^1.49.11",
     "storybook-addon-gatsby": "^0.0.5"
   },
   "devDependencies": {
@@ -49,9 +49,13 @@
     "@storybook/addon-links": "^6.4.19",
     "@storybook/builder-webpack5": "^6.3.8",
     "@storybook/manager-webpack5": "^6.3.8",
+    "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "^0.0.9",
     "@types/leaflet": "^1.7.9",
-    "babel-loader": "^8.2.3"
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.7.1",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1"
   }
 }
