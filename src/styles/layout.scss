@@ -188,6 +188,12 @@ header {
   padding-inline: 1rem;
 }
 
+@media (max-width: $book) {
+  .contact {
+    padding-inline: 0;
+  }
+}
+
 .home-gallery {
   max-width: var(--measure);
   margin-inline: auto;
@@ -266,6 +272,22 @@ header {
   max-width: var(--measure);
   margin-inline: auto;
   width: calc(100% - 2rem);
+  display: flex;
+  flex-flow: row wrap;
+  margin-block-start: 3rem;
+
+  > * {
+    flex: 1;
+  }
+}
+
+.footer-copyright {
+  @extend .footer-container;
+  flex-direction: column;
+
+  > * {
+    text-align: center;
+  }
 }
 
 footer {
@@ -338,20 +360,6 @@ footer {
   }
 }
 
-.footer-container {
-  display: flex;
-  flex-direction: column;
-  margin-block-start: 3rem;
-
-  @media (min-width: $pad) {
-    flex-flow: row wrap;
-  }
-
-  > * {
-    flex: 1;
-  }
-}
-
 .team {
   @media (min-width: $pad) {
     border-left: 1px solid orange;
@@ -394,5 +402,11 @@ footer {
 
   > * {
     flex: 1;
+  }
+}
+
+@media (max-width: $book) {
+  #team {
+    padding-inline-start: 0;
   }
 }

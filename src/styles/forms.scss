@@ -8,12 +8,12 @@ form {
     margin-block-end: 0.5rem;
     display: block;
     width: calc(100% - 2rem);
-    max-width: $pad;
+    max-width: $book;
     border-radius: calc(var(--border-radius) * 2);
     padding-block: 0.5rem; // 16
     padding-inline: 0.5rem; // 16
     margin-block-end: 0.25rem; // 8px
-    border: 1px solid gray;
+    border: 1px solid var(--honey-h-4);
   }
 
   textarea {
@@ -27,7 +27,7 @@ form {
   }
 
   button {
-    background-color: var(--honey-h-8);
+    background-color: var(--honey-h-4);
     width: max-content;
     padding-block-start: 0.75rem;
     padding-block-end: 0.5rem;
@@ -36,6 +36,7 @@ form {
     transition: var(--moment);
     font-family: josefin-sans, sans-serif;
     margin-inline-start: 1rem;
+    border-radius: var(--border-radius);
   }
 
   button:hover,

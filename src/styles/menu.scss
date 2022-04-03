@@ -13,7 +13,8 @@
 }
 
 @media (min-width: $pad) {
-  .menu_s {
+  .menu_s,
+  .button-spinner {
     display: none; // off for testing
   }
 }
@@ -69,6 +70,10 @@
 }
 
 .bigboy {
+  grid-row: 1;
+  grid-column: 2;
+  z-index: 2;
+  position: relative;
   align-self: center;
 
   ul {

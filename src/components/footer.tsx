@@ -77,13 +77,13 @@ const Footer = () => {
             />
           </div>
 
-          <Link to="/work">Work with us</Link>
+          <h4><Link to="/work">Work with us</Link></h4>
         </div>
       </div>
 
       <hr className="measure" />
 
-      <form className="measure">
+      <form name="contact" data-netlify="true" className="measure">
         <label>Name
           <input type="text" />
         </label>
@@ -113,7 +113,7 @@ const Footer = () => {
         <hr />
       </div>
 
-      <div className="footer-container">
+      <div className="footer-copyright">
         {/* I need to add this to an auto update */}
         <h4 className="sr-only" itemProp="name">
           <Link to="/" title="to the front page">
@@ -121,9 +121,9 @@ const Footer = () => {
           </Link>
         </h4>
 
-
-
-        <Link to="/"><Logo /></Link>
+        <Link to="/">
+          <Logo />
+        </Link>
         <p>&copy; <ThisYear /></p>
       </div>
 
