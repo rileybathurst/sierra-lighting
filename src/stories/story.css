@@ -1,0 +1,17 @@
+.colorblock__section {
+  max-width: var(--book);
+}
+
+.colorblock__row {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
+
+.colorblock {
+  aspect-ratio: 1;
+  width: 10rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--troposphere);
+  /* background: wheat; */
+}

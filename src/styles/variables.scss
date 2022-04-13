@@ -35,14 +35,13 @@
   --honey-a-2:  */
 
   --honey-a-4: hsl(var(--honey), var(--louie-a), var(--louie-d));
-  --honey-a-8: hsl(var(--honey), var(--louie-a), var(--louie-h));
+  --honey-a-8: hsl(var(--honey), var(--louie-a), 97.5%);
 
   --honey-f-7: hsl(var(--honey), var(--louie-f), var(--louie-g));
 
-  --honey-h-1: hsl(var(--honey), var(--louie-h), var(--louie-h));
+  --honey-h-1: hsl(var(--honey), var(--louie-h), var(--louie-a));
   --honey-h-2: hsl(var(--honey), var(--louie-h), var(--louie-b));
   --honey-h-4: hsl(var(--honey), var(--louie-h), var(--louie-d));
-  --honey-h-8: hsl(var(--honey), var(--louie-h), var(--louie-h));
   --honey-h-8: hsl(
     var(--honey),
     var(--louie-h),
@@ -80,7 +79,7 @@
   --denim-5: hsl(var(--denim), 100%, 62%);
   --denim-4: hsl(var(--denim), 100%, 50%);
   --denim-3: hsl(var(--denim), 100%, 37%);
-  --denim-2: hsl(var(--denim), 87%, 25%);
+  --denim-2: hsl(var(--denim), 87%, 25%); // ? why is this 87 saturation?
   --denim-1: hsl(var(--denim), 100%, 12%); // darkest
 
   --measure: 40rem;
@@ -92,14 +91,17 @@
   --moment: 0.5s ease-in-out;
 
   // shadows
+  // TODO these should be the styleguide versions
   // based on the layers of the atomposhere
   // https://en.wikipedia.org/wiki/Atmosphere_of_Earth
-  --mesosphere: 0 5px 12px hsla(0, 0%, 0%, 0.4),
-    0 18px 32px hsla(0, 0%, 0%, 0.16);
-  --stratosphere: 0 2px 3px hsla(0, 0%, 0%, 0.12),
-    0 3px 6px hsla(0, 0%, 0%, 0.14);
-  --troposphere: 0 2px 3px hsla(0, 0%, 0%, 0.12),
-    0 3px 6px hsla(0, 0%, 0%, 0.14);
+  --mesosphere: 0 3px 6px hsla(0, 0%, 0%, 0.12), 0 2px 4px hsla(0, 0%, 0%, 0.1);
+  --stratosphere: 0 14px 24px hsla(0, 0%, 0%, 0.16),
+    0 4px 12px hsla(0, 0%, 0%, 0.12);
+  --troposphere: 0 5px 12px hsla(0, 0%, 0%, 0.4) /* Ambient light shadow */,
+    0 18px 32px hsla(0, 0%, 0%, 0.16) /* Direct light shadow */;
+
+  --pad: 30rem;
+  --book: 60rem;
 }
 
 // media queries cant use variables
