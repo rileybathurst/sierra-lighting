@@ -35,8 +35,8 @@ const AreaView = ({ area }) => {
     <>
       <Seo
         title="Sierra Lighting"
-        description={area.excerpt}
-        image={area?.image.localFile.url}
+        description={area?.excerpt}
+        image={area?.image?.localFile?.url}
       />
 
       <Header />

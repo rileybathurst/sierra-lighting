@@ -11,8 +11,8 @@ const VenueView = ({ venue, other }) => {
     <>
       <Seo
         title="Sierra Lighting"
-        description={venue.description}
-        image={venue?.venueImage.localFile.url}
+        description={venue?.description}
+        image={venue?.venueImage?.localFile?.url}
       />
       <Header />
 
