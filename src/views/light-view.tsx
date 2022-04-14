@@ -100,7 +100,7 @@ const LightView = ({ light, other }) => {
       <Seo
         title="Sierra Lighting"
         description={light.description}
-        image={light.image.localFile.url}
+        image={light?.image.localFile.url}
       />
       <Header />
       <main>

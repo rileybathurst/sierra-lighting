@@ -23,7 +23,7 @@ const TeamView = ({ team }) => {
       <Seo
         title="Sierra Lighting"
         description={team.excerpt}
-        image={team.avatar.localFile.url}
+        image={team?.avatar.localFile.url}
       />
       <Header />
 
