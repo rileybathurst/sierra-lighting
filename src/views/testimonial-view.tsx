@@ -5,14 +5,17 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+import TestimonialRanking from "../components/testimonial-ranking";
+
 // TODO this whole page
 
 const TestimonialView = ({ testimonial }) => {
   return (
     <>
       {/* // TODO image and description */}
-      <Seo title="Sierra Lighting"
-      // description={testimonial.excerpt}
+      <Seo
+        title="Sierra Lighting"
+        description={testimonial.excerpt}
       />
       <Header />
       <div className="measure">
@@ -25,19 +28,33 @@ const TestimonialView = ({ testimonial }) => {
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/testimonial">
-              <span itemProp="name">testimonial</span></Link>&nbsp;/&nbsp;
+              <span itemProp="name">Testimonial</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{testimonial.name}</span>
+            <span itemProp="name">{testimonial.customer}</span>
             <meta itemProp="position" content="3" />
           </li>
         </ol>
         <hr />
       </div>
-      <article className="single">
+
+      <article className="measure">
         <h1>{testimonial.customer}</h1>
+        <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+          <ul className="testimonials stars list-none">
+            <TestimonialRanking stars={testimonial.stars} />
+          </ul>
+          <p className="sr-only">
+            <span itemProp="worstRating">1</span>
+            <span itemProp="ratingValue">{testimonial.stars}</span>/
+            <span itemProp="bestRating">5</span>stars
+          </p>
+
+          <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
+          <p itemProp="reviewBody">{testimonial.review}</p>
+        </div>
       </article>
       <Footer />
     </>

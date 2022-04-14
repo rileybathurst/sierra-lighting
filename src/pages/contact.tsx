@@ -8,7 +8,12 @@ import Footer from "../components/footer";
 const ContactPage = () => {
   return (
     <>
-      <Seo title="Sierra Lighting" />
+
+      <Seo
+        title="Sierra Lighting"
+        description="Your go to holiday lights installer in the Reno and North Tahoe area. We strive to provide the most affordable holiday lights in town. Work guaranteed! Contact us here for a free estimate."
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/contact-og-sierra_lighting.jpg"
+      />
 
       <Header />
 
@@ -25,8 +30,6 @@ const ContactPage = () => {
           </li>
         </ol>
       </div>
-
-      {/* // TODO needs a hero image */}
 
       <main>
         {/* <h1>Contact</h1> */}

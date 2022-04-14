@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 
 import FacebookIcon from "../images/facebook-icon";
 import InstagramIcon from "../images/instagram-icon";

@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Helmet } from "react-helmet"
-import { Link, StaticQuery, graphql } from "gatsby"
+import { Link } from "gatsby"
 
 import Logo from "../images/logo";
 import Menu from "./menu";
@@ -20,7 +20,8 @@ const Header = () => {
             // crossorigin="use-credentials" // 📣 this has an issue either on or off
             />
           </Helmet>
-          <Link to="/" className="header__logo"><Logo /></Link>
+          {/* // TODO this hovers the wrong color */}
+          <Link to="/" className="header__logo" itemProp="logo"><Logo /></Link>
           {/* // ? is this just the background? */}
           <div className="stripe">{/* stay gold */}</div>
           <Menu />

@@ -8,10 +8,10 @@ import Footer from "../components/footer";
 const NotFoundPage = () => {
   return (
     <>
-      {/* // TODO image */}
       <Seo
         title="404"
         description="Looks like this page has left the party."
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/404-og-sierra_lighting.jpg"
       />
       <Header />
 

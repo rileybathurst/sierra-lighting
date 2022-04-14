@@ -109,7 +109,7 @@ const SEO = ({
         )}
       </Helmet>
       {/* 🚨 this needs to be off in production */}
-      {process.env.NODE_ENV === "production" ? (
+      {/* {process.env.NODE_ENV === "production" ? ( */}
         // {process.env.NODE_ENV === "development" ? (
         <div className="seo-showcase">
           <p key="title"><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>

@@ -1,6 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
+import { Link } from 'gatsby';
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -10,8 +9,11 @@ import Footer from "../components/footer";
 const ServicesPage = () => {
   return (
     <>
-      {/* // TODO image and description */}
-      <Seo title="Sierra Lighting" />
+      <Seo
+        title="Sierra Lighting"
+        description="A professional lighting design package will highlight your decor and bring out the beauty of your venue.  Learn about the many design options Sierra Christmas Lights can use to make your Reno Tahoe wedding really shine."
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
+      />
       <Header />
 
       <div className="measure">
@@ -31,19 +33,36 @@ const ServicesPage = () => {
 
       <main className="measure">
 
-        {/* // TODO seo services */}
         <h1>Services</h1>
         <h2>The Christmas lights services we provide include:</h2>
-        <ul>
-          <li key="roofs">Roof lines hung with damage free attachment methods outlined in high efficiency energy saving C9 LED bulbs</li>
-          <li key="windows">Windows and doors outlined in mini LED bulbs or garlands</li>
-          <li key="columns">Columns and railings wrapped in mini LED bulbs or garlands</li>
-          <li key="garlands">Garlands and wreaths either lit or unlit, decorated or plain</li>
-          <li key="trunks">Trunk wraps in mini LED lights</li>
-          <li key="trees">Tree canopies either swirl wrapped or with limbs individually wrapped to create an elegant silhouette</li>
-          <li key="bushes">Bushes and Shrubs wrapped in mini LED lights</li>
-          <li key="bows">Bows and ornaments for that extra detail</li>
-          <li key="lit">Lit figurines, snowflakes and trees for special accents</li>
+        <ul itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
+          <li key="roofs" itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">
+            <span itemProp="name">Roof lines hung with damage free attachment methods outlined in high efficiency energy saving C9 LED bulbs</span>
+          </li>
+          <li key="windows" itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">
+            <span itemProp="name">Windows and doors outlined in mini LED bulbs or garlands</span>
+          </li>
+          <li key="columns" itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">
+            <span itemProp="name">Columns and railings wrapped in mini LED bulbs or garlands</span>
+          </li>
+          <li key="garlands" itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">
+            <span itemProp="name">Garlands and wreaths either lit or unlit, decorated or plain</span>
+          </li>
+          <li key="trunks" itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">
+            <span itemProp="name">Trunk wraps in mini LED lights</span>
+          </li>
+          <li key="trees" itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">
+            <span itemProp="name">Tree canopies either swirl wrapped or with limbs individually wrapped to create an elegant silhouette</span>
+          </li>
+          <li key="bushes" itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">
+            <span itemProp="name">Bushes and Shrubs wrapped in mini LED lights</span>
+          </li>
+          <li key="bows" itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">
+            <span itemProp="name">Bows and ornaments for that extra detail</span>
+          </li>
+          <li key="lit" itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">
+            <span itemProp="name">Lit figurines, snowflakes and trees for special accents</span>
+          </li>
           <li key="missing">Is something missing? Just ask!</li>
         </ul>
 
@@ -73,14 +92,3 @@ const ServicesPage = () => {
 }
 
 export default ServicesPage
-
-/* const query = graphql`
-query MyQuery {
-  allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
-    nodes {
-      id
-      customer
-    }
-  }
-}
-` */

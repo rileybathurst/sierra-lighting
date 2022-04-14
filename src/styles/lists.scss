@@ -53,18 +53,35 @@
 .testimonials__page {
   padding-inline-start: 0;
 
-  li {
+  > li {
     list-style: none;
+    background-color: var(--honey-a-8);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--honey-h-4);
+    margin-block-end: 1rem;
+    box-shadow: var(--mesosphere);
+
+    > ul {
+      // stars
+      padding-inline-start: 0;
+    }
 
     h2 {
       font-size: clamp(1.5rem, 1.667vw, 2.5rem);
       line-height: clamp(2rem, 1.667vw, 3rem);
+      margin-block-end: 0.5rem;
     }
 
     h3 {
       font-size: clamp(1.5rem, 1.667vw, 2.5rem);
       line-height: clamp(2rem, 1.667vw, 3rem);
+      margin-block-end: 0.5rem;
     }
+  }
+
+  li {
+    list-style: none;
   }
 }
 
@@ -86,4 +103,8 @@
   > * {
     flex: 1 1 10rem;
   }
+}
+
+.list-none {
+  list-style: none;
 }

@@ -11,8 +11,6 @@ export const Denim = ({ primary, backgroundColor, size, label, ...props }) => {
 
     {/* // TODO this can be super optimized which I am not doing now */}
 
-    
-
     <>This just isn't sorted</>
 
     <section className='colorblock__section'>

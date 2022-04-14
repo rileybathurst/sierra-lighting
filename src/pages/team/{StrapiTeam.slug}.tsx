@@ -8,6 +8,17 @@ export const query = graphql`
       id
       name
       slug
+      excerpt
+      bio { data { bio } }
+
+      avatar {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+          url
+        }
+      }
     }
   }
 `

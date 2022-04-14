@@ -230,3 +230,7 @@ ol li {
     line-height: clamp(2rem, 2.5vw, 3rem);
   }
 }
+
+.first-capital::first-letter {
+  text-transform: capitalize;
+}

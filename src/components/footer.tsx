@@ -1,32 +1,19 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import Logo from "../images/logo";
-import Menu from "./menu";
 import SocialIcons from "../components/social-icons";
-import TopBar from "./topbar";
-import TopList from "../lists/top-list";
 import FooterList from "../lists/footer-list";
 
 function ThisYear() {
   let today = new Date().getFullYear();
-  // console.log(today);
   return (
     <>
       {today}
     </>
   );
 }
-
-export function Profile() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/we_hang_lights.jpg"
-    alt="christmas lights team about us"
-    className="profile" />
-}
-
-
 
 const Footer = () => {
   return (
@@ -62,10 +49,18 @@ const Footer = () => {
 
                       <div key={team.id}>
                         <Link to={`/team/${team.slug}`}>
-                          <Profile />
+                          <GatsbyImage
+                            image={
+                              team?.avatar?.localFile?.childImageSharp
+                                ?.gatsbyImageData
+                            }
+                            alt={team.avatar?.alternativeText}
+                            className=""
+                          />
+
                           <p itemScope itemProp="Person" itemType="https://schema.org/Person">
                             <span itemProp="name">{team.name}</span>
-                            {/* // TODO should probably have a last name even if its only sr */}
+                            {/* // ? should this have a last name even if its only sr */}
                           </p>
                         </Link>
                       </div>
@@ -140,7 +135,18 @@ query FooterQuery {
       id
       name
       slug
+
+      avatar {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
+
     }
   }
 }
 `
+
+// alternativeText

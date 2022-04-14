@@ -12,8 +12,10 @@ import PinterestIcon from "../images/pinterest-icon";
 const VendorView = ({ vendor, other }) => {
   return (
     <>
-    // TODO title image and description
-      <Seo title="Sierra Lighting" />
+      <Seo
+        title="Sierra Lighting"
+        description={vendor.description}
+      />
       <Header />
 
       <div className="measure">
@@ -26,8 +28,7 @@ const VendorView = ({ vendor, other }) => {
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/vendors">
-              <span itemProp="name">vendors</span></Link>&nbsp;/&nbsp;
-            {/* // TODO capitalize this */}
+              <span itemProp="name">Vendors</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
 
@@ -50,7 +51,7 @@ const VendorView = ({ vendor, other }) => {
           {/* // * garbage naming */}
           <div className="footer-social">
             <ul className="measured">
-              {/* // ! this needs if statements and checks on if name or full link I think name is better so I can use it cleanly */}
+              {/* // TODO // ! this needs if statements and checks on if name or full link I think name is better so I can use it cleanly */}
               <li><a href={`http://${vendor.instagram}`} target="_blank" rel="noopener noreferrer"><InstagramIcon />{vendor.instagram}</a></li>
               <li><a href={`http://${vendor.facebook}`} target="_blank" rel="noopener noreferrer"><FacebookIcon /> {vendor.facebook}</a></li>
               <li><a href={`http://${vendor.pinterest}`} target="_blank" rel="noopener noreferrer"><PinterestIcon />{vendor.pinterest}</a></li>

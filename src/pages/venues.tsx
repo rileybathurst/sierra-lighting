@@ -18,8 +18,11 @@ export function NorthTahoeEvents() {
 const VenuePage = () => {
   return (
     <>
-    // TODO description and image
-      <Seo title="Sierra Lighting" />
+      <Seo
+        title="Sierra Lighting"
+        description="The natural beauty of the Lake Tahoe area makes the perfect backdrop for a wedding. Check out these Tahoe wedding venues that range from rustic to glamorous."
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
+      />
       <Header />
 
       <div className="measure">

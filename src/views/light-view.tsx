@@ -97,8 +97,11 @@ function Other(props) {
 const LightView = ({ light, other }) => {
   return (
     <>
-      {/* // TODO description and image */}
-      <Seo title="Sierra Lighting" />
+      <Seo
+        title="Sierra Lighting"
+        description={light.description}
+        image={light.image.localFile.url}
+      />
       <Header />
       <main>
 
@@ -110,10 +113,9 @@ const LightView = ({ light, other }) => {
               <meta itemProp="position" content="1" />
             </li>
 
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="first-capital">
               <Link itemProp="item" to="/lights">
-                <span itemProp="name">lights</span></Link>&nbsp;/&nbsp;
-              {/* // TODO capitalize this */}
+                <span itemProp="name">Lights</span></Link>&nbsp;/&nbsp;
               <meta itemProp="position" content="2" />
             </li>
 

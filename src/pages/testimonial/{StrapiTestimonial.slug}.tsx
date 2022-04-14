@@ -8,6 +8,10 @@ export const query = graphql`
       id
       customer
       slug
+      stars
+      review
+      title
+      createdAt
     }
   }
 `

@@ -1,6 +1,5 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -11,8 +10,12 @@ import TestimonialRanking from "../components/testimonial-ranking";
 const TestimonialsPage = () => {
   return (
     <>
-    // TODO image and description
-      <Seo title="Sierra Lighting" />
+    // TODO description
+      <Seo
+        title="Sierra Lighting"
+        description=""
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
+      />
       <Header />
 
       <div className="measure">
@@ -32,7 +35,6 @@ const TestimonialsPage = () => {
 
       <main className="measure">
 
-        {/* // TODO this needs more */}
         <h1>Reviews</h1>
         <h2>Testimonials</h2>
 
@@ -44,9 +46,8 @@ const TestimonialsPage = () => {
               <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="testimonials__page">
                 {data.allStrapiTestimonial.nodes.map(testimonial => (
                   <li key={testimonial.id}>
-                    <hr />
                     {/* <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link> */}
-                    <h2 itemProp="name">{testimonial.title}</h2>
+                    <h2 itemProp="name" className="first-capital">{testimonial.title}</h2>
 
                     <ul className="testimonials stars">
                       <TestimonialRanking stars={testimonial.stars} />
@@ -73,22 +74,40 @@ const TestimonialsPage = () => {
 
         <hr />
         <h3 className="crest">
-          {/* <Link to="#"> */}
           Help us you buy submitting your own review
-          {/* </Link> */}
         </h3>
 
-        {/* // TODO need the actual links */}
-        <p><Link to="#">Google Review</Link></p>
-        <p><Link to="#">Yelp</Link></p>
-        <p><Link to="#">NextDoor</Link></p>
+        <p>
+          <a href="https://g.page/r/CXdQyNRhzs8YEBA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover-back hover-back--inline">
+            Google Review
+          </a><em>- preffered</em>
+        </p>
+        <p>
+          <a href="https://www.yelp.com/biz/sierra-lighting-calpine"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover-back">
+            Yelp
+          </a>
+        </p>
+        <p><a href="https://nextdoor.com/login/?next=/pages/sierra-lighting-truckee-ca/recommend/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover-back">
+          NextDoor
+        </a>
+        </p>
 
+        {/* // TODO this isnt linked up yet */}
         <form className="measure">
           <label>Name
             <input type="text" />
           </label>
           <label>Stars (out of five)
-            <input type="number" />
+            <input type="number" min="0" max="5" />
           </label>
           <label>Title
             <input type="text" />

@@ -12,6 +12,7 @@ export const query = graphql`
           description
         }
       }
+      excerpt
       slug
 
       image {
@@ -19,6 +20,7 @@ export const query = graphql`
           childImageSharp {
             gatsbyImageData
           }
+          url
         }
         alternativeText
       }

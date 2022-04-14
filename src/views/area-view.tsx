@@ -33,10 +33,12 @@ function Venues(props) {
 const AreaView = ({ area }) => {
   return (
     <>
-      {/* // TODO image */}
-      <Seo title="Sierra Lighting"
+      <Seo
+        title="Sierra Lighting"
         description={area.excerpt}
+        image={area.image.localFile.url}
       />
+
       <Header />
 
       {/* // ? these are breadcrumbs but we are maybe using additional microdata for location */}
@@ -48,10 +50,9 @@ const AreaView = ({ area }) => {
             <meta itemProp="position" content="1" />
           </li>
 
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="first-capital">
             <Link itemProp="item" to="/areas">
               <span itemProp="name">{area.state}</span></Link>&nbsp;/&nbsp;
-            {/* // TODO capitalize this */}
             <meta itemProp="position" content="2" />
           </li>
 
@@ -85,7 +86,6 @@ const AreaView = ({ area }) => {
 
       <Venues yes={area.venues} name={area.name} />
 
-      {/* // TODO this could all be behing the venues if statement */}
       {/* // TODO this could all be behing the venues if statement */}
       <div className="deck">
         {

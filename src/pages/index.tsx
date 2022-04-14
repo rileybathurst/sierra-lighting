@@ -14,7 +14,9 @@ export function Village() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Rancharrah-13-web-tagged.jpg"
     alt="christmas lighting display at the village at rancharrah"
-    className="village" />
+    className="village"
+    itemProp="photo"
+  />
 }
 
 export function NorthTahoeArts() {

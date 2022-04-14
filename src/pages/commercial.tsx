@@ -36,10 +36,10 @@ const CommercialPage = () => {
       <Seo
         title="Commercial Christmas Lights &amp; Decor"
         description="Car dealer, casino, medical office, or shopping complex, we decorate them all and more! Contact Sierra Christmas Lights for your turn key holiday lighting needs.  From install to storage, we do it all.  We can decorate with wreaths, bows, figurines, snowflakes, C9 LED bulbs, mini LEDs, and garlands."
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/commercial-og-sierra_lighting.jpg"
       />
       <Header />
 
-      {/* // TODO image */}
       <div className="measure">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">

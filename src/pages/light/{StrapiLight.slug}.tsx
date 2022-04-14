@@ -15,6 +15,7 @@ export const query = graphql`
           childImageSharp {
             gatsbyImageData
           }
+          url
         }
         alternativeText
       }

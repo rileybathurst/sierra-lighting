@@ -16,16 +16,22 @@ a:hover {
   color: var(--honey-a-4);
 }
 
+/*------------------*/
+//  #HOVER BACK, this is a kinda button style
+/*------------------*/
+
 .hover-back {
   padding-block: 0.75rem;
   padding-inline: 0.5rem;
   display: block;
   max-width: max-content;
   border-radius: var(--border-radius);
+  border: 1px solid transparent;
 }
 
 .hover-back:hover {
   background-color: var(--honey-h-8);
+  border: 1px solid var(--honey-h-4);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--honey-6);
@@ -42,4 +48,8 @@ a:hover {
 
 .bigboy a:hover {
   background-color: var(--honey-h-1);
+}
+
+.hover-back--inline {
+  display: inline;
 }

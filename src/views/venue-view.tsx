@@ -9,7 +9,11 @@ import Footer from "../components/footer";
 const VenueView = ({ venue, other }) => {
   return (
     <>
-      <Seo title="Sierra Lighting" />
+      <Seo
+        title="Sierra Lighting"
+        description={venue.description}
+        image={venue.venueImage.localFile.url}
+      />
       <Header />
 
       <div className="measure">
@@ -22,7 +26,7 @@ const VenueView = ({ venue, other }) => {
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/venues">
-              <span itemProp="name">venues</span></Link>&nbsp;/&nbsp;
+              <span itemProp="name">Venues</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
 
