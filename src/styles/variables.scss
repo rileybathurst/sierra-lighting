@@ -42,6 +42,7 @@
   --honey-h-1: hsl(var(--honey), var(--louie-h), var(--louie-a));
   --honey-h-2: hsl(var(--honey), var(--louie-h), var(--louie-b));
   --honey-h-4: hsl(var(--honey), var(--louie-h), var(--louie-d));
+  --honey-h-7: hsl(var(--honey), var(--louie-h), var(--louie-g));
   --honey-h-8: hsl(
     var(--honey),
     var(--louie-h),
@@ -80,7 +81,28 @@
   --denim-4: hsl(var(--denim), 100%, 50%);
   --denim-3: hsl(var(--denim), 100%, 37%);
   --denim-2: hsl(var(--denim), 87%, 25%); // ? why is this 87 saturation?
+  --denim-2: hsl(var(--denim), 50%, 12%); // ? why is this 87 saturation?
   --denim-1: hsl(var(--denim), 100%, 12%); // darkest
+
+  --denim-h-8: hsl(var(--denim), 100%, 97.5%); // lightest
+  --denim-h-7: hsl(var(--denim), 100%, 87%); // lightest
+  --denim-h-6: hsl(var(--denim), 100%, 75%);
+  --denim-h-5: hsl(var(--denim), 100%, 62%);
+  --denim-h-4: hsl(var(--denim), 100%, 50%);
+  --denim-h-3: hsl(var(--denim), 100%, 37%);
+  --denim-h-2: hsl(var(--denim), 100%, 25%);
+  --denim-h-1: hsl(var(--denim), 100%, 12%); // darkest
+  --denim-h-0: hsl(var(--denim), 100%, 2.5%); // darkest
+
+  --denim-a-8: hsl(var(--denim), 12%, 97.5%); // lightest
+  --denim-a-7: hsl(var(--denim), 12%, 87%); // lightest
+  --denim-a-6: hsl(var(--denim), 12%, 75%);
+  --denim-a-5: hsl(var(--denim), 12%, 62%);
+  --denim-a-4: hsl(var(--denim), 12%, 50%);
+  --denim-a-3: hsl(var(--denim), 12%, 37%);
+  --denim-a-2: hsl(var(--denim), 12%, 25%);
+  --denim-a-1: hsl(var(--denim), 12%, 12%); // darkest
+  --denim-a-0: hsl(var(--denim), 12%, 2.5%); // darkest
 
   --measure: 40rem;
   --page_width: 80rem; // ? I need some math on this

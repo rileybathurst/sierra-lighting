@@ -33,6 +33,10 @@ a svg:hover {
   display: block;
   aspect-ratio: 3/2;
 
+  @media (prefers-color-scheme: dark) {
+    border-color: var(--denim-a-2);
+  }
+
   img {
     width: 100%;
   }
@@ -67,11 +71,18 @@ header svg {
   fill: var(--denim-1);
   padding: 0.25rem;
   border-radius: var(--border-radius);
+
+  @media (prefers-color-scheme: dark) {
+    fill: var(--honey-a-8);
+  }
 }
 
 header svg:hover {
-  background: white;
-  fill: black;
+  fill: var(--honey-h-8);
+
+  @media (prefers-color-scheme: dark) {
+    fill: var(--honey-a-4);
+  }
 }
 
 /*------------------*/

@@ -14,7 +14,9 @@ Coming in from Adobe Fonts
 
 ## StoryBook
 
-I have this installed but not really running yet.
+```bash
+npm run storybook
+```
 
 ## Styleguide
 

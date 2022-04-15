@@ -55,4 +55,8 @@ header button:hover svg {
   fill: var(--honey-h-4);
   outline: 1px solid var(--honey-h-8);
   // margin-block-end: 1.5rem;
+
+  @media (prefers-color-scheme: dark) {
+    outline: none;
+  }
 }
