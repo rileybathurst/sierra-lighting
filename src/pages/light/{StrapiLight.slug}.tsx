@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import LightView from "../../views/light-view"
 
-import "../styles/app.scss";
+import "../../styles/app.scss";
 
 export const query = graphql`
   query LightQuery($slug: String!) {
