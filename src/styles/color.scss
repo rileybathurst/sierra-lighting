@@ -1,7 +1,10 @@
 body {
+  background: hsl(var(--honey), 100%, 99%); // custom
+  color: var(--denim-a-1);
+
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-1);
-    color: whitesmoke;
+    background-color: hsl(var(--denim), 100%, 5%); // custom
+    color: hsl(var(--honey), 100%, 99%); // custom
   }
 }
 

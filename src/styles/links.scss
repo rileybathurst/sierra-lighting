@@ -3,17 +3,23 @@
 /*------------------------------------*/
 
 a {
-  color: var(--honey-h-2);
+  // color: var(--honey-h-3);
+  color: hsl(var(--honey), var(--louie-h), 30%); // custom
+  transition: var(--moment);
 
   @media (prefers-color-scheme: dark) {
-    color: var(--honey-6);
+    color: var(--honey-h-6);
   }
   // text-decoration: none;
-  transition: var(--moment);
 }
 
 a:hover {
-  color: var(--honey-a-4);
+  color: var(--honey-h-3);
+}
+
+a:hover::selection {
+  // ! this doesnt work but kinda needs to be a thing
+  background-color: var(--honey-h-2);
 }
 
 /*------------------*/

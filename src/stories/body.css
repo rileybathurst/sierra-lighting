@@ -1,0 +1,37 @@
+/*------------------------------------*/
+  /* #BODY */
+/*------------------------------------*/
+
+.box {
+  display: flex;
+  flex-direction: row wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.light__test {
+  background: hsl(35, 100%, 99%);
+}
+
+.light__link {
+  color: hsl(35, 100%, 30%);
+}
+
+.dark__test {
+  background-color: hsl(var(--denim), 100%, 5%);
+  color: hsl(var(--honey), 100%, 99%);
+}
+
+.dark__link {
+  color: var(--honey-h-3);
+}
+
+.selection__test {
+  background: hsl(var(--honey), var(--louie-h), var(--louie-d));
+}
+
+.hover__test {
+  color: var(--honey-a-4);
+  color: hsl(var(--honey), 100%, 50%);
+  text-decoration: underline;
+}

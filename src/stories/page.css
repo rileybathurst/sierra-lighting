@@ -21,10 +21,12 @@ section p {
   margin: 1em 0;
 }
 
+/* reset this to sierra lighting
 section a {
   text-decoration: none;
   color: #1ea7fd;
 }
+*/
 
 section ul {
   padding-left: 30px;
