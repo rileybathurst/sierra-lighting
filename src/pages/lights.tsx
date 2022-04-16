@@ -6,6 +6,8 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+import "../styles/app.scss";
+
 export function NorthTahoeEvents() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
