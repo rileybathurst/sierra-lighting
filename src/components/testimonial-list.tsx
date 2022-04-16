@@ -22,13 +22,14 @@ const TestimonialList = () => (
                 <p className="sr-only"><span itemProp="bestRating">5</span>stars</p>
               </div>
             </div>
-            <p>{testimonial.review}</p>
+            <p itemProp="reviewBody">{testimonial.review}</p>
             <div className="together">
-              {/* <span itemprop="name">happy camper</span> */}
-              <div itemScope itemType="https://schema.org/Person">
-                <h3 className="range"><span itemProp="author">{testimonial.customer}</span></h3><p>{testimonial.platform}</p>
-              </div>
-              <p itemProp="datePublished" className="sr-only">{testimonial.createdAt}
+              <span itemProp="name" className="sr-only">{testimonial.title}</span>
+              {/* <div itemScope itemType="https://schema.org/Person"> */}
+              <h3 className="range" itemProp="author">{testimonial.customer}</h3>{/* // ! check this came in */}
+              <p>{testimonial.platform}</p>
+              {/* </div> */}
+              <p itemProp="datePublished" className="sr-only">
                 {testimonial.createdAt}
               </p>
             </div>
@@ -51,6 +52,7 @@ query TestimonialListQuery {
       review
       createdAt
       stars
+      title
     }
   }
 }

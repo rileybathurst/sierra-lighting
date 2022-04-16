@@ -3,6 +3,7 @@
 /*------------------------------------*/
 
 .sr-only {
+  display: block; // additional but seems really needed
   width: 0;
   height: 0;
   line-height: 0;

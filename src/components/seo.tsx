@@ -83,7 +83,7 @@ const SEO = ({
         <meta name="description" content={seo.description} />
         <meta name="image" itemProp="image" content={seo.ogImage} />
         <meta property="og:type" content="website" />
-        {seo.url && <meta property="og:url" itemProp="URL" content={seo.url} />}
+        {seo.url && <meta property="og:url" itemProp="URL" content={seo.url} />} {/* // ! this isnt there yet */}
         {/* {(article ? true : null) && <meta property="og:type" content="article" />} */}
         {seo.title && <meta property="og:title" content={seo.title} />}
         {seo.description && (
@@ -103,12 +103,12 @@ const SEO = ({
           <meta name="openingHours" itemProp="openingHours" content={seo.openingHours} />
         )}
         {seo.telephone && <meta name="telephone" itemProp="telephone" content={seo.telephone} />}
-        {seo.areaServed && <meta name="areaServed" itemProp="areaServed" content={seo.areaServed} />}
+        <meta name="areaServed" itemProp="areaServed" content={seo.areaServed} /> {/* // ! check this is running */}
         {seo.paymentAccepted && (
-          <meta name="paymentAccepted" content={seo.paymentAccepted} />
-        )}
+          <meta name="paymentAccepted" itemProp="paymentAccepted" content={seo.paymentAccepted} />
+        )} {/* // ! check this is running */}
 
-          // ? check if this works or helps or whatever
+        // ? check if this works or helps or whatever
         // * I think I am going with areaServed over this
         {/*         <meta itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
           <span itemProp="addressLocality">Truckee</span>,
