@@ -17,15 +17,17 @@ const TestimonialList = () => (
                   <TestimonialRanking stars={testimonial.stars} />
                 </ul>
 
-                <p className="sr-only" itemProp="worstRating">{testimonial.stars}</p>
-                <p className="sr-only"><span itemProp="ratingValue">1</span>/</p>
+                <p className="sr-only" itemProp="ratingValue">{testimonial.stars}</p>
+                <p className="sr-only"><span itemProp="worstRating">1</span>/</p>
                 <p className="sr-only"><span itemProp="bestRating">5</span>stars</p>
               </div>
             </div>
             <p>{testimonial.review}</p>
             <div className="together">
               {/* <span itemprop="name">happy camper</span> */}
-              <h3 className="range"><span itemProp="author">{testimonial.customer}</span></h3><p>{testimonial.platform}</p>
+              <div itemScope itemType="https://schema.org/Person">
+                <h3 className="range"><span itemProp="author">{testimonial.customer}</span></h3><p>{testimonial.platform}</p>
+              </div>
               <p itemProp="datePublished" className="sr-only">{testimonial.createdAt}
                 {testimonial.createdAt}
               </p>

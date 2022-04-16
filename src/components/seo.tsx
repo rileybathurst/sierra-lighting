@@ -83,13 +83,13 @@ const SEO = ({
         <meta name="description" content={seo.description} />
         <meta name="image" itemProp="image" content={seo.ogImage} />
         <meta property="og:type" content="website" />
-        {seo.url && <meta property="og:url" content={seo.url} />}
+        {seo.url && <meta property="og:url" itemProp="URL" content={seo.url} />}
         {/* {(article ? true : null) && <meta property="og:type" content="article" />} */}
         {seo.title && <meta property="og:title" content={seo.title} />}
         {seo.description && (
           <meta property="og:description" content={seo.description} />
         )}
-        {seo.image && <meta property="og:image" content={seo.ogImage} />}
+        {seo.image && <meta property="og:image" itemProp="image" content={seo.ogImage} />}
 
         {seo.title && <meta name="twitter:title" content={seo.title} />}
         {seo.description && (
@@ -103,14 +103,29 @@ const SEO = ({
           <meta name="openingHours" itemProp="openingHours" content={seo.openingHours} />
         )}
         {seo.telephone && <meta name="telephone" itemProp="telephone" content={seo.telephone} />}
-        {seo.areaServed && <meta name="areaServed" content={seo.areaServed} />}
+        {seo.areaServed && <meta name="areaServed" itemProp="areaServed" content={seo.areaServed} />}
         {seo.paymentAccepted && (
           <meta name="paymentAccepted" content={seo.paymentAccepted} />
         )}
+
+          // ? check if this works or helps or whatever
+        // * I think I am going with areaServed over this
+        {/*         <meta itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+          <span itemProp="addressLocality">Truckee</span>,
+          <span itemProp="addressRegion">CA</span>
+          <span itemProp="postalCode">96161</span>
+        </meta>
+
+        <meta itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+          <span itemProp="addressLocality">RENO</span>,
+          <span itemProp="addressRegion">NV</span>
+        </meta> */}
+
+
       </Helmet>
       {/* 🚨 this needs to be off in production */}
       {/* {process.env.NODE_ENV === "production" ? ( */}
-        // {process.env.NODE_ENV === "development" ? (
+      {process.env.NODE_ENV === "development" ? (
         <div className="seo-showcase">
           <p key="title"><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>
           <p key="description"><span className="key">Description</span> = <span className={seo.titleColor}>{seo.description}</span></p>
