@@ -11,7 +11,7 @@ const WorkPage = () => {
     <>
       {/* // TODO description and info */}
       <Seo
-        title="Sierra Lighting"
+        title="Work | Sierra Lighting"
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/work-og-sierra_lighting.jpg"
       />
 

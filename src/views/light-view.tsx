@@ -98,7 +98,7 @@ const LightView = ({ light, other }) => {
   return (
     <>
       <Seo
-        title="Sierra Lighting"
+        title={`${light.name} | Sierra Lighting`}
         description={light?.description}
         image={light?.image?.localFile?.url}
       />

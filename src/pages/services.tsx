@@ -10,7 +10,7 @@ const ServicesPage = () => {
   return (
     <>
       <Seo
-        title="Sierra Lighting"
+        title="Services | Sierra Lighting"
         description="A professional lighting design package will highlight your decor and bring out the beauty of your venue.  Learn about the many design options Sierra Christmas Lights can use to make your Reno Tahoe wedding really shine."
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
       />

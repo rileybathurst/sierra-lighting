@@ -11,7 +11,7 @@ const AreasPage = () => {
   return (
     <>
       <Seo
-        title="Sierra Lighting"
+        title="Areas | Sierra Lighting"
         description="Sierra Chistmas Lights installs holiday lights in the Reno, Truckee, Tahoe, Carson area. Quality, hassle free displays that are guaranteed all season long! Experienced. Professional. Insured."
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/areas-og-sierra_lighting.jpg"
       />

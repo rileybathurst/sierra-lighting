@@ -17,7 +17,7 @@ function ProjectCatchAll({ params }) {
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/area">
-              <span itemProp="project">project</span></Link>&nbsp;/&nbsp;
+              <span itemProp="project">Project</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">

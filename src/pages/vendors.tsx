@@ -18,7 +18,7 @@ const VendorsPage = () => {
   return (
     <>
       <Seo
-        title="Sierra Lighting"
+        title="Vendors | Sierra Lighting"
         description="Bespoke lighting arrangements are just one element of an amazing wedding or event. We recommend these Reno / Tahoe businesses for their dedication to quality and customer service."
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
       />

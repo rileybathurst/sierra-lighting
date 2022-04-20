@@ -72,7 +72,7 @@ const Footer = () => {
             />
           </div>
 
-          <h4><Link to="/work">Work with us</Link></h4>
+          <h4><Link to="/work" className="hover-back">Work with us</Link></h4>
         </div>
       </div>
 

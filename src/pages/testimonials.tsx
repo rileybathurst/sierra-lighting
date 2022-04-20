@@ -12,7 +12,7 @@ const TestimonialsPage = () => {
     <>
     // TODO description
       <Seo
-        title="Sierra Lighting"
+        title="Testimonials | Sierra Lighting"
         description=""
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
       />

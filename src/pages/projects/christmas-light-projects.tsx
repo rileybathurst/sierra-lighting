@@ -18,17 +18,25 @@ export function NorthTahoeEvents() {
 const ChristmasLightsProjectsPage = () => {
   return (
     <>
-      <Seo title="Sierra Lighting" />
+      <Seo title="Christmas Light Projects | Sierra Lighting" />
       <Header />
 
-      <main className="measure">
+      <div className="measure">
+        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/">
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="1" />
+          </li>
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">Christmas Light Projects</span>
+            <meta itemProp="position" content="2" />
+          </li>
+        </ol>
+        <hr />
+      </div>
 
-        {/* // TODO this doesnt have proper structure */}
-        <p className="breadcrumbs">
-          <Link to="/">Home</Link>&nbsp;
-          / Projects
-          / Christmas Lights Projects
-        </p>
+      <main className="measure">
         <hr />
 
         <StaticQuery

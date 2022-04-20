@@ -16,16 +16,27 @@ export function NorthTahoeEvents() {
 const WeddingProjectsPage = () => {
   return (
     <>
-      <Seo title="Sierra Lighting" />
+      <Seo title="Wedding Projects | Sierra Lighting" />
       <Header />
+
+      <div className="measure">
+        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to="/">
+              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="1" />
+          </li>
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">Wedding Projects</span>
+            <meta itemProp="position" content="2" />
+          </li>
+        </ol>
+        <hr />
+      </div>
+
       <main>
 
         <div className="measure">
-          <p className="breadcrumbs">
-            <Link to="/">Home</Link>&nbsp; / &nbsp;
-            <Link to="/projects">Projects</Link>&nbsp;
-            / Wedding Projects
-          </p>
           <hr />
           <h3>Wedding Projects</h3>
         </div>

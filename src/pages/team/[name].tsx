@@ -17,7 +17,7 @@ function AreaCatchAll({ params }) {
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/team">
-              <span itemProp="name">team</span></Link>&nbsp;/&nbsp;
+              <span itemProp="name">Team</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">

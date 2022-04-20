@@ -37,7 +37,8 @@ a:hover::selection {
 
 .hover-back:hover {
   background-color: var(--honey-h-8);
-  border: 1px solid var(--honey-h-4);
+  border: 1px solid var(--honey-h-7);
+  box-shadow: var(--mesosphere);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--honey-6);
@@ -54,8 +55,20 @@ a:hover::selection {
 
 .bigboy a:hover {
   background-color: var(--honey-h-7);
+  border-color: var(--honey-h-6);
 }
 
 .hover-back--inline {
   display: inline;
+}
+
+.footer-copyright a svg {
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  padding-block: 0.75rem;
+  padding-inline: 0.5rem;
+}
+
+.footer-copyright a:hover svg {
+  border-color: var(--honey-h-4);
 }

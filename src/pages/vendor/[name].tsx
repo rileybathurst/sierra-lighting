@@ -17,7 +17,7 @@ function VendorCatchAll({ params }) {
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/vendor">
-              <span itemProp="name">vendor</span></Link>&nbsp;/&nbsp;
+              <span itemProp="name">Vendor</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">

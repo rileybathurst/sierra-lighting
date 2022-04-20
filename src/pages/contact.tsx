@@ -10,7 +10,7 @@ const ContactPage = () => {
     <>
 
       <Seo
-        title="Sierra Lighting"
+        title="Contact | Sierra Lighting"
         description="Your go to holiday lights installer in the Reno and North Tahoe area. We strive to provide the most affordable holiday lights in town. Work guaranteed! Contact us here for a free estimate."
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/contact-og-sierra_lighting.jpg"
       />

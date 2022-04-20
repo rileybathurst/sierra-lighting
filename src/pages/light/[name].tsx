@@ -17,7 +17,7 @@ function LightCatchAll({ params }) {
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/light">
-              <span itemProp="name">light</span></Link>&nbsp;/&nbsp;
+              <span itemProp="name">Light</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">

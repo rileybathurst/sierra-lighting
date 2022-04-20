@@ -20,7 +20,7 @@ const lightsPage = () => {
   return (
     <>
       <Seo
-        title="Sierra Lighting"
+        title="Lights | Sierra Lighting"
         description="When you're looking for custom, elegant, one of a kind ambiance for you wedding, look no further than Sierra Christmas Lights. Creating beautiful displays is all we do! We also offer landscape lighting services to make your outdoor space shine all summer long with cafe lights, uplighting, and more."
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/lights-og-sierra_lighting.jpg"
       />

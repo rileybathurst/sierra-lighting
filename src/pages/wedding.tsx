@@ -6,26 +6,25 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import WeddingProjects from "../components/wedding-projects";
-import AllLights from "../components/all-lights";
 
-export function NorthTahoeEvents() {
+export function BistroLights() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
-    alt="christmas lighting display at North Tahoe Events center"
-    className="northtahoeevents" />
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-bistro_lights.jpg"
+    alt="sierra lighting bistro lights"
+    className="" />
 }
 
-export function InclineChevron() {
+export function OutdoorWedding() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Incline-7-web-tagged.jpg"
-    alt="christmas tree in Incline village nevada"
-    className="inclinechevron" />
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-outdoor_wedding.jpg"
+    alt="sierra lighting lake tahoe outdoor wedding"
+    className="" />
 }
 
-export function WeddingStars() {
+export function WeddingBlueHour() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Sierra_Lighting-Wedding_stars-4.jpg"
-    alt="wedding lights"
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-wedding_blue_hour.jpg"
+    alt="sierra lighting setup the outdoor lights over a wedding party"
     className="snowyroof" />
 }
 
@@ -43,7 +42,7 @@ const WeddingPage = () => {
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+              <span itemProp="name">Home</span></Link>&nbsp;&nbsp;/&nbsp;&nbsp;
             <meta itemProp="position" content="1" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
@@ -68,9 +67,9 @@ const WeddingPage = () => {
           <p>Sierra Christmas Lights will provide the perfect ambiance and eliminate stressful hassles. Unlike the big rental companies, lights are all we do! We create beautiful custom displays that are far beyond the standard light sets others offer. We also have significantly lower minimums. So whether you are planning an extravagant lakefront wedding or a backyard birthday party, Sierra Christmas Lights will meet and exceed your expectations.</p>
         </div>
         <div className="triple">
-          <NorthTahoeEvents />
-          <InclineChevron />
-          <WeddingStars />
+          <BistroLights />
+          <OutdoorWedding />
+          <WeddingBlueHour />
         </div>
         <div className="measure">
           <hr />

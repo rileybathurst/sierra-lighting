@@ -3,6 +3,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
+  line-height: 1.25rem; /* 20px */
 }
 
 .mixta {
@@ -16,17 +17,6 @@ body {
 \*------------------------------------*/
 
 /* This is trying to have a nice starter */
-
-/* html {
-  font-family: ;
-} */
-
-/* singlines */
-
-body {
-  font-size: 16px;
-  line-height: 1.25rem; /* 20px */
-}
 
 p {
   margin-block-end: 0.625rem; /* 10px */

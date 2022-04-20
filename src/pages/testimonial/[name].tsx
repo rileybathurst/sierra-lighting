@@ -17,7 +17,7 @@ function TestimonialCatchAll({ params }) {
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/testimonial">
-              <span itemProp="name">testimonial</span></Link>&nbsp;/&nbsp;
+              <span itemProp="name">Testimonial</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
