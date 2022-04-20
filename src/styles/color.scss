@@ -40,9 +40,9 @@ button {
   background: transparent;
   border: none;
 
-  @media (prefers-color-scheme: dark) {
+  /*   @media (prefers-color-scheme: dark) {
     color: var(--honey-1);
-  }
+  } */
 }
 
 header button svg {

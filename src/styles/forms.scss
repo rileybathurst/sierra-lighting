@@ -28,20 +28,22 @@ form {
 
   button {
     background-color: var(--honey-h-4);
+    border: 1px solid var(--honey-h-3);
     width: max-content;
     padding-block-start: 0.75rem;
     padding-block-end: 0.5rem;
     padding-inline: 1rem;
-    box-shadow: var(--troposphere);
+    box-shadow: var(--stratosphere);
     transition: var(--moment);
-    font-family: josefin-sans, sans-serif;
+    font-family: "josefin-sans", sans-serif; // reset
     margin-inline-start: 1rem;
     border-radius: var(--border-radius);
   }
 
   button:hover,
   button:focus {
-    background-color: var(--honey-5);
-    box-shadow: var(--stratosphere);
+    background-color: var(--honey-h-2);
+    border-color: var(--honey-h-1);
+    box-shadow: var(--troposphere);
   }
 }

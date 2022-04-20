@@ -95,6 +95,7 @@ module.exports = {
       }
     },
     {
+      // TODO
       resolve: "gatsby-plugin-google-tagmanager",
       options: {
         id: "GTM-NFVF3W7 ",

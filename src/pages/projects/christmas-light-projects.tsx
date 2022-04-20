@@ -23,6 +23,7 @@ const ChristmasLightsProjectsPage = () => {
 
       <main className="measure">
 
+        {/* // TODO this doesnt have proper structure */}
         <p className="breadcrumbs">
           <Link to="/">Home</Link>&nbsp;
           / Projects

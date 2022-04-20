@@ -150,15 +150,6 @@ header {
 /*------------------------------------*/
 //  .areas-and-gallery
 /*------------------------------------*/
-.areas-and-gallery-container {
-  @media (min-width: $book) {
-    background-color: var(--honey-6);
-
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--denim-2);
-    }
-  }
-}
 
 .areas-and-gallery {
   @media (min-width: $book) {
