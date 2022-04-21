@@ -52,7 +52,11 @@ export function SnowyRoof() {
 const IndexPage = () => {
   return (
     <>
-      <Seo title="Sierra Lighting" />
+      <Seo title="Sierra Lighting"
+        description="Sierra Lighting installs Christmas, event, and wedding lights.
+        Quality displays that are guaranteed! Experienced. Professional. Insured."
+      // image="https://sierralighting.s3.us-west-1.amazonaws.com/Sierra-Lighting-Logo-web-tagged.jpg" // todo
+      />
       <Header />
       <main>
 

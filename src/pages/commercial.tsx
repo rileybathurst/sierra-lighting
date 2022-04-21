@@ -37,7 +37,8 @@ const CommercialPage = () => {
 
       <Seo
         title="Commercial Christmas Lights &amp; Decor"
-        description="Car dealer, casino, medical office, or shopping complex, we decorate them all and more! Contact Sierra Christmas Lights for your turn key holiday lighting needs.  From install to storage, we do it all.  We can decorate with wreaths, bows, figurines, snowflakes, C9 LED bulbs, mini LEDs, and garlands."
+        description="We have LED lights, wreaths, garland, and decor to make your business shine.
+        Sierra Lighting is your dependable decorating partner."
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/commercial-og-sierra_lighting.jpg"
       />
       <Header />

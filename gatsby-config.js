@@ -29,14 +29,15 @@ module.exports = {
     image: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣 Path to your image you placed in the 'static' folder
     ogImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
     twitterImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
-    openingHours: 'Mo, Tu, We, Th, Fr 09:00-17:00', // TODO check
+    openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 08:00-18:00',
     telephone: '(775) 525-1898', // nevada number
     email: 'sierrachristmaslights@gmail.com',
     logo: '/images/icon.png', // TODO check
     areaServed: 'Tahoe, California', // TODO this might need more but test it first.
     author: 'Sierra Lighting',
-    paymentAccepted: 'Cash',
+    paymentAccepted: 'Cash check venmo credit card', // TODO syntax
     itemType: 'LocalBusiness',
+    priceRange: '$500 +', // TODO syntax
 
     titleColor: 'red', // TODO testing but I think I will remove it
   },
