@@ -29,7 +29,7 @@ body {
 /*------------------*/
 
 header {
-  background: hsl(var(--honey) 100%, 100%);
+  background: hsl(var(--honey), 100%, 100%);
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 25%, 12%);
@@ -58,9 +58,14 @@ header {
   }
 }
 
-button {
+// ! this seems insane? probably for something particular but not all buttons
+/* button {
   background: transparent;
   border: none;
+} */
+
+button {
+  // color: pink;
 }
 
 /*------------------*/

@@ -12,6 +12,10 @@ body {
   font-style: normal;
 }
 
+button {
+  @extend body;
+}
+
 /*------------------------------------*\
     #Type Rythym
 \*------------------------------------*/
@@ -111,6 +115,10 @@ small {
 // im going to need a lot more of these
 ::selection {
   background-color: hsl(var(--honey), 100%, 50%); // contrast to background :
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 12%, 50%);
+  }
 }
 
 .two-small-lines {

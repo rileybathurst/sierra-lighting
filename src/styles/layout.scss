@@ -231,7 +231,7 @@ header {
 
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--denim), 100%, 12%);
-      border: 1px solid black;
+      border: 1px solid black; // TODO
     }
     // mix-blend-mode: lighten;
   }
@@ -261,10 +261,18 @@ header {
       svg {
         max-width: 2.5rem;
         fill: hsl(var(--honey), 62%, 62%);
+
+        @media (prefers-color-scheme: dark) {
+          fill: hsl(var(--denim), 25%, 37%);
+        }
       }
 
       a svg:hover {
         fill: hsl(var(--honey), 100%, 50%);
+
+        @media (prefers-color-scheme: dark) {
+          fill: hsl(var(--denim), 25%, 63%);
+        }
       }
     }
   }

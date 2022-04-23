@@ -16,6 +16,10 @@ a svg {
 
 a svg:hover {
   fill: hsl(var(--honey), 100%, 37%);
+
+  @media (prefers-color-scheme: dark) {
+    fill: hsl(var(--denim), 25%, 63%);
+  }
 }
 
 /*------------------*/
@@ -124,8 +128,12 @@ header svg:hover {
 
     > a:hover p {
       border-radius: var(--border-radius);
-      background: hsl(var(--honey), 100%, 97.5%);
       box-shadow: var(--mesosphere);
+      background: hsl(var(--honey), 100%, 97.5%);
+
+      @media (prefers-color-scheme: dark) {
+        background: hsl(var(--denim), 25%, 12%);
+      }
     }
 
     > a:hover > .gatsby-image-wrapper {

@@ -14,6 +14,10 @@ form {
     padding-inline: 0.5rem; // 16
     margin-block-end: 0.25rem; // 8px
     border: 1px solid hsl(var(--honey), 100%, 50%);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: hsl(var(--denim), 25%, 25%);
+    }
   }
 
   textarea {
@@ -24,26 +28,5 @@ form {
     width: calc(100% - 2rem);
     margin-block-end: 1.25rem;
     margin-inline: auto;
-  }
-
-  button {
-    background-color: hsl(var(--honey), 100%, 75%);
-    border: 1px solid hsl(var(--honey), 100%, 63%);
-    width: max-content;
-    padding-block-start: 0.75rem;
-    padding-block-end: 0.5rem;
-    padding-inline: 1rem;
-    box-shadow: var(--stratosphere);
-    transition: var(--moment);
-    font-family: "josefin-sans", sans-serif; // reset
-    margin-inline-start: 1rem;
-    border-radius: var(--border-radius);
-  }
-
-  button:hover,
-  button:focus {
-    background-color: hsl(var(--honey), 100%, 50%);
-    border-color: hsl(var(--honey), 100%, 37%);
-    box-shadow: var(--troposphere);
   }
 }
