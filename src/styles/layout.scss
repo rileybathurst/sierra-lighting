@@ -24,7 +24,8 @@
   background-color: whitesmoke;
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-1);
+    background-color: hsl(var(--denim), 37%, 25%);
+    background-color: hsl(var(--denim), 25%, 25%);
   }
 
   h2 {
@@ -46,7 +47,8 @@ header {
 .header-container {
   margin-inline: auto;
   display: grid;
-  max-width: var(--measure);
+  max-width: var(--measure); // ? I might want this for other than the header
+  max-width: var(--book);
 
   .stripe {
     grid-row: 1/3;
@@ -56,6 +58,10 @@ header {
 
     @media (prefers-color-scheme: dark) {
       background: var(--denim-1);
+    }
+
+    @media (min-width: $book) {
+      background-color: transparent;
     }
   }
 
@@ -99,7 +105,7 @@ header {
     background-color: var(--honey-h-8);
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(--denim-1);
+      background-color: var(--denim-c-1);
     }
   }
 }
@@ -112,11 +118,13 @@ header {
     gap: 1rem;
     padding-inline: 1rem;
     padding-block-end: 3rem;
-    background-color: var(--honey-h-8);
 
+    // I dont think I need a background color on large screens
+    // background-color: var(--honey-h-8);
+    /* 
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-1);
-    }
+    } */
 
     .village-container {
       grid-row: 1/3;
@@ -348,13 +356,21 @@ footer {
     box-shadow: var(--troposphere);
     border-radius: var(--border-radius);
     border: 1px solid whitesmoke;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: hsl(var(--denim), 12%, 12%);
+    }
   }
 }
 
 .team {
   @media (min-width: $pad) {
-    border-left: 1px solid orange;
+    border-left: 1px solid orange; // TODO
     padding-inline-start: 1rem;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: hsl(var(--denim), 12%, 12%);
+    }
   }
 }
 

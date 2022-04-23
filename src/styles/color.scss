@@ -3,8 +3,12 @@ body {
   color: var(--denim-a-1);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 100%, 5%); // custom
+    background-color: hsl(var(--denim), 37%, 5%);
+    // custom not a louie color as zero doesnt work
     color: hsl(var(--honey), 100%, 99%); // custom
+    color: var(--honey-f-7);
+    color: whitesmoke;
+    color: hsl(var(--honey), 100%, 97.5%); // custom
   }
 }
 
@@ -22,7 +26,8 @@ header {
   background: var(--honey-h-8);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-1);
+    background-color: var(--denim-c-1);
+    background-color: hsl(var(--denim), 25%, 12%);
   }
 }
 

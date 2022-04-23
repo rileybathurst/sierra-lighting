@@ -127,6 +127,10 @@ hr {
   border: none;
   border-top: 1px solid var(--honey-h-4);
   margin-block: 1.5rem; /* 20px */
+
+  @media (prefers-color-scheme: dark) {
+    border-color: var(--denim-c-3);
+  }
 }
 
 .top-bar hr {

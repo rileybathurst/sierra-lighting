@@ -47,7 +47,19 @@ export function SnowyRoof() {
     className="snowyroof poster" />
 }
 
+export function WestShoreWedding() {
+  return <StaticImage
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-west_shore_cafe_lighting.jpg"
+    alt="wedding lights over thelooking lake tahoe calidofornia"
+    className="poster" />
+}
 
+export function WeddingCannopy() {
+  return <StaticImage
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/Sierra_Lighting-Zach-Maija.jpg"
+    alt="wedding light canopy in truckee california"
+    className="poster" />
+}
 
 const IndexPage = () => {
   return (
@@ -65,15 +77,22 @@ const IndexPage = () => {
             <h2 className="site_title">Dependable holiday, landscape and events light installation</h2>
 
             <div className="village-container">
-              <Link to="/project/rancharrah"><Village />
+              {/* winter hero <Link to="/project/rancharrah">
+              <Village />
                 <p>The Village at Rancharrah See the Project</p>
+              </Link> */}
+
+              <Link to="/project/wedding-canopy">
+                {/* // TODO make this project */}
+                <WeddingCannopy />
+                <p>Wedding Canopy See the Project</p>
               </Link>
             </div>
 
             <section id="trusted" className="trusted">
               <hr />{/* ? should this be down below the h tag */}
               <h3>Trusted and local</h3>
-              <p>Sierra Christmas Lights is here to provide beautiful, hassle free holiday and event lighting for your residence or business. We specialize in outdoor Christmas and wedding lights installation, taking pride in the quality, commercial grade materials we sell and maintain for our customers. Let us help make your next holiday or event really shine!</p>
+              <p>Sierra Lighting is here to provide beautiful, hassle free holiday and event lighting for your residence or business. We specialize in outdoor Christmas and wedding lights installation, taking pride in the quality, commercial grade materials we sell and maintain for our customers. Let us help make your next holiday or event really shine!</p>
             </section>
           </section>
         </div>
@@ -102,7 +121,7 @@ const IndexPage = () => {
         <div className="services-wrap">
           <section id="services" className="services">
             <hr />
-            {/* 📣? I need to think about the H levels here */}
+            {/* // TODO  I need to think about the H levels here */}
             <h3>Services</h3>
             <h4 className="crest">Locally owned and Fully Insured</h4>
             <h5 className="range">Professional Experience</h5>

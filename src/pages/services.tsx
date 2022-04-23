@@ -11,7 +11,7 @@ const ServicesPage = () => {
     <>
       <Seo
         title="Services | Sierra Lighting"
-        description="A professional lighting design package will highlight your decor and bring out the beauty of your venue.  Learn about the many design options Sierra Christmas Lights can use to make your Reno Tahoe wedding really shine."
+        description="A professional lighting design package will highlight your decor and bring out the beauty of your venue.  Learn about the many design options Sierra Lighting can use to make your Reno Tahoe wedding really shine."
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
       />
       <Header />
@@ -69,7 +69,7 @@ const ServicesPage = () => {
         <h2>How it Works</h2>
         <ol>
           <li><span className="ol-title">Estimate</span>
-            <span>After contacting Sierra Christmas Lights, we will come to your home or business to create an estimate.  We work with you to determine the type of display you would like, choosing from our broad lighting selection.</span>
+            <span>After contacting Sierra Lighting, we will come to your home or business to create an estimate.  We work with you to determine the type of display you would like, choosing from our broad lighting selection.</span>
           </li>
           <li><span className="ol-title">Installation</span>
             <span>
@@ -77,7 +77,7 @@ const ServicesPage = () => {
             </span>
           </li>
           <li><span className="ol-title">Support</span>
-            <span>Sierra Christmas Lights utilizes the highest quality, professional, LED lighting available to ensure the reliability of your display. In the unlikely event that something goes wrong, we are just a quick call or email away. We strive for 100% customer satisfaction!</span>
+            <span>Sierra Lighting utilizes the highest quality, professional, LED lighting available to ensure the reliability of your display. In the unlikely event that something goes wrong, we are just a quick call or email away. We strive for 100% customer satisfaction!</span>
           </li>
           <li><span className="ol-title">Removal</span>
             <span>Removal occurs in the first two weeks of January after a happy and joyous holiday. Our team removes the lights and carefully packages them for storage until next year. Your home will look just as beautiful after we are done as when we started.</span>

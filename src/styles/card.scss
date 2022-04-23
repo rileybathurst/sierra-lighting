@@ -29,6 +29,11 @@
     border: 2px solid whitesmoke;
     box-shadow: var(--troposphere);
     border-radius: var(--card-radius);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 25%, 12%);
+      border-color: hsl(var(--denim), 25%, 25%);
+    }
   }
 
   .gatsby-image-wrapper {
@@ -40,6 +45,10 @@
     margin-inline: auto;
     border: 2px solid whitesmoke;
     box-shadow: var(--troposphere);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: hsl(var(--denim), 12%, 12%);
+    }
   }
 
   .content {
@@ -53,10 +62,14 @@
     padding-inline: 1rem;
   }
 
-  h2 a {
+  /*   h2 a {
     color: black;
-  }
 
+    @media (prefers-color-scheme: dark) {
+      color: hsl(var(--honey), 100%, 75%);
+    }
+  }
+ */
   hr {
     grid-row: 3;
     margin-block-start: 1.5rem;
@@ -65,6 +78,6 @@
   }
 }
 
-.venues__page .gatsby-image-wrapper {
+/* .venues__page .gatsby-image-wrapper {
   // aspect-ratio: 3/2;
-}
+} */

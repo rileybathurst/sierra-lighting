@@ -84,10 +84,45 @@
     display: flex;
     flex-flow: row wrap;
     gap: 1rem;
-
+    text-align: center;
+    justify-content: space-between;
     li {
       list-style: none;
     }
+  }
+}
+
+/*------------------*/
+//  #BIGBOY ORDER
+/*------------------*/
+
+.bigboy .wedding_season {
+  .xmas_r {
+    order: 2;
+  }
+  .xmas_c {
+    order: 3;
+  }
+  .wedding {
+    order: 1;
+  }
+  .c {
+    order: 4;
+  }
+}
+
+.bigboy .holiday_season {
+  .xmas_r {
+    order: 1;
+  }
+  .xmas_c {
+    order: 2;
+  }
+  .wedding {
+    order: 3;
+  }
+  .c {
+    order: 4;
   }
 }
 

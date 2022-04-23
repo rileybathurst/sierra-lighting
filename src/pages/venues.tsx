@@ -2,8 +2,6 @@ import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
 
-//GatsbyImage
-
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -43,12 +41,6 @@ const VenuePage = () => {
       <main className="venues__page">
 
         <div className="measure">
-          <p className="breadcrumbs">
-            <Link to="/">Home</Link>&nbsp;
-            / <Link to="/wedding">Wedding</Link>&nbsp;
-            / Wedding Venues
-          </p>
-          <hr />
 
           <h2 className="crest">Where to be</h2>
           <h1 className="mixta">Wedding Venues</h1>

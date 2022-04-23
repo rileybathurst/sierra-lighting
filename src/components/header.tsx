@@ -17,12 +17,11 @@ const Header = () => {
             <link
               rel="stylesheet"
               href="https://use.typekit.net/kmu8xou.css"
-            // crossorigin="use-credentials" // 📣 this has an issue either on or off
+            // crossorigin="use-credentials" // TODO this has an issue either on or off
             />
           </Helmet>
-          {/* // TODO this hovers the wrong color */}
           <Link to="/" className="header__logo" itemProp="logo"><Logo /></Link>
-          {/* // ? is this just the background? */}
+          {/* // needed to hide the small menu */}
           <div className="stripe">{/* stay gold */}</div>
           <Menu />
           <BigBoy />

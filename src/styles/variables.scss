@@ -44,10 +44,31 @@
   --honey-b-1: 
   --honey-a-2:  */
 
+  --honey-a-1: hsl(var(--honey), 25%, 12%);
   --honey-a-4: hsl(var(--honey), var(--louie-a), var(--louie-d));
   --honey-a-8: hsl(var(--honey), var(--louie-a), 97.5%);
 
-  --honey-f-7: hsl(var(--honey), var(--louie-f), var(--louie-g));
+  --honey-b-8: hsl(var(--honey), 25%, 97.5%); // lightest
+  --honey-b-7: hsl(var(--honey), 25%, 87%); // lightest
+  --honey-b-6: hsl(var(--honey), 25%, 75%);
+  --honey-b-5: hsl(var(--honey), 25%, 62%);
+  --honey-b-4: hsl(var(--honey), 25%, 50%);
+  --honey-b-3: hsl(var(--honey), 25%, 37%);
+  --honey-b-2: hsl(var(--honey), 25%, 25%);
+  --honey-b-1: hsl(var(--honey), 25%, 12%);
+  --honey-b-0: hsl(var(--honey), 25%, 2.5%); // darkest
+
+  --honey-c-8: hsl(var(--honey), 37%, 97.5%); // lightest
+  --honey-c-7: hsl(var(--honey), 37%, 87%); // lightest
+  --honey-c-6: hsl(var(--honey), 37%, 75%);
+  --honey-c-5: hsl(var(--honey), 37%, 62%);
+  --honey-c-4: hsl(var(--honey), 37%, 50%);
+  --honey-c-3: hsl(var(--honey), 37%, 37%);
+  --honey-c-2: hsl(var(--honey), 37%, 25%);
+  --honey-c-1: hsl(var(--honey), 37%, 12%);
+  --honey-c-0: hsl(var(--honey), 37%, 2.5%); // darkest
+
+  --honey-f-7: hsl(var(--honey), var(--louie-f), var(--louie-7));
 
   --honey-h-1: hsl(var(--honey), var(--louie-h), var(--louie-1));
   --honey-h-2: hsl(var(--honey), var(--louie-h), var(--louie-2));
@@ -116,6 +137,26 @@
   --denim-a-2: hsl(var(--denim), 12%, 25%);
   --denim-a-1: hsl(var(--denim), 12%, 12%);
   --denim-a-0: hsl(var(--denim), 12%, 2.5%); // darkest
+
+  --denim-b-8: hsl(var(--denim), 25%, 97.5%); // lightest
+  --denim-b-7: hsl(var(--denim), 25%, 87%); // lightest
+  --denim-b-6: hsl(var(--denim), 25%, 75%);
+  --denim-b-5: hsl(var(--denim), 25%, 62%);
+  --denim-b-4: hsl(var(--denim), 25%, 50%);
+  --denim-b-3: hsl(var(--denim), 25%, 37%);
+  --denim-b-2: hsl(var(--denim), 25%, 25%);
+  --denim-b-1: hsl(var(--denim), 25%, 12%);
+  --denim-b-0: hsl(var(--denim), 25%, 2.5%); // darkest
+
+  --denim-c-8: hsl(var(--denim), 37%, 97.5%); // lightest
+  --denim-c-7: hsl(var(--denim), 37%, 87%); // lightest
+  --denim-c-6: hsl(var(--denim), 37%, 75%);
+  --denim-c-5: hsl(var(--denim), 37%, 62%);
+  --denim-c-4: hsl(var(--denim), 37%, 50%);
+  --denim-c-3: hsl(var(--denim), 37%, 37%);
+  --denim-c-2: hsl(var(--denim), 37%, 25%);
+  --denim-c-1: hsl(var(--denim), 37%, 12%);
+  --denim-c-0: hsl(var(--denim), 37%, 2.5%); // darkest
 
   --measure: 40rem;
   --page_width: 80rem; // ? I need some math on this

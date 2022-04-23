@@ -78,6 +78,7 @@ const Footer = () => {
 
       <hr className="measure" />
 
+      {/* // TODO connect this to netlify */}
       <form name="contact" data-netlify="true" className="measure">
         <label>Name
           <input type="text" />
@@ -109,7 +110,6 @@ const Footer = () => {
       </div>
 
       <div className="footer-copyright">
-        {/* I need to add this to an auto update */}
         <h4 className="sr-only" itemProp="name">
           <Link to="/" title="to the front page">
             Sierra Lighting
@@ -119,7 +119,16 @@ const Footer = () => {
         <Link to="/">
           <Logo />
         </Link>
+        {/* // TODO 2023 This dissappears */}
+        <h5 className="crest">
+          <a href="https://www.sierrachristmaslights.com/" target="_blank" rel="noopener noreffer">
+            Formally known as Sierra Christmas Lights
+          </a>
+        </h5>
         <p>&copy; <ThisYear /></p>
+
+
+
       </div>
 
     </footer>
