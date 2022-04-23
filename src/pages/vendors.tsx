@@ -1,18 +1,10 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
-export function NorthTahoeEvents() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
-    alt="christmas lighting display at North Tahoe Events center"
-    className="northtahoeevents" />
-}
-
 
 const VendorsPage = () => {
   return (
@@ -66,7 +58,15 @@ const VendorsPage = () => {
                 {
                   data.allStrapiVendor.nodes.map(vendor => (
                     <section className="card" key={vendor.id}>
-                      <NorthTahoeEvents />
+                      <GatsbyImage
+                        image={
+                          vendor?.profile?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={vendor.profile?.alternativeText}
+                        className=""
+                      />
+
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
@@ -100,6 +100,15 @@ query VendorsQuery {
       name
       description
       slug
+
+      profile {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
   }
 }

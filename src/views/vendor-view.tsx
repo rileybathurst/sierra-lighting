@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -14,7 +15,7 @@ const VendorView = ({ vendor, other }) => {
     <>
       <Seo
         title="Sierra Lighting"
-        description={vendor.description}
+        description={vendor.description} // TODO excerpt
       />
       <Header />
 
@@ -40,6 +41,15 @@ const VendorView = ({ vendor, other }) => {
         <hr />
       </div>
 
+      <GatsbyImage
+        image={
+          vendor?.profile?.localFile?.childImageSharp
+            ?.gatsbyImageData
+        }
+        alt={vendor.profile?.alternativeText}
+        className="poster"
+      />
+
       <main className="measure">
         <article className="single">
           <h1>{vendor.name}</h1>
@@ -52,7 +62,9 @@ const VendorView = ({ vendor, other }) => {
           <div className="footer-social">
             <ul className="measured">
               {/* // TODO // ! this needs if statements and checks on if name or full link I think name is better so I can use it cleanly */}
-              <li><a href={`http://${vendor.instagram}`} target="_blank" rel="noopener noreferrer"><InstagramIcon />{vendor.instagram}</a></li>
+              <li><a href={`http://${vendor.instagram}`} target="_blank" rel="noopener noreferrer"><InstagramIcon />
+                {vendor.instagram}
+              </a></li>
               <li><a href={`http://${vendor.facebook}`} target="_blank" rel="noopener noreferrer"><FacebookIcon /> {vendor.facebook}</a></li>
               <li><a href={`http://${vendor.pinterest}`} target="_blank" rel="noopener noreferrer"><PinterestIcon />{vendor.pinterest}</a></li>
             </ul>
@@ -71,14 +83,14 @@ const VendorView = ({ vendor, other }) => {
         {other.nodes.map((other) => (
           <div key={other.id} className="card">
 
-            {/* <GatsbyImage
+            <GatsbyImage
               image={
-                other?.venueImage?.localFile?.childImageSharp
+                vendor?.profile?.localFile?.childImageSharp
                   ?.gatsbyImageData
               }
-              alt={other.venueImage?.alternativeText}
+              alt={vendor.profile?.alternativeText}
               className=""
-            /> */}
+            />
 
             <div className="paper"></div>
             <div className="content">

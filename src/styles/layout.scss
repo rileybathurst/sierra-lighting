@@ -241,6 +241,7 @@ header {
 //  #FOOTER
 /*------------------------------------*/
 
+// * this name isnt great as I also use it for vendors
 .footer-social {
   max-width: var(--measure);
   margin-inline: auto;
@@ -258,7 +259,15 @@ header {
     li {
       list-style: none;
 
+      a {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
       svg {
+        margin-inline: auto;
         max-width: 2.5rem;
         fill: hsl(var(--honey), 62%, 62%);
 

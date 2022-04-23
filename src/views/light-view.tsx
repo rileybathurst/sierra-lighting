@@ -68,6 +68,7 @@ function Other(props) {
         <div className="paper"></div>
         <div className="content">
           <hr />
+          {/* // ? does this have a byline */}
           <h2><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
           <p>{light.excerpt}</p>
         </div>
@@ -86,6 +87,12 @@ function Other(props) {
         <div className="deck">
           {map}
         </div>
+
+        <div className="measure">
+          {/* // TODO this needs a little more space */}
+          <p className="crest">Even More?</p>
+          <h5 className="range"><Link to="/lights">View all other lights</Link></h5>
+        </div>
       </>
     );
   } else {
@@ -99,7 +106,7 @@ const LightView = ({ light, other }) => {
     <>
       <Seo
         title={`${light.name} | Sierra Lighting`}
-        description={light?.description}
+        description={light?.description} // TODO: needs to be the excerpt
         image={light?.image?.localFile?.url}
       />
       <Header />

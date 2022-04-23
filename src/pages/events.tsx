@@ -63,9 +63,9 @@ const EventsPage = () => {
           <p>Whether it's an anniversary, birthday party, or any other special event, we have you covered.</p>
         </div>
         <div className="triple">
-          <Residential />
-          <Wreath />
-          <SnowyRoof />
+          <Residential />{/* // TODO change image */}
+          <Wreath />{/* // TODO change image */}
+          <SnowyRoof />{/* // TODO change image */}
         </div>
 
         <div className="measure">

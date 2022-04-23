@@ -38,7 +38,7 @@ export const query = graphql`
       }
     }
 
-    allStrapiLight(filter: {slug: {nin: [$slug] }}) {
+    allStrapiLight(limit: 3, filter: {slug: {nin: [$slug] }}) {
       nodes {
         name
         id

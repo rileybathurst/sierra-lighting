@@ -37,7 +37,6 @@ const ChristmasLightsProjectsPage = () => {
       </div>
 
       <main className="measure">
-        <hr />
 
         <StaticQuery
           query={query}

@@ -3,21 +3,24 @@
 /*------------------------------------*/
 
 // ? add some css layers to here it could be great
+@layer storybook, theme;
 
-@import "variables";
-@import "reset";
-@import "a11y";
-@import "media";
-@import "typography";
-@import "layout";
-@import "color";
-@import "forms";
-@import "slider";
-@import "accordian";
-@import "seo";
-@import "menu";
-@import "card";
-@import "links";
-@import "map";
-@import "lists";
-@import "visibility";
+@layer theme {
+  @import "variables";
+  @import "reset";
+  @import "a11y";
+  @import "media";
+  @import "typography";
+  @import "layout";
+  @import "color";
+  @import "forms";
+  @import "slider";
+  @import "accordian";
+  @import "seo";
+  @import "menu";
+  @import "card";
+  @import "links";
+  @import "map";
+  @import "lists";
+  @import "visibility";
+}

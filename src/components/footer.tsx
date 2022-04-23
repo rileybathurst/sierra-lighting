@@ -81,18 +81,18 @@ const Footer = () => {
       {/* // TODO connect this to netlify */}
       <form name="contact" data-netlify="true" className="measure">
         <label>Name
-          <input type="text" />
+          <input type="text" name="name" />
         </label>
         <label>Email
-          <input type="email" />
+          <input type="email" name="email" />
         </label>
         <label>Phone
-          <input type="tel" />
+          <input type="tel" name="tel" />
         </label>
         <label>Message
-          <textarea />
+          <textarea name="message" />
         </label>
-        <button>Send</button>
+        <button type="submit">Send</button>
       </form>
 
       <hr className="measure" />

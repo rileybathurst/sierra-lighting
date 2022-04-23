@@ -26,16 +26,20 @@ a svg:hover {
 //  #IMAGES
 /*------------------*/
 
+// ? this might be hero
 .poster {
-  // this might be hero
-  margin-block-end: 3rem;
-  margin-inline: auto; // ! not working
+  width: 100%;
   max-width: 60rem;
+  margin-block-end: 3rem;
+  display: block !important; // overwrites gatsby // makes sure the margin-inline works
+  margin-inline: auto;
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
   border: 1px solid whitesmoke;
-  display: block;
   aspect-ratio: 3/2;
+
+  > * {
+  }
 
   @media (prefers-color-scheme: dark) {
     border-color: hsl(var(--denim), 12%, 25%);

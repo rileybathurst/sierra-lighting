@@ -14,6 +14,15 @@ export const query = graphql`
       website
       pinterest
       service
+
+      profile {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
 
     allStrapiVendor(filter: {slug: {nin: [$slug] }}) {
@@ -21,6 +30,15 @@ export const query = graphql`
         name
         id
         slug
+
+        profile {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
   }
