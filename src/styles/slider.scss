@@ -1,10 +1,5 @@
 .slider-container {
-  background-color: var(--honey-h-8);
   margin-block-end: 1.5rem;
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-1);
-  }
 }
 
 #slider {

@@ -9,7 +9,7 @@ export const Links = ({ primary, backgroundColor, size, label, ...props }) => {
     <>
     Links on regular background
 <hr />
-    <p>lorem <a href="#">ipsum</a> - var(--honey-h-2)</p>
+    <p>lorem <a href="#">ipsum</a> - hsl(var(--honey), 100%, 25%)</p>
 
     </>
   );

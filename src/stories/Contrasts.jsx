@@ -15,8 +15,8 @@ export const Contrasts = ({ primary, backgroundColor, size, label, ...props }) =
     </ul>
     <hr />
     <p>Light mode background: hsl(var(--honey), 100%, 99%); not a variable</p>
-    <p>Regular color: var(--denim-a-1) : 16.36</p>
-    <p><a href="#">Link</a> var(--honey-h-2) : 7.09</p>
+    <p>Regular color: hsl(var(--denim), 12%, 12%) : 16.36</p>
+    <p><a href="#">Link</a> hsl(var(--honey), 100%, 25%) : 7.09</p>
 <hr />
     </>
   );

@@ -24,7 +24,7 @@
     padding-inline-start: 0;
     flex: 1;
     border-right: 1px solid;
-    border-color: var(--honey-h-4);
+    border-color: hsl(var(--honey), 100%, 50%);
 
     > li {
       list-style: none;
@@ -41,11 +41,11 @@
       }
 
       > a:hover {
-        background-color: var(--honey-h-8);
-        border: 1px solid var(--honey-h-4);
+        background-color: hsl(var(--honey), 100%, 97.5%);
+        border: 1px solid hsl(var(--honey), 100%, 50%);
 
         @media (prefers-color-scheme: dark) {
-          background-color: var(--honey-6);
+          background-color: hsl(var(--honey), 100%, 75%);
         }
       }
     }
@@ -78,10 +78,10 @@
 
   > li {
     list-style: none;
-    background-color: var(--honey-a-8);
+    background-color: hsl(var(--honey), 12%, 97.5%);
     padding: 1rem;
     border-radius: 0.5rem;
-    border: 1px solid var(--honey-h-4);
+    border: 1px solid hsl(var(--honey), 100%, 50%);
     margin-block-end: 1rem;
     box-shadow: var(--mesosphere);
 

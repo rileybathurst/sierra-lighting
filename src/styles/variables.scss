@@ -3,170 +3,27 @@
 /*------------------------------------*/
 
 :root {
-  // This is a huge work in progress to change all the things
+  /*------------------*/
+  //  #COLOR
+  /*------------------*/
   --honey: 35;
-
-  --louie-a: 12%; // 1
-  --louie-b: 25%; // 2
-  --louie-c: 37%; // 3
-  --louie-d: 50%; // 4
-  --louie-e: 63%; // 5
-  --louie-f: 75%; // 6
-  --louie-g: 87%; // 7
-  --louie-h: 100%; // 8
-
-  --louie-1: 12%;
-  --louie-2: 25%;
-  --louie-3: 37%;
-  --louie-4: 50%;
-  --louie-5: 63%;
-  --louie-6: 75%;
-  --louie-7: 87%;
-  --louie-8: 100%;
-
-  // just working on this idea
-
-  /*   --honey-h-8: hsl(var(--honey), 100%, 87%); // lightest
-  --honey-h-8-a: hsl(var(--honey), 12%, 100%);
-  --honey-h-8-a: rgb(255, 242, 224);
-  --honey-h-8-a: hsl(35, 100%, 94%);
-  --honey-6: hsl(var(--honey), 100%, 75%);
-  --honey-5: hsl(var(--honey), 100%, 62%);
-  --honey-h-4: hsl(var(--honey), 100%, 50%);
-  --honey-3: hsl(var(--honey), 100%, 37%);
-  --honey-h-2: hsl(var(--honey), 100%, 25%);
-  --honey-1: hsl(var(--honey), 100%, 12%); // darkest */
-
-  // --honey-a-4: hsl(var(--honey), 87%, 50%); // it just feels too neon
-  // ? maybe this should be the default?
-
-  /*   --honey-a-1: 
-  --honey-b-1: 
-  --honey-a-2:  */
-
-  --honey-a-1: hsl(var(--honey), 25%, 12%);
-  --honey-a-4: hsl(var(--honey), var(--louie-a), var(--louie-d));
-  --honey-a-8: hsl(var(--honey), var(--louie-a), 97.5%);
-
-  --honey-b-8: hsl(var(--honey), 25%, 97.5%); // lightest
-  --honey-b-7: hsl(var(--honey), 25%, 87%); // lightest
-  --honey-b-6: hsl(var(--honey), 25%, 75%);
-  --honey-b-5: hsl(var(--honey), 25%, 62%);
-  --honey-b-4: hsl(var(--honey), 25%, 50%);
-  --honey-b-3: hsl(var(--honey), 25%, 37%);
-  --honey-b-2: hsl(var(--honey), 25%, 25%);
-  --honey-b-1: hsl(var(--honey), 25%, 12%);
-  --honey-b-0: hsl(var(--honey), 25%, 2.5%); // darkest
-
-  --honey-c-8: hsl(var(--honey), 37%, 97.5%); // lightest
-  --honey-c-7: hsl(var(--honey), 37%, 87%); // lightest
-  --honey-c-6: hsl(var(--honey), 37%, 75%);
-  --honey-c-5: hsl(var(--honey), 37%, 62%);
-  --honey-c-4: hsl(var(--honey), 37%, 50%);
-  --honey-c-3: hsl(var(--honey), 37%, 37%);
-  --honey-c-2: hsl(var(--honey), 37%, 25%);
-  --honey-c-1: hsl(var(--honey), 37%, 12%);
-  --honey-c-0: hsl(var(--honey), 37%, 2.5%); // darkest
-
-  --honey-f-7: hsl(var(--honey), var(--louie-f), var(--louie-7));
-
-  --honey-h-1: hsl(var(--honey), var(--louie-h), var(--louie-1));
-  --honey-h-2: hsl(var(--honey), var(--louie-h), var(--louie-2));
-  --honey-h-3: hsl(var(--honey), var(--louie-h), var(--louie-3));
-  --honey-h-4: hsl(var(--honey), var(--louie-h), var(--louie-4));
-  --honey-h-5: hsl(var(--honey), var(--louie-h), var(--louie-5));
-  --honey-h-6: hsl(var(--honey), var(--louie-h), var(--louie-6));
-  --honey-h-7: hsl(var(--honey), var(--louie-h), var(--louie-7));
-  --honey-h-8: hsl(
-    var(--honey),
-    var(--louie-h),
-    97.5%
-  ); // this needs a tweak it goes white
-
-  /*   --l-a: 12%;
-  --l-b: 25%;
-  --l-c: 37%;
-  --l-d: 50%;
-  --l-e: 62%;
-  --l-f: 75%;
-  --l-g: 87%;
-  --l-h: 99%; */
-
-  /*   --c-1: 17;
-  --c-2: 33;
-  --c-3: 50;
-  --c-4: 66;
-  --c-5: 83;
-  --c-6: 99;
-  --c-7: 116;
-  --c-8: 132; */
-
-  // --vitamin_c-lch_h: 70; // lch
-
-  // louies bottom right 71.39, 83.17, 67.20
-  // louie_vitamin_c: lch(var(--l-f), var(--c-5), var(--vitamin_c-h));
-  // aka no where near the top
-
   --denim: 215;
+  // also using whitesmoke
 
-  --denim-7: hsl(var(--denim), 100%, 87%); // lightest
-  --denim-6: hsl(var(--denim), 100%, 75%);
-  --denim-5: hsl(var(--denim), 100%, 62%);
-  --denim-4: hsl(var(--denim), 100%, 50%);
-  --denim-3: hsl(var(--denim), 100%, 37%);
-  --denim-2: hsl(var(--denim), 87%, 25%); // ? why is this 87 saturation?
-  --denim-2: hsl(var(--denim), 50%, 12%); // ? why is this 87 saturation?
-  --denim-1: hsl(var(--denim), 100%, 12%); // darkest
-
-  --denim-h-8: hsl(var(--denim), 100%, 97.5%); // lightest
-  --denim-h-7: hsl(var(--denim), 100%, 87%); // lightest
-  --denim-h-6: hsl(var(--denim), 100%, 75%);
-  --denim-h-5: hsl(var(--denim), 100%, 62%);
-  --denim-h-4: hsl(var(--denim), 100%, 50%);
-  --denim-h-3: hsl(var(--denim), 100%, 37%);
-  --denim-h-2: hsl(var(--denim), 100%, 25%);
-  --denim-h-1: hsl(var(--denim), 100%, 12%); // darkest
-  --denim-h-0: hsl(var(--denim), 100%, 2.5%); // darkest
-
-  --denim-a-8: hsl(var(--denim), 12%, 97.5%); // lightest
-  --denim-a-7: hsl(var(--denim), 12%, 87%); // lightest
-  --denim-a-6: hsl(var(--denim), 12%, 75%);
-  --denim-a-5: hsl(var(--denim), 12%, 62%);
-  --denim-a-4: hsl(var(--denim), 12%, 50%);
-  --denim-a-3: hsl(var(--denim), 12%, 37%);
-  --denim-a-2: hsl(var(--denim), 12%, 25%);
-  --denim-a-1: hsl(var(--denim), 12%, 12%);
-  --denim-a-0: hsl(var(--denim), 12%, 2.5%); // darkest
-
-  --denim-b-8: hsl(var(--denim), 25%, 97.5%); // lightest
-  --denim-b-7: hsl(var(--denim), 25%, 87%); // lightest
-  --denim-b-6: hsl(var(--denim), 25%, 75%);
-  --denim-b-5: hsl(var(--denim), 25%, 62%);
-  --denim-b-4: hsl(var(--denim), 25%, 50%);
-  --denim-b-3: hsl(var(--denim), 25%, 37%);
-  --denim-b-2: hsl(var(--denim), 25%, 25%);
-  --denim-b-1: hsl(var(--denim), 25%, 12%);
-  --denim-b-0: hsl(var(--denim), 25%, 2.5%); // darkest
-
-  --denim-c-8: hsl(var(--denim), 37%, 97.5%); // lightest
-  --denim-c-7: hsl(var(--denim), 37%, 87%); // lightest
-  --denim-c-6: hsl(var(--denim), 37%, 75%);
-  --denim-c-5: hsl(var(--denim), 37%, 62%);
-  --denim-c-4: hsl(var(--denim), 37%, 50%);
-  --denim-c-3: hsl(var(--denim), 37%, 37%);
-  --denim-c-2: hsl(var(--denim), 37%, 25%);
-  --denim-c-1: hsl(var(--denim), 37%, 12%);
-  --denim-c-0: hsl(var(--denim), 37%, 2.5%); // darkest
-
+  /*------------------*/
+  //  #TYPOGRAPHY
+  /*------------------*/
   --measure: 40rem;
   --page_width: 80rem; // ? I need some math on this
 
-  --border-radius: 0.125rem;
-  --card-radius: 0.5rem;
-
+  /*------------------*/
+  //  #TIMING
+  /*------------------*/
   --moment: 0.5s ease-in-out;
 
-  // shadows
+  /*------------------*/
+  //  #SHADOWS
+  /*------------------*/
   // TODO these should be the styleguide versions
   // based on the layers of the atomposhere
   // https://en.wikipedia.org/wiki/Atmosphere_of_Earth
@@ -176,8 +33,17 @@
   --troposphere: 0 5px 12px hsla(0, 0%, 0%, 0.4) /* Ambient light shadow */,
     0 18px 32px hsla(0, 0%, 0%, 0.16) /* Direct light shadow */;
 
+  /*------------------*/
+  //  #WIDTHS
+  /*------------------*/
   --pad: 30rem;
   --book: 60rem;
+
+  /*------------------*/
+  //  #EXTRAS
+  /*------------------*/
+  --border-radius: 0.125rem;
+  --card-radius: 0.5rem;
 }
 
 // media queries cant use variables

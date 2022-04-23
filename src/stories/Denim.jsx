@@ -21,7 +21,7 @@ export const Denim = ({ primary, backgroundColor, size, label, ...props }) => {
             className='colorblock'
             type="Denim"
             {...props}
-            style={{backgroundColor: `var(--denim-1)` }}
+            style={{backgroundColor: `hsl(var(--denim), 100%, 12%)` }}
           >
           </div>
           {label}-1

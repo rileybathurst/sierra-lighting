@@ -1,33 +1,50 @@
+/*------------------*/
+//  #COLOR
+/*------------------*/
+
 body {
   background: hsl(var(--honey), 100%, 99%); // custom
-  color: var(--denim-a-1);
+  color: hsl(var(--denim), 12%, 12%);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 37%, 5%);
-    // custom not a louie color as zero doesnt work
-    color: hsl(var(--honey), 100%, 99%); // custom
-    color: var(--honey-f-7);
-    color: whitesmoke;
+    background-color: hsl(var(--denim), 37%, 5%); // custom
     color: hsl(var(--honey), 100%, 97.5%); // custom
   }
 }
 
-header h2 {
-  margin: 0;
-  padding: 1rem;
-  background-color: var(--honey-h-8);
+/*------------------*/
+//  #TOPBAR
+/*------------------*/
+
+.top-bar {
+  background-color: whitesmoke;
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-1);
+    background-color: hsl(var(--denim), 25%, 25%);
   }
 }
 
+/*------------------*/
+//  #HEADER
+/*------------------*/
+
 header {
-  background: var(--honey-h-8);
+  background: hsl(var(--honey) 100%, 100%);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-c-1);
     background-color: hsl(var(--denim), 25%, 12%);
+  }
+
+  h2 {
+    background-color: hsl(var(--honey), 100%, 97.5%);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 100%, 12%);
+    }
+  }
+
+  button:hover svg {
+    background-color: hsl(var(--honey), 100%, 25%);
   }
 }
 
@@ -37,31 +54,30 @@ header {
   // box-shadow: var(--troposphere);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-1);
+    background-color: hsl(var(--denim), 100%, 12%);
   }
 }
 
 button {
   background: transparent;
   border: none;
-
-  /*   @media (prefers-color-scheme: dark) {
-    color: var(--honey-1);
-  } */
 }
 
-header button svg {
-  border-radius: 0.25rem;
-  transition: var(--moment);
-}
+/*------------------*/
+//  #TESTIMONOIALS
+/*------------------*/
 
-header button:hover svg {
-  background-color: var(--honey-h-2);
+.slider-container {
+  background-color: hsl(var(--honey), 100%, 97.5%); // custom
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 25%, 12%);
+  }
 }
 
 .testimonials svg {
-  fill: var(--honey-h-4);
-  outline: 1px solid var(--honey-h-8);
+  fill: hsl(var(--honey), 100%, 50%);
+  outline: 1px solid hsl(var(--honey), 100%, 97.5%);
   // margin-block-end: 1.5rem;
 
   @media (prefers-color-scheme: dark) {

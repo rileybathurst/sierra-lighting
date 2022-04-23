@@ -23,7 +23,7 @@
 }
 
 .dark__link {
-  color: var(--honey-h-3);
+  color: hsl(var(--honey), 100%, 37%);
 }
 
 .selection__test {
@@ -31,7 +31,7 @@
 }
 
 .hover__test {
-  color: var(--honey-a-4);
+  color: hsl(var(--honey), 12%, 50%));
   color: hsl(var(--honey), 100%, 50%);
   text-decoration: underline;
 }

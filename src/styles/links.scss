@@ -3,23 +3,23 @@
 /*------------------------------------*/
 
 a {
-  // color: var(--honey-h-3);
+  // color: hsl(var(--honey), 100%, 37%);
   color: hsl(var(--honey), var(--louie-h), 30%); // custom
   transition: var(--moment);
 
   @media (prefers-color-scheme: dark) {
-    color: var(--denim-c-5);
+    color: hsl(var(--denim), 37%, 63%);
   }
   // text-decoration: none;
 }
 
 a:hover {
-  color: var(--honey-h-3);
+  color: hsl(var(--honey), 100%, 37%);
 }
 
 a:hover::selection {
   // ! this doesnt work but kinda needs to be a thing
-  background-color: var(--honey-h-2);
+  background-color: hsl(var(--honey), 100%, 25%);
 }
 
 /*------------------*/
@@ -36,12 +36,12 @@ a:hover::selection {
 }
 
 .hover-back:hover {
-  background-color: var(--honey-h-8);
-  border: 1px solid var(--honey-h-7);
+  background-color: hsl(var(--honey), 100%, 97.5%);
+  border: 1px solid hsl(var(--honey), 100%, 87%);
   box-shadow: var(--mesosphere);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--honey-6);
+    background-color: hsl(var(--honey), 100%, 75%);
   }
 }
 
@@ -54,8 +54,8 @@ a:hover::selection {
 }
 
 .bigboy a:hover {
-  background-color: var(--honey-h-7);
-  border-color: var(--honey-h-6);
+  background-color: hsl(var(--honey), 100%, 87%);
+  border-color: hsl(var(--honey), 100%, 75%);
 }
 
 .hover-back--inline {
@@ -70,5 +70,5 @@ a:hover::selection {
 }
 
 .footer-copyright a:hover svg {
-  border-color: var(--honey-h-4);
+  border-color: hsl(var(--honey), 100%, 50%);
 }

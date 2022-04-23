@@ -41,7 +41,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
           className='colorblock'
           type="Honey"
           {...props}
-          style={{backgroundColor: `var(--honey-a-4)` }}
+          style={{backgroundColor: `hsl(var(--honey), 12%, 50%))` }}
         >
         </div>
         {label}-a-4
@@ -52,7 +52,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
           className='colorblock'
           type="Honey"
           {...props}
-          style={{backgroundColor: `var(--honey-a-8)` }}
+          style={{backgroundColor: `hsl(var(--honey), 12%, 97.5%)` }}
         >
         </div>
         {label}-a-8
@@ -66,7 +66,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
         className='colorblock'
         type="Honey"
         {...props}
-        style={{backgroundColor: `var(--honey-f-7)` }}
+        style={{backgroundColor: `hsl(var(--honey), 75%, 87%)` }}
       >
       </div>
       {label}-f-7
@@ -91,7 +91,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
         className='colorblock'
         type="Honey"
         {...props}
-        style={{backgroundColor: `var(--honey-h-2)` }}
+        style={{backgroundColor: `hsl(var(--honey), 100%, 25%)` }}
       >
       </div>
       {label}-h-2
@@ -102,7 +102,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
         className='colorblock'
         type="Honey"
         {...props}
-        style={{backgroundColor: `var(--honey-h-4)` }}
+        style={{backgroundColor: `hsl(var(--honey), 100%, 50%)` }}
       >
       </div>
       {label}-h-4
@@ -113,7 +113,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
         className='colorblock'
         type="Honey"
         {...props}
-        style={{backgroundColor: `var(--honey-h-8)` }}
+        style={{backgroundColor: `hsl(var(--honey), 100%, 97.5%)` }}
       >
       </div>
       {label}-h-8

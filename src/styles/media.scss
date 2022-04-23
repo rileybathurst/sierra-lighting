@@ -15,7 +15,7 @@ a svg {
 }
 
 a svg:hover {
-  fill: var(--honey-3);
+  fill: hsl(var(--honey), 100%, 37%);
 }
 
 /*------------------*/
@@ -34,7 +34,7 @@ a svg:hover {
   aspect-ratio: 3/2;
 
   @media (prefers-color-scheme: dark) {
-    border-color: var(--denim-a-2);
+    border-color: hsl(var(--denim), 12%, 25%);
   }
 
   img {
@@ -58,8 +58,9 @@ a svg:hover {
 .snowyroof {
   aspect-ratio: 4/3;
 
-  img {
-  }
+  // ? was this supposed to be something
+  /*   img {
+  } */
 }
 
 /*------------------*/
@@ -68,20 +69,20 @@ a svg:hover {
 
 header svg {
   margin: 1.5rem 0.75rem; // 24px 12px
-  fill: var(--denim-1);
+  fill: hsl(var(--denim), 100%, 12%);
   padding: 0.25rem;
   border-radius: var(--border-radius);
 
   @media (prefers-color-scheme: dark) {
-    fill: var(--honey-a-8);
+    fill: hsl(var(--honey), 12%, 97.5%);
   }
 }
 
 header svg:hover {
-  fill: var(--honey-h-3);
+  fill: hsl(var(--honey), 100%, 37%);
 
   @media (prefers-color-scheme: dark) {
-    fill: var(--honey-a-4);
+    fill: hsl(var(--honey), 12%, 50%);
   }
 }
 
@@ -123,13 +124,13 @@ header svg:hover {
 
     > a:hover p {
       border-radius: var(--border-radius);
-      background: var(--honey-h-8);
+      background: hsl(var(--honey), 100%, 97.5%);
       box-shadow: var(--mesosphere);
     }
 
     > a:hover > .gatsby-image-wrapper {
       box-shadow: var(--stratosphere);
-      border-color: var(--honey-h-4);
+      border-color: hsl(var(--honey), 100%, 50%);
     }
   } // div
 } // .team-heads
@@ -177,12 +178,12 @@ header svg:hover {
   }
 
   &:hover::before {
-    border-color: var(--honey-h-4);
+    border-color: hsl(var(--honey), 100%, 50%);
     border-left-color: transparent;
   }
 
   &:hover::after {
-    border-top: 2px solid var(--honey-h-4);
+    border-top: 2px solid hsl(var(--honey), 100%, 50%);
     border-left-width: 2px; // Solid edges, invisible borders
     border-right-width: 2px; // Solid edges, invisible borders
     transform: rotate(270deg); // Rotate around circle
