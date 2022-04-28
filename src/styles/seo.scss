@@ -3,6 +3,7 @@
 /*------------------*/
 
 // this is only for showing internally
+// colors come from https://clrs.cc/
 
 .seo-showcase {
   .key,
@@ -11,6 +12,9 @@
   .red {
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius);
+  }
+
+  .key {
     background-color: lightgray;
 
     @media (prefers-color-scheme: dark) {
@@ -18,17 +22,17 @@
     }
   }
 
-  /* .green {
-    background-color: green;
+  .good {
+    background-color: #2ecc40;
   }
 
-  .yellow {
-    background-color: yellow;
+  .ok {
+    background-color: #ffdc00;
   }
 
-  .red {
-    background-color: red;
-  } */
+  .bad {
+    background-color: #ff4136;
+  }
 
   img {
     max-width: 10rem;

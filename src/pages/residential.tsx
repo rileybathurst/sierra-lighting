@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -13,8 +13,8 @@ export function Residential() {
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-1-web-tagged.jpg"
     alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
     className="residential_image"
-    width={300}
     breakpoints={[300, 600, 900]}
+    width={300}
   />
 }
 
@@ -23,8 +23,8 @@ export function Wreath() {
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-4-web-tagged.jpg"
     alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
     className="wreath_image"
-    width={300}
     breakpoints={[300, 600, 900]}
+    width={300}
   />
 }
 
@@ -33,8 +33,8 @@ export function SnowyRoof() {
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-3-web-tagged.jpg"
     alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
     className="snowyroof"
-    width={300}
     breakpoints={[300, 600, 900]}
+    width={300}
   />
 }
 
@@ -46,7 +46,7 @@ const ResidentialPage = () => {
         title="Residential Christmas Lights and Decorations"
         description="Sierra Lighting installs Christmas lights on homes in Reno, Truckee, and Tahoe.
         We are full service from design to takedown."
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-1-web-tagged.jpg"
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/residential-og-sierra_lighting.jpg"
       />
       <Header />
       <main>
@@ -170,8 +170,8 @@ query ResidentialLightQuery {
         localFile {
           childImageSharp {
             gatsbyImageData(
-              width: 220
-              breakpoints: [220, 440, 880]
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
             )
           }
         }

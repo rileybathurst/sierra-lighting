@@ -6,6 +6,8 @@ import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
 import { useStaticQuery, graphql } from "gatsby";
 
+// TODO something about titles
+
 // https://blog.spotibo.com/meta-description-length/
 // less than 120 characters is good
 // more than 160 characters is bad
@@ -13,11 +15,27 @@ function DescLength(props) {
   const desc = props.desc;
   const length = desc.length;
   if (length <= 120) {
-    return <span className="good">{length} = good</span>;
+    return <span className="good key">{length} = good</span>;
   } else if (length > 120 && length <= 160) {
-    return <span className="ok">{length} = ok</span>;
+    return <span className="ok key">{length} = ok</span>;
   } else {
-    return <span className="bad">{length} = bad</span>;
+    return <span className="bad key">{length} = bad</span>;
+  }
+}
+
+function GetMeta(props) {
+  const link = props.link;
+  console.log(link);
+
+  const img = new Image();
+  img.src = link;
+
+  console.log(img.naturalWidth);
+
+  if (img.naturalWidth == 1200) {
+    return <span className="good key">width: {img.naturalWidth} = good</span>;
+  } else {
+    return <span className="bad key">width: {img.naturalWidth} = bad</span>;
   }
 }
 
@@ -132,11 +150,10 @@ const SEO = ({
           <p>Description charachter length = <DescLength desc={seo.description} /></p>
           {/* // ? why does this need to be ogImage? */}
           {/* // regular image doubles the url */}
-          <p key="image"><span className="key">Image</span> = </p>
+          <p key="image"><span className="key">Image</span> = <GetMeta link={seo.ogImage} /></p>
           <img src={seo.ogImage} alt="seo checking" />
         </div>
-      ) : null
-      }
+      ) : null}
     </>
   );
 };

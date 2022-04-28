@@ -71,7 +71,7 @@ const SocialIcons = () => (
             data-name="Layer 1"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 129.78 99.06"
-            width="129.78"
+            width="40"
           >
             <title>Sierra Lighting nextdoor</title>
             <g id="LG_GRN_LOGO" data-name="LG GRN LOGO">
@@ -100,7 +100,7 @@ const SocialIcons = () => (
           href="https://www.tiktok.com/@sierralighting"
           title="Sierra Lighting tiktok"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2859 3333" fillRule="evenodd" clipRule="evenodd" width="2859">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2859 3333" fillRule="evenodd" clipRule="evenodd" width="40">
             <path d="M2081 0c55 473 319 755 778 785v532c-266 26-499-61-770-225v995c0 1264-1378 1659-1932 753-356-583-138-1606 1004-1647v561c-87 14-180 36-265 65-254 86-398 247-358 531 77 544 1075 705 992-358V1h551z" />
           </svg>
         </a>
@@ -111,7 +111,7 @@ const SocialIcons = () => (
           href="https://www.linkedin.com/company/sierralighting/"
           title="Sierra Lighting linkedin"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.6 127.9" width="127.6">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.6 127.9" width="40">
             <g>
               <path d="M63.6,0c18.2,0,36.3,0.1,54.5,0c4.8,0,8.8,3.4,9.4,7.7c0.1,0.5,0.1,0.9,0.1,1.4c0,36.6,0,73.1,0,109.7
 		c0,4.9-3.9,8.9-8.7,9.1c-0.3,0-0.6,0-1,0c-36.3,0-72.5,0-108.8,0c-4.6,0-8-2.4-9.2-6.6c-0.3-0.9-0.4-1.8-0.4-2.7
@@ -136,7 +136,7 @@ const SocialIcons = () => (
           title="Sierra Lighting google"
         >
 
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="40" >
             <g>
               <path d="M389.3,299c-2.5,0-4.6,0-6.7,0c-40.2,0-80.3,0-120.5,0c-6.9,0-7,0-7-6.8c0-27.5,0.1-55-0.1-82.5c0-5,1.5-6.6,6.6-6.6
 		c73.8,0.1,147.7,0.1,221.5,0c4.2,0,6.4,1.2,7,5.6c7.5,51.4,4.4,101.9-15.9,150.2c-31.4,74.7-88.1,118.8-167.2,134
