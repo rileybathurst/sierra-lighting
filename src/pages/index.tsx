@@ -6,7 +6,7 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import "../styles/app.scss";
+// import "../styles/app.scss"; // gatsby-browser.js
 import AreaAccordian from "../components/area-accordian";
 import TestimonialList from "../components/testimonial-list";
 

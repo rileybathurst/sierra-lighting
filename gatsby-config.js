@@ -56,7 +56,7 @@ module.exports = {
           formats: [`auto`], //, `webp` // this is currently off to get under a ram limit bug
           placeholder: `dominantColor`,
           quality: 50,
-          breakpoints: [750, 1080, 1366, 1920],
+          breakpoints: [300, 750, 1080, 1366, 1920],
           backgroundColor: `transparent`,
           tracedSVGOptions: {},
           blurredOptions: {},
