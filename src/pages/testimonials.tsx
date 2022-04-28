@@ -7,6 +7,22 @@ import Footer from "../components/footer";
 
 import TestimonialRanking from "../components/testimonial-ranking";
 
+// TODO only show the stars if the user has voted
+
+function TestimonialLink(props) {
+  if (props.aref) {
+    return (
+      <a href={props.aref} target="_blank" rel="noopener noreferrer">
+        <span itemProp="name">{props.customer}</span>
+      </a>
+    );
+  } else {
+    return (
+      <span itemProp="name">{props.customer}</span>
+    );
+  }
+}
+
 const TestimonialsPage = () => {
   return (
     <>
@@ -53,7 +69,9 @@ const TestimonialsPage = () => {
                       <TestimonialRanking stars={testimonial.stars} />
                     </ul>
                     <h3 itemProp="author" itemScope itemType="https://schema.org/Person">
-                      <span itemProp="name">{testimonial.customer}</span>
+
+                      <TestimonialLink aref={testimonial.link} customer={testimonial.customer} />
+
                     </h3>
                     <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
                     <p itemProp="reviewBody">{testimonial.review}</p>
@@ -142,6 +160,7 @@ query TestimonialsQuery {
       title
       createdAt
       slug
+      link
     }
   }
 }

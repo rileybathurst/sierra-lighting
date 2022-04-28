@@ -115,6 +115,13 @@ const WeddingPage = () => {
         </div>
 
         <div className="measure">
+          <p className="crest">Even More?</p>
+          <h5 className="range"><Link to="/lights">View all other lights</Link></h5>
+
+          <hr />
+        </div>
+
+        <div className="measure">
           <h3>Have something particular in mind? Just ask!</h3>
 
           <hr />
@@ -150,7 +157,7 @@ export default WeddingPage
 
 const query = graphql`
 query WeddingQuery {
-  allStrapiLight(filter: {wedding: {eq: true}}) {
+  allStrapiLight(limit: 3, filter: {wedding: {eq: true}}) {
     nodes {
       id
       name
@@ -158,6 +165,14 @@ query WeddingQuery {
       excerpt
       slug
       outdoor
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+      }
     }
   }
 }

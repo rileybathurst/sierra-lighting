@@ -29,8 +29,14 @@ const ChristmasLightsProjectsPage = () => {
             <meta itemProp="position" content="1" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">Christmas Light Projects</span>
+            <Link itemProp="item" to="/projects">
+              <span itemProp="name">Projects</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
+
+          </li>
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">Christmas Light Projects</span>
+            <meta itemProp="position" content="3" />
           </li>
         </ol>
         <hr />

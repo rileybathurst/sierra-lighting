@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -48,7 +48,14 @@ const ProjectsPage = () => {
                 {
                   data.residential.nodes.map(project => (
                     <div key={project.id} className="card">
-                      <NorthTahoeEvents />
+                      <GatsbyImage
+                        image={
+                          project?.image?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={project.image?.alternativeText}
+                        className="poster"
+                      />
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
@@ -73,7 +80,14 @@ const ProjectsPage = () => {
                 {
                   data.commercial.nodes.map(project => (
                     <div key={project.id} className="card">
-                      <NorthTahoeEvents />
+                      <GatsbyImage
+                        image={
+                          project?.image?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={project.image?.alternativeText}
+                        className="poster"
+                      />
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
@@ -98,7 +112,14 @@ const ProjectsPage = () => {
                 {
                   data.wedding.nodes.map(project => (
                     <div key={project.id} className="card">
-                      <NorthTahoeEvents />
+                      <GatsbyImage
+                        image={
+                          project?.image?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={project.image?.alternativeText}
+                        className="poster"
+                      />
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
@@ -145,6 +166,15 @@ query ProjectsQuery {
         }
       }
       slug
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
   }
   
@@ -158,6 +188,15 @@ query ProjectsQuery {
         }
       }
       slug
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
   }
 
@@ -171,6 +210,15 @@ query ProjectsQuery {
         }
       }
       slug
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
   }
 }

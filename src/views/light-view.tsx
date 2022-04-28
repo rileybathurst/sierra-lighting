@@ -24,7 +24,7 @@ function Projects(props) {
         <div className="paper"></div>
         <div className="content">
           <hr />
-          <h2><Link to={`/venue/${project.slug}`}>{project.title}</Link></h2>
+          <h2><Link to={`/project/${project.slug}`}>{project.title}</Link></h2>
           <p>{project.excerpt}</p>
         </div>
       </section>
@@ -89,7 +89,6 @@ function Other(props) {
         </div>
 
         <div className="measure">
-          {/* // TODO this needs a little more space */}
           <p className="crest">Even More?</p>
           <h5 className="range"><Link to="/lights">View all other lights</Link></h5>
         </div>

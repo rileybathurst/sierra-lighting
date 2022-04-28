@@ -127,6 +127,11 @@ const CommercialPage = () => {
         </div>
 
         <div className="measure">
+          <p className="crest">Even More?</p>
+          <h5 className="range"><Link to="/lights">View all other lights</Link></h5>
+        </div>
+
+        <div className="measure">
           <hr />
           <h2>Worry Free Takedown and Storage</h2>
 
@@ -146,7 +151,7 @@ export default CommercialPage
 
 const query = graphql`
 query CommercialLightQuery {
-  allStrapiLight(filter: {commercialchristmas: {eq: true}}) {
+  allStrapiLight(limit: 3, filter: {commercialchristmas: {eq: true}}) {
     nodes {
       id
       name

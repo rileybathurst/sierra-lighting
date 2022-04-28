@@ -118,6 +118,11 @@ const ResidentialPage = () => {
         </div>
 
         <div className="measure">
+          <p className="crest">Even More?</p>
+          <h5 className="range"><Link to="/lights">View all other lights</Link></h5>
+        </div>
+
+        <div className="measure">
           <hr />
           <h3>Full Season Maintenance and Support</h3>
 
@@ -142,7 +147,7 @@ export default ResidentialPage
 
 const query = graphql`
 query ResidentialLightQuery {
-  allStrapiLight(filter: {residentialchristmas: {eq: true}}) {
+  allStrapiLight(limit: 3, filter: {residentialchristmas: {eq: true}}) {
     nodes {
       id
       name

@@ -27,8 +27,13 @@ const WeddingProjectsPage = () => {
             <meta itemProp="position" content="1" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">Wedding Projects</span>
+            <Link itemProp="item" to="/projects">
+              <span itemProp="name">Projects</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
+          </li>
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">Wedding Projects</span>
+            <meta itemProp="position" content="3" />
           </li>
         </ol>
         <hr />
@@ -37,7 +42,6 @@ const WeddingProjectsPage = () => {
       <main>
 
         <div className="measure">
-          <hr />
           <h3>Wedding Projects</h3>
         </div>
 

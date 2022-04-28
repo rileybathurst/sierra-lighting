@@ -61,6 +61,20 @@ export function WeddingCannopy() {
     className="poster" />
 }
 
+export function BistroLights() {
+  return <StaticImage
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-bistro_lights.jpg"
+    alt="sierra lighting bistro lights"
+    className="" />
+}
+
+export function Backyard() {
+  return <StaticImage
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-wedding-backyard.jpg"
+    alt="sierra lighting wedding lights"
+    className="" />
+}
+
 const IndexPage = () => {
   return (
     <>
@@ -111,9 +125,10 @@ const IndexPage = () => {
             </section>
 
             <div className="home-gallery">
-              <NorthTahoeArts />
-              <NorthTahoeEvents />
-              <InclineChevron />
+              {/* // TODO dark images and seasonal adjust */}
+              <BistroLights />
+              <WestShoreWedding />
+              <Backyard />
             </div>
           </div>
         </div>

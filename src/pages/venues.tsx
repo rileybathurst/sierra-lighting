@@ -408,7 +408,7 @@ query VenuesQuery {
     }
   }
   
-  glenbrook: allStrapiVenue(filter: {area: {slug: {eq: "donner"}}}) {
+  glenbrook: allStrapiVenue(filter: {area: {slug: {eq: "glenbrook"}}}) {
     nodes {
       id
       name
@@ -425,7 +425,7 @@ query VenuesQuery {
     }
   }
 
-  tahoma: allStrapiVenue(filter: {area: {slug: {eq: "donner"}}}) {
+  tahoma: allStrapiVenue(filter: {area: {slug: {eq: "tahoma"}}}) {
     nodes {
       id
       name
