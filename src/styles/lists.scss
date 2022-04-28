@@ -20,11 +20,29 @@
   justify-items: space-between;
   align-items: space-between;
 
+  // theres not 1 number that does this its close but not there
+  > * {
+    flex: 1 1 11rem;
+
+    @media (min-width: $book) {
+      flex: 1 1 9rem;
+    }
+  }
+
   > ul {
     padding-inline-start: 0;
-    flex: 1;
-    border-right: 1px solid;
-    border-color: hsl(var(--honey), 100%, 50%);
+    border: 1px solid;
+    border-color: hsl(var(--honey), 100%, 87%);
+    border-radius: var(--border-radius);
+    background-color: hsl(var(--honey), 100%, 97.5%);
+    padding-block: 0.5rem;
+
+    @media (min-width: $book) {
+      border: none;
+      border-right: 1px solid hsl(var(--honey), 100%, 50%);
+      border-radius: 0;
+      background-color: transparent;
+    }
 
     @media (prefers-color-scheme: dark) {
       border-color: hsl(var(--denim), 25%, 25%);
@@ -57,7 +75,9 @@
   }
 
   > ul:last-child {
-    border-right: none;
+    @media (min-width: $book) {
+      border-right: none;
+    }
   }
 }
 

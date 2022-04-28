@@ -30,15 +30,16 @@ a svg:hover {
 .poster {
   width: 100%;
   max-width: 60rem;
-  margin-block-end: 3rem;
   display: block !important; // overwrites gatsby // makes sure the margin-inline works
   margin-inline: auto;
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
   border: 1px solid whitesmoke;
   aspect-ratio: 3/2;
+  margin-block-end: 1.5rem;
 
-  > * {
+  @media (min-width: $book) {
+    margin-block-end: 3rem;
   }
 
   @media (prefers-color-scheme: dark) {

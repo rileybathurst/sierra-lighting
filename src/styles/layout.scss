@@ -23,15 +23,8 @@ header button svg {
 }
 
 .top-bar {
-  text-align: center;
   z-index: 3;
   position: relative;
-
-  h2 {
-    font-size: 1rem;
-    margin-block: 0;
-    padding-block: 0.5rem;
-  }
 
   hr {
     margin-block-start: 0;
@@ -77,11 +70,16 @@ header {
   }
 
   button {
+    background: none;
+    border: none;
+    box-shadow: none;
     grid-row: 1;
     grid-column: 2;
     z-index: 2;
-    max-width: 6rem;
+    max-width: 5rem; // guess and check
+    margin-inline-end: 1rem;
     justify-self: flex-end;
+    height: min-content;
 
     svg {
       min-width: max-content;
@@ -251,10 +249,14 @@ header {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    gap: 0.5rem;
-    justify-content: space-between;
+    gap: 1.5rem;
     max-width: var(--measure);
     padding-inline-start: 0; // reset
+    justify-content: center;
+
+    @media (min-width: $book) {
+      justify-content: space-between;
+    }
 
     li {
       list-style: none;
@@ -293,7 +295,11 @@ header {
   width: calc(100% - 2rem);
   display: flex;
   flex-flow: row wrap;
-  margin-block-start: 3rem;
+  margin-block-start: 0.5rem; // skip 1rem due to a flex gap from a sr-only element
+
+  @media (min-width: $book) {
+    margin-block-start: 2rem; // skip 1rem due to a flex gap from a sr-only element
+  }
 
   > * {
     flex: 1;
@@ -337,6 +343,7 @@ footer {
 
   ul {
     padding-inline-start: 0;
+    margin-block-start: 0; // reset
   }
 
   // padding-block-end: 3rem;
@@ -344,6 +351,8 @@ footer {
     display: block;
     // padding-block-end: 1.5rem;
     font-size: 1.25rem;
+    line-height: 1.875rem;
+    margin-block-end: 0.625rem;
   }
 
   .together h3,

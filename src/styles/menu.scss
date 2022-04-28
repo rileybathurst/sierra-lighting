@@ -173,13 +173,13 @@
 }
 
 .hamburger.is-active:before {
-  border: 2px solid black;
+  border: 2px solid hsl(var(--honey), 100%, 30%);
 }
 
 .hamburger .line {
   width: 2rem;
-  height: 0.2rem;
-  background-color: black;
+  height: 3px;
+  background-color: hsl(var(--honey), 100%, 30%);
   display: block;
   margin-block: 0.5rem;
   transition: var(--moment);
