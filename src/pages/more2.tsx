@@ -1,3 +1,6 @@
+// this queries more than netlify likes but its hiding a lot its testing if it loads slower than residential
+// it seems totally fine but keep an eye on it
+
 // https://www.gatsbyjs.com/docs/how-to/querying-data/use-static-query/
 // https://www.erichowey.dev/writing/load-more-button-and-infinite-scroll-in-gatsby/
 

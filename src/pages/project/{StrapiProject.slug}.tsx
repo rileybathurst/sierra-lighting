@@ -52,7 +52,10 @@ export const query = graphql`
         image {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(
+                breakpoints: [111, 165, 222, 444, 880]
+                width: 222
+              )
             }
           }
           alternativeText

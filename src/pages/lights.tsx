@@ -6,14 +6,6 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-export function NorthTahoeEvents() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
-    alt="christmas lighting display at North Tahoe Events center"
-    className="northtahoeevents" />
-}
-
-
 const lightsPage = () => {
   return (
     <>
@@ -96,7 +88,10 @@ query LightsQuery {
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
           }
         }
         alternativeText

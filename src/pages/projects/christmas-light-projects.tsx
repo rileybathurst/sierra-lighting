@@ -146,7 +146,10 @@ query ChristmasLightsProjectsQuery {
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
           }
         }
         alternativeText
@@ -168,7 +171,10 @@ query ChristmasLightsProjectsQuery {
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
           }
         }
         alternativeText

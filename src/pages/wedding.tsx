@@ -12,21 +12,30 @@ export function BistroLights() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-bistro_lights.jpg"
     alt="sierra lighting bistro lights"
-    className="" />
+    className=""
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 export function OutdoorWedding() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-outdoor_wedding.jpg"
     alt="sierra lighting lake tahoe outdoor wedding"
-    className="" />
+    className=""
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 export function WeddingBlueHour() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-wedding_blue_hour.jpg"
     alt="sierra lighting setup the outdoor lights over a wedding party"
-    className="snowyroof" />
+    className="snowyroof"
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 
@@ -169,7 +178,10 @@ query WeddingQuery {
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
           }
         }
       }

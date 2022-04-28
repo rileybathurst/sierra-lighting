@@ -16,6 +16,8 @@ export function Village() {
     alt="christmas lighting display at the village at rancharrah"
     className="village"
     itemProp="photo"
+    breakpoints={[300, 600, 900]}
+    width={300}
   />
 }
 
@@ -23,21 +25,30 @@ export function NorthTahoeArts() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Arts-3-web-tagged.jpg"
     alt="christmas lighting display at North Tahoe Arts gift shop and gallery"
-    className="northtahoearts" />
+    className="northtahoearts"
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 export function NorthTahoeEvents() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
     alt="christmas lighting display at North Tahoe Events center"
-    className="northtahoeevents" />
+    className="northtahoeevents"
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 export function InclineChevron() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Incline-7-web-tagged.jpg"
     alt="christmas tree in Incline village nevada"
-    className="inclinechevron" />
+    className="inclinechevron"
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 export function SnowyRoof() {
@@ -51,28 +62,40 @@ export function WestShoreWedding() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-west_shore_cafe_lighting.jpg"
     alt="wedding lights over thelooking lake tahoe calidofornia"
-    className="poster" />
+    className="poster"
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 export function WeddingCannopy() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/Sierra_Lighting-Zach-Maija.jpg"
     alt="wedding light canopy in truckee california"
-    className="poster" />
+    className="poster"
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 export function BistroLights() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-bistro_lights.jpg"
     alt="sierra lighting bistro lights"
-    className="" />
+    className=""
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 export function Backyard() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-wedding-backyard.jpg"
     alt="sierra lighting wedding lights"
-    className="" />
+    className=""
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 const IndexPage = () => {

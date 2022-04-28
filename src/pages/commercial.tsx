@@ -12,21 +12,30 @@ export function NorthTahoeEvents() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
     alt="christmas lighting display at North Tahoe Events center"
-    className="northtahoeevents" />
+    className="northtahoeevents"
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 export function InclineChevron() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Incline-7-web-tagged.jpg"
     alt="christmas tree in Incline village nevada"
-    className="inclinechevron" />
+    className="inclinechevron"
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 export function SnowyRoof() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-3-web-tagged.jpg"
     alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="snowyroof" />
+    className="snowyroof"
+    breakpoints={[300, 600, 900]}
+    width={300}
+  />
 }
 
 const CommercialPage = () => {
@@ -161,7 +170,10 @@ query CommercialLightQuery {
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
           }
         }
         alternativeText
