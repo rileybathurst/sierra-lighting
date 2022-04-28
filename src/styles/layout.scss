@@ -366,10 +366,14 @@ footer {
 
 .triple {
   display: flex;
-  gap: 1rem;
+  gap: 0.25rem;
   max-width: $book;
   margin-inline: auto;
   margin-block: 3rem;
+
+  @media (min-width: $book) {
+    gap: 1rem;
+  }
 
   > * {
     width: 33%;

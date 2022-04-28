@@ -80,7 +80,10 @@ query ResidentialProjectsQuery {
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(
+              width: 220
+              breakpoints: [220, 440, 880]
+            )
           }
         }
         alternativeText

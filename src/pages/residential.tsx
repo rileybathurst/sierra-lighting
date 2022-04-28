@@ -12,21 +12,30 @@ export function Residential() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-1-web-tagged.jpg"
     alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="residential_image" />
+    className="residential_image"
+    width={300}
+    breakpoints={[300, 600, 900]}
+  />
 }
 
 export function Wreath() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-4-web-tagged.jpg"
     alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="wreath_image" />
+    className="wreath_image"
+    width={300}
+    breakpoints={[300, 600, 900]}
+  />
 }
 
 export function SnowyRoof() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-3-web-tagged.jpg"
     alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="snowyroof" />
+    className="snowyroof"
+    width={300}
+    breakpoints={[300, 600, 900]}
+  />
 }
 
 
@@ -160,7 +169,10 @@ query ResidentialLightQuery {
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(
+              width: 220
+              breakpoints: [220, 440, 880]
+            )
           }
         }
         alternativeText
