@@ -10,17 +10,19 @@ const AreaList = () => (
         render={data => (
           <div className="states">
             {/* the state names are sometimes not needed */}
-            <ul itemScope itemType="https://schema.org/areaServed">
+            <ul>
               <li key="california" className="state__name">
                 <h3>California</h3>
               </li>
               {
                 data.california.nodes.map(area => (
-                  <li className="" key={area.id} itemProp="location" itemScope itemType="https://schema.org/Place">
-                    <Link to={`/area/${area.slug}`} itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                      <span itemProp="addressLocality">{area.name}</span>&nbsp;
-                      <span itemProp="addressRegion" className="sr-only">{area.state}</span>
-                    </Link>
+                  <li className="" key={area.id} itemProp="address">
+                    <div itemProp="location" itemScope itemType="https://schema.org/areaServed">
+                      <Link to={`/area/${area.slug}`} itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                        <span itemProp="addressLocality">{area.name}</span>&nbsp;
+                        <span itemProp="addressRegion" className="sr-only">{area.state}</span>
+                      </Link>
+                    </div>
                   </li>
                 ))
               }

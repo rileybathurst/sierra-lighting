@@ -17,7 +17,7 @@ function ThisYear() {
 
 const Footer = () => {
   return (
-    <footer itemScope itemType="https://schema.org/LocalBusiness">
+    <footer>{/* itemScope itemType="https://schema.org/LocalBusiness" */}
       <div className="measure">
         <hr />
       </div>

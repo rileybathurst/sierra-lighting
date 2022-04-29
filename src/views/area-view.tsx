@@ -75,9 +75,11 @@ const AreaView = ({ area }) => {
           className="poster"
         />
 
-        <article className="measure single" itemProp="address">{/* itemScope itemType="https://schema.org/LocalBusiness" */}
+        <article className="measure single" itemProp="address">
           <div itemProp="location" itemScope itemType="https://schema.org/areaServed">
             <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+              <span itemProp="name" className="sr-only">{area.name}</span>
+              {/* this is for the address / postaladdress / name */}
 
               <h2 className="crest">{area.tagline}</h2>
               <h1 className="range" >
