@@ -1,23 +1,19 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-// TODO make this actual images with a scaled size
-export function NorthTahoeEvents() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
-    alt="christmas lighting display at North Tahoe Events center"
-    className="northtahoeevents" />
-}
-
 const WeddingProjectsPage = () => {
   return (
     <>
-      <Seo title="Wedding Projects | Sierra Lighting" />
+      <Seo
+        title="Wedding Projects | Sierra Lighting"
+        description="some of our finest wedding projects"
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/wedding-og-sierra_lighting.jpg"
+      />
       <Header />
 
       <div className="measure">
@@ -55,18 +51,23 @@ const WeddingProjectsPage = () => {
                 {
                   data.allStrapiProject.nodes.map(project => (
                     <div key={project.id} className="card">
-                      <NorthTahoeEvents />
+                      <GatsbyImage
+                        image={
+                          project?.image?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={project.image?.alternativeText}
+                        className="poster"
+                      />
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
-                        <h3 className="crest">Byline</h3>
                         <h2 className="mixta">
                           <Link to={`/project/${project.slug}`}>
                             {project.title}
                           </Link>
                         </h2>
-                        {/* this is markdown makdown maybe I should also have something else */}
-                        {/* <p>{project.description.data.description}</p> */}
+                        <p>{project.excerpt}</p>
                       </div>
                     </div>
                   ))
@@ -92,12 +93,20 @@ query WeddingProjectsPageQuery {
     nodes {
       id
       title
-      description {
-        data {
-          description
-        }
-      }
+      excerpt
       slug
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
+          }
+        }
+        alternativeText
+      }
     }
   }
 }

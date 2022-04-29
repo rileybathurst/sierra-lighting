@@ -14,6 +14,7 @@ const FaqsPage = () => {
         itemType="https://schema.org/FAQPage"
         itemScope={true}
         description="Your go to holiday lights installer in the Reno, Truckee, and North Tahoe area. A list of frequently asked questions. Please reach out for more information and estimates."
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/og_image-sierra_lighting-bistro_lights.jpg"
       />
 
       <Header />

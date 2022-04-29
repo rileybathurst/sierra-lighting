@@ -15,6 +15,7 @@ const FooterList = () => (
       <li key="wedding projects"><Link to="/projects/wedding-projects">Wedding Projects</Link></li>
       <li key="venues"><Link to="/venues">Venues</Link></li>
       <li key="vendors"><Link to="/vendors">Vendors</Link></li>
+      <li key="lights"><Link to="/lights">Lights</Link></li>
     </ul>
 
     {/* // ? other group */}
@@ -26,7 +27,6 @@ const FooterList = () => (
       <li key="areas"><Link to="/areas">Service Areas</Link></li>
     </ul>
 
-    {/* // TODO check with Rom on grouping */}
     <ul>
       <li key="permanent"><Link to="/permanent">Permanent Patio Lights</Link></li>
       <li key="events"><Link to="/events">Non Wedding Events</Link></li>

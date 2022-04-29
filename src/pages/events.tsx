@@ -1,5 +1,3 @@
-// TODO I think I have this in asana but the internet is out so I cant find it
-
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
@@ -8,33 +6,33 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-export function Residential() {
+export function RSL() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-1-web-tagged.jpg"
-    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="residential_image"
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/events/sierra_lighting-rsl-outdoor_lighting.jpg"
+    alt="bistro lights display on an entrance in reno nevada"
+    className="RSL_image"
     breakpoints={[300, 600, 900]}
     width={300}
   />
 }
 
-export function Wreath() {
+export function RancheroTree() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-4-web-tagged.jpg"
-    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="wreath_image"
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/events/sierra_lighting-rancherro_tree-outdoor.jpg"
+    alt="christmas lights display on a tree in Reno nevada"
+    className="RancheroTree"
     breakpoints={[300, 600, 900]}
     width={300}
   />
 }
 
-export function SnowyRoof() {
+export function BistroLights() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-3-web-tagged.jpg"
-    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="snowyroof"
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-bistro_lights.jpg"
+    alt="sierra lighting bistro lights"
+    className=""
     breakpoints={[300, 600, 900]}
-    width={300}
+    width={650}
   />
 }
 
@@ -46,7 +44,7 @@ const EventsPage = () => {
         title="Events | Sierra Lighting"
         description="Sierra Lighting installs Christmas lights on homes in Reno, Truckee, and Tahoe.
         We are full service from design to takedown." // TODO
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-1-web-tagged.jpg" // TODO
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/og_image-sierra_lighting-bistro_lights.jpg"
       />
       <Header />
       <main>
@@ -72,9 +70,9 @@ const EventsPage = () => {
           <p>Whether it's an anniversary, birthday party, or any other special event, we have you covered.</p>
         </div>
         <div className="triple">
-          <Residential />{/* // TODO change image */}
-          <Wreath />{/* // TODO change image */}
-          <SnowyRoof />{/* // TODO change image */}
+          <BistroLights />
+          <RSL />
+          <RancheroTree />
         </div>
 
         <div className="measure">

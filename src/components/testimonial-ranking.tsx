@@ -7,24 +7,29 @@ function TestimonialRanking(props) {
   const count = [];
   const stars = props.stars;
 
-  let i = 0;
-  do {
-    i += 1;
-    // console.log(i);
-    // console.log(stars);
-    count.push(i);
-  } while (i < stars);
+  if (stars > 1) {
 
-  return (
-    <>
-      {count.map(x =>
-        <li key={x}>
-          {/* {x} */}
-          <Star />
-        </li>)}
-      {/* {props.stars} */}
-    </>
-  );
+    let i = 0;
+    do {
+      i += 1;
+      // console.log(i);
+      // console.log(stars);
+      count.push(i);
+    } while (i < stars);
+
+    return (
+      <>
+        {count.map(x =>
+          <li key={x}>
+            {/* {x} */}
+            <Star />
+          </li>)}
+        {/* {props.stars} */}
+      </>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default TestimonialRanking

@@ -7,8 +7,6 @@ import Footer from "../components/footer";
 
 import TestimonialRanking from "../components/testimonial-ranking";
 
-// TODO only show the stars if the user has voted
-
 function TestimonialLink(props) {
   if (props.aref) {
     return (
@@ -26,10 +24,9 @@ function TestimonialLink(props) {
 const TestimonialsPage = () => {
   return (
     <>
-    // TODO description
       <Seo
         title="Testimonials | Sierra Lighting"
-        description=""
+        description="Thanks From Our Customers"
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
       />
       <Header />
@@ -119,24 +116,29 @@ const TestimonialsPage = () => {
         </a>
         </p>
 
-        {/* // TODO this isnt linked up yet */}
-        <form className="measure">
+        {/* // TODO test this */}
+        <form
+          className="measure"
+          name="testimonial"
+          method="POST"
+          data-netlify="true"
+        >
           <label>Name
-            <input type="text" />
+            <input type="text" name="name" />
           </label>
           <label>Stars (out of five)
-            <input type="number" min="0" max="5" />
+            <input type="number" min="0" max="5" name="stars" />
           </label>
           <label>Title
-            <input type="text" />
+            <input type="text" name="title" />
           </label>
           <label>Review
-            <textarea />
+            <textarea name="review" />
           </label>
           <label>Email
-            <input type="email" />
+            <input type="email" name="email" />
           </label>
-          <button>Send</button>
+          <button type="submit">Send</button>
         </form>
 
       </main>

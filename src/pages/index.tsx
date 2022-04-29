@@ -120,7 +120,6 @@ const IndexPage = () => {
               </Link> */}
 
               <Link to="/project/wedding-canopy">
-                {/* // TODO make this project */}
                 <WeddingCannopy />
                 <p>Wedding Canopy See the Project</p>
               </Link>

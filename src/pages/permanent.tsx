@@ -1,7 +1,3 @@
-// TODO I think I have this in asana but the internet is out so I cant find it
-
-// I dont really think we need a set of projects the three photos probably do enough for that
-
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
@@ -21,21 +17,21 @@ export function BistroLights() {
   />
 }
 
-export function Wreath() {
+export function RSL() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-4-web-tagged.jpg"
-    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="wreath_image"
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/events/sierra_lighting-rsl-outdoor_lighting.jpg"
+    alt="bistro lights display on an entrance in reno nevada"
+    className="RSL_image"
     breakpoints={[300, 600, 900]}
     width={300}
   />
 }
 
-export function SnowyRoof() {
+export function Strings() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-3-web-tagged.jpg"
-    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="snowyroof"
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/lights/string.jpg"
+    alt="wedding lights"
+    className=""
     breakpoints={[300, 600, 900]}
     width={300}
   />
@@ -46,10 +42,10 @@ const PermanentPage = () => {
   return (
     <>
       <Seo
-        title="Events | Sierra Lighting"
+        title="Permanent Patio Lights | Sierra Lighting"
         description="Sierra Lighting installs Christmas lights on homes in Reno, Truckee, and Tahoe.
         We are full service from design to takedown." // TODO
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-1-web-tagged.jpg" // TODO
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/og_image-sierra_lighting-bistro_lights.jpg"
       />
       <Header />
       <main>
@@ -76,8 +72,8 @@ const PermanentPage = () => {
         </div>
         <div className="triple">
           <BistroLights />
-          <Wreath /> {/* // TODO change this image */}
-          <SnowyRoof /> {/* // TODO change this image */}
+          <RSL />
+          <Strings />
         </div>
 
         <div className="measure">

@@ -134,10 +134,10 @@ const WeddingPage = () => {
           <h3>Have something particular in mind? Just ask!</h3>
 
           <hr />
-
-          {/* // TODO SEO services */}
+        </div>
+        <div className="measure" itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
           <h3>Wedding Services</h3>
-          <p>The natural beauty of the Reno Tahoe area make the perfect backdrop for a wedding. Our custom lighting design enhances your decor and the architectural / landscape features of your venue. Wether your aiming for a low key affair or a luxurious event, we work with you to create the perfect mood.</p>
+          <p itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">The natural beauty of the Reno Tahoe area make the perfect backdrop for a wedding. Our custom lighting design enhances your decor and the architectural / landscape features of your venue. Wether your aiming for a low key affair or a luxurious event, we work with you to create the perfect mood.</p>
 
           <p>Check out our list of wedding lighting services and some of our favorite <Link to="/venues">Tahoe wedding venues</Link>.</p>
 
