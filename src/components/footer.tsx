@@ -80,7 +80,13 @@ const Footer = () => {
       </div>
 
       {/* // TODO connect this to netlify */}
-      <form name="contact" data-netlify="true" className="measure">
+      <form
+        name="contact"
+        data-netlify="true"
+        className="measure"
+        netlify-honeypot="bot-field"
+        method="POST"
+      >
         <label>Name
           <input type="text" name="name" />
         </label>
@@ -93,6 +99,11 @@ const Footer = () => {
         <label>Message
           <textarea name="message" />
         </label>
+        <p className="sr-only">
+          <label>
+            Don’t fill this out if you’re human: <input name="bot-field" />
+          </label>
+        </p>
         <button type="submit">Send</button>
       </form>
 

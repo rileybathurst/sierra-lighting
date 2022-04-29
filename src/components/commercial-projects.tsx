@@ -1,14 +1,6 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
-
-// TODO fix this
-export function NorthTahoeEvents() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
-    alt="christmas lighting display at North Tahoe Events center"
-    className="northtahoeevents" />
-}
+import { GatsbyImage } from "gatsby-plugin-image"
 
 function CommercialProjects() {
   return (
@@ -29,7 +21,14 @@ function CommercialProjects() {
               {
                 data.allStrapiProject.nodes.map(project => (
                   <div key={project.id} className="card">
-                    <NorthTahoeEvents />
+                    <GatsbyImage
+                      image={
+                        project?.image?.localFile?.childImageSharp
+                          ?.gatsbyImageData
+                      }
+                      alt={project.image?.alternativeText}
+                      className=""
+                    />
                     <div className="paper"></div>
                     <div className="content">
                       <hr />
@@ -68,6 +67,19 @@ query CommercialProjectsQuery {
         }
       }
       slug
+
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
+          }
+        }
+        alternativeText
+      }
+
     }
   }
 }

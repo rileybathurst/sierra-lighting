@@ -79,7 +79,7 @@ const AreaView = ({ area }) => {
           <div itemProp="location" itemScope itemType="https://schema.org/areaServed">
             <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
               <span itemProp="name" className="sr-only">{area.name}</span>
-              {/* this is for the address / postaladdress / name */}
+              {/* // ! this is for the address / postaladdress / name / except its not working and its taking the description */}
 
               <h2 className="crest">{area.tagline}</h2>
               <h1 className="range" >

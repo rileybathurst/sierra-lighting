@@ -11,7 +11,6 @@ const FaqsPage = () => {
     <>
       <Seo
         title="Sierra Lighting | FAQs"
-        titleColor="yellow"
         itemType="https://schema.org/FAQPage"
         itemScope={true}
         description="Your go to holiday lights installer in the Reno, Truckee, and North Tahoe area. A list of frequently asked questions. Please reach out for more information and estimates."

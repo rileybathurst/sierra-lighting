@@ -35,11 +35,9 @@ module.exports = {
     logo: '/images/icon.png',
     areaServed: 'tahoe', // Im doing a lot with this in seo.tsx
     author: 'Sierra Lighting',
-    paymentAccepted: 'Cash check venmo credit card', // TODO syntax
+    paymentAccepted: 'Cash check venmo credit card',
     itemType: 'LocalBusiness',
-    priceRange: '$500 +', // TODO syntax
-
-    titleColor: 'red', // TODO testing but I think I will remove it
+    priceRange: '$500-1500',
   },
   plugins: ["gatsby-plugin-sass", "gatsby-plugin-image", {
     resolve: 'gatsby-plugin-google-analytics',

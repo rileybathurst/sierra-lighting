@@ -44,7 +44,6 @@ const SEO = ({
   title,
   description,
   image,
-  titleColor,
   itemScope,
   itemType,
 
@@ -77,8 +76,7 @@ const SEO = ({
     areaServed: areaServed,
     paymentAccepted: paymentAccepted,
     itemScope: itemScope,
-    itemType: itemType,
-    titleColor: titleColor,
+    itemType: itemType
   };
 
   return (
@@ -122,172 +120,9 @@ const SEO = ({
         )}
         {seo.telephone && <meta name="telephone" itemProp="telephone" content={seo.telephone} />}
 
-        {/* this doesnt work because meta cant be wrapped */}
-        {/* <meta name="areaServed" itemProp="areaServed">
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality" content={`North Lake Tahoe`} />
-            <meta itemProp="addressRegion" content={`CA`} />
-          </meta> */}
-        {/* 
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Truckee</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Alpine Meadows</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Homewood</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Kings Beach</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Olympic Valley</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Gray's Crossing</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Old Greenwood</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Martis Camp</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Lahontan</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">South Lake Tahoe</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Tahoma</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">West Shore Lake Tahoe</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Donner Summit</meta>,&nbsp;
-            <meta itemProp="addressRegion">CA</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Caughlin Ranch</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Incline Village</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Carson City</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Minden</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Gardnerville</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Glenbrook</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Reno</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Damonte Ranch</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Gelena</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Arrowcreek</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Mt. Rose Hwy</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Montreux</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Somersett</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Sparks</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta>
-
-          <meta itemScope itemType="https://schema.org/Place">
-            <meta itemProp="addressLocality">Spanish Springs</meta>,&nbsp;
-            <meta itemProp="addressRegion">NV</meta>
-          </meta> */}
-        {/* </meta> */}
-
         {seo.paymentAccepted && (
           <meta name="paymentAccepted" itemProp="paymentAccepted" content={seo.paymentAccepted} />
-        )} {/* // ! check this is running */}
-
-        // ? check if this works or helps or whatever
-        // * I think I am going with areaServed over this
-        {/*         <meta itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-          <span itemProp="addressLocality">Truckee</span>,
-          <span itemProp="addressRegion">CA</span>
-          <span itemProp="postalCode">96161</span>
-        </meta>
-
-        <meta itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-          <span itemProp="addressLocality">RENO</span>,
-          <span itemProp="addressRegion">NV</span>
-        </meta> */}
-
+        )}
 
       </Helmet>
       {/* 🚨 this needs to be off in production */}
@@ -295,8 +130,8 @@ const SEO = ({
       {
         process.env.NODE_ENV === "development" ? (
           <div className="seo-showcase">
-            <p key="title"><span className="key">Title</span> = <span className={seo.titleColor}>{seo.title}</span></p>
-            <p key="description"><span className="key">Description</span> = <span className={seo.titleColor}>{seo.description}</span></p>
+            <p key="title"><span className="key">Title</span> = {seo.title}</p>
+            <p key="description"><span className="key">Description</span> = {seo.description}</p>
             <p>Description charachter length = <DescLength desc={seo.description} /></p>
             {/* // ? why does this need to be ogImage? */}
             {/* // regular image doubles the url */}
@@ -328,8 +163,7 @@ SEO.propTypes = {
   slogan: PropTypes.string,
   gsv: PropTypes.string,
   itemScope: PropTypes.bool,
-  itemType: PropTypes.string,
-  titleColor: PropTypes.string,
+  itemType: PropTypes.string
 };
 
 SEO.defaultProps = {
@@ -346,7 +180,6 @@ SEO.defaultProps = {
   areaServed: null,
   paymentAccepted: null,
   itemScope: false,
-  titleColor: null,
 };
 
 const query = graphql`
@@ -364,7 +197,6 @@ const query = graphql`
         areaServed
         paymentAccepted
         itemType
-        defaultType: titleColor
       }
     }
   }
