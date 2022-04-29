@@ -33,7 +33,7 @@ module.exports = {
     telephone: '(775) 525-1898', // nevada number
     email: 'sierrachristmaslights@gmail.com',
     logo: '/images/icon.png',
-    // areaServed: 'tahoe', // TODO this might need more but test it first.
+    areaServed: 'tahoe', // Im doing a lot with this in seo.tsx
     author: 'Sierra Lighting',
     paymentAccepted: 'Cash check venmo credit card', // TODO syntax
     itemType: 'LocalBusiness',
