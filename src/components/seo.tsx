@@ -121,7 +121,154 @@ const SEO = ({
           <meta name="openingHours" itemProp="openingHours" content={seo.openingHours} />
         )}
         {seo.telephone && <meta name="telephone" itemProp="telephone" content={seo.telephone} />}
-        <meta name="areaServed" itemProp="areaServed" content={seo.areaServed} />
+
+        <meta name="areaServed" itemProp="areaServed">
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">North Lake Tahoe</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Truckee</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Alpine Meadows</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Homewood</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Kings Beach</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Olympic Valley</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Gray's Crossing</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Old Greenwood</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Martis Camp</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Lahontan</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">South Lake Tahoe</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Tahoma</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">West Shore Lake Tahoe</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Donner Summit</meta>,&nbsp;
+            <span itemProp="addressRegion">CA</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Caughlin Ranch</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Incline Village</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Carson City</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Minden</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Gardnerville</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Glenbrook</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Reno</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Damonte Ranch</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Gelena</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Arrowcreek</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Mt. Rose Hwy</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Montreux</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Somersett</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Sparks</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+
+          <meta itemScope itemType="https://schema.org/Place">
+            <meta itemProp="addressLocality">Spanish Springs</meta>,&nbsp;
+            <span itemProp="addressRegion">NV</span>
+          </meta>
+        </meta>
+
         {seo.paymentAccepted && (
           <meta name="paymentAccepted" itemProp="paymentAccepted" content={seo.paymentAccepted} />
         )} {/* // ! check this is running */}
