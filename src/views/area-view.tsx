@@ -64,7 +64,7 @@ const AreaView = ({ area }) => {
         <hr />
       </div>
 
-      <main itemScope itemType="https://schema.org/areaServed">
+      <main>
 
         <GatsbyImage
           image={
@@ -75,14 +75,19 @@ const AreaView = ({ area }) => {
           className="poster"
         />
 
-        <article className="measure single" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-          <h2 className="crest">{area.tagline}</h2>
-          <h1 className="range" >
-            <span itemProp="addressLocality">{area.name}</span>,&nbsp;
-            <span itemProp="addressRegion" className="first-capital">{area.state}</span>
-          </h1>
-          {/* // TODO: the state needs to be changed to the abreviation */}
-          <ReactDescription desc={area.description} />
+        <article className="measure single" itemProp="address" itemScope itemType="https://schema.org/LocalBusiness">
+          <div itemProp="location" itemScope itemType="https://schema.org/areaServed">
+            <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+
+              <h2 className="crest">{area.tagline}</h2>
+              <h1 className="range" >
+                <span itemProp="addressLocality">{area.name}</span>,&nbsp;
+                <span itemProp="addressRegion" className="first-capital">{area.state}</span>
+              </h1>
+              {/* // TODO: the state needs to be changed to the abreviation */}
+              <ReactDescription desc={area.description} />
+            </div>
+          </div>
         </article>
       </main>
 

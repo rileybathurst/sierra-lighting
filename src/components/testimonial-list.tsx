@@ -25,10 +25,10 @@ const TestimonialList = () => (
             <p itemProp="reviewBody">{testimonial.review}</p>
             <div className="together">
               <span itemProp="name" className="sr-only">{testimonial.title}</span>
-              {/* <div itemScope itemType="https://schema.org/Person"> */}
-              <h3 className="range" itemProp="author">{testimonial.customer}</h3>{/* // ! check this came in */}
+              <h3 className="range" itemProp="author" itemScope itemType="https://schema.org/Person">
+                <span itemProp="name">{testimonial.customer}</span>
+              </h3>{/* // ! check this came in */}
               <p>{testimonial.platform}</p>
-              {/* </div> */}
               <p itemProp="datePublished" className="sr-only">
                 {testimonial.createdAt}
               </p>
