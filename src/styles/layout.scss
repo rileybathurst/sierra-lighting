@@ -294,6 +294,7 @@ header {
   margin-inline: auto;
   width: calc(100% - 2rem);
   display: flex;
+  gap: 1rem;
   flex-flow: row wrap;
   margin-block-start: 0.5rem; // skip 1rem due to a flex gap from a sr-only element
 

@@ -12,7 +12,7 @@
   }
 }
 
-@media (min-width: $pad) {
+@media (min-width: $book) {
   .menu_s,
   .button-spinner {
     display: none; // off for testing
@@ -67,7 +67,7 @@
 //  #BIGBOY
 /*------------------*/
 
-@media (max-width: $pad) {
+@media (max-width: $book) {
   .bigboy {
     display: none;
   }
@@ -126,7 +126,7 @@
   }
 }
 
-@media (min-width: $pad) {
+@media (min-width: $book) {
   .contactlist {
     display: none !important;
   }

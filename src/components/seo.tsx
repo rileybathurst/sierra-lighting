@@ -121,7 +121,7 @@ const SEO = ({
           <meta name="openingHours" itemProp="openingHours" content={seo.openingHours} />
         )}
         {seo.telephone && <meta name="telephone" itemProp="telephone" content={seo.telephone} />}
-        <meta name="areaServed" itemProp="areaServed" content={seo.areaServed} /> {/* // ! check this is running */}
+        <meta name="areaServed" itemProp="areaServed" content={seo.areaServed} />
         {seo.paymentAccepted && (
           <meta name="paymentAccepted" itemProp="paymentAccepted" content={seo.paymentAccepted} />
         )} {/* // ! check this is running */}
@@ -154,6 +154,7 @@ const SEO = ({
           <img src={seo.ogImage} alt="seo checking" />
         </div>
       ) : null}
+
     </>
   );
 };

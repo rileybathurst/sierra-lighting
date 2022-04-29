@@ -10,27 +10,33 @@ const AreaList = () => (
         render={data => (
           <div className="states">
             {/* the state names are sometimes not needed */}
-            <ul>
+            <ul itemScope itemType="https://schema.org/areaServed">
               <li key="california" className="state__name">
                 <h3>California</h3>
               </li>
               {
                 data.california.nodes.map(area => (
-                  <li className="" key={area.id}>
-                    <Link to={`/area/${area.slug}`}>{area.name}</Link>
+                  <li className="" key={area.id} itemScope itemType="https://schema.org/Place">
+                    <Link to={`/area/${area.slug}`} itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                      <span itemProp="addressLocality">{area.name}</span>
+                      <span itemProp="addressRegion" className="sr-only">{area.state}</span>
+                    </Link>
                   </li>
                 ))
               }
             </ul>
 
-            <ul>
+            <ul itemScope itemType="https://schema.org/areaServed">
               <li key="nevada" className="state__name">
                 <h3>Nevada</h3>
               </li>
               {
                 data.nevada.nodes.map(area => (
-                  <li className="" key={area.id}>
-                    <Link to={`/area/${area.slug}`}>{area.name}</Link>
+                  <li className="" key={area.id} itemScope itemType="https://schema.org/Place">
+                    <Link to={`/area/${area.slug}`} itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+                      <span itemProp="addressLocality">{area.name}</span>
+                      <span itemProp="addressRegion" className="sr-only">{area.state}</span>
+                    </Link>
                   </li>
                 ))
               }

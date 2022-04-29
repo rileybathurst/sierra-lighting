@@ -19,7 +19,9 @@ const Footer = () => {
   return (
     <footer itemScope itemType="https://schema.org/Organization">
       {/* https://schema.org/Organization */}
-      <hr className="measure" />
+      <div className="measure">
+        <hr />
+      </div>
       <div className="footer-container">
         <section id="contact" className="contact">
 
@@ -32,8 +34,6 @@ const Footer = () => {
             <p><a href="tel:+1-530-414-9899">California Number: <span itemProp="telephone">(530) 414-9899</span></a></p>
           </div>
         </section>
-
-
 
         <div id="team" className="team measure">
           <h3 className="crest">Who We Are</h3>
@@ -76,7 +76,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <hr className="measure" />
+      <div className="measure">
+        <hr />
+      </div>
 
       {/* // TODO connect this to netlify */}
       <form name="contact" data-netlify="true" className="measure">
@@ -95,11 +97,15 @@ const Footer = () => {
         <button type="submit">Send</button>
       </form>
 
-      <hr className="measure" />
+      <div className="measure">
+        <hr />
+      </div>
 
       <SocialIcons />
 
-      <hr className="measure" />
+      <div className="measure">
+        <hr />
+      </div>
 
       <div className="measure">
         <ul className="footer_list">

@@ -17,7 +17,7 @@ export function Village() {
     className="village"
     itemProp="photo"
     breakpoints={[300, 600, 900]}
-    width={300}
+    width={650}
   />
 }
 
@@ -27,7 +27,7 @@ export function NorthTahoeArts() {
     alt="christmas lighting display at North Tahoe Arts gift shop and gallery"
     className="northtahoearts"
     breakpoints={[300, 600, 900]}
-    width={300}
+    width={650}
   />
 }
 
@@ -37,7 +37,7 @@ export function NorthTahoeEvents() {
     alt="christmas lighting display at North Tahoe Events center"
     className="northtahoeevents"
     breakpoints={[300, 600, 900]}
-    width={300}
+    width={650}
   />
 }
 
@@ -47,7 +47,7 @@ export function InclineChevron() {
     alt="christmas tree in Incline village nevada"
     className="inclinechevron"
     breakpoints={[300, 600, 900]}
-    width={300}
+    width={650}
   />
 }
 
@@ -64,7 +64,7 @@ export function WestShoreWedding() {
     alt="wedding lights over thelooking lake tahoe calidofornia"
     className="poster"
     breakpoints={[300, 600, 900]}
-    width={300}
+    width={650}
   />
 }
 
@@ -74,7 +74,7 @@ export function WeddingCannopy() {
     alt="wedding light canopy in truckee california"
     className="poster"
     breakpoints={[300, 600, 900]}
-    width={300}
+    width={650}
   />
 }
 
@@ -84,7 +84,7 @@ export function BistroLights() {
     alt="sierra lighting bistro lights"
     className=""
     breakpoints={[300, 600, 900]}
-    width={300}
+    width={650}
   />
 }
 
@@ -94,7 +94,7 @@ export function Backyard() {
     alt="sierra lighting wedding lights"
     className=""
     breakpoints={[300, 600, 900]}
-    width={300}
+    width={650}
   />
 }
 
@@ -104,7 +104,7 @@ const IndexPage = () => {
       <Seo title="Sierra Lighting"
         description="Sierra Lighting installs Christmas, event, and wedding lights.
         Quality displays that are guaranteed! Experienced. Professional. Insured."
-      // image="https://sierralighting.s3.us-west-1.amazonaws.com/Sierra-Lighting-Logo-web-tagged.jpg" // todo
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg"
       />
       <Header />
       <main>
