@@ -75,7 +75,7 @@ const AreaView = ({ area }) => {
           className="poster"
         />
 
-        <article className="measure single" itemProp="address" itemScope itemType="https://schema.org/LocalBusiness">
+        <article className="measure single" itemProp="address">{/* itemScope itemType="https://schema.org/LocalBusiness" */}
           <div itemProp="location" itemScope itemType="https://schema.org/areaServed">
             <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
 
