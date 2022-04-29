@@ -16,7 +16,7 @@ const AreaList = () => (
               </li>
               {
                 data.california.nodes.map(area => (
-                  <li className="" key={area.id} itemScope itemType="https://schema.org/Place">
+                  <li className="" key={area.id} itemProp="location" itemScope itemType="https://schema.org/Place">
                     <Link to={`/area/${area.slug}`} itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                       <span itemProp="addressLocality">{area.name}</span>&nbsp;
                       <span itemProp="addressRegion" className="sr-only">{area.state}</span>
