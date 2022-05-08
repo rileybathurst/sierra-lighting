@@ -116,7 +116,6 @@ const TestimonialsPage = () => {
         </a>
         </p>
 
-        {/* // TODO test this */}
         <form
           className="measure"
           name="testimonial"

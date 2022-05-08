@@ -30,6 +30,18 @@ function Venues(props) {
   }
 }
 
+function StateAbreviation(props) {
+  if (props.state == "california") {
+    return (
+      <>
+        CA
+      </>
+    );
+  } else if (props.state == "nevada") {
+    return "NV";
+  }
+}
+
 const AreaView = ({ area }) => {
   return (
     <>
@@ -84,9 +96,8 @@ const AreaView = ({ area }) => {
               <h2 className="crest">{area.tagline}</h2>
               <h1 className="range" >
                 <span itemProp="addressLocality">{area.name}</span>,&nbsp;
-                <span itemProp="addressRegion" className="first-capital">{area.state}</span>
+                <span itemProp="addressRegion" className="first-capital">< StateAbreviation state={area.state} /></span>
               </h1>
-              {/* // TODO: the state needs to be changed to the abreviation */}
               <ReactDescription desc={area.description} />
             </div>
           </div>

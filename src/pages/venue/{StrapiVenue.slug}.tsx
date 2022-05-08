@@ -9,6 +9,7 @@ export const query = graphql`
       name
       description
       slug
+      excerpt
       
       area {
         name

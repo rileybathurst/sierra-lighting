@@ -103,7 +103,6 @@ const Footer = () => {
         <hr />
       </div>
 
-      {/* // TODO connect this to netlify */}
       <form
         name="contact"
         data-netlify="true"

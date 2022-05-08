@@ -15,8 +15,15 @@ const VendorView = ({ vendor, other }) => {
     <>
       <Seo
         title="Sierra Lighting"
-        description={vendor.description} // TODO excerpt
+        description={vendor.excerpt}
+        image={vendor?.profile?.localFile?.url}
       />
+
+      <hr />
+      {vendor.excerpt}
+      {vendor?.profile?.alternativeText}
+      <hr />
+
       <Header />
 
       <div className="measure">
@@ -85,10 +92,10 @@ const VendorView = ({ vendor, other }) => {
 
             <GatsbyImage
               image={
-                vendor?.profile?.localFile?.childImageSharp
+                other?.profile?.localFile?.childImageSharp
                   ?.gatsbyImageData
               }
-              alt={vendor.profile?.alternativeText}
+              alt={other.profile?.alternativeText}
               className=""
             />
 

@@ -12,7 +12,6 @@ import TestimonialRanking from "../components/testimonial-ranking";
 const TestimonialView = ({ testimonial }) => {
   return (
     <>
-      {/* // TODO image and description */}
       <Seo
         title="Sierra Lighting"
         description={testimonial.excerpt}

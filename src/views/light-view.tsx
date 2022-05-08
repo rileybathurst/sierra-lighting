@@ -105,9 +105,10 @@ const LightView = ({ light, other }) => {
     <>
       <Seo
         title={`${light.name} | Sierra Lighting`}
-        description={light?.description} // TODO: needs to be the excerpt
+        description={light?.excerpt}
         image={light?.image?.localFile?.url}
       />
+
       <Header />
       <main>
 

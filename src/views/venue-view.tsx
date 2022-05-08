@@ -11,7 +11,7 @@ const VenueView = ({ venue, other }) => {
     <>
       <Seo
         title="Sierra Lighting"
-        description={venue?.description}
+        description={venue?.excerpt}
         image={venue?.venueImage?.localFile?.url}
       />
       <Header />
@@ -61,6 +61,7 @@ const VenueView = ({ venue, other }) => {
         <h4>Other Wedding Venues</h4>
       </div>
 
+      {/* // TODO this shouldnt get all of these but get the frist 3 then deal with it from there */}
       <div className="deck measure">
         {other.nodes.map((other) => (
           <div key={other.id} className="card">

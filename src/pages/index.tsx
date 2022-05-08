@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState, useEffect } from "react";
 import { Link } from 'gatsby';
 import { StaticImage } from "gatsby-plugin-image"
 
@@ -98,6 +98,41 @@ export function Backyard() {
   />
 }
 
+export function OutdoorWedding() {
+  return <StaticImage
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-outdoor_wedding.jpg"
+    alt="sierra lighting lake tahoe outdoor wedding"
+    className="poster"
+    breakpoints={[650, 1300, 1950]}
+    width={650}
+  />
+}
+
+// light to dark switch
+export function useMediaQuery(query) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+    if (media.matches !== matches) {
+      setMatches(media.matches);
+    }
+  }, [matches, query]);
+
+  return matches;
+}
+
+function HeroImage() {
+  let isSiteDark = useMediaQuery("(prefers-color-scheme: dark)");
+
+  return (
+    <>
+      {isSiteDark && <WeddingCannopy />}
+      {isSiteDark || <OutdoorWedding />}
+    </>
+  );
+}
+
 const IndexPage = () => {
   return (
     <>
@@ -120,7 +155,7 @@ const IndexPage = () => {
               </Link> */}
 
               <Link to="/project/wedding-canopy">
-                <WeddingCannopy />
+                <HeroImage />
                 <p>Wedding Canopy See the Project</p>
               </Link>
             </div>
@@ -147,7 +182,7 @@ const IndexPage = () => {
             </section>
 
             <div className="home-gallery">
-              {/* // TODO dark images and seasonal adjust */}
+              {/* // TODO seasonal adjust */}
               <BistroLights />
               <WestShoreWedding />
               <Backyard />

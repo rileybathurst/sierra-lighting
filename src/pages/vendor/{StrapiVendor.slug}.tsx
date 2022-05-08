@@ -14,12 +14,14 @@ export const query = graphql`
       website
       pinterest
       service
+      excerpt
 
       profile {
         localFile {
           childImageSharp {
             gatsbyImageData
           }
+          url
         }
         alternativeText
       }
