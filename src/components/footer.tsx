@@ -132,7 +132,8 @@ const Footer = () => {
         </label>
         <p className="sr-only">
           <label>
-            Don’t fill this out if you’re human: <input name="bot-field" />
+            Don&#39;t fill this out if you&#39;re human:
+            <input name="bot-field" />
           </label>
         </p>
         <button type="submit">Send</button>

@@ -122,7 +122,21 @@ const TestimonialsPage = () => {
           name="testimonial"
           method="POST"
           data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/form-success"
         >
+
+          <input type="hidden" name="form-name" value="testimonial" />
+
+          <input type="hidden" name="subject"
+            value="Testimonial Form from sierra.lighting" />
+
+          <p className="sr-only">
+            <label>
+              Don&#39;t fill this out if you&#39;re human: <input name="bot-field" />
+            </label>
+          </p>
+
           <label>Name
             <input type="text" name="name" />
           </label>
