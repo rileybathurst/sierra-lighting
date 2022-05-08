@@ -8,6 +8,12 @@
   padding-inline: 1rem;
 }
 
+// this is incase the content isnt wide enough
+.measure__extend {
+  @extend .measure;
+  width: 100%;
+}
+
 .pad {
   max-width: $pad; //
   margin-inline: auto;

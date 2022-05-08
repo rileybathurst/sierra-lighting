@@ -91,7 +91,7 @@ header svg:hover {
   fill: hsl(var(--honey), 100%, 37%);
 
   @media (prefers-color-scheme: dark) {
-    fill: hsl(var(--honey), 12%, 50%);
+    fill: hsl(var(--denim), 12%, 50%);
   }
 }
 
@@ -117,7 +117,7 @@ header svg:hover {
         max-height: 8rem;
         transition: 2s ease;
         border: 2px white solid;
-        box-shadow: var(--troposphere);
+        box-shadow: var(--mesosphere);
         margin-block-end: 0.5rem;
 
         img {
@@ -126,15 +126,18 @@ header svg:hover {
       }
 
       > p {
+        // this is legal even tho not normally the way I do it
         padding: 0.2rem;
         transition: 2s ease;
+        // TODO this should be @extend .hover-back
       } // .gatsby-image-wrapper
     } // a
 
     > a:hover p {
       border-radius: var(--border-radius);
-      box-shadow: var(--mesosphere);
+      box-shadow: var(--stratosphere);
       background: hsl(var(--honey), 100%, 97.5%);
+      // TODO this should be @extend .hover-back_hover
 
       @media (prefers-color-scheme: dark) {
         background: hsl(var(--denim), 25%, 12%);

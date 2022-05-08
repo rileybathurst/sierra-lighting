@@ -11,11 +11,6 @@
 .card {
   max-width: calc(100% - 2rem);
   margin-inline: auto;
-
-  /*   @media (min-width: $pad) {
-    max-width: calc(50% - 1rem);
-  } */
-
   display: grid;
   grid-template-rows: 4rem auto auto;
   margin-block-end: 1.5rem;
@@ -28,7 +23,7 @@
     grid-row: 2/8;
     background-color: hsl(var(--honey), 75%, 87%);
     border: 2px solid whitesmoke;
-    box-shadow: var(--stratosphere);
+    box-shadow: var(--mesosphere);
     border-radius: var(--card-radius);
 
     @media (prefers-color-scheme: dark) {
@@ -45,7 +40,7 @@
     aspect-ratio: 3/2;
     margin-inline: auto;
     border: 2px solid whitesmoke;
-    box-shadow: var(--troposphere);
+    box-shadow: var(--stratosphere);
 
     @media (prefers-color-scheme: dark) {
       border-color: hsl(var(--denim), 12%, 12%);

@@ -1,0 +1,14 @@
+/* @layer storybook { */
+.button--hover {
+  color: hsl(var(--honey), 100%, 2.5%);
+  box-shadow: var(--stratosphere);
+  background-color: hsl(var(--honey), 87%, 63%);
+  border-color: hsl(var(--honey), 87%, 50%);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 25%, 37%);
+    border-color: hsl(var(--denim), 12%, 50%);
+    color: hsl(var(--denim), 25%, 97.5%);
+  }
+}
+/* } */

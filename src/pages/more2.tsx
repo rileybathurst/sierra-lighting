@@ -5,7 +5,7 @@
 // https://www.erichowey.dev/writing/load-more-button-and-infinite-scroll-in-gatsby/
 
 import React, { useState, useEffect } from "react"
-import { Link, StaticQuery, useStaticQuery, graphql } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
@@ -186,16 +186,17 @@ const More2Page = () => {
                 <p className="description">{light.excerpt}</p>
                 <p>{light.outdoor}</p>
               </div>
-
             </div>
           ))}
+        </div>
+        <div className="measure__extend">
           {hasMore ? (
-            <button onClick={handleLoadMore}>Load More</button>
+            <button onClick={handleLoadMore} className='button--left-align'>Load More</button>
           ) : (
             <p>No more results</p>
           )}
-
         </div>
+
         <div className="measure">
           <p className="crest">Even More?</p>
           <h5 className="range"><Link to="/lights">View all other lights</Link></h5>

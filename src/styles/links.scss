@@ -42,10 +42,12 @@ button {
   padding-block-start: 0.75rem;
   padding-block-end: 0.5rem;
   padding-inline: 1rem;
-  box-shadow: var(--stratosphere);
+  box-shadow: var(--mesosphere);
   transition: var(--moment);
   margin-inline-start: 1rem;
+  margin-block-end: 1.5rem;
   border-radius: var(--border-radius);
+  color: hsl(var(--honey), 100%, 25%);
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 25%, 12%);
@@ -57,7 +59,10 @@ button {
 // TODO active and focus
 button:hover,
 button:focus {
-  color: hsl(var(--honey), 100%, 37%);
+  color: hsl(var(--honey), 100%, 2.5%);
+  box-shadow: var(--stratosphere);
+  background-color: hsl(var(--honey), 87%, 63%);
+  border-color: hsl(var(--honey), 87%, 50%);
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 25%, 37%);
@@ -66,46 +71,49 @@ button:focus {
   }
 }
 
+.button--left-align {
+  margin-inline-start: 0;
+}
+
 /*------------------*/
 //  #HOVER BACK, this is a kinda button style
 /*------------------*/
 
 .hover-back {
+  // ? how much of this is a button
   padding-block: 0.75rem;
   padding-inline: 0.5rem;
   display: block;
   max-width: max-content;
   border-radius: var(--border-radius);
   border: 1px solid transparent;
+  transform: var(--moment);
 }
 
-.hover-back:hover {
-  border: 1px solid hsl(var(--honey), 100%, 87%);
-  background-color: hsl(var(--honey), 100%, 97.5%);
-  box-shadow: var(--mesosphere);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 12%, 25%);
-    border-color: hsl(var(--denim), 12%, 12%);
-  }
-}
-
-.contact-info a {
-  @extend .hover-back;
-}
-
-.bigboy a {
-  @extend .hover-back;
-}
-
-.bigboy a:hover {
+// * make this reusable
+.hover-back__hover {
   background-color: hsl(var(--honey), 100%, 87%);
   border-color: hsl(var(--honey), 100%, 75%);
+  box-shadow: var(--mesosphere);
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 100%, 87%);
     border-color: hsl(var(--denim), 100%, 75%);
   }
+}
+
+.hover-back:hover {
+  @extend .hover-back__hover;
+}
+
+.bigboy a,
+.contact-info a {
+  @extend .hover-back;
+}
+
+.bigboy a:hover,
+.contact-info a:hover {
+  @extend .hover-back__hover;
 }
 
 .hover-back--inline {
@@ -118,7 +126,7 @@ button:focus {
 
 .footer-copyright a svg {
   border-radius: var(--border-radius);
-  border: 1px solid transparent;
+  border: 1px solid transparent; // hold the space itll come in later
   padding-block: 0.75rem;
   padding-inline: 0.5rem;
 }
