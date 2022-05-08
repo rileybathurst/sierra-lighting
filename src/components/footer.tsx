@@ -15,6 +15,30 @@ function ThisYear() {
   );
 }
 
+function encode(data) {
+  return Object.keys(data)
+    .map(
+      (key) =>
+        encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+    )
+    .join("&");
+}
+
+/* const handleSubmit = (event) => {
+  event.preventDefault();
+  fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: encode({
+      "form-name": event.target.getAttribute("name"),
+      ...name,
+    }),
+  })
+    .then(() => navigate("/thank-you/"))
+    .catch((error) => alert(error));
+}; */
+
+
 const Footer = () => {
   return (
     <footer>{/* itemScope itemType="https://schema.org/LocalBusiness" */}
@@ -86,7 +110,14 @@ const Footer = () => {
         className="measure"
         netlify-honeypot="bot-field"
         method="POST"
+        action="/form-success"
       >
+
+        <input type="hidden" name="form-name" value="contact" />
+
+        <input type="hidden" name="subject"
+          value="Contact Form from sierra.lighting" />
+
         <label>Name
           <input type="text" name="name" />
         </label>
