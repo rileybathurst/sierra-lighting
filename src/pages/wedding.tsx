@@ -1,5 +1,5 @@
-import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import React, { useState, useEffect } from "react"
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
@@ -40,6 +40,74 @@ export function WeddingBlueHour() {
 
 
 const WeddingPage = () => {
+
+  const data = useStaticQuery(graphql`
+    query WeddingPageQuery {
+      allStrapiLight(filter: {wedding: {eq: true}}) {
+        nodes {
+          id
+          name
+          byline
+          description
+          excerpt
+          slug
+          outdoor
+          
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  breakpoints: [111, 165, 222, 444, 880]
+                  width: 222
+                )
+              }
+            }
+            alternativeText
+          }
+        }
+      }
+    }
+  `)
+
+  const more = { data }
+  console.log(more);
+
+  let allWeddingLights = data.allStrapiLight.nodes
+  console.log(allWeddingLights);
+
+  // State for the list
+  const [list, setList] = useState([...allWeddingLights.slice(0, 3)])
+
+  // State to trigger oad more
+  const [loadMore, setLoadMore] = useState(false)
+
+  // State of whether there is more to load
+  const [hasMore, setHasMore] = useState(allWeddingLights.length > 3)
+
+  // Load more button click
+  const handleLoadMore = () => {
+    setLoadMore(true)
+  }
+
+  // Handle loading more articles
+  useEffect(() => {
+    if (loadMore && hasMore) {
+      const currentLength = list.length
+      const isMore = currentLength < allWeddingLights.length
+      const nextResults = isMore
+        ? allWeddingLights.slice(currentLength, currentLength + 3)
+        : []
+      setList([...list, ...nextResults])
+      setLoadMore(false)
+    }
+  }, [loadMore, hasMore]) //eslint-disable-line
+
+  //Check if there is more
+  useEffect(() => {
+    const isMore = list.length < allWeddingLights.length
+    setHasMore(isMore)
+  }, [list]) //eslint-disable-line */
+
   return (
     <>
       <Seo
@@ -91,46 +159,40 @@ const WeddingPage = () => {
         </div>
 
         <div className="deck">
-          <StaticQuery
-            query={query}
-            render={data => (
-              <>
-                {
-                  data.allStrapiLight.nodes.map(light => (
-                    <div key={light.id} className="card">
-                      <GatsbyImage
-                        image={
-                          light?.image?.localFile?.childImageSharp
-                            ?.gatsbyImageData
-                        }
-                        alt={light.image?.alternativeText}
-                        className=""
-                      />
-                      <div className="paper"></div>
-                      <div className="content">
-                        <hr />
-                        <h3 className="crest">{light.byline}</h3>
-                        <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                        <p className="description">{light.excerpt}</p>
-                        <p>{light.outdoor}</p>
-                      </div>
-
-                    </div>
-                  ))
+          {list.map((light) => (
+            <div key={light.id} className="card">
+              <GatsbyImage
+                image={
+                  light?.image?.localFile?.childImageSharp
+                    ?.gatsbyImageData
                 }
-              </>
-            )}
-          />
+                alt={light.venueImage?.alternativeText}
+                className=""
+              />
+              <div className="paper"></div>
+              <div className="content">
+                <hr />
+                <h3 className="crest">{light.byline}</h3>
+                <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
+                <p className="description">{light.excerpt}</p>
+                <p>{light.outdoor}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="measure__extend">
+          {hasMore ? (
+            <>
+              <button onClick={handleLoadMore} className='button--left-align'>Load More</button>&nbsp;&nbsp;<span className="crest">Even More?</span>
+            </>
+          ) : (
+            <p>No more results</p>
+          )}
         </div>
 
         <div className="measure">
-          <p className="crest">Even More?</p>
           <h5 className="range"><Link to="/lights">View all other lights</Link></h5>
-
           <hr />
-        </div>
-
-        <div className="measure">
           <h3>Have something particular in mind? Just ask!</h3>
 
           <hr />
@@ -163,29 +225,3 @@ const WeddingPage = () => {
 }
 
 export default WeddingPage
-
-const query = graphql`
-query WeddingQuery {
-  allStrapiLight(limit: 3, filter: {wedding: {eq: true}}) {
-    nodes {
-      id
-      name
-      byline
-      excerpt
-      slug
-      outdoor
-
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              breakpoints: [111, 165, 222, 444, 880]
-              width: 222
-            )
-          }
-        }
-      }
-    }
-  }
-}
-`

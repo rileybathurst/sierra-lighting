@@ -44,10 +44,10 @@ export function SnowyRoof() {
   />
 }
 
-const ResidentialPage = () => {
+const More2Page = () => {
 
   const data = useStaticQuery(graphql`
-    query ResidentialQuery {
+    query More2Query {
       allStrapiLight(filter: {residentialchristmas: {eq: true}}) {
         nodes {
           id
@@ -77,17 +77,17 @@ const ResidentialPage = () => {
   const more = { data }
   console.log(more);
 
-  let allResidentialLights = data.allStrapiLight.nodes
-  console.log(allResidentialLights);
+  let allNews = data.allStrapiLight.nodes
+  console.log(allNews);
 
   // State for the list
-  const [list, setList] = useState([...allResidentialLights.slice(0, 3)])
+  const [list, setList] = useState([...allNews.slice(0, 3)])
 
   // State to trigger oad more
   const [loadMore, setLoadMore] = useState(false)
 
   // State of whether there is more to load
-  const [hasMore, setHasMore] = useState(allResidentialLights.length > 3)
+  const [hasMore, setHasMore] = useState(allNews.length > 3)
 
   // Load more button click
   const handleLoadMore = () => {
@@ -98,9 +98,9 @@ const ResidentialPage = () => {
   useEffect(() => {
     if (loadMore && hasMore) {
       const currentLength = list.length
-      const isMore = currentLength < allResidentialLights.length
+      const isMore = currentLength < allNews.length
       const nextResults = isMore
-        ? allResidentialLights.slice(currentLength, currentLength + 3)
+        ? allNews.slice(currentLength, currentLength + 3)
         : []
       setList([...list, ...nextResults])
       setLoadMore(false)
@@ -109,7 +109,7 @@ const ResidentialPage = () => {
 
   //Check if there is more
   useEffect(() => {
-    const isMore = list.length < allResidentialLights.length
+    const isMore = list.length < allNews.length
     setHasMore(isMore)
   }, [list]) //eslint-disable-line */
 
@@ -220,4 +220,4 @@ const ResidentialPage = () => {
   )
 }
 
-export default ResidentialPage
+export default More2Page
