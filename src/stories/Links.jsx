@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './story.css';
+import './links.css';
 
 export const Links = ({ primary, backgroundColor, size, label, ...props }) => {
   const mode = primary ? 'storybook-Links--primary' : 'storybook-Links--secondary';

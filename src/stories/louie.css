@@ -1,0 +1,75 @@
+.louie {
+  padding: 1rem;
+}
+
+.louie-0 {
+  background: hsl(35, 100%, 2.5%);
+}
+
+.louie-1 {
+  background: hsl(35, 100%, 12%);
+}
+
+.louie-2 {
+  background: hsl(35, 100%, 25%);
+}
+
+.louie-3 {
+  background: hsl(35, 100%, 37%);
+}
+
+.louie-4 {
+  background: hsl(35, 100%, 50%);
+}
+
+.louie-5 {
+  background: hsl(35, 100%, 63%);
+}
+
+.louie-6 {
+  background: hsl(35, 100%, 75%);
+}
+
+.louie-7 {
+  background: hsl(35, 100%, 87%);
+}
+
+.louie-8 {
+  background: hsl(35, 100%, 97.5%);
+}
+
+.louie--0 {
+  background: hsl(35, 2.5%, 50%);
+}
+
+.louie--1 {
+  background: hsl(35, 12%, 50%);
+}
+
+.louie--2 {
+  background: hsl(35, 25%, 50%);
+}
+
+.louie--3 {
+  background: hsl(35, 37%, 50%);
+}
+
+.louie--4 {
+  background: hsl(35, 50%, 50%);
+}
+
+.louie--5 {
+  background: hsl(35, 63%, 50%);
+}
+
+.louie--6 {
+  background: hsl(35, 75%, 50%);
+}
+
+.louie--7 {
+  background: hsl(35, 87%, 50%);
+}
+
+.louie--8 {
+  background: hsl(35, 97.5%, 50%);
+}

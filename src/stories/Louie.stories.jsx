@@ -1,20 +1,20 @@
 import React from 'react';
-import { Neon } from './Neon';
+import { Louie } from './Louie';
 
 export default {
-  title: 'Neon',
-  component: Neon,
+  title: 'Louie',
+  component: Louie,
 };
 
-const Template = (args) => <Neon {...args} />;
+const Template = (args) => <Louie {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
-  label: 'Neon 🦄',
+  label: 'Louie',
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  label: 'Neon',
+  label: 'Louie',
 };

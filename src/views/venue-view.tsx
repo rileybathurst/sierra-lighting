@@ -91,6 +91,10 @@ const VenueView = ({ venue, other }) => {
         ))}
       </div>
 
+      <div className="measure">
+        <h2><Link to='/venues'>All Other Venues</Link></h2>
+      </div>
+
       <Footer />
     </>
   );

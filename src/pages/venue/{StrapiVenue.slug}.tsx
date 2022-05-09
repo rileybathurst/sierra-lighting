@@ -27,7 +27,7 @@ export const query = graphql`
       }
     }
 
-    allStrapiVenue(filter: {slug: {nin: [$slug] }}) {
+    allStrapiVenue(limit: 3, filter: {slug: {nin: [$slug] }}) {
       nodes {
         name
         id
