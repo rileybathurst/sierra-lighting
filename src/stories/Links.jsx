@@ -10,11 +10,14 @@ export const Links = ({ primary, backgroundColor, size, label, ...props }) => {
     <>
     Links on regular background
 <hr />
-    <p>lorem <a href="#">ipsum</a> - hsl(var(--honey), 100%, 25%)</p>
+    <p>lorem <a href="#">ipsum</a></p>
+    <p><a href="#" className='a--hover'>hover</a></p>
 
 <hr />
-    <p className='hover-back'><a href="#">hover back</a></p>
-    <p className='bigboy'><a href="#">big boy</a></p>
+    <p><a href="#" className='hover-back'>hover back</a></p>
+    <p><a href="#" className='hover-back hover-back__hover'>hover back hover</a></p>
+    {/* // TODO this isnt right theres a change on hover */}
+    <p><a href="#" className='bigboy'>big boy</a></p>
     {/* .hover-back, .bigboy a, .contact-info a */}
     </>
   );

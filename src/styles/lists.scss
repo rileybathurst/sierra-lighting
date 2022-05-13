@@ -50,29 +50,10 @@
 
     > li {
       list-style: none;
-      text-align: center;
-      line-height: 1.5rem;
+      line-height: 1.6rem; // based on the borders when hovered
       padding-block-end: 0.5rem;
-
-      > a {
-        padding-block: 0.25rem;
-        padding-inline: 0.5rem;
-        max-width: max-content;
-        border-radius: var(--border-radius);
-        border: 1px solid transparent;
-        line-height: 1.6rem; // guess and check
-        // ! this is right for firefox but not chrome or safari
-      }
-
-      > a:hover {
-        background-color: hsl(var(--honey), 100%, 97.5%);
-        border: 1px solid hsl(var(--honey), 100%, 50%);
-
-        @media (prefers-color-scheme: dark) {
-          background-color: hsl(var(--denim), 12%, 75%);
-          border-color: hsl(var(--denim), 12%, 97.5%);
-        }
-      }
+      text-align: center;
+      // > a is in links.scss to use @extends
     }
   }
 

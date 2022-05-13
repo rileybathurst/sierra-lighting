@@ -46,26 +46,24 @@ header {
   button:hover svg {
     background-color: hsl(var(--honey), 100%, 25%);
   }
+
+  .stripe {
+    background: hsl(var(--honey), 100%, 97.5%); // needed if the menu is large
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 25%, 12%);
+    }
+  }
 }
 
 .menu__small {
-  background-color: whitesmoke;
+  background-color: whitesmoke; // ? am I sure this isnt a honey color
   opacity: 0.9;
   // box-shadow: var(--troposphere);
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 100%, 12%);
   }
-}
-
-// ! this seems insane? probably for something particular but not all buttons
-/* button {
-  background: transparent;
-  border: none;
-} */
-
-button {
-  // color: pink;
 }
 
 /*------------------*/

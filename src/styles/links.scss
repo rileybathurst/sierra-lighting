@@ -4,7 +4,7 @@
 
 a {
   // color: hsl(var(--honey), 100%, 37%);
-  color: hsl(var(--honey), var(--louie-h), 30%); // custom
+  color: hsl(var(--honey), 100%, 30%); // custom
   transition: var(--moment);
 
   @media (prefers-color-scheme: dark) {
@@ -77,6 +77,7 @@ button:focus {
 
 /*------------------*/
 //  #HOVER BACK, this is a kinda button style
+// * this should be on the <a> tag to not have to worry about child styles
 /*------------------*/
 
 .hover-back {
@@ -88,6 +89,8 @@ button:focus {
   border-radius: var(--border-radius);
   border: 1px solid transparent;
   transform: var(--moment);
+  transition: var(--moment);
+  // theres no color indicated here it all comes from the <a> so it doesnt need a dark
 }
 
 // * make this reusable
@@ -97,8 +100,9 @@ button:focus {
   box-shadow: var(--mesosphere);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 100%, 87%);
-    border-color: hsl(var(--denim), 100%, 75%);
+    background-color: hsl(var(--denim), 100%, 12%);
+    border-color: hsl(var(--denim), 100%, 25%);
+    color: hsl(var(--denim), 37%, 75%);
   }
 }
 
@@ -137,4 +141,25 @@ button:focus {
   @media (prefers-color-scheme: dark) {
     border-color: hsl(var(--denim), 12%, 50%);
   }
+}
+
+.footer_list a {
+  @extend .hover-back;
+  margin-inline: auto;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  max-width: max-content;
+  line-height: 1.6rem; // guess and check
+  // ! this is right for firefox but not chrome or safari */
+}
+
+.footer_list a:hover {
+  @extend .hover-back__hover;
+  /*  background-color: hsl(var(--honey), 100%, 97.5%);
+  border: 1px solid hsl(var(--honey), 100%, 50%);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 12%, 75%);
+    border-color: hsl(var(--denim), 12%, 97.5%);
+  } */
 }

@@ -25,7 +25,7 @@ function SlideMenu() {
           onClick={() => setSlide('close')}
         >
           <span className='sr-only'>open menu</span>
-          <Hamburger />
+          <Hamburger class="inactive" />
         </button>
         <nav
           style={{
@@ -55,7 +55,7 @@ function SlideMenu() {
           onClick={() => setSlide('close')}
         >
           <span className='sr-only'>open menu</span>
-          <Hamburger />
+          <Hamburger class="inactive" />
         </button>
         <nav
           style={{
