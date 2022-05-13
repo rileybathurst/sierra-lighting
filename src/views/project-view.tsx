@@ -113,7 +113,7 @@ const ProjectView = ({ project, other }) => {
   return (
     <>
       <Seo
-        title="Sierra Lighting"
+        title={`${project.name} | Sierra Lighting`}
         description={project.excerpt}
         image={project?.image.localFile.url}
       />

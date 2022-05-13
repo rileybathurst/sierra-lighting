@@ -14,15 +14,10 @@ const VendorView = ({ vendor, other }) => {
   return (
     <>
       <Seo
-        title="Sierra Lighting"
+        title={`${vendor.name} | Sierra Lighting`}
         description={vendor.excerpt}
         image={vendor?.profile?.localFile?.url}
       />
-
-      <hr />
-      {vendor.excerpt}
-      {vendor?.profile?.alternativeText}
-      <hr />
 
       <Header />
 
@@ -108,6 +103,7 @@ const VendorView = ({ vendor, other }) => {
                   {other.name}
                 </Link>
               </h2>
+              <p>{other.excerpt}</p>
             </div>
           </div>
         ))}

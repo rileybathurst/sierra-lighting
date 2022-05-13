@@ -32,6 +32,7 @@ export const query = graphql`
         name
         id
         slug
+        excerpt
 
         profile {
           localFile {

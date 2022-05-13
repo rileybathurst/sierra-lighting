@@ -13,7 +13,7 @@ const TestimonialView = ({ testimonial }) => {
   return (
     <>
       <Seo
-        title="Sierra Lighting"
+        title={`${testimonial.name} | Sierra Lighting`}
         description={testimonial.excerpt}
       />
       <Header />

@@ -10,7 +10,7 @@ const VenueView = ({ venue, other }) => {
   return (
     <>
       <Seo
-        title="Sierra Lighting"
+        title={`${venue.name} | Sierra Lighting`}
         description={venue?.excerpt}
         image={venue?.venueImage?.localFile?.url}
       />

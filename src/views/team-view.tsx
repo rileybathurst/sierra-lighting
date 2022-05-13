@@ -21,7 +21,7 @@ const TeamView = ({ team }) => {
     <>
       {/* // TODO image and description */}
       <Seo
-        title="Sierra Lighting"
+        title={`${team.name} | Sierra Lighting`}
         description={team?.excerpt}
         image={team?.avatar?.localFile?.url}
       />
