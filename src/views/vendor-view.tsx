@@ -5,10 +5,96 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import StrShort from "../components/StrShort";
 
 import FacebookIcon from "../images/facebook-icon";
 import InstagramIcon from "../images/instagram-icon";
 import PinterestIcon from "../images/pinterest-icon";
+
+function Website(props) {
+  let str = props.website;
+
+  // <StrLengths str={str} />
+
+  if (props.website) {
+    return (
+      <p>
+        <a href={`${props.website}`}
+          target='_blank'
+          rel="noopener noreferrer"
+          className="hover-back"
+        >
+          <StrShort str={props.website} />
+        </a>
+      </p>
+    )
+  } else {
+    return null;
+  }
+}
+
+function Instagram(props) {
+  if (props.instagram) {
+    return (
+      <li>
+        <a href={`http://${props.instagram}`} target="_blank" rel="noopener noreferrer">
+          <InstagramIcon />
+          <StrShort str={props.instagram} />
+          {/* {props.instagram} */}
+        </a>
+      </li>
+    )
+  } else {
+    return null
+  }
+}
+function Facebook(props) {
+
+  if (props.facebook) {
+    return (
+      <li>
+        <a href={`http://${props.facebook}`} target="_blank" rel="noopener noreferrer">
+          <FacebookIcon />
+          {props.facebook}
+        </a>
+      </li>
+    )
+  } else {
+    return null
+  }
+}
+function Pinterest(props) {
+  if (props.pinterest) {
+    return (
+      <li>
+        <a href={`http://${props.pinterest}`} target="_blank" rel="noopener noreferrer">
+          <PinterestIcon />
+          {props.pinterest}
+        </a>
+      </li>
+    )
+  } else {
+    return null
+  }
+}
+
+function Social(props) {
+  if (props.instagram || props.facebook || props.pinterest) {
+    return (
+      <div className="footer-social">
+        <hr />
+        <ul className="measured">
+          <Instagram instagram={props.instagram} />
+          <Facebook facebook={props.facebook} />
+          <Pinterest pinterest={props.pinterest} />
+
+        </ul>
+      </div>
+    )
+  } else {
+    return null
+  }
+}
 
 const VendorView = ({ vendor, other }) => {
   return (
@@ -56,21 +142,14 @@ const VendorView = ({ vendor, other }) => {
         <article className="single">
           <h1>{vendor.name}</h1>
           <p>{vendor.description}</p>
-          <p><a href={`http://${vendor.website}`} target='_blank' rel="noopener noreferrer">{vendor.website}</a></p>
-
           <hr />
+          <Website website={vendor.website} />
 
-          {/* // * garbage naming */}
-          <div className="footer-social">
-            <ul className="measured">
-              {/* // TODO // ! this needs if statements and checks on if name or full link I think name is better so I can use it cleanly */}
-              <li><a href={`http://${vendor.instagram}`} target="_blank" rel="noopener noreferrer"><InstagramIcon />
-                {vendor.instagram}
-              </a></li>
-              <li><a href={`http://${vendor.facebook}`} target="_blank" rel="noopener noreferrer"><FacebookIcon /> {vendor.facebook}</a></li>
-              <li><a href={`http://${vendor.pinterest}`} target="_blank" rel="noopener noreferrer"><PinterestIcon />{vendor.pinterest}</a></li>
-            </ul>
-          </div>
+          <Social
+            instagram={vendor.instagram}
+            facebook={vendor.facebook}
+            pinterest={vendor.pinterest}
+          />
 
         </article>
       </main>
@@ -97,7 +176,6 @@ const VendorView = ({ vendor, other }) => {
             <div className="paper"></div>
             <div className="content">
               <hr />
-              <h3 className="crest">Byline</h3>
               <h2 className="mixta">
                 <Link to={`/vendor/${other.slug}`}>
                   {other.name}

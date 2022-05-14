@@ -15,14 +15,32 @@ function ThisYear() {
   );
 }
 
-function encode(data) {
+// I dont have all of these and it might fix the caching issue
+function IfTeamImage(props) {
+
+  if (props.teamImage) {
+    return (
+      <GatsbyImage
+        image={
+          props.teamImage
+        }
+        alt={props.alt}
+      />
+    )
+  } else {
+    return null
+  }
+}
+
+// ? what was I working on here? // encode something
+/* function encode(data) {
   return Object.keys(data)
     .map(
       (key) =>
         encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
     )
     .join("&");
-}
+} */
 
 /* const handleSubmit = (event) => {
   event.preventDefault();
@@ -72,13 +90,9 @@ const Footer = () => {
 
                       <div key={team.id}>
                         <Link to={`/team/${team.slug}`}>
-                          <GatsbyImage
-                            image={
-                              team?.avatar?.localFile?.childImageSharp
-                                ?.gatsbyImageData
-                            }
-                            alt={team.avatar?.alternativeText}
-                            className=""
+                          <IfTeamImage
+                            teamImage={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
+                            alt={team?.avatar?.alternativeText}
                           />
 
                           <p itemScope itemProp="Person" itemType="https://schema.org/Person">
@@ -198,6 +212,7 @@ query FooterQuery {
             gatsbyImageData
           }
         }
+        alternativeText
       }
 
     }
