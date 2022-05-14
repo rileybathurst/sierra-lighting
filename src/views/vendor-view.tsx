@@ -12,22 +12,54 @@ import InstagramIcon from "../images/instagram-icon";
 import PinterestIcon from "../images/pinterest-icon";
 
 function Website(props) {
-  let str = props.website;
-
-  // <StrLengths str={str} />
-
   if (props.website) {
-    return (
-      <p>
-        <a href={`${props.website}`}
-          target='_blank'
-          rel="noopener noreferrer"
-          className="hover-back"
-        >
-          <StrShort str={props.website} />
-        </a>
-      </p>
-    )
+
+    let str = props.website;
+    const DoesNotInclude = !str.includes('https://');
+    console.log(DoesNotInclude);
+
+    if (DoesNotInclude) {
+      return (
+        <p>
+          {/* Im having problem making sure this always the same and pushing to the external */}
+          {process.env.NODE_ENV === "development" ? (
+            <div className="seo-showcase">
+              <p className="key">
+                Starts with &nbsp;
+                {props.website}
+              </p>
+
+            </div>
+          ) : null}
+
+          <a href={`https://${props.website}`}
+            target="_blank"
+            rel="noopener noreferrer">
+            <StrShort str={props.website} />
+          </a>
+        </p>
+      )
+    } else {
+      // the link is fine just run it as is
+      return (
+        <p>
+          {process.env.NODE_ENV === "development" ? (
+            <div className="seo-showcase">
+              <p className="key">
+                Starts with &nbsp;
+                {props.website}
+              </p>
+            </div>
+          ) : null}
+          <a href={props.website}
+            target="_blank"
+            rel="noopener noreferrer">
+            <StrShort str={props.website} />
+          </a>
+        </p>
+      )
+        ;
+    }
   } else {
     return null;
   }
@@ -37,9 +69,9 @@ function Instagram(props) {
   if (props.instagram) {
     return (
       <li>
-        <a href={`http://${props.instagram}`} target="_blank" rel="noopener noreferrer">
+        <a href={`https://instagram.com/${props.instagram}`} target="_blank" rel="noopener noreferrer">
           <InstagramIcon />
-          <StrShort str={props.instagram} />
+          @<StrShort str={props.instagram} />
           {/* {props.instagram} */}
         </a>
       </li>
@@ -53,9 +85,9 @@ function Facebook(props) {
   if (props.facebook) {
     return (
       <li>
-        <a href={`http://${props.facebook}`} target="_blank" rel="noopener noreferrer">
+        <a href={`https://facebook.com/${props.facebook}`} target="_blank" rel="noopener noreferrer">
           <FacebookIcon />
-          {props.facebook}
+          <StrShort str={props.facebook} />
         </a>
       </li>
     )
@@ -67,9 +99,9 @@ function Pinterest(props) {
   if (props.pinterest) {
     return (
       <li>
-        <a href={`http://${props.pinterest}`} target="_blank" rel="noopener noreferrer">
+        <a href={`https://pinterest.com/${props.pinterest}`} target="_blank" rel="noopener noreferrer">
           <PinterestIcon />
-          {props.pinterest}
+          <StrShort str={props.pinterest} />
         </a>
       </li>
     )
@@ -145,6 +177,7 @@ const VendorView = ({ vendor, other }) => {
           <hr />
           <Website website={vendor.website} />
 
+          {/* // TODO these can get too long http://localhost:8000/vendor/blancabrandon */}
           <Social
             instagram={vendor.instagram}
             facebook={vendor.facebook}

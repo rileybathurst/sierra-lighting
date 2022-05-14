@@ -263,7 +263,7 @@ header {
     justify-content: center;
 
     @media (min-width: $book) {
-      justify-content: space-between;
+      justify-content: flex-start;
     }
 
     li {
