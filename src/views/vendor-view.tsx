@@ -1,5 +1,3 @@
-// TODO there is an option we could at time loading into this
-
 import * as React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -235,7 +233,7 @@ const VendorView = ({ vendor, other }) => {
         </article>
       </main>
 
-
+      {/* // TODO there is an option we could at time loading into this */}
       <div className="measure">
         <hr />
         <h4>Other Wedding Vendors</h4>

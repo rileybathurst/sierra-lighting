@@ -109,7 +109,7 @@ const Footer = () => {
             />
           </div>
 
-          <h4><Link to="/work" className="hover-back">Work with us</Link></h4>
+          <h4><Link to="/work" className="link--subtle">Work with us</Link></h4>
         </div>
       </div>
 
@@ -156,6 +156,7 @@ const Footer = () => {
         <hr />
       </div>
 
+      {/* // TODO front page only flex arrangment */}
       <SocialIcons />
 
       <div className="measure">
@@ -182,7 +183,8 @@ const Footer = () => {
         </Link>
         {/* // TODO 2023 This dissappears */}
         <h5 className="crest">
-          <a href="https://www.sierrachristmaslights.com/" target="_blank" rel="noopener noreffer">
+          <a href="https://www.sierrachristmaslights.com/" target="_blank" rel="noopener noreffer"
+            className="link--subtle">
             Formally known as Sierra Christmas Lights
           </a>
         </h5>

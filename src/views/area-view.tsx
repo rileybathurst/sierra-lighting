@@ -30,6 +30,7 @@ function Venues(props) {
   }
 }
 
+// TODO this is now a component grab it from there
 function StateAbreviation(props) {
   if (props.state == "california") {
     return (

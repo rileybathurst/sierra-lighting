@@ -16,6 +16,12 @@ export const query = graphql`
         state
       }
 
+      address {
+        data {
+          address
+        }
+      }
+
       venueImage {
         localFile {
           childImageSharp {
@@ -33,6 +39,7 @@ export const query = graphql`
         id
         slug
         description
+        excerpt
 
         venueImage {
           localFile {

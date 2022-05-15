@@ -2,9 +2,21 @@ import * as React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import ReactMarkdown from "react-markdown";
+
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+
+import StateAbbreviation from "../components/state-abbreviation";
+
+function ReactAddress(props) {
+  if (props.address) {
+    return <ReactMarkdown children={props.address.data.address} />;
+  } else {
+    return null;
+  }
+}
 
 const VenueView = ({ venue, other }) => {
   return (
@@ -30,6 +42,8 @@ const VenueView = ({ venue, other }) => {
             <meta itemProp="position" content="2" />
           </li>
 
+          {/* // TODO this has sometimes another layer */}
+
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <span itemProp="name">{venue.name}</span>
             <meta itemProp="position" content="3" />
@@ -49,10 +63,16 @@ const VenueView = ({ venue, other }) => {
 
       <main className="measure">
         <article className="single">
-          <h1>{venue.name}</h1>
-          <h2>{venue.area.name}, {venue.area.state}</h2>
+          <h2 className="crest">{venue.area.name}, <StateAbbreviation state={venue.area.state} /></h2>
+          <h1 className="range">{venue.name}</h1>
           <hr />
           <p>{venue.description}</p>
+
+          <hr />
+          <address>
+            {/* // TODO this could probably be more structured with seo */}
+            <p><ReactAddress address={venue.address} /></p>
+          </address>
         </article>
       </main>
 
@@ -78,21 +98,22 @@ const VenueView = ({ venue, other }) => {
             <div className="paper"></div>
             <div className="content">
               <hr />
-              <h3 className="crest">Byline</h3>
+              <h3 className="crest">
+                Located in {other.area.name}, <StateAbbreviation state={other.area.state} /></h3>
               <h2 className="mixta">
-                <Link to={`/light/${other.slug}`}>
+                <Link to={`/venue/${other.slug}`}>
                   {other.name}
                 </Link>
               </h2>
-              <p>Located in {other.area.name}, {other.area.state}</p>
-              {/* // TODO capitalization and abbreviation possibly a map icon */}
+              <p>{other.except}</p>
             </div>
           </div>
         ))}
       </div>
 
       <div className="measure">
-        <h2><Link to='/venues'>All Other Venues</Link></h2>
+        <h3 className="crest">Even More</h3>
+        <h2 className="range"><Link to='/venues' className="link--subtle">All Other Venues</Link></h2>
       </div>
 
       <Footer />

@@ -13,6 +13,7 @@ const WorkPage = () => {
       <Seo
         title="Work | Sierra Lighting"
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/work-og-sierra_lighting.jpg"
+      // TODO I have a new image for this
       />
 
       <Header />
@@ -33,6 +34,7 @@ const WorkPage = () => {
       </div>
 
       <main className="measure">
+        {/* // TODO hero image */}
         <h1>Jobs</h1>
         <p>We want to hire people.</p>
 

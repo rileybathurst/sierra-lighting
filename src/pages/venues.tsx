@@ -48,6 +48,7 @@ const VenuePage = () => {
                 {/* // I dont think its worth querying for these */}
                 <h4 className="crest">National Treasure</h4>
                 <h3 className="range">
+                  {/* // TODO these links can now all be updated */}
                   <Link to="/area/southlake" className="link--subtle">South Lake Tahoe, NV.</Link>
                 </h3>
               </div>
