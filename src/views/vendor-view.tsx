@@ -67,44 +67,83 @@ function Website(props) {
 
 function Instagram(props) {
   if (props.instagram) {
-    return (
-      <li>
-        <a href={`https://instagram.com/${props.instagram}`} target="_blank" rel="noopener noreferrer">
-          <InstagramIcon />
-          @<StrShort str={props.instagram} />
-          {/* {props.instagram} */}
-        </a>
-      </li>
-    )
+
+    // this can get messy with https:// www. or all the things its always a guess and check
+    if (props.instagram.includes('instagram.com/')) {
+      // console.log('instagram is fine');
+      return (
+        <li>
+          <a href={props.instagram} target="_blank" rel="noopener noreferrer">
+            <InstagramIcon />
+            @<StrShort str={props.instagram} />
+            {/* {props.instagram} */}
+          </a>
+        </li>
+      )
+    } else {
+      // console.log('instagram aint fine');
+      // console.log(props.instagram);
+      return (
+        <li>
+          <a href={`https://instagram.com/${props.instagram}`} target="_blank" rel="noopener noreferrer">
+            <InstagramIcon />
+            @<StrShort str={props.instagram} />
+            {/* {props.instagram} */}
+          </a>
+        </li>
+      )
+    }
   } else {
     return null
   }
 }
 function Facebook(props) {
-
   if (props.facebook) {
-    return (
-      <li>
-        <a href={`https://facebook.com/${props.facebook}`} target="_blank" rel="noopener noreferrer">
-          <FacebookIcon />
-          <StrShort str={props.facebook} />
-        </a>
-      </li>
-    )
+    if (props.instagram.includes('facebook.com/')) {
+      return (
+        <li>
+          <a href={props.facebook} target="_blank" rel="noopener noreferrer">
+            <FacebookIcon />
+            <StrShort str={props.facebook} />
+            {/* {props.facebook} */}
+          </a>
+        </li>
+      )
+    } else {
+      return (
+        <li>
+          <a href={`https://facebook.com/${props.facebook}`} target="_blank" rel="noopener noreferrer">
+            <FacebookIcon />
+            <StrShort str={props.facebook} />
+          </a>
+        </li>
+      )
+    }
   } else {
     return null
   }
 }
 function Pinterest(props) {
   if (props.pinterest) {
-    return (
-      <li>
-        <a href={`https://pinterest.com/${props.pinterest}`} target="_blank" rel="noopener noreferrer">
-          <PinterestIcon />
-          <StrShort str={props.pinterest} />
-        </a>
-      </li>
-    )
+    if (props.instagram.includes('pinterest.com/')) {
+      return (
+        <li>
+          <a href={props.pinterest} target="_blank" rel="noopener noreferrer">
+            <PinterestIcon />
+            <StrShort str={props.pinterest} />
+          </a>
+        </li>
+      )
+    } else {
+      return (
+        <li>
+          <a href={`https://pinterest.com/${props.pinterest}`} target="_blank" rel="noopener noreferrer">
+            <PinterestIcon />
+            <StrShort str={props.pinterest} />
+          </a>
+        </li>
+      )
+    }
   } else {
     return null
   }
