@@ -43,9 +43,13 @@ const VenuePage = () => {
           query={query}
           render={data => (
             <>
-              <div className="measure">
+              <div id="South-Lake" className="measure">
                 <hr />
-                <h3>South Lake Tahoe, NV.</h3>
+                {/* // I dont think its worth querying for these */}
+                <h4 className="crest">National Treasure</h4>
+                <h3 className="range">
+                  <Link to="/area/southlake" className="link--subtle">South Lake Tahoe, NV.</Link>
+                </h3>
               </div>
 
               <div className="deck">
@@ -73,9 +77,12 @@ const VenuePage = () => {
                 }
               </div>
 
-              <div className="measure">
+              <div id="Reno" className="measure">
                 <hr />
-                <h3>Reno, NV.</h3>
+                <h4 className="crest">The Biggest Little City</h4>
+                <h3 className="range">
+                  <Link to='/area/reno' className="link--subtle">Reno, NV.</Link>
+                </h3>
               </div>
 
               <div className="deck">
@@ -103,9 +110,10 @@ const VenuePage = () => {
                 }
               </div>
 
-              <div className="measure">
+              <div id="Incline-Village" className="measure">
                 <hr />
-                <h3>Incline Village, NV.</h3>
+                {/* <h4 className="crest">// TODO</h4> */}
+                <h3 classame='range'><Link to='/area/incline' className="link--subtle">Incline Village, NV.</Link></h3>
               </div>
 
               <div className="deck">
@@ -133,9 +141,12 @@ const VenuePage = () => {
                 }
               </div>
 
-              <div className="measure">
+              <div id="truckee" className="measure">
                 <hr />
-                <h3>Truckee, CA.</h3>
+                <h4 className="crest">A base camp for a big life</h4>
+                <h3 className="range">
+                  <Link to="/area/truckee" className="link--subtle">Truckee, CA.</Link>
+                </h3>
               </div>
 
               <div className="deck">
@@ -163,9 +174,12 @@ const VenuePage = () => {
                 }
               </div>
 
-              <div className="measure">
+              <div id="olympic-valley" className="measure">
                 <hr />
-                <h3>Olympic Valley, CA.</h3>
+                {/* <h4 className="crest">// TODO</h4> */}
+                <h3 className="range">
+                  <Link to="/area/olympic" className="link--subtle">Olympic Valley, CA.</Link>
+                </h3>
               </div>
 
               <div className="deck">
@@ -193,9 +207,11 @@ const VenuePage = () => {
                 }
               </div>
 
-              <div className="measure">
+              <div id="donner-summit" className="measure">
                 <hr />
-                <h3>Donner Summit, CA.</h3>
+                {/* <h4 className="crest">// TODO</h4> */}
+                <h3 className="range">
+                  <Link to="/area/donner" className="link--subtle">Donner Summit, CA.</Link></h3>
               </div>
 
               <div className="deck">
@@ -223,9 +239,14 @@ const VenuePage = () => {
                 }
               </div>
 
-              <div className="measure">
+              <div id="glenbrook" className="measure">
                 <hr />
-                <h3>Glenbrook, NV.</h3>
+                {/* <h4 className="crest">// TODO</h4> */}
+                <h3 className="range">
+                  <Link to="/area/glenbrook" className="link--subtle">
+                    Glenbrook, NV.
+                  </Link>
+                </h3>
               </div>
 
               <div className="deck">
@@ -253,9 +274,14 @@ const VenuePage = () => {
                 }
               </div>
 
-              <div className="measure">
+              <div id="tahoma" className="measure">
                 <hr />
-                <h3>Tahoma and West Shore, CA.</h3>
+                {/* <h4 className="crest">// TODO</h4> */}
+                <h3 className="range">
+                  <Link to="/area/tahoma" className="link--subtle">
+                    Tahoma and West Shore, CA.
+                  </Link>
+                </h3>
               </div>
 
               <div className="deck">

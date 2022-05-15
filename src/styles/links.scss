@@ -13,7 +13,8 @@ a {
   // text-decoration: none;
 }
 
-a:hover {
+a:hover,
+a:focus {
   color: hsl(var(--honey), 100%, 37%);
 
   @media (prefers-color-scheme: dark) {
@@ -28,6 +29,24 @@ a::selection {
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 37%, 25%);
+  }
+}
+
+.link--subtle {
+  color: hsl(var(--denim), 12%, 12%);
+
+  @media (prefers-color-scheme: dark) {
+    color: hsl(var(--honey), 100%, 97.5%); // custom
+  }
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: hsl(var(--denim), 12%, 12%);
+
+    @media (prefers-color-scheme: dark) {
+      color: hsl(var(--honey), 100%, 97.5%); // custom
+    }
   }
 }
 
@@ -116,7 +135,9 @@ button:focus {
 }
 
 .bigboy a:hover,
-.contact-info a:hover {
+.bigboy a:focus,
+.contact-info a:hover,
+.contact-info a:focus {
   @extend .hover-back__hover;
 }
 
@@ -135,7 +156,8 @@ button:focus {
   padding-inline: 0.5rem;
 }
 
-.footer-copyright a:hover svg {
+.footer-copyright a:hover svg,
+.footer-copyright a:focus svg {
   border-color: hsl(var(--honey), 100%, 50%);
 
   @media (prefers-color-scheme: dark) {
@@ -153,7 +175,8 @@ button:focus {
   // ! this is right for firefox but not chrome or safari */
 }
 
-.footer_list a:hover {
+.footer_list a:hover,
+.footer_list a:focus {
   @extend .hover-back__hover;
   /*  background-color: hsl(var(--honey), 100%, 97.5%);
   border: 1px solid hsl(var(--honey), 100%, 50%);

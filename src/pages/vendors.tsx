@@ -35,12 +35,6 @@ const VendorsPage = () => {
       <main>
 
         <div className="measure">
-          <p className="breadcrumbs">
-            <Link to="/">Home</Link>&nbsp;/&nbsp;
-            <Link to="/wedding">Wedding</Link>&nbsp;/&nbsp;
-            Wedding Vedors
-          </p>
-          <hr />
 
           <h2 className="crest">Who we like to work with</h2>
           <h1 className="mixta">Wedding Vendors</h1>
@@ -56,7 +50,81 @@ const VendorsPage = () => {
             render={data => (
               <>
                 {
-                  data.allStrapiVendor.nodes.map(vendor => (
+                  data.photography.nodes.map(vendor => (
+                    <section className="card" key={vendor.id}>
+                      <GatsbyImage
+                        image={
+                          vendor?.profile?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={vendor.profile?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/vendor/${vendor.slug}`}>{vendor.name}</Link></h2>
+                        <p>{vendor.description}</p>
+                      </div>
+                    </section>
+
+                  ))
+                }
+              </>
+            )}
+          />
+        </div>
+
+        <div className="measure">
+          <hr />
+          <h3>Planning</h3>
+        </div>
+
+        <div className="deck">
+          <StaticQuery
+            query={query}
+            render={data => (
+              <>
+                {
+                  data.planning.nodes.map(vendor => (
+                    <section className="card" key={vendor.id}>
+                      <GatsbyImage
+                        image={
+                          vendor?.profile?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={vendor.profile?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/vendor/${vendor.slug}`}>{vendor.name}</Link></h2>
+                        <p>{vendor.description}</p>
+                      </div>
+                    </section>
+
+                  ))
+                }
+              </>
+            )}
+          />
+        </div>
+
+        <div className="measure">
+          <hr />
+          <h3>Event Production</h3>
+        </div>
+
+        <div className="deck">
+          <StaticQuery
+            query={query}
+            render={data => (
+              <>
+                {
+                  data.production.nodes.map(vendor => (
                     <section className="card" key={vendor.id}>
                       <GatsbyImage
                         image={
@@ -94,7 +162,49 @@ export default VendorsPage
 
 const query = graphql`
 query VendorsQuery {
-  allStrapiVendor(filter: { publishedAt: { ne: null } }) {
+  photography: allStrapiVendor(filter: {service: {eq: "photography"}}) {
+    nodes {
+      id
+      name
+      description
+      slug
+
+      profile {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+  
+  planning: allStrapiVendor(filter: {service: {eq: "planning"}}) {
+    nodes {
+      id
+      name
+      description
+      slug
+
+      profile {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+  
+  production: allStrapiVendor(filter: {service: {eq: "event production"}}) {
     nodes {
       id
       name

@@ -1,3 +1,5 @@
+// TODO there is an option we could at time loading into this
+
 import * as React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -168,6 +170,7 @@ function Social(props) {
 }
 
 const VendorView = ({ vendor, other }) => {
+
   return (
     <>
       <Seo
@@ -193,8 +196,14 @@ const VendorView = ({ vendor, other }) => {
           </li>
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{vendor.name}</span>
+            <Link itemProp="item" to={`/vendors/${vendor.service}`}>
+              <span itemProp="name" className="first-capital">{vendor.service}</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="3" />
+          </li>
+
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <span itemProp="name">{vendor.name}</span>
+            <meta itemProp="position" content="4" />
           </li>
         </ol>
         <hr />
@@ -257,6 +266,11 @@ const VendorView = ({ vendor, other }) => {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="measure">
+        <span className="crest">Even More?</span>
+        <h5 className="range"><Link to="/vendors">View all other vendors</Link></h5>
       </div>
 
       <Footer />

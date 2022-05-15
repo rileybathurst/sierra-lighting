@@ -27,12 +27,13 @@ export const query = graphql`
       }
     }
 
-    allStrapiVendor(filter: {slug: {nin: [$slug] }}) {
+    allStrapiVendor(limit: 3, filter: {slug: {nin: [$slug] }}) {
       nodes {
         name
         id
         slug
         excerpt
+        service
 
         profile {
           localFile {

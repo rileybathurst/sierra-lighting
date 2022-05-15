@@ -64,13 +64,19 @@ const AreaView = ({ area }) => {
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="first-capital">
             <Link itemProp="item" to="/areas">
-              <span itemProp="name">{area.state}</span></Link>&nbsp;/&nbsp;
+              <span itemProp="name">Service Areas</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
+          </li>
+
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="first-capital">
+            <Link itemProp="item" to="/areas">
+              <span itemProp="name">{area.state}</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="3" />
           </li>
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <span itemProp="name">{area.name}</span>
-            <meta itemProp="position" content="3" />
+            <meta itemProp="position" content="4" />
           </li>
         </ol>
         <hr />

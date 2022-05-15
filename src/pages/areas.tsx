@@ -1,3 +1,5 @@
+// TODO these could possibly have the bylines with the names
+
 import * as React from "react"
 import { Link } from 'gatsby';
 
