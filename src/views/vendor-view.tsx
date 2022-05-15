@@ -99,7 +99,7 @@ function Instagram(props) {
 }
 function Facebook(props) {
   if (props.facebook) {
-    if (props.instagram.includes('facebook.com/')) {
+    if (props.facebook.includes('facebook.com/')) {
       return (
         <li>
           <a href={props.facebook} target="_blank" rel="noopener noreferrer">
@@ -125,7 +125,7 @@ function Facebook(props) {
 }
 function Pinterest(props) {
   if (props.pinterest) {
-    if (props.instagram.includes('pinterest.com/')) {
+    if (props.pinterest.includes('pinterest.com/')) {
       return (
         <li>
           <a href={props.pinterest} target="_blank" rel="noopener noreferrer">
