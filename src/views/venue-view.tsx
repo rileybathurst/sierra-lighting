@@ -42,11 +42,15 @@ const VenueView = ({ venue, other }) => {
             <meta itemProp="position" content="2" />
           </li>
 
-          {/* // TODO this has sometimes another layer */}
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <Link itemProp="item" to={`/area/${venue.area.slug}`}>
+              <span itemProp="name">{venue.area.name}</span></Link>&nbsp;/&nbsp;
+            <meta itemProp="position" content="3" />
+          </li>
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <span itemProp="name">{venue.name}</span>
-            <meta itemProp="position" content="3" />
+            <meta itemProp="position" content="4" />
           </li>
         </ol>
         <hr />
@@ -78,7 +82,7 @@ const VenueView = ({ venue, other }) => {
 
       <div className="measure">
         <hr />
-        <h4>Other Wedding Venues</h4>
+        <h4>Other Wedding Venues in {venue.area.name}, <StateAbbreviation state={venue.area.state} /></h4>
       </div>
 
       {/* // TODO this shouldnt get all of these but get the frist 3 then deal with it from there */}

@@ -4,7 +4,7 @@ import VenueView from "../../views/venue-view"
 
 export const query = graphql`
   query VenueQuery($slug: String!) {
-    strapiVenue(slug: { eq: $slug }) {
+    strapiVenue(slug: {eq: $slug }) {
       id
       name
       description
@@ -14,6 +14,7 @@ export const query = graphql`
       area {
         name
         state
+        slug
       }
 
       address {

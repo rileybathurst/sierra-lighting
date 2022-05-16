@@ -114,7 +114,11 @@ const VenuePage = () => {
               <div id="Incline-Village" className="measure">
                 <hr />
                 {/* <h4 className="crest">// TODO</h4> */}
-                <h3 classame='range'><Link to='/area/incline' className="link--subtle">Incline Village, NV.</Link></h3>
+                <h3 className='range'>
+                  <Link to='/area/incline' className="link--subtle">
+                    Incline Village, NV.
+                  </Link>
+                </h3>
               </div>
 
               <div className="deck">
