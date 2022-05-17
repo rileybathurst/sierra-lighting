@@ -13,9 +13,7 @@ const TestimonialList = () => (
             <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
               <div className="five-stars">
 
-                <ul className="testimonials stars">
-                  <TestimonialRanking stars={testimonial.stars} />
-                </ul>
+                <TestimonialRanking stars={testimonial.stars} />
 
                 <p className="sr-only" itemProp="ratingValue">{testimonial.stars}</p>
                 <p className="sr-only"><span itemProp="worstRating">1</span>/</p>
@@ -27,7 +25,7 @@ const TestimonialList = () => (
               <span itemProp="name" className="sr-only">{testimonial.title}</span>
               <h3 className="range" itemProp="author" itemScope itemType="https://schema.org/Person">
                 <span itemProp="name">{testimonial.customer}</span>
-              </h3>{/* // ! check this came in */}
+              </h3>
               <p>{testimonial.platform}</p>
               <p itemProp="datePublished" className="sr-only">
                 {testimonial.createdAt}

@@ -42,9 +42,7 @@ const TestimonialView = ({ testimonial }) => {
       <article className="measure">
         <h1>{testimonial.customer}</h1>
         <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
-          <ul className="testimonials stars list-none">
-            <TestimonialRanking stars={testimonial.stars} />
-          </ul>
+          <TestimonialRanking stars={testimonial.stars} />
           <p className="sr-only">
             <span itemProp="worstRating">1</span>
             <span itemProp="ratingValue">{testimonial.stars}</span>/

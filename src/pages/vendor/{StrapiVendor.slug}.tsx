@@ -25,6 +25,10 @@ export const query = graphql`
         }
         alternativeText
       }
+
+      testimonials {
+        review
+      }
     }
 
     allStrapiVendor(limit: 3, filter: {slug: {nin: [$slug] }}) {

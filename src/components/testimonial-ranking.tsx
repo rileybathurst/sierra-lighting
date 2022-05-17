@@ -18,14 +18,14 @@ function TestimonialRanking(props) {
     } while (i < stars);
 
     return (
-      <>
+      <ul className="testimonials stars">
         {count.map(x =>
           <li key={x}>
             {/* {x} */}
             <Star />
           </li>)}
         {/* {props.stars} */}
-      </>
+      </ul>
     );
   } else {
     return null;

@@ -180,6 +180,22 @@ const VendorView = ({ vendor, other }) => {
           />
 
         </article>
+
+        {/* // TODO this needs to be behind an if statement */}
+        <div className="measure">
+          <hr />
+          <h3 className="crest">Hear what {vendor.name} have to say about us</h3>
+          {vendor.testimonials.map((testimonial) => (
+            <>
+              {/* // TODO Leftquote */}
+              <blockquote>
+                {testimonial.review}
+                {/* // TODO Cite */}
+                {/* // TODO Links to more testimonials */}
+              </blockquote>
+            </>
+          ))}
+        </div>
       </main>
 
       {/* // TODO there is an option we could at time loading into this */}

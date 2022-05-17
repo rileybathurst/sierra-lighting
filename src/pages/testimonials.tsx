@@ -8,7 +8,18 @@ import Footer from "../components/footer";
 import TestimonialRanking from "../components/testimonial-ranking";
 
 function TestimonialLink(props) {
-  if (props.aref) {
+  if (props.vendor) {
+    return (
+      <>
+        {/* // TODO this is not designed yet */}
+        <span itemProp="name">{props.customer}</span>&nbsp;
+        <Link to={`/vendor/${props.vendor.slug}`}>
+          {props.vendor.name}
+        </Link>&nbsp;
+        {props?.position}
+      </>
+    )
+  } else if (props.aref) {
     return (
       <a href={props.aref} target="_blank" rel="noopener noreferrer">
         <span itemProp="name">{props.customer}</span>
@@ -18,6 +29,22 @@ function TestimonialLink(props) {
     return (
       <span itemProp="name">{props.customer}</span>
     );
+  }
+}
+
+function ReviewRatings(props) {
+  if (props.stars) {
+    return (
+      <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+        <p className="sr-only">
+          <span itemProp="worstRating">1</span>
+          <span itemProp="ratingValue">{props.stars}</span>/
+          <span itemProp="bestRating">5</span>stars
+        </p>
+      </div>
+    );
+  } else {
+    return null;
   }
 }
 
@@ -62,24 +89,22 @@ const TestimonialsPage = () => {
                     {/* <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link> */}
                     <h2 itemProp="name" className="first-capital">{testimonial.title}</h2>
 
-                    <ul className="testimonials stars">
-                      <TestimonialRanking stars={testimonial.stars} />
-                    </ul>
+                    <TestimonialRanking stars={testimonial.stars} />
                     <h3 itemProp="author" itemScope itemType="https://schema.org/Person">
 
-                      <TestimonialLink aref={testimonial.link} customer={testimonial.customer} />
+                      <TestimonialLink
+                        aref={testimonial.link}
+                        customer={testimonial.customer}
+                        vendor={testimonial?.vendor}
+                        position={testimonial?.position}
+                      />
 
                     </h3>
                     <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
                     <p itemProp="reviewBody">{testimonial.review}</p>
 
-                    <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
-                      <p className="sr-only">
-                        <span itemProp="worstRating">1</span>
-                        <span itemProp="ratingValue">{testimonial.stars}</span>/
-                        <span itemProp="bestRating">5</span>stars
-                      </p>
-                    </div>
+                    <ReviewRatings stars={testimonial.stars} />
+
                   </li>
                 ))}
               </ul>
@@ -176,6 +201,12 @@ query TestimonialsQuery {
       createdAt
       slug
       link
+      position
+
+      vendor {
+        name
+        slug
+      }
     }
   }
 }
