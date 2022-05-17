@@ -8,6 +8,8 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+import StateAbbreviation from "../components/state-abbreviation";
+
 function ReactDescription(props) {
   if (props.desc) {
     return <ReactMarkdown children={props.desc.data.description} />;
@@ -30,16 +32,17 @@ function Venues(props) {
   }
 }
 
-// TODO this is now a component grab it from there
-function StateAbreviation(props) {
-  if (props.state == "california") {
+function IfHero(props) {
+  if (props.hero) {
     return (
-      <>
-        CA
-      </>
+      <GatsbyImage
+        image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
+        alt={props?.hero?.alternativeText}
+        className="poster"
+      />
     );
-  } else if (props.state == "nevada") {
-    return "NV";
+  } else {
+    return null;
   }
 }
 
@@ -85,14 +88,15 @@ const AreaView = ({ area }) => {
 
       <main>
 
-        <GatsbyImage
+        {/*         <GatsbyImage
           image={
             area?.image?.localFile?.childImageSharp
               ?.gatsbyImageData
           }
-          alt={area.image?.alternativeText}
+          alt={area?.image?.alternativeText}
           className="poster"
-        />
+        /> */}
+        <IfHero hero={area?.image} />
 
         <article className="measure single" itemProp="address">
           <div itemProp="location" itemScope itemType="https://schema.org/areaServed">
@@ -103,7 +107,7 @@ const AreaView = ({ area }) => {
               <h2 className="crest">{area.tagline}</h2>
               <h1 className="range" >
                 <span itemProp="addressLocality">{area.name}</span>,&nbsp;
-                <span itemProp="addressRegion" className="first-capital">< StateAbreviation state={area.state} /></span>
+                <span itemProp="addressRegion" className="first-capital">< StateAbbreviation state={area.state} /></span>
               </h1>
               <ReactDescription desc={area.description} />
             </div>

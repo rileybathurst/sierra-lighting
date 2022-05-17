@@ -11,6 +11,8 @@ import { useStaticQuery, graphql } from "gatsby";
 // https://blog.spotibo.com/meta-description-length/
 // less than 120 characters is good
 // more than 160 characters is bad
+
+// TODO this could be behind a state flag
 function DescLength(props) {
   const desc = props.desc;
   const length = desc.length;
@@ -36,6 +38,15 @@ function GetMeta(props) {
     return <span className="good key">width: {img.naturalWidth} = good</span>;
   } else {
     return <span className="bad key">width: {img.naturalWidth} = bad</span>;
+  }
+}
+
+function IfSeoImage(props) {
+  if (props.image) {
+    return (
+      <img src={props.image} alt="seo checking" />)
+  } else {
+    return null;
   }
 }
 
@@ -136,7 +147,8 @@ const SEO = ({
             {/* // ? why does this need to be ogImage? */}
             {/* // regular image doubles the url */}
             <p key="image"><span className="key">Image</span> = <GetMeta link={seo.ogImage} /></p>
-            <img src={seo.ogImage} alt="seo checking" />
+            {/* <img src={seo.ogImage} alt="seo checking" /> */}
+            <IfSeoImage image={seo.ogImage} />
           </div>
         ) : null
       }

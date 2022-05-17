@@ -16,6 +16,21 @@ function ReactDescription(props) {
   }
 }
 
+function IfHero(props) {
+  if (props.hero) {
+    return (
+      <GatsbyImage
+        image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
+        alt={props?.hero?.alternativeText}
+        className="poster"
+        itemProp="image"
+      />
+    );
+  } else {
+    return null;
+  }
+}
+
 const TeamView = ({ team }) => {
   return (
     <>
@@ -54,14 +69,15 @@ const TeamView = ({ team }) => {
           <div className="team-header">
             <h1 itemProp="name">{team.name}</h1>
             <div className="team-heads">
-              <GatsbyImage
+              {/*               <GatsbyImage
                 image={
                   team?.avatar?.localFile?.childImageSharp?.gatsbyImageData
                 }
                 alt={team.avatar?.alternativeText}
                 className="poster"
                 itemProp="image"
-              />
+              /> */}
+              <IfHero hero={team?.avatar} />
             </div>
           </div>
 
