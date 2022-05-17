@@ -90,7 +90,7 @@ function Other(props) {
 
         <div className="measure">
           <p className="crest">Even More?</p>
-          <h5 className="range"><Link to="/lights">View all other lights</Link></h5>
+          <h5 className="range"><Link to="/lights" className="link--subtle">View all other lights</Link></h5>
         </div>
       </>
     );

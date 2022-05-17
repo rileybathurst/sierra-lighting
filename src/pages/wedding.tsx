@@ -191,7 +191,7 @@ const WeddingPage = () => {
         </div>
 
         <div className="measure">
-          <h5 className="range"><Link to="/lights">View all other lights</Link></h5>
+          <h5 className="range"><Link to="/lights" className="link--subtle">View all other lights</Link></h5>
           <hr />
           <h3>Have something particular in mind? Just ask!</h3>
 

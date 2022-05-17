@@ -297,6 +297,10 @@ header {
   }
 }
 
+.footer-social--self ul {
+  justify-content: space-between;
+}
+
 .footer-container {
   max-width: var(--measure);
   margin-inline: auto;

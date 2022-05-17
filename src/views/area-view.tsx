@@ -9,6 +9,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 
 import StateAbbreviation from "../components/state-abbreviation";
+import IfHero from "../components/ifHero";
 
 function ReactDescription(props) {
   if (props.desc) {
@@ -29,21 +30,6 @@ function Venues(props) {
     );
   } else {
     return null
-  }
-}
-
-// netlify has cache issues without this due to not all strapi entries having a photo yet
-function IfHero(props) {
-  if (props.hero) {
-    return (
-      <GatsbyImage
-        image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-        alt={props?.hero?.alternativeText}
-        className="poster"
-      />
-    );
-  } else {
-    return null;
   }
 }
 

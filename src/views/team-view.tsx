@@ -8,25 +8,11 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+import IfHero from "../components/ifHero";
+
 function ReactDescription(props) {
   if (props.bio) {
     return <ReactMarkdown children={props.bio.data.bio} />;
-  } else {
-    return null;
-  }
-}
-
-// netlify has cache issues without this due to not all strapi entries having a photo yet
-function IfHero(props) {
-  if (props.hero) {
-    return (
-      <GatsbyImage
-        image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-        alt={props?.hero?.alternativeText}
-        className="poster"
-        itemProp="image"
-      />
-    );
   } else {
     return null;
   }

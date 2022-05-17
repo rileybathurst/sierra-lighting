@@ -10,37 +10,11 @@ import Footer from "../components/footer";
 
 import StateAbbreviation from "../components/state-abbreviation";
 import Website from "../components/website";
+import IfHero from "../components/ifHero";
 
 function ReactAddress(props) {
   if (props.address) {
     return <ReactMarkdown children={props.address?.data?.address} />;
-  } else {
-    return null;
-  }
-}
-
-function IfHero(props) {
-  if (props.hero) {
-    const biggy = props.hero?.localFile?.childImageSharp?.gatsbyImageData?.width;
-    // this isnt dry but variables didnt like me so I ditched them
-
-    if (biggy <= 960) {
-      return (
-        <GatsbyImage
-          image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.hero?.alternativeText}
-          className='poster poster--small'
-        />
-      );
-    } else {
-      return (
-        <GatsbyImage
-          image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.hero?.alternativeText}
-          className='poster'
-        />
-      )
-    }
   } else {
     return null;
   }

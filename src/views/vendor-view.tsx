@@ -217,7 +217,7 @@ const VendorView = ({ vendor, other }) => {
 
       <div className="measure">
         <span className="crest">Even More?</span>
-        <h5 className="range"><Link to="/vendors">View all other vendors</Link></h5>
+        <h5 className="range"><Link to="/vendors" className="link--subtle">View all other vendors</Link></h5>
       </div>
 
       <Footer />

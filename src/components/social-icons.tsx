@@ -5,7 +5,7 @@ import InstagramIcon from "../images/instagram-icon";
 import PinterestIcon from "../images/pinterest-icon";
 
 const SocialIcons = () => (
-  <section id="footer-social" className="footer-social">
+  <section id="footer-social" className="footer-social footer-social--self">
     <ul className="measured">
       <li key="yelp">
         <a

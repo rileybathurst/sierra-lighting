@@ -202,10 +202,10 @@ const CommercialPage = () => {
         </div>
 
         <div className="measure">
-          <h5 className="range"><Link to="/lights">View all other lights</Link></h5>
+          <h5 className="range"><Link to="/lights" className="link--subtle">View all other lights</Link></h5>
 
           <p className="crest">Even More?</p>
-          <h5 className="range"><Link to="/lights">View all other lights</Link></h5>
+          <h5 className="range"><Link to="/lights" className="link--subtle">View all other lights</Link></h5>
         </div>
 
         <div className="measure">
