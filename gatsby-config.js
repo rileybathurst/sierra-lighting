@@ -51,7 +51,7 @@ module.exports = {
       resolve: `gatsby-plugin-sharp`,
       options: {
         defaults: {
-          formats: [`auto`, `webp`],  //,  // this is currently off to get under a ram limit bug
+          formats: [`auto`, `webp`],  //, this was off to get under a ram limit bug on netlify it seems to be working May '22
           placeholder: `dominantColor`,
           quality: 50,
           breakpoints: [300, 750, 1080, 1366, 1920],

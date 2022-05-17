@@ -71,7 +71,7 @@ const VenuePage = () => {
                       <div className="content">
                         <hr />
                         <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                        <p>{venue.description}</p>
+                        <p>{venue.excerpt}</p>
                       </div>
                     </section>
                   ))
@@ -104,7 +104,7 @@ const VenuePage = () => {
                       <div className="content">
                         <hr />
                         <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                        <p>{venue.description}</p>
+                        <p>{venue.excerpt}</p>
                       </div>
                     </section>
                   ))
@@ -139,7 +139,7 @@ const VenuePage = () => {
                       <div className="content">
                         <hr />
                         <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                        <p>{venue.description}</p>
+                        <p>{venue.excerpt}</p>
                       </div>
                     </section>
                   ))
@@ -172,7 +172,7 @@ const VenuePage = () => {
                       <div className="content">
                         <hr />
                         <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                        <p>{venue.description}</p>
+                        <p>{venue.excerpt}</p>
                       </div>
                     </section>
                   ))
@@ -205,7 +205,7 @@ const VenuePage = () => {
                       <div className="content">
                         <hr />
                         <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                        <p>{venue.description}</p>
+                        <p>{venue.excerpt}</p>
                       </div>
                     </section>
                   ))
@@ -237,7 +237,7 @@ const VenuePage = () => {
                       <div className="content">
                         <hr />
                         <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                        <p>{venue.description}</p>
+                        <p>{venue.excerpt}</p>
                       </div>
                     </section>
                   ))
@@ -272,7 +272,7 @@ const VenuePage = () => {
                       <div className="content">
                         <hr />
                         <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                        <p>{venue.description}</p>
+                        <p>{venue.excerpt}</p>
                       </div>
                     </section>
                   ))
@@ -307,7 +307,7 @@ const VenuePage = () => {
                       <div className="content">
                         <hr />
                         <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                        <p>{venue.description}</p>
+                        <p>{venue.except}</p>
                       </div>
                     </section>
                   ))
@@ -334,7 +334,7 @@ query VenuesQuery {
     nodes {
       id
       name
-      description
+      excerpt
       slug
       venueImage {
         localFile {
@@ -354,7 +354,7 @@ query VenuesQuery {
     nodes {
       id
       name
-      description
+      excerpt
       slug
       venueImage {
         localFile {
@@ -374,7 +374,7 @@ query VenuesQuery {
     nodes {
       id
       name
-      description
+      excerpt
       slug
       venueImage {
         localFile {
@@ -394,7 +394,7 @@ query VenuesQuery {
     nodes {
       id
       name
-      description
+      excerpt
       slug
       venueImage {
         localFile {
@@ -414,7 +414,7 @@ query VenuesQuery {
     nodes {
       id
       name
-      description
+      excerpt
       slug
       venueImage {
         localFile {
@@ -434,7 +434,7 @@ query VenuesQuery {
     nodes {
       id
       name
-      description
+      excerpt
       slug
       venueImage {
         localFile {
@@ -454,7 +454,7 @@ query VenuesQuery {
     nodes {
       id
       name
-      description
+      excerpt
       slug
       venueImage {
         localFile {
@@ -474,7 +474,7 @@ query VenuesQuery {
     nodes {
       id
       name
-      description
+      excerpt
       slug
       venueImage {
         localFile {

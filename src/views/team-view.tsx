@@ -16,6 +16,7 @@ function ReactDescription(props) {
   }
 }
 
+// netlify has cache issues without this due to not all strapi entries having a photo yet
 function IfHero(props) {
   if (props.hero) {
     return (

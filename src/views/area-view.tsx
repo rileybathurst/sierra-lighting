@@ -32,6 +32,7 @@ function Venues(props) {
   }
 }
 
+// netlify has cache issues without this due to not all strapi entries having a photo yet
 function IfHero(props) {
   if (props.hero) {
     return (
@@ -57,7 +58,7 @@ const AreaView = ({ area }) => {
 
       <Header />
 
-      {/* // ? these are breadcrumbs but we are maybe using additional microdata for location */}
+      {/* // using additional microdata for location */}
       <div className="measure">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">

@@ -1,6 +1,6 @@
 // https://www.gatsbyjs.com/docs/add-seo-component/
 
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
@@ -25,22 +25,6 @@ function DescLength(props) {
   }
 }
 
-function GetMeta(props) {
-  const link = props.link;
-  console.log(link);
-
-  const img = new Image();
-  img.src = link;
-
-  console.log(img.naturalWidth);
-
-  if (img.naturalWidth == 1200) {
-    return <span className="good key">width: {img.naturalWidth} = good</span>;
-  } else {
-    return <span className="bad key">width: {img.naturalWidth} = bad</span>;
-  }
-}
-
 function IfSeoImage(props) {
   if (props.image) {
     return (
@@ -49,6 +33,44 @@ function IfSeoImage(props) {
     return null;
   }
 }
+
+function GetMeta(props) {
+  const [size, setSize] = useState(0);
+  const [reply, setReply] = useState('ok');
+
+  const link = props.link;
+  // console.log(link);
+
+  const img = new Image();
+  img.src = link;
+
+  // console.log(img.naturalWidth);
+
+  /*   useEffect(() => {
+      img.naturalWidth ? setSize(img.naturalWidth) : setSize(0);
+  
+      console.log(size);
+  
+    }, [img.naturalWidth]); */
+
+  // this isnt right there should be a way of using effect for the timing but hack to get around it for now
+  setTimeout(() => {
+    setSize(img.naturalWidth)
+    if (size == 1200) {
+      setReply('good')
+    } else {
+      setReply('bad')
+    }
+  }, 100);
+
+  return (
+    <>
+      <span className={`${reply} key`}>width: {size} = {reply}</span>
+    </>
+  )
+}
+
+
 
 // Im not sure what the rules on what goes here vs in the array?
 const SEO = ({
@@ -146,8 +168,8 @@ const SEO = ({
             <p>Description charachter length = <DescLength desc={seo.description} /></p>
             {/* // ? why does this need to be ogImage? */}
             {/* // regular image doubles the url */}
-            <p key="image"><span className="key">Image</span> = <GetMeta link={seo.ogImage} /></p>
             {/* <img src={seo.ogImage} alt="seo checking" /> */}
+            <p key="image"><span className="key">Image</span> = <GetMeta link={seo.ogImage} /></p>
             <IfSeoImage image={seo.ogImage} />
           </div>
         ) : null

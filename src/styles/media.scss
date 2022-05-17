@@ -51,6 +51,10 @@ a svg:hover {
   }
 }
 
+.poster--small {
+  max-width: 40rem;
+}
+
 .home-gallery {
   > * {
     @extend .poster;

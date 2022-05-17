@@ -6,64 +6,11 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import StrShort from "../components/StrShort";
+import Website from "../components/website";
 
 import FacebookIcon from "../images/facebook-icon";
 import InstagramIcon from "../images/instagram-icon";
 import PinterestIcon from "../images/pinterest-icon";
-
-function Website(props) {
-  if (props.website) {
-
-    let str = props.website;
-    const DoesNotInclude = !str.includes('https://');
-    console.log(DoesNotInclude);
-
-    if (DoesNotInclude) {
-      return (
-        <p>
-          {/* Im having problem making sure this always the same and pushing to the external */}
-          {process.env.NODE_ENV === "development" ? (
-            <div className="seo-showcase">
-              <p className="key">
-                Starts with &nbsp;
-                {props.website}
-              </p>
-
-            </div>
-          ) : null}
-
-          <a href={`https://${props.website}`}
-            target="_blank"
-            rel="noopener noreferrer">
-            <StrShort str={props.website} />
-          </a>
-        </p>
-      )
-    } else {
-      // the link is fine just run it as is
-      return (
-        <p>
-          {process.env.NODE_ENV === "development" ? (
-            <div className="seo-showcase">
-              <p className="key">
-                Starts with &nbsp;
-                {props.website}
-              </p>
-            </div>
-          ) : null}
-          <a href={props.website}
-            target="_blank"
-            rel="noopener noreferrer">
-            <StrShort str={props.website} />
-          </a>
-        </p>
-      )
-        ;
-    }
-  } else {
-    return null;
-  }
-}
 
 function Instagram(props) {
   if (props.instagram) {
@@ -171,6 +118,8 @@ const VendorView = ({ vendor, other }) => {
 
   return (
     <>
+      {/* // TODO this whole page needs to be rebuilt to grab other vendors by service */}
+
       <Seo
         title={`${vendor.name} | Sierra Lighting`}
         description={vendor.excerpt}

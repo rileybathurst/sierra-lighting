@@ -35,8 +35,8 @@ exports.createPages = ({ actions, graphql }) => {
     // Create pages for each partner resorts.
     result.data.allStrapiVenue.edges.forEach(({ node }) => {
       createPage({
-        path: `/avenuescheck/${node.slug}`,
-        component: path.resolve(`src/templates/venuescheck.tsx`),
+        path: `/venue/${node.slug}`,
+        component: path.resolve(`src/templates/venue.tsx`),
         context: {
           slug: node.slug,
           area: node.area.slug
