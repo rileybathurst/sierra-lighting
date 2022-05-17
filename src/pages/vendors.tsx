@@ -114,26 +114,27 @@ const VendorsPage = () => {
               </div>
 
               <div className="deck">
+                {
                   data.production.nodes.map(vendor => (
-                <section className="card" key={vendor.id}>
-                  <GatsbyImage
-                    image={
-                      vendor?.profile?.localFile?.childImageSharp
-                        ?.gatsbyImageData
-                    }
-                    alt={vendor.profile?.alternativeText}
-                    className=""
-                  />
+                    <section className="card" key={vendor.id}>
+                      <GatsbyImage
+                        image={
+                          vendor?.profile?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={vendor.profile?.alternativeText}
+                        className=""
+                      />
 
-                  <div className="paper"></div>
-                  <div className="content">
-                    <hr />
-                    <h2><Link to={`/vendor/${vendor.slug}`}>{vendor.name}</Link></h2>
-                    <p>{vendor.description}</p>
-                  </div>
-                </section>
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/vendor/${vendor.slug}`}>{vendor.name}</Link></h2>
+                        <p>{vendor.description}</p>
+                      </div>
+                    </section>
 
-                ))
+                  ))
                 }
 
               </div>
