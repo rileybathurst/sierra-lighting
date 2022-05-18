@@ -27,7 +27,14 @@ export const query = graphql`
       }
 
       testimonials {
+        title
         review
+        stars
+        customer
+        position
+        vendor {
+          name
+        }
       }
     }
 

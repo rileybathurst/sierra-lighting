@@ -345,10 +345,49 @@ footer {
 //  #TESTIMONIALS
 /*------------------*/
 
+// TODO inception rule
+
 .testimonials {
-  // margin-block-start: 1.5rem;
-  // padding-block-start: 1.5rem;
-  // padding-block-end: 1.5rem;
+  padding-inline: 0; // reset
+
+  .testimonial {
+    list-style: none;
+    background-color: hsl(var(--honey), 12%, 97.5%);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid hsl(var(--honey), 100%, 50%);
+    margin-block-end: 1rem;
+    box-shadow: var(--mesosphere);
+
+    /* // TODO
+    @media (prefers-color-scheme: dark) {
+      
+    } */
+
+    figure {
+      margin: 0; // reset
+
+      blockquote {
+        margin: 0; // reset
+        display: grid;
+        gap: 1rem;
+
+        > * {
+          grid-column: 2;
+        }
+      }
+    }
+
+    .testimonial--quote_mark {
+      // TODO maybe this https://fonts.adobe.com/fonts/park-lane but it needs to only get the apostrophe
+      font-family: Georgia, serif;
+      grid-column: 1;
+    }
+
+    .testimonial--stars {
+      list-style: none;
+    }
+  }
 
   hr {
     padding-block-start: 1.5rem;

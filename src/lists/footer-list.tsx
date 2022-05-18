@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 const FooterList = () => (
   <>
     <ul className="christmas">
-      <li key="christmas lights" className=""><strong>Christmas Lights</strong></li>
+      <li key="christmas lights" className="footer_list--no_link"><strong>Christmas Lights</strong></li>
       <li key="residential"><Link to="/residential">Residential</Link></li>
       <li key="commercial"><Link to="/commercial">Commercial</Link></li>
       <li key="projects"><Link to="/projects/christmas-light-projects">Projects</Link></li>

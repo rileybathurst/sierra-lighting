@@ -7,6 +7,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import StrShort from "../components/StrShort";
 import Website from "../components/website";
+import TestimonialRanking from "../components/testimonial-ranking";
 
 import FacebookIcon from "../images/facebook-icon";
 import InstagramIcon from "../images/instagram-icon";
@@ -184,17 +185,27 @@ const VendorView = ({ vendor, other }) => {
         {/* // TODO this needs to be behind an if statement */}
         <div className="measure">
           <hr />
-          <h3 className="crest">Hear what {vendor.name} have to say about us</h3>
-          {vendor.testimonials.map((testimonial) => (
-            <>
-              {/* // TODO Leftquote */}
-              <blockquote>
-                {testimonial.review}
-                {/* // TODO Cite */}
-                {/* // TODO Links to more testimonials */}
-              </blockquote>
-            </>
-          ))}
+          <ul className='testimonials'>
+            {vendor.testimonials.map((testimonial) => (
+              <li className='testimonial'>
+                <figure>
+                  <blockquote>
+                    <h3 className='sr-only'>{testimonial.title}</h3>
+                    {/* // TODO stars */}
+                    <TestimonialRanking stars={testimonial.stars} />
+                    <p className='testimonial--quote_mark range'>&quot;&#39;</p>
+                    <p>{testimonial.review}</p>
+                    <figcaption>
+                      <h4 className='range'>{testimonial.customer}</h4>
+                      <p className='crest'><strong>{testimonial.vendor.name}</strong> - {testimonial.position}</p>
+                    </figcaption>
+                  </blockquote>
+                </figure>
+              </li>
+            ))}
+          </ul>
+          <h3 className='crest'>Hear what other customers say about us</h3>
+          <h4 className='range'><Link to="/testimonials" className="link--subtle">More Reviews</Link></h4>
         </div>
       </main>
 
