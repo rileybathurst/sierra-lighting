@@ -21,7 +21,10 @@ export const query = graphql`
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(
+              breakpoints: [960, 1840]
+                width: 960
+            )
           }
           url
         }

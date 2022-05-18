@@ -19,7 +19,10 @@ export const query = graphql`
       profile {
         localFile {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData(
+              breakpoints: [960, 1840]
+                width: 960
+            )
           }
           url
         }
@@ -27,6 +30,7 @@ export const query = graphql`
       }
 
       testimonials {
+        id
         title
         review
         stars

@@ -138,5 +138,13 @@ module.exports = {
         icon: "src/images/sierra-lighting-icon.svg",
       },
     },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        typekit: {
+          id: process.env.TYPEKIT_ID,
+        },
+      },
+    },
   ]
 };

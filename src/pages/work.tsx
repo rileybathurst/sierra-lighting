@@ -6,13 +6,24 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+export function Work() {
+  return <StaticImage
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work.jpg"
+    alt="work with us to creating wedding and event lighting"
+    className="poster"
+    itemProp="photo"
+    breakpoints={[960, 1840]}
+    width={960}
+  />
+}
+
 const WorkPage = () => {
   return (
     <>
       {/* // TODO description and info */}
       <Seo
         title="Work | Sierra Lighting"
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/work-og-sierra_lighting.jpg"
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
       // TODO I have a new image for this
       />
 
@@ -33,8 +44,10 @@ const WorkPage = () => {
         <hr />
       </div>
 
+      <Work />
       <main className="measure">
-        {/* // TODO hero image */}
+
+
         <h1>Jobs</h1>
         <p>We want to hire people.</p>
 

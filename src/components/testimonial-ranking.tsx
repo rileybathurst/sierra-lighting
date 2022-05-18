@@ -18,7 +18,7 @@ function TestimonialRanking(props) {
     } while (i < stars);
 
     return (
-      <ul className="testimonials stars">
+      <ul className="testimonial--stars">
         {count.map(x =>
           <li key={x}>
             {/* {x} */}

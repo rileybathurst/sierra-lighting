@@ -17,6 +17,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@fontsource/biz-udpmincho": "^4.5.1",
     "@storybook/addon-docs": "^6.3.8",
     "@types/react-helmet": "^6.1.5",
     "gatsby": "^4.8.0",
@@ -30,6 +31,7 @@
     "gatsby-plugin-sass": "^5.8.0",
     "gatsby-plugin-sharp": "^4.8.0",
     "gatsby-plugin-sitemap": "^5.8.0",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^4.8.0",
     "gatsby-source-strapi": "^2.0.0",
     "gatsby-transformer-sharp": "^4.8.0",

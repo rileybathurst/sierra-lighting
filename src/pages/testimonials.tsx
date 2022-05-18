@@ -9,25 +9,27 @@ import TestimonialRanking from "../components/testimonial-ranking";
 
 function TestimonialLink(props) {
   if (props.vendor) {
+    // TODO the hypen needs to be on an if
+    // TODO if no vendor then maybe it has a platform
     return (
       <>
-        {/* // TODO this is not designed yet */}
-        <span itemProp="name">{props.customer}</span>&nbsp;
-        <Link to={`/vendor/${props.vendor.slug}`}>
+        <h4 className='range' itemProp="name">{props.customer}</h4>
+        <p className='crest'><Link to={`/vendor/${props.vendor.slug}`}>
           {props.vendor.name}
-        </Link>&nbsp;
-        {props?.position}
+        </Link> - {props?.position}</p>
       </>
     )
-  } else if (props.aref) {
+  } else if (props.platform) {
+    console.log('platform');
     return (
-      <a href={props.aref} target="_blank" rel="noopener noreferrer">
-        <span itemProp="name">{props.customer}</span>
-      </a>
+      <>
+        <h4 className='range' itemProp="name">{props.customer}</h4> - {props?.platform}
+      </>
     );
   } else {
+    console.log('no vendor or platform');
     return (
-      <span itemProp="name">{props.customer}</span>
+      <h4 className='range' itemProp="name">{props.customer}</h4>
     );
   }
 }
@@ -83,28 +85,36 @@ const TestimonialsPage = () => {
           <StaticQuery
             query={query}
             render={data => (
-              <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="testimonials__page">
+              <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="testimonials">
                 {data.allStrapiTestimonial.nodes.map(testimonial => (
-                  <li key={testimonial.id}>
-                    {/* <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link> */}
-                    <h2 itemProp="name" className="first-capital">{testimonial.title}</h2>
+                  <li key={testimonial.id} className='testimonial'>
+                    <figure>
+                      <blockquote>
+                        {/* <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link> */}
+                        <h2 itemProp="name" className="sr-only">{testimonial.title}</h2>
 
-                    <TestimonialRanking stars={testimonial.stars} />
-                    <h3 itemProp="author" itemScope itemType="https://schema.org/Person">
+                        <TestimonialRanking stars={testimonial.stars} />
+                        <p className='testimonial--quote_mark range'>&ldquo;</p>
+                        <p itemProp="reviewBody">{testimonial.review}</p>
 
-                      <TestimonialLink
-                        aref={testimonial.link}
-                        customer={testimonial.customer}
-                        vendor={testimonial?.vendor}
-                        position={testimonial?.position}
-                      />
 
-                    </h3>
-                    <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
-                    <p itemProp="reviewBody">{testimonial.review}</p>
+                        <figcaption>
+                          <span itemProp="author" itemScope itemType="https://schema.org/Person">
 
-                    <ReviewRatings stars={testimonial.stars} />
+                            <TestimonialLink
+                              aref={testimonial.link}
+                              customer={testimonial.customer}
+                              vendor={testimonial?.vendor}
+                              position={testimonial?.position}
+                              platform={testimonial?.platform}
+                            />
 
+                          </span>
+                          <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
+                        </figcaption>
+                        <ReviewRatings stars={testimonial.stars} />
+                      </blockquote>
+                    </figure>
                   </li>
                 ))}
               </ul>
@@ -202,6 +212,7 @@ query TestimonialsQuery {
       slug
       link
       position
+      platform
 
       vendor {
         name

@@ -175,7 +175,12 @@
 // the circle
 .hamburger.is-active:before {
   border: 2px solid hsl(var(--honey), 100%, 30%); // TODO not a louie color
-  background: hsl(var(--honey), 100%, 85%);
+  background-color: hsl(var(--honey), 100%, 85%);
+
+  @media (prefers-color-scheme: dark) {
+    border-color: hsl(var(--denim), 37%, 37%);
+    background-color: hsl(var(--denim), 37%, 7.5%);
+  }
 }
 
 .hamburger .line {
@@ -185,6 +190,10 @@
   display: block;
   margin-block: 0.5rem;
   transition: var(--moment);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 37%, 37%);
+  }
 }
 
 .hamburger.is-active .line {

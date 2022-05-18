@@ -13,13 +13,13 @@ const Header = () => {
       <TopBar />
       <header >
         <div className="header-container">
-          <Helmet>
+          {/* <Helmet>
             <link
               rel="stylesheet"
               href="https://use.typekit.net/kmu8xou.css"
             // crossorigin="use-credentials" // TODO this has an issue either on or off
             />
-          </Helmet>
+          </Helmet> */}
           <Link to="/" className="header__logo" itemProp="logo"><Logo /></Link>
           {/* // needed to hide the small menu */}
           <div className="stripe">{/* stay gold */}</div>

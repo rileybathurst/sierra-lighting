@@ -187,13 +187,13 @@ const VendorView = ({ vendor, other }) => {
           <hr />
           <ul className='testimonials'>
             {vendor.testimonials.map((testimonial) => (
-              <li className='testimonial'>
+              <li key={vendor.id} className='testimonial'>
                 <figure>
                   <blockquote>
                     <h3 className='sr-only'>{testimonial.title}</h3>
                     {/* // TODO stars */}
                     <TestimonialRanking stars={testimonial.stars} />
-                    <p className='testimonial--quote_mark range'>&quot;&#39;</p>
+                    <p className='testimonial--quote_mark range'>&ldquo;</p>
                     <p>{testimonial.review}</p>
                     <figcaption>
                       <h4 className='range'>{testimonial.customer}</h4>

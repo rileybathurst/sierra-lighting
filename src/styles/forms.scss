@@ -16,7 +16,9 @@ form {
     border: 1px solid hsl(var(--honey), 100%, 50%);
 
     @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 25%, 12%);
       border-color: hsl(var(--denim), 25%, 25%);
+      color: hsl(var(--honey), 100%, 97.5%);
     }
   }
 
