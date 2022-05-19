@@ -209,7 +209,7 @@ const VendorView = ({ vendor, other }) => {
         </div>
       </main>
 
-      {/* // TODO there is an option we could at time loading into this */}
+      {/* // TODO first check if we have any projects */}
       <div className="measure">
         <hr />
         <h4>Other Wedding Vendors</h4>

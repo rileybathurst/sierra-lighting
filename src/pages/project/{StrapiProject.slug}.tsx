@@ -14,6 +14,7 @@ export const query = graphql`
       }
       excerpt
       slug
+      ogimage
 
       image {
         localFile {
@@ -43,6 +44,23 @@ export const query = graphql`
           alternativeText
         }
       }
+
+      areas {
+        name
+      }
+
+      teams {
+        name
+      }
+
+      vendors {
+        name
+      }
+      
+      venue {
+        name
+      }
+
     }
 
     allStrapiProject(filter: {slug: {nin: [$slug] }}) {

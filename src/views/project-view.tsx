@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link } from "gatsby";
+import { Link, StaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
@@ -113,9 +113,9 @@ const ProjectView = ({ project, other }) => {
   return (
     <>
       <Seo
-        title={`${project.name} | Sierra Lighting`}
+        title={`${project.title} | Sierra Lighting`}
         description={project.excerpt}
-        image={project?.image.localFile.url}
+        image={project?.ogimage} // TODO this could have an if back to the regular image
       />
       <Header />
 
@@ -155,6 +155,28 @@ const ProjectView = ({ project, other }) => {
           <h1>{project.title}</h1>
           <ReactDescription desc={project.description} />
         </article>
+
+        <hr />
+
+        {/* make sure the maps are look ok with multiple */}
+
+        <h3 className="crest">Area</h3>
+        {project?.areas.map(area => (
+          <p>{area.name}</p>
+        ))}
+        <hr />
+        <h3 className="crest">Team</h3>
+        {project?.teams.map(team => (
+          <p>{team.name}</p>
+        ))}
+        <hr />
+        <h3 className="crest">Vendors</h3>
+        {project?.vendors.map(vendor => (
+          <p>{vendor.name}</p>
+        ))}
+        <hr />
+        <h3 className="crest">Venue</h3>
+        {project?.venue?.name}
       </main>
 
       <Lights

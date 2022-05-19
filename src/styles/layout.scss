@@ -451,7 +451,7 @@ footer {
 
 .team {
   @media (min-width: $pad) {
-    border-left: 1px solid orange; // TODO
+    border-left: 1px solid hsl(var(--honey), 100%, 50%); // TODO
     padding-inline-start: 1rem;
 
     @media (prefers-color-scheme: dark) {
@@ -507,4 +507,35 @@ footer {
 .team-header {
   display: flex;
   justify-content: space-between;
+}
+
+/*------------------*/
+//  #ATTRIBUTE
+/*------------------*/
+
+.attributes {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  list-style: none;
+
+  .attribute {
+    // flex-basis: 15rem;
+    border-inline-end: 1px solid hsl(var(--honey), 100%, 50%);
+    padding-inline-end: 1rem;
+  }
+
+  .attribute h3 a::after {
+    content: ", ";
+    text-decoration: none; // TODO this isnt working
+  }
+
+  .attribute h3 a:last-child::after {
+    content: none;
+  }
+
+  .attribute:last-child {
+    border-inline-end: none;
+    padding-inline-end: 0;
+  }
 }

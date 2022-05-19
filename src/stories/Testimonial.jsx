@@ -7,43 +7,6 @@ export const Testimonial = ({ primary, backgroundColor, size, label, ...props })
   const mode = primary ? 'storybook-Testimonial--primary' : 'storybook-Testimonial--secondary';
   return (
     <main className='measure'>
-      <ul className="testimonials__page">
-        <li>
-          <h2 className="first-capital">testimonial.title</h2>
-          <ul className="testimonials stars">
-            <li>
-              <Star /><Star /><Star /><Star /><Star />
-            </li>
-        </ul>
-          <h3>
-            testimonial.customer&nbsp;
-            <a href="#">testimonial.link</a>&nbsp;
-            testimonial.position
-          </h3>
-          <p>What do they got in there? King Kong? My dad once told me, laugh and the world laughs with you, Cry, and I'll give you something to cry about you little bastard! Remind me to thank John for a lovely weekend. You know what? It is beets. I've crashed into a beet truck.</p>
-        </li>
-        <h3 className='crest'>Hear what testimonial company have to say about us</h3>
-        <li>
-          <h2 className="first-capital">testimonial.title</h2>
-          <ul className="testimonials stars">
-            <li>
-              <Star /><Star /><Star /><Star /><Star />
-            </li>
-        </ul>
-          
-            <h3>
-            testimonial customer&nbsp;
-            <a href="#">testimonial link</a>&nbsp;
-            testimonial position
-          </h3>
-          <blockquote>
-          <span className='range'>&quot;</span>
-          <p>What do they got in there? King Kong? My dad once told me, laugh and the world laughs with you, Cry, and I'll give you something to cry about you little bastard! Remind me to thank John for a lovely weekend. You know what? It is beets. I've crashed into a beet truck.</p>
-          </blockquote>
-        </li>
-
-      </ul>
-
       <ul className='testimonials'>
         <li className='testimonial'>
           <figure>

@@ -16,9 +16,9 @@ export function RSL() {
   />
 }
 
-export function RancheroTree() {
+export function AerilDance() {
   return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/events/sierra_lighting-rancherro_tree-outdoor.jpg"
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/aeril-dance-party.jpg"
     alt="christmas lights display on a tree in Reno nevada"
     className="RancheroTree"
     breakpoints={[300, 600, 900]}
@@ -32,7 +32,7 @@ export function BistroLights() {
     alt="sierra lighting bistro lights"
     className=""
     breakpoints={[300, 600, 900]}
-    width={650}
+    width={300}
   />
 }
 
@@ -44,7 +44,7 @@ const EventsPage = () => {
         title="Events | Sierra Lighting"
         description="Sierra Lighting installs Christmas lights on homes in Reno, Truckee, and Tahoe.
         We are full service from design to takedown." // TODO
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/og_image-sierra_lighting-bistro_lights.jpg"
+        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/aeril-dance-party-og_image.jpg"
       />
       <Header />
       <main>
@@ -72,7 +72,7 @@ const EventsPage = () => {
         <div className="triple">
           <BistroLights />
           <RSL />
-          <RancheroTree />
+          <AerilDance />
         </div>
 
         <div className="measure">
