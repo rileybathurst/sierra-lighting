@@ -78,12 +78,35 @@ function IfProjects(props) {
 }
 
 function WideVsTall(props) {
+  console.log(props.aspectRatio);
   if (props.aspectRatio > 1) {
     return (
-      <></>
+      <section className="wide">
+        <div>
+          <h1 itemProp="name">{props.name}</h1>
+          <ReactDescription bio={props.bio} />
+        </div>
+        <GatsbyImage
+          image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
+          alt={props?.hero?.alternativeText}
+          className=''
+        />
+      </section>
     )
   } else {
-    return null;
+    return (
+      <section className="tall">
+        <div>
+          <h1 itemProp="name">{props.name}</h1>
+          <ReactDescription bio={props.bio} />
+        </div>
+        <GatsbyImage
+          image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
+          alt={props?.hero?.alternativeText}
+          className=''
+        />
+      </section>
+    )
   }
 }
 
@@ -121,29 +144,13 @@ const TeamView = ({ team }) => {
       </div>
 
       <main className="measure team-page" itemScope itemType="https://schema.org/Person">
-
-        <section>
-          <h1 itemProp="name">{team.name}</h1>
-          <ReactDescription bio={team.bio} />
-        </section>
-
-        <Avatar hero={team?.avatar} aspectRatio={team?.avatar?.localFile?.childImageSharp?.fluid?.aspectRatio} />
-
+        <WideVsTall
+          aspectRatio={team?.avatar?.localFile?.childImageSharp?.fluid?.aspectRatio}
+          name={team.name}
+          bio={team.bio}
+          hero={team?.avatar}
+        />
       </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       <IfProjects projects={team.projects} name={team.name} />
 
