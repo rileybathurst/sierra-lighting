@@ -7,10 +7,11 @@ import ReactMarkdown from "react-markdown";
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import StateAbbreviation from "../components/state-abbreviation";
 
 function ReactDescription(props) {
   if (props.desc) {
-    return <ReactMarkdown children={props.desc.data.description} />;
+    return <ReactMarkdown children={props?.desc?.data?.description} />;
   } else {
     return null;
   }
@@ -109,6 +110,26 @@ function Other(props) {
   }
 }
 
+function IfTeam(props) {
+  if (props.team.length > 0) {
+    return (
+      <h3 className="crest">Team</h3>
+    );
+  } else {
+    return null
+  }
+}
+
+function IfVendor(props) {
+  if (props.vendor.length > 0) {
+    return (
+      <h3 className="crest">Vendors</h3>
+    );
+  } else {
+    return null
+  }
+}
+
 const ProjectView = ({ project, other }) => {
   return (
     <>
@@ -153,31 +174,64 @@ const ProjectView = ({ project, other }) => {
       <main className="measure">
         <article className="single">
           <h1>{project.title}</h1>
-          <ReactDescription desc={project.description} />
+          <ReactDescription desc={project?.description} />
         </article>
 
         <hr />
-
-        {/* make sure the maps are look ok with multiple */}
-
-        <h3 className="crest">Area</h3>
-        {project?.areas.map(area => (
-          <p>{area.name}</p>
-        ))}
-        <hr />
-        <h3 className="crest">Team</h3>
-        {project?.teams.map(team => (
-          <p>{team.name}</p>
-        ))}
-        <hr />
-        <h3 className="crest">Vendors</h3>
-        {project?.vendors.map(vendor => (
-          <p>{vendor.name}</p>
-        ))}
-        <hr />
-        <h3 className="crest">Venue</h3>
-        {project?.venue?.name}
       </main>
+
+      {/* make sure the maps are look ok with multiple */}
+      <div className="attributes">
+        <section className="attribute">
+          <h3 className="crest">Venue</h3>
+          <h4 className="range">
+            <Link to={`/venue/${project?.venue?.slug}`} className="link--subtle">
+              {project?.venue?.name}
+            </Link>
+          </h4>
+          {project?.areas.map(area => (
+            <p>
+              <Link to={`/area/${area.slug}`} className="link--subtle">
+                {area.name}, <StateAbbreviation state={area.state} />
+              </Link>
+            </p>
+          ))}
+        </section>
+
+        {/* // ! the section needs to be behind the if */}
+        <section className="attribute">
+          <IfVendor vendor={project?.vendors} />
+          {/* <h3 className="crest">Vendors</h3> */}
+          {project?.vendors.map(vendor => (
+            <>
+              {/* // TODO these could kinda be attached so the hover state is nicer */}
+              <h4 className="range">
+                <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
+                  {vendor.name}
+                </Link>
+              </h4>
+              <p>
+                <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
+                  <span className="first-capital">{vendor.service}</span><br />
+                </Link>
+              </p>
+            </>
+          ))}
+        </section>
+
+        <section className="attribute">
+          <IfTeam team={project?.teams} />
+          {project?.teams.map(team => (
+            <h4 className="range">
+              <Link to={`/team/${team.slug}`} className="link--subtle">
+                {team.name}
+              </Link>
+            </h4>
+          ))}
+        </section>
+
+      </div>
+
 
       <Lights
         yes={project.lights}

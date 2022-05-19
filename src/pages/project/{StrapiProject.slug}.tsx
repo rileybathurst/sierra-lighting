@@ -47,18 +47,24 @@ export const query = graphql`
 
       areas {
         name
+        state
+        slug
       }
 
       teams {
         name
+        slug
       }
 
       vendors {
         name
+        slug
+        service
       }
       
       venue {
         name
+        slug
       }
 
     }

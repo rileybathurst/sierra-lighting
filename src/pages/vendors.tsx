@@ -41,7 +41,7 @@ const VendorsPage = () => {
 
           <hr />
 
-          <h3>Photography</h3>
+          <h3><Link to="/vendors/photography">Photography</Link></h3>
         </div>
 
         <StaticQuery
@@ -78,7 +78,7 @@ const VendorsPage = () => {
 
               <div className="measure">
                 <hr />
-                <h3>Planning</h3>
+                <h3><Link to="/vendors/planning">Planning</Link></h3>
               </div>
 
               <div className="deck">
@@ -110,12 +110,44 @@ const VendorsPage = () => {
 
               <div className="measure">
                 <hr />
-                <h3>Event Production</h3>
+                <h3><Link to="/vendors/production">Event Production</Link></h3>
               </div>
 
               <div className="deck">
                 {
                   data.production.nodes.map(vendor => (
+                    <section className="card" key={vendor.id}>
+                      <GatsbyImage
+                        image={
+                          vendor?.profile?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={vendor.profile?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/vendor/${vendor.slug}`}>{vendor.name}</Link></h2>
+                        <p>{vendor.description}</p>
+                      </div>
+                    </section>
+
+                  ))
+                }
+
+              </div>
+
+              {/* This is a ctach all if anything comes up here build a new thing and add it to its own query */}
+              <div className="measure">
+                <hr />
+                <h3>Other Vendors</h3>
+              </div>
+
+              <div className="deck">
+                {
+                  data.other.nodes.map(vendor => (
                     <section className="card" key={vendor.id}>
                       <GatsbyImage
                         image={
@@ -198,6 +230,27 @@ query VendorsQuery {
   }
   
   production: allStrapiVendor(filter: {service: {eq: "event production"}}) {
+    nodes {
+      id
+      name
+      description
+      slug
+
+      profile {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+  
+  other: allStrapiVendor(filter: {service: {nin: ["planning", "photography", "event production"]}}) {
     nodes {
       id
       name

@@ -45,8 +45,39 @@ exports.createPages = ({ actions, graphql }) => {
     })
   }); // .then(result)
 
+
+
+
+
+
+
+  // does this work doing both queries in the same place?
+  const getVendorServices = makeRequest(graphql, `
+    {
+      allStrapiVendor {
+        edges {
+          node {
+            service
+          }
+        }
+      }
+    }
+    `).then(result => {
+    // Create pages for each partner resorts.
+    result.data.allStrapiVendor.edges.forEach(({ node }) => {
+      createPage({
+        path: `/vendors/${node.service}`,
+        component: path.resolve(`src/templates/vendorservice.tsx`),
+        context: {
+          service: node.service
+        },
+      })
+    })
+  }); // .then(result)
+
   // Query for blog nodes to use in creating pages.
   return Promise.all([
-    getVenues
+    getVenues,
+    getVendorServices
   ])
 }

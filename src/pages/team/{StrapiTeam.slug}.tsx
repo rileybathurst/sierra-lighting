@@ -19,6 +19,25 @@ export const query = graphql`
           url
         }
       }
+
+      projects {
+        id
+        title
+        excerpt
+        slug
+
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData (
+                breakpoints: [222, 444, 880]
+                width: 222
+              )
+            }
+            url
+          }
+        }
+      }
     }
   }
 `

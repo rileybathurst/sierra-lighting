@@ -18,6 +18,19 @@ function ReactDescription(props) {
   }
 }
 
+function IfProjects(props) {
+  if (props.projects.length > 0) {
+    return (
+      <div className="measure">
+        <hr />
+        <h2>Projects {props.name} has worked on</h2>
+      </div>
+    );
+  } else {
+    return null;
+  }
+}
+
 const TeamView = ({ team }) => {
   return (
     <>
@@ -56,24 +69,46 @@ const TeamView = ({ team }) => {
           <div className="team-header">
             <h1 itemProp="name">{team.name}</h1>
             <div className="team-heads">
-              {/*               <GatsbyImage
-                image={
-                  team?.avatar?.localFile?.childImageSharp?.gatsbyImageData
-                }
-                alt={team.avatar?.alternativeText}
-                className="poster"
-                itemProp="image"
-              /> */}
               <IfHero hero={team?.avatar} />
             </div>
           </div>
 
           <ReactDescription bio={team.bio} />
 
-
-
         </article>
       </main>
+
+      {/* // TODO this needs an if */}
+
+      <IfProjects projects={team.projects} name={team.name} />
+
+      <div className="deck measure">
+        {team.projects.map((project) => (
+          <div key={project.id} className="card">
+
+            <GatsbyImage
+              image={
+                project?.image?.localFile?.childImageSharp
+                  ?.gatsbyImageData
+              }
+              alt={project.image?.alternativeText}
+              className=""
+            />
+
+            <div className="paper"></div>
+            <div className="content">
+              <hr />
+              <h2 className="mixta">
+                <Link to={`/vendor/${project.slug}`}>
+                  {project.title}
+                </Link>
+              </h2>
+              <p>{project.excerpt}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
       <Footer />
     </>
   );
