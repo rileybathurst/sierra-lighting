@@ -88,3 +88,16 @@
     text-decoration: none;
   }
 }
+
+/*------------------*/
+//  #SPECIFIC FIXES
+/*------------------*/
+
+// If this list gets long I will do something more
+
+// vendor
+.card {
+  .marcella img {
+    object-position: 0 15%;
+  }
+}

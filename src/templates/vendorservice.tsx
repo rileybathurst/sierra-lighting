@@ -59,7 +59,7 @@ const VendorServiceView = ({ data }) => {
                     ?.gatsbyImageData
                 }
                 alt={node.profile?.alternativeText}
-                className=""
+                className={node.slug}
               />
 
               <div className="paper"></div>

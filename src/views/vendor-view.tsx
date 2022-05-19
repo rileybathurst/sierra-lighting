@@ -252,6 +252,8 @@ const VendorView = ({ vendor, other }) => {
               </li>
             ))}
           </ul>
+
+          {/* // TODO this needs to be behind an if */}
           <h3 className='crest'>Hear what other customers say about us</h3>
           <h4 className='range'><Link to="/testimonials" className="link--subtle">More Reviews</Link></h4>
         </div>

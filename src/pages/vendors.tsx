@@ -105,7 +105,7 @@ const VendorsPage = () => {
                             ?.gatsbyImageData
                         }
                         alt={vendor.profile?.alternativeText}
-                        className=""
+                        className={vendor.slug}
                       />
 
                       <div className="paper"></div>
