@@ -15,6 +15,9 @@ export const query = graphql`
         localFile {
           childImageSharp {
             gatsbyImageData
+            fluid {
+              aspectRatio
+            }
           }
           url
         }

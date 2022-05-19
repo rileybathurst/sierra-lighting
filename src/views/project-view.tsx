@@ -116,7 +116,7 @@ function IfVenue(props) {
       <section className="attribute">
         <h3 className="crest">Venue</h3>
         <h4 className="range">
-          <Link to={`/venue/${props?.slug}`} className="link--subtle">
+          <Link to={`/venue/${props?.venueSlug}`} className="link--subtle">
             {props?.name}
           </Link>
         </h4>
@@ -209,6 +209,7 @@ function IfAttributes(props) {
           <IfVenue
             venue={props?.venue}
             name={props?.venue?.name}
+            venueSlug={props?.venue?.slug}
             area={props?.area}
           />
 
