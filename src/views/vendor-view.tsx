@@ -115,6 +115,19 @@ function Social(props) {
   }
 }
 
+function IfProjects(props) {
+  if (props.projects.length > 0) {
+    return (
+      <div className="measure">
+        <h3>Projects we have collaborated on</h3>
+        <hr />
+      </div>
+    )
+  } else {
+    return null
+  }
+}
+
 const VendorView = ({ vendor, other }) => {
 
   return (
@@ -166,19 +179,54 @@ const VendorView = ({ vendor, other }) => {
         className="poster"
       />
 
-      <main className="measure">
+      <main>
         <article className="single">
-          <h1>{vendor.name}</h1>
-          <p>{vendor.description}</p>
-          <hr />
-          <Website website={vendor.website} />
+          <div className="measure">
+            <h1>{vendor.name}</h1>
+            <p>{vendor.description}</p>
 
-          {/* // TODO these can get too long http://localhost:8000/vendor/blancabrandon */}
-          <Social
-            instagram={vendor.instagram}
-            facebook={vendor.facebook}
-            pinterest={vendor.pinterest}
-          />
+          </div>
+
+          <IfProjects projects={vendor.projects} />
+
+          <div className="deck">
+            {vendor.projects.map((project) => (
+              <div key={project.id} className="card">
+
+                <GatsbyImage
+                  image={
+                    project?.image?.localFile?.childImageSharp
+                      ?.gatsbyImageData
+                  }
+                  alt={project.image?.alternativeText}
+                  className=""
+                />
+
+                <div className="paper"></div>
+                <div className="content">
+                  <hr />
+                  <h2 className="mixta">
+                    <Link to={`/vendor/${project.slug}`}>
+                      {project.title}
+                    </Link>
+                  </h2>
+                  <p>{project.excerpt}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="measure">
+            <hr />
+            <Website website={vendor.website} />
+
+            {/* // TODO these can get too long http://localhost:8000/vendor/blancabrandon */}
+            <Social
+              instagram={vendor.instagram}
+              facebook={vendor.facebook}
+              pinterest={vendor.pinterest}
+            />
+          </div>
 
         </article>
 
@@ -209,7 +257,6 @@ const VendorView = ({ vendor, other }) => {
         </div>
       </main>
 
-      {/* // TODO first check if we have any projects */}
       <div className="measure">
         <hr />
         <h4>Other Wedding Vendors</h4>

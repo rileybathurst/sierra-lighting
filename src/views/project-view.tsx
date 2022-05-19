@@ -66,7 +66,7 @@ function Lights(props) {
 
 function Other(props) {
 
-  console.log(props.needed.length);
+  // console.log(props.needed.length);
 
   const map = props.other.nodes.map((project, index) => {
     return (
@@ -110,10 +110,37 @@ function Other(props) {
   }
 }
 
-function IfTeam(props) {
-  if (props.team.length > 0) {
+function IfVenue(props) {
+  if (props?.venue) {
     return (
-      <h3 className="crest">Team</h3>
+      <section className="attribute">
+        <h3 className="crest">Venue</h3>
+        <h4 className="range">
+          <Link to={`/venue/${props?.slug}`} className="link--subtle">
+            {props?.name}
+          </Link>
+        </h4>
+        {props?.area.map(area => (
+          <p>
+            <Link to={`/area/${area.slug}`} className="link--subtle">
+              {area.name}, <StateAbbreviation state={area.state} />
+            </Link>
+          </p>
+        ))}
+      </section>
+    );
+  } else if (props.area.length > 0) {
+    return (
+      <section className="attribute">
+        <h3 className="crest">Venue</h3>
+        {props?.area.map(area => (
+          <h4 className="range">
+            <Link to={`/area/${area.slug}`} className="link--subtle">
+              {area.name}, <StateAbbreviation state={area.state} />
+            </Link>
+          </h4>
+        ))}
+      </section>
     );
   } else {
     return null
@@ -123,9 +150,78 @@ function IfTeam(props) {
 function IfVendor(props) {
   if (props.vendor.length > 0) {
     return (
-      <h3 className="crest">Vendors</h3>
+      <section className="attribute">
+        <h3 className="crest">Vendors</h3>
+        {props?.vendor.map(vendor => (
+          <>
+            {/* // TODO these could kinda be attached so the hover state is nicer */}
+            <h4 className="range">
+              <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
+                {vendor.name}
+              </Link>
+            </h4>
+            <p>
+              <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
+                <span className="first-capital">{vendor.service}</span><br />
+              </Link>
+            </p>
+          </>
+        ))}
+      </section>
     );
   } else {
+    return null
+  }
+}
+
+function IfTeam(props) {
+  if (props.team.length > 0) {
+    return (
+      <section className="attribute">
+        <h3 className="crest">Team</h3>
+        {props?.team.map(team => (
+          <h4 className="range last-ampersand">
+            <Link to={`/team/${team.slug}`} className="link--subtle">
+              {team.name}
+            </Link>
+          </h4>
+        ))}
+      </section>
+    );
+  } else {
+    return null
+  }
+}
+
+function IfAttributes(props) {
+  if (props?.venue || props?.area?.length > 0 || props?.vendor?.length > 0 || props?.team?.length > 0) {
+
+    console.log(props?.venue);
+    console.log(props?.area);
+
+    // return null;
+
+    return (
+      <>
+        <hr className="measure" />
+        <div className="attributes">
+
+          <IfVenue
+            venue={props?.venue}
+            name={props?.venue?.name}
+            area={props?.area}
+          />
+
+          {/* // TODO theres a vendor(s) but often the s is not needed */}
+          <IfVendor vendor={props?.vendor} />
+
+          <IfTeam team={props?.team} />
+        </div>
+      </>
+    );
+  } else {
+    console.log('no attributes');
+
     return null
   }
 }
@@ -177,61 +273,14 @@ const ProjectView = ({ project, other }) => {
           <ReactDescription desc={project?.description} />
         </article>
 
-        <hr />
       </main>
 
-      {/* make sure the maps are look ok with multiple */}
-      <div className="attributes">
-        <section className="attribute">
-          <h3 className="crest">Venue</h3>
-          <h4 className="range">
-            <Link to={`/venue/${project?.venue?.slug}`} className="link--subtle">
-              {project?.venue?.name}
-            </Link>
-          </h4>
-          {project?.areas.map(area => (
-            <p>
-              <Link to={`/area/${area.slug}`} className="link--subtle">
-                {area.name}, <StateAbbreviation state={area.state} />
-              </Link>
-            </p>
-          ))}
-        </section>
-
-        {/* // ! the section needs to be behind the if */}
-        <section className="attribute">
-          <IfVendor vendor={project?.vendors} />
-          {/* <h3 className="crest">Vendors</h3> */}
-          {project?.vendors.map(vendor => (
-            <>
-              {/* // TODO these could kinda be attached so the hover state is nicer */}
-              <h4 className="range">
-                <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
-                  {vendor.name}
-                </Link>
-              </h4>
-              <p>
-                <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
-                  <span className="first-capital">{vendor.service}</span><br />
-                </Link>
-              </p>
-            </>
-          ))}
-        </section>
-
-        <section className="attribute">
-          <IfTeam team={project?.teams} />
-          {project?.teams.map(team => (
-            <h4 className="range">
-              <Link to={`/team/${team.slug}`} className="link--subtle">
-                {team.name}
-              </Link>
-            </h4>
-          ))}
-        </section>
-
-      </div>
-
+      <IfAttributes
+        venue={project?.venue}
+        area={project?.areas}
+        vendor={project?.vendors}
+        team={project?.teams}
+      />
 
       <Lights
         yes={project.lights}

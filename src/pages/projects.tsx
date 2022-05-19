@@ -52,14 +52,12 @@ const ProjectsPage = () => {
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
-                        <h3 className="crest">Byline</h3>
                         <h2 className="mixta">
                           <Link to={`/project/${project.slug}`}>
                             {project.title}
                           </Link>
                         </h2>
-                        {/* this is markdown makdown maybe I should also have something else */}
-                        {/* <p>{project.description.data.description}</p> */}
+                        <p>{project.excerpt}</p>
                       </div>
                     </div>
                   ))
@@ -84,14 +82,12 @@ const ProjectsPage = () => {
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
-                        <h3 className="crest">Byline</h3>
                         <h2 className="mixta">
                           <Link to={`/project/${project.slug}`}>
                             {project.title}
                           </Link>
                         </h2>
-                        {/* this is markdown makdown maybe I should also have something else */}
-                        {/* <p>{project.description.data.description}</p> */}
+                        <p>{project.excerpt}</p>
                       </div>
                     </div>
                   ))
@@ -116,14 +112,12 @@ const ProjectsPage = () => {
                       <div className="paper"></div>
                       <div className="content">
                         <hr />
-                        <h3 className="crest">Byline</h3>
                         <h2 className="mixta">
                           <Link to={`/project/${project.slug}`}>
                             {project.title}
                           </Link>
                         </h2>
-                        {/* this is markdown makdown maybe I should also have something else */}
-                        {/* <p>{project.description.data.description}</p> */}
+                        <p>{project.excerpt}</p>
                       </div>
                     </div>
                   ))
@@ -153,11 +147,7 @@ query ProjectsQuery {
     nodes {
       id
       title
-      description {
-        data {
-          description
-        }
-      }
+      excerpt
       slug
 
       image {
@@ -178,11 +168,7 @@ query ProjectsQuery {
     nodes {
       id
       title
-      description {
-        data {
-          description
-        }
-      }
+      excerpt
       slug
 
       image {
@@ -203,11 +189,7 @@ query ProjectsQuery {
     nodes {
       id
       title
-      description {
-        data {
-          description
-        }
-      }
+      excerpt
       slug
 
       image {

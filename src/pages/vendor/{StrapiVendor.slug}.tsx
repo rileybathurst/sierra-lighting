@@ -40,6 +40,25 @@ export const query = graphql`
           name
         }
       }
+
+      projects {
+        id
+        title
+        slug
+        excerpt
+
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                breakpoints: [222, 444, 880]
+                width: 222
+              )
+            }
+          }
+          alternativeText
+        }
+      }
     }
 
     allStrapiVendor(limit: 3, filter: {slug: {nin: [$slug] }}) {

@@ -261,3 +261,7 @@ ol li {
 .first-capital {
   text-transform: capitalize;
 }
+
+.last-ampersand:nth-child(n + 2):last-child::before {
+  content: "& ";
+}

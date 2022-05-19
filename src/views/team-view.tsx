@@ -99,7 +99,7 @@ const TeamView = ({ team }) => {
             <div className="content">
               <hr />
               <h2 className="mixta">
-                <Link to={`/vendor/${project.slug}`}>
+                <Link to={`/project/${project.slug}`}>
                   {project.title}
                 </Link>
               </h2>
