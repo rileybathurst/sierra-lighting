@@ -2,16 +2,16 @@ import * as React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import Seo from "../components/seo";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import StrShort from "../components/StrShort";
-import Website from "../components/website";
-import TestimonialRanking from "../components/testimonial-ranking";
+import Seo from "../src/components/seo";
+import Header from "../src/components/header";
+import Footer from "../src/components/footer";
+import StrShort from "../src/components/StrShort";
+import Website from "../src/components/website";
+import TestimonialRanking from "../src/components/testimonial-ranking";
 
-import FacebookIcon from "../images/facebook-icon";
-import InstagramIcon from "../images/instagram-icon";
-import PinterestIcon from "../images/pinterest-icon";
+import FacebookIcon from "../src/images/facebook-icon";
+import InstagramIcon from "../src/images/instagram-icon";
+import PinterestIcon from "../src/images/pinterest-icon";
 
 function Instagram(props) {
   if (props.instagram) {

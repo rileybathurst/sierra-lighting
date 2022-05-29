@@ -45,12 +45,6 @@ exports.createPages = ({ actions, graphql }) => {
     })
   }); // .then(result)
 
-
-
-
-
-
-
   // does this work doing both queries in the same place?
   const getVendorServices = makeRequest(graphql, `
     {
@@ -75,9 +69,61 @@ exports.createPages = ({ actions, graphql }) => {
     })
   }); // .then(result)
 
+  // * this was trying to create the vendors page without having to manually make each service on the enum
+  // I havent been able to make it work yet
+  // does this work doing both queries in the same place?
+  const getVendorServicesLoop = makeRequest(graphql, `
+    {
+      allStrapiVendor {
+        edges {
+          node {
+            service
+          }
+        }
+      }
+    }
+    `).then(result => {
+    // Create pages for each partner resorts.
+    result.data.allStrapiVendor.edges.forEach(({ node }) => {
+      createPage({
+        path: `/vendorsloop`,
+        component: path.resolve(`src/templates/vendorserviceloop.tsx`),
+        context: {
+          service: node.service
+        },
+      })
+    })
+  }); // .then(result)
+
+  const getVendors = makeRequest(graphql, `
+  {
+    allStrapiVendor {
+      edges {
+        node {
+          slug
+          service
+        }
+      }
+    }
+  }
+  `).then(result => {
+    result.data.allStrapiVendor.edges.forEach(({ node }) => {
+      createPage({
+        path: `/vendor/${node.slug}`,
+        component: path.resolve(`src/templates/vendor.tsx`),
+        context: {
+          slug: node.slug,
+          service: node.service
+        },
+      })
+    })
+  }); // .then(result)
+
   // Query for blog nodes to use in creating pages.
   return Promise.all([
     getVenues,
-    getVendorServices
+    getVendors,
+    getVendorServices,
+    getVendorServicesLoop
   ])
 }

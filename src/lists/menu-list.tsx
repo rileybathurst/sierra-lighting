@@ -9,6 +9,7 @@ const MenuList = () => (
     <li key="residential"><Link to="/residential">Residential</Link></li>
     <li key="commercial"><Link to="/commercial">Commercial</Link></li>
     <li key="wedding"><Link to="/wedding">Wedding</Link></li>
+    <li key="lights"><Link to="/lights">Lights</Link></li>
     <li key="venues"><Link to="/venues">Tahoe Wedding Venues</Link></li>
     <li key="vendors"><Link to="/vendors">Tahoe Wedding Vendors</Link></li>
     <li key="contact"><Link to="/contact">Contact</Link></li>

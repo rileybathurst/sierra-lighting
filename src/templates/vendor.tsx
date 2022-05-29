@@ -2,35 +2,57 @@ import React from 'react';
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import ReactMarkdown from "react-markdown";
-
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import StateAbbreviation from "../components/state-abbreviation";
 import Website from "../components/website";
 import IfHero from "../components/ifHero";
 
 import TestimonialRanking from "../components/testimonial-ranking";
 
-function ReactAddress(props) {
-  if (props.address) {
-    return <ReactMarkdown children={props.address?.data?.address} />;
-  } else {
-    return null;
-  }
-}
-
 function IfOther(props) {
-  // console.log(props.other.length);
-  let lngth = props.other.length;
+  if (props.projects.length > 0) {
 
-  if (lngth > 0) {
+    console.log(props.projects);
+
     return (
       <>
         <div className="measure">
-          <h4>Other Wedding Venues in {props.name}, <StateAbbreviation state={props.state} /></h4>
+          <h4>Projects we have worked with {props.name} on</h4>
+        </div>
+        <div className="deck">
+          {props.projects.map((project) => (
+            <div key={project.id} className="card">
+              <GatsbyImage
+                image={
+                  project?.image?.localFile?.childImageSharp
+                    ?.gatsbyImageData
+                }
+                alt={project.image?.alternativeText}
+                className=""
+              />
+
+              <div className="paper"></div>
+              <div className="content">
+                <hr />
+                <h2 className="mixta">
+                  <Link to={`/vendor/${project.slug}`}>
+                    {project.title}
+                  </Link>
+                </h2>
+                <p>{project.excerpt}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
+    );
+  } else if (props.other.length > 0) {
+    return (
+      <>
+        <div className="measure">
+          <h4>Other <span className='first-capital'>{props.service}</span> Vendors</h4>
         </div>
 
         <div className="deck measure">
@@ -39,10 +61,10 @@ function IfOther(props) {
 
               <GatsbyImage
                 image={
-                  other.node?.venueImage?.localFile?.childImageSharp
+                  other.node?.profile?.localFile?.childImageSharp
                     ?.gatsbyImageData
                 }
-                alt={other.node.venueImage?.alternativeText}
+                alt={other.node.profile?.alternativeText}
                 className=""
               />
 
@@ -50,7 +72,7 @@ function IfOther(props) {
               <div className="content">
                 <hr />
                 <h2 className="mixta">
-                  <Link to={`/venue/${other.node.slug}`}>
+                  <Link to={`/vendor/${other.node.slug}`}>
                     {other.node.name}
                   </Link>
                 </h2>
@@ -61,7 +83,11 @@ function IfOther(props) {
         </div>
         <div className="measure">
           <h3 className="crest">Even More</h3>
-          <h2 className="range"><Link to='/venues' className="link--subtle">All Other Venues</Link></h2>
+          <h2 className="range">
+            <Link to={`/vendors/${props.service}`} className="link--subtle">
+              All Other <span className='first-capital'>{props.service}</span> Vendors
+            </Link>
+          </h2>
         </div>
       </>
     );
@@ -69,8 +95,8 @@ function IfOther(props) {
     return (
       <>
         <div className="measure">
-          <h3 className="crest">Looking for somewhere else?</h3>
-          <h2 className="range"><Link to='/venues' className="link--subtle">Other Wedding Venues</Link></h2>
+          <h3 className="crest">Looking for something else?</h3>
+          <h2 className="range"><Link to='/vendor' className="link--subtle">Other Wedding Vendors</Link></h2>
         </div>
       </>
     )
@@ -87,7 +113,7 @@ function Testimonials(props) {
               <figure>
                 <blockquote>
                   <h3 className='sr-only'>{testimonial.title}</h3>
-                  {/* // TODO stars */}
+                  TODO stars
                   <TestimonialRanking stars={testimonial.stars} />
                   <p className='testimonial--quote_mark range'>&ldquo;</p>
                   <p>{testimonial.review}</p>
@@ -107,13 +133,13 @@ function Testimonials(props) {
   }
 }
 
-const VenueView = ({ data }) => {
+const VendorView = ({ data }) => {
   return (
     <>
       <Seo
-        title={`${data.strapiVenue.name} | Sierra Lighting`}
-        description={data.strapiVenue?.excerpt}
-        image={data.strapiVenue?.venueImage?.localFile?.url}
+        title={`${data.strapiVendor.name} | Sierra Lighting`}
+        description={data.strapiVendor?.excerpt}
+        image={data.strapiVendor?.profile?.localFile?.url}
       />
       <Header />
 
@@ -126,91 +152,83 @@ const VenueView = ({ data }) => {
           </li>
 
           <li key='2' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/venues">
-              <span itemProp="name">Venues</span></Link>&nbsp;/&nbsp;
+            <Link itemProp="item" to="/vendors">
+              <span itemProp="name">Vendors</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
 
           <li key='3' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to={`/area/${data.strapiVenue.area.slug}`}>
-              <span itemProp="name">{data.strapiVenue.area.name}</span></Link>&nbsp;/&nbsp;
+            <Link itemProp="item" to={`/vendors/${data.strapiVendor.service}`}>
+              <span itemProp="name" className='first-capital'>{data.strapiVendor.service}</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="3" />
           </li>
 
           <li key='4' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{data.strapiVenue.name}</span>
+            <span itemProp="name">{data.strapiVendor.name}</span>
             <meta itemProp="position" content="4" />
           </li>
         </ol>
         <hr />
       </div>
 
-      <IfHero hero={data?.strapiVenue?.venueImage} />
+      <IfHero hero={data?.strapiVendor?.profile} />
 
       <main className="measure">
         <article className="single">
-          <h2 className="crest">{data.strapiVenue.area.name}, <StateAbbreviation state={data.strapiVenue.area.state} /></h2>
-          <h1 className="range">{data.strapiVenue.name}</h1>
+          <h1 className="range">{data.strapiVendor.name}</h1>
           <hr />
-          <p>{data.strapiVenue.description}</p>
+          <p>{data.strapiVendor.description}</p>
 
-          <Testimonials testimonials={data.strapiVenue.testimonials} venue={data.strapiVenue.name} />
+          <Testimonials testimonials={data.strapiVendor.testimonials} venue={data.strapiVendor.name} />
 
           <hr />
-          <address>
 
-
-            {/* // TODO this could probably be more structured with seo */}
-            <ReactAddress address={data.strapiVenue.address} />
-          </address>
-
-          <p><Website website={data.strapiVenue.website} /></p>
-          {/* {data.strapiVenue.website} */}
+          <p><Website website={data.strapiVendor.website} /></p>
 
           <hr />
         </article>
       </main>
 
 
-      {/* // TODO this shouldnt get all of these but get the frist 3 then deal with it from there */}
-      <IfOther other={data.allStrapiVenue.edges} name={data.strapiVenue.area.name} state={data.strapiVenue.area.state} />
+      <IfOther
+        projects={data.strapiVendor.projects}
+        other={data.allStrapiVendor.edges}
+        service={data.strapiVendor.service}
+        name={data.strapiVendor.name}
+      />
 
       <Footer />
+
     </>
   );
 };
 
-export default VenueView;
+export default VendorView;
 
 export const query = graphql`
-  query VenueTemplate(
+  query VendorTemplate(
     $slug: String!,
-    $area: String!,
+    $service: String!,
     ) {
-      strapiVenue(slug: {eq: $slug}) {
+      strapiVendor(slug: {eq: $slug}) {
         id
         name
         description
         slug
-        excerpt
+        instagram
+        facebook
         website
-        
-        area {
-          name
-          state
-          slug
-        }
+        pinterest
+        service
+        excerpt
 
-        address {
-          data {
-            address
-          }
-        }
-
-        venueImage {
+        profile {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(
+                breakpoints: [960, 1840]
+                  width: 960
+              )
             }
             url
           }
@@ -224,15 +242,31 @@ export const query = graphql`
           stars
           customer
           position
-          vendor {
-            name
+        }
+
+        projects {
+          id
+          title
+          slug
+          excerpt
+  
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  breakpoints: [222, 444, 880]
+                  width: 222
+                )
+              }
+            }
+            alternativeText
           }
         }
       }
 
-      allStrapiVenue(
+      allStrapiVendor(
         limit: 3,
-        filter: {area: {slug: {eq: $area}}, slug: {ne: $slug}}
+        filter: {service: {eq: $service}, slug: {ne: $slug}}
       ) {
         edges {
           node {
@@ -240,8 +274,8 @@ export const query = graphql`
             id
             slug
             excerpt
-
-            venueImage {
+      
+            profile {
               localFile {
                 childImageSharp {
                   gatsbyImageData(
@@ -252,13 +286,9 @@ export const query = graphql`
               }
               alternativeText
             }
-
-            area {
-              name
-              state
-            }
           }
         }
       }
+
   }
 `

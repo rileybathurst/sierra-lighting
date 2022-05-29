@@ -12,7 +12,7 @@ function Website(props) {
       return (
         <p>
           {/* Im having problem making sure this always the same and pushing to the external */}
-          {process.env.NODE_ENV === "development" ? (
+          {/* {process.env.NODE_ENV === "development" ? (
             <span className="seo-showcase">
               <span className="key">
                 Starts with &nbsp;
@@ -20,7 +20,7 @@ function Website(props) {
               </span>
 
             </span>
-          ) : null}
+          ) : null} */}
 
           <a href={`https://${props.website}`}
             target="_blank"
@@ -33,14 +33,14 @@ function Website(props) {
       // the link is fine just run it as is
       return (
         <p>
-          {process.env.NODE_ENV === "development" ? (
+          {/* {process.env.NODE_ENV === "development" ? (
             <span className="seo-showcase">
               <span className="key">
                 Starts with &nbsp;
                 {props.website}
               </span>
             </span>
-          ) : null}
+          ) : null} */}
           <a href={props.website}
             target="_blank"
             rel="noopener noreferrer">

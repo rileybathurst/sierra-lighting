@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import VendorView from "../../views/vendor-view"
+import VendorView from "../vendor-view"
 
 export const query = graphql`
   query VendorQuery($slug: String!) {
@@ -61,7 +61,10 @@ export const query = graphql`
       }
     }
 
-    allStrapiVendor(limit: 3, filter: {slug: {nin: [$slug] }}) {
+    allStrapiVendor(
+      limit: 3,
+      filter: {slug: {nin: [$slug] }}
+    ) {
       nodes {
         name
         id

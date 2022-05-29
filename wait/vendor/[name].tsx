@@ -1,8 +1,8 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-import Header from "../../components/header";
-import Footer from "../../components/footer";
+import Header from "../../src/components/header";
+import Footer from "../../src/components/footer";
 
 function VendorCatchAll({ params }) {
   return (
