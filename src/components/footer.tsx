@@ -78,7 +78,9 @@ const Footer = () => {
 
         <div id="team" className="team measure">
           <h3 className="crest">Who We Are</h3>
-          <h4 className="range">Meet Our Team</h4>
+          <h4 className="range">
+            <Link to="/team" className="link--subtle">Meet Our Team</Link>
+          </h4>
 
           <div className="team-heads spin">
             <StaticQuery
@@ -88,7 +90,7 @@ const Footer = () => {
                   {
                     data.residential.nodes.map(team => (
 
-                      <div key={team.id}>
+                      <div key={team.slug}>
                         <Link to={`/team/${team.slug}`}>
                           <IfTeamImage
                             teamImage={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
@@ -202,9 +204,9 @@ export default Footer
 
 const query = graphql`
 query FooterQuery {
-  residential: allStrapiTeam {
+  residential: allStrapiTeam
+  (limit: 3) {
     nodes {
-      id
       name
       slug
 

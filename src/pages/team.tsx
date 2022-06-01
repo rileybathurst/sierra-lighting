@@ -49,24 +49,18 @@ const TeamPage = () => {
           <StaticQuery
             query={query}
             render={data => (
-              <ul className="deck">
+              <ul className="team_cards">
                 {
                   data.allStrapiTeam.nodes.map(team => (
-                    <li key={team.id}>
+                    <li key={team.id} className="team_card">
                       <article className="single" itemScope itemType="https://schema.org/Person">
-                        <div className="team-header">
-                          <h1 itemProp="name"><Link to={team.slug}>{team.name}</Link></h1>
-                          <div className="team-heads">
-                            <IfHero hero={team?.avatar} />
-                          </div>
-                        </div>
+                        <h1 itemProp="name"><Link to={team.slug}>{team.name}</Link></h1>
+                        <IfHero hero={team?.avatar} />
                         <ReactDescription bio={team.bio} />
-                        <hr />
                       </article>
                     </li>
                   ))
                 }
-                <hr />
               </ul>
             )}
           />
@@ -93,7 +87,10 @@ query TeamPageQuery {
       avatar {
         localFile {
           childImageSharp {
-            gatsbyImageData
+            gatsbyImageData (
+              breakpoints: [160, 320, 480]
+              width: 160
+            )
           }
           url
         }

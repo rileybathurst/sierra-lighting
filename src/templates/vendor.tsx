@@ -113,7 +113,7 @@ function Testimonials(props) {
               <figure>
                 <blockquote>
                   <h3 className='sr-only'>{testimonial.title}</h3>
-                  TODO stars
+                  {/* // TODO stars */}
                   <TestimonialRanking stars={testimonial.stars} />
                   <p className='testimonial--quote_mark range'>&ldquo;</p>
                   <p>{testimonial.review}</p>
