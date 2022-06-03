@@ -85,8 +85,8 @@ module.exports = {
         mergeStyleHashes: false, // you can disable styles sha256 hashes
         directives: {
           "script-src": "'self' 'unsafe-inline' www.google-analytics.com https://d3ey4dbjkt2f6s.cloudfront.net/",
-          "style-src": "'self' 'unsafe-inline' use.typekit.net https://p.typekit.net/ https://d3ey4dbjkt2f6s.cloudfront.net/",
-          "font-src": "'self' 'unsafe-inline' use.typekit.net https://p.typekit.net/",
+          "style-src": "'self' 'unsafe-inline' use.typekit.net https://d3ey4dbjkt2f6s.cloudfront.net/",
+          "font-src": "'self' 'unsafe-inline' use.typekit.net data:",
           "img-src": "'self' data:",
           "connect-src": "'self' data:  https://www.google-analytics.com/"
           // you can add your directives or override defaults
