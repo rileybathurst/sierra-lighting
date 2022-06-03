@@ -13,9 +13,9 @@ const FooterList = () => (
     <ul className="wedding">
       <li key="wedding" className=""><Link to="/wedding"><strong>Wedding</strong></Link></li>
       <li key="wedding projects"><Link to="/projects/wedding-projects">Wedding Projects</Link></li>
+      <li key="wedding lights"><Link to="/lights/wedding-lights">Wedding Lights</Link></li>
       <li key="venues"><Link to="/venues">Venues</Link></li>
       <li key="vendors"><Link to="/vendors">Vendors</Link></li>
-      <li key="lights"><Link to="/lights">Lights</Link></li>
     </ul>
 
     {/* // ? other group */}

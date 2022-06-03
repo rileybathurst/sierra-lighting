@@ -200,7 +200,7 @@ const ResidentialPage = () => {
         </div>
 
         <div className="measure">
-          <h5 className="range"><Link to="/lights" className="link--subtle">View all other lights</Link></h5>
+          <h5 className="range"><Link to="/lights/residential-christmas-lights" className="link--subtle">View all other Residenital Christmas lights</Link></h5>
           <hr />
           <h3>Full Season Maintenance and Support</h3>
 

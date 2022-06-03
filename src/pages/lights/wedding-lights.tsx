@@ -2,11 +2,11 @@ import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
-import Seo from "../components/seo";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Seo from "../../components/seo";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 
-const lightsPage = () => {
+const WeddinglightsPage = () => {
   return (
     <>
       <Seo
@@ -25,8 +25,13 @@ const lightsPage = () => {
               <meta itemProp="position" content="1" />
             </li>
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <span itemProp="name">Lights</span>
+              <Link itemProp="item" to="/lights">
+                <span itemProp="name">Lights</span></Link>&nbsp;/&nbsp;
               <meta itemProp="position" content="2" />
+            </li>
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+              <span itemProp="name">Wedding Lights</span>
+              <meta itemProp="position" content="3" />
             </li>
           </ol>
           <hr />
@@ -34,16 +39,7 @@ const lightsPage = () => {
 
         <div className="measure">
           <h2 className="crest">What we build</h2>
-          <h1 className="mixta">Lights</h1>
-
-          <hr />
-
-          Filter by:
-          <ul>
-            <li><Link to="/lights/wedding-lights">Wedding Lights</Link></li>
-            <li><Link to="/lights/residential-christmas-lights">Residential Christmas Lights</Link></li>
-            <li><Link to="/lights/commercial-christmas-lights">Commercial Christmas Lights</Link></li>
-          </ul>
+          <h1 className="mixta">Wedding Lights</h1>
         </div>
 
         <StaticQuery
@@ -78,17 +74,34 @@ const lightsPage = () => {
 
       </main >
 
+      <div className="measure">
+        <hr />
+        <h3 className="crest">What else we do</h3>
+        <h2 className="range">
+          <Link to="/lights/residential-christmas-lights" className="link--subtle">
+            Residential Christmas Lights
+          </Link>
+        </h2>
+        <h2 className="range">
+          <Link to="/lights/commercial-christmas-lights" className="link--subtle">
+            Commercial Christmas Lights
+          </Link>
+        </h2>
+      </div>
+
       <Footer />
 
     </>
   )
 }
 
-export default lightsPage
+export default WeddinglightsPage
 
 const query = graphql`
-query LightsQuery {
-  allStrapiLight {
+query WeddingLightsQuery {
+  allStrapiLight
+  (filter: {wedding: {eq: true}})
+  {
     nodes {
       id
       name
