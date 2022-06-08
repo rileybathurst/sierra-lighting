@@ -48,9 +48,8 @@ const WorkPage = () => {
       <main className="measure">
 
 
-        <h1>Jobs</h1>
-        <p>We want to hire people.</p>
-
+        <h2 className="crest">Hiring Now</h2>
+        <h1 className="range">Jobs</h1>
         <hr />
 
         <div itemScope itemType="https://schema.org/JobPosting">
@@ -62,6 +61,22 @@ const WorkPage = () => {
               </span>
             </span>
           </p>
+
+          {/* // TODO SEO */}
+          <ul>
+            <li key="earn">Earn $8,000 - $10,000 in 8-10 weeks work</li>
+            <li key="bonus">Hourly + bonus incentive program</li>
+            <li key="trade">Learn a new trade, work outside</li>
+            <li key="heights">have fun at heights with a great team</li>
+            <li key="housing">Housing / vehicle dwelling possible</li >
+          </ul >
+
+          <p>Locally owned and operated in Truckee, Tahoe and Reno. We are in need of reliable, hardworking employees to install wedding, landscape, and Christmas lights and decor.</p>
+          <p>Full time Oct - Jan with holidays off.</p>
+
+          {/* // TODO where is this going? Ive asked in Asana */}
+          {/* <p>Email: SierraChristmasLights@gmail.com with a resume and any questions to set up an interview.</p> */}
+          {/* <p>Fill in the form below with any questions</p> */}
           {/* }
           <p>
             <strong>Industry:</strong> <span itemProp="industry">Lighting</span>
@@ -104,7 +119,7 @@ const WorkPage = () => {
           <p>Date Posted: <span itemProp="datePosted">2022-4-13</span></p>
   */}
         </div>
-      </main>
+      </main >
 
       <Footer />
 

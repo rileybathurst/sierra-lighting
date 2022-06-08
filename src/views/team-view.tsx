@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -58,7 +59,7 @@ function Avatar(props) {
 
 function ReactDescription(props) {
   if (props.bio) {
-    return <ReactMarkdown children={props.bio.data.bio} />;
+    return <ReactMarkdown children={props.bio.data.bio} remarkPlugins={[remarkGfm]} />;
   } else {
     return null;
   }
