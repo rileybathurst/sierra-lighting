@@ -69,10 +69,10 @@ const CommercialPage = () => {
   `)
 
   const more = { data }
-  console.log(more);
+  // console.log(more);
 
   let allCommercialLights = data.allStrapiLight.nodes
-  console.log(allCommercialLights);
+  // console.log(allCommercialLights);
 
   // State for the list
   const [list, setList] = useState([...allCommercialLights.slice(0, 3)])
@@ -201,12 +201,12 @@ const CommercialPage = () => {
           )}
         </div>
 
-        <div className="measure">
+        {/*         <div className="measure">
           <h5 className="range"><Link to="/lights" className="link--subtle">View all other lights</Link></h5>
 
           <p className="crest">Even More?</p>
           <h5 className="range"><Link to="/lights" className="link--subtle">View all other lights</Link></h5>
-        </div>
+        </div> */}
 
         <div className="measure">
           <hr />

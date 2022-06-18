@@ -70,10 +70,10 @@ const WeddingPage = () => {
   `)
 
   const more = { data }
-  console.log(more);
+  // console.log(more);
 
   let allWeddingLights = data.allStrapiLight.nodes
-  console.log(allWeddingLights);
+  // console.log(allWeddingLights);
 
   // State for the list
   const [list, setList] = useState([...allWeddingLights.slice(0, 3)])

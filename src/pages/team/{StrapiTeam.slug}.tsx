@@ -14,7 +14,18 @@ export const query = graphql`
       avatar {
         localFile {
           childImageSharp {
-            gatsbyImageData(layout: FIXED)
+            gatsbyImageData (
+              layout: CONSTRAINED
+              breakpoints: [222, 444, 880]
+              width: 444
+              quality: 80
+            )
+          }
+          childrenImageSharp {
+            original {
+              height
+              width
+            }
           }
           url
         }
@@ -52,3 +63,15 @@ const TeamPage = ({ data }) => {
 };
 
 export default TeamPage;
+
+
+/*
+{
+  gatsbyImageData(
+    layout: FIXED
+    breakpoints: [222, 444, 880]
+    width: 444
+    quality: 80
+  )
+  }
+*/

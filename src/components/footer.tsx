@@ -166,9 +166,9 @@ const Footer = () => {
       </div>
 
       <div className="measure">
-        <ul className="footer_list">
+        <div className="footer_list">
           <FooterList />
-        </ul>
+        </div>
 
         <hr />
       </div>

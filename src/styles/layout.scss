@@ -557,26 +557,75 @@ footer {
 
 .team-page {
   .tall {
-    display: flex;
+    display: grid;
     gap: 1rem;
-    flex-direction: row;
+    flex-direction: row-reverse;
+    align-items: flex-start;
 
     .gatsby-image-wrapper {
       box-shadow: var(--troposphere);
-      border-radius: var(--border-radius);
       border: 1px solid whitesmoke;
+      grid-row: 1;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      max-width: 50vw;
+      margin-inline: auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .tall__text {
+      flex-grow: 1.67;
+      width: fit-content; // weird bug fix
+    }
+
+    @media (min-width: $book) {
+      grid-template-columns: 1fr 1.67fr;
+
+      > * {
+        grid-row: 1;
+      }
+
+      .gatsby-image-wrapper {
+        aspect-ratio: revert;
+        border-radius: var(--border-radius);
+        max-width: revert;
+      }
+
+      .tall__text {
+        grid-column: 2;
+      }
+
+      h1 {
+        text-align: left;
+      }
     }
   }
+
   .wide {
     display: flex;
     flex-direction: column;
     flex-direction: column-reverse;
 
+    h1 {
+      text-align: center;
+    }
+
     .gatsby-image-wrapper {
       box-shadow: var(--troposphere);
       border-radius: var(--border-radius);
+      border-radius: 50%;
       border: 1px solid whitesmoke;
       margin-block-end: 1.5rem;
+      margin-inline: auto;
+
+      max-width: 50vw;
+
+      @media (min-width: $book) {
+        max-width: 20rem;
+      }
     }
   }
 }

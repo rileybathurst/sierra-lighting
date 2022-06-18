@@ -95,6 +95,7 @@ query TeamPageQuery {
           }
           url
         }
+        alternativeText
       }
     }
   }

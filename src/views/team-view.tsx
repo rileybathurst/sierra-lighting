@@ -36,8 +36,8 @@ function IfHero(props) {
   }
 }
 
-function Avatar(props) {
-  console.log(props.aspectRatio);
+/* function Avatar(props) {
+  console.log(props.aspectRatio + "🚀");
   if (props.aspectRatio > 1) {
     return (
       <GatsbyImage
@@ -55,7 +55,7 @@ function Avatar(props) {
       />
     );
   }
-}
+} */
 
 function ReactDescription(props) {
   if (props.bio) {
@@ -79,8 +79,10 @@ function IfProjects(props) {
 }
 
 function WideVsTall(props) {
-  console.log(props.aspectRatio);
-  if (props.aspectRatio > 1) {
+  console.log(props.width);
+  console.log(props.height);
+  if (props.width >= props.height) {
+    console.log('wide');
     return (
       <section className="wide">
         <div>
@@ -95,12 +97,14 @@ function WideVsTall(props) {
       </section>
     )
   } else {
+    console.log('tall');
     return (
       <section className="tall">
-        <div>
+        <div className="tall__text">
           <h1 itemProp="name">{props.name}</h1>
           <ReactDescription bio={props.bio} />
         </div>
+        {/* <div>test</div> */}
         <GatsbyImage
           image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
           alt={props?.hero?.alternativeText}
@@ -146,8 +150,9 @@ const TeamView = ({ team }) => {
 
       <main className="measure team-page" itemScope itemType="https://schema.org/Person">
         <WideVsTall
-          // aspectRatio={team?.avatar?.localFile?.childImageSharp?.fluid?.aspectRatio}
-          aspectRatio={team?.avatar?.localFile?.childImageSharp}
+          height={team?.avatar?.localFile?.childrenImageSharp[0]?.original?.height}
+          width={team?.avatar?.localFile?.childrenImageSharp[0]?.original?.width}
+          url={team?.avatar?.localFile?.url}
           name={team.name}
           bio={team.bio}
           hero={team?.avatar}
