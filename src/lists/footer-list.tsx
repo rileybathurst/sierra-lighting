@@ -18,8 +18,8 @@ const FooterList = () => (
       <li key="vendors"><Link to="/vendors">Vendors</Link></li>
     </ul>
 
-    {/* // ? other group */}
     <ul>
+      {/* // ? other group */}
       <li key="contact" className=""><Link to="/contact"><strong>Contact</strong></Link></li>
       <li key="work"><Link to="/work">Work with us</Link></li>
       <li key="faqs"><Link to="/faqs">FAQs</Link></li>
