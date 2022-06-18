@@ -3051,7 +3051,7 @@
     "ts-dedent" "^2.0.0"
     "util-deprecate" "^1.0.2"
 
-"@storybook/client-logger@^6.4.0 || >=6.5.0-0", "@storybook/client-logger@6.5.6":
+"@storybook/client-logger@^6.4.0", "@storybook/client-logger@6.5.6":
   "integrity" "sha512-hJzhn5EO0S4fUAZkKzBGNACJfupV9n+7TSIaU4mpVP+/ImS9uPdorAAtyqp5HC6R6vA67POoSgX0+qPgZnWvaw=="
   "resolved" "https://registry.npmjs.org/@storybook/client-logger/-/client-logger-6.5.6.tgz"
   "version" "6.5.6"
@@ -3262,7 +3262,7 @@
     "lodash" "^4.17.21"
     "regenerator-runtime" "^0.13.7"
 
-"@storybook/instrumenter@^6.4.0 || >=6.5.0-0", "@storybook/instrumenter@6.5.6":
+"@storybook/instrumenter@^6.4.0", "@storybook/instrumenter@6.5.6":
   "integrity" "sha512-WIBmULyt0BqvMj82KZk+UfbwqX+geBLupJbyhr6Nv2ImAVoLMzfyR/NOzVWST1VEbSKnTmRmbvKa7/LkOaDS+A=="
   "resolved" "https://registry.npmjs.org/@storybook/instrumenter/-/instrumenter-6.5.6.tgz"
   "version" "6.5.6"
@@ -3540,13 +3540,13 @@
     "read-pkg-up" "^7.0.1"
     "regenerator-runtime" "^0.13.7"
 
-"@storybook/testing-library@^0.0.11":
-  "integrity" "sha512-8KbKx3s1e+uF3oWlPdyXRpZa6xtCsCHtXh1nCTisMA6P5YcSDaCg59NXIOVIQCAwKvjRomlqMJH8JL1WyOzeVg=="
-  "resolved" "https://registry.npmjs.org/@storybook/testing-library/-/testing-library-0.0.11.tgz"
-  "version" "0.0.11"
+"@storybook/testing-library@^0.0.13":
+  "integrity" "sha512-vRMeIGer4EjJkTgI8sQyK9W431ekPWYCWL//OmSDJ64IT3h7FnW7Xg6p+eqM3oII98/O5pcya5049GxnjaPtxw=="
+  "resolved" "https://registry.npmjs.org/@storybook/testing-library/-/testing-library-0.0.13.tgz"
+  "version" "0.0.13"
   dependencies:
-    "@storybook/client-logger" "^6.4.0 || >=6.5.0-0"
-    "@storybook/instrumenter" "^6.4.0 || >=6.5.0-0"
+    "@storybook/client-logger" "^6.4.0"
+    "@storybook/instrumenter" "^6.4.0"
     "@testing-library/dom" "^8.3.0"
     "@testing-library/user-event" "^13.2.1"
     "ts-dedent" "^2.2.0"
