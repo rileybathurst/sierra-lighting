@@ -146,7 +146,8 @@ const TeamView = ({ team }) => {
 
       <main className="measure team-page" itemScope itemType="https://schema.org/Person">
         <WideVsTall
-          aspectRatio={team?.avatar?.localFile?.childImageSharp?.fluid?.aspectRatio}
+          // aspectRatio={team?.avatar?.localFile?.childImageSharp?.fluid?.aspectRatio}
+          aspectRatio={team?.avatar?.localFile?.childImageSharp}
           name={team.name}
           bio={team.bio}
           hero={team?.avatar}

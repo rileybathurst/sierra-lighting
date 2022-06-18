@@ -14,10 +14,7 @@ export const query = graphql`
       avatar {
         localFile {
           childImageSharp {
-            gatsbyImageData
-            fluid {
-              aspectRatio
-            }
+            gatsbyImageData(layout: FIXED)
           }
           url
         }
