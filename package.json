@@ -2,8 +2,15 @@
   "name": "sierra-lighting",
   "version": "1.0.0",
   "private": true,
-  "description": "sierra-lighting",
-  "author": "Riley",
+  "description": "sierra lighting gatsby website built with strapi as the cms",
+  "author": {
+    "name": "Riley Bathurst",
+    "email": "riley@rileybathurst.com",
+    "url": "https://rileybathurst.com"
+  },
+  "homepage": "https://sierra.lighting",
+  "repository": "github:rileybathurst/sierra-lighting",
+  "license": "MIT",
   "keywords": [
     "gatsby"
   ],
