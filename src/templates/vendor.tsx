@@ -14,7 +14,7 @@ import TestimonialRanking from "../components/testimonial-ranking";
 function IfOther(props) {
   if (props.projects.length > 0) {
 
-    console.log(props.projects);
+    // console.log(props.projects);
 
     return (
       <>

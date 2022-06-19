@@ -53,7 +53,7 @@ function Projects(props) {
 
 function Other(props) {
 
-  console.log(props.needed.length);
+  // console.log(props.needed.length);
 
   const map = props.other.nodes.map((light, index) => {
     return (

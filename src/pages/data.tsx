@@ -14,10 +14,10 @@ const DataPage = () => {
   `)
 
   const more = { data }
-  console.log(more);
+  // console.log(more);
 
   let more2 = data.allStrapiFar.nodes
-  console.log(more2);
+  // console.log(more2);
 
   return (
     <header>

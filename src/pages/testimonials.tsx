@@ -20,14 +20,14 @@ function TestimonialLink(props) {
       </>
     )
   } else if (props.platform) {
-    console.log('platform');
+    // console.log('platform');
     return (
       <>
         <h4 className='range' itemProp="name">{props.customer}</h4> - {props?.platform}
       </>
     );
   } else {
-    console.log('no vendor or platform');
+    // console.log('no vendor or platform');
     return (
       <h4 className='range' itemProp="name">{props.customer}</h4>
     );

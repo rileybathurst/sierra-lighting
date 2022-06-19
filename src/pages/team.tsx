@@ -55,8 +55,8 @@ const TeamPage = () => {
                   data.allStrapiTeam.nodes.map(team => (
                     <li key={team.id} className="team_card">
                       <article className="single" itemScope itemType="https://schema.org/Person">
-                        <h1 itemProp="name"><Link to={team.slug}>{team.name}</Link></h1>
                         <IfHero hero={team?.avatar} />
+                        <h1 itemProp="name"><Link to={team.slug}>{team.name}</Link></h1>
                         <ReactDescription bio={team.bio} />
                       </article>
                     </li>

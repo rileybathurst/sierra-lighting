@@ -75,10 +75,10 @@ const ResidentialPage = () => {
   `)
 
   const more = { data }
-  console.log(more);
+  // console.log(more);
 
   let allResidentialLights = data.allStrapiLight.nodes
-  console.log(allResidentialLights);
+  // console.log(allResidentialLights);
 
   // State for the list
   const [list, setList] = useState([...allResidentialLights.slice(0, 3)])

@@ -196,8 +196,8 @@ function IfTeam(props) {
 function IfAttributes(props) {
   if (props?.venue || props?.area?.length > 0 || props?.vendor?.length > 0 || props?.team?.length > 0) {
 
-    console.log(props?.venue);
-    console.log(props?.area);
+    // console.log(props?.venue);
+    // console.log(props?.area);
 
     // return null;
 
@@ -221,7 +221,7 @@ function IfAttributes(props) {
       </>
     );
   } else {
-    console.log('no attributes');
+    // console.log('no attributes');
 
     return null
   }

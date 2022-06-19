@@ -79,10 +79,10 @@ function IfProjects(props) {
 }
 
 function WideVsTall(props) {
-  console.log(props.width);
-  console.log(props.height);
+  // console.log(props.width);
+  // console.log(props.height);
   if (props.width >= props.height) {
-    console.log('wide');
+    // console.log('wide');
     return (
       <section className="wide">
         <div>
@@ -97,14 +97,13 @@ function WideVsTall(props) {
       </section>
     )
   } else {
-    console.log('tall');
+    // console.log('tall');
     return (
       <section className="tall">
         <div className="tall__text">
           <h1 itemProp="name">{props.name}</h1>
           <ReactDescription bio={props.bio} />
         </div>
-        {/* <div>test</div> */}
         <GatsbyImage
           image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
           alt={props?.hero?.alternativeText}

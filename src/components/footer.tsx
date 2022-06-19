@@ -33,6 +33,7 @@ function IfTeamImage(props) {
 }
 
 // ? what was I working on here? // encode something
+// ? im guessing something about jobber form
 /* function encode(data) {
   return Object.keys(data)
     .map(
@@ -82,6 +83,8 @@ const Footer = () => {
             <Link to="/team" className="link--subtle">Meet Our Team</Link>
           </h4>
 
+          <h4>or <Link to="/work" className="link--subtle">Work with us</Link></h4>
+
           <div className="team-heads spin">
             <StaticQuery
               query={query}
@@ -111,7 +114,7 @@ const Footer = () => {
             />
           </div>
 
-          <h4><Link to="/work" className="link--subtle">Work with us</Link></h4>
+
         </div>
       </div>
 
