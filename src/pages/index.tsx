@@ -24,10 +24,10 @@ export function Village() {
 export function NorthTahoeArts() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Arts-3-web-tagged.jpg"
-    alt="christmas lighting display at North Tahoe Arts gift shop and gallery"
-    className="northtahoearts"
-    breakpoints={[300, 600, 900]}
-    width={650}
+    alt="two kayakers paddling across lake Tahoe"
+  // className=""
+  // breakpoints={[300, 600, 900]}
+  // width={650}
   />
 }
 

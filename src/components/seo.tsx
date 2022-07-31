@@ -100,7 +100,7 @@ const SEO = ({
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: `${siteUrl}${image || defaultImage}`,
+    image: image || defaultImage,
     ogImage: image,
     twitterImage: twitterImage,
     url: `${siteUrl}${pathname}`,
@@ -126,7 +126,7 @@ const SEO = ({
         }}
       >
 
-        {/* Im sure theres a way to do this with a query */}
+        {/* // TODO do this with a query */}
         <meta itemProp="name" content="Sierra Lighting" />
 
         <meta name="description" content={seo.description} />
