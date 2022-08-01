@@ -244,19 +244,19 @@ const VenuePage = () => {
                 }
               </div>
 
-              <div id="glenbrook" className="measure">
+              <div id="stateline" className="measure">
                 <hr />
                 {/* <h4 className="crest">// TODO</h4> */}
                 <h3 className="range">
-                  <Link to="/area/glenbrook" className="link--subtle">
-                    Glenbrook, NV.
+                  <Link to="/area/stateline" className="link--subtle">
+                    Stateline, NV.
                   </Link>
                 </h3>
               </div>
 
               <div className="deck">
                 {
-                  data.glenbrook.nodes.map(venue => (
+                  data.stateline.nodes.map(venue => (
                     <section className="card" key={venue.id}>
 
                       <GatsbyImage
@@ -307,7 +307,43 @@ const VenuePage = () => {
                       <div className="content">
                         <hr />
                         <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                        <p>{venue.except}</p>
+                        <p>{venue.excerpt}</p>
+                      </div>
+                    </section>
+                  ))
+                }
+              </div>
+
+
+              <div id="minden" className="measure">
+                <hr />
+                {/* <h4 className="crest">// TODO</h4> */}
+                <h3 className="range">
+                  <Link to="/area/minden" className="link--subtle">
+                    Minden, NV.
+                  </Link>
+                </h3>
+              </div>
+
+              <div className="deck">
+                {
+                  data.minden.nodes.map(venue => (
+                    <section className="card" key={venue.id}>
+
+                      <GatsbyImage
+                        image={
+                          venue?.venueImage?.localFile?.childImageSharp
+                            ?.gatsbyImageData
+                        }
+                        alt={venue.venueImage?.alternativeText}
+                        className=""
+                      />
+
+                      <div className="paper"></div>
+                      <div className="content">
+                        <hr />
+                        <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                        <p>{venue.excerpt}</p>
                       </div>
                     </section>
                   ))
@@ -450,7 +486,7 @@ query VenuesQuery {
     }
   }
   
-  glenbrook: allStrapiVenue(filter: {area: {slug: {eq: "glenbrook"}}}) {
+  stateline: allStrapiVenue(filter: {area: {slug: {eq: "stateline"}}}) {
     nodes {
       id
       name
@@ -477,6 +513,47 @@ query VenuesQuery {
       excerpt
       slug
       venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+
+  minden: allStrapiVenue(filter: {area: {slug: {eq: "minden"}}}) {
+    nodes {
+      id
+      name
+      excerpt
+      slug
+      venueImage {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+
+  other: allStrapiVendor(filter: {service: {nin: ["southlake", "reno", "incline", "truckee", "olympic", "donner", "tahoma", "stateline", "minden"]}}) {
+    nodes {
+      id
+      name
+      excerpt
+      slug
+
+      profile {
         localFile {
           childImageSharp {
             gatsbyImageData(

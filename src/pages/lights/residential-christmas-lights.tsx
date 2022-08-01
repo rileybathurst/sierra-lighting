@@ -78,7 +78,7 @@ const ResidentialChristmaslightsPage = () => {
         <hr />
         <h3 className="crest">What else we do</h3>
         <h2 className="range">
-          <Link to="/lights/commerical-christmas-lights" className="link--subtle">
+          <Link to="/lights/commercial-christmas-lights" className="link--subtle">
             Commercial Christmas Lights
           </Link>
         </h2>

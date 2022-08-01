@@ -6,15 +6,6 @@ import Logo from "../images/logo";
 import SocialIcons from "../components/social-icons";
 import FooterList from "../lists/footer-list";
 
-function ThisYear() {
-  let today = new Date().getFullYear();
-  return (
-    <>
-      {today}
-    </>
-  );
-}
-
 // I dont have all of these and it might fix the caching issue
 function IfTeamImage(props) {
 
@@ -71,7 +62,7 @@ const Footer = () => {
           <h4 className="range">Say Hello</h4>
 
           <div className="contact-info">
-            <p><a href="mailto:sierrachristmaslights@gmail.com"><span itemProp="email">sierrachristmaslights@gmail.com</span></a></p>
+            <p><a href="mailto:info@sierra.lighting"><span itemProp="email">info@sierra.lighting</span></a></p>
             <p><a href="tel:+1-775-525-1898">Nevada Number: <span itemProp="telephone">(775) 525-1898</span></a></p>
             <p><a href="tel:+1-530-414-9899">California Number: <span itemProp="telephone">(530) 414-9899</span></a></p>
           </div>
@@ -193,7 +184,7 @@ const Footer = () => {
             Formally known as Sierra Christmas Lights
           </a>
         </h5>
-        <p>&copy; <ThisYear /></p>
+        <p>&copy; {new Date().getFullYear()}</p>
 
 
 

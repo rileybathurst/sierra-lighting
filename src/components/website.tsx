@@ -1,12 +1,15 @@
 import * as React from "react"
 import StrShort from "./StrShort";
 
+// TODO: I need to put a span after the first slash in the address.
+// everything after that should be way more mellow
+
 function Website(props) {
   if (props.website) {
 
     let str = props.website;
     const DoesNotInclude = !str.includes('https://');
-    console.log(DoesNotInclude);
+    // console.log(DoesNotInclude);
 
     if (DoesNotInclude) {
       return (
@@ -21,7 +24,7 @@ function Website(props) {
 
             </span>
           ) : null} */}
-
+          Website&nbsp;
           <a href={`https://${props.website}`}
             target="_blank"
             rel="noopener noreferrer">
@@ -41,6 +44,7 @@ function Website(props) {
               </span>
             </span>
           ) : null} */}
+          Website&nbsp;
           <a href={props.website}
             target="_blank"
             rel="noopener noreferrer">

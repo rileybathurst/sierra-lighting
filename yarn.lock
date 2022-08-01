@@ -9024,14 +9024,6 @@
     "minimatch" "3.0.4"
     "web-vitals" "^1.1.2"
 
-"gatsby-plugin-google-tagmanager@^4.9.0":
-  "integrity" "sha512-y3PSKwIgSYHpKoEg++XOimP838qZm49KO4dkAAPK3/DcRofeVYiMAbs2PDSgSMMD1aW9f1GMw5ThFvpG9Q4ndg=="
-  "resolved" "https://registry.npmjs.org/gatsby-plugin-google-tagmanager/-/gatsby-plugin-google-tagmanager-4.16.0.tgz"
-  "version" "4.16.0"
-  dependencies:
-    "@babel/runtime" "^7.15.4"
-    "web-vitals" "^1.1.2"
-
 "gatsby-plugin-image@^2.5.1", "gatsby-plugin-image@^2.8.0":
   "integrity" "sha512-PnCcJG7sE85xQhCFIMRUJr42T0eLRBJsERfhgHHaiCjUfNbpV02eQ30Wt8i3s3T6Ci/xPJYdnnqM9nTqiCJbTQ=="
   "resolved" "https://registry.npmjs.org/gatsby-plugin-image/-/gatsby-plugin-image-2.16.1.tgz"

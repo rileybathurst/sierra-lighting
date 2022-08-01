@@ -2,10 +2,6 @@
 //  #SIERRA LIGHTING
 /*------------------------------------*/
 
-// ? add some css layers to here it could be great
-// @layer storybook, theme;
-
-// @layer theme {
 @import "variables";
 @import "reset";
 @import "a11y";
@@ -23,4 +19,3 @@
 @import "map";
 @import "lists";
 @import "visibility";
-// }

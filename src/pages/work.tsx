@@ -64,15 +64,17 @@ const WorkPage = () => {
 
           {/* // TODO SEO */}
           <ul>
-            <li key="earn">Earn $8,000 - $10,000 in 8-10 weeks work</li>
+            <li key="earn">Earn $9,000 - $13,000 in ten weeks work</li>
             <li key="bonus">Hourly + bonus incentive program</li>
             <li key="trade">Learn a new trade, work outside</li>
             <li key="heights">have fun at heights with a great team</li>
             <li key="housing">Housing / vehicle dwelling possible</li >
           </ul >
 
-          <p>Locally owned and operated in Truckee, Tahoe and Reno. We are in need of reliable, hardworking employees to install wedding, landscape, and Christmas lights and decor.</p>
-          <p>Full time Oct - Jan with holidays off.</p>
+          <p>Locally owned and operated in Truckee, Tahoe and Reno. We are in need of reliable, hardworking employees to install wedding and Christmas lights.</p>
+          <p>Full time Oct - Jan with holidays off. Can start earlier if desired.</p>
+
+          <h3>↓ Contact us below ↓</h3>
 
           {/* // TODO where is this going? Ive asked in Asana */}
           {/* <p>Email: SierraChristmasLights@gmail.com with a resume and any questions to set up an interview.</p> */}

@@ -22,6 +22,22 @@ function ReactAddress(props) {
   }
 }
 
+function Phone(props) {
+  if (props.phone) {
+    var phone = props.phone;
+    var string = phone.toString();
+    var change = string.replace(/(\d{3})(\d{3})(\d{4})/, "($1)$2-$3");
+
+    // console.log(change);
+
+    return (
+      <>Phone <a href={`tel:${props.phone}`}>{change}</a></>
+    );
+  } else {
+    return null;
+  }
+}
+
 function IfOther(props) {
   // console.log(props.other.length);
   let lngth = props.other.length;
@@ -165,6 +181,7 @@ const VenueView = ({ data }) => {
           </address>
 
           <p><Website website={data.strapiVenue.website} /></p>
+          <Phone phone={data.strapiVenue.phone} />
           {/* {data.strapiVenue.website} */}
 
           <hr />
@@ -194,6 +211,7 @@ export const query = graphql`
         slug
         excerpt
         website
+        phone
         
         area {
           name
@@ -245,8 +263,8 @@ export const query = graphql`
               localFile {
                 childImageSharp {
                   gatsbyImageData(
-                    breakpoints: [111, 165, 222, 444, 880]
-                    width: 222
+                    breakpoints: [660]
+                    width: 660
                   )
                 }
               }
