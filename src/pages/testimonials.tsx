@@ -133,7 +133,7 @@ const TestimonialsPage = () => {
             rel="noopener noreferrer"
             className="hover-back hover-back--inline">
             Google Review
-          </a><em>- preffered</em>
+          </a><em>- preferred</em>
         </p>
         <p>
           <a href="https://www.yelp.com/biz/sierra-lighting-calpine"

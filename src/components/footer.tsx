@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from 'react';
 import { Link, StaticQuery, graphql } from "gatsby";
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
@@ -50,6 +50,14 @@ function IfTeamImage(props) {
 
 
 const Footer = () => {
+
+  const [email, setEmail] = useState('info@sierra.lighting');
+
+  function subject(e) {
+    setEmail(e.target.value);
+    return null;
+  }
+
   return (
     <footer>{/* itemScope itemType="https://schema.org/LocalBusiness" */}
       <div className="measure">
@@ -125,13 +133,13 @@ const Footer = () => {
         <input type="hidden" name="form-name" value="contact" />
 
         <input type="hidden" name="subject"
-          value="Contact Form from sierra.lighting" />
+          value={`Contact Form from sierra.lighting ${email}`} />
 
         <label>Name
           <input type="text" name="name" />
         </label>
         <label>Email
-          <input type="email" name="email" />
+          <input type="email" name="email" onChange={subject} />
         </label>
         <label>Phone
           <input type="tel" name="tel" />
