@@ -15,6 +15,7 @@ const strapiConfig = {
     'topbar',
     'project',
     'team',
+    'affiliation',
   ],
   singleTypes: [],
 };

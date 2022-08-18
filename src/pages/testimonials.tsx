@@ -77,8 +77,8 @@ const TestimonialsPage = () => {
 
       <main className="measure">
 
-        <h1>Reviews</h1>
-        <h2>Testimonials</h2>
+        <h1 className="crest">Reviews</h1>
+        <h2 className="ridge">Testimonials</h2>
 
         <div itemProp="mainEntity" itemScope itemType="https://schema.org/LocalBusiness">
           <h1 className="sr-only" itemProp="name">Sierra Lighting</h1>
