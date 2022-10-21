@@ -185,11 +185,15 @@
 
 .hamburger .line {
   width: 2rem;
-  height: 3px;
+  height: 0.1875rem; // 3px this is wierd and custom
   background-color: hsl(var(--honey), 100%, 30%);
   display: block;
   margin-block: 0.5rem;
   transition: var(--moment);
+
+  // TODO this is not working
+  background-color: hsl(var(--honey__base), var(--dull));
+  // background-color: red; // testing
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 37%, 37%);
@@ -213,8 +217,10 @@
   transform: translateY(-0.7rem) rotate(90deg);
 }
 
-.hamburger:hover {
+/* .hamburger:hover {
   .line {
     background-color: hsl(var(--honey), 100%, 2.5%);
+    background-color: hotpink; // testing
   }
 }
+ */

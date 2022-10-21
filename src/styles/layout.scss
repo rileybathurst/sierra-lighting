@@ -298,7 +298,11 @@ header {
 }
 
 .footer-social--self ul {
-  justify-content: space-between;
+  justify-content: flex-start;
+
+  @media (min-width: $book) {
+    justify-content: space-between;
+  }
 }
 
 .footer-container {
@@ -306,25 +310,35 @@ header {
   margin-inline: auto;
   width: calc(100% - 2rem);
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
   gap: 1rem;
-  flex-flow: row wrap;
+
+  > * {
+    flex: 1 1 15rem;
+  }
+}
+
+.footer-copyright {
+  max-width: var(--measure);
+  margin-inline: auto;
+  width: calc(100% - 2rem);
+  display: flex;
+  gap: 1rem;
   margin-block-start: 0.5rem; // skip 1rem due to a flex gap from a sr-only element
+  flex-direction: column;
 
   @media (min-width: $book) {
     margin-block-start: 2rem; // skip 1rem due to a flex gap from a sr-only element
   }
 
   > * {
-    flex: 1;
-  }
-}
-
-.footer-copyright {
-  @extend .footer-container;
-  flex-direction: column;
-
-  > * {
     text-align: center;
+  }
+
+  // there shouldnt be a flex gap if you cant see the content
+  .footer-copyright__mind-the-gap {
+    margin-block-end: -1rem;
   }
 }
 
@@ -468,6 +482,7 @@ footer {
   display: flex;
   gap: 1rem;
   flex-flow: row wrap;
+  margin-block-end: var(--line-height);
 }
 
 .services-wrap {
@@ -495,12 +510,6 @@ footer {
 
   > * {
     flex: 1;
-  }
-}
-
-@media (max-width: $book) {
-  #team {
-    padding-inline-start: 0;
   }
 }
 
@@ -626,6 +635,30 @@ footer {
       @media (min-width: $book) {
         max-width: 20rem;
       }
+    }
+  }
+}
+
+/*------------------*/
+//  #SINGLE
+// Markdown content
+
+/*------------------*/
+
+.single {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  margin-block-end: 1.5rem;
+
+  img {
+    flex: 1 1 10rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--troposphere);
+    border: 1px solid whitesmoke;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: hsl(var(--denim), 12%, 12%);
     }
   }
 }

@@ -5,22 +5,34 @@ import { Link } from "gatsby"
 function WhichSeason({ children }) {
   let today = new Date();
 
+  // testing date month
+  // console.log("today", today.getMonth());
+
   // today is less than feb 1
   // TODO use some specific days as well
 
-  if (today.getMonth() <= 2) {
+  // if greater than or equal to sept 1 xmas
+  if (today.getMonth() >= 9) {
+    // console.log("holiday");
     return (
       <ul className='holiday_season'>
         {children}
       </ul>
     );
-  } else if (today.getMonth() <= 10) {
+
+    // else if greater than or equal to feb 1 wedding
+  } else if (today.getMonth() >= 2) {
+    // console.log("wedding");
     return (
       <ul className='wedding_season'>
         {children}
       </ul>
     );
+
+    // 
   } else {
+    // below feb 1 so its still holiday
+    // console.log("else");
     return (
       <ul className='holiday_season'>
         {children}

@@ -23,8 +23,7 @@ function IfTeamImage(props) {
   }
 }
 
-// ? what was I working on here? // encode something
-// ? im guessing something about jobber form
+// ? I believe this was the jobber form which I couldnt get working
 /* function encode(data) {
   return Object.keys(data)
     .map(
@@ -48,9 +47,9 @@ function IfTeamImage(props) {
     .catch((error) => alert(error));
 }; */
 
-
 const Footer = () => {
 
+  // ? this seems a weird way to do this as it could just be hard coded
   const [email, setEmail] = useState('info@sierra.lighting');
 
   function subject(e) {
@@ -92,19 +91,19 @@ const Footer = () => {
                   {
                     data.residential.nodes.map(team => (
 
-                      <div key={team.slug}>
-                        <Link to={`/team/${team.slug}`}>
-                          <IfTeamImage
-                            teamImage={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
-                            alt={team?.avatar?.alternativeText}
-                          />
-
-                          <p itemScope itemProp="Person" itemType="https://schema.org/Person">
-                            <span itemProp="name">{team.name}</span>
-                            {/* // ? should this have a last name even if its only sr */}
-                          </p>
-                        </Link>
-                      </div>
+                      // I think the only reason for this div is the key?
+                      // <div >
+                      <Link to={`/team/${team.slug}`} key={team.slug}>
+                        <IfTeamImage
+                          teamImage={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
+                          alt={team?.avatar?.alternativeText}
+                        />
+                        <p itemScope itemProp="Person" itemType="https://schema.org/Person">
+                          <span itemProp="name">{team.name}</span>
+                          {/* // ? should this have a last name even if its only sr */}
+                        </p>
+                      </Link>
+                      // </div>
 
                     ))
                   }
@@ -117,7 +116,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="measure">
+      <div className="measure inherit">
         <hr />
       </div>
 
@@ -176,7 +175,7 @@ const Footer = () => {
       </div>
 
       <div className="footer-copyright">
-        <h4 className="sr-only" itemProp="name">
+        <h4 className="sr-only footer-copyright__mind-the-gap" itemProp="name">
           <Link to="/" title="to the front page">
             Sierra Lighting
           </Link>
@@ -193,9 +192,6 @@ const Footer = () => {
           </a>
         </h5>
         <p>&copy; {new Date().getFullYear()}</p>
-
-
-
       </div>
 
     </footer>

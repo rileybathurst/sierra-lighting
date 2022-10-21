@@ -6,27 +6,38 @@
   margin-inline: auto;
   max-width: var(--measure);
   white-space: nowrap;
-  width: 90vw; // ? guess and check
-  ul {
+  width: calc(100vw - 2rem);
+
+  > ul {
     overflow-x: hidden;
 
-    li {
-      // width: 100%; // now its a flex
+    > li {
       display: inline-block;
-      animation-duration: 30s;
+      animation-duration: 20s;
       animation-name: slide;
       animation-iteration-count: infinite;
+      width: 100%; // the text is skinnier
     }
 
-    li:hover {
-      animation-play-state: paused; // ! this needs to control the whole series not just one
+    .testimonial--stars {
+      list-style: none;
+      display: flex;
+    }
+
+    // short text looked bad breaking lines a lot
+    p {
+      max-width: var(--vulture);
+    }
+
+    > li:hover {
+      // animation-play-state: paused;
+      // TODO this needs to control the whole series not just one before I can use it
+      // so would possibly need to be on the ul instead?
     }
   }
 }
 
-#slider ul li:first-child {
-  // background: red;
-}
+// this is based on 3 testimonials
 
 @keyframes slide {
   0% {

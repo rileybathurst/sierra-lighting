@@ -138,6 +138,8 @@ const SEO = ({
         {seo.description && (
           <meta property="og:description" content={seo.description} />
         )}
+
+        {/* // testing off incase this is the alt issue */}
         {seo.image && <meta property="og:image" itemProp="image" content={seo.ogImage} />}
 
         {seo.title && <meta name="twitter:title" content={seo.title} />}

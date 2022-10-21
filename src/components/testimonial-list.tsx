@@ -1,3 +1,5 @@
+// Only used once on the homepage as it has a query I wanted to abstract out.
+
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 
@@ -20,7 +22,7 @@ const TestimonialList = () => (
                 <p className="sr-only"><span itemProp="bestRating">5</span>stars</p>
               </div>
             </div>
-            <p itemProp="reviewBody">{testimonial.review}</p>
+            <p itemProp="reviewBody">{testimonial.excerpt}</p>
             <div className="together">
               <span itemProp="name" className="sr-only">{testimonial.title}</span>
               <h3 className="range" itemProp="author" itemScope itemType="https://schema.org/Person">
@@ -42,12 +44,12 @@ export default TestimonialList
 
 export const query = graphql`
 query TestimonialListQuery {
-  allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
+  allStrapiTestimonial(limit: 3) {
     nodes {
       id
       customer
       platform
-      review
+      excerpt
       createdAt
       stars
       title

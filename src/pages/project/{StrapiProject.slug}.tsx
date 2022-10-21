@@ -29,6 +29,10 @@ export const query = graphql`
         alternativeText
       }
 
+      gallery {
+        alternativeText
+      }
+
       lights {
         name
         id

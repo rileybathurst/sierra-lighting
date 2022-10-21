@@ -1,8 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-// import MenuList from './menu-list';
+
 import Hamburger from "../images/hamburger";
-// import Nav from "./nav"
 import MenuList from '../lists/menu-list';
 
 function SlideMenu() {

@@ -10,6 +10,7 @@ import Footer from "../components/footer";
 import AreaAccordian from "../components/area-accordian";
 import TestimonialList from "../components/testimonial-list";
 
+// christmas hero
 export function Village() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Rancharrah-13-web-tagged.jpg"
@@ -21,6 +22,7 @@ export function Village() {
   />
 }
 
+// christmas triptych
 export function NorthTahoeArts() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Arts-3-web-tagged.jpg"
@@ -31,6 +33,7 @@ export function NorthTahoeArts() {
   />
 }
 
+// christmas triptych
 export function NorthTahoeEvents() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
@@ -41,6 +44,7 @@ export function NorthTahoeEvents() {
   />
 }
 
+// christmas triptych
 export function InclineChevron() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Incline-7-web-tagged.jpg"
@@ -51,6 +55,7 @@ export function InclineChevron() {
   />
 }
 
+// christmas services
 export function SnowyRoof() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-3-web-tagged.jpg"
@@ -58,6 +63,7 @@ export function SnowyRoof() {
     className="snowyroof poster" />
 }
 
+// wedding tryptich
 export function WestShoreWedding() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-west_shore_cafe_lighting.jpg"
@@ -68,6 +74,7 @@ export function WestShoreWedding() {
   />
 }
 
+// wedding hero light
 export function WeddingCannopy() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/Sierra_Lighting-Zach-Maija.jpg"
@@ -78,6 +85,7 @@ export function WeddingCannopy() {
   />
 }
 
+// wedding tryptich
 export function BistroLights() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-bistro_lights.jpg"
@@ -88,6 +96,7 @@ export function BistroLights() {
   />
 }
 
+// wedding tryptich
 export function Backyard() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-wedding-backyard.jpg"
@@ -98,6 +107,7 @@ export function Backyard() {
   />
 }
 
+// wedding hero dark
 export function OutdoorWedding() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-outdoor_wedding.jpg"
@@ -149,15 +159,17 @@ const IndexPage = () => {
             <h2 className="site_title">Dependable holiday, landscape and events light installation</h2>
 
             <div className="village-container">
-              {/* winter hero <Link to="/project/rancharrah">
-              <Village />
+              {/* winter hero */}
+              <Link to="/project/rancharrah">
+                <Village />
                 <p>The Village at Rancharrah See the Project</p>
-              </Link> */}
+              </Link>
 
-              <Link to="/project/wedding-canopy">
+              {/* summer hero */}
+              {/* <Link to="/project/wedding-canopy">
                 <HeroImage />
                 <p>Wedding Canopy See the Project</p>
-              </Link>
+              </Link> */}
             </div>
 
             <section id="trusted" className="trusted">
@@ -183,9 +195,15 @@ const IndexPage = () => {
 
             <div className="home-gallery">
               {/* // TODO seasonal adjust */}
-              <BistroLights />
+              {/* wedding season
+<BistroLights />
               <WestShoreWedding />
-              <Backyard />
+              <Backyard /> */}
+
+              {/* christmas season */}
+              <NorthTahoeEvents />
+              <InclineChevron />
+              <NorthTahoeArts />
             </div>
           </div>
         </div>

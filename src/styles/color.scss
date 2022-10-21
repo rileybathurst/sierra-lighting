@@ -59,7 +59,7 @@ header {
 .menu__small {
   background-color: whitesmoke; // ? am I sure this isnt a honey color
   opacity: 0.9;
-  // box-shadow: var(--troposphere);
+  backdrop-filter: blur(1rem); // TODO this isnt working
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 100%, 12%);
@@ -71,6 +71,7 @@ header {
 /*------------------*/
 
 .slider-container {
+  display: flex; // keeps the margins in
   background-color: hsl(var(--honey), 100%, 97.5%); // custom
 
   @media (prefers-color-scheme: dark) {

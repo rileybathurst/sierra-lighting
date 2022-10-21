@@ -19,6 +19,12 @@
   }
 }
 
+// testing this out in the footer im not sure if its more useful
+.inherit {
+  @extend .large;
+  display: inherit;
+}
+
 /*------------------*/
 //  #SPECIFICS
 /*------------------*/

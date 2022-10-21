@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 
 import Logo from "../images/logo";
 import Menu from "./menu";
-import BigBoy from "./bigboy";
+import TopList from '../lists/top-list';
 import TopBar from "./topbar";
 
 const Header = () => {
@@ -24,7 +24,9 @@ const Header = () => {
           {/* // needed to hide the small menu */}
           <div className="stripe">{/* stay gold */}</div>
           <Menu />
-          <BigBoy />
+          <div className='bigboy'>
+            <TopList />
+          </div>
         </div>
       </header>
     </>

@@ -29,7 +29,7 @@ function Lights(props) {
             light?.image?.localFile?.childImageSharp
               ?.gatsbyImageData
           }
-          alt={light.alternativeText}
+          alt={light?.image?.alternativeText}
         />
         <div className="paper"></div>
         <div className="content">
@@ -65,10 +65,14 @@ function Lights(props) {
 
 
 function Other(props) {
-
+  // testing
   // console.log(props.needed.length);
 
   const map = props.other.nodes.map((project, index) => {
+
+    // testing
+    // console.log(project?.image?.alternativeText);
+
     return (
       <section className="card" key={index}>
         <GatsbyImage
@@ -76,7 +80,8 @@ function Other(props) {
             project?.image?.localFile?.childImageSharp
               ?.gatsbyImageData
           }
-          alt={project.alternativeText}
+          alt={project?.image?.alternativeText}
+        // alt={project.title}
         />
         <div className="paper"></div>
         <div className="content">
@@ -180,7 +185,7 @@ function IfTeam(props) {
       <section className="attribute">
         <h3 className="crest">Team</h3>
         {props?.team.map(team => (
-          <h4 className="range last-ampersand">
+          <h4 className="range last-ampersand" key={team.slug}>
             <Link to={`/team/${team.slug}`} className="link--subtle">
               {team.name}
             </Link>
@@ -330,3 +335,5 @@ const ProjectView = ({ project, other }) => {
 };
 
 export default ProjectView;
+
+// TODO I've very started working on the gallery but it needs work
