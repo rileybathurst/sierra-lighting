@@ -17,7 +17,10 @@ const strapiConfig = {
     'team',
     'affiliation',
   ],
-  singleTypes: [],
+  singleTypes: [
+    'topbar',
+    'season'
+  ],
 };
 
 module.exports = {
@@ -37,7 +40,7 @@ module.exports = {
     areaServed: 'tahoe', // Im doing a lot with this in seo.tsx
     author: 'Sierra Lighting',
     paymentAccepted: 'Cash check venmo credit card',
-    itemType: 'LocalBusiness',
+    itemType: 'LocalBusiness', // ! I think this is more specific
     priceRange: '$500-1500',
   },
   plugins: [{

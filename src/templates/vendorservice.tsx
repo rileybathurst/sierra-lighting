@@ -81,32 +81,25 @@ const VendorServiceView = ({ data }) => {
 export default VendorServiceView;
 
 export const query = graphql`
-  query VendorServiceTemplate(
-    $service: String!,
-  ) {
-    allStrapiVendor(filter: {service: {eq: $service}}) {
-      edges {
-        node {
-          id
-          name
-          excerpt
-          slug
-
-          profile {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
+  query VendorServiceTemplate($service: String!) {
+  allStrapiVendor(filter: {service: {eq: $service}}) {
+    edges {
+      node {
+        id
+        name
+        excerpt
+        slug
+        profile {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(breakpoints: [111, 165, 222, 444, 880], width: 222)
             }
-            alternativeText
           }
+          alternativeText
         }
       }
-
-      distinct(field: service)
     }
+    distinct(field: {service: SELECT})
   }
+}
 `

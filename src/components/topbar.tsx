@@ -35,3 +35,7 @@ const query = graphql`
     }
   }
 `
+
+// change this seasonally
+// Currently Booking Weddings, Events, and Bistro Lights
+// Now booking Christmas Lights

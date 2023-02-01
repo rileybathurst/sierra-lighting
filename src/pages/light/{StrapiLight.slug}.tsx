@@ -2,6 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import LightView from "../../views/light-view"
 
+// ! Fix this
 import "../../styles/app.scss";
 
 export const query = graphql`

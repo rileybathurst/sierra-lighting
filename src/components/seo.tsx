@@ -70,7 +70,7 @@ function GetMeta(props) {
   )
 }
 
-
+// area served is coming from the home page list of areas.
 
 // Im not sure what the rules on what goes here vs in the array?
 const SEO = ({

@@ -68,7 +68,7 @@ const CommercialEventsPage = () => {
           <h2 className="crest">
           </h2>
           <h1 className="mixta">Commercial Events</h1>
-          <p>corporate gathering</p>
+          <p>corporate gathering</p>{/* ? should this be a caital */}
         </div>
         <div className="triple">
           <BistroLights />

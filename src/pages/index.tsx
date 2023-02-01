@@ -9,7 +9,9 @@ import Footer from "../components/footer";
 // import "../styles/app.scss"; // gatsby-browser.js
 import AreaAccordian from "../components/area-accordian";
 import TestimonialList from "../components/testimonial-list";
+import WhichSeason from "../components/which-season";
 
+// TODO move this to components to clean up this file
 // christmas hero
 export function Village() {
   return <StaticImage
@@ -26,7 +28,7 @@ export function Village() {
 export function NorthTahoeArts() {
   return <StaticImage
     src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Arts-3-web-tagged.jpg"
-    alt="two kayakers paddling across lake Tahoe"
+    alt="The North Tahoe Arts building addorned in Christmas lights"
   // className=""
   // breakpoints={[300, 600, 900]}
   // width={650}
@@ -159,6 +161,7 @@ const IndexPage = () => {
             <h2 className="site_title">Dependable holiday, landscape and events light installation</h2>
 
             <div className="village-container">
+              {/* which season */}
               {/* winter hero */}
               <Link to="/project/rancharrah">
                 <Village />
@@ -170,6 +173,28 @@ const IndexPage = () => {
                 <HeroImage />
                 <p>Wedding Canopy See the Project</p>
               </Link> */}
+
+              {/*               <WhichSeason
+              // ? its like I need the query here and then two below?
+              // I dont think I need to pass the prop as it already has it
+              >
+                 // this isnt it as it needs to know what this component is and Im just trying to wrap it? 
+                <Wedding>
+                   // wedding="Wedding Canopy See the Project" 
+                  <Link to="/project/wedding-canopy">
+                    <p>Wedding Canopy See the Project</p>
+                  </Link>
+                </Wedding>
+
+                <Holiday>
+                  <Link to="/project/rancharrah">
+                    <Village />
+                    <p>The Village at Rancharrah See the Project</p>
+                  </Link>
+                </Holiday>
+
+            </WhichSeason> */}
+
             </div>
 
             <section id="trusted" className="trusted">
@@ -194,16 +219,23 @@ const IndexPage = () => {
             </section>
 
             <div className="home-gallery">
-              {/* // TODO seasonal adjust */}
-              {/* wedding season
-<BistroLights />
+              {/* // TODO which season */}
+              {/* wedding season */}
+              <BistroLights />
               <WestShoreWedding />
-              <Backyard /> */}
+              <Backyard />
 
-              {/* christmas season */}
+              {/* christmas season
               <NorthTahoeEvents />
               <InclineChevron />
-              <NorthTahoeArts />
+              <NorthTahoeArts /> */}
+
+              {/* TODO: which season */}
+              {/* <WhichSeason 
+holiday="I need to make a triple"
+wedding="I need to make a triple"
+  /> */}
+
             </div>
           </div>
         </div>
@@ -256,3 +288,5 @@ const IndexPage = () => {
 }
 
 export default IndexPage
+
+// TODO: usestrapitopbar

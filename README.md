@@ -21,3 +21,7 @@ npm run storybook
 ## Styleguide
 
 [Tahoe Web Shop Styleguide](https://styleguidetahoewebshopmain.gatsbyjs.io/)
+
+## Switch
+
+Strapi Single to change from holdiay as the default wedding as the change.
