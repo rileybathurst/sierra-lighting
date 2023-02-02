@@ -13,7 +13,7 @@
 /*------------------*/
 
 .footer_list {
-  display: flex;
+  display: flex; // TODO: change this to a grid so it doesnt have the last card issue
   flex-flow: row wrap;
   padding-inline-start: 0;
   gap: 0.5rem;
@@ -68,6 +68,20 @@
     @media (min-width: $book) {
       border-right: none;
     }
+  }
+}
+
+.whichseason_wedding {
+  .wedding {
+    order: 1;
+  }
+
+  .christmas {
+    order: 2;
+  }
+
+  > ul {
+    order: 3;
   }
 }
 
@@ -153,34 +167,30 @@
 
 .affiliations {
   list-style: none;
-  @supports not (grid-template-rows: subgrid) {
-    display: flex;
-    flex-flow: row wrap;
-  }
   gap: 1rem; // this works on grid and flex
   max-width: var(--page_width); // 60rem
   margin-inline: auto;
 
+  // Im not using flex so I can get the subgrid to line up
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  justify-content: stretch;
+  padding: 0.75rem; // reset
 
   > .affiliation {
-    flex: 1 1 10rem;
     border: 1px solid hsl(var(--honey), 100%, 50%);
     padding: 0.75rem;
-    border-radius: var(--border-radius);
-
-    // old
-    @supports not (grid-template-rows: subgrid) {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; // I dont love this maybe subgrid it
-      gap: 1rem;
-    }
-
+    box-shadow: var(--mesosphere);
+    border-radius: var(--card-radius);
     display: grid;
-    grid-row: 1 / 5;
-    grid-template-rows: subgrid;
+    // grid-row: 1 / 5; // this breaking as cards can not drop down rows
+    grid-row: span 4; // this is the key to having the cards line up
+    grid-template-rows: subgrid; // chromium browsers dont line up internally but dont break
+    gap: 1rem;
+
+    @media (prefers-color-scheme: dark) {
+      border: 1px solid hsl(var(--denim), 12%, 50%);
+    }
 
     img {
       mix-blend-mode: multiply;

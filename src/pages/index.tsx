@@ -5,11 +5,9 @@ import { StaticImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
-// import "../styles/app.scss"; // gatsby-browser.js
 import AreaAccordian from "../components/area-accordian";
 import TestimonialList from "../components/testimonial-list";
-import WhichSeason from "../components/which-season";
+import Season from "../components/season";
 
 // TODO move this to components to clean up this file
 // christmas hero
@@ -120,6 +118,17 @@ export function OutdoorWedding() {
   />
 }
 
+// wedding services light // TODO dark
+export function IndoorWedding() {
+  return <StaticImage
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/lights/ribbons.jpg"
+    alt="sierra lighting lake tahoe indoor wedding drappery"
+    className="poster"
+    breakpoints={[650, 1300, 1950]}
+    width={650}
+  />
+}
+
 // light to dark switch
 export function useMediaQuery(query) {
   const [matches, setMatches] = useState(false);
@@ -162,38 +171,19 @@ const IndexPage = () => {
 
             <div className="village-container">
               {/* which season */}
-              {/* winter hero */}
-              <Link to="/project/rancharrah">
-                <Village />
-                <p>The Village at Rancharrah See the Project</p>
-              </Link>
+              <Season season="holiday">
+                <Link to="/project/rancharrah">
+                  <Village />
+                  <p>The Village at Rancharrah See the Project</p>
+                </Link>
+              </Season>
 
-              {/* summer hero */}
-              {/* <Link to="/project/wedding-canopy">
-                <HeroImage />
-                <p>Wedding Canopy See the Project</p>
-              </Link> */}
-
-              {/*               <WhichSeason
-              // ? its like I need the query here and then two below?
-              // I dont think I need to pass the prop as it already has it
-              >
-                 // this isnt it as it needs to know what this component is and Im just trying to wrap it? 
-                <Wedding>
-                   // wedding="Wedding Canopy See the Project" 
-                  <Link to="/project/wedding-canopy">
-                    <p>Wedding Canopy See the Project</p>
-                  </Link>
-                </Wedding>
-
-                <Holiday>
-                  <Link to="/project/rancharrah">
-                    <Village />
-                    <p>The Village at Rancharrah See the Project</p>
-                  </Link>
-                </Holiday>
-
-            </WhichSeason> */}
+              <Season season="wedding">
+                <Link to="/project/wedding-canopy">
+                  <HeroImage />
+                  <p>Wedding Canopy See the Project</p>
+                </Link>
+              </Season>
 
             </div>
 
@@ -219,22 +209,17 @@ const IndexPage = () => {
             </section>
 
             <div className="home-gallery">
-              {/* // TODO which season */}
-              {/* wedding season */}
-              <BistroLights />
-              <WestShoreWedding />
-              <Backyard />
+              <Season season="wedding">
+                <BistroLights />
+                <WestShoreWedding />
+                <Backyard />
+              </Season>
 
-              {/* christmas season
-              <NorthTahoeEvents />
-              <InclineChevron />
-              <NorthTahoeArts /> */}
-
-              {/* TODO: which season */}
-              {/* <WhichSeason 
-holiday="I need to make a triple"
-wedding="I need to make a triple"
-  /> */}
+              <Season season="holiday">
+                <NorthTahoeEvents />
+                <InclineChevron />
+                <NorthTahoeArts />
+              </Season>
 
             </div>
           </div>
@@ -258,10 +243,17 @@ wedding="I need to make a triple"
             <h5 className="range">Guaranteed Upkeep</h5>
           </section>
 
-          <div className="snowyroof-container">
+          <Season season="holiday">
+            <div className="snowyroof-container">
+              <SnowyRoof />
+            </div>
+          </Season>
 
-            <SnowyRoof />
-          </div>
+          <Season season="wedding">
+            <div className="snowyroof-container">
+              <IndoorWedding />
+            </div>
+          </Season>
         </div>
 
         <div className="slider-container">

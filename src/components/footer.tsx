@@ -5,6 +5,7 @@ import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import Logo from "../images/logo";
 import SocialIcons from "../components/social-icons";
 import FooterList from "../lists/footer-list";
+import Season from './season';
 
 // I dont have all of these and it might fix the caching issue
 function IfTeamImage(props) {
@@ -167,9 +168,17 @@ const Footer = () => {
       </div>
 
       <div className="measure">
-        <div className="footer_list">
-          <FooterList />
-        </div>
+        <Season season="wedding">
+          <div className="footer_list whichseason_wedding">
+            <FooterList />
+          </div>
+        </Season>
+
+        <Season season="holiday">
+          <div className="footer_list whichseason_holiday">
+            <FooterList />
+          </div>
+        </Season>
 
         <hr />
       </div>

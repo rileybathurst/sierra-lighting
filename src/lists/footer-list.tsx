@@ -31,6 +31,7 @@ const FooterList = () => (
       <li key="permanent"><Link to="/permanent">Permanent Patio Lights</Link></li>
       <li key="events"><Link to="/events">Non Wedding Events</Link></li>
       <li key="commercial-events"><Link to="/commercial-events">Commercial Events</Link></li>
+      <li key="affiliations"><Link to="/affiliations">Affiliations</Link></li>
     </ul>
   </>
 )
