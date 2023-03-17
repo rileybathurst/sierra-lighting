@@ -1,6 +1,6 @@
 import * as React from "react";
 import { GatsbyImage } from "gatsby-plugin-image"
-import { useStrapiWeddingCannopy } from "../hooks/use-strapi-WeddingCannopy";
+import { useStrapiWeddingCannopy } from "../hooks/use-strapi-weddingcannopy";
 
 const WeddingCannopy = () => {
 
