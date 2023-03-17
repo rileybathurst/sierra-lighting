@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -8,36 +8,9 @@ import Footer from "../components/footer";
 import WeddingProjects from "../components/wedding-projects";
 import Logistics from "../components/logistics";
 
-export function BistroLights() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-bistro_lights.jpg"
-    alt="sierra lighting bistro lights"
-    className=""
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
-export function OutdoorWedding() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-outdoor_wedding.jpg"
-    alt="sierra lighting lake tahoe outdoor wedding"
-    className=""
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
-export function WeddingBlueHour() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-wedding_blue_hour.jpg"
-    alt="sierra lighting setup the outdoor lights over a wedding party"
-    className="snowyroof"
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
+import BistroLights from "../images/bistro-lights";
+import OutdoorWedding from "../images/outdoorwedding";
+import WeddingBlueHour from "../images/weddingbluehour";
 
 const WeddingPage = () => {
 

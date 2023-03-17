@@ -1,6 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
+import { Link } from 'gatsby';
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -63,28 +62,3 @@ const CommercialEventsPage = () => {
 }
 
 export default CommercialEventsPage
-
-/* const query = graphql`
-query ResidentialLightQuery {
-  allStrapiLight(filter: {residentialchristmas: {eq: true}}) {
-    nodes {
-      id
-      name
-      byline
-      description
-      excerpt
-      slug
-      outdoor
-      
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-    }
-  }
-}
-` */

@@ -1,42 +1,15 @@
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
 import CommercialProjects from "../components/commercial-projects";
+import NorthTahoeEvents from "../images/northtahoeevents";
+import InclineChevron from "../images/inclinechevron";
+import SnowyRoof from "../images/snowyroof";
 
-export function NorthTahoeEvents() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/North_Tahoe_Events-4-web-tagged.jpg"
-    alt="christmas lighting display at North Tahoe Events center"
-    className="northtahoeevents"
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
-export function InclineChevron() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Incline-7-web-tagged.jpg"
-    alt="christmas tree in Incline village nevada"
-    className="inclinechevron"
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
-export function SnowyRoof() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-3-web-tagged.jpg"
-    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="snowyroof"
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
 
 const CommercialPage = () => {
 

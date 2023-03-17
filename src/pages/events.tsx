@@ -1,41 +1,13 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
+import { Link } from 'gatsby';
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-export function RSL() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/events/sierra_lighting-rsl-outdoor_lighting.jpg"
-    alt="bistro lights display on an entrance in reno nevada"
-    className="RSL_image"
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
-export function AerilDance() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/aeril-dance-party.jpg"
-    alt="christmas lights display on a tree in Reno nevada"
-    className="RancheroTree"
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
-export function BistroLights() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-bistro_lights.jpg"
-    alt="sierra lighting bistro lights"
-    className=""
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
+import RSL from "../images/rsl";
+import AerilDance from "../images/aerildance";
+import BistroLights from "../images/bistro-lights";
 
 const EventsPage = () => {
   return (

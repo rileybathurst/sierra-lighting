@@ -1,21 +1,10 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
-import { StaticImage } from "gatsby-plugin-image"
+import { Link } from 'gatsby';
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
-export function Work() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work.jpg"
-    alt="work with us to creating wedding and event lighting"
-    className="poster"
-    itemProp="photo"
-    breakpoints={[960, 1840]}
-    width={960}
-  />
-}
+import Work from "../images/work";
 
 const WorkPage = () => {
   return (

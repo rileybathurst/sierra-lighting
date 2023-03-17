@@ -6,7 +6,7 @@
 
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -14,35 +14,9 @@ import Footer from "../components/footer";
 
 import ResidentialProjects from "../components/residential-projects";
 
-export function Residential() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-1-web-tagged.jpg"
-    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="residential_image"
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
-export function Wreath() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-4-web-tagged.jpg"
-    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="wreath_image"
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
-export function SnowyRoof() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/Lakeshore_View-3-web-tagged.jpg"
-    alt="christmas lights display on an entrance with a snowy roof in Incline village nevada"
-    className="snowyroof"
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
+import Residential from "../images/residential";
+import Wreath from "../images/wreath";
+import SnowyRoof from "../images/snowyroof";
 
 const ResidentialPage = () => {
 

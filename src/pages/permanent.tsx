@@ -1,42 +1,14 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
+import { Link } from 'gatsby';
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Logistics from "../components/logistics";
 
-export function BistroLights() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/wedding/sierra_lighting-bistro_lights.jpg"
-    alt="sierra lighting bistro lights"
-    className=""
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
-export function RSL() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/events/sierra_lighting-rsl-outdoor_lighting.jpg"
-    alt="bistro lights display on an entrance in reno nevada"
-    className="RSL_image"
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
-export function Strings() {
-  return <StaticImage
-    src="https://sierralighting.s3.us-west-1.amazonaws.com/lights/string.jpg"
-    alt="wedding lights"
-    className=""
-    breakpoints={[300, 600, 900]}
-    width={300}
-  />
-}
-
+import BistroLights from "../images/bistro-lights";
+import RSL from "../images/rsl";
+import Strings from "../images/strings";
 
 const PermanentPage = () => {
   return (
