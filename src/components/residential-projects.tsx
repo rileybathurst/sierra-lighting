@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, StaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage, StaticImage } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 function ResidentialProjects() {
   return (
