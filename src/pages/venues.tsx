@@ -486,7 +486,8 @@ query VenuesQuery {
     }
   }
   
-  stateline: allStrapiVenue(filter: {area: {slug: {eq: "stateline"}}}) {
+  # // TODO: this is a heavyhanded way until I do other uses on venues
+  stateline: allStrapiVenue(filter: {area: {slug: {eq: "stateline"}}, slug: {ne: "blue"}}) {
     nodes {
       id
       name

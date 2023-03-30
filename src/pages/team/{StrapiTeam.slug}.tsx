@@ -63,15 +63,3 @@ const TeamPage = ({ data }) => {
 };
 
 export default TeamPage;
-
-
-/*
-{
-  gatsbyImageData(
-    layout: FIXED
-    breakpoints: [222, 444, 880]
-    width: 444
-    quality: 80
-  )
-  }
-*/

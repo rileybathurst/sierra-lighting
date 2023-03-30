@@ -1,10 +1,12 @@
 import * as React from "react"
 
-function StateAbbreviation(props) {
+function StateAbbreviation(props: { state: string; }) {
   if (props.state == "california") {
     return (<>CA</>);
   } else if (props.state == "nevada") {
     return (<>NV</>);
+  } else {
+    return null;
   }
 }
 

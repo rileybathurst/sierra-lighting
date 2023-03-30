@@ -1,5 +1,6 @@
 import * as React from "react"
-import { Link } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -10,6 +11,29 @@ import AerilDance from "../images/aerildance";
 import BistroLights from "../images/bistro-lights";
 
 const EventsPage = () => {
+
+  // TODO: this uses the newer useStaticQuery so reference this for future queries
+  const { allStrapiVenue } = useStaticQuery(graphql`
+    query EventsQuery {
+      allStrapiVenue(filter: {uses: {eq: "non-wedding"}}) {
+        nodes {
+          id
+          name
+          slug
+          excerpt
+          venueImage {
+            alternativeText
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
   return (
     <>
       <Seo
@@ -22,24 +46,11 @@ const EventsPage = () => {
       <main>
 
         <div className="measure">
-          <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link itemProp="item" to="/">
-                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-              <meta itemProp="position" content="1" />
-            </li>
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <span itemProp="name">Events</span>
-              <meta itemProp="position" content="2" />
-            </li>
-          </ol>
-          <hr />
-        </div>
-
-        <div className="measure">
+          {/* // TODO: this needs space above it */}
           <h2 className="crest">Non-wedding</h2>
           <h1 className="mixta">Events</h1>
           <p>Whether it's an anniversary, birthday party, or any other special event, we have you covered.</p>
+          <h2>Display Consulting and Planning</h2>
         </div>
         <div className="triple">
           <BistroLights />
@@ -47,13 +58,38 @@ const EventsPage = () => {
           <AerilDance />
         </div>
 
-        <div className="measure">
-          <hr />
-          <h2>Display Consulting and Planning</h2>
-
-        </div>
+        <hr className="measure" />
 
       </main>
+
+      <section className="measure">
+        <h3>Venues</h3>
+        <ul className="deck">
+          {allStrapiVenue.nodes.map((venue:
+            {
+              id: string;
+            }) => (
+            <section className="card" key={venue.id}>
+
+              <GatsbyImage
+                image={
+                  venue?.venueImage?.localFile?.childImageSharp
+                    ?.gatsbyImageData
+                }
+                alt={venue.venueImage?.alternativeText}
+                className=""
+              />
+              <div className="paper"></div>
+              <div className="content">
+                <hr />
+                <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
+                <p>{venue.excerpt}</p>
+              </div>
+            </section>
+          ))
+          }
+        </ul>
+      </section>
       <Footer />
 
     </>
@@ -61,28 +97,3 @@ const EventsPage = () => {
 }
 
 export default EventsPage
-
-/* const query = graphql`
-query ResidentialLightQuery {
-  allStrapiLight(filter: {residentialchristmas: {eq: true}}) {
-    nodes {
-      id
-      name
-      byline
-      description
-      excerpt
-      slug
-      outdoor
-      
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-    }
-  }
-}
-` */

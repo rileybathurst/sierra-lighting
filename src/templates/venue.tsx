@@ -14,6 +14,17 @@ import IfHero from "../components/ifHero";
 
 import TestimonialRanking from "../components/testimonial-ranking";
 
+function Use(props) {
+  // TODO: heavy handed way of doing this until I have filled out venue uses
+  if (props.slug === 'blue') {
+    return null;
+  } else {
+    return (
+      <>Wedding</>
+    );
+  }
+}
+
 function ReactAddress(props) {
   if (props.address) {
     return <ReactMarkdown children={props.address?.data?.address} />;
@@ -31,7 +42,7 @@ function Phone(props) {
     // console.log(change);
 
     return (
-      <>Phone <a href={`tel:${props.phone}`}>{change}</a></>
+      <p>Phone <a href={`tel:${props.phone}`}>{change}</a></p>
     );
   } else {
     return null;
@@ -46,7 +57,7 @@ function IfOther(props) {
     return (
       <>
         <div className="measure">
-          <h4>Other Wedding Venues in {props.name}, <StateAbbreviation state={props.state} /></h4>
+          <h4>Other <Use slug={props.slug} /> Venues in {props.name}, <StateAbbreviation state={props.state} /></h4>
         </div>
 
         <div className="deck measure">
@@ -86,7 +97,7 @@ function IfOther(props) {
       <>
         <div className="measure">
           <h3 className="crest">Looking for somewhere else?</h3>
-          <h2 className="range"><Link to='/venues' className="link--subtle">Other Wedding Venues</Link></h2>
+          <h2 className="range"><Link to='/venues' className="link--subtle">Other <Use slug={props.slug} /> Venues</Link></h2>
         </div>
       </>
     )
@@ -163,34 +174,39 @@ const VenueView = ({ data }) => {
 
       <IfHero hero={data?.strapiVenue?.venueImage} />
 
-      <main className="measure">
-        <article className="single">
+      <main className="measure venue">
+        <hgroup>
           <h2 className="crest">{data.strapiVenue.area.name}, <StateAbbreviation state={data.strapiVenue.area.state} /></h2>
           <h1 className="range">{data.strapiVenue.name}</h1>
-          <hr />
-          <p>{data.strapiVenue.description}</p>
+        </hgroup>
+        <hr />
+        <p>{data.strapiVenue.description}</p>
 
-          <Testimonials testimonials={data.strapiVenue.testimonials} venue={data.strapiVenue.name} />
+        <Testimonials testimonials={data.strapiVenue.testimonials} venue={data.strapiVenue.name} />
 
-          <hr />
-          <address>
+        <hr />
+        <address>
 
 
-            {/* // TODO this could probably be more structured with seo */}
-            <ReactAddress address={data.strapiVenue.address} />
-          </address>
+          {/* // TODO this could probably be more structured with seo */}
+          <ReactAddress address={data.strapiVenue.address} />
+        </address>
 
-          <p><Website website={data.strapiVenue.website} /></p>
-          <Phone phone={data.strapiVenue.phone} />
-          {/* {data.strapiVenue.website} */}
+        <Website website={data.strapiVenue.website} />
+        <Phone phone={data.strapiVenue.phone} />
+        {/* {data.strapiVenue.website} */}
+        <hr />
 
-          <hr />
-        </article>
       </main>
 
 
       {/* // TODO this shouldnt get all of these but get the frist 3 then deal with it from there */}
-      <IfOther other={data.allStrapiVenue.edges} name={data.strapiVenue.area.name} state={data.strapiVenue.area.state} />
+      <IfOther
+        other={data.allStrapiVenue.edges}
+        name={data.strapiVenue.area.name}
+        state={data.strapiVenue.area.state}
+        slug={data.strapiVenue.slug}
+      />
 
       <Footer />
     </>
@@ -202,7 +218,7 @@ export default VenueView;
 export const query = graphql`
   query VenueTemplate(
     $slug: String!,
-    $area: String!,
+    $area: String!
     ) {
       strapiVenue(slug: {eq: $slug}) {
         id
@@ -212,6 +228,7 @@ export const query = graphql`
         excerpt
         website
         phone
+        slug
         
         area {
           name
@@ -248,9 +265,13 @@ export const query = graphql`
         }
       }
 
+      # // TODO: this is a heavyhanded way until I do other uses on venues
       allStrapiVenue(
         limit: 3,
-        filter: {area: {slug: {eq: $area}}, slug: {ne: $slug}}
+        filter: {
+          area: {slug: {eq: $area}},
+          slug: {nin: [$slug, "blue"]}
+        }
       ) {
         edges {
           node {

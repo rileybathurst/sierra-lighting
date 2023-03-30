@@ -9,6 +9,7 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+// ! this currently isnt changing anything
 function IfHero(props) {
   if (props.hero) {
     const biggy = props.hero?.localFile?.childImageSharp?.gatsbyImageData?.width;
@@ -36,27 +37,6 @@ function IfHero(props) {
   }
 }
 
-/* function Avatar(props) {
-  console.log(props.aspectRatio + "🚀");
-  if (props.aspectRatio > 1) {
-    return (
-      <GatsbyImage
-        image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-        alt={props?.hero?.alternativeText}
-        className='wide-avatar'
-      />
-    );
-  } else {
-    return (
-      <GatsbyImage
-        image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-        alt={props?.hero?.alternativeText}
-        className='tall-avatar'
-      />
-    );
-  }
-} */
-
 function ReactDescription(props) {
   if (props.bio) {
     return <ReactMarkdown children={props.bio.data.bio} remarkPlugins={[remarkGfm]} />;
@@ -79,8 +59,6 @@ function IfProjects(props) {
 }
 
 function WideVsTall(props) {
-  // console.log(props.width);
-  // console.log(props.height);
   if (props.width >= props.height) {
     // console.log('wide');
     return (
