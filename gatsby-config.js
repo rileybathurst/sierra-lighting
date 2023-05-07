@@ -45,16 +45,7 @@ module.exports = {
     priceRange: '$500-1500',
   },
   plugins: [
-    /*  
-    deprecated
-    {
-      resolve: 'gatsby-plugin-google-analytics',
-      options: {
-        "trackingId": "G-PSZ3PWKQSC",
-        head: true,
-      }
-   }, */
-    {
+    /* {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
@@ -84,7 +75,7 @@ module.exports = {
           delayOnRouteUpdate: 0,
         }
       }
-    },
+    }, */
     "gatsby-plugin-sass",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
