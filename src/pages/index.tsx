@@ -1,51 +1,33 @@
-import React, { useState, useEffect } from "react";
-import { Link } from 'gatsby';
+import * as React from "react";
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import AreaAccordian from "../components/area-accordian";
 import TestimonialList from "../components/testimonial-list";
-import Season from "../components/season";
+import SnowyRoof from "../images/snowyroof";
+import IndoorWedding from "../images/indoorwedding";
+import HomeHero from "../components/home-hero";
 
-import Village from "../images/village";
+// HomeGallery images
+import Backyard from "../images/backyard";
+import WestShoreWedding from "../images/WestShoreWedding";
+import BistroLights from "../images/bistro-lights";
 import NorthTahoeArts from "../images/northtahoearts";
 import NorthTahoeEvents from "../images/northtahoeevents";
 import InclineChevron from "../images/inclinechevron";
-import SnowyRoof from "../images/snowyroof";
-import WestShoreWedding from "../images/WestShoreWedding";
-import WeddingCannopy from "../images/weddingcannopy";
-import BistroLights from "../images/bistro-lights";
-import OutdoorWedding from "../images/outdoorwedding";
-import IndoorWedding from "../images/indoorwedding";
-import Backyard from "../images/backyard";
-
-// light to dark switch
-export function useMediaQuery(query) {
-  const [matches, setMatches] = useState(false);
-
-  useEffect(() => {
-    const media = window.matchMedia(query);
-    if (media.matches !== matches) {
-      setMatches(media.matches);
-    }
-  }, [matches, query]);
-
-  return matches;
-}
-
-function HeroImage() {
-  let isSiteDark = useMediaQuery("(prefers-color-scheme: dark)");
-
-  return (
-    <>
-      {isSiteDark && <WeddingCannopy />}
-      {isSiteDark || <OutdoorWedding />}
-    </>
-  );
-}
 
 const IndexPage = () => {
+
+  const { strapiSeason } = useStaticQuery(graphql`
+  query MyQuery {
+    strapiSeason {
+      wedding
+    }
+  }
+`)
+
   return (
     <>
       <Seo title="Sierra Lighting"
@@ -60,27 +42,12 @@ const IndexPage = () => {
           <section className="hero">
             <h2 className="site_title">Dependable holiday, landscape and events light installation</h2>
 
-            <div className="village-container">
-              {/* which season */}
-              <Season season="holiday">
-                <Link to="/project/rancharrah">
-                  <Village />
-                  <p>The Village at Rancharrah See the Project</p>
-                </Link>
-              </Season>
-
-              <Season season="wedding">
-                <Link to="/project/wedding-canopy">
-                  <HeroImage />
-                  <p>Wedding Canopy See the Project</p>
-                </Link>
-              </Season>
-
-            </div>
+            <HomeHero />
 
             <section id="trusted" className="trusted">
               <hr />{/* ? should this be down below the h tag */}
               <h3>Trusted and local</h3>
+              {/* // TODO: Query this from strapi */}
               <p>Sierra Lighting is here to provide beautiful, hassle free holiday and event lighting for your residence or business. We specialize in outdoor Christmas and wedding lights installation, taking pride in the quality, commercial grade materials we sell and maintain for our customers. Let us help make your next holiday or event really shine!</p>
             </section>
           </section>
@@ -100,26 +67,29 @@ const IndexPage = () => {
             </section>
 
             <div className="home-gallery">
-              <Season season="wedding">
-                <BistroLights />
-                <WestShoreWedding />
-                <Backyard />
-              </Season>
-
-              <Season season="holiday">
-                <NorthTahoeEvents />
-                <InclineChevron />
-                <NorthTahoeArts />
-              </Season>
-
+              {strapiSeason.wedding === true ? (
+                <>
+                  <BistroLights />
+                  <WestShoreWedding />
+                  <Backyard />
+                </>
+              ) : (
+                <>
+                  <NorthTahoeEvents />
+                  <InclineChevron />
+                  <NorthTahoeArts />
+                </>
+              )}
             </div>
+
           </div>
         </div>
 
         <div className="services-wrap">
           <section id="services" className="services">
             <hr />
-            {/* // TODO  I need to think about the H levels here */}
+            {/* // TODO: Query this from strapi */}
+            {/* // TODO: I need to think about the H levels here */}
             <h3>Services</h3>
             <h4 className="crest">Locally owned and Fully Insured</h4>
             <h5 className="range">Professional Experience</h5>
@@ -134,17 +104,16 @@ const IndexPage = () => {
             <h5 className="range">Guaranteed Upkeep</h5>
           </section>
 
-          <Season season="holiday">
-            <div className="snowyroof-container">
-              <SnowyRoof />
-            </div>
-          </Season>
-
-          <Season season="wedding">
+          {strapiSeason.wedding === true ? (
+            // TODO: this has a bad classname
             <div className="snowyroof-container">
               <IndoorWedding />
             </div>
-          </Season>
+          ) : (
+            <div className="snowyroof-container">
+              <SnowyRoof />
+            </div>
+          )}
         </div>
 
         <div className="slider-container">
@@ -156,13 +125,14 @@ const IndexPage = () => {
             <TestimonialList />
 
             <div className="testimonial-links">
+              {/* // ? should I have two crests in a row? */}
               <h3 className="crest"><Link to="/testimonials">Read More Reviews</Link></h3>
               <h3 className="crest"><Link to="#" className="long-title">Or help us you buy submitting your own review</Link></h3>
             </div>
           </section>
         </div>
 
-      </main>
+      </main >
 
       <Footer />
 

@@ -10,7 +10,6 @@ import NorthTahoeEvents from "../images/northtahoeevents";
 import InclineChevron from "../images/inclinechevron";
 import SnowyRoof from "../images/snowyroof";
 
-
 const CommercialPage = () => {
 
   const data = useStaticQuery(graphql`

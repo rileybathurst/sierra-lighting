@@ -165,6 +165,7 @@ const SEO = ({
       {
         process.env.NODE_ENV === "development" ? (
           <div className="seo-showcase">
+            <h1>SEO Showcase</h1>
             <p key="title"><span className="key">Title</span> = {seo.title}</p>
             <p key="description"><span className="key">Description</span> = {seo.description}</p>
             <p>Description charachter length = <DescLength desc={seo.description} /></p>

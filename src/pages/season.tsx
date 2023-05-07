@@ -1,41 +1,14 @@
+// TODO: delete this and inline it or note why its the right way to do it
+
 import React from "react"
 import { Link } from "gatsby"
 
 import { useStrapiSeason } from "../components/use-strapi-season"
 
-function Wedding({ children }) {
-  if (useStrapiSeason()) {
-    return (
-      <>
-        {children}
-      </>
-    )
-  } else {
-    return null;
-  }
-}
-
-function Holiday({ children }) {
-  if (useStrapiSeason() === false) {
-    return (
-      <>
-        {children}
-      </>
-    )
-  } else {
-    return null;
-  }
-}
-
 function Season(props) {
-  // useStrapiSeason() // returns true for wedding
   let season = props.season;
-  // console.log(season);
 
   if (useStrapiSeason() && season === "wedding") {
-
-    console.log("🦄");
-
     return (
       <>
         {props.children}
@@ -53,6 +26,7 @@ function Season(props) {
   }
 }
 
+// TODO: this isnt a page, its a component
 const SeasonPage = () => {
 
   return (
@@ -70,7 +44,6 @@ const SeasonPage = () => {
 
       <hr />
 
-      {/* // ?more DRY but more complex? */}
       <Season season="wedding">
         <Link to="/project/wedding-canopy">
           <p>Wedding Canopy See the Project</p>

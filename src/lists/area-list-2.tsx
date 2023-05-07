@@ -68,7 +68,7 @@ const AreaList2 = () => (
               </ul>
             </li>
             <li>
-              <Link to="area/sparks">Sparks</Link>
+              <Link to="/area/sparks">Sparks</Link>
               <ul>
                 {
                   data.sparks.nodes.map(area => (
