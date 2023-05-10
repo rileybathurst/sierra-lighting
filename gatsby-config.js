@@ -45,7 +45,8 @@ module.exports = {
     priceRange: '$500-1500',
   },
   plugins: [
-    /* {
+    // ! something is broken here with the update I need to loock into it
+    {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
@@ -75,7 +76,7 @@ module.exports = {
           delayOnRouteUpdate: 0,
         }
       }
-    }, */
+    },
     "gatsby-plugin-sass",
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
