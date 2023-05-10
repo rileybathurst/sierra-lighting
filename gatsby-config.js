@@ -45,7 +45,7 @@ module.exports = {
     priceRange: '$500-1500',
   },
   plugins: [
-    // ! something is broken here with the update I need to loock into it
+    // TODO: check in on the update
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
