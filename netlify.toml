@@ -4,4 +4,4 @@
 
 [[plugins]]
   # Installs the Gatsby Build Plugin for all deploy contexts
-  package = "@netlify/plugin-gatsby@3.6.2"
+  package = "@netlify/plugin-gatsby"
