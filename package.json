@@ -49,8 +49,7 @@
     "react-leaflet": "^4.0.0",
     "react-markdown": "^8.0.0",
     "remark-gfm": "^3.0.1",
-    "sass": "^1.52.2",
-    "storybook-addon-gatsby": "^0.0.5"
+    "sass": "^1.52.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",

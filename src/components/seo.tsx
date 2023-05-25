@@ -13,7 +13,7 @@ import { useStaticQuery, graphql } from "gatsby";
 // more than 160 characters is bad
 
 // TODO this could be behind a state flag
-function DescLength(props) {
+function DescLength(props: { desc: any; }) {
   const desc = props.desc;
   const length = desc.length;
   if (length <= 120) {
@@ -25,7 +25,8 @@ function DescLength(props) {
   }
 }
 
-function IfSeoImage(props) {
+function IfSeoImage(props: { image: string | undefined; }) {
+  // TODO: this could be a ternary
   if (props.image) {
     return (
       <img src={props.image} alt="seo checking" />)
@@ -34,7 +35,7 @@ function IfSeoImage(props) {
   }
 }
 
-function GetMeta(props) {
+function GetMeta(props: string) {
   const [size, setSize] = useState(0);
   const [reply, setReply] = useState('ok');
 

@@ -7,7 +7,7 @@ module.exports = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
-    "storybook-addon-gatsby",
+    // "storybook-addon-gatsby", // TODO: this was causing update bugs and I dont know if Im really using it
     '@storybook/preset-scss',
   ],
   "framework": "@storybook/react",

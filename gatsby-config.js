@@ -46,7 +46,7 @@ module.exports = {
     twitterImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
     openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 08:00-18:00',
     telephone: '(775) 525-1898', // nevada number
-    email: 'sierrachristmaslights@gmail.com',
+    email: 'sierrachristmaslights@gmail.com', // ! this is old
     logo: '/images/icon.png',
     areaServed: 'tahoe', // Im doing a lot with this in seo.tsx
     author: 'Sierra Lighting',
