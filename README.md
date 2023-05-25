@@ -25,3 +25,5 @@ npm run storybook
 ## Switch
 
 Strapi Single to change from holdiay as the default wedding as the change.
+
+🦄
