@@ -2,6 +2,8 @@
 
 ## Gatsby version locked due to https://github.com/gatsbyjs/gatsby/issues/38117
 
+## Clean build on netlify die to the same issue
+
 quick start
 
 ```bash
