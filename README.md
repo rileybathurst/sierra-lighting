@@ -1,5 +1,7 @@
 # Sierra Lighting
 
+## Gatsby version locked due to https://github.com/gatsbyjs/gatsby/issues/38117
+
 quick start
 
 ```bash
