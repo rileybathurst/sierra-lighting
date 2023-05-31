@@ -213,3 +213,58 @@
     }
   }
 }
+
+/*------------------*/
+//  #LINK LIST
+/*------------------*/
+
+.link-list {
+  // this should be a variable of h2 named after a mountain
+  ul {
+    list-style: none;
+    padding-inline-start: 0;
+
+    li {
+      font-size: 2rem; // TODO: needs a clamp
+      line-height: 2.5rem;
+      margin-block-end: 1.875rem;
+      padding-inline-start: 0;
+
+      a {
+        padding-inline-start: 0;
+        background-color: hsl(var(--honey), 100%, 75%);
+        border: 1px solid hsl(var(--honey), 100%, 63%);
+        width: max-content;
+        padding-block-start: 0.75rem;
+        padding-block-end: 0.5rem;
+        padding-inline: 1rem;
+        box-shadow: var(--mesosphere);
+        transition: var(--moment);
+        margin-inline-start: 1rem;
+        margin-block-end: 1.5rem;
+        border-radius: var(--border-radius);
+        color: hsl(var(--honey), 100%, 25%);
+
+        @media (prefers-color-scheme: dark) {
+          background-color: hsl(var(--denim), 25%, 12%);
+          border-color: hsl(var(--denim), 12%, 25%);
+          color: hsl(var(--denim), 25%, 63%);
+        }
+      }
+
+      a:hover,
+      a:focus {
+        color: hsl(var(--honey), 100%, 2.5%);
+        box-shadow: var(--stratosphere);
+        background-color: hsl(var(--honey), 87%, 63%);
+        border-color: hsl(var(--honey), 87%, 50%);
+
+        @media (prefers-color-scheme: dark) {
+          background-color: hsl(var(--denim), 25%, 37%);
+          border-color: hsl(var(--denim), 12%, 50%);
+          color: hsl(var(--denim), 25%, 97.5%);
+        }
+      }
+    }
+  }
+}
