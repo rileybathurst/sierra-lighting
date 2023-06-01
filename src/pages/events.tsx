@@ -1,6 +1,5 @@
 import * as React from "react"
-import { useStaticQuery, graphql, Link } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
+import { useStaticQuery, graphql } from 'gatsby';
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -70,7 +69,7 @@ const EventsPage = () => {
               id: string;
             }) => (
             <div key={venue.id}>
-              <Card card={venue} />
+              <Card card={venue} breadcrumb="venue" />
             </div>
           ))
           }

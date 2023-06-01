@@ -47,7 +47,7 @@ const WeddingProjectsPage = () => {
           render={data => (
             <>
 
-              <div className="deck measure">
+              <div className="deck">
                 {
                   data.allStrapiProject.nodes.map(project => (
                     <div key={project.id} className="card">

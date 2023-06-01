@@ -37,7 +37,7 @@ const ProjectsPage = () => {
           render={data => (
             <>
               <h3>Residential</h3>
-              <div className="deck measure">
+              <div className="deck">
                 {
                   data.residential.nodes.map(project => (
                     <div key={project.id} className="card">
@@ -67,7 +67,7 @@ const ProjectsPage = () => {
               <hr />
 
               <h3>Commercial</h3>
-              <div className="deck measure">
+              <div className="deck">
                 {
                   data.commercial.nodes.map(project => (
                     <div key={project.id} className="card">
@@ -97,7 +97,7 @@ const ProjectsPage = () => {
               <hr />
 
               <h3>Wedding</h3>
-              <div className="deck measure">
+              <div className="deck">
                 {
                   data.wedding.nodes.map(project => (
                     <div key={project.id} className="card">

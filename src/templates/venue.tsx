@@ -60,7 +60,7 @@ function IfOther(props) {
           <h4>Other <Use slug={props.slug} /> Venues in {props.name}, <StateAbbreviation state={props.state} /></h4>
         </div>
 
-        <div className="deck measure">
+        <div className="deck">
           {props.other.map((other) => (
             <div key={other.node.id} className="card">
 

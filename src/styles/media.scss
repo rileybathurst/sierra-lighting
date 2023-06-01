@@ -100,15 +100,14 @@ header svg:hover {
 //  #TEAM HEADS
 /*------------------*/
 
-// ! needs a fix work through storybook first
+// TODO: needs a fix work through storybook first
 .team-heads {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 
-  // > div {
   > a {
-    // transition: 20s ease; // ! this only seems to want to be either in or out
+    // transition: 20s ease; // TODO: this only seems to want to be either in or out
     flex: 0 1 4rem; // guess and check
     text-align: center;
     display: block;
@@ -150,7 +149,6 @@ header svg:hover {
     box-shadow: var(--stratosphere);
     border-color: hsl(var(--honey), 100%, 50%);
   }
-  // } // div
 } // .team-heads
 
 /*------------------------------------*/

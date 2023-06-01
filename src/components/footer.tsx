@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, StaticQuery, graphql } from "gatsby";
+import { Link, useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Logo from "../images/logo";
@@ -58,6 +58,29 @@ const Footer = () => {
     return null;
   }
 
+  const { allStrapiTeam } = useStaticQuery(graphql`
+  query FooterQuery {
+    allStrapiTeam
+    (limit: 3) {
+      nodes {
+        id
+        name
+        slug
+  
+        avatar {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+  
+      }
+    }
+  }
+  `)
+
   return (
     <footer>{/* itemScope itemType="https://schema.org/LocalBusiness" */}
       <div className="measure">
@@ -85,32 +108,18 @@ const Footer = () => {
           <h4>or <Link to="/work" className="link--subtle">Work with us</Link></h4>
 
           <div className="team-heads spin">
-            <StaticQuery
-              query={query}
-              render={data => (
-                <>
-                  {
-                    data.residential.nodes.map(team => (
-
-                      // I think the only reason for this div is the key?
-                      // <div >
-                      <Link to={`/team/${team.slug}`} key={team.slug}>
-                        <IfTeamImage
-                          teamImage={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
-                          alt={team?.avatar?.alternativeText}
-                        />
-                        <p itemScope itemProp="Person" itemType="https://schema.org/Person">
-                          <span itemProp="name">{team.name}</span>
-                          {/* // ? should this have a last name even if its only sr */}
-                        </p>
-                      </Link>
-                      // </div>
-
-                    ))
-                  }
-                </>
-              )}
-            />
+            {allStrapiTeam.nodes.map(team => (
+              <Link to={`/team/${team.slug}`} key={team.slug}>
+                <IfTeamImage
+                  teamImage={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
+                  alt={team?.avatar?.alternativeText}
+                />
+                <p itemScope itemProp="Person" itemType="https://schema.org/Person">
+                  <span itemProp="name">{team.name}</span>
+                </p>
+              </Link>
+            ))
+            }
           </div>
 
 
@@ -208,27 +217,3 @@ const Footer = () => {
 }
 
 export default Footer
-
-const query = graphql`
-query FooterQuery {
-  residential: allStrapiTeam
-  (limit: 3) {
-    nodes {
-      name
-      slug
-
-      avatar {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
-      }
-
-    }
-  }
-}
-`
-
-// alternativeText

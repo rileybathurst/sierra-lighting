@@ -86,7 +86,7 @@ const VenueView = ({ venue, other }) => {
       </div>
 
       {/* // TODO this shouldnt get all of these but get the frist 3 then deal with it from there */}
-      <div className="deck measure">
+      <div className="deck">
         {other.nodes.map((other) => (
           <div key={other.id} className="card">
 

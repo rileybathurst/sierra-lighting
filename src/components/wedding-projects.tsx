@@ -12,7 +12,7 @@ function WeddingProjects() {
 
       </div >
 
-      <div className="deck measure">
+      <div className="deck">
 
         <StaticQuery
           query={query}

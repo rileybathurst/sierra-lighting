@@ -55,7 +55,7 @@ function IfOther(props) {
           <h4>Other <span className='first-capital'>{props.service}</span> Vendors</h4>
         </div>
 
-        <div className="deck measure">
+        <div className="deck">
           {props.other.map((other) => (
             <div key={other.node.id} className="card">
 

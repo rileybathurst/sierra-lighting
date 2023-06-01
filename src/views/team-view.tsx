@@ -139,7 +139,7 @@ const TeamView = ({ team }) => {
       <IfProjects projects={team.projects} name={team.name} />
 
       {/* // TODO this needs an if */}
-      <div className="deck measure">
+      <div className="deck">
         {team.projects.map((project) => (
           <div key={project.id} className="card">
 

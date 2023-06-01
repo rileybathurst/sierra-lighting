@@ -3,7 +3,7 @@
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   flex-flow: row wrap;
   gap: 1rem;
-  max-width: $book;
+  max-width: var(--pelican);
   margin-inline: auto;
   margin-block-end: 3rem;
 }

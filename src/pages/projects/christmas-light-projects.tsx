@@ -40,7 +40,7 @@ const ChristmasLightsProjectsPage = () => {
           render={data => (
             <>
               <h3>Residential</h3>
-              <div className="deck measure">
+              <div className="deck">
                 {
                   data.residential.nodes.map(project => (
                     <div key={project.id} className="card">
@@ -74,7 +74,7 @@ const ChristmasLightsProjectsPage = () => {
               <hr />
 
               <h3>Commercial</h3>
-              <div className="deck measure">
+              <div className="deck">
                 {
                   data.commercial.nodes.map(project => (
                     <div key={project.id} className="card">

@@ -10,6 +10,8 @@ import NorthTahoeEvents from "../images/northtahoeevents";
 import InclineChevron from "../images/inclinechevron";
 import SnowyRoof from "../images/snowyroof";
 
+import Card from "../components/card";
+
 const CommercialPage = () => {
 
   const data = useStaticQuery(graphql`
@@ -90,21 +92,6 @@ const CommercialPage = () => {
       />
       <Header />
 
-      <div className="measure">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">Commercial Christmas Lights &amp; Decor</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
-
       <main>
 
         <div className="measure">
@@ -143,23 +130,11 @@ const CommercialPage = () => {
         <div className="deck">
 
           {list.map((light) => (
-            <div key={light.id} className="card">
-              <GatsbyImage
-                image={
-                  light?.image?.localFile?.childImageSharp
-                    ?.gatsbyImageData
-                }
-                alt={light.venueImage?.alternativeText}
-                className=""
+            <div key={light.id}>
+              <Card
+                card={light}
+                breadcrumb="light"
               />
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h3 className="crest">{light.byline}</h3>
-                <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                <p className="description">{light.excerpt}</p>
-                <p>{light.outdoor}</p>
-              </div>
             </div>
           ))}
         </div>
@@ -172,13 +147,6 @@ const CommercialPage = () => {
             <p>No more results</p>
           )}
         </div>
-
-        {/*         <div className="measure">
-          <h5 className="range"><Link to="/lights" className="link--subtle">View all other lights</Link></h5>
-
-          <p className="crest">Even More?</p>
-          <h5 className="range"><Link to="/lights" className="link--subtle">View all other lights</Link></h5>
-        </div> */}
 
         <div className="measure">
           <hr />

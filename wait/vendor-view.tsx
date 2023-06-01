@@ -264,7 +264,7 @@ const VendorView = ({ vendor, other }) => {
         <h4>Other Wedding Vendors</h4>
       </div>
 
-      <div className="deck measure">
+      <div className="deck">
         {other.nodes.map((other) => (
           <div key={other.id} className="card">
 
