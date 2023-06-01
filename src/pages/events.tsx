@@ -5,7 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
+import Card from "../components/card";
 import RSL from "../images/rsl";
 import AerilDance from "../images/aerildance";
 import BistroLights from "../images/bistro-lights";
@@ -69,23 +69,9 @@ const EventsPage = () => {
             {
               id: string;
             }) => (
-            <section className="card" key={venue.id}>
-
-              <GatsbyImage
-                image={
-                  venue?.venueImage?.localFile?.childImageSharp
-                    ?.gatsbyImageData
-                }
-                alt={venue.venueImage?.alternativeText}
-                className=""
-              />
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                <p>{venue.excerpt}</p>
-              </div>
-            </section>
+            <div key={venue.id}>
+              <Card card={venue} />
+            </div>
           ))
           }
         </ul>

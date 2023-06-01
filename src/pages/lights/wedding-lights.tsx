@@ -20,18 +20,13 @@ const WeddinglightsPage = () => {
         <div className="measure">
           <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link itemProp="item" to="/">
-                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+              <Link itemProp="item" to="/lights">
+                <span itemProp="name">Lights</span></Link>&nbsp;/&nbsp;
               <meta itemProp="position" content="1" />
             </li>
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link itemProp="item" to="/lights">
-                <span itemProp="name">Lights</span></Link>&nbsp;/&nbsp;
-              <meta itemProp="position" content="2" />
-            </li>
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
               <span itemProp="name">Wedding Lights</span>
-              <meta itemProp="position" content="3" />
+              <meta itemProp="position" content="2" />
             </li>
           </ol>
           <hr />
@@ -49,7 +44,7 @@ const WeddinglightsPage = () => {
               {
                 data.allStrapiLight.nodes.map(light => (
                   <section className="card" key={light.id}>
-
+                    {/* // ! these need to be a component */}
                     <GatsbyImage
                       image={
                         light?.image?.localFile?.childImageSharp

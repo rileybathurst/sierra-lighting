@@ -1,4 +1,19 @@
 /*------------------*/
+//  #LISTS
+/*------------------*/
+
+ul {
+  li {
+    // https://caniuse.com/mdn-css_types_length_lh
+    margin-block-end: 0.5lh;
+
+    @supports not (margin: 1lh) {
+      margin-block-end: 0.625rem;
+    }
+  }
+}
+
+/*------------------*/
 //  #BREADCRUMBS
 /*------------------*/
 

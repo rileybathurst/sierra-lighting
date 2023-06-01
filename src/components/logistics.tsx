@@ -5,7 +5,7 @@ const Logistics = () => {
   return (
     <div className="measure">
       <hr />
-      <h2>All inclusive from start to finish so you can focus on making memories, not logistics.</h2>
+      <h2 className="kilimanjaro">All inclusive from start to finish so you can focus on making memories, not logistics.</h2>
 
       <p>Our team will:</p>
       <ul>

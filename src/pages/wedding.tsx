@@ -94,21 +94,6 @@ const WeddingPage = () => {
 
       <Header />
 
-      <div className="measure">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;&nbsp;/&nbsp;&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">Wedding</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
-
       <main>
 
         <div className="measure">
@@ -172,7 +157,7 @@ const WeddingPage = () => {
         <div className="measure">
           <h5 className="range"><Link to="/lights/wedding-lights" className="link--subtle">View all other lights</Link></h5>
           <hr />
-          <h3>Have something particular in mind? Just ask!</h3>
+          <h3 className="kilimanjaro">Have something particular in mind? Just ask!</h3>
 
           <hr />
         </div>
@@ -184,7 +169,7 @@ const WeddingPage = () => {
 
           <hr />
 
-          <h3>Have you ever noticed how much lighting can affect the feeling of space?</h3>
+          <h3 className="kilimanjaro">Have you ever noticed how much lighting can affect the feeling of space?</h3>
 
           <p>Compare the warm glow of candle light to the blue glare of a fluorescent office and it's clear lighting has a big impact. A professional lighting design package will highlight your decor and bring out the beauty of your venue. Well planned lighting is one of the most affordable ways to truly make your special day shine.</p>
 

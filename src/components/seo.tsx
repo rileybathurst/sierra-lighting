@@ -161,7 +161,7 @@ const SEO = ({
         )}
 
       </Helmet>
-      {/* 🚨 this needs to be off in production */}
+      {/* // ! this needs to be moved to an external project and with more work but thats later */}
       {/* {process.env.NODE_ENV === "production" ? ( */}
       {
         process.env.NODE_ENV === "development" ? (
