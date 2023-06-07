@@ -1,11 +1,24 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
 const FaqsPage = () => {
+
+  const {allStrapiFar} = useStaticQuery(graphql`
+query FaqQuery {
+  allStrapiFar(filter: { publishedAt: { ne: null } }) {
+    nodes {
+      id
+      question
+      answer
+    }
+  }
+}
+`)
+
   return (
     <>
       <Seo
@@ -37,12 +50,9 @@ const FaqsPage = () => {
 
         <h2 className="crest">What Do You Need To Know</h2>
         <h1 className="range">Frequently Asked Questions</h1>
-        {/* <hr /> */}
-        <StaticQuery
-          query={query}
-          render={data => (
+
             <ul className="faqs">
-              {data.allStrapiFar.nodes.map(faq => (
+              {allStrapiFar.nodes.map(faq => (
                 <li key={faq.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
                   <hr />
                   <h2 itemProp="name">{faq.question}</h2>
@@ -54,8 +64,6 @@ const FaqsPage = () => {
                 </li>
               ))}
             </ul>
-          )}
-        />
       </main>
 
       <Footer />
@@ -65,15 +73,3 @@ const FaqsPage = () => {
 }
 
 export default FaqsPage
-
-const query = graphql`
-query FaqQuery {
-  allStrapiFar(filter: { publishedAt: { ne: null } }) {
-    nodes {
-      id
-      question
-      answer
-    }
-  }
-}
-`

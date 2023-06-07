@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../../components/seo";
@@ -40,10 +40,7 @@ const SouthLakeVenuePage = () => {
 
       <main className="venues__page">
 
-        <StaticQuery
-          query={query}
-          render={data => (
-            <>
+
               <div id="South-Lake" className="measure">
                 <h4 className="crest">National Treasure</h4>
                 <h3 className="range">

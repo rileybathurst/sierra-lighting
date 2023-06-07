@@ -17,6 +17,7 @@ function TestimonialRanking(props) {
       <ul className="testimonial--stars">
         {count.map(x =>
           <li key={x}>
+            {/* // TODO: move sr-only a11y work here */}
             <Star />
           </li>)}
       </ul>

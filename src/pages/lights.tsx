@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
@@ -7,6 +7,32 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 
 const lightsPage = () => {
+
+
+const {allStrapiLight} = useStaticQuery(graphql`
+query LightsQuery {
+  allStrapiLight {
+    nodes {
+      id
+      name
+      excerpt
+      slug
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+}
+`)
+
   return (
     <>
       <Seo
@@ -46,12 +72,9 @@ const lightsPage = () => {
           </ul>
         </div>
 
-        <StaticQuery
-          query={query}
-          render={data => (
+
             <div className="deck">
-              {
-                data.allStrapiLight.nodes.map(light => (
+              {allStrapiLight.nodes.map(light => (
                   <section className="card" key={light.id}>
 
                     <GatsbyImage
@@ -70,11 +93,8 @@ const lightsPage = () => {
                       <p>{light.excerpt}</p>
                     </div>
                   </section>
-                ))
-              }
+                ))}
             </div>
-          )}
-        />
 
       </main >
 
@@ -85,27 +105,3 @@ const lightsPage = () => {
 }
 
 export default lightsPage
-
-const query = graphql`
-query LightsQuery {
-  allStrapiLight {
-    nodes {
-      id
-      name
-      excerpt
-      slug
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              breakpoints: [111, 165, 222, 444, 880]
-              width: 222
-            )
-          }
-        }
-        alternativeText
-      }
-    }
-  }
-}
-`

@@ -14,7 +14,7 @@ function SlideMenu() {
     useEffect(() => {
       // console.log('firstload');
       // console.log(ref.current.clientHeight);
-      setAmount(ref.current.clientHeight);
+      setAmount(ref?.current?.clientHeight);
     });
 
     return (

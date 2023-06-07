@@ -1,12 +1,36 @@
-import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
+import * as React from "react";
+import { Link, useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import Seo from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 const CommercialChristmaslightsPage = () => {
+  const { allStrapiLight } = useStaticQuery(graphql`
+    query CommercialChristmasLightsQuery {
+      allStrapiLight(filter: { commercialchristmas: { eq: true } }) {
+        nodes {
+          id
+          name
+          excerpt
+          slug
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  breakpoints: [111, 165, 222, 444, 880]
+                  width: 222
+                )
+              }
+            }
+            alternativeText
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <>
       <Seo
@@ -16,20 +40,39 @@ const CommercialChristmaslightsPage = () => {
       />
       <Header />
       <main className="lights__page">
-
         <div className="measure">
-          <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+          <ol
+            className="breadcrumbs"
+            itemScope
+            itemType="https://schema.org/BreadcrumbList"
+          >
+            <li
+              itemProp="itemListElement"
+              itemScope
+              itemType="https://schema.org/ListItem"
+            >
               <Link itemProp="item" to="/">
-                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+                <span itemProp="name">Home</span>
+              </Link>
+              &nbsp;/&nbsp;
               <meta itemProp="position" content="1" />
             </li>
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <li
+              itemProp="itemListElement"
+              itemScope
+              itemType="https://schema.org/ListItem"
+            >
               <Link itemProp="item" to="/lights">
-                <span itemProp="name">Lights</span></Link>&nbsp;/&nbsp;
+                <span itemProp="name">Lights</span>
+              </Link>
+              &nbsp;/&nbsp;
               <meta itemProp="position" content="2" />
             </li>
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
+            <li
+              itemProp="itemListElement"
+              itemScope
+              itemType="https://schema.org/ListItem"
+            >
               <span itemProp="name">Wedding Lights</span>
               <meta itemProp="position" content="3" />
             </li>
@@ -42,43 +85,38 @@ const CommercialChristmaslightsPage = () => {
           <h1 className="mixta">Commercial Christmas Lights</h1>
         </div>
 
-        <StaticQuery
-          query={query}
-          render={data => (
-            <div className="deck">
-              {
-                data.allStrapiLight.nodes.map(light => (
-                  <section className="card" key={light.id}>
+        <div className="deck">
+          {allStrapiLight.nodes.map((light) => (
+            <section className="card" key={light.id}>
+              <GatsbyImage
+                image={
+                  light?.image?.localFile?.childImageSharp?.gatsbyImageData
+                }
+                alt={light.image?.alternativeText}
+                className=""
+              />
 
-                    <GatsbyImage
-                      image={
-                        light?.image?.localFile?.childImageSharp
-                          ?.gatsbyImageData
-                      }
-                      alt={light.image?.alternativeText}
-                      className=""
-                    />
-
-                    <div className="paper"></div>
-                    <div className="content">
-                      <hr />
-                      <h2><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                      <p>{light.excerpt}</p>
-                    </div>
-                  </section>
-                ))
-              }
-            </div>
-          )}
-        />
-
-      </main >
+              <div className="paper"></div>
+              <div className="content">
+                <hr />
+                <h2>
+                  <Link to={`/light/${light.slug}`}>{light.name}</Link>
+                </h2>
+                <p>{light.excerpt}</p>
+              </div>
+            </section>
+          ))}
+        </div>
+      </main>
 
       <div className="measure">
         <hr />
         <h3 className="crest">What else we do</h3>
         <h2 className="range">
-          <Link to="/lights/residential-christmas-lights" className="link--subtle">
+          <Link
+            to="/lights/residential-christmas-lights"
+            className="link--subtle"
+          >
             Residential Christmas Lights
           </Link>
         </h2>
@@ -90,35 +128,8 @@ const CommercialChristmaslightsPage = () => {
       </div>
 
       <Footer />
-
     </>
-  )
-}
+  );
+};
 
-export default CommercialChristmaslightsPage
-
-const query = graphql`
-query CommercialChristmasLightsQuery {
-  allStrapiLight
-  (filter: {commercialchristmas: {eq: true}})
-  {
-    nodes {
-      id
-      name
-      excerpt
-      slug
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              breakpoints: [111, 165, 222, 444, 880]
-              width: 222
-            )
-          }
-        }
-        alternativeText
-      }
-    }
-  }
-}
-`
+export default CommercialChristmaslightsPage;

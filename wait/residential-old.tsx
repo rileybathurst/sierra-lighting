@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
@@ -94,9 +94,7 @@ const ResidentialPage = () => {
         </div>
 
         <div className="deck">
-          <StaticQuery
-            query={query}
-            render={data => (
+
               <>
                 {
                   data.allStrapiLight.nodes.map(light => (

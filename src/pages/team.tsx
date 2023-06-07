@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
@@ -19,6 +19,34 @@ function ReactDescription(props) {
 }
 
 const TeamPage = () => {
+
+  const {allStrapiTeam} = useStaticQuery(graphql`
+query TeamPageQuery {
+  allStrapiTeam {
+    nodes {
+      id
+      name
+      slug
+      excerpt
+      bio { data { bio } }
+
+      avatar {
+        localFile {
+          childImageSharp {
+            gatsbyImageData (
+              breakpoints: [160, 320, 480]
+              width: 160
+            )
+          }
+          url
+        }
+        alternativeText
+      }
+    }
+  }
+}
+`)
+
   return (
     <>
       <Seo
@@ -47,12 +75,9 @@ const TeamPage = () => {
         {/* fix this */}
         <div className="measure">
           <h3>Team</h3>
-          <StaticQuery
-            query={query}
-            render={data => (
+
               <ul className="team_cards">
-                {
-                  data.allStrapiTeam.nodes.map(team => (
+                {allStrapiTeam.nodes.map(team => (
                     <li key={team.id} className="team_card">
                       <article className="single" itemScope itemType="https://schema.org/Person">
                         <IfHero hero={team?.avatar} />
@@ -63,8 +88,6 @@ const TeamPage = () => {
                   ))
                 }
               </ul>
-            )}
-          />
         </div>
       </main >
 
@@ -74,30 +97,3 @@ const TeamPage = () => {
 }
 
 export default TeamPage
-
-const query = graphql`
-query TeamPageQuery {
-  allStrapiTeam {
-    nodes {
-      id
-      name
-      slug
-      excerpt
-      bio { data { bio } }
-
-      avatar {
-        localFile {
-          childImageSharp {
-            gatsbyImageData (
-              breakpoints: [160, 320, 480]
-              width: 160
-            )
-          }
-          url
-        }
-        alternativeText
-      }
-    }
-  }
-}
-`

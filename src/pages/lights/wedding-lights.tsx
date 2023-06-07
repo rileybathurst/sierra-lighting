@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../../components/seo";
@@ -7,6 +7,33 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 const WeddinglightsPage = () => {
+
+  let {allStrapiLight} = useStaticQuery(graphql`
+  query WeddingLightsQuery {
+    allStrapiLight
+    (filter: {wedding: {eq: true}})
+    {
+      nodes {
+        id
+        name
+        excerpt
+        slug
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                breakpoints: [111, 165, 222, 444, 880]
+                width: 222
+              )
+            }
+          }
+          alternativeText
+        }
+      }
+    }
+  }
+  `)
+
   return (
     <>
       <Seo
@@ -37,12 +64,8 @@ const WeddinglightsPage = () => {
           <h1 className="mixta">Wedding Lights</h1>
         </div>
 
-        <StaticQuery
-          query={query}
-          render={data => (
             <div className="deck">
-              {
-                data.allStrapiLight.nodes.map(light => (
+              {allStrapiLight.nodes.map(light => (
                   <section className="card" key={light.id}>
                     {/* // ! these need to be a component */}
                     <GatsbyImage
@@ -61,16 +84,13 @@ const WeddinglightsPage = () => {
                       <p>{light.excerpt}</p>
                     </div>
                   </section>
-                ))
-              }
+                ))}
             </div>
-          )}
-        />
-
       </main >
 
       <div className="measure">
         <hr />
+        {/* // TODO: this seems like it should be less than h2 */}
         <h3 className="crest">What else we do</h3>
         <h2 className="range">
           <Link to="/lights/residential-christmas-lights" className="link--subtle">
@@ -91,29 +111,3 @@ const WeddinglightsPage = () => {
 }
 
 export default WeddinglightsPage
-
-const query = graphql`
-query WeddingLightsQuery {
-  allStrapiLight
-  (filter: {wedding: {eq: true}})
-  {
-    nodes {
-      id
-      name
-      excerpt
-      slug
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              breakpoints: [111, 165, 222, 444, 880]
-              width: 222
-            )
-          }
-        }
-        alternativeText
-      }
-    }
-  }
-}
-`

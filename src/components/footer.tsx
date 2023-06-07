@@ -93,6 +93,7 @@ const Footer = () => {
           <h4 className="range">Say Hello</h4>
 
           <div className="contact-info">
+            {/* // TODO: query this stuff */}
             <p><a href="mailto:info@sierra.lighting"><span itemProp="email">info@sierra.lighting</span></a></p>
             <p><a href="tel:+1-775-525-1898">Nevada Number: <span itemProp="telephone">(775) 525-1898</span></a></p>
             <p><a href="tel:+1-530-414-9899">California Number: <span itemProp="telephone">(530) 414-9899</span></a></p>

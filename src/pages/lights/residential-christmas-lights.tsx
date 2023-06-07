@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../../components/seo";
@@ -7,6 +7,34 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 const ResidentialChristmaslightsPage = () => {
+
+
+const {allStrapiLight} = useStaticQuery(graphql`
+query ResidentialChristmasLightsQuery {
+  allStrapiLight
+  (filter: {residentialchristmas: {eq: true}})
+  {
+    nodes {
+      id
+      name
+      excerpt
+      slug
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [111, 165, 222, 444, 880]
+              width: 222
+            )
+          }
+        }
+        alternativeText
+      }
+    }
+  }
+}
+`)
+
   return (
     <>
       <Seo
@@ -42,12 +70,9 @@ const ResidentialChristmaslightsPage = () => {
           <h1 className="mixta">Residential Christmas Lights</h1>
         </div>
 
-        <StaticQuery
-          query={query}
-          render={data => (
+
             <div className="deck">
-              {
-                data.allStrapiLight.nodes.map(light => (
+              {allStrapiLight.nodes.map(light => (
                   <section className="card" key={light.id}>
 
                     <GatsbyImage
@@ -69,8 +94,6 @@ const ResidentialChristmaslightsPage = () => {
                 ))
               }
             </div>
-          )}
-        />
 
       </main >
 
@@ -96,29 +119,3 @@ const ResidentialChristmaslightsPage = () => {
 }
 
 export default ResidentialChristmaslightsPage
-
-const query = graphql`
-query ResidentialChristmasLightsQuery {
-  allStrapiLight
-  (filter: {residentialchristmas: {eq: true}})
-  {
-    nodes {
-      id
-      name
-      excerpt
-      slug
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              breakpoints: [111, 165, 222, 444, 880]
-              width: 222
-            )
-          }
-        }
-        alternativeText
-      }
-    }
-  }
-}
-`

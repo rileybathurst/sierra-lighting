@@ -1,6 +1,6 @@
 import * as React from "react"
 
-function StateAbbreviation(props: { state: string; }) {
+function StateAbbreviation(props: { state: "california" | "nevada"; }) {
   if (props.state == "california") {
     return (<>CA</>);
   } else if (props.state == "nevada") {

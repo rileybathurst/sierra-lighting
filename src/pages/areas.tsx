@@ -38,7 +38,6 @@ const AreasPage = () => {
       <main className="measure">
         <h1>Service Areas</h1>
         <div className="areas__page">
-          {/* <AreaList /> */}
           <AreaList2 />
         </div>
       </main>

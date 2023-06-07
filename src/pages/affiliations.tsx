@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
@@ -7,6 +7,31 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 
 const TestimonialsPage = () => {
+
+
+const {allStrapiAffiliation} = useStaticQuery(graphql`
+query AffiliationsQuery {
+  allStrapiAffiliation(filter: { publishedAt: { ne: null } }) {
+    nodes {
+      id
+      name
+      excerpt
+      link
+
+      logo {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+          url
+        }
+        alternativeText
+      }
+    }
+  }
+}
+`)
+
   const title = 'Affiliations';
 
   return (
@@ -39,11 +64,9 @@ const TestimonialsPage = () => {
           <h2 className="ridge">{title}</h2>
         </div>
 
-        <StaticQuery
-          query={query}
-          render={data => (
+
             <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="affiliations">
-              {data.allStrapiAffiliation.nodes.map(affiliation => (
+              {allStrapiAffiliation.nodes.map(affiliation => (
                 <li key={affiliation.id} className='affiliation'>
                   <GatsbyImage
                     image={affiliation?.logo?.localFile?.childImageSharp?.gatsbyImageData}
@@ -59,8 +82,6 @@ const TestimonialsPage = () => {
                 </li>
               ))}
             </ul>
-          )}
-        />
 
       </main>
 
@@ -71,26 +92,3 @@ const TestimonialsPage = () => {
 }
 
 export default TestimonialsPage
-
-const query = graphql`
-query AffiliationsQuery {
-  allStrapiAffiliation(filter: { publishedAt: { ne: null } }) {
-    nodes {
-      id
-      name
-      excerpt
-      link
-
-      logo {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-          url
-        }
-        alternativeText
-      }
-    }
-  }
-}
-`

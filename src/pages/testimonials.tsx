@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link, StaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -51,6 +51,32 @@ function ReviewRatings(props) {
 }
 
 const TestimonialsPage = () => {
+
+// ? why do I have this filter? 
+const {allStrapiTestimonial} = useStaticQuery(graphql`
+query TestimonialsQuery {
+  allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
+    nodes {
+      id
+      customer
+      stars
+      review
+      title
+      createdAt
+      slug
+      link
+      position
+      platform
+
+      vendor {
+        name
+        slug
+      }
+    }
+  }
+}
+`)
+
   return (
     <>
       <Seo
@@ -82,11 +108,9 @@ const TestimonialsPage = () => {
 
         <div itemProp="mainEntity" itemScope itemType="https://schema.org/LocalBusiness">
           <h1 className="sr-only" itemProp="name">Sierra Lighting</h1>
-          <StaticQuery
-            query={query}
-            render={data => (
+
               <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="testimonials">
-                {data.allStrapiTestimonial.nodes.map(testimonial => (
+                {allStrapiTestimonial.nodes.map(testimonial => (
                   <li key={testimonial.id} className='testimonial'>
                     <figure>
                       <blockquote>
@@ -118,8 +142,6 @@ const TestimonialsPage = () => {
                   </li>
                 ))}
               </ul>
-            )}
-          />
         </div>
 
         <hr />
@@ -198,27 +220,3 @@ const TestimonialsPage = () => {
 }
 
 export default TestimonialsPage
-
-const query = graphql`
-query TestimonialsQuery {
-  allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
-    nodes {
-      id
-      customer
-      stars
-      review
-      title
-      createdAt
-      slug
-      link
-      position
-      platform
-
-      vendor {
-        name
-        slug
-      }
-    }
-  }
-}
-`
