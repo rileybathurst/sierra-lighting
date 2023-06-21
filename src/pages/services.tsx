@@ -1,10 +1,8 @@
 import * as React from "react"
-import { Link } from 'gatsby';
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
 
 const ServicesPage = () => {
   return (
@@ -15,21 +13,6 @@ const ServicesPage = () => {
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
       />
       <Header />
-
-      <div className="measure">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">Services</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
 
       <main className="measure">
 

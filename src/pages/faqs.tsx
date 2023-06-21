@@ -7,7 +7,7 @@ import Footer from "../components/footer";
 
 const FaqsPage = () => {
 
-  const {allStrapiFar} = useStaticQuery(graphql`
+  const { allStrapiFar } = useStaticQuery(graphql`
 query FaqQuery {
   allStrapiFar(filter: { publishedAt: { ne: null } }) {
     nodes {
@@ -31,39 +31,24 @@ query FaqQuery {
 
       <Header />
 
-      <div className="measure">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link> /&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">FAQs</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
-
       <main className="measure">
 
         <h2 className="crest">What Do You Need To Know</h2>
         <h1 className="range">Frequently Asked Questions</h1>
 
-            <ul className="faqs">
-              {allStrapiFar.nodes.map(faq => (
-                <li key={faq.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
-                  <hr />
-                  <h2 itemProp="name">{faq.question}</h2>
-                  <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                    <div itemProp="text">
-                      {faq.answer}
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
+        <ul className="faqs">
+          {allStrapiFar.nodes.map(faq => (
+            <li key={faq.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+              <hr />
+              <h2 itemProp="name">{faq.question}</h2>
+              <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
+                <div itemProp="text">
+                  {faq.answer}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </main>
 
       <Footer />

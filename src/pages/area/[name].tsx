@@ -11,19 +11,13 @@ function AreaCatchAll({ params }) {
       <div className="measure">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span>
-            </Link>&nbsp;/&nbsp;
+            <Link itemProp="item" to="/area">
+              <span itemProp="name">Area</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="1" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/area">
-              <span itemProp="name">Area</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="2" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <span itemProp="name">{params.name}</span>
-            <meta itemProp="position" content="3" />
+            <meta itemProp="position" content="2" />
           </li>
         </ol>
         <hr />

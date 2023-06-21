@@ -114,21 +114,16 @@ const LightView = ({ light, other }) => {
 
         <div className="measure">
           <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link itemProp="item" to="/">
-                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-              <meta itemProp="position" content="1" />
-            </li>
 
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="first-capital">
               <Link itemProp="item" to="/lights">
                 <span itemProp="name">Lights</span></Link>&nbsp;/&nbsp;
-              <meta itemProp="position" content="2" />
+              <meta itemProp="position" content="1" />
             </li>
 
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
               <span itemProp="name">{light.name}</span>
-              <meta itemProp="position" content="3" />
+              <meta itemProp="position" content="2" />
             </li>
           </ol>
           <hr />
@@ -143,7 +138,8 @@ const LightView = ({ light, other }) => {
           className="poster"
         />
         <article className="measure">
-          <h1>{light.name}</h1>
+          {/* // TODO: this could be using a js length test for the lower clamp */}
+          <h1 className="clamp-denali_everest">{light.name}</h1>
           <p>{light.description}</p>
         </article>
       </main>

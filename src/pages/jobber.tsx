@@ -1,3 +1,5 @@
+// TODO: this page doesnt work yet
+
 import React, { useEffect } from 'react';
 import { Helmet } from "react-helmet"
 import { Link } from "gatsby"
@@ -23,21 +25,6 @@ const JobberPage = () => {
           form_url="https://clienthub.getjobber.com/client_hubs/9449c385-032f-4676-9f9f-c718b18a7811/public/work_request/embedded_work_request_form">
         </script>
       </Helmet>
-
-      <div className="measure">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">Jobber Form</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
 
       <main className="measure">
         <h2 className="crest">Jobber Form</h2>

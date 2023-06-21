@@ -1,3 +1,5 @@
+// TODO: this needs to be grabbing children as well
+
 import * as React from "react"
 import { graphql } from "gatsby"
 import AreaView from "../../views/area-view"

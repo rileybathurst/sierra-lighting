@@ -9,23 +9,7 @@ function CommercialProjects() {
     query CommercialProjectsQuery {
       allStrapiProject(filter: {service: {eq: "commercial"}}) {
         nodes {
-          id
-          title
-          slug
-          excerpt
-
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
-
+          ...projectCard
         }
       }
     }
@@ -40,13 +24,7 @@ function CommercialProjects() {
       </div >
 
       <div className="deck">
-        {allStrapiProject.nodes.map((project: {
-          id?: React.Key;
-          title?: any;
-          slug?: any;
-          excerpt?: string;
-          image?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; };
-        }) => (
+        {allStrapiProject.nodes.map((project) => (
           <div key={project.id}>
             <Card
               card={project}

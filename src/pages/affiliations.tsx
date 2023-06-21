@@ -9,7 +9,7 @@ import Footer from "../components/footer";
 const TestimonialsPage = () => {
 
 
-const {allStrapiAffiliation} = useStaticQuery(graphql`
+  const { allStrapiAffiliation } = useStaticQuery(graphql`
 query AffiliationsQuery {
   allStrapiAffiliation(filter: { publishedAt: { ne: null } }) {
     nodes {
@@ -43,21 +43,6 @@ query AffiliationsQuery {
       />
       <Header />
 
-      <div className="measure">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{title}</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
-
       <main>
         <div className="measure">
           {/* <h1 className="crest">Reviews</h1> */}
@@ -65,23 +50,23 @@ query AffiliationsQuery {
         </div>
 
 
-            <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="affiliations">
-              {allStrapiAffiliation.nodes.map(affiliation => (
-                <li key={affiliation.id} className='affiliation'>
-                  <GatsbyImage
-                    image={affiliation?.logo?.localFile?.childImageSharp?.gatsbyImageData}
-                    alt={affiliation?.logo?.alternativeText}
-                    className=''
-                    objectFit='contain'
-                  />
-                  <a href={affiliation.link} target='_blank' rel='noopener noreferrer'>
-                    <h3>{affiliation.name}</h3>
-                  </a>
-                  <p>{affiliation.excerpt}</p>
-                  <p><a href={affiliation.link} target='_blank' rel='noopener noreferrer'>Visit Them</a></p>
-                </li>
-              ))}
-            </ul>
+        <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="affiliations">
+          {allStrapiAffiliation.nodes.map(affiliation => (
+            <li key={affiliation.id} className='affiliation'>
+              <GatsbyImage
+                image={affiliation?.logo?.localFile?.childImageSharp?.gatsbyImageData}
+                alt={affiliation?.logo?.alternativeText}
+                className=''
+                objectFit='contain'
+              />
+              <a href={affiliation.link} target='_blank' rel='noopener noreferrer'>
+                <h3>{affiliation.name}</h3>
+              </a>
+              <p>{affiliation.excerpt}</p>
+              <p><a href={affiliation.link} target='_blank' rel='noopener noreferrer'>Visit Them</a></p>
+            </li>
+          ))}
+        </ul>
 
       </main>
 

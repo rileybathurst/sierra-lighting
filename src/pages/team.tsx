@@ -20,7 +20,7 @@ function ReactDescription(props) {
 
 const TeamPage = () => {
 
-  const {allStrapiTeam} = useStaticQuery(graphql`
+  const { allStrapiTeam } = useStaticQuery(graphql`
 query TeamPageQuery {
   allStrapiTeam {
     nodes {
@@ -57,37 +57,22 @@ query TeamPageQuery {
       <Header />
       <main>
 
-        <div className="measure">
-          <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link itemProp="item" to="/">
-                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-              <meta itemProp="position" content="1" />
-            </li>
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <span itemProp="name">Team</span>
-              <meta itemProp="position" content="2" />
-            </li>
-          </ol>
-          <hr />
-        </div>
-
-        {/* fix this */}
+        {/* TODO: fix this */}
         <div className="measure">
           <h3>Team</h3>
 
-              <ul className="team_cards">
-                {allStrapiTeam.nodes.map(team => (
-                    <li key={team.id} className="team_card">
-                      <article className="single" itemScope itemType="https://schema.org/Person">
-                        <IfHero hero={team?.avatar} />
-                        <h1 itemProp="name"><Link to={team.slug}>{team.name}</Link></h1>
-                        <ReactDescription bio={team.bio} />
-                      </article>
-                    </li>
-                  ))
-                }
-              </ul>
+          <ul className="team_cards">
+            {allStrapiTeam.nodes.map(team => (
+              <li key={team.id} className="team_card">
+                <article className="single" itemScope itemType="https://schema.org/Person">
+                  <IfHero hero={team?.avatar} />
+                  <h1 itemProp="name"><Link to={team.slug}>{team.name}</Link></h1>
+                  <ReactDescription bio={team.bio} />
+                </article>
+              </li>
+            ))
+            }
+          </ul>
         </div>
       </main >
 

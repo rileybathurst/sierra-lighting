@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
+import { CardType } from "../types/card";
 
 function NameTitle(props: {
   name?: string;
@@ -8,23 +9,32 @@ function NameTitle(props: {
 }) {
   if (props.name) {
     return (
-      <>
-        {props.name}
-      </>
+      <>{props.name}</>
     )
   } else {
     return (
-      <>
-        {props.title}
-      </>
+      <>{props.title}</>
     )
   }
 }
 
-function Image(props: { image: any; venueImage: any; }) {
+// TODO: fix the types
+function Image(props: {
+  image: any;
+  venueImage: any;
+  profileImage: any;
+}) {
 
-  // TODO: I think this breaks after 2
-  var image = props?.image ? props?.image : props?.venueImage;
+  // this broke after 2
+  // var image = props?.image ? props?.image : props?.venueImage;
+
+  if (props.profileImage) {
+    var image = props?.profileImage;
+  } else if (props.venueImage) {
+    var image = props?.venueImage;
+  } else {
+    var image = props?.image;
+  }
 
   return (
     <>
@@ -70,25 +80,19 @@ function Byline(props: { byline?: string; }) {
 }
 
 const Card = (props: {
-  card: {
-    image?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } }; alternativeText: string };
-    venueImage?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } }; alternativeText: string };
-
-    slug: any;
-    excerpt: string
-
-    name?: string;
-    title?: string;
-    byline?: string;
-  };
+  card: CardType;
   breadcrumb?: string;
 }) => {
   return (
     <section className="card">
+      {/* // TODO: add the link including the breadcrumb */}
+      {/* <Link to={`/${props.card.slug}`}> */}
       <Image
         image={props.card?.image}
         venueImage={props.card?.venueImage}
+        profileImage={props.card?.profile}
       />
+      {/* </Link> */}
       <div className="paper">{/* stay gold */}</div>
       <div className="content">
         <hr />

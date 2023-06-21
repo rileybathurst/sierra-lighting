@@ -2,69 +2,36 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import LightView from "../../views/light-view"
 
-// ! Fix this
-import "../../styles/app.scss";
-
 export const query = graphql`
   query LightQuery($slug: String!) {
     strapiLight(slug: { eq: $slug }) {
       id
       name
-      description
       slug
       excerpt
+      description
 
       image {
         localFile {
+          url
           childImageSharp {
             gatsbyImageData(
-              breakpoints: [960, 1840]
-                width: 960
+              breakpoints: [960, 1920]
+              width: 960
             )
           }
-          url
         }
         alternativeText
       }
 
       projects {
-        id
-        title
-        slug
-        excerpt
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                breakpoints: [111, 165, 222, 444, 880]
-                width: 222
-              )
-            }
-          }
-          alternativeText
-        }
+        ...projectCard
       }
     }
 
     allStrapiLight(limit: 3, filter: {slug: {nin: [$slug] }}) {
       nodes {
-        name
-        id
-        slug
-        excerpt
-
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                breakpoints: [111, 165, 222, 444, 880]
-                width: 222
-              )
-            }
-          }
-          alternativeText
-        }
-
+        ...lightCard
       }
     }
   }

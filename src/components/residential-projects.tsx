@@ -8,22 +8,7 @@ function ResidentialProjects() {
     query ResidentialProjectsQuery {
       allStrapiProject(filter: {service: {eq: "residential"}}) {
         nodes {
-          id
-          title
-          excerpt
-          slug
-
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...projectCard
         }
       }
     }

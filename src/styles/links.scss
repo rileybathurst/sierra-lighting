@@ -22,8 +22,6 @@ a:focus {
   }
 }
 
-// a:hover::selection {
-// ! this doesnt work but kinda needs to be a thing
 a::selection {
   background-color: hsl(var(--honey), 100%, 25%);
 
@@ -171,8 +169,7 @@ button:focus {
   padding-block: 0.25rem;
   padding-inline: 0.5rem;
   max-width: max-content;
-  line-height: 1.6rem; // guess and check
-  // ! this is right for firefox but not chrome or safari */
+  line-height: 1.6rem; // TODO: move this to baseline
 }
 
 .footer_list a:hover,

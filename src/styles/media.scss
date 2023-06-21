@@ -89,7 +89,15 @@ header svg {
 
 // ! the color isnt right on the hover and needs an active state
 header svg:hover {
-  fill: hsl(var(--honey), 100%, 37%);
+  fill: hsl(var(--honey), 100%, var(--dim));
+
+  @media (prefers-color-scheme: dark) {
+    fill: hsl(var(--denim), 12%, var(--mid));
+  }
+}
+
+header svg:active {
+  fill: hsl(var(--honey), 100%, var(--dull));
 
   @media (prefers-color-scheme: dark) {
     fill: hsl(var(--denim), 12%, 50%);

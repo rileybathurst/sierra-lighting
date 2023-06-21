@@ -5,33 +5,20 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Card from "../components/card";
+import { CardType } from "../types/card";
 
 const lightsPage = () => {
 
-
-const {allStrapiLight} = useStaticQuery(graphql`
-query LightsQuery {
-  allStrapiLight {
-    nodes {
-      id
-      name
-      excerpt
-      slug
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              breakpoints: [111, 165, 222, 444, 880]
-              width: 222
-            )
-          }
+  const { allStrapiLight } = useStaticQuery(graphql`
+    query LightsQuery {
+      allStrapiLight {
+        nodes {
+          ...lightCard
         }
-        alternativeText
       }
     }
-  }
-}
-`)
+  `)
 
   return (
     <>
@@ -44,21 +31,6 @@ query LightsQuery {
       <main className="lights__page">
 
         <div className="measure">
-          <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link itemProp="item" to="/">
-                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-              <meta itemProp="position" content="1" />
-            </li>
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <span itemProp="name">Lights</span>
-              <meta itemProp="position" content="2" />
-            </li>
-          </ol>
-          <hr />
-        </div>
-
-        <div className="measure">
           <h2 className="crest">What we build</h2>
           <h1 className="mixta">Lights</h1>
 
@@ -66,35 +38,20 @@ query LightsQuery {
 
           Filter by:
           <ul>
-            <li><Link to="/lights/wedding-lights">Wedding Lights</Link></li>
-            <li><Link to="/lights/residential-christmas-lights">Residential Christmas Lights</Link></li>
-            <li><Link to="/lights/commercial-christmas-lights">Commercial Christmas Lights</Link></li>
+            <li key="wedding"><Link to="/lights/wedding-lights">Wedding Lights</Link></li>
+            <li key="residential"><Link to="/lights/residential-christmas-lights">Residential Christmas Lights</Link></li>
+            <li key="commercial"><Link to="/lights/commercial-christmas-lights">Commercial Christmas Lights</Link></li>
           </ul>
         </div>
 
 
-            <div className="deck">
-              {allStrapiLight.nodes.map(light => (
-                  <section className="card" key={light.id}>
-
-                    <GatsbyImage
-                      image={
-                        light?.image?.localFile?.childImageSharp
-                          ?.gatsbyImageData
-                      }
-                      alt={light.image?.alternativeText}
-                      className=""
-                    />
-
-                    <div className="paper"></div>
-                    <div className="content">
-                      <hr />
-                      <h2><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                      <p>{light.excerpt}</p>
-                    </div>
-                  </section>
-                ))}
+        <div className="deck">
+          {allStrapiLight.nodes.map((light: CardType) => (
+            <div key={light.id}>
+              <Card card={light} breadcrumb="light" />
             </div>
+          ))}
+        </div>
 
       </main >
 

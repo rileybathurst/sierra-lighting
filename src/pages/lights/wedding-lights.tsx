@@ -1,37 +1,27 @@
+// TODO: this page needs more organization and ranking of the lights still thinking about the best way to do that
+
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import Card from "../../components/card";
+
+import { CardType } from "../../types/card";
 
 const WeddinglightsPage = () => {
 
-  let {allStrapiLight} = useStaticQuery(graphql`
-  query WeddingLightsQuery {
-    allStrapiLight
-    (filter: {wedding: {eq: true}})
-    {
-      nodes {
-        id
-        name
-        excerpt
-        slug
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                breakpoints: [111, 165, 222, 444, 880]
-                width: 222
-              )
-            }
-          }
-          alternativeText
+  let { allStrapiLight } = useStaticQuery(graphql`
+    query WeddingLightsQuery {
+      allStrapiLight
+      (filter: {wedding: {eq: true}})
+      {
+        nodes {
+          ...lightCard
         }
       }
     }
-  }
   `)
 
   return (
@@ -64,28 +54,13 @@ const WeddinglightsPage = () => {
           <h1 className="mixta">Wedding Lights</h1>
         </div>
 
-            <div className="deck">
-              {allStrapiLight.nodes.map(light => (
-                  <section className="card" key={light.id}>
-                    {/* // ! these need to be a component */}
-                    <GatsbyImage
-                      image={
-                        light?.image?.localFile?.childImageSharp
-                          ?.gatsbyImageData
-                      }
-                      alt={light.image?.alternativeText}
-                      className=""
-                    />
-
-                    <div className="paper"></div>
-                    <div className="content">
-                      <hr />
-                      <h2><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                      <p>{light.excerpt}</p>
-                    </div>
-                  </section>
-                ))}
+        <div className="deck">
+          {allStrapiLight.nodes.map((light: CardType) => (
+            <div id={light.id}>
+              <Card card={light} breadcrumb="light" />
             </div>
+          ))}
+        </div>
       </main >
 
       <div className="measure">

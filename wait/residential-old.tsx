@@ -51,20 +51,7 @@ const ResidentialPage = () => {
       <Header />
       <main>
 
-        <div className="measure">
-          <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link itemProp="item" to="/">
-                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-              <meta itemProp="position" content="1" />
-            </li>
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <span itemProp="name">Residential</span>
-              <meta itemProp="position" content="2" />
-            </li>
-          </ol>
-          <hr />
-        </div>
+
 
         <div className="measure">
           <h2 className="crest">Christmas Lights Near Me:</h2>
@@ -95,31 +82,31 @@ const ResidentialPage = () => {
 
         <div className="deck">
 
-              <>
-                {
-                  data.allStrapiLight.nodes.map(light => (
-                    <div key={light.id} className="card">
-                      <GatsbyImage
-                        image={
-                          light?.image?.localFile?.childImageSharp
-                            ?.gatsbyImageData
-                        }
-                        alt={light.venueImage?.alternativeText}
-                        className=""
-                      />
-                      <div className="paper"></div>
-                      <div className="content">
-                        <hr />
-                        <h3 className="crest">{light.byline}</h3>
-                        <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                        <p className="description">{light.excerpt}</p>
-                        <p>{light.outdoor}</p>
-                      </div>
+          <>
+            {
+              data.allStrapiLight.nodes.map(light => (
+                <div key={light.id} className="card">
+                  <GatsbyImage
+                    image={
+                      light?.image?.localFile?.childImageSharp
+                        ?.gatsbyImageData
+                    }
+                    alt={light.venueImage?.alternativeText}
+                    className=""
+                  />
+                  <div className="paper"></div>
+                  <div className="content">
+                    <hr />
+                    <h3 className="crest">{light.byline}</h3>
+                    <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
+                    <p className="description">{light.excerpt}</p>
+                    <p>{light.outdoor}</p>
+                  </div>
 
-                    </div>
-                  ))
-                }
-              </>
+                </div>
+              ))
+            }
+          </>
             )}
           />
         </div>

@@ -11,21 +11,7 @@ const CommercialChristmaslightsPage = () => {
     query CommercialChristmasLightsQuery {
       allStrapiLight(filter: { commercialchristmas: { eq: true } }) {
         nodes {
-          id
-          name
-          excerpt
-          slug
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...lightCard
         }
       }
     }

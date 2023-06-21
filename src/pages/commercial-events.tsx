@@ -22,25 +22,10 @@ const CommercialEventsPage = () => {
       <main>
 
         <div className="measure">
-          <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link itemProp="item" to="/">
-                <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-              <meta itemProp="position" content="1" />
-            </li>
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <span itemProp="name">Commercial Events</span>
-              <meta itemProp="position" content="2" />
-            </li>
-          </ol>
-          <hr />
-        </div>
-
-        <div className="measure">
           <h2 className="crest">
           </h2>
           <h1 className="mixta">Commercial Events</h1>
-          <p>corporate gathering</p>{/* ? should this be a caital */}
+          <p>corporate gathering</p>{/* // ? should this be a capital */}
         </div>
         <div className="triple">
           <BistroLights />
