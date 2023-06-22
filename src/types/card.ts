@@ -1,7 +1,7 @@
 import { IGatsbyImageData } from "gatsby-plugin-image"
 
 export interface CardType {
-  id: string;
+  id: React.Key;
 
   image?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } }; alternativeText: string };
   venueImage?: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } }; alternativeText: string };

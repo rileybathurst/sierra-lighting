@@ -1,55 +1,164 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
+import { IGatsbyImageData } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
-import { CardType } from "../types/card";
+import StateAbbreviation from "../components/state-abbreviation";
+
+interface Area {
+  nodes: {
+    id: React.Key;
+    venueImage: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } }; alternativeText: string };
+    slug: any;
+    excerpt: string
+    name: string;
+
+    area: {
+      id: React.Key;
+      slug: string;
+      tagline: string;
+      name: string;
+      state: string;
+    };
+  }[];
+}
+
+function Populated(props: { area: Area }) {
+
+  if (props.area.nodes.length) {
+    return (
+      <div
+        key={props.area.nodes[0].area.id}
+        id={props.area.nodes[0].area.slug}
+      >
+        <div
+          className="measure"
+        >
+          <hr />
+          <h4 className="crest">{props.area.nodes[0].area.tagline}</h4>
+          <h3 className="range">
+            <Link
+              to={`/area/${props.area.nodes[0].area.slug}`}
+              className="link--subtle"
+            >
+              {props.area.nodes[0].area.name},&nbsp;
+              <StateAbbreviation state={props.area.nodes[0].area.state} />.
+            </Link>
+          </h3>
+        </div>
+
+        <div className="deck">
+          {props.area?.nodes.map(venue => (
+            <div key={venue.id}>
+              <Card card={venue} breadcrumb="venue" />
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  } else {
+    return null
+  }
+}
 
 const VenuePage = () => {
 
   const data = useStaticQuery(graphql`
+
+    fragment venueAreaInfo on STRAPI_VENUE {
+      area {
+        id
+        name
+        region
+        slug
+        state
+        tagline
+      }
+    }
+
     query VenuesQuery {
       southlake: allStrapiVenue(filter: {area: {slug: {eq: "southlake"}}}) {
         nodes {
           ...venueCard
+          ...venueAreaInfo
         }
       }
       
       reno: allStrapiVenue(filter: {area: {slug: {eq: "reno"}}}) {
         nodes {
           ...venueCard
+          ...venueAreaInfo
         }
       }
       
       incline: allStrapiVenue(filter: {area: {slug: {eq: "incline"}}}) {
         nodes {
           ...venueCard
+          ...venueAreaInfo
         }
       }
       
       truckee: allStrapiVenue(filter: {area: {slug: {eq: "truckee"}}}) {
         nodes {
           ...venueCard
+          ...venueAreaInfo
         }
       }
       
       olympic: allStrapiVenue(filter: {area: {slug: {eq: "olympic"}}}) {
         nodes {
           ...venueCard
+          ...venueAreaInfo
         }
       }
       
       donner: allStrapiVenue(filter: {area: {slug: {eq: "donner"}}}) {
         nodes {
           ...venueCard
+          ...venueAreaInfo
+        }
+      }
+
+      stateline: allStrapiVenue(filter: {area: {slug: {eq: "stateline"}}, slug: {ne: "blue"}}) {
+        nodes {
+          ...venueCard
+          ...venueAreaInfo
         }
       }
       
+      tahoma: allStrapiVenue(filter: {area: {slug: {eq: "tahoma"}}}) {
+        nodes {
+          ...venueCard
+          ...venueAreaInfo
+        }
+      }
 
-
+      minden: allStrapiVenue(filter: {area: {slug: {eq: "minden"}}}) {
+        nodes {
+          ...venueCard
+          ...venueAreaInfo
+        }
+      }
+      
+      other: allStrapiVenue(filter: {area: {slug: {nin: [
+        "southlake",
+        "reno",
+        "incline",
+        "truckee",
+        "olympic",
+        "donner",
+        "stateline",
+        "tahoma",
+        "minden"
+        ]}}}) {
+        nodes {
+          ...venueCard
+          ...venueAreaInfo
+        }
+      }
     }
   `)
 
@@ -61,10 +170,23 @@ const VenuePage = () => {
   let truckee = data.truckee
   let olympic = data.olympic
   let donner = data.donner
-  // let stateline = data.stateline
-  // let tahoma = data.tahoma I broke something put it in
-  // let minden = data.minden
-  // let other = data.other
+  let stateline = data.stateline
+  let tahoma = data.tahoma
+  let minden = data.minden
+  let other = data.other
+
+  let areas = [
+    southlake,
+    reno,
+    incline,
+    truckee,
+    olympic,
+    donner,
+    stateline,
+    tahoma,
+    minden,
+    other
+  ];
 
   return (
     <>
@@ -83,156 +205,12 @@ const VenuePage = () => {
           <h1 className="mixta">Wedding Venues</h1>
         </div>
 
-        {/* // TODO: query the areas, byline, slug, state etc */}
-        <div id="South-Lake" className="measure">
-          <hr />
-          {/* // I dont think its worth querying for these */}
-          <h4 className="crest">National Treasure</h4>
-          <h3 className="range">
-            <Link to="/area/southlake" className="link--subtle">South Lake Tahoe, NV.</Link>
-          </h3>
-        </div>
-
-        <div className="deck">
-          {southlake.nodes.map((venue: CardType) => (
-            <div id={venue.id}>
-              <Card card={venue} />
-            </div>
-          ))}
-        </div>
-
-        <div id="Reno" className="measure">
-          <hr />
-          <h4 className="crest">The Biggest Little City</h4>
-          <h3 className="range">
-            <Link to='/area/reno' className="link--subtle">Reno, NV.</Link>
-          </h3>
-        </div>
-
-        <div className="deck">
-          {reno.nodes.map((venue: CardType) => (
-            <div id={venue.id}>
-              <Card card={venue} />
-            </div>
-          ))}
-        </div>
-
-        <div id="Incline-Village" className="measure">
-          <hr />
-          <h3 className='range'>
-            <Link to='/area/incline' className="link--subtle">
-              Incline Village, NV.
-            </Link>
-          </h3>
-        </div>
-
-        <div className="deck">
-          {incline.nodes.map((venue: CardType) => (
-            <div id={venue.id}>
-              <Card card={venue} />
-            </div>
-          ))}
-        </div>
-
-        <div id="truckee" className="measure">
-          <hr />
-          <h4 className="crest">A base camp for a big life</h4>
-          <h3 className="range">
-            <Link to="/area/truckee" className="link--subtle">Truckee, CA.</Link>
-          </h3>
-        </div>
-
-        <div className="deck">
-          {truckee.nodes.map((venue: CardType) => (
-            <div id={venue.id}>
-              <Card card={venue} />
-            </div>
-          ))}
-        </div>
-
-        <div id="olympic-valley" className="measure">
-          <hr />
-          <h3 className="range">
-            <Link to="/area/olympic" className="link--subtle">Olympic Valley, CA.</Link>
-          </h3>
-        </div>
-
-        <div className="deck">
-          {olympic.nodes.map((venue: CardType) => (
-            <div id={venue.id}>
-              <Card card={venue} />
-            </div>
-          ))}
-        </div>
-
-        <div id="donner-summit" className="measure">
-          <hr />
-          <h3 className="range">
-            <Link to="/area/donner" className="link--subtle">Donner Summit, CA.</Link></h3>
-        </div>
-
-        <div className="deck">
-          {donner.nodes.map((venue: CardType) => (
-            <div id={venue.id}>
-              <Card card={venue} />
-            </div>
-          ))}
-        </div>
-
-        <div id="stateline" className="measure">
-          <hr />
-          <h3 className="range">
-            <Link to="/area/stateline" className="link--subtle">
-              Stateline, NV.
-            </Link>
-          </h3>
-        </div>
-
-        {/*         <div className="deck">
-          {stateline.nodes.map((venue: CardType) => (
-            <div id={venue.id}>
-              <Card card={venue} />
-            </div>
-          ))}
-        </div> */}
-
-        <div id="tahoma" className="measure">
-          <hr />
-          {/* <h4 className="crest">// TODO</h4> */}
-          <h3 className="range">
-            <Link to="/area/tahoma" className="link--subtle">
-              Tahoma and West Shore, CA.
-            </Link>
-          </h3>
-        </div>
-
-        {/* <div className="deck">
-          {tahoma.nodes.map((venue: CardType) => (
-            <div id={venue.id}>
-              <Card card={venue} />
-            </div>
-          ))}
-          </div> */}
-
-        <div id="minden" className="measure">
-          <hr />
-          {/* <h4 className="crest">// TODO</h4> */}
-          <h3 className="range">
-            <Link to="/area/minden" className="link--subtle">
-              Minden, NV.
-            </Link>
-          </h3>
-        </div>
-
-        {/*         <div className="deck">
-          {minden.nodes.map((venue: CardType) => (
-            <div id={venue.id}>
-              <Card card={venue} />
-            </div>
-          ))}
-        </div> */}
-
-        {/* // TODO: Other including throw a console log for other so I can clean it up */}
+        {areas.map((area: Area) => (
+          <Populated
+            area={area}
+            key={area?.nodes[0]?.area?.id || "other"}
+          />
+        ))}
 
       </main >
 
