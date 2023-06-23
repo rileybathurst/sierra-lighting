@@ -8,7 +8,10 @@ export const useStrapiWestShoreWedding = () => {
         image {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(
+                breakpoints: [624, 1248]
+                width: 1248
+              )
             }
           }
         }

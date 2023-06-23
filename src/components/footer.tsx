@@ -70,7 +70,10 @@ const Footer = () => {
         avatar {
           localFile {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(
+                breakpoints: [128]
+                width: 128
+              )
             }
           }
           alternativeText
