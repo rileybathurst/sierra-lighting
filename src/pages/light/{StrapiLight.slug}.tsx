@@ -11,6 +11,12 @@ export const query = graphql`
       excerpt
       description
 
+      alias {
+        internal {
+          content
+        }
+      }
+
       image {
         localFile {
           url

@@ -5,29 +5,19 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Card from "../components/card";
 
-function Projects(props) {
+function Projects(props): React.JSX.Element | null {
   const yes = props.yes;
   // console.log(yes.length);
   const name = props.name;
 
+  // ! what are these indexes for? and why am I going up?
   const map = yes.map((project, index) => {
     return (
-      <section className="card" key={index}>
-        <GatsbyImage
-          image={
-            project?.image?.localFile?.childImageSharp
-              ?.gatsbyImageData
-          }
-          alt={project.alternativeText}
-        />
-        <div className="paper"></div>
-        <div className="content">
-          <hr />
-          <h2><Link to={`/project/${project.slug}`}>{project.title}</Link></h2>
-          <p>{project.excerpt}</p>
-        </div>
-      </section>
+      <div key={project.id}>
+        <Card card={project} />
+      </div>
     );
   });
 
@@ -36,7 +26,7 @@ function Projects(props) {
       <>
         <div className="measure">
           <hr />
-          <h3>Projects using {name}</h3>
+          <h3>Projects Using {name}</h3>
         </div>
 
         <div className="deck">
@@ -57,22 +47,9 @@ function Other(props) {
 
   const map = props.other.nodes.map((light, index) => {
     return (
-      <section className="card" key={index}>
-        <GatsbyImage
-          image={
-            light?.image?.localFile?.childImageSharp
-              ?.gatsbyImageData
-          }
-          alt={light.alternativeText}
-        />
-        <div className="paper"></div>
-        <div className="content">
-          <hr />
-          {/* // ? does this have a byline */}
-          <h2><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-          <p>{light.excerpt}</p>
-        </div>
-      </section>
+      <div key={light.id}>
+        <Card card={light} />
+      </div>
     );
   });
 
@@ -99,10 +76,38 @@ function Other(props) {
   }
 }
 
+function Aliases(props) {
+  if (props.aliases) {
+
+    const obj = JSON.parse(props.aliases);
+    var values = Object.values(obj);
+
+    return (
+      <>
+        {/* // TODO: more design here */}
+        <h3 className="kilimanjaro">Also known as:</h3>
+        <ul>
+          {values.map((index) => {
+            return (
+              <li key={index} className="first-capital">
+                {index}
+              </li>
+            )
+          })}
+        </ul>
+        <hr />
+      </>
+    )
+
+  } else {
+    return null
+  }
+}
 
 const LightView = ({ light, other }) => {
   return (
     <>
+      {/* // TODO: needs the aliases in the SEO */}
       <Seo
         title={`${light.name} | Sierra Lighting`}
         description={light?.excerpt}
@@ -110,6 +115,7 @@ const LightView = ({ light, other }) => {
       />
 
       <Header />
+
       <main>
 
         <div className="measure">
@@ -140,6 +146,9 @@ const LightView = ({ light, other }) => {
         <article className="measure">
           {/* // TODO: this could be using a js length test for the lower clamp */}
           <h1 className="clamp-denali_everest">{light.name}</h1>
+
+          <Aliases aliases={light.alias.internal.content} />
+
           <p>{light.description}</p>
         </article>
       </main>
