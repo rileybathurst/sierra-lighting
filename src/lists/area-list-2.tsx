@@ -106,6 +106,8 @@ function AreaList2() {
             <h3>California</h3>
           </li>
 
+          {/* // TODO: loop this properly */}
+
           <li key="northlake" id="northlake">
             <Link to="/area/northlake">North Lake Tahoe</Link>
             <ul>

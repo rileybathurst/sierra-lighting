@@ -24,5 +24,4 @@ function Season(props) {
   }
 }
 
-
 export default Season

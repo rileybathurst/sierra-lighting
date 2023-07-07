@@ -8,17 +8,70 @@ import Footer from "../components/footer";
 import Card from "../components/card";
 import { CardType } from "../types/card";
 
+function Badges(props) {
+  // console.log(props.log);
+
+  let badges = [
+    props.commercialchristmas ? "Commercial Christmas" : null,
+    props.residentialchristmas ? "Residential Christmas" : null,
+    props.wedding ? "Wedding" : null,
+    props.outdoor ? "Outdoor" : null,
+  ];
+
+  // console.log(badges);
+  const filteredArr = badges.filter((element) => element !== null);
+  // console.log(filteredArr); // Output:
+
+  if (filteredArr.length > 0) {
+    return (
+      <div className="badges">
+        <p>Used for:</p>
+        {filteredArr.map((badge) => (
+          <span className="badge">{badge}</span>
+        ))}
+      </div>
+    )
+  } else {
+    return null;
+  }
+}
+
 const lightsPage = () => {
 
-  const { allStrapiLight } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query LightsQuery {
-      allStrapiLight {
+      other: allStrapiLight {
         nodes {
           ...lightCard
         }
       }
+
+      lantern: allStrapiLightGroup(filter: {slug: {eq: "lantern"}}) {
+        nodes {
+          id
+          name
+          slug
+          excerpt
+
+          commercialchristmas
+          residentialchristmas
+          wedding
+          outdoor
+
+          lights {
+            ...lightCard
+          }
+        }
+      }
     }
   `)
+
+  let lanterns = data.lantern;
+  let other = data.other;
+
+  let groups = [
+    lanterns,
+  ];
 
   return (
     <>
@@ -46,12 +99,44 @@ const lightsPage = () => {
 
 
         <div className="deck">
-          {allStrapiLight.nodes.map((light: CardType) => (
+          {other.nodes.map((light: CardType) => (
             <div key={light.id}>
               <Card card={light} breadcrumb="light" />
             </div>
           ))}
         </div>
+
+        <div className="measure">
+          <hr />
+        </div>
+
+        {groups.map((group) => (
+          <div id={group.nodes[0].id}>
+            {group.nodes.map((grp) => (
+              <>
+                <div key={grp.id} className="measure">
+                  <h2><Link to={grp.slug}>{grp.name}</Link></h2>
+                  <p>{grp.excerpt}</p>
+
+                  <Badges
+                    commercialchristmas={grp.commercialchristmas}
+                    residentialchristmas={grp.residentialchristmas}
+                    wedding={grp.wedding}
+                    outdoor={grp.outdoor}
+                  />
+
+                </div>
+                <div className="deck">
+                  {grp.lights.map((light: CardType) => (
+                    <div key={light.id}>
+                      <Card card={light} breadcrumb="light" />
+                    </div>
+                  ))}
+                </div>
+              </>
+            ))}
+          </div>
+        ))}
 
       </main >
 

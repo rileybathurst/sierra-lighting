@@ -147,7 +147,7 @@ const LightView = ({ light, other }) => {
           {/* // TODO: this could be using a js length test for the lower clamp */}
           <h1 className="clamp-denali_everest">{light.name}</h1>
 
-          <Aliases aliases={light.alias.internal.content} />
+          <Aliases aliases={light?.alias?.internal.content} />
 
           <p>{light.description}</p>
         </article>

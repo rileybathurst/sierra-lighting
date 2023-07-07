@@ -175,6 +175,7 @@ const VenuePage = () => {
   let minden = data.minden
   let other = data.other
 
+  // TODO: this is the loop to take other places
   let areas = [
     southlake,
     reno,
