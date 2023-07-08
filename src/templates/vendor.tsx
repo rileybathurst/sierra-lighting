@@ -1,3 +1,5 @@
+// ! this needs to move to static Query
+
 import React from 'react';
 import { graphql, Link } from 'gatsby'
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -10,6 +12,8 @@ import Website from "../components/website";
 import IfHero from "../components/ifHero";
 
 import TestimonialRanking from "../components/testimonial-ranking";
+import Card from '../components/card';
+import { CardType } from '../types/card';
 
 function IfOther(props) {
   if (props.projects.length > 0) {
@@ -22,27 +26,12 @@ function IfOther(props) {
           <h4>Projects we have worked with {props.name} on</h4>
         </div>
         <div className="deck">
-          {props.projects.map((project) => (
-            <div key={project.id} className="card">
-              <GatsbyImage
-                image={
-                  project?.image?.localFile?.childImageSharp
-                    ?.gatsbyImageData
-                }
-                alt={project.image?.alternativeText}
-                className=""
+          {props.projects.map((project: CardType) => (
+            <div key={project.id}>
+              <Card
+                card={project}
+                breadcrumb='project'
               />
-
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2 className="mixta">
-                  <Link to={`/project/${project.slug}`}>
-                    {project.title}
-                  </Link>
-                </h2>
-                <p>{project.excerpt}</p>
-              </div>
             </div>
           ))}
         </div>
@@ -56,28 +45,14 @@ function IfOther(props) {
         </div>
 
         <div className="deck">
-          {props.other.map((other) => (
-            <div key={other.node.id} className="card">
+          {/* // TODO: needs nesting */}
+          {props.other.map((other: CardType) => (
+            <div key={other.node.id}>
+              <Card
+                card={other.node}
+                breadcrumb='vendor'
 
-              <GatsbyImage
-                image={
-                  other.node?.profile?.localFile?.childImageSharp
-                    ?.gatsbyImageData
-                }
-                alt={other.node.profile?.alternativeText}
-                className=""
               />
-
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2 className="mixta">
-                  <Link to={`/vendor/${other.node.slug}`}>
-                    {other.node.name}
-                  </Link>
-                </h2>
-                <p>{other.node.excerpt}</p>
-              </div>
             </div>
           ))}
         </div>

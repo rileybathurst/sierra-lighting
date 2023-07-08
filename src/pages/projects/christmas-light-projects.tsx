@@ -5,60 +5,24 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import Seo from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import Card from "../../components/card";
+import { projectCard } from "../../../types/projectcard";
 
 const ChristmasLightsProjectsPage = () => {
-  
+
   const data = useStaticQuery(graphql`
     query ChristmasLightsProjectsQuery {
       residential: allStrapiProject(
         filter: { service: { eq: "residential" } }
       ) {
         nodes {
-          id
-          title
-          description {
-            data {
-              description
-            }
-          }
-          slug
-
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...projectCard
         }
       }
 
       commercial: allStrapiProject(filter: { service: { eq: "commercial" } }) {
         nodes {
-          id
-          title
-          description {
-            data {
-              description
-            }
-          }
-          slug
-
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...projectCard
         }
       }
     }
@@ -112,29 +76,16 @@ const ChristmasLightsProjectsPage = () => {
         <hr />
       </div>
 
+      {/* // TODO: loop */}
       <main className="measure">
         <h3>Residential</h3>
         <div className="deck">
-          {data.residential.nodes.map((project) => (
-            <div key={project.id} className="card">
-              <GatsbyImage
-                image={
-                  project?.image?.localFile?.childImageSharp?.gatsbyImageData
-                }
-                alt={project.image?.alternativeText}
-                className=""
+          {residential.nodes.map((project: projectCard) => (
+            <div key={project.id}>
+              <Card
+                card={project}
+                breadcrumb="project"
               />
-
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h3 className="crest">Byline</h3>
-                <h2 className="mixta">
-                  <Link to={`/project/${project.slug}`}>{project.title}</Link>
-                </h2>
-                {/* this is markdown makdown maybe I should also have something else */}
-                {/* <p>{project.description.data.description}</p> */}
-              </div>
             </div>
           ))}
         </div>
@@ -143,25 +94,12 @@ const ChristmasLightsProjectsPage = () => {
 
         <h3>Commercial</h3>
         <div className="deck">
-          {data.commercial.nodes.map((project) => (
-            <div key={project.id} className="card">
-              <GatsbyImage
-                image={
-                  project?.image?.localFile?.childImageSharp?.gatsbyImageData
-                }
-                alt={project.image?.alternativeText}
-                className=""
+          {commercial.nodes.map((project: projectCard) => (
+            <div key={project.id}>
+              <Card
+                card={project}
+                breadcrumb="project"
               />
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h3 className="crest">Byline</h3>
-                <h2 className="mixta">
-                  <Link to={`/project/${project.slug}`}>{project.title}</Link>
-                </h2>
-                {/* this is markdown makdown maybe I should also have something else */}
-                {/* <p>{project.description.data.description}</p> */}
-              </div>
             </div>
           ))}
         </div>

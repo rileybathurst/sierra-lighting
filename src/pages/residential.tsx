@@ -17,6 +17,8 @@ import ResidentialProjects from "../components/residential-projects";
 import Residential from "../images/residential";
 import Wreath from "../images/wreath";
 import SnowyRoof from "../images/snowyroof";
+import Card from "../components/card";
+import { CardType } from "../types/card";
 
 const ResidentialPage = () => {
 
@@ -24,25 +26,7 @@ const ResidentialPage = () => {
     query ResidentialQuery {
       allStrapiLight(filter: {residentialchristmas: {eq: true}}) {
         nodes {
-          id
-          name
-          byline
-          description
-          excerpt
-          slug
-          outdoor
-          
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...lightCard
         }
       }
     }
@@ -127,24 +111,12 @@ const ResidentialPage = () => {
 
         <div className="deck">
 
-          {list.map((light) => (
-            <div key={light.id} className="card">
-              <GatsbyImage
-                image={
-                  light?.image?.localFile?.childImageSharp
-                    ?.gatsbyImageData
-                }
-                alt={light.venueImage?.alternativeText}
-                className=""
+          {list.map((light: CardType) => (
+            <div key={light.id}>
+              <Card
+                card={light}
+                breadcrumb="light"
               />
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h3 className="crest">{light.byline}</h3>
-                <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                <p className="description">{light.excerpt}</p>
-                <p>{light.outdoor}</p>
-              </div>
             </div>
           ))}
         </div>

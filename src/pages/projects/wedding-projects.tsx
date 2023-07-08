@@ -5,28 +5,15 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import Seo from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import Card from "../../components/card";
+import projectCard from "../../types/projectcard";
 
 const WeddingProjectsPage = () => {
   const { allStrapiProject } = useStaticQuery(graphql`
     query WeddingProjectsPageQuery {
       allStrapiProject(filter: { service: { eq: "wedding" } }) {
         nodes {
-          id
-          title
-          excerpt
-          slug
-
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...projectCard
         }
       }
     }
@@ -87,23 +74,12 @@ const WeddingProjectsPage = () => {
         </div>
 
         <div className="deck">
-          {allStrapiProject.nodes.map((project) => (
-            <div key={project.id} className="card">
-              <GatsbyImage
-                image={
-                  project?.image?.localFile?.childImageSharp?.gatsbyImageData
-                }
-                alt={project.image?.alternativeText}
-                className="poster"
+          {allStrapiProject.nodes.map((project: projectCard) => (
+            <div key={project.id}>
+              <Card
+                card={project}
+                breadcrumb="project"
               />
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2 className="mixta">
-                  <Link to={`/project/${project.slug}`}>{project.title}</Link>
-                </h2>
-                <p>{project.excerpt}</p>
-              </div>
             </div>
           ))}
         </div>

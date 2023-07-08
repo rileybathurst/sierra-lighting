@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
+import Card from "./card";
 
 function WeddingProjects() {
   const { allStrapiProject } = useStaticQuery(graphql`
@@ -41,25 +42,11 @@ function WeddingProjects() {
 
       <div className="deck">
         {allStrapiProject.nodes.map((project) => (
-          <div key={project.id} className="card">
-            <GatsbyImage
-              image={
-                project?.image?.localFile?.childImageSharp?.gatsbyImageData
-              }
-              alt={project.image?.alternativeText}
-              className=""
+          <div key={project.id}>
+            <Card
+              card={project}
+              breadcrumb="project"
             />
-            <div className="paper"></div>
-            <div className="content">
-              <hr />
-              {/* <h3 className="crest">{light.byline}</h3> */}
-              <h2 className="mixta">
-                <Link to={`/project/${project.slug}`}>{project.title}</Link>
-              </h2>
-              <p className="description">
-                {project.description.data.description}
-              </p>
-            </div>
           </div>
         ))}
       </div>

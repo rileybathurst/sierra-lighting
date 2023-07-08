@@ -5,6 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../../components/seo";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import Card from "../../components/card";
 
 const ResidentialChristmaslightsPage = () => {
 
@@ -67,25 +68,13 @@ query ResidentialChristmasLightsQuery {
 
 
         <div className="deck">
-          {allStrapiLight.nodes.map(light => (
-            <section className="card" key={light.id}>
-
-              <GatsbyImage
-                image={
-                  light?.image?.localFile?.childImageSharp
-                    ?.gatsbyImageData
-                }
-                alt={light.image?.alternativeText}
-                className=""
+          {allStrapiLight.nodes.map((light: CardType) => (
+            <div key={light.id}>
+              <Card
+                card={light}
+                breadcrumb="light"
               />
-
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                <p>{light.excerpt}</p>
-              </div>
-            </section>
+            </div>
           ))
           }
         </div>

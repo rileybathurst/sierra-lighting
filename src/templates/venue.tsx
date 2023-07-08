@@ -62,27 +62,11 @@ function IfOther(props) {
 
         <div className="deck">
           {props.other.map((other) => (
-            <div key={other.node.id} className="card">
-
-              <GatsbyImage
-                image={
-                  other.node?.venueImage?.localFile?.childImageSharp
-                    ?.gatsbyImageData
-                }
-                alt={other.node.venueImage?.alternativeText}
-                className=""
+            <div key={other.node.id}>
+              <Card
+                card={other.node}
+                breadcrumb='venue'
               />
-
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2 className="mixta">
-                  <Link to={`/venue/${other.node.slug}`}>
-                    {other.node.name}
-                  </Link>
-                </h2>
-                <p>{other.node.excerpt}</p>
-              </div>
             </div>
           ))}
         </div>

@@ -11,6 +11,9 @@ import Footer from "../components/footer";
 import StateAbbreviation from "../components/state-abbreviation";
 import IfHero from "../components/ifHero";
 
+import Card from "../components/card";
+import { CardType } from "../types/card";
+
 function ReactDescription(props) {
   if (props.desc) {
     return <ReactMarkdown children={props.desc.data.description} />;
@@ -74,15 +77,6 @@ const AreaView = ({ area }) => {
       </div>
 
       <main>
-
-        {/*         <GatsbyImage
-          image={
-            area?.image?.localFile?.childImageSharp
-              ?.gatsbyImageData
-          }
-          alt={area?.image?.alternativeText}
-          className="poster"
-        /> */}
         <IfHero hero={area?.image} />
 
         <article className="measure single" itemProp="address">
@@ -108,24 +102,12 @@ const AreaView = ({ area }) => {
       {/* // TODO this could all be behing the venues if statement */}
       <div className="deck">
         {
-          area?.venues.map(venue => (
-            <section className="card" key={venue.id}>
-
-              <GatsbyImage
-                image={
-                  venue?.venueImage?.localFile?.childImageSharp
-                    ?.gatsbyImageData
-                }
-                alt={venue.venueImage?.alternativeText}
-                className=""
+          area?.venues.map((venue: CardType) => (
+            <section key={venue.id}>
+              <Card
+                card={venue}
+                breadcrumb='venue'
               />
-
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2><Link to={`/venue/${venue.slug}`}>{venue.name}</Link></h2>
-                <p>{venue.description}</p>
-              </div>
             </section>
           ))
         }

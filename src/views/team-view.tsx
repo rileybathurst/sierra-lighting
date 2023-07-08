@@ -8,6 +8,7 @@ import remarkGfm from 'remark-gfm'
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Card from "../components/card";
 
 // ! this currently isnt changing anything
 function IfHero(props) {
@@ -141,27 +142,11 @@ const TeamView = ({ team }) => {
       {/* // TODO this needs an if */}
       <div className="deck">
         {team.projects.map((project) => (
-          <div key={project.id} className="card">
-
-            <GatsbyImage
-              image={
-                project?.image?.localFile?.childImageSharp
-                  ?.gatsbyImageData
-              }
-              alt={project.image?.alternativeText}
-              className=""
+          <div key={project.id}>
+            <Card
+              card={project}
+              breadcrumb="project"
             />
-
-            <div className="paper"></div>
-            <div className="content">
-              <hr />
-              <h2 className="mixta">
-                <Link to={`/project/${project.slug}`}>
-                  {project.title}
-                </Link>
-              </h2>
-              <p>{project.excerpt}</p>
-            </div>
           </div>
         ))}
       </div>

@@ -1,3 +1,5 @@
+// TODO: this code seems like a mess
+
 import * as React from "react";
 import { Link, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -8,6 +10,7 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import StateAbbreviation from "../components/state-abbreviation";
+import Card from "../components/card";
 
 function ReactDescription(props) {
   if (props.desc) {
@@ -23,25 +26,12 @@ function Lights(props) {
 
   const map = yes.map((light, index) => {
     return (
-      <section className="card" key={index}>
-        <GatsbyImage
-          image={
-            light?.image?.localFile?.childImageSharp
-              ?.gatsbyImageData
-          }
-          alt={light?.image?.alternativeText}
+      <div key={index}>
+        <Card
+          card={light}
+          breadcrumb="light"
         />
-        <div className="paper"></div>
-        <div className="content">
-          <hr />
-          <h2>
-            <Link to={`/light/${light.slug}`}>
-              {light.name}
-            </Link>
-          </h2>
-          <p>{light.excerpt}</p>
-        </div>
-      </section>
+      </div>
     );
   });
 
@@ -65,35 +55,15 @@ function Lights(props) {
 
 
 function Other(props) {
-  // testing
-  // console.log(props.needed.length);
-
   const map = props.other.nodes.map((project, index) => {
 
-    // testing
-    // console.log(project?.image?.alternativeText);
-
     return (
-      <section className="card" key={index}>
-        <GatsbyImage
-          image={
-            project?.image?.localFile?.childImageSharp
-              ?.gatsbyImageData
-          }
-          alt={project?.image?.alternativeText}
-        // alt={project.title}
+      <div key={index}>
+        <Card
+          card={project}
+          breadcrumb="project"
         />
-        <div className="paper"></div>
-        <div className="content">
-          <hr />
-          <h2>
-            <Link to={`/project/${project.slug}`}>
-              {project.title}
-            </Link>
-          </h2>
-          <p>{project.excerpt}</p>
-        </div>
-      </section>
+      </div>
     );
   });
 
@@ -297,37 +267,6 @@ const ProjectView = ({ project, other }) => {
         needed={project.lights}
         other={other}
       />
-
-      {/* <div className="measure">
-        <hr />
-
-        <h4>
-          <Link to="/projects">Other Projects</Link>
-        </h4>
-      </div>
-      <div className="deck">
-        {other.edges.map((other) => (
-          <div key={other.id} className="card">
-            <GatsbyImage
-              image={
-                other?.node?.image?.localFile?.childImageSharp
-                  ?.gatsbyImageData
-              }
-              alt={other?.node?.alternativeText}
-            />
-            <div className="paper"></div>
-            <div className="content">
-              <hr />
-              <h3 className="crest">Byline</h3>
-              <h2 className="mixta">
-                <Link to={`/project/${other.node.slug}`}>
-                  {other?.node?.title}
-                </Link>
-              </h2>
-            </div>
-          </div>
-        ))}
-      </div> */}
 
       <Footer />
     </>

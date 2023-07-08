@@ -5,6 +5,8 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Card from '../components/card';
+import { CardType } from '../types/card';
 
 const VendorServiceView = ({ data }) => {
   return (
@@ -42,34 +44,20 @@ const VendorServiceView = ({ data }) => {
 
         <div className="measure">
 
+          {/* // TODO: the order is wrong here, it should be: h1 then h2 */}
           <h2 className="crest">Who we like to work with</h2>
           <h1 className="mixta first-capital">{data.allStrapiVendor.distinct}</h1>
-
           <hr />
         </div>
 
-
-
         <div className="deck">
-          {data.allStrapiVendor.edges.map(({ node }) => (
-            <section className="card" key={node.id}>
-              <GatsbyImage
-                image={
-                  node?.profile?.localFile?.childImageSharp
-                    ?.gatsbyImageData
-                }
-                alt={node.profile?.alternativeText}
-                className={node.slug}
+          {data.allStrapiVendor.edges.map(({ node: CardType }) => (
+            <div key={node.id}>
+              <Card
+                card={node}
+                breadcrumb='vendors'
               />
-
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2><Link to={`/vendor/${node.slug}`}>{node.name}</Link></h2>
-                <p>{node.excerpt}</p>
-              </div>
-            </section>
-
+            </div>
           ))}
         </div>
       </main>

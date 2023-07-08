@@ -13,6 +13,7 @@ import Logistics from "../components/logistics";
 import BistroLights from "../images/bistro-lights";
 import OutdoorWedding from "../images/outdoorwedding";
 import WeddingBlueHour from "../images/weddingbluehour";
+import Card from "../components/card";
 
 const WeddingPage = () => {
 
@@ -124,23 +125,11 @@ const WeddingPage = () => {
 
         <div className="deck">
           {list.map((light) => (
-            <div key={light.id} className="card">
-              <GatsbyImage
-                image={
-                  light?.image?.localFile?.childImageSharp
-                    ?.gatsbyImageData
-                }
-                alt={light.venueImage?.alternativeText}
-                className=""
+            <div key={light.id}>
+              <Card
+                card={light}
+                breadcrumb="light"
               />
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h3 className="crest">{light.byline}</h3>
-                <h2 className="mixta"><Link to={`/light/${light.slug}`}>{light.name}</Link></h2>
-                <p className="description">{light.excerpt}</p>
-                <p>{light.outdoor}</p>
-              </div>
             </div>
           ))}
         </div>

@@ -93,30 +93,8 @@ exports.createPages = ({ actions, graphql }) => {
     })
   });
 
-  /* const getLights = makeRequest(graphql, `
-  {
-    allStrapiLight {
-      nodes {
-        slug
-        light_groups {
-          slug
-        }
-      }
-    }
-  }
-  `).then(result => {
-    result.data.allStrapiLight.nodes.forEach(({ slug, light_groups }) => {
-      createPage({
-        path: `/lightest/${slug}`,
-        component: path.resolve(`src/templates/lightest.tsx`),
-        context: {
-          slug: slug,
-          light_groups: light_groups
-        },
-      })
-    })
-  });
- */
+  // const getServices = makeRequest(graphql, `
+
   // Query for blog nodes to use in creating pages.
   return Promise.all([
     getVenues,
@@ -134,19 +112,19 @@ exports.createPages = ({ actions, graphql }) => {
   const getVendorServicesLoop = makeRequest(graphql, `
     {
       allStrapiVendor {
-        edges {
-          node {
-            service
-          }
+    edges {
+    node {
+    service
+  }
         }
       }
     }
-    `).then(result => {
+`).then(result => {
     Create pages for each partner resorts.
     result.data.allStrapiVendor.edges.forEach(({ node }) => {
       createPage({
-        path: `/vendorsloop`,
-        component: path.resolve(`src/templates/vendorserviceloop.tsx`),
+        path: `/ vendorsloop`,
+        component: path.resolve(`src / templates / vendorserviceloop.tsx`),
         context: {
           service: node.service
         },

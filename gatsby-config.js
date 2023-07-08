@@ -17,7 +17,8 @@ const strapiConfig = {
     'team',
     'affiliation',
     'image-grab',
-    'light-group'
+    'light-group',
+    'service'
   ],
   singleTypes: [
     'topbar',

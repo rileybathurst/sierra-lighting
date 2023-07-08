@@ -5,6 +5,8 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Card from "../components/card";
+import { CardType } from "../types/card";
 
 const ProjectsPage = () => {
   const data = useStaticQuery(graphql`
@@ -13,64 +15,19 @@ const ProjectsPage = () => {
         filter: { service: { eq: "residential" } }
       ) {
         nodes {
-          id
-          title
-          excerpt
-          slug
-
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...projectCard
         }
       }
 
       commercial: allStrapiProject(filter: { service: { eq: "commercial" } }) {
         nodes {
-          id
-          title
-          excerpt
-          slug
-
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...projectCard
         }
       }
 
       wedding: allStrapiProject(filter: { service: { eq: "wedding" } }) {
         nodes {
-          id
-          title
-          excerpt
-          slug
-
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...projectCard
         }
       }
     }
@@ -80,6 +37,12 @@ const ProjectsPage = () => {
   let commercial = data.commercial;
   let wedding = data.wedding;
 
+  let projects = [
+    ...residential.nodes,
+    ...commercial.nodes,
+    ...wedding.nodes,
+  ];
+
   return (
     <>
       <Seo
@@ -88,26 +51,23 @@ const ProjectsPage = () => {
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/projects-og-sierra_lighting.jpg"
       />
       <Header />
+
+
+
       <main className="measure">
+
+        {/* // TODO: this can be looped I think I want to add the service compent first */}
+        <h1>Projects</h1>
+        <p>{/* //TODO: put a description here */}</p>
+
         <h3>Residential</h3>
         <div className="deck">
-          {residential.nodes.map((project) => (
-            <div key={project.id} className="card">
-              <GatsbyImage
-                image={
-                  project?.image?.localFile?.childImageSharp?.gatsbyImageData
-                }
-                alt={project.image?.alternativeText}
-                className="poster"
+          {residential.nodes.map((project: CardType) => (
+            <div key={project.id}>
+              <Card
+                card={project}
+                breadcrumb="project"
               />
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2 className="mixta">
-                  <Link to={`/project/${project.slug}`}>{project.title}</Link>
-                </h2>
-                <p>{project.excerpt}</p>
-              </div>
             </div>
           ))}
         </div>
@@ -116,23 +76,12 @@ const ProjectsPage = () => {
 
         <h3>Commercial</h3>
         <div className="deck">
-          {commercial.nodes.map((project) => (
-            <div key={project.id} className="card">
-              <GatsbyImage
-                image={
-                  project?.image?.localFile?.childImageSharp?.gatsbyImageData
-                }
-                alt={project.image?.alternativeText}
-                className="poster"
+          {commercial.nodes.map((project: CardType) => (
+            <div key={project.id}>
+              <Card
+                card={project}
+                breadcrumb="project"
               />
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2 className="mixta">
-                  <Link to={`/project/${project.slug}`}>{project.title}</Link>
-                </h2>
-                <p>{project.excerpt}</p>
-              </div>
             </div>
           ))}
         </div>
@@ -141,23 +90,12 @@ const ProjectsPage = () => {
 
         <h3>Wedding</h3>
         <div className="deck">
-          {wedding.nodes.map((project) => (
-            <div key={project.id} className="card">
-              <GatsbyImage
-                image={
-                  project?.image?.localFile?.childImageSharp?.gatsbyImageData
-                }
-                alt={project.image?.alternativeText}
-                className="poster"
+          {wedding.nodes.map((project: CardType) => (
+            <div key={project.id}>
+              <Card
+                card={project}
+                breadcrumb="project"
               />
-              <div className="paper"></div>
-              <div className="content">
-                <hr />
-                <h2 className="mixta">
-                  <Link to={`/project/${project.slug}`}>{project.title}</Link>
-                </h2>
-                <p>{project.excerpt}</p>
-              </div>
             </div>
           ))}
         </div>
