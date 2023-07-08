@@ -91,7 +91,7 @@ const lightsPage = () => {
             {group.nodes.map((grp) => (
               <>
                 <div key={grp.id} className="measure">
-                  <h2><Link to={grp.slug}>{grp.name}</Link></h2>
+                  <h2><Link to={`/light-group/${grp.slug}`}>{grp.name}</Link></h2>
                   <p>{grp.excerpt}</p>
 
                   <Badges
