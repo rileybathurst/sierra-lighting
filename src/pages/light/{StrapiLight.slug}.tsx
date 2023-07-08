@@ -1,3 +1,5 @@
+// ! this now moves to gatsby node due to light group
+
 import * as React from "react"
 import { graphql } from "gatsby"
 import LightView from "../../views/light-view"
@@ -10,6 +12,21 @@ export const query = graphql`
       slug
       excerpt
       description
+
+      outdoor
+      residentialchristmas
+      commercialchristmas
+      wedding
+
+      light_groups {
+        id
+        name
+        slug
+
+        lights {
+          ...lightCard
+        }
+      }
 
       alias {
         internal {

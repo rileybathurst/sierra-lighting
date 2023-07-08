@@ -7,6 +7,104 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 
+function Console(props) {
+  console.log(props.log);
+  return null;
+}
+
+
+function LightGroup(props) {
+  if (props.group) {
+    return (
+      <>
+        <div>
+          <Console log={props.group} />
+          {props.group.map((index) => {
+            return (
+              <div key={index.id}>
+                <hr className="measure" />
+                <h3 className="measure">
+                  Other Lights in {index.name}
+                </h3>
+
+                <div className="deck">
+                  {index.lights.map((light) => (
+                    <div key={light.id}>
+                      <Card
+                        card={light}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </>
+    )
+  } else {
+    return null
+  }
+}
+
+function Group(props) {
+  if (props.group) {
+    return (
+      <ul className="listed">
+        {props.group.map((index) => {
+          return (
+            <li key={index.id} className="first-capital">
+              <Link to={`/light-group/${index.slug}`}>
+                {index.name}
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  } else {
+    return null
+  }
+}
+
+function Outdoor(props) {
+  if (props.outdoor) {
+    return (
+      <>Indoor-Outdoor</>
+    )
+  } else {
+    return (
+      <>Indoor</>
+    )
+  }
+}
+
+function Useage(props) {
+  if (props.residentialchristmas && props.commercialchristmas && props.wedding) {
+    return (
+      <>Residential Christmas, Commercial Christmas, and Wedding</>
+    )
+  } else if (props.residentialchristmas && props.commercialchristmas) {
+    return (
+      <>Residential Christmas and Commercial Christmas</>
+    )
+  } if (props.residentialchristmas) {
+    return (
+      <>Residential Christmas</>
+    )
+  } else if (props.commercialchristmas) {
+    return (
+      <>Commercial Christmas</>
+    )
+  } else if (props.wedding) {
+    return (
+      <>Wedding</>
+    )
+  } else {
+    return null;
+  }
+}
+
 function Projects(props): React.JSX.Element | null {
   const yes = props.yes;
   // console.log(yes.length);
@@ -16,7 +114,10 @@ function Projects(props): React.JSX.Element | null {
   const map = yes.map((project, index) => {
     return (
       <div key={project.id}>
-        <Card card={project} />
+        <Card
+          card={project}
+          breadcrumb="project"
+        />
       </div>
     );
   });
@@ -48,7 +149,10 @@ function Other(props) {
   const map = props.other.nodes.map((light, index) => {
     return (
       <div key={light.id}>
-        <Card card={light} />
+        <Card
+          card={light}
+          breadcrumb="light"
+        />
       </div>
     );
   });
@@ -153,9 +257,43 @@ const LightView = ({ light, other }) => {
         </article>
       </main>
 
+      <hr className="measure" />
+      <div className="attributes">
+
+        <section className="attribute">
+          <h3 className="crest">Useage</h3>
+          <h4 className="range">
+            <Useage
+              residentialchristmas={light.residentialchristmas}
+              commercialchristmas={light.commercialchristmas}
+              wedding={light.wedding}
+            />
+          </h4>
+        </section>
+
+        <section className="attribute">
+          <h3 className="crest">Location</h3>
+          <h4 className="range">
+            <Outdoor outdoor={light.outdoor} />
+          </h4>
+        </section>
+
+        <section className="attribute">
+          <h3 className="crest">Group</h3>
+          <h4 className="range">
+            <Group group={light.light_groups} />
+          </h4>
+        </section>
+
+      </div>
+
       <Projects
         yes={light.projects}
         name={light.name}
+      />
+
+      <LightGroup
+        group={light.light_groups}
       />
 
       <Other

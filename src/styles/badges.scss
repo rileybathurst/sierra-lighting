@@ -11,7 +11,9 @@
 
   .badge {
     padding: 0.5rem 1rem;
-    border: 1px solid grey;
-    border-radius: var(--border-radius);
+    // TODO: fix this it should get lighter not darker as it gets higher in the stack
+    background-color: var(--kingly-cloud);
+    border: 2px solid whitesmoke;
+    border-radius: var(--card-radius);
   }
 }

@@ -91,19 +91,44 @@ exports.createPages = ({ actions, graphql }) => {
         },
       })
     })
-  }); // .then(result)
+  });
 
+  /* const getLights = makeRequest(graphql, `
+  {
+    allStrapiLight {
+      nodes {
+        slug
+        light_groups {
+          slug
+        }
+      }
+    }
+  }
+  `).then(result => {
+    result.data.allStrapiLight.nodes.forEach(({ slug, light_groups }) => {
+      createPage({
+        path: `/lightest/${slug}`,
+        component: path.resolve(`src/templates/lightest.tsx`),
+        context: {
+          slug: slug,
+          light_groups: light_groups
+        },
+      })
+    })
+  });
+ */
   // Query for blog nodes to use in creating pages.
   return Promise.all([
     getVenues,
     getVendors,
-    getVendorServices
+    getVendorServices,
+    // getLights
   ])
 }
 
 
 
-/*  // * this was trying to create the vendors page without having to manually make each service on the enum
+/*  // TODO: this was trying to create the vendors page without having to manually make each service on the enum
   I havent been able to make it work yet
   does this work doing both queries in the same place?
   const getVendorServicesLoop = makeRequest(graphql, `

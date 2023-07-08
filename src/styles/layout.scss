@@ -525,7 +525,7 @@ footer {
 
 .attributes {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   flex-flow: row wrap;
   gap: 1rem;
   list-style: none;
@@ -534,8 +534,7 @@ footer {
   padding-inline: 1rem;
 
   .attribute {
-    // flex-basis: 15rem;
-    border-inline-end: 1px solid hsl(var(--honey), 100%, 50%);
+    // border-inline-end: 1px solid hsl(var(--honey), 100%, 50%);
     padding-inline-end: 1rem;
 
     .crest {
@@ -547,6 +546,12 @@ footer {
       line-height: 2.25rem;
       margin-block-end: 0.5rem;
       max-width: 20rem;
+    }
+
+    .listed {
+      list-style: none;
+      margin-block-start: 0;
+      padding-inline-start: 0;
     }
   }
 

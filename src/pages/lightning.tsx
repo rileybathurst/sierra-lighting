@@ -7,8 +7,8 @@ const lightSearchPage = () => {
     <>
       <div className="measure">
         <h1>Lightning</h1>
-        <LightSearch />
       </div>
+      <LightSearch />
     </>
   )
 }

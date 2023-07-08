@@ -7,34 +7,8 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 import { CardType } from "../types/card";
-
-function Badges(props) {
-  // console.log(props.log);
-
-  let badges = [
-    props.commercialchristmas ? "Commercial Christmas" : null,
-    props.residentialchristmas ? "Residential Christmas" : null,
-    props.wedding ? "Wedding" : null,
-    props.outdoor ? "Outdoor" : null,
-  ];
-
-  // console.log(badges);
-  const filteredArr = badges.filter((element) => element !== null);
-  // console.log(filteredArr); // Output:
-
-  if (filteredArr.length > 0) {
-    return (
-      <div className="badges">
-        <p>Used for:</p>
-        {filteredArr.map((badge) => (
-          <span className="badge">{badge}</span>
-        ))}
-      </div>
-    )
-  } else {
-    return null;
-  }
-}
+import LightSearch from "../components/light-search";
+import Badges from "../components/badges";
 
 const lightsPage = () => {
 
@@ -96,6 +70,8 @@ const lightsPage = () => {
             <li key="commercial"><Link to="/lights/commercial-christmas-lights">Commercial Christmas Lights</Link></li>
           </ul>
         </div>
+
+        <LightSearch />
 
 
         <div className="deck">

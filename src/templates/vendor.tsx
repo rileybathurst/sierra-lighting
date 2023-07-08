@@ -133,7 +133,7 @@ function Testimonials(props) {
   }
 }
 
-const VendorView = ({ data }) => {
+const LightestView = ({ data }) => {
   return (
     <>
       <Seo
@@ -203,7 +203,7 @@ const VendorView = ({ data }) => {
   );
 };
 
-export default VendorView;
+export default LightestView;
 
 export const query = graphql`
   query VendorTemplate(
