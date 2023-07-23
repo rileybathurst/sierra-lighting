@@ -1,3 +1,4 @@
+// TODO: this doesn't neet to be an accordian, it can just be a list of areas
 
 import React, { useState } from 'react';
 import AreaList from '../lists/area-list';

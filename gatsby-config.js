@@ -18,7 +18,8 @@ const strapiConfig = {
     'affiliation',
     'image-grab',
     'light-group',
-    'service'
+    'service',
+    'process'
   ],
   singleTypes: [
     'topbar',

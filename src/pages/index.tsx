@@ -87,10 +87,10 @@ const IndexPage = () => {
 
         <div className="services-wrap">
           <section id="services" className="services">
+            <h2>Services</h2>
             <hr />
             {/* // TODO: Query this from strapi */}
             {/* // TODO: I need to think about the H levels here */}
-            <h3>Services</h3>
             <h4 className="crest">Locally owned and Fully Insured</h4>
             <h5 className="range">Professional Experience</h5>
             <hr />

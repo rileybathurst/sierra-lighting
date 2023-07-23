@@ -21,31 +21,31 @@ function ReactDescription(props) {
 const TeamPage = () => {
 
   const { allStrapiTeam } = useStaticQuery(graphql`
-query TeamPageQuery {
-  allStrapiTeam {
-    nodes {
-      id
-      name
-      slug
-      excerpt
-      bio { data { bio } }
+    query TeamPageQuery {
+      allStrapiTeam {
+        nodes {
+          id
+          name
+          slug
+          excerpt
+          bio { data { bio } }
 
-      avatar {
-        localFile {
-          childImageSharp {
-            gatsbyImageData (
-              breakpoints: [160, 320, 480]
-              width: 160
-            )
+          avatar {
+            localFile {
+              childImageSharp {
+                gatsbyImageData (
+                  breakpoints: [160, 320, 480]
+                  width: 160
+                )
+              }
+              url
+            }
+            alternativeText
           }
-          url
         }
-        alternativeText
       }
     }
-  }
-}
-`)
+  `)
 
   return (
     <>

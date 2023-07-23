@@ -1,17 +1,12 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
-
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Badges from "../components/badges"
 import Card from "../components/card";
-
-function Console(props) {
-  console.log(props.log);
-  return null;
-}
+import { CardType } from "../types/card";
 
 const LightGroupView = ({
   lightgroup,
@@ -49,18 +44,18 @@ const LightGroupView = ({
           {lightgroup.name}
         </h1>
         <p>{lightgroup.excerpt}</p>
-        <Badges
+        {/* <Badges
           outdoor={lightgroup.outdoor}
           wedding={lightgroup.wedding}
           residentialchristmas={lightgroup.residentialchristmas}
           commercialchristmas={lightgroup.commercialchristmas}
-        />
+        /> */}
         {/* // ! should uses be a content group */}
 
       </main>
 
       <section className="deck">
-        {lightgroup.lights.map((light) => (
+        {lightgroup.lights.map((light: CardType) => (
           <div key={light.id}>
             <Card
               card={light}

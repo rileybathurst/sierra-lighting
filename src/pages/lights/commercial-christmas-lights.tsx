@@ -1,3 +1,5 @@
+// TODO: this page is getting pulled once the template is created
+
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -9,9 +11,10 @@ import Card from "../../components/card";
 import { CardType } from "../../types/card";
 
 const CommercialChristmaslightsPage = () => {
+
   const { allStrapiLight } = useStaticQuery(graphql`
     query CommercialChristmasLightsQuery {
-      allStrapiLight(filter: { commercialchristmas: { eq: true } }) {
+      allStrapiLight(filter: {services: {elemMatch: {slug: {eq: "commercial"}}}}) {
         nodes {
           ...lightCard
         }

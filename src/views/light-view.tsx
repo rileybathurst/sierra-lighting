@@ -67,7 +67,7 @@ function Group(props) {
   }
 }
 
-function Outdoor(props) {
+/* function Outdoor(props) {
   if (props.outdoor) {
     return (
       <>Indoor-Outdoor</>
@@ -77,9 +77,9 @@ function Outdoor(props) {
       <>Indoor</>
     )
   }
-}
+} */
 
-function Useage(props) {
+/* function Useage(props) {
   if (props.residentialchristmas && props.commercialchristmas && props.wedding) {
     return (
       <>Residential Christmas, Commercial Christmas, and Wedding</>
@@ -103,7 +103,7 @@ function Useage(props) {
   } else {
     return null;
   }
-}
+} */
 
 function Projects(props): React.JSX.Element | null {
   const yes = props.yes;
@@ -144,18 +144,6 @@ function Projects(props): React.JSX.Element | null {
 
 function Other(props) {
 
-  // console.log(props.needed.length);
-
-  const map = props.other.nodes.map((light, index) => {
-    return (
-      <div key={light.id}>
-        <Card
-          card={light}
-          breadcrumb="light"
-        />
-      </div>
-    );
-  });
 
   if (props.needed.length == 0) {
     return (
@@ -166,7 +154,12 @@ function Other(props) {
         </div>
 
         <div className="deck">
-          {map}
+          <div key={light.id}>
+            <Card
+              card={light}
+              breadcrumb="light"
+            />
+          </div>
         </div>
 
         <div className="measure">
@@ -263,18 +256,18 @@ const LightView = ({ light, other }) => {
         <section className="attribute">
           <h3 className="crest">Useage</h3>
           <h4 className="range">
-            <Useage
+            {/*             <Useage
               residentialchristmas={light.residentialchristmas}
               commercialchristmas={light.commercialchristmas}
               wedding={light.wedding}
-            />
+            /> */}
           </h4>
         </section>
 
         <section className="attribute">
           <h3 className="crest">Location</h3>
           <h4 className="range">
-            <Outdoor outdoor={light.outdoor} />
+            {/* <Outdoor outdoor={light.outdoor} /> */}
           </h4>
         </section>
 
@@ -296,10 +289,11 @@ const LightView = ({ light, other }) => {
         group={light.light_groups}
       />
 
+      {/*// TODO I keep breaking things and rebuilding 
       <Other
         needed={light.projects}
         other={other}
-      />
+      /> */}
 
       <Footer />
     </>

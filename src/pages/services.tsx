@@ -1,10 +1,26 @@
-import * as React from "react"
+// ! this page is weird and should be put somewhere else
+// probably into the cms and actually use it
 
+import * as React from "react"
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
 const ServicesPage = () => {
+
+  const { allStrapiService } = useStaticQuery(graphql`
+  query ServiceQuery {
+    allStrapiService {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+  }
+`)
+
   return (
     <>
       <Seo
@@ -17,8 +33,23 @@ const ServicesPage = () => {
       <main className="measure">
 
         <h1>Services</h1>
-        <h2>The Christmas lights services we provide include:</h2>
-        <ul itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
+        {allStrapiService.nodes.map((service) => (
+          <div id={service.id}>
+
+            <h2>
+              <Link to={`/service/${service.slug}`}>
+                {service.name}
+              </Link>
+            </h2>
+
+          </div>
+        ))}
+
+        {/* <h2>The Christmas lights services we provide include:</h2> */}
+        {/* // ! this was a thing maybe it needs to be used again */}
+        {/* // TODO: remove this we now just show all the lights lots of places */}
+        {/* // TODO: use the idea of this hasOfferCatalog */}
+        {/* <ul itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
           <li key="roofs" itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">
             <span itemProp="name">Roof lines hung with damage free attachment methods outlined in high efficiency energy saving C9 LED bulbs</span>
           </li>
@@ -47,25 +78,10 @@ const ServicesPage = () => {
             <span itemProp="name">Lit figurines, snowflakes and trees for special accents</span>
           </li>
           <li key="missing">Is something missing? Just ask!</li>
-        </ul>
+        </ul> */}
 
-        <h2>How it Works</h2>
-        <ol>
-          <li><span className="ol-title">Estimate</span>
-            <span>After contacting Sierra Lighting, we will come to your home or business to create an estimate.  We work with you to determine the type of display you would like, choosing from our broad lighting selection.</span>
-          </li>
-          <li><span className="ol-title">Installation</span>
-            <span>
-              Installation typically occurs late October through early December. Our experienced team of lighting technicians arrives with the materials to create your customized display. Using non-damaging attachment techniques, we build out your beautiful lights.
-            </span>
-          </li>
-          <li><span className="ol-title">Support</span>
-            <span>Sierra Lighting utilizes the highest quality, professional, LED lighting available to ensure the reliability of your display. In the unlikely event that something goes wrong, we are just a quick call or email away. We strive for 100% customer satisfaction!</span>
-          </li>
-          <li><span className="ol-title">Removal</span>
-            <span>Removal occurs in the first two weeks of January after a happy and joyous holiday. Our team removes the lights and carefully packages them for storage until next year. Your home will look just as beautiful after we are done as when we started.</span>
-          </li>
-        </ol>
+
+
       </main>
 
       <Footer />

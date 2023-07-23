@@ -13,11 +13,6 @@ export const query = graphql`
       excerpt
       description
 
-      outdoor
-      residentialchristmas
-      commercialchristmas
-      wedding
-
       light_groups {
         id
         name

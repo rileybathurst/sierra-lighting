@@ -4,47 +4,203 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Card from "../components/card";
-import { CardType } from "../types/card";
+import Grouploop from "../components/grouploop";
 import LightSearch from "../components/light-search";
-import Badges from "../components/badges";
+
+function Console(props) {
+  console.log(props.log);
+  return null;
+}
 
 const lightsPage = () => {
 
   const data = useStaticQuery(graphql`
     query LightsQuery {
-      other: allStrapiLight {
+
+      overhead: strapiLightGroup(slug: {eq: "overhead"}) {
+        ...lightGroup
+      }
+
+      overheadlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "overhead"}}}}) {
+        nodes {
+          ...lightCard
+        }
+      }
+      
+      accent: strapiLightGroup(slug: {eq: "accent"}) {
+        ...lightGroup
+      }
+
+      accentlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "accent"}}}}) {
+        nodes {
+          ...lightCard
+        }
+      }
+      
+      dance: strapiLightGroup(slug: {eq: "dance"}) {
+        ...lightGroup
+      }
+
+      dancelights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "dance"}}}}) {
+        nodes {
+          ...lightCard
+        }
+      }
+      
+      pipe: strapiLightGroup(slug: {eq: "pipe-drape"}) {
+        ...lightGroup
+      }
+
+      pipelights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "pipe-drape"}}}}) {
+        nodes {
+          ...lightCard
+        }
+      }
+      
+      path: strapiLightGroup(slug: {eq: "path"}) {
+        ...lightGroup
+      }
+
+      pathlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "path"}}}}) {
+        nodes {
+          ...lightCard
+        }
+      }
+      
+      tree: strapiLightGroup(slug: {eq: "tree"}) {
+        ...lightGroup
+      }
+
+      treelights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "tree"}}}}) {
+        nodes {
+          ...lightCard
+        }
+      }
+      
+      building: strapiLightGroup(slug: {eq: "building"}) {
+        ...lightGroup
+      }
+      
+      buildinglights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "building"}}}}) {
         nodes {
           ...lightCard
         }
       }
 
-      lantern: allStrapiLightGroup(filter: {slug: {eq: "lantern"}}) {
+      greenery: strapiLightGroup(slug: {eq: "greenery"}) {
+        ...lightGroup
+      }
+
+      greenerylights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "greenery"}}}}) {
+        nodes {
+          ...lightCard
+        }
+      }
+
+      ornaments: strapiLightGroup(slug: {eq: "ornaments"}) {
+        ...lightGroup
+      }
+
+      ornamentslights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "ornaments"}}}}) {
+        nodes {
+          ...lightCard
+        }
+      }
+      
+      lantern: strapiLightGroup(slug: {eq: "lantern"}) {
+        ...lightGroup
+      }
+
+      lanternlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "lantern"}}}}) {
+        nodes {
+          ...lightCard
+        }
+      }
+
+      other: allStrapiLight(filter: {light_groups: {elemMatch: {slug: {eq: "lanterns"}}}}) {
+        nodes {
+          ...lightCard
+        }
+      }
+
+      service: allStrapiService {
         nodes {
           id
           name
           slug
-          excerpt
-
-          commercialchristmas
-          residentialchristmas
-          wedding
-          outdoor
-
-          lights {
-            ...lightCard
-          }
         }
       }
+
     }
   `)
 
-  let lanterns = data.lantern;
-  let other = data.other;
+  // let other = data.other;
+
+  let overheadgroup = [
+    data.overhead,
+    data.overheadlights
+  ]
+
+  let accentgroup = [
+    data.accent,
+    data.accentlights
+  ]
+
+  let dancegroup = [
+    data.dance,
+    data.dancelights
+  ]
+
+  let pipegroup = [
+    data.pipe,
+    data.pipelights
+  ]
+
+  let pathgroup = [
+    data.path,
+    data.pathlights
+  ]
+
+  let treegroup = [
+    data.tree,
+    data.treelights
+  ]
+
+  let buildinggroup = [
+    data.building,
+    data.buildinglights
+  ]
+
+  let greenerygroup = [
+    data.greenery,
+    data.greenerylights
+  ]
+
+  let ornamentsgroup = [
+    data.ornaments,
+    data.ornamentslights
+  ]
+
+  let lanterngroup = [
+    data.lantern,
+    data.lanternlights
+  ]
 
   let groups = [
-    lanterns,
+    overheadgroup,
+    accentgroup,
+    dancegroup,
+    pipegroup,
+    pathgroup,
+    treegroup,
+    buildinggroup,
+    greenerygroup,
+    ornamentsgroup,
+    lanterngroup
   ];
+
+  let services = data.service.nodes;
+
 
   return (
     <>
@@ -62,56 +218,74 @@ const lightsPage = () => {
 
           <hr />
 
-          Filter by:
-          <ul>
-            <li key="wedding"><Link to="/lights/wedding-lights">Wedding Lights</Link></li>
-            <li key="residential"><Link to="/lights/residential-christmas-lights">Residential Christmas Lights</Link></li>
-            <li key="commercial"><Link to="/lights/commercial-christmas-lights">Commercial Christmas Lights</Link></li>
-          </ul>
+          <section className="deck">
+            <div>
+              Filter by use:
+              <ul>
+                {services.map((service) => (
+                  <li key={service.id}>
+                    <Link to={`/lights/${service.slug}`}>
+                      {service.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p>or by type:</p>
+              <ul>
+                {groups.map((group) => (
+                  <li key={group[0].id}>
+                    {/* // TODO: slide */}
+                    <Link to={`#${group[0].slug}`}>
+                      {group[0].name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
         </div>
 
-        <LightSearch />
+        <div className="measure">
+          <hr />
+          <h3>
+            Search
+          </h3>
+          <LightSearch />
+        </div>
 
+        {/* // TODO: Grouploop should become a component */}
+        {groups.map((group) => (
+          <div
+            key={group[0].id}
+            id={group[0].slug}
+          >
+            <Grouploop group={group} />
+          </div>
+        ))}
 
+        {/* <div className="measure">
+          <h2>Other Lights</h2>
+          <p>These lights are not part of a group, but are still available for rent.</p>
+        </div>
         <div className="deck">
           {other.nodes.map((light: CardType) => (
             <div key={light.id}>
               <Card card={light} breadcrumb="light" />
             </div>
           ))}
-        </div>
+        </div> */}
 
-        <div className="measure">
-          <hr />
-        </div>
+        {/* <hr /> */}
 
-        {groups.map((group) => (
-          <div id={group.nodes[0].id}>
-            {group.nodes.map((grp) => (
-              <>
-                <div key={grp.id} id={grp.slug} className="measure">
-                  <h2><Link to={`/light-group/${grp.slug}`}>{grp.name}</Link></h2>
-                  <p>{grp.excerpt}</p>
-
-                  <Badges
-                    commercialchristmas={grp.commercialchristmas}
-                    residentialchristmas={grp.residentialchristmas}
-                    wedding={grp.wedding}
-                    outdoor={grp.outdoor}
-                  />
-
-                </div>
-                <div className="deck">
-                  {grp.lights.map((light: CardType) => (
-                    <div key={light.id}>
-                      <Card card={light} breadcrumb="light" />
-                    </div>
-                  ))}
-                </div>
-              </>
-            ))}
-          </div>
-        ))}
+        {/*         <div className="deck">
+          {data.overorder.nodes.map((light: CardType) => (
+            <div key={light.id}>
+              <Card card={light} breadcrumb="light" />
+            </div>
+          ))}
+        </div> */}
 
       </main >
 

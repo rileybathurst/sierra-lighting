@@ -5,13 +5,7 @@ import LightGroupView from "../../views/lightgroup-view"
 export const query = graphql`
   query LightGroupQuery($slug: String!) {
     strapiLightGroup(slug: { eq: $slug }) {
-      id
-      name
-      excerpt
-      outdoor
-      wedding
-      residentialchristmas
-      commercialchristmas
+      ...lightGroup
 
       lights {
         ...lightCard

@@ -19,7 +19,9 @@ const WeddingPage = () => {
 
   const data = useStaticQuery(graphql`
     query WeddingPageQuery {
-      allStrapiLight(filter: {wedding: {eq: true}}) {
+      allStrapiLight
+      # (filter: {wedding: {eq: true}})
+      {
         nodes {
           id
           name
@@ -27,7 +29,6 @@ const WeddingPage = () => {
           description
           excerpt
           slug
-          outdoor
           
           image {
             localFile {
@@ -151,9 +152,10 @@ const WeddingPage = () => {
           <hr />
         </div>
         <div className="measure" itemProp="hasOfferCatalog" itemScope itemType="https://schema.org/OfferCatalog">
+          {/* // ! this link is wrong and not related to weddings */}
           <h3><Link to="/services" className="link--subtle">Wedding Services</Link></h3>
           <p itemProp="itemListElement" itemScope itemType="https://schema.org/OfferCatalog">The natural beauty of the Reno Tahoe area make the perfect backdrop for a wedding. Our custom lighting design enhances your decor and the architectural / landscape features of your venue. Wether your aiming for a low key affair or a luxurious event, we work with you to create the perfect mood.</p>
-
+          {/* // ! this link is wrong and not related to weddings */}
           <p>Check out our list of wedding <Link to="/services">lighting services</Link> and some of our favorite <Link to="/venues">Tahoe wedding venues</Link>.</p>
 
           <hr />

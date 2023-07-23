@@ -52,8 +52,8 @@ function ReviewRatings(props) {
 
 const TestimonialsPage = () => {
 
-// ? why do I have this filter? 
-const {allStrapiTestimonial} = useStaticQuery(graphql`
+  // ? why do I have this filter? 
+  const { allStrapiTestimonial } = useStaticQuery(graphql`
 query TestimonialsQuery {
   allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
     nodes {
@@ -86,21 +86,6 @@ query TestimonialsQuery {
       />
       <Header />
 
-      <div className="measure">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">Testimonials</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
-
       <main className="measure">
 
         <h1 className="crest">Reviews</h1>
@@ -109,39 +94,39 @@ query TestimonialsQuery {
         <div itemProp="mainEntity" itemScope itemType="https://schema.org/LocalBusiness">
           <h1 className="sr-only" itemProp="name">Sierra Lighting</h1>
 
-              <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="testimonials">
-                {allStrapiTestimonial.nodes.map(testimonial => (
-                  <li key={testimonial.id} className='testimonial'>
-                    <figure>
-                      <blockquote>
-                        {/* <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link> */}
-                        <h2 itemProp="name" className="sr-only">{testimonial.title}</h2>
+          <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="testimonials">
+            {allStrapiTestimonial.nodes.map(testimonial => (
+              <li key={testimonial.id} className='testimonial'>
+                <figure>
+                  <blockquote>
+                    {/* <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link> */}
+                    <h2 itemProp="name" className="sr-only">{testimonial.title}</h2>
 
-                        <TestimonialRanking stars={testimonial.stars} />
-                        <p className='testimonial--quote_mark range'>&ldquo;</p>
-                        <p itemProp="reviewBody">{testimonial.review}</p>
+                    <TestimonialRanking stars={testimonial.stars} />
+                    <p className='testimonial--quote_mark range'>&ldquo;</p>
+                    <p itemProp="reviewBody">{testimonial.review}</p>
 
 
-                        <figcaption>
-                          <span itemProp="author" itemScope itemType="https://schema.org/Person">
+                    <figcaption>
+                      <span itemProp="author" itemScope itemType="https://schema.org/Person">
 
-                            <TestimonialLink
-                              aref={testimonial.link}
-                              customer={testimonial.customer}
-                              vendor={testimonial?.vendor}
-                              position={testimonial?.position}
-                              platform={testimonial?.platform}
-                            />
+                        <TestimonialLink
+                          aref={testimonial.link}
+                          customer={testimonial.customer}
+                          vendor={testimonial?.vendor}
+                          position={testimonial?.position}
+                          platform={testimonial?.platform}
+                        />
 
-                          </span>
-                          <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
-                        </figcaption>
-                        <ReviewRatings stars={testimonial.stars} />
-                      </blockquote>
-                    </figure>
-                  </li>
-                ))}
-              </ul>
+                      </span>
+                      <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
+                    </figcaption>
+                    <ReviewRatings stars={testimonial.stars} />
+                  </blockquote>
+                </figure>
+              </li>
+            ))}
+          </ul>
         </div>
 
         <hr />

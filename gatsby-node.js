@@ -17,6 +17,54 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
 
+  const getServices = makeRequest(graphql, `
+    {
+      allStrapiService {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+    `).then(result => {
+
+    result.data.allStrapiService.edges.forEach(({ node }) => {
+      createPage({
+        // ! testing only at service
+        path: `/service/${node.slug}`,
+        component: path.resolve(`src/templates/service.tsx`),
+        context: {
+          slug: node.slug,
+        },
+      })
+    })
+  }); // .then(result)
+
+  // ! Still working on this
+  const getServiceLights = makeRequest(graphql, `
+    {
+      allStrapiService {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+    `).then(result => {
+
+    result.data.allStrapiService.edges.forEach(({ node }) => {
+      createPage({
+        path: `lights/${node.slug}`,
+        component: path.resolve(`src/templates/service-lights.tsx`),
+        context: {
+          slug: node.slug,
+        },
+      })
+    })
+  }); // .then(result)
+
   const getVenues = makeRequest(graphql, `
     {
       allStrapiVenue {
@@ -32,7 +80,7 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `).then(result => {
-    // Create pages for each partner resorts.
+
     result.data.allStrapiVenue.edges.forEach(({ node }) => {
       createPage({
         path: `/venue/${node.slug}`,
@@ -57,7 +105,7 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `).then(result => {
-    // Create pages for each partner resorts.
+
     result.data.allStrapiVendor.edges.forEach(({ node }) => {
       createPage({
         path: `/vendors/${node.service}`,
@@ -97,6 +145,8 @@ exports.createPages = ({ actions, graphql }) => {
 
   // Query for blog nodes to use in creating pages.
   return Promise.all([
+    getServices,
+    getServiceLights,
     getVenues,
     getVendors,
     getVendorServices,

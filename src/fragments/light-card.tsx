@@ -6,6 +6,7 @@ export const query = graphql`
     name
     slug
     excerpt
+    byline
 
     image {
       localFile {

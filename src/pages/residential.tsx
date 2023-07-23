@@ -24,7 +24,9 @@ const ResidentialPage = () => {
 
   const data = useStaticQuery(graphql`
     query ResidentialQuery {
-      allStrapiLight(filter: {residentialchristmas: {eq: true}}) {
+      allStrapiLight
+      # (filter: {residentialchristmas: {eq: true}})
+      {
         nodes {
           ...lightCard
         }

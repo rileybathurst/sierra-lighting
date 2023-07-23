@@ -15,7 +15,7 @@ const WeddinglightsPage = () => {
   let { allStrapiLight } = useStaticQuery(graphql`
     query WeddingLightsQuery {
       allStrapiLight
-      (filter: {wedding: {eq: true}})
+      # (filter: {wedding: {eq: true}})
       {
         nodes {
           ...lightCard

@@ -16,7 +16,9 @@ const CommercialPage = () => {
 
   const data = useStaticQuery(graphql`
     query CommercialQuery {
-      allStrapiLight(filter: {commercialchristmas: {eq: true}}) {
+      allStrapiLight
+      # (filter: {services: {eq: "commercialchristmas"}})
+      {
         nodes {
           id
           name
@@ -24,7 +26,6 @@ const CommercialPage = () => {
           description
           excerpt
           slug
-          outdoor
           
           image {
             localFile {
@@ -43,10 +44,8 @@ const CommercialPage = () => {
   `)
 
   const more = { data }
-  // console.log(more);
 
   let allCommercialLights = data.allStrapiLight.nodes
-  // console.log(allCommercialLights);
 
   // State for the list
   const [list, setList] = useState([...allCommercialLights.slice(0, 3)])

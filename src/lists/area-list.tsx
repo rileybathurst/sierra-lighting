@@ -1,3 +1,5 @@
+// TODO: this is only used once so it can be included to remove a file
+
 import React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 

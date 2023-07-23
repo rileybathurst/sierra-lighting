@@ -13,7 +13,7 @@ const ResidentialChristmaslightsPage = () => {
   const { allStrapiLight } = useStaticQuery(graphql`
 query ResidentialChristmasLightsQuery {
   allStrapiLight
-  (filter: {residentialchristmas: {eq: true}})
+  # (filter: {services: {slug: {eq: "commercial"}}})
   {
     nodes {
       id
