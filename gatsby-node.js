@@ -93,18 +93,21 @@ exports.createPages = ({ actions, graphql }) => {
     })
   }); // .then(result)
 
-  // does this work doing both queries in the same place?
+  // * Im creating this twice to do
+  // vendors aka vendor/twinefloralco
+  // vendorservice aka vendors/floral
+
   const getVendorServices = makeRequest(graphql, `
-    {
-      allStrapiVendor {
-        edges {
-          node {
-            service
+      {
+        allStrapiVendor {
+          edges {
+            node {
+              service
+            }
           }
         }
       }
-    }
-    `).then(result => {
+      `).then(result => {
 
     result.data.allStrapiVendor.edges.forEach(({ node }) => {
       createPage({
@@ -115,20 +118,20 @@ exports.createPages = ({ actions, graphql }) => {
         },
       })
     })
-  }); // .then(result)
+  }); // .then(result) */
 
   const getVendors = makeRequest(graphql, `
-  {
-    allStrapiVendor {
-      edges {
-        node {
-          slug
-          service
+    {
+      allStrapiVendor {
+        edges {
+          node {
+            slug
+            service
+          }
         }
       }
     }
-  }
-  `).then(result => {
+    `).then(result => {
     result.data.allStrapiVendor.edges.forEach(({ node }) => {
       createPage({
         path: `/vendor/${node.slug}`,

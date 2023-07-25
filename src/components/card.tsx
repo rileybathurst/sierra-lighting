@@ -50,7 +50,7 @@ function Image(props: {
 }
 
 function Breadcrumb(props: {
-  breadcrumb?: string;
+  breadcrumb: ["light" | "vendor" | "service"];
   slug: string;
   children: React.ReactElement;
 }) {

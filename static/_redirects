@@ -1,0 +1,6 @@
+# Netlify Service for Redirects from what the browser requests to what we serve
+
+## https://docs.netlify.com/routing/redirects/redirect-options/
+
+/projects/wedding-projects/ /projects
+/projects/christmas-light-projects/ /projects

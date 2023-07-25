@@ -12,6 +12,84 @@ import Footer from "../components/footer";
 import StateAbbreviation from "../components/state-abbreviation";
 import Card from "../components/card";
 
+// ! testing
+function Console(props) {
+  console.log(props.log);
+  return null;
+}
+
+function Triptych(props) {
+  if (props.triptych?.length > 0) {
+    return (
+      <>
+        <div className="measure">
+          <hr />
+          <h3>{props.name} uses these lights</h3>
+        </div>
+        <section className="deck">
+          {props.triptych.map((light) => (
+            <div
+              key={light?.id}
+            >
+              <Card card={light}
+                breadcrumb="light"
+              />
+            </div>
+          ))}
+        </section>
+      </>
+    );
+  } else {
+    return null;
+  }
+}
+
+function Additional(props) {
+  if (props.additional?.length > 0) {
+    return (
+      <div className="measure">
+        <section className="">
+          {props.additional.map((light) => (
+            <div
+              key={light?.id}
+            >
+              <Link to={`/light/${light.slug}`}>
+                {light.name}
+              </Link>
+            </div>
+          ))}
+        </section>
+      </div>
+    );
+  } else {
+    return null;
+  }
+}
+
+function Gallery(props) {
+  if (props.triptych?.length > 0) {
+    return (
+      <section className="deck">
+        {props.triptych.map((image) => (
+          <div key={image?.localFile?.url}>
+            {/* // TODO: these should be expandable in some way or another */}
+            <GatsbyImage
+              image={
+                image?.localFile?.childImageSharp
+                  ?.gatsbyImageData
+              }
+              alt={image.alternativeText}
+              className="poster"
+            />
+          </div>
+        ))}
+      </section>
+    );
+  } else {
+    return null;
+  }
+}
+
 function ReactDescription(props) {
   if (props.desc) {
     return <ReactMarkdown children={props?.desc?.data?.description} />;
@@ -202,7 +280,7 @@ function IfAttributes(props) {
   }
 }
 
-const ProjectView = ({ project, other }) => {
+const ProjectView = ({ project, triptych, additional, other }) => {
   return (
     <>
       <Seo
@@ -214,21 +292,16 @@ const ProjectView = ({ project, other }) => {
 
       <div className="measure">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/projects">
               <span itemProp="name">Projects</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="2" />
+            <meta itemProp="position" content="1" />
           </li>
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <span itemProp="name">{project.title}</span>
-            <meta itemProp="position" content="3" />
+            <meta itemProp="position" content="2" />
           </li>
         </ol>
         <hr />
@@ -251,17 +324,30 @@ const ProjectView = ({ project, other }) => {
 
       </main>
 
+      <Gallery triptych={project.gallery} />
+
       <IfAttributes
         venue={project?.venue}
         area={project?.areas}
         vendor={project?.vendors}
         team={project?.teams}
+      // TODO: services
       />
 
-      <Lights
+      {/*       <Lights
         yes={project.lights}
         name={project.title}
+      /> */}
+
+      <Console log={triptych} />
+      <Triptych
+        triptych={triptych}
+        name={project.title}
       />
+      <Additional
+        additional={additional}
+      />
+
 
       <Other
         needed={project.lights}

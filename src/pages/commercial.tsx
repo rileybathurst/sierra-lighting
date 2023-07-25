@@ -1,3 +1,5 @@
+// ! this page is going to come from gatsby node soon
+
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
@@ -5,7 +7,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import CommercialProjects from "../components/commercial-projects";
+// import CommercialProjects from "../components/commercial-projects";
 import NorthTahoeEvents from "../images/northtahoeevents";
 import InclineChevron from "../images/inclinechevron";
 import SnowyRoof from "../images/snowyroof";
@@ -155,7 +157,8 @@ const CommercialPage = () => {
         </div>
       </main>
 
-      <CommercialProjects />
+      {/* // ! get the projects back */}
+      {/* <CommercialProjects /> */}
 
       <Footer />
 

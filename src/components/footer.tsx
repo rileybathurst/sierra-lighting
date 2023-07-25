@@ -169,18 +169,15 @@ const Footer = () => {
         <button type="submit">Send</button>
       </form>
 
-      <div className="measure">
-        <hr />
-      </div>
+
+      <hr className="measure" />
 
       {/* // TODO front page only flex arrangment */}
       <SocialIcons />
 
-      <div className="measure">
-        <hr />
-      </div>
 
-      <div className="measure">
+      <div className="pelican">
+        <hr />
         <Season season="wedding">
           <div className="footer_list whichseason_wedding">
             <FooterList />

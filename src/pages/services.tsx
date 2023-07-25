@@ -1,5 +1,4 @@
-// ! this page is weird and should be put somewhere else
-// probably into the cms and actually use it
+// * this page is really on seo for the offer catalog
 
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from 'gatsby';
@@ -16,6 +15,13 @@ const ServicesPage = () => {
         id
         name
         slug
+
+        description {
+          data {
+            description
+          }
+        }
+
       }
     }
   }
@@ -34,14 +40,21 @@ const ServicesPage = () => {
 
         <h1>Services</h1>
         {allStrapiService.nodes.map((service) => (
-          <div id={service.id}>
-
+          <div
+            id={service.slug}
+            key={service.id}
+          >
+            <hr />
+            {/* // TODO: these dont have images yet */}
             <h2>
               <Link to={`/service/${service.slug}`}>
                 {service.name}
               </Link>
             </h2>
 
+            <p>
+              {service.description.data.description}
+            </p>
           </div>
         ))}
 

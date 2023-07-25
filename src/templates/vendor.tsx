@@ -23,6 +23,7 @@ function IfOther(props) {
     return (
       <>
         <div className="measure">
+          <hr />
           <h4>Projects we have worked with {props.name} on</h4>
         </div>
         <div className="deck">
@@ -41,6 +42,7 @@ function IfOther(props) {
     return (
       <>
         <div className="measure">
+          <hr />
           <h4>Other <span className='first-capital'>{props.service}</span> Vendors</h4>
         </div>
 
@@ -108,7 +110,7 @@ function Testimonials(props) {
   }
 }
 
-const LightestView = ({ data }) => {
+const VendorTemplateView = ({ data }) => {
   return (
     <>
       <Seo
@@ -120,27 +122,21 @@ const LightestView = ({ data }) => {
 
       <div className="measure">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li key='1' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-
           <li key='2' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/vendors">
               <span itemProp="name">Vendors</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="2" />
+            <meta itemProp="position" content="1" />
           </li>
 
           <li key='3' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to={`/vendors/${data.strapiVendor.service}`}>
               <span itemProp="name" className='first-capital'>{data.strapiVendor.service}</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="3" />
+            <meta itemProp="position" content="2" />
           </li>
 
           <li key='4' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <span itemProp="name">{data.strapiVendor.name}</span>
-            <meta itemProp="position" content="4" />
+            <meta itemProp="position" content="3" />
           </li>
         </ol>
         <hr />
@@ -178,7 +174,7 @@ const LightestView = ({ data }) => {
   );
 };
 
-export default LightestView;
+export default VendorTemplateView;
 
 export const query = graphql`
   query VendorTemplate(

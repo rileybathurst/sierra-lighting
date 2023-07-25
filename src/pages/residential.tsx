@@ -1,3 +1,5 @@
+// ! this page is going to come from gatsby node soon
+
 // this queries more than netlify likes but its hiding a lot its testing if it loads slower than residential
 // it seems totally fine but keep an eye on it
 
@@ -12,7 +14,7 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import ResidentialProjects from "../components/residential-projects";
+// import ResidentialProjects from "../components/residential-projects";
 
 import Residential from "../images/residential";
 import Wreath from "../images/wreath";
@@ -150,7 +152,8 @@ const ResidentialPage = () => {
         </div>
       </main>
 
-      <ResidentialProjects />
+      {/* // ! get the projects back */}
+      {/* <ResidentialProjects /> */}
 
       <Footer />
     </>

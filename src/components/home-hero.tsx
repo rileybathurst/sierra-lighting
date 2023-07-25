@@ -1,12 +1,8 @@
 // * Compoment this one as it has an additional query
-// ! fix the images by query
 
 import React, { useState, useEffect } from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
-
-import Village from "../images/village";
-import WeddingCannopy from "../images/weddingcannopy";
-import OutdoorWedding from "../images/outdoorwedding";
+import { GatsbyImage } from "gatsby-plugin-image"
 
 // light to dark switch
 export function useMediaQuery(query) {
@@ -22,14 +18,21 @@ export function useMediaQuery(query) {
   return matches;
 }
 
-// * This might get a touch more complex with seasons
-function HeroImage() {
+function SchemeImage({ light, dark }) {
   let isSiteDark = useMediaQuery("(prefers-color-scheme: dark)");
 
   return (
     <>
-      {isSiteDark && <WeddingCannopy />}
-      {isSiteDark || <OutdoorWedding />}
+      {isSiteDark && <GatsbyImage
+        image={dark.localFile?.childrenImageSharp[0]?.gatsbyImageData}
+        alt={dark?.localFile?.alternativeText}
+        className='poster'
+      />}
+      {isSiteDark || <GatsbyImage
+        image={light.localFile?.childrenImageSharp[0]?.gatsbyImageData}
+        alt={light?.localFile?.alternativeText}
+        className='poster'
+      />}
     </>
   );
 }
@@ -42,13 +45,67 @@ const HomeHero = () => {
         wedding
       }
 
-      allStrapiProject(limit: 2, filter: {hero: {eq: true}}) {
+      xmas: allStrapiProject(
+        filter: {
+          hero: {eq: true},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+          darkImage: {id: {ne: null}},
+        },
+        limit: 1
+        ) {
         nodes {
           id
           title
           slug
-          wedding_season
+          services {
+            slug
+          }
+
           image {
+            localFile {
+              childrenImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+          
+          darkImage {
+            localFile {
+              childrenImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
+        }
+      }
+
+      wedding: allStrapiProject(
+        filter: {
+          hero: {eq: true},
+          services: {elemMatch: {slug: {eq: "wedding"}}},
+          darkImage: {id: {ne: null}}
+        },
+        limit: 1
+      ) {
+        nodes {
+          id
+          title
+          slug
+          services {
+            slug
+          }
+
+          image {
+            localFile {
+              childrenImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
+          
+          darkImage {
             localFile {
               childrenImageSharp {
                 gatsbyImageData
@@ -57,40 +114,38 @@ const HomeHero = () => {
           }
         }
       }
+
     }
   `)
-  // const weddingHero = allStrapiProject.nodes.map
-
-  let season = data.strapiSeason
-  let allProjects = data.allStrapiProject.nodes
-
-  let weddingHero = allProjects.filter(project => project.wedding_season === true)
-  let holidayHero = allProjects.filter(project => project.wedding_season === false)
 
   return (
-    <>
-      <div className="village-container">
-        {season.wedding === true ? (
-          <>
-            {weddingHero.map(project => (
-              <Link to={`/project/${project.slug}`} key={project.id}>
-                <HeroImage />
-                <p>{project.title} See the Project</p>
-              </Link>
-            ))}
-          </>
-        ) : (
-          <>
-            {holidayHero.map(project => (
-              <Link to={`/project/${project.slug}`} key={project.id}>
-                <Village />
-                <p>{project.title} See the Project</p>
-              </Link>
-            ))}
-          </>
-        )}
-      </div>
-    </>
+    <div className="village-container">
+      {data.strapiSeason.wedding === true ? (
+        <>
+          {data.wedding.nodes.map(project => (
+            <Link to={`/project/${project.slug}`} key={project.id}>
+              <SchemeImage
+                light={project.image}
+                dark={project.darkImage}
+              />
+              <p>{project.title} See the Project</p>
+            </Link>
+          ))}
+        </>
+      ) : (
+        <>
+          {data.xmas.nodes.map(project => (
+            <Link to={`/project/${project.slug}`} key={project.id}>
+              <SchemeImage
+                light={project.image}
+                dark={project.darkImage}
+              />
+              <p>{project.title} See the Project</p>
+            </Link>
+          ))}
+        </>
+      )}
+    </div>
   )
 }
 

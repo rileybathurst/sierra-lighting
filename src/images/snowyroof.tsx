@@ -10,6 +10,7 @@ const SnowyRoof = () => {
     <GatsbyImage
       image={image?.localFile?.childImageSharp?.gatsbyImageData}
       alt={title}
+      className="poster"
     />
   );
 };

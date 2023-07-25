@@ -30,23 +30,20 @@ export const query = graphql`
       }
 
       gallery {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [960, 1840]
+                width: 960
+            )
+          }
+          url
+        }
         alternativeText
       }
 
       lights {
-        name
-        id
-        slug
-        excerpt
-
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
+        ...lightCard
       }
 
       areas {
@@ -73,6 +70,20 @@ export const query = graphql`
 
     }
 
+    triptych: allStrapiLight(limit: 3, filter: {projects: {elemMatch: {slug: {eq: "red"}}}}) {
+      nodes {
+        ...lightCard
+      }
+    }
+
+    additional: allStrapiLight(skip: 3, filter: {projects: {elemMatch: {slug: {eq: "red"}}}}) {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+
     allStrapiProject(filter: {slug: {nin: [$slug] }}) {
       nodes {
         title
@@ -93,15 +104,20 @@ export const query = graphql`
         }
       }
     }
+
   }
 `
 
 const ProjectPage = ({ data }) => {
   const project = data.strapiProject;
+  const triptych = data.triptych.nodes;
+  const additional = data.additional.nodes;
   const other = data.allStrapiProject;
   return (
     <ProjectView
       project={project}
+      triptych={triptych}
+      additional={additional}
       other={other}
     />
   );

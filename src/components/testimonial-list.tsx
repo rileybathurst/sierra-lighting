@@ -1,4 +1,5 @@
 // Only used once on the homepage as it has a query I wanted to abstract out.
+// ? link back to the project the testiominal is about?
 
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
@@ -9,7 +10,7 @@ function TestimonialList() {
 
   const { allStrapiTestimonial } = useStaticQuery(graphql`
   query TestimonialListQuery {
-    allStrapiTestimonial(limit: 3) {
+    allStrapiTestimonial(limit: 3, sort: {position: ASC}) {
       nodes {
         id
         customer
@@ -18,6 +19,7 @@ function TestimonialList() {
         createdAt
         stars
         title
+        position
       }
     }
   }
@@ -39,7 +41,7 @@ function TestimonialList() {
           {/* // TODO: className="together" is a bad name */}
           <div className="together">
             <h3 className="range">{testimonial.customer}</h3>
-            <p>{testimonial.platform}</p>
+            <p>{testimonial.position}</p>
           </div>
         </li>
       ))}

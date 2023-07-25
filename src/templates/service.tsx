@@ -107,7 +107,7 @@ const ServiceView = ({ data }) => {
           <h5 className="range">
             <Link
               // ! I think this link is wrong or the page isnt built yet
-              to={`${data.strapiService.name}/wedding-lights`}
+              to={`/lights/${data.strapiService.slug}`}
               className="link--subtle">
               View all other lights
             </Link>
@@ -176,6 +176,7 @@ export const query = graphql`
     strapiService(slug: {eq: $slug}) {
       id
       name
+      slug
       description {
         data {
           description
@@ -187,7 +188,10 @@ export const query = graphql`
       }
     }
 
-    allStrapiLight(filter: {services: {elemMatch: {slug: {eq: $slug}}}}) {
+    allStrapiLight(
+      limit: 3,
+      filter: {services: {elemMatch: {slug: {eq: $slug}}}}
+      ) {
       nodes {
         ...lightCard
       }

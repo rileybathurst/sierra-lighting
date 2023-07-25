@@ -10,6 +10,7 @@ const IndoorWedding = () => {
     <GatsbyImage
       image={image?.localFile?.childImageSharp?.gatsbyImageData}
       alt={title}
+      className="poster"
     />
   );
 };

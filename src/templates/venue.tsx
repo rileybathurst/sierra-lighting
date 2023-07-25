@@ -1,13 +1,12 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
+import Card from '../components/card';
 import StateAbbreviation from "../components/state-abbreviation";
 import Website from "../components/website";
 import IfHero from "../components/ifHero";
@@ -16,6 +15,7 @@ import TestimonialRanking from "../components/testimonial-ranking";
 
 function Use(props) {
   // TODO: heavy handed way of doing this until I have filled out venue uses
+  // This can now be done with services
   if (props.slug === 'blue') {
     return null;
   } else {

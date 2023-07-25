@@ -1,4 +1,4 @@
-// TODO: move the content to the CMS
+// ! this page is going to come from gatsby node soon
 
 import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
@@ -7,7 +7,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import WeddingProjects from "../components/wedding-projects";
+// import WeddingProjects from "../components/wedding-projects";
 import Logistics from "../components/logistics";
 
 import BistroLights from "../images/bistro-lights";
@@ -172,7 +172,8 @@ const WeddingPage = () => {
         </div>
       </main>
 
-      <WeddingProjects />
+      {/* // ! get the projects back */}
+      {/* <WeddingProjects /> */}
 
       <Footer />
     </>

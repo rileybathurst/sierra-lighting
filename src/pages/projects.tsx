@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -8,40 +7,70 @@ import Footer from "../components/footer";
 import Card from "../components/card";
 import { CardType } from "../types/card";
 
+function Loop(props: any) {
+
+  // console.log(props.service);
+
+  if (props.service.projects.length > 0) {
+    return (
+      <div key={props.service.id}>
+        <div className="measure">
+          <hr />
+          <h2>{props.service.name} Projects</h2>
+          {/* // TODO: markdown this */}
+          {/* // TODO: give some space below */}
+          <section>
+            <p>{props.service?.description.data.description}</p>
+          </section>
+        </div>
+        <div className="deck">
+          {props.service.projects.map((project: CardType) => (
+            <Card
+              card={project}
+              breadcrumb="project"
+            />
+          ))}
+        </div>
+        <div className="measure">
+          {/* // TODO: make a big link style here */}
+          <h3>
+            <Link to={`/${props.service.slug}`} className="link_subtle">
+              Learn more about our work on {props.service.name} lighting
+            </Link>
+          </h3 >
+        </div >
+      </div>
+    )
+  } else {
+    return null
+  }
+}
+
 const ProjectsPage = () => {
-  const data = useStaticQuery(graphql`
+
+  const { allStrapiService } = useStaticQuery(graphql`
     query ProjectsQuery {
-      residential: allStrapiProject(
-        filter: { service: { eq: "residential" } }
-      ) {
+
+      allStrapiService {
         nodes {
-          ...projectCard
+          id
+          name
+          slug
+          description {
+            data {
+              description
+            }
+          }
+
+          projects {
+            ...projectCard
+          }
+
         }
       }
 
-      commercial: allStrapiProject(filter: { service: { eq: "commercial" } }) {
-        nodes {
-          ...projectCard
-        }
-      }
-
-      wedding: allStrapiProject(filter: { service: { eq: "wedding" } }) {
-        nodes {
-          ...projectCard
-        }
-      }
     }
   `);
-
-  let residential = data.residential;
-  let commercial = data.commercial;
-  let wedding = data.wedding;
-
-  let projects = [
-    ...residential.nodes,
-    ...commercial.nodes,
-    ...wedding.nodes,
-  ];
 
   return (
     <>
@@ -52,54 +81,17 @@ const ProjectsPage = () => {
       />
       <Header />
 
-
-
       <main className="measure">
 
         {/* // TODO: this can be looped I think I want to add the service compent first */}
         <h1>Projects</h1>
-        <p>{/* //TODO: put a description here */}</p>
-
-        <h3>Residential</h3>
-        <div className="deck">
-          {residential.nodes.map((project: CardType) => (
-            <div key={project.id}>
-              <Card
-                card={project}
-                breadcrumb="project"
-              />
-            </div>
-          ))}
-        </div>
-
-        <hr />
-
-        <h3>Commercial</h3>
-        <div className="deck">
-          {commercial.nodes.map((project: CardType) => (
-            <div key={project.id}>
-              <Card
-                card={project}
-                breadcrumb="project"
-              />
-            </div>
-          ))}
-        </div>
-
-        <hr />
-
-        <h3>Wedding</h3>
-        <div className="deck">
-          {wedding.nodes.map((project: CardType) => (
-            <div key={project.id}>
-              <Card
-                card={project}
-                breadcrumb="project"
-              />
-            </div>
-          ))}
-        </div>
+        {/* //TODO: eyebrow */}
+        <p>A gallery of some of our past work. Photos of residential and commercial displays in Reno, Tahoe, Truckee, Martis Camp, Lahontan, Grays Crossing, Old Greenwood, Somersett, Caughlin Ranch, Verdi, Damonte Ranch, Galena, Montreux, Incline Village, and more!</p>
       </main>
+
+      {allStrapiService.nodes.map((service: any) => (
+        <Loop service={service} />
+      ))}
 
       <Footer />
     </>
