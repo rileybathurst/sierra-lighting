@@ -40,7 +40,7 @@ const FooterList = () => (
       <li key="areas"><Link to="/areas">Service Areas</Link></li>
     </ul>
 
-    <ul id="contact">
+    <ul id="contacts">
       {/* // TODO: contact also needs the subtle link */}
       <li key="contact" className=""><Link to="/contact"><strong>Contact</strong></Link></li>
       {/* <li key="work"><Link to="/work">Work with us</Link></li> */}
