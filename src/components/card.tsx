@@ -23,10 +23,17 @@ function Image(props: {
   image: any;
   venueImage: any;
   profileImage: any;
+  title: string | undefined;
+  name: string | undefined;
 }) {
 
   // this broke after 2
   // var image = props?.image ? props?.image : props?.venueImage;
+
+  if (props.image?.alternativeText === null) {
+    let name = props.name ? props.name : props.title;
+    console.log(`${name} image is missing an alt tag`);
+  }
 
   if (props.profileImage) {
     var image = props?.profileImage;
@@ -43,7 +50,7 @@ function Image(props: {
           image?.localFile?.childImageSharp
             ?.gatsbyImageData
         }
-        alt={image?.alternativeText}
+        alt={image?.alternativeText || props.title || props.name}
       />
     </>
   )
@@ -51,12 +58,16 @@ function Image(props: {
 
 function Breadcrumb(props: {
   breadcrumb: ["light" | "vendor" | "service"];
-  slug: string;
+  slug: string | undefined;
+  className?: string | undefined;
   children: React.ReactElement;
 }) {
   if (props.breadcrumb) {
     return (
-      <Link to={`/${props.breadcrumb}/${props.slug}`}>
+      <Link
+        to={`/${props.breadcrumb}/${props.slug}`}
+        className={props.className}
+      >
         {props.children}
       </Link>
     )
@@ -85,14 +96,18 @@ const Card = (props: {
 }) => {
   return (
     <section className="card">
-      {/* // TODO: add the link including the breadcrumb */}
-      {/* <Link to={`/${props.card.slug}`}> */}
-      <Image
-        image={props.card?.image}
-        venueImage={props.card?.venueImage}
-        profileImage={props.card?.profile}
-      />
-      {/* </Link> */}
+      <Breadcrumb
+        slug={props.card.slug}
+        breadcrumb={props.breadcrumb}
+        className="image"
+      >
+        <Image
+          image={props.card?.image}
+          venueImage={props.card?.venueImage}
+          profileImage={props.card?.profile}
+          name={props.card.name} title={props.card.title}
+        />
+      </Breadcrumb>
       <div className="paper">{/* stay gold */}</div>
       <div className="content">
         <hr />

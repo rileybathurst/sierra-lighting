@@ -18,24 +18,8 @@ const WorkPage = () => {
 
       <Header />
 
-      <div className="measure">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">Work</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
-
       <Work />
       <main className="measure">
-
 
         <h2 className="crest">Hiring Now</h2>
         <h1 className="range">Jobs</h1>

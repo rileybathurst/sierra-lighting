@@ -308,11 +308,8 @@ const ProjectView = ({ project, triptych, additional, other }) => {
       </div>
 
       <GatsbyImage
-        image={
-          project?.image?.localFile?.childImageSharp
-            ?.gatsbyImageData
-        }
-        alt={project.image?.alternativeText}
+        image={project?.image?.localFile?.childImageSharp?.gatsbyImageData}
+        alt={project.image?.alternativeText || project.title}
         className="poster"
       />
 
@@ -339,15 +336,15 @@ const ProjectView = ({ project, triptych, additional, other }) => {
         name={project.title}
       /> */}
 
-      <Console log={triptych} />
+      {/* <Console log={triptych} /> */}
       <Triptych
         triptych={triptych}
         name={project.title}
       />
+
       <Additional
         additional={additional}
       />
-
 
       <Other
         needed={project.lights}

@@ -136,7 +136,7 @@ const ResidentialPage = () => {
 
         <div className="measure">
           <h5 className="elbrus">
-            <Link to="/lights/residential-christmas-lights" className="link--subtle">
+            <Link to="/lights/residential" className="link--subtle">
               View all other Residenital Christmas lights
             </Link>
           </h5>

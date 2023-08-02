@@ -10,6 +10,7 @@ const Work = () => {
     <GatsbyImage
       image={image?.localFile?.childImageSharp?.gatsbyImageData}
       alt={title}
+      className="poster"
     />
   );
 };

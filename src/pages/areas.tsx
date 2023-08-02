@@ -1,4 +1,5 @@
 // TODO these could possibly have the bylines with the names
+// css calc on the inset?
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';

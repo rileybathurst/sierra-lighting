@@ -12,15 +12,16 @@ function ResultList(props) {
     return (
       <>
         <h3 className="measure">Search Results</h3>
-        <ul className="deck">
+        <div className="deck">
           {props.results.map(result => (
             <div key={result.id}>
               <Card
                 card={result}
+                breadcrumb="light"
               />
             </div>
           ))}
-        </ul>
+        </div>
 
         <hr className="measure" />
         <h3 className="measure">All Lights</h3>

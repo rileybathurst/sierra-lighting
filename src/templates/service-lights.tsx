@@ -7,11 +7,6 @@ import Footer from '../components/footer';
 import Grouploop from '../components/grouploop';
 import SEO from '../components/seo';
 
-function Console(props) {
-  console.log(props.log);
-  return null;
-}
-
 const ServiceLightView = ({ data }) => {
 
   // ? this is written twice should I dry it out?

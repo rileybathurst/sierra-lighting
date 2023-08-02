@@ -32,23 +32,35 @@
     }
   }
 
-  .gatsby-image-wrapper {
+  .image {
     grid-row: 1/3;
     border-radius: var(--card-radius);
     width: 80%;
     height: 100%;
-    aspect-ratio: 3/2;
+
     margin-inline: auto;
     border: 2px solid whitesmoke;
     box-shadow: var(--stratosphere);
+    border-radius: var(--card-radius);
+    transition: transform 0.5s ease;
 
     @media (prefers-color-scheme: dark) {
       border-color: hsl(var(--denim), 12%, 12%);
     }
 
+    .gatsby-image-wrapper {
+      aspect-ratio: 3/2;
+    }
+
     // safari needs this
     img {
       border-radius: var(--card-radius);
+    }
+
+    img:hover {
+      // TODO this breaks the border radius
+      transform: scale(1.05);
+      transition: transform 0.5s ease;
     }
   }
 

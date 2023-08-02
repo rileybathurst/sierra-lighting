@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
@@ -9,36 +9,9 @@ import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
+import { CardType } from "../types/card";
 
-// ! this currently isnt changing anything
-function IfHero(props) {
-  if (props.hero) {
-    const biggy = props.hero?.localFile?.childImageSharp?.gatsbyImageData?.width;
-    // this isnt dry but variables didnt like me so I ditched them
-
-    if (biggy <= 960) {
-      return (
-        <GatsbyImage
-          image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.hero?.alternativeText}
-          className=''
-        />
-      );
-    } else {
-      return (
-        <GatsbyImage
-          image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.hero?.alternativeText}
-          className=''
-        />
-      )
-    }
-  } else {
-    return null;
-  }
-}
-
-function ReactDescription(props) {
+function ReactDescription(props: { bio: { data: { bio: string; }; }; }) {
   if (props.bio) {
     return <ReactMarkdown children={props.bio.data.bio} remarkPlugins={[remarkGfm]} />;
   } else {
@@ -46,7 +19,10 @@ function ReactDescription(props) {
   }
 }
 
-function IfProjects(props) {
+function IfProjects(props: {
+  projects: string;
+  name: string;
+}) {
   if (props.projects.length > 0) {
     return (
       <div className="measure">
@@ -59,7 +35,7 @@ function IfProjects(props) {
   }
 }
 
-function WideVsTall(props) {
+function WideVsTall(props: { width: number; height: number; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | null | undefined; bio: any; hero: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; }; }) {
   if (props.width >= props.height) {
     // console.log('wide');
     return (
@@ -70,7 +46,7 @@ function WideVsTall(props) {
         </div>
         <GatsbyImage
           image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.hero?.alternativeText}
+          alt={props?.hero?.alternativeText || props.name}
           className=''
         />
       </section>
@@ -85,7 +61,7 @@ function WideVsTall(props) {
         </div>
         <GatsbyImage
           image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.hero?.alternativeText}
+          alt={props?.hero?.alternativeText || props.name}
           className=''
         />
       </section>
@@ -107,20 +83,14 @@ const TeamView = ({ team }) => {
       <div className="measure">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
+            <Link itemProp="item" to="/team">
+              <span itemProp="name">Team</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="1" />
           </li>
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/team">
-              <span itemProp="name">Team</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="2" />
-          </li>
-
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <span itemProp="name">{team.name}</span>
-            <meta itemProp="position" content="3" />
+            <meta itemProp="position" content="2" />
           </li>
         </ol>
         <hr />
@@ -141,7 +111,7 @@ const TeamView = ({ team }) => {
 
       {/* // TODO this needs an if */}
       <div className="deck">
-        {team.projects.map((project) => (
+        {team.projects.map((project: CardType) => (
           <div key={project.id}>
             <Card
               card={project}

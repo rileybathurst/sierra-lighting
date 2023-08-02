@@ -85,7 +85,7 @@ const ServiceView = ({ data }) => {
         <div className="measure">
           <h3 className="crest">Bringing the shine</h3>
           <h2 className="ridge mixta">
-            <Link to="/lights/wedding-lights" className="link--subtle">
+            <Link to="/lights/wedding" className="link--subtle">
               Lighting Styles
             </Link>
           </h2>
