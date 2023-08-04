@@ -5,6 +5,9 @@ import { useStrapiBistroLights } from "../hooks/use-strapi-bistrolights";
 const BistroLights = () => {
 
   const { title, image } = useStrapiBistroLights()
+  if (title === undefined) {
+    console.warn('No title found for BistroLights');
+  }
 
   return (
     <GatsbyImage

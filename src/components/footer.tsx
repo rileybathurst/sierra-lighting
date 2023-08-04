@@ -176,22 +176,14 @@ const Footer = () => {
       <SocialIcons />
 
 
-      <div className="pelican">
-        <hr />
-        <Season season="wedding">
-          <div className="footer_list whichseason_wedding">
-            <FooterList />
-          </div>
+      <hr className="pelican" />
+      <div className="footer_list">
+        <Season>
+          <FooterList />
         </Season>
-
-        <Season season="holiday">
-          <div className="footer_list whichseason_holiday">
-            <FooterList />
-          </div>
-        </Season>
-
-        <hr />
       </div>
+
+      <hr className="pelican" />
 
       <div className="footer-copyright">
         <h4 className="sr-only footer-copyright__mind-the-gap" itemProp="name">

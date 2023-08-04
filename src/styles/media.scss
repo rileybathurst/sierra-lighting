@@ -219,3 +219,26 @@ header svg:active {
     transform: rotate(270deg); // Rotate around circle
   }
 }
+
+/*------------------*/
+//  #AVATAR
+/*------------------*/
+
+.team-page .avatar-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar {
+  box-shadow: var(--troposphere);
+  border-radius: var(--border-radius);
+  border-radius: 50%;
+  border: 1px solid whitesmoke;
+  margin-block-end: 1.5rem;
+  margin-inline: auto;
+  aspect-ratio: 1;
+  max-width: 80%;
+  @media (min-width: $book) {
+    max-width: 20rem;
+  }
+}

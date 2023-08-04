@@ -6,6 +6,10 @@ const WestShoreWedding = () => {
 
   const { title, image } = useStrapiWestShoreWedding()
 
+  if (title === undefined) {
+    console.warn('No title found for WestShoreWedding');
+  }
+
   return (
     <GatsbyImage
       image={image?.localFile?.childImageSharp?.gatsbyImageData}

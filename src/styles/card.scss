@@ -37,12 +37,7 @@
     border-radius: var(--card-radius);
     width: 80%;
     height: 100%;
-
     margin-inline: auto;
-    border: 2px solid whitesmoke;
-    box-shadow: var(--stratosphere);
-    border-radius: var(--card-radius);
-    transition: transform 0.5s ease;
 
     @media (prefers-color-scheme: dark) {
       border-color: hsl(var(--denim), 12%, 12%);
@@ -50,6 +45,12 @@
 
     .gatsby-image-wrapper {
       aspect-ratio: 3/2;
+      width: 100%;
+      border-radius: var(--card-radius);
+      border: 2px solid whitesmoke;
+      box-shadow: var(--stratosphere);
+      border-radius: var(--card-radius);
+      transition: transform 0.5s ease;
     }
 
     // safari needs this

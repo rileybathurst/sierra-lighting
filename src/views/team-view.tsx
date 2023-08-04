@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
@@ -13,7 +13,7 @@ import { CardType } from "../types/card";
 
 function ReactDescription(props: { bio: { data: { bio: string; }; }; }) {
   if (props.bio) {
-    return <ReactMarkdown children={props.bio.data.bio} remarkPlugins={[remarkGfm]} />;
+    return <ReactMarkdown children={props.bio} remarkPlugins={[remarkGfm]} />;
   } else {
     return null;
   }
@@ -32,40 +32,6 @@ function IfProjects(props: {
     );
   } else {
     return null;
-  }
-}
-
-function WideVsTall(props: { width: number; height: number; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | null | undefined; bio: any; hero: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData; }; }; alternativeText: string; }; }) {
-  if (props.width >= props.height) {
-    // console.log('wide');
-    return (
-      <section className="wide">
-        <div>
-          <h1 itemProp="name">{props.name}</h1>
-          <ReactDescription bio={props.bio} />
-        </div>
-        <GatsbyImage
-          image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.hero?.alternativeText || props.name}
-          className=''
-        />
-      </section>
-    )
-  } else {
-    // console.log('tall');
-    return (
-      <section className="tall">
-        <div className="tall__text">
-          <h1 itemProp="name">{props.name}</h1>
-          <ReactDescription bio={props.bio} />
-        </div>
-        <GatsbyImage
-          image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.hero?.alternativeText || props.name}
-          className=''
-        />
-      </section>
-    )
   }
 }
 
@@ -97,19 +63,18 @@ const TeamView = ({ team }) => {
       </div>
 
       <main className="measure team-page" itemScope itemType="https://schema.org/Person">
-        <WideVsTall
-          height={team?.avatar?.localFile?.childrenImageSharp[0]?.original?.height}
-          width={team?.avatar?.localFile?.childrenImageSharp[0]?.original?.width}
-          url={team?.avatar?.localFile?.url}
-          name={team.name}
-          bio={team.bio}
-          hero={team?.avatar}
-        />
+        <div className="avatar-wrapper">
+          <GatsbyImage
+            image={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={team?.avatar?.alternativeText || team.name}
+            className='avatar'
+          />
+        </div>
+        <h1 itemProp="name">{team.name}</h1>
+        <ReactDescription bio={team.bio.data.bio} />
       </main>
 
       <IfProjects projects={team.projects} name={team.name} />
-
-      {/* // TODO this needs an if */}
       <div className="deck">
         {team.projects.map((project: CardType) => (
           <div key={project.id}>

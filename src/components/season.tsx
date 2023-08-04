@@ -1,26 +1,21 @@
 import * as React from "react"
 import { useStrapiSeason } from "./use-strapi-season";
 
-function Season(props) {
+function Season({ children }) {
   // useStrapiSeason() // returns true for wedding
-  let season = props.season;
-  // console.log(season);
 
-  if (useStrapiSeason() && season === "wedding") {
+  if (useStrapiSeason()) {
     return (
-      <>
-        {props.children}
-      </>
+      <ul className="wedding">
+        {children}
+      </ul>
     )
-  } else if (useStrapiSeason() === false && season === "holiday") {
-
-    return (
-      <>
-        {props.children}
-      </>
-    );
   } else {
-    return null;
+    return (
+      <ul className="holiday">
+        {children}
+      </ul>
+    );
   }
 }
 

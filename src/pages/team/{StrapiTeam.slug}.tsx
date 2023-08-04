@@ -32,32 +32,16 @@ export const query = graphql`
       }
 
       projects {
-        id
-        title
-        excerpt
-        slug
-
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData (
-                breakpoints: [222, 444, 880]
-                width: 222
-              )
-            }
-            url
-          }
-        }
+        ...projectCard
       }
     }
   }
 `
 
 const TeamPage = ({ data }) => {
-  const team = data.strapiTeam;
   return (
     <TeamView
-      team={team}
+      team={data.strapiTeam}
     />
   );
 };

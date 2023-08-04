@@ -18,19 +18,27 @@ export function useMediaQuery(query) {
   return matches;
 }
 
-function SchemeImage({ light, dark }) {
+function SchemeImage({ light, dark, title }) {
   let isSiteDark = useMediaQuery("(prefers-color-scheme: dark)");
+
+  if (light.localFile?.alternativeText === undefined) {
+    console.warn('hero in light has no alt text')
+  }
+
+  if (dark.localFile?.alternativeText === undefined) {
+    console.warn('hero in dark has no alt text')
+  }
 
   return (
     <>
       {isSiteDark && <GatsbyImage
         image={dark.localFile?.childrenImageSharp[0]?.gatsbyImageData}
-        alt={dark?.localFile?.alternativeText}
+        alt={dark?.localFile?.alternativeText || title}
         className='poster'
       />}
       {isSiteDark || <GatsbyImage
         image={light.localFile?.childrenImageSharp[0]?.gatsbyImageData}
-        alt={light?.localFile?.alternativeText}
+        alt={light?.localFile?.alternativeText || title}
         className='poster'
       />}
     </>
@@ -127,6 +135,7 @@ const HomeHero = () => {
               <SchemeImage
                 light={project.image}
                 dark={project.darkImage}
+                title={project.title}
               />
               <p>{project.title} See the Project</p>
             </Link>
@@ -139,6 +148,7 @@ const HomeHero = () => {
               <SchemeImage
                 light={project.image}
                 dark={project.darkImage}
+                title={project.title}
               />
               <p>{project.title} See the Project</p>
             </Link>

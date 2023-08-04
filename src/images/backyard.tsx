@@ -6,6 +6,10 @@ const Backyard = () => {
 
   const { title, image } = useStrapiBackyard()
 
+  if (title === undefined) {
+    console.warn('No title found for Backyard');
+  }
+
   return (
     <GatsbyImage
       image={image?.localFile?.childImageSharp?.gatsbyImageData}
