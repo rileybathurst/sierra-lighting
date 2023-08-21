@@ -175,8 +175,8 @@ const Footer = () => {
       {/* // TODO front page only flex arrangment */}
       <SocialIcons />
 
-
       <hr className="pelican" />
+
       <div className="footer_list">
         <Season>
           <FooterList />

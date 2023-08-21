@@ -27,8 +27,9 @@ ul {
 //  #FOOTER
 /*------------------*/
 
-.footer_list {
-  display: flex; // TODO: change this to a grid so it doesnt have the last card issue
+.footer_list > ul {
+  // this is a flex not a grid to be able to reorder with the season
+  display: flex;
   flex-flow: row wrap;
   padding-inline-start: 0;
   gap: 0.5rem;
@@ -36,15 +37,17 @@ ul {
   align-items: space-between;
 
   // theres not 1 number that does this its close but not there
-  > * {
+  > li {
     flex: 1 1 11rem;
 
     @media (min-width: $book) {
       flex: 1 1 9rem;
     }
-  }
 
-  > ul {
+    list-style: none;
+    line-height: 1.6rem; // based on the borders when hovered
+    padding-block-end: 0.5rem;
+    text-align: center;
     padding-inline-start: 0;
     border: 1px solid;
     border-color: hsl(var(--honey), 100%, 87%);
@@ -63,29 +66,28 @@ ul {
       border-color: hsl(var(--denim), 25%, 25%);
     }
 
-    > li {
-      list-style: none;
-      line-height: 1.6rem; // based on the borders when hovered
-      padding-block-end: 0.5rem;
-      text-align: center;
-      // > a is in links.scss to use @extends
+    ul {
+      padding-inline-start: 0;
+      li {
+        list-style: none;
+      }
+    }
+
+    // this is all just guess and check as its a weird spot
+    .footer_list--no_link {
+      padding-block-start: 0.5rem;
+      padding-block-end: 0.65rem;
     }
   }
 
-  // this is all just guess and check as its a weird spot
-  .footer_list--no_link {
-    padding-block-start: 0.5rem;
-    padding-block-end: 0.65rem;
-  }
-
-  > ul:last-child {
+  li:last-child {
     @media (min-width: $book) {
       border-right: none;
     }
   }
 }
 
-.whichseason_wedding {
+.footer_list > ul {
   .wedding {
     order: 1;
   }
@@ -94,7 +96,7 @@ ul {
     order: 2;
   }
 
-  > ul {
+  > li {
     order: 3;
   }
 }
