@@ -13,6 +13,12 @@ export const query = graphql`
       excerpt
       description
 
+      services {
+        id
+        name
+        slug
+      }
+
       light_groups {
         id
         name

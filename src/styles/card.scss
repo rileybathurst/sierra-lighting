@@ -47,21 +47,26 @@
       aspect-ratio: 3/2;
       width: 100%;
       border-radius: var(--card-radius);
-      border: 2px solid whitesmoke;
       box-shadow: var(--stratosphere);
       border-radius: var(--card-radius);
       transition: transform 0.5s ease;
+      border: 2px solid whitesmoke;
+
+      @media (prefers-color-scheme: dark) {
+        border-color: hsl(var(--denim), 25%, 25%);
+      }
     }
 
     // safari needs this
     img {
       border-radius: var(--card-radius);
+      transition: transform 0.5s ease;
     }
 
     img:hover {
       // TODO this breaks the border radius
+      // document which browsers support this
       transform: scale(1.05);
-      transition: transform 0.5s ease;
     }
   }
 

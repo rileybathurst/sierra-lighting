@@ -37,7 +37,7 @@ export const query = graphql`
         id
         name
         slug
-        description
+        excerpt
 
         venueImage {
           localFile {

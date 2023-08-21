@@ -7,40 +7,32 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 
-function Console(props) {
-  console.log(props.log);
-  return null;
-}
-
-
 function LightGroup(props) {
   if (props.group) {
     return (
-      <>
-        <div>
-          <Console log={props.group} />
-          {props.group.map((index) => {
-            return (
-              <div key={index.id}>
-                <hr className="measure" />
-                <h3 className="measure">
-                  Other Lights in {index.name}
-                </h3>
+      <div>
+        {props.group.map((index) => {
+          return (
+            <div key={index.id}>
+              <hr className="measure" />
+              <h3 className="measure">
+                Other Lights in {index.name}
+              </h3>
 
-                <div className="deck">
-                  {index.lights.map((light) => (
-                    <div key={light.id}>
-                      <Card
-                        card={light}
-                      />
-                    </div>
-                  ))}
-                </div>
+              <div className="deck">
+                {index.lights.map((light) => (
+                  <div key={light.id}>
+                    <Card
+                      card={light}
+                      breadcrumb="light"
+                    />
+                  </div>
+                ))}
               </div>
-            )
-          })}
-        </div>
-      </>
+            </div>
+          )
+        })}
+      </div>
     )
   } else {
     return null
@@ -67,62 +59,9 @@ function Group(props) {
   }
 }
 
-/* function Outdoor(props) {
-  if (props.outdoor) {
-    return (
-      <>Indoor-Outdoor</>
-    )
-  } else {
-    return (
-      <>Indoor</>
-    )
-  }
-} */
-
-/* function Useage(props) {
-  if (props.residentialchristmas && props.commercialchristmas && props.wedding) {
-    return (
-      <>Residential Christmas, Commercial Christmas, and Wedding</>
-    )
-  } else if (props.residentialchristmas && props.commercialchristmas) {
-    return (
-      <>Residential Christmas and Commercial Christmas</>
-    )
-  } if (props.residentialchristmas) {
-    return (
-      <>Residential Christmas</>
-    )
-  } else if (props.commercialchristmas) {
-    return (
-      <>Commercial Christmas</>
-    )
-  } else if (props.wedding) {
-    return (
-      <>Wedding</>
-    )
-  } else {
-    return null;
-  }
-} */
-
 function Projects(props): React.JSX.Element | null {
-  const yes = props.yes;
-  // console.log(yes.length);
-  const name = props.name;
 
-  // ! what are these indexes for? and why am I going up?
-  const map = yes.map((project, index) => {
-    return (
-      <div key={project.id}>
-        <Card
-          card={project}
-          breadcrumb="project"
-        />
-      </div>
-    );
-  });
-
-  if (props.yes.length !== 0) {
+  if (props.projects.length !== 0) {
     return (
       <>
         <div className="measure">
@@ -131,7 +70,12 @@ function Projects(props): React.JSX.Element | null {
         </div>
 
         <div className="deck">
-          {map}
+          <div key={project.id}>
+            <Card
+              card={project}
+              breadcrumb="project"
+            />
+          </div>
         </div>
       </>
     );
@@ -155,6 +99,7 @@ function Other(props) {
 
         <div className="deck">
           <div key={light.id}>
+            {/* // ! what broke here? */}
             <Card
               card={light}
               breadcrumb="light"
@@ -253,41 +198,50 @@ const LightView = ({ light, other }) => {
       <hr className="measure" />
       <div className="attributes">
 
-        <section className="attribute">
-          <h3 className="crest">Useage</h3>
-          <h4 className="range">
-            {/*             <Useage
-              residentialchristmas={light.residentialchristmas}
-              commercialchristmas={light.commercialchristmas}
-              wedding={light.wedding}
-            /> */}
-          </h4>
-        </section>
-
-        <section className="attribute">
-          <h3 className="crest">Location</h3>
-          <h4 className="range">
-            {/* <Outdoor outdoor={light.outdoor} /> */}
-          </h4>
-        </section>
-
-        <section className="attribute">
+        <section className="attribute" >
           <h3 className="crest">Group</h3>
           <h4 className="range">
             <Group group={light.light_groups} />
           </h4>
+        </section >
+
+        <section className="attribute">
+          <h3 className="crest">Useage</h3>
+          <h4 className="range">
+            <ul>
+              {light.services.map((service) => {
+                return (
+                  <li key={service.id} className="first-capital">
+                    <Link to={`/service/${service.slug}`}>
+                      {service.name}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </h4>
         </section>
 
-      </div>
+
+
+      </div >
 
       <Projects
-        yes={light.projects}
+        projects={light.projects}
         name={light.name}
       />
+
+
 
       <LightGroup
         group={light.light_groups}
       />
+
+
+
+
+
+
 
       {/*// TODO I keep breaking things and rebuilding 
       <Other
