@@ -59,23 +59,24 @@ function Group(props) {
   }
 }
 
-function Projects(props): React.JSX.Element | null {
-
+function Projects(props: React.JSX.Element | null) {
   if (props.projects.length !== 0) {
     return (
       <>
         <div className="measure">
           <hr />
-          <h3>Projects Using {name}</h3>
+          <h3>Projects Using {props.name}</h3>
         </div>
 
         <div className="deck">
-          <div key={project.id}>
-            <Card
-              card={project}
-              breadcrumb="project"
-            />
-          </div>
+          {props.projects.map((project) => (
+            <div key={project.id}>
+              <Card
+                card={project}
+                breadcrumb="project"
+              />
+            </div>
+          ))}
         </div>
       </>
     );
@@ -85,9 +86,7 @@ function Projects(props): React.JSX.Element | null {
 }
 
 {/* // * Break this up in a very large way almost to the point these could be components */ }
-
 function Other(props) {
-
 
   if (props.needed.length == 0) {
     return (
@@ -99,7 +98,6 @@ function Other(props) {
 
         <div className="deck">
           <div key={light.id}>
-            {/* // ! what broke here? */}
             <Card
               card={light}
               breadcrumb="light"
@@ -231,17 +229,9 @@ const LightView = ({ light, other }) => {
         name={light.name}
       />
 
-
-
       <LightGroup
         group={light.light_groups}
       />
-
-
-
-
-
-
 
       {/*// TODO I keep breaking things and rebuilding 
       <Other
