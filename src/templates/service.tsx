@@ -15,6 +15,7 @@ import BistroLights from "../images/bistro-lights";
 import OutdoorWedding from "../images/outdoorwedding";
 import WeddingBlueHour from "../images/weddingbluehour";
 import Card from '../components/card';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 // import Process from '../components/fragments/process';
 
@@ -45,7 +46,7 @@ const ServiceView = ({ data }) => {
 
       <main>
         <section className="measure">
-          <h1>
+          <h1 className='mixta'>
             {/* // TODO: needs a clampon the size */}
             {data.strapiService.name} Lighting
           </h1>
@@ -56,9 +57,17 @@ const ServiceView = ({ data }) => {
         </section>
 
         <section className="triple">
-          <BistroLights />
+          {data.strapiService?.triptych?.map((image) => (
+            <div key={image.id}>
+              <GatsbyImage image={image?.localFile?.childImageSharp?.gatsbyImageData}
+                alt=""
+                objectFit="fill"
+              />
+            </div>
+          ))}
+          {/* <BistroLights />
           <OutdoorWedding />
-          <WeddingBlueHour />
+          <WeddingBlueHour /> */}
         </section>
 
       </main>
@@ -185,6 +194,14 @@ export const query = graphql`
 
       projects {
         ...projectCard
+      }
+
+      triptych {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
       }
     }
 

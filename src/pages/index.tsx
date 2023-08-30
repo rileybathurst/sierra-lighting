@@ -36,7 +36,7 @@ const IndexPage = () => {
         image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg"
       />
       <Header />
-      <main>
+      <main className="margin-0">
 
         <div className="hero-container">
           <section className="hero">
