@@ -101,6 +101,20 @@ ul {
   }
 }
 
+.footer_list .holiday {
+  .wedding {
+    order: 2;
+  }
+
+  .christmas {
+    order: 1;
+  }
+
+  > li {
+    order: 3;
+  }
+}
+
 /*------------------*/
 //  #FAQs
 /*------------------*/
