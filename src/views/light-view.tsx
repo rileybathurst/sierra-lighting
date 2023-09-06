@@ -224,6 +224,8 @@ const LightView = ({ light, other }) => {
 
       </div >
 
+      {/* // TODO: this isnt working on wedding */}
+      {/* https://sierra.lighting/lights/wedding/ */}
       <Projects
         projects={light.projects}
         name={light.name}

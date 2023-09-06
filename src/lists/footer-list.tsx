@@ -10,7 +10,7 @@ const FooterList = () => (
     <li className="christmas">
       <ul>
         <li key="christmas" className="footer_list--no_link"><strong>Christmas</strong></li>
-        {/* // TODO: */}
+        {/* // ! this doesnt link anywhere */}
         <li key="christmas light"><Link to="#">Christmas Lights</Link></li>
         <li key="residential"><Link to="/residential">Residential</Link></li>
         <li key="commercial"><Link to="/commercial">Commercial</Link></li>

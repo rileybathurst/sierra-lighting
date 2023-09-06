@@ -4,7 +4,8 @@ form {
   margin-block-end: 1.5rem;
 
   input,
-  textarea {
+  textarea,
+  input[type="checkbox"] {
     margin-block-end: 0.5rem;
     display: block;
     width: calc(100% - 2rem);
@@ -30,5 +31,41 @@ form {
     width: calc(100% - 2rem);
     margin-block-end: 1.25rem;
     margin-inline: auto;
+  }
+
+  // https://moderncss.dev/pure-css-custom-checkbox-style/
+  input[type="checkbox"] {
+    width: auto;
+    margin-block-end: 0;
+    margin-inline-end: 0.5rem;
+    // outline: 1px solid hsl(var(--honey), 100%, 50%);
+    // appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+
+    border-color: hsl(var(--honey), 100%, 50%) !important;
+
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+  }
+
+  input:checked {
+    // ! testing
+    // outline: 2px solid pink;
+
+    border-color: hsl(var(--honey), 100%, 12.5%) !important;
+  }
+
+  .checkbox {
+    display: flex;
+    flex-direction: row-reverse;
+    // double backwards
+    justify-content: flex-end;
   }
 }

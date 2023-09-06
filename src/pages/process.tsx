@@ -27,6 +27,7 @@ const ProcessPage = () => {
       />
       <Header />
 
+      {/* // TODO: theres a way to do this with a drop down for what you are working on */}
       <main className="measure">
         <h2>Our Process</h2>
         {/* // TODO: this is probably a component */}

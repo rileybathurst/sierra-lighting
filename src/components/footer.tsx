@@ -160,6 +160,9 @@ const Footer = () => {
         <label>Message
           <textarea name="message" />
         </label>
+        <label className='checkbox'>I understand there is a minimum of $1,000 for new clients
+          <input type="checkbox" name="minimum" />
+        </label>
         <p className="sr-only">
           <label>
             Don&#39;t fill this out if you&#39;re human:
