@@ -1,4 +1,5 @@
 // ! this needs to move to static Query
+// TODO: add FAQ
 
 import React from 'react';
 import { graphql, Link } from 'gatsby'
@@ -10,17 +11,13 @@ import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
-// ! placeholder images
-import BistroLights from "../images/bistro-lights";
-import OutdoorWedding from "../images/outdoorwedding";
-import WeddingBlueHour from "../images/weddingbluehour";
 import Card from '../components/card';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
 // import Process from '../components/fragments/process';
 
 function ReactDescription(props) {
-  console.log(props.description)
+  // console.log(props.description)
   if (props?.description) {
     return (
       <ReactMarkdown
@@ -47,7 +44,7 @@ const ServiceView = ({ data }) => {
       <main>
         <section className="measure">
           <h1 className='mixta'>
-            {/* // TODO: needs a clampon the size */}
+            {/* // TODO: needs a clamp on the size */}
             {data.strapiService.name} Lighting
           </h1>
 
@@ -65,9 +62,6 @@ const ServiceView = ({ data }) => {
               />
             </div>
           ))}
-          {/* <BistroLights />
-          <OutdoorWedding />
-          <WeddingBlueHour /> */}
         </section>
 
       </main>
@@ -87,6 +81,11 @@ const ServiceView = ({ data }) => {
             </li>
           ))}
         </ol>
+        <p>
+          <Link to="/faq">
+            Learn more about our process on our FAQ page
+          </Link>
+        </p>
         <hr />
       </section>
 
@@ -114,12 +113,13 @@ const ServiceView = ({ data }) => {
 
         <div className="measure" >
           <h5 className="range">
-            <Link
+            {/* <Link
               // ! I think this link is wrong or the page isnt built yet
               to={`/lights/${data.strapiService.slug}`}
+              to={`/lights`}
               className="link--subtle">
               View all other lights
-            </Link>
+            </Link> */}
           </h5>
           <p>Have something particular in mind? Just ask!</p>
           <hr />
@@ -169,7 +169,6 @@ const ServiceView = ({ data }) => {
 
       {/* // TODO: Wedding Venues & Vendors as a big link I dont think we bring through any specific as cards */}
 
-
       <Footer />
 
     </>
@@ -186,6 +185,7 @@ export const query = graphql`
       id
       name
       slug
+      
       description {
         data {
           description
@@ -197,6 +197,7 @@ export const query = graphql`
       }
 
       triptych {
+        id
         localFile {
           childImageSharp {
             gatsbyImageData
@@ -221,3 +222,5 @@ export const query = graphql`
     }
   }
 `
+
+// excerpt

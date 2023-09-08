@@ -7,10 +7,7 @@ import { CardType } from "../types/card";
 
 const Grouploop = (props) => {
 
-  // ? copilot gave me this but im getting errors
-  // if (props.group[1].nodes?.length === 0) return null;
-
-  if (props.group[0]?.services.length > 0) {
+  if (props.group[1]?.nodes.length > 0) {
     return (
       <>
         <div className="measure">

@@ -1,8 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
 
-import ContactList from "./contact-list"
-
 const MenuList = () => (
   <ul>
     <li key="wedding"><Link to="/wedding">Wedding Lighting</Link></li>

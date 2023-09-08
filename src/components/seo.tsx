@@ -1,6 +1,7 @@
 // https://www.gatsbyjs.com/docs/add-seo-component/
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { IGatsbyImageData } from "gatsby-plugin-image"
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 import { useLocation } from "@reach/router";
@@ -28,47 +29,63 @@ function DescLength(props: { desc: any; }) {
 function IfSeoImage(props: { image: string | undefined; }) {
   // TODO: this could be a ternary
   if (props.image) {
+
+    let imagealt = props.image ? props.image : 'seo checking';
+
     return (
-      <img src={props.image} alt="seo checking" />)
+      <>
+        {/* // TODO: I should do more with the alt */}
+        <img src={props.image} alt={imagealt} />
+      </>
+    )
   } else {
     return null;
   }
 }
 
-function GetMeta(props: string) {
-  const [size, setSize] = useState(0);
-  const [reply, setReply] = useState('ok');
+// TODO: I think theres a way to query this but then I always have to query it
+// function GetMeta(image (image: IGatsbyImageData)) {
+function GetMeta(image: IGatsbyImageData) {
+  if (image.image) {
+    // console.log('image');
+    // console.log(image);
+    const [size, setSize] = useState(0);
+    const [reply, setReply] = useState('ok');
 
-  const link = props.link;
-  // console.log(link);
+    const link = image;
+    // console.log(link);
 
-  const img = new Image();
-  img.src = link;
+    const img = new Image();
+    img.src = image.image;
 
-  // console.log(img.naturalWidth);
+    // console.log(img.naturalWidth);
 
-  /*   useEffect(() => {
-      img.naturalWidth ? setSize(img.naturalWidth) : setSize(0);
-  
-      console.log(size);
-  
-    }, [img.naturalWidth]); */
+    /*   useEffect(() => {
+        img.naturalWidth ? setSize(img.naturalWidth) : setSize(0);
+    
+        console.log(size);
+    
+      }, [img.naturalWidth]); */
 
-  // this isnt right there should be a way of using effect for the timing but hack to get around it for now
-  setTimeout(() => {
-    setSize(img.naturalWidth)
-    if (size == 1200) {
-      setReply('good')
-    } else {
-      setReply('bad')
-    }
-  }, 100);
+    // this isnt right there should be a way of using effect for the timing but hack to get around it for now
+    setTimeout(() => {
+      setSize(img.naturalWidth)
+      if (size == 1200) {
+        setReply('good')
+      } else {
+        setReply('bad')
+      }
+    }, 100);
 
-  return (
-    <>
-      <span className={`${reply} key`}>width: {size} = {reply}</span>
-    </>
-  )
+    return (
+      <>
+        <span className={`${reply} key`}>width: {size} = {reply}</span>
+      </>
+    )
+  } else {
+    // console.log('no image');
+    return null;
+  }
 }
 
 // area served is coming from the home page list of areas.
@@ -122,7 +139,6 @@ const SEO = ({
           lang: 'en-US',
           // itemScope: undefined, // as was before boolean
           itemScope: `${seo.itemScope}`, // this seems to be working
-
           itemType: `${seo.itemType}`,
         }}
       >
@@ -172,8 +188,7 @@ const SEO = ({
             <p>Description charachter length = <DescLength desc={seo.description} /></p>
             {/* // ? why does this need to be ogImage? */}
             {/* // regular image doubles the url */}
-            {/* <img src={seo.ogImage} alt="seo checking" /> */}
-            <p key="image"><span className="key">Image</span> = <GetMeta link={seo.ogImage} /></p>
+            <p key="image"><span className="key">Image</span> = <GetMeta image={seo.ogImage} /></p>
             <IfSeoImage image={seo.ogImage} />
           </div>
         ) : null

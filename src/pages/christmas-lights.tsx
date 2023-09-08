@@ -1,3 +1,5 @@
+// * this is a weird extra page as it has to query both sets
+
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
@@ -7,21 +9,38 @@ import Footer from "../components/footer";
 import Grouploop from "../components/grouploop";
 import LightSearch from "../components/light-search";
 
-function Console(props) {
-  console.log(props.log);
-  return null;
+function Filter({ groups }) {
+  let filtered = groups.filter((group) => group[1].nodes.length > 0);
+
+  return (
+    filtered.map((gp) => {
+      return (
+        <li>
+          <Link to={`#${gp[0].slug}`}>
+            {gp[0].name}
+          </Link>
+        </li>
+      )
+    })
+  )
 }
 
 const lightsPage = () => {
 
   const data = useStaticQuery(graphql`
-    query LightsQuery {
+    query ChristmasLightsQuery {
 
       overhead: strapiLightGroup(slug: {eq: "overhead"}) {
         ...lightGroup
       }
 
-      overheadlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "overhead"}}}}) {
+      overheadlights: allStrapiLight(
+        sort: {order: ASC},
+        filter: {
+          light_groups: {elemMatch: {slug: {eq: "overhead"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+          }
+        ) {
         nodes {
           ...lightCard
         }
@@ -31,7 +50,13 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      accentlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "accent"}}}}) {
+      accentlights: allStrapiLight(
+        sort: {order: ASC},
+        filter: {
+          light_groups: {elemMatch: {slug: {eq: "accent"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+          }
+        ) {
         nodes {
           ...lightCard
         }
@@ -41,7 +66,13 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      dancelights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "dance"}}}}) {
+      dancelights: allStrapiLight(
+        sort: {order: ASC},
+        filter: {
+          light_groups: {elemMatch: {slug: {eq: "dance"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+        }
+      ) {
         nodes {
           ...lightCard
         }
@@ -51,7 +82,13 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      pipelights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "pipe-drape"}}}}) {
+      pipelights: allStrapiLight(
+        sort: {order: ASC},
+        filter: {
+          light_groups: {elemMatch: {slug: {eq: "pipe-drape"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+          }
+        ) {
         nodes {
           ...lightCard
         }
@@ -61,7 +98,13 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      pathlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "path"}}}}) {
+      pathlights: allStrapiLight(
+        sort: {order: ASC},
+        filter: {
+          light_groups: {elemMatch: {slug: {eq: "path"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+        }
+      ) {
         nodes {
           ...lightCard
         }
@@ -71,7 +114,13 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      treelights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "tree"}}}}) {
+      treelights: allStrapiLight(
+        sort: {order: ASC},
+        filter: {
+          light_groups: {elemMatch: {slug: {eq: "tree"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+        }
+      ) {
         nodes {
           ...lightCard
         }
@@ -81,7 +130,13 @@ const lightsPage = () => {
         ...lightGroup
       }
       
-      buildinglights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "building"}}}}) {
+      buildinglights: allStrapiLight(
+        sort: {order: ASC},
+        filter: {
+          light_groups: {elemMatch: {slug: {eq: "building"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+        }
+      ) {
         nodes {
           ...lightCard
         }
@@ -91,7 +146,13 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      greenerylights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "greenery"}}}}) {
+      greenerylights: allStrapiLight(
+        sort: {order: ASC},
+        filter: {
+          light_groups: {elemMatch: {slug: {eq: "greenery"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+        }
+      ) {
         nodes {
           ...lightCard
         }
@@ -101,7 +162,12 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      ornamentslights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "ornaments"}}}}) {
+      ornamentslights: allStrapiLight(
+        sort: {order: ASC},
+        filter: {light_groups: {elemMatch: {slug: {eq: "ornaments"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+        }
+      ) {
         nodes {
           ...lightCard
         }
@@ -111,13 +177,23 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      lanternlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "lantern"}}}}) {
+      lanternlights: allStrapiLight(
+        sort: {order: ASC},
+        filter: {
+          light_groups: {elemMatch: {slug: {eq: "lantern"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+        }
+      ) {
         nodes {
           ...lightCard
         }
       }
 
-      other: allStrapiLight(filter: {light_groups: {elemMatch: {slug: {eq: "lanterns"}}}}) {
+      other: allStrapiLight(
+        filter: {
+          light_groups: {elemMatch: {slug: {eq: "lanterns"}}},
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+        }) {
         nodes {
           ...lightCard
         }
@@ -186,6 +262,8 @@ const lightsPage = () => {
     data.lanternlights
   ]
 
+  // TODO: theres an other were not using as a fallback
+
   let groups = [
     overheadgroup,
     accentgroup,
@@ -201,9 +279,9 @@ const lightsPage = () => {
 
   let services = data.service.nodes;
 
-
   return (
     <>
+
       <Seo
         title="Lights | Sierra Lighting"
         description="When you're looking for custom, elegant, one of a kind ambiance for you wedding, look no further than Sierra Lighting. Creating beautiful displays is all we do! We also offer landscape lighting services to make your outdoor space shine all summer long with cafe lights, uplighting, and more."
@@ -220,29 +298,8 @@ const lightsPage = () => {
 
           <section className="deck">
             <div>
-              Filter by use:
-              <ul>
-                {services.map((service) => (
-                  <li key={service.id}>
-                    <Link to={`/${service.slug}/lights`}>
-                      {service.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p>or by type:</p>
-              <ul>
-                {groups.map((group) => (
-                  <li key={group[0].id}>
-                    {/* // TODO: slide */}
-                    <Link to={`#${group[0].slug}`}>
-                      {group[0].name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <p>Filter by type:</p>
+              <Filter groups={groups} />
             </div>
           </section>
         </div>
@@ -264,28 +321,6 @@ const lightsPage = () => {
             <Grouploop group={group} />
           </div>
         ))}
-
-        {/* <div className="measure">
-          <h2>Other Lights</h2>
-          <p>These lights are not part of a group, but are still available for rent.</p>
-        </div>
-        <div className="deck">
-          {other.nodes.map((light: CardType) => (
-            <div key={light.id}>
-              <Card card={light} breadcrumb="light" />
-            </div>
-          ))}
-        </div> */}
-
-        {/* <hr /> */}
-
-        {/*         <div className="deck">
-          {data.overorder.nodes.map((light: CardType) => (
-            <div key={light.id}>
-              <Card card={light} breadcrumb="light" />
-            </div>
-          ))}
-        </div> */}
 
       </main >
 

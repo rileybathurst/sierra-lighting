@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
-
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Logo from "../images/logo";
 import SocialIcons from "../components/social-icons";
 import FooterList from "../lists/footer-list";
@@ -51,7 +51,7 @@ function IfTeamImage(props) {
 const Footer = () => {
 
   // ? this seems a weird way to do this as it could just be hard coded
-  const [email, setEmail] = useState('info@sierra.lighting');
+  const [email, setEmail] = useState('');
 
   function subject(e) {
     setEmail(e.target.value);
@@ -97,9 +97,9 @@ const Footer = () => {
 
           <div className="contact-info">
             {/* // TODO: query this stuff */}
-            <p><a href="mailto:info@sierra.lighting"><span itemProp="email">info@sierra.lighting</span></a></p>
-            <p><a href="tel:+1-775-525-1898">Nevada Number: <span itemProp="telephone">(775) 525-1898</span></a></p>
-            <p><a href="tel:+1-530-414-9899">California Number: <span itemProp="telephone">(530) 414-9899</span></a></p>
+            <p><a href={`mailto:${useSiteMetadata().email}`}><span itemProp="email">{useSiteMetadata().email}</span></a></p>
+            <p><a href={`tel:${useSiteMetadata().telephone}`}>Phone: <span itemProp="telephone">{useSiteMetadata().telephone}</span></a></p>
+            {/* <p><a href="tel:+1-530-414-9899">California Number: <span itemProp="telephone">(530) 414-9899</span></a></p> */}
           </div>
         </section>
 

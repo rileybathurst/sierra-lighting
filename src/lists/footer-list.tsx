@@ -10,12 +10,14 @@ const FooterList = () => (
     <li className="christmas">
       <ul>
         <li key="christmas" className="footer_list--no_link"><strong>Christmas</strong></li>
-        {/* // ! this doesnt link anywhere */}
-        <li key="christmas light"><Link to="#">Christmas Lights</Link></li>
+
         <li key="residential"><Link to="/residential">Residential</Link></li>
         <li key="commercial"><Link to="/commercial">Commercial</Link></li>
-        {/* // TODO: wedding lights. Do I have to build a page thats both? */}
-        {/* <li key="services"><Link to="/services">Services</Link></li> */}
+        <li key="christmas light">
+          <Link to="/christmas-lights">
+            Christmas Lights
+          </Link>
+        </li>
       </ul>
     </li>
 
@@ -24,7 +26,7 @@ const FooterList = () => (
       <ul>
         {/* // TODO: make the top link a little more subtle */}
         <li key="wedding" className="link--subtle"><Link to="/wedding"><strong>Wedding</strong></Link></li>
-        <li key="wedding lights"><Link to="/lights/wedding">Wedding Lights</Link></li>
+        <li key="wedding lights"><Link to="/wedding/lights">Wedding Lights</Link></li>
         <li key="venues"><Link to="/venues">Venues</Link></li>
         <li key="vendors"><Link to="/vendors">Vendors</Link></li>
       </ul>

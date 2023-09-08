@@ -41,6 +41,10 @@ exports.createPages = ({ actions, graphql }) => {
     })
   }); // .then(result)
 
+  // why did I do this?
+  // this is slightly different that what it currently does
+  // it should actuall be service lights
+  // at the moment its just lights
   // ! Still working on this
   const getServiceLights = makeRequest(graphql, `
     {
@@ -56,7 +60,7 @@ exports.createPages = ({ actions, graphql }) => {
 
     result.data.allStrapiService.edges.forEach(({ node }) => {
       createPage({
-        path: `lights/${node.slug}`,
+        path: `${node.slug}/lights/`,
         component: path.resolve(`src/templates/service-lights.tsx`),
         context: {
           slug: node.slug,

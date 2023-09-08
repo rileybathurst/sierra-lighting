@@ -38,6 +38,7 @@ const strapiConfig = {
 };
 
 module.exports = {
+  graphqlTypegen: true,
   siteMetadata: {
     title: "Sierra Lighting",
     siteUrl: "https://sierra.lighting",
@@ -46,6 +47,7 @@ module.exports = {
       "Dependable holiday, landscape and events light installation in Reno, Truckee, Lake Tahoe, Carson City and Minden.", // 📣
     image: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣 Path to your image you placed in the 'static' folder
     ogImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
+    // ? is this now the wrong name?
     twitterImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
     openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 08:00-18:00',
     telephone: '(775) 525-1898', // nevada number
@@ -55,7 +57,7 @@ module.exports = {
     author: 'Sierra Lighting',
     paymentAccepted: 'Cash check venmo credit card',
     itemType: 'LocalBusiness', // ! I think this is more specific
-    priceRange: '$500-1500',
+    priceRange: '$1000-2500',
   },
   plugins: [
     // TODO: check in on the update

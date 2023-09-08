@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link, graphql, useStaticQuery } from 'gatsby';
+// import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 import Seo from "../components/seo";
 import Header from "../components/header";
@@ -40,6 +41,7 @@ const IndexPage = () => {
 
         <div className="hero-container">
           <section className="hero">
+            {/* // * shortened version of site description */}
             <h2 className="site_title">Dependable holiday, landscape and events light installation</h2>
 
             <HomeHero />
