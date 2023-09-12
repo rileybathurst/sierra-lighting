@@ -27,8 +27,8 @@ const FooterList = () => (
         {/* // TODO: make the top link a little more subtle */}
         <li key="wedding" className="link--subtle"><Link to="/wedding"><strong>Wedding</strong></Link></li>
         <li key="wedding lights"><Link to="/wedding/lights">Wedding Lights</Link></li>
-        <li key="venues"><Link to="/venues">Venues</Link></li>
-        <li key="vendors"><Link to="/vendors">Vendors</Link></li>
+        <li key="venues"><Link to="/venue">Venues</Link></li>
+        <li key="vendors"><Link to="/vendor">Vendors</Link></li>
       </ul>
     </li>
 

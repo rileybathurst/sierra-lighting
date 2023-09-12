@@ -93,7 +93,7 @@ const ServiceView = ({ data }) => {
         <div className="measure">
           <h3 className="crest">Bringing the shine</h3>
           <h2 className="ridge mixta">
-            <Link to="/lights/wedding" className="link--subtle">
+            <Link to={`/${data.strapiService.slug}/lights`} className="link--subtle">
               Lighting Styles
             </Link>
           </h2>

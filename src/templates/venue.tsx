@@ -72,7 +72,7 @@ function IfOther(props) {
         </div>
         <div className="measure">
           <h3 className="crest">Even More</h3>
-          <h2 className="range"><Link to='/venues' className="link--subtle">All Other Venues</Link></h2>
+          <h2 className="range"><Link to='/venue' className="link--subtle">All Other Venues</Link></h2>
         </div>
       </>
     );
@@ -81,7 +81,7 @@ function IfOther(props) {
       <>
         <div className="measure">
           <h3 className="crest">Looking for somewhere else?</h3>
-          <h2 className="range"><Link to='/venues' className="link--subtle">Other <Use slug={props.slug} /> Venues</Link></h2>
+          <h2 className="range"><Link to='/venue' className="link--subtle">Other <Use slug={props.slug} /> Venues</Link></h2>
         </div>
       </>
     )
@@ -137,7 +137,7 @@ const VenueView = ({ data }) => {
           </li>
 
           <li key='2' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/venues">
+            <Link itemProp="item" to="/venue">
               <span itemProp="name">Venues</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>

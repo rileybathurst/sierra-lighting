@@ -88,7 +88,7 @@ const VendorsPage = () => {
 
           <hr />
 
-          <h3><Link to="/vendors/photography">Photography</Link></h3>
+          <h3><Link to="/vendor/photography">Photography</Link></h3>
         </div>
 
         <div className="deck">
@@ -101,7 +101,7 @@ const VendorsPage = () => {
 
         <div className="measure">
           <hr />
-          <h3><Link to="/vendors/planning">Planning</Link></h3>
+          <h3><Link to="/vendor/planning">Planning</Link></h3>
         </div>
 
         <div className="deck">
@@ -114,7 +114,7 @@ const VendorsPage = () => {
 
         <div className="measure">
           <hr />
-          <h3><Link to="/vendors/production">Event Production</Link></h3>
+          <h3><Link to="/vendor/production">Event Production</Link></h3>
         </div>
 
         <div className="deck">
@@ -127,7 +127,7 @@ const VendorsPage = () => {
 
         <div className="measure">
           <hr />
-          <h3><Link to="/vendors/floral">Floral</Link></h3>
+          <h3><Link to="/vendor/floral">Floral</Link></h3>
         </div>
 
         <div className="deck">

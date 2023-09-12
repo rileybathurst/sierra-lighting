@@ -1,0 +1,23 @@
+.projects {
+  > * {
+    display: flex;
+    flex-direction: column;
+    padding-inline-start: 0; // reset
+
+    * {
+      order: 2;
+    }
+  }
+
+  .holiday {
+    .wedding {
+      order: 3;
+    }
+  }
+
+  .wedding {
+    .wedding {
+      order: 1;
+    }
+  }
+}

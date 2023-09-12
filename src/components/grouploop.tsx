@@ -12,12 +12,12 @@ const Grouploop = (props) => {
       <>
         <div className="measure">
           <hr />
-          <h2>
+          <h2 className="baseline-drop">
             <Link to={`/light-group/${props.group[0]?.slug}`}>
               {props.group[0]?.name}
             </Link>
           </h2>
-          <p>{props.group[0]?.excerpt}</p>
+          <p className="double-baseline-drop">{props.group[0]?.excerpt}</p>
           <Badges
             services={props.group[0]?.services}
           />

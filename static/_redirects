@@ -2,5 +2,8 @@
 
 ## https://docs.netlify.com/routing/redirects/redirect-options/
 
+/venues /venue
+/vendors /vendor
+
 /projects/wedding-projects/ /projects
 /projects/christmas-light-projects/ /projects
