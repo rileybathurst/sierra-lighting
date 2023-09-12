@@ -261,6 +261,16 @@ ol li {
 */
 
 .testimonials {
+  h4 {
+    margin-block-end: var(--line-height);
+  }
+
+  h4 span {
+    font-size: var(--vinson);
+    font-family: var(--josefin);
+    font-weight: 400;
+  }
+
   p {
     white-space: normal; // reset
   }

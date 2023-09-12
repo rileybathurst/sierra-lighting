@@ -13,17 +13,17 @@ function TestimonialLink(props) {
     // TODO if no vendor then maybe it has a platform
     return (
       <>
-        <h4 className='range' itemProp="name">{props.customer}</h4>
         <p className='crest'><Link to={`/vendor/${props.vendor.slug}`}>
           {props.vendor.name}
         </Link> - {props?.position}</p>
+        <h4 className='range' itemProp="name">{props.customer}</h4>
       </>
     )
   } else if (props.platform) {
     // console.log('platform');
     return (
       <>
-        <h4 className='range' itemProp="name">{props.customer}</h4> - {props?.platform}
+        <h4 className='range' itemProp="name">{props.customer} <span>- {props?.platform}</span></h4>
       </>
     );
   } else {
@@ -37,10 +37,10 @@ function TestimonialLink(props) {
 function ReviewRatings(props) {
   if (props.stars) {
     return (
-      <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
-        <p className="sr-only">
+      <div className="sr-only" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+        <p>
           <span itemProp="worstRating">1</span>
-          <span itemProp="ratingValue">{props.stars}</span>/
+          <span itemProp="ratingValue">{props.stars}</span><span>/</span>
           <span itemProp="bestRating">5</span>stars
         </p>
       </div>

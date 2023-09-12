@@ -103,8 +103,8 @@ function Testimonials(props) {
                   <p className='testimonial--quote_mark range'>&ldquo;</p>
                   <p>{testimonial.review}</p>
                   <figcaption>
-                    <h4 className='range'>{testimonial.customer}</h4>
                     <p className='crest'><strong>{props.venue}</strong> - {testimonial.position}</p>
+                    <h4 className='range'>{testimonial.customer}</h4>
                   </figcaption>
                 </blockquote>
               </figure>
