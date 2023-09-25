@@ -1,8 +1,5 @@
-// ! this needs to move to static Query
-
 import React from 'react';
 import { graphql, Link } from 'gatsby'
-import { GatsbyImage } from "gatsby-plugin-image"
 
 import Seo from "../components/seo";
 import Header from "../components/header";

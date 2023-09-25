@@ -87,7 +87,6 @@ header svg {
   }
 }
 
-// ! the color isnt right on the hover and needs an active state
 header svg:hover {
   fill: hsl(var(--honey), 100%, var(--dim));
 

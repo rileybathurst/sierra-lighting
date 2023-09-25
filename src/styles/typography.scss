@@ -162,8 +162,7 @@ hr {
 }
 
 hr.measure {
-  padding-inline: 1rem; // ! this doesnt work
-  // I think I need to nest it
+  padding-inline: 0;
 }
 
 .top-bar hr {

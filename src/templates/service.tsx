@@ -82,7 +82,7 @@ const ServiceView = ({ data }) => {
           ))}
         </ol>
         <p>
-          <Link to="/faq">
+          <Link to="/faqs">
             Learn more about our process on our FAQ page
           </Link>
         </p>

@@ -157,6 +157,9 @@ const Footer = () => {
         <label>Phone
           <input type="tel" name="tel" />
         </label>
+        <label>Address
+          <input type="text" name="address" />
+        </label>
         <label>Message
           <textarea name="message" />
         </label>

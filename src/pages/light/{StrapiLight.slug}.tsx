@@ -1,5 +1,3 @@
-// ! this now moves to gatsby node due to light group
-
 import * as React from "react"
 import { graphql } from "gatsby"
 import LightView from "../../views/light-view"

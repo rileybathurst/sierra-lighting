@@ -56,7 +56,7 @@ module.exports = {
     areaServed: 'tahoe', // Im doing a lot with this in seo.tsx
     author: 'Sierra Lighting',
     paymentAccepted: 'Cash check venmo credit card',
-    itemType: 'LocalBusiness', // ! I think this is more specific
+    itemType: 'LocalBusiness',
     priceRange: '$1000-2500',
   },
   plugins: [

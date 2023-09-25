@@ -104,6 +104,41 @@ const ServiceLightView = ({ data }) => {
 
   // TODO: Im going to need to do something with the order esepcially for xmas
 
+  // ! testing this seems to work
+  const items = [
+    { name: "Edward", value: 21 },
+    { name: "Sharpe", value: 37 },
+    { name: "And", value: 45 },
+    { name: "The", value: -12 },
+    { name: "Magnetic", value: 13 },
+    { name: "Zeros", value: 37 },
+  ];
+
+  // sort by value
+  let organized = items.sort((a, b) => a.value - b.value);
+  console.log(organized);
+
+  console.log(items.sort((a, b) => a.value - b.value));
+
+  // these have double arrays so they are a little more complex
+  console.log(groups);
+
+  console.log(groups[0][0].order);
+
+  // nope
+  let organizedgroups = groups.sort((a, b) => a[0].order - b[0].order);
+  console.log(organizedgroups);
+
+  console.log("🦄");
+
+  // these are the numbers I want to sort by
+  console.log(groups[0][0]?.order + groups[0][0]?.slug);
+  console.log(groups[1][0]?.order + groups[1][0]?.slug);
+  console.log(groups[2][0]?.order + groups[2][0]?.slug);
+  console.log(groups[3][0]?.order + groups[3][0]?.slug);
+
+  let organizedgroups2 = groups.sort((a, b) => a[0]?.order - b[0]?.order);
+
   return (
     <>
       <SEO
@@ -115,10 +150,9 @@ const ServiceLightView = ({ data }) => {
 
       <div className="measure">
         <ol className="breadcrumbs">
+          <li>{data.strapiService.name} Lighting&nbsp;/&nbsp;</li>
           <li>
-            <Link to="/lights">Lights</Link>&nbsp;/&nbsp;
-          </li>
-          <li>{data.strapiService.name} Lighting
+            <Link to="/lights">Lights</Link>
           </li>
         </ol>
         <hr />
@@ -126,7 +160,7 @@ const ServiceLightView = ({ data }) => {
 
       <main>
         <section className='measure'>
-          <h1>{data.strapiService.name} Lighting</h1>
+          <h1 className='mixta aconcagua'>{data.strapiService.name} Lighting</h1>
           {/* // TODO: markdown this */}
           <p>{data.strapiService.description.data.description}</p>
           <p>
@@ -152,7 +186,7 @@ const ServiceLightView = ({ data }) => {
         <ul>
           {data.allStrapiService.nodes.map((service) => (
             <li key={service.id}>
-              <a href={`/lights/${service.slug}/`}>{service.name} Lights</a>
+              <a href={`/${service.slug}/lights`}>{service.name} Lights</a>
             </li>
           ))}
         </ul>
@@ -375,6 +409,13 @@ export const query = graphql`
         id
         name
         slug
+      }
+    }
+
+    allStrapiLightGroup {
+      nodes {
+        slug
+        order
       }
     }
 

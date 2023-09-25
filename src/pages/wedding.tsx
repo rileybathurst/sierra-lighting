@@ -119,7 +119,7 @@ const WeddingPage = () => {
 
           <h3 className="crest">Bringing the shine</h3>
           <h2 className="ridge mixta">
-            <Link to="/lights/wedding" className="link--subtle">
+            <Link to="/wedding/lights" className="link--subtle">
               Lighting Styles
             </Link>
           </h2>
@@ -146,7 +146,7 @@ const WeddingPage = () => {
         </div>
 
         <div className="measure">
-          <h5 className="range"><Link to="/lights/wedding" className="link--subtle">View all other lights</Link></h5>
+          <h5 className="range"><Link to="/wedding/lights" className="link--subtle">View all other lights</Link></h5>
           <hr />
           <h3 className="kilimanjaro">Have something particular in mind? Just ask!</h3>
 
