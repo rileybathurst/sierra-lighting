@@ -14,12 +14,15 @@ function Filter({ groups }) {
 
   return (
     filtered.map((gp) => {
+
+      // console.log(gp[0].id);
+
       return (
-        <li>
+        <li key={gp[0].id}>
           <Link to={`#${gp[0].slug}`}>
             {gp[0].name}
           </Link>
-        </li>
+        </li >
       )
     })
   )
@@ -35,7 +38,7 @@ const lightsPage = () => {
       }
 
       overheadlights: allStrapiLight(
-        sort: {order: ASC},
+        sort: {xmasOrder: ASC},
         filter: {
           light_groups: {elemMatch: {slug: {eq: "overhead"}}},
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
@@ -51,7 +54,7 @@ const lightsPage = () => {
       }
 
       accentlights: allStrapiLight(
-        sort: {order: ASC},
+        sort: {xmasOrder: ASC},
         filter: {
           light_groups: {elemMatch: {slug: {eq: "accent"}}},
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
@@ -67,7 +70,7 @@ const lightsPage = () => {
       }
 
       dancelights: allStrapiLight(
-        sort: {order: ASC},
+        sort: {xmasOrder: ASC},
         filter: {
           light_groups: {elemMatch: {slug: {eq: "dance"}}},
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
@@ -83,7 +86,7 @@ const lightsPage = () => {
       }
 
       pipelights: allStrapiLight(
-        sort: {order: ASC},
+        sort: {xmasOrder: ASC},
         filter: {
           light_groups: {elemMatch: {slug: {eq: "pipe-drape"}}},
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
@@ -99,7 +102,7 @@ const lightsPage = () => {
       }
 
       pathlights: allStrapiLight(
-        sort: {order: ASC},
+        sort: {xmasOrder: ASC},
         filter: {
           light_groups: {elemMatch: {slug: {eq: "path"}}},
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
@@ -115,7 +118,7 @@ const lightsPage = () => {
       }
 
       treelights: allStrapiLight(
-        sort: {order: ASC},
+        sort: {xmasOrder: ASC},
         filter: {
           light_groups: {elemMatch: {slug: {eq: "tree"}}},
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
@@ -131,7 +134,7 @@ const lightsPage = () => {
       }
       
       buildinglights: allStrapiLight(
-        sort: {order: ASC},
+        sort: {xmasOrder: ASC},
         filter: {
           light_groups: {elemMatch: {slug: {eq: "building"}}},
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
@@ -147,7 +150,7 @@ const lightsPage = () => {
       }
 
       greenerylights: allStrapiLight(
-        sort: {order: ASC},
+        sort: {xmasOrder: ASC},
         filter: {
           light_groups: {elemMatch: {slug: {eq: "greenery"}}},
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
@@ -163,7 +166,7 @@ const lightsPage = () => {
       }
 
       ornamentslights: allStrapiLight(
-        sort: {order: ASC},
+        sort: {xmasOrder: ASC},
         filter: {light_groups: {elemMatch: {slug: {eq: "ornaments"}}},
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
         }
@@ -178,7 +181,7 @@ const lightsPage = () => {
       }
 
       lanternlights: allStrapiLight(
-        sort: {order: ASC},
+        sort: {xmasOrder: ASC},
         filter: {
           light_groups: {elemMatch: {slug: {eq: "lantern"}}},
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
@@ -204,6 +207,13 @@ const lightsPage = () => {
           id
           name
           slug
+        }
+      }
+
+      xmasOrder: allStrapiLightGroup {
+        nodes {
+          name
+          xmasOrder
         }
       }
 
@@ -277,7 +287,10 @@ const lightsPage = () => {
     lanterngroup
   ];
 
-  let services = data.service.nodes;
+  // let services = data.service.nodes;
+  // let xmasOrder = data.xmasOrder.nodes;
+
+  // console.log(xmasOrder);
 
   return (
     <>

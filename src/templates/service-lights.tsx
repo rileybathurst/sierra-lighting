@@ -102,42 +102,26 @@ const ServiceLightView = ({ data }) => {
     groups.push(lanterngroup)
   }
 
-  // TODO: Im going to need to do something with the order esepcially for xmas
-
-  // ! testing this seems to work
-  const items = [
-    { name: "Edward", value: 21 },
-    { name: "Sharpe", value: 37 },
-    { name: "And", value: 45 },
-    { name: "The", value: -12 },
-    { name: "Magnetic", value: 13 },
-    { name: "Zeros", value: 37 },
-  ];
+  console.log(data.strapiService.name);
 
   // sort by value
-  let organized = items.sort((a, b) => a.value - b.value);
-  console.log(organized);
+  let events = [
+    'Wedding',
+    'Non-wedding Events',
+    'Commercial Events'
+  ]
+  // if (data.strapiService.name === 'Wedding') {
+  if (events.includes(data.strapiService.name)) {
+    let weddingOrganizedgroups = groups.sort((a, b) => a[0].weddingOrder - b[0].weddingOrder);
+  }
 
-  console.log(items.sort((a, b) => a.value - b.value));
-
-  // these have double arrays so they are a little more complex
-  console.log(groups);
-
-  console.log(groups[0][0].order);
-
-  // nope
-  let organizedgroups = groups.sort((a, b) => a[0].order - b[0].order);
-  console.log(organizedgroups);
-
-  console.log("🦄");
-
-  // these are the numbers I want to sort by
-  console.log(groups[0][0]?.order + groups[0][0]?.slug);
-  console.log(groups[1][0]?.order + groups[1][0]?.slug);
-  console.log(groups[2][0]?.order + groups[2][0]?.slug);
-  console.log(groups[3][0]?.order + groups[3][0]?.slug);
-
-  let organizedgroups2 = groups.sort((a, b) => a[0]?.order - b[0]?.order);
+  let xmas = [
+    'Residential Christmas',
+    'Commercial Christmas'
+  ]
+  if (xmas.includes(data.strapiService.name)) {
+    let xmasOrganizedgroups = groups.sort((a, b) => a[0]?.xmasOrder - b[0]?.xmasOrder);
+  }
 
   return (
     <>
@@ -223,7 +207,7 @@ export const query = graphql`
     }
 
     overheadlights: allStrapiLight(
-      sort: {order: ASC},
+      sort: {weddingOrder: ASC},
       filter: {
         services: {elemMatch: {slug: {eq: $slug}}},
         light_groups: {elemMatch: {slug: {eq: "overhead"}}}
@@ -242,7 +226,7 @@ export const query = graphql`
     }
 
     accentlights: allStrapiLight(
-      sort: {order: ASC},
+      sort: {weddingOrder: ASC},
       filter: {
         services: {elemMatch: {slug: {eq: $slug}}},
         light_groups: {elemMatch: {slug: {eq: "accent"}}}
@@ -261,7 +245,7 @@ export const query = graphql`
     }
 
     dancelights: allStrapiLight(
-      sort: {order: ASC},
+      sort: {weddingOrder: ASC},
       filter: {
         services: {elemMatch: {slug: {eq: $slug}}},
         light_groups: {elemMatch: {slug: {eq: "dance"}}}
@@ -280,7 +264,7 @@ export const query = graphql`
     }
 
     pipelights: allStrapiLight(
-      sort: {order: ASC},
+      sort: {weddingOrder: ASC},
       filter: {
         services: {elemMatch: {slug: {eq: $slug}}},
         light_groups: {elemMatch: {slug: {eq: "pipe-drape"}}}
@@ -299,7 +283,7 @@ export const query = graphql`
     }
 
     pathlights: allStrapiLight(
-      sort: {order: ASC},
+      sort: {weddingOrder: ASC},
       filter: {
         services: {elemMatch: {slug: {eq: $slug}}},
         light_groups: {elemMatch: {slug: {eq: "path"}}}
@@ -318,7 +302,7 @@ export const query = graphql`
     }
 
     treelights: allStrapiLight(
-      sort: {order: ASC},
+      sort: {weddingOrder: ASC},
       filter: {
         services: {elemMatch: {slug: {eq: $slug}}},
       light_groups: {elemMatch: {slug: {eq: "tree"}}}
@@ -337,7 +321,7 @@ export const query = graphql`
     }
     
     buildinglights: allStrapiLight(
-      sort: {order: ASC},
+      sort: {weddingOrder: ASC},
       filter: {
         services: {elemMatch: {slug: {eq: $slug}}},
         light_groups: {elemMatch: {slug: {eq: "building"}}}
@@ -356,7 +340,7 @@ export const query = graphql`
     }
 
     greenerylights: allStrapiLight(
-      sort: {order: ASC},
+      sort: {weddingOrder: ASC},
       filter: {
         services: {elemMatch: {slug: {eq: $slug}}},
         light_groups: {elemMatch: {slug: {eq: "greenery"}}}
@@ -374,7 +358,7 @@ export const query = graphql`
     }
 
     ornamentslights: allStrapiLight(
-      sort: {order: ASC},
+      sort: {weddingOrder: ASC},
       filter: {
         services: {elemMatch: {slug: {eq: $slug}}},
         light_groups: {elemMatch: {slug: {eq: "ornaments"}}}
@@ -393,7 +377,7 @@ export const query = graphql`
     }
 
     lanternlights: allStrapiLight(
-      sort: {order: ASC},
+      sort: {weddingOrder: ASC},
       filter: {
         services: {elemMatch: {slug: {eq: $slug}}},
         light_groups: {elemMatch: {slug: {eq: "lantern"}}}
@@ -415,7 +399,7 @@ export const query = graphql`
     allStrapiLightGroup {
       nodes {
         slug
-        order
+        weddingOrder
       }
     }
 

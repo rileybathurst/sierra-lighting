@@ -21,7 +21,7 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      overheadlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "overhead"}}}}) {
+      overheadlights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "overhead"}}}}) {
         nodes {
           ...lightCard
         }
@@ -31,7 +31,7 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      accentlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "accent"}}}}) {
+      accentlights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "accent"}}}}) {
         nodes {
           ...lightCard
         }
@@ -41,7 +41,7 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      dancelights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "dance"}}}}) {
+      dancelights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "dance"}}}}) {
         nodes {
           ...lightCard
         }
@@ -51,7 +51,7 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      pipelights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "pipe-drape"}}}}) {
+      pipelights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "pipe-drape"}}}}) {
         nodes {
           ...lightCard
         }
@@ -61,7 +61,7 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      pathlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "path"}}}}) {
+      pathlights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "path"}}}}) {
         nodes {
           ...lightCard
         }
@@ -71,7 +71,7 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      treelights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "tree"}}}}) {
+      treelights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "tree"}}}}) {
         nodes {
           ...lightCard
         }
@@ -81,7 +81,7 @@ const lightsPage = () => {
         ...lightGroup
       }
       
-      buildinglights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "building"}}}}) {
+      buildinglights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "building"}}}}) {
         nodes {
           ...lightCard
         }
@@ -91,7 +91,7 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      greenerylights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "greenery"}}}}) {
+      greenerylights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "greenery"}}}}) {
         nodes {
           ...lightCard
         }
@@ -101,7 +101,7 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      ornamentslights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "ornaments"}}}}) {
+      ornamentslights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "ornaments"}}}}) {
         nodes {
           ...lightCard
         }
@@ -111,7 +111,7 @@ const lightsPage = () => {
         ...lightGroup
       }
 
-      lanternlights: allStrapiLight(sort: {order: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "lantern"}}}}) {
+      lanternlights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "lantern"}}}}) {
         nodes {
           ...lightCard
         }
@@ -280,7 +280,7 @@ const lightsPage = () => {
         {/* <hr /> */}
 
         {/*         <div className="deck">
-          {data.overorder.nodes.map((light: CardType) => (
+          {data.overweddingOrder.nodes.map((light: CardType) => (
             <div key={light.id}>
               <Card card={light} breadcrumb="light" />
             </div>
