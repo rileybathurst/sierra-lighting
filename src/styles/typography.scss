@@ -233,7 +233,6 @@ ol li {
 .ol-title {
   display: block;
   font-size: 1.5rem;
-  @extend .mixta;
   margin-block-end: 1.5rem;
 }
 
@@ -312,4 +311,8 @@ ol li {
 
 .last-ampersand:nth-child(n + 2):last-child::before {
   content: "& ";
+}
+
+.lowercase {
+  text-transform: lowercase;
 }

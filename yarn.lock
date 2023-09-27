@@ -1635,6 +1635,43 @@
   resolved "https://registry.npmjs.org/@msgpackr-extract/msgpackr-extract-darwin-arm64/-/msgpackr-extract-darwin-arm64-3.0.2.tgz"
   integrity sha512-9bfjwDxIDWmmOKusUcqdS4Rw+SETlp9Dy39Xui9BEGEk19dDwH0jhipwFzEff/pFg95NKymc6TOTbRKcWeRqyQ==
 
+"@mux/mux-player-react@^1.14.2":
+  version "1.14.2"
+  resolved "https://registry.npmjs.org/@mux/mux-player-react/-/mux-player-react-1.14.2.tgz"
+  integrity sha512-Q6TkKo+L52RxBWDalewXq9RlVXmvbMLEL3KlVUlH7vHYB0AcMfdI5VqAhqHdmNvj6S1vqg5T9cXtHgbyx6UiDg==
+  dependencies:
+    "@mux/mux-player" "1.14.2"
+    "@mux/playback-core" "0.20.1"
+    prop-types "^15.7.2"
+
+"@mux/mux-player@1.14.2":
+  version "1.14.2"
+  resolved "https://registry.npmjs.org/@mux/mux-player/-/mux-player-1.14.2.tgz"
+  integrity sha512-7K8DyFd+GIfeLql183RxY/ii+V5DOq4svsWlhgEUJ/6c4FKm530C2tXpKJ/FdynF3GApK48bvpaXLnj7+Iyt/w==
+  dependencies:
+    "@mux/mux-video" "0.16.4"
+    "@mux/playback-core" "0.20.1"
+    media-chrome "^1.4.2"
+
+"@mux/mux-video@0.16.4":
+  version "0.16.4"
+  resolved "https://registry.npmjs.org/@mux/mux-video/-/mux-video-0.16.4.tgz"
+  integrity sha512-vACXwmQWZxXZ0vb4a4FICZnns3tD/Jr16iD5mjfDwWtj8cxgav/ibeyDZICkrU7HSDhwZQcZYMf+TteHJQ86xg==
+  dependencies:
+    "@mux/playback-core" "0.20.1"
+    castable-video "0.5.2"
+    custom-media-element "0.2.0"
+    media-tracks ">=0.2.3"
+
+"@mux/playback-core@0.20.1":
+  version "0.20.1"
+  resolved "https://registry.npmjs.org/@mux/playback-core/-/playback-core-0.20.1.tgz"
+  integrity sha512-UOw0cKY9o5/bAOUQjEYaS6QN9/fp5qQQWTQhI/oE4xU7C82Cb2PIe7IYAic0aWOaGsW/KUjW/YkwMbBQuonR5w==
+  dependencies:
+    hls.js "^1.4.10"
+    media-tracks "0.2.3"
+    mux-embed "^4.27.0"
+
 "@ndelangen/get-tarball@^3.0.7":
   version "3.0.9"
   resolved "https://registry.npmjs.org/@ndelangen/get-tarball/-/get-tarball-3.0.9.tgz"
@@ -3399,7 +3436,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@>=16":
+"@types/react@*", "@types/react@^17.0.0 || ^18", "@types/react@>=16":
   version "18.2.7"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.2.7.tgz"
   integrity sha512-ojrXpSH2XFCmHm7Jy3q44nXDyN54+EYKP2lBhJ2bqfyPj6cIUW/FZW/Csdia34NQgq7KYcAlHi5184m4X88+yw==
@@ -4845,6 +4882,11 @@ case-sensitive-paths-webpack-plugin@^2.4.0:
   resolved "https://registry.npmjs.org/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.4.0.tgz"
   integrity sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw==
 
+castable-video@0.5.2:
+  version "0.5.2"
+  resolved "https://registry.npmjs.org/castable-video/-/castable-video-0.5.2.tgz"
+  integrity sha512-eP19NY8AF9G+Xj87R447GMkWuUc0W3DSNx5qOypH/+mr2aaHRONaIK5H4bxMgpXZslZ2vNNvCuVuKi3VdCUGEA==
+
 ccount@^2.0.0:
   version "2.0.1"
   resolved "https://registry.npmjs.org/ccount/-/ccount-2.0.1.tgz"
@@ -5627,6 +5669,11 @@ csstype@^3.0.2:
   version "3.1.2"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.2.tgz"
   integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
+
+custom-media-element@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/custom-media-element/-/custom-media-element-0.2.0.tgz"
+  integrity sha512-N++UzR1COFip4DrtZkS99VDCcQvVCJmbqI7qaxZtHWKdAv/RUYIOnmJbP/HHk2un0PjvtFNKHfNLiFsd9BmnMQ==
 
 d@^1.0.1, d@1:
   version "1.0.1"
@@ -8221,6 +8268,11 @@ header-case@^2.0.4:
     capital-case "^1.0.4"
     tslib "^2.0.3"
 
+hls.js@^1.4.10:
+  version "1.4.12"
+  resolved "https://registry.npmjs.org/hls.js/-/hls.js-1.4.12.tgz"
+  integrity sha512-1RBpx2VihibzE3WE9kGoVCtrhhDWTzydzElk/kyRbEOLnb1WIE+3ZabM/L8BqKFTCL3pUy4QzhXgD1Q6Igr1JA==
+
 hosted-git-info@^2.1.4:
   version "2.8.9"
   resolved "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.8.9.tgz"
@@ -9779,6 +9831,21 @@ meant@^1.0.3:
   resolved "https://registry.npmjs.org/meant/-/meant-1.0.3.tgz"
   integrity sha512-88ZRGcNxAq4EH38cQ4D85PM57pikCwS8Z99EWHODxN7KBY+UuPiqzRTtZzS8KTXO/ywSWbdjjJST2Hly/EQxLw==
 
+media-chrome@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.npmjs.org/media-chrome/-/media-chrome-1.4.2.tgz"
+  integrity sha512-WfyNpCvkqKyC0ObIe6rUMxMOYmiyQJVkJ4koLyl87120LbN/X0UMKpoIqkw2o5m9ABWTgzq8/UKQuObnLHHD0w==
+
+media-tracks@>=0.2.3:
+  version "0.2.4"
+  resolved "https://registry.npmjs.org/media-tracks/-/media-tracks-0.2.4.tgz"
+  integrity sha512-P/TbDCYTFH5gxpQ6r99iabXOwjsFwzKRgK7wiwo64Ii6nHXYhHtwEP7A7ufmEKxkNCoHc4j3Z2hvs+lXL4wPeQ==
+
+media-tracks@0.2.3:
+  version "0.2.3"
+  resolved "https://registry.npmjs.org/media-tracks/-/media-tracks-0.2.3.tgz"
+  integrity sha512-h5HRl1tIyeV+aF59FAmHmxChmdM/Ewf/twpxZkRme1ny46owD24uTA0BmRuPoO+uzvE0lx9ZIkZj1TbXi2VCng==
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz"
@@ -10334,6 +10401,11 @@ mute-stream@~0.0.4, mute-stream@0.0.8:
   version "0.0.8"
   resolved "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.8.tgz"
   integrity sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==
+
+mux-embed@^4.27.0:
+  version "4.28.1"
+  resolved "https://registry.npmjs.org/mux-embed/-/mux-embed-4.28.1.tgz"
+  integrity sha512-fDJK0Dn3nSqRkLj5LUyjVmFGJt4cWq0/WFq75eP+PMF1cU3lemgKkBVYkTTzx3TUDTuebW+1LZ80r9OTcSa+wQ==
 
 nanoid@^3.3.6:
   version "3.3.6"
@@ -11701,7 +11773,7 @@ react-docgen@^5.0.0:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-"react-dom@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", react-dom@^18.0.0, "react-dom@^18.0.0 || ^0.0.0", react-dom@^18.2.0, react-dom@>=16.8.0, "react-dom@16.8.0 - 18", react-dom@18.x:
+"react-dom@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom@^17.0.2 || ^18", react-dom@^18.0.0, "react-dom@^18.0.0 || ^0.0.0", react-dom@^18.2.0, react-dom@>=16.8.0, "react-dom@16.8.0 - 18", react-dom@18.x:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.2.0.tgz"
   integrity sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==
@@ -11815,7 +11887,7 @@ react-side-effect@^2.1.0:
   resolved "https://registry.npmjs.org/react-side-effect/-/react-side-effect-2.1.2.tgz"
   integrity sha512-PVjOcvVOyIILrYoyGEpDN3vmYNLdy1CajSFNt4TDsVQC5KpTijDvWVoR+/7Rz2xT978D8/ZtFceXxzsPwZEDvw==
 
-"react@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0", "react@^16.3.0 || ^17.0.0 || ^18.0.0", "react@^16.3.0 || ^17.0.1 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.4 || ^17.0.0 || ^18.0.0", react@^18.0.0, "react@^18.0.0 || ^0.0.0", react@^18.2.0, "react@>= 0.14.0", react@>=16, react@>=16.3.0, react@>=16.8.0, react@0.0.0-experimental-c8b778b7f-20220825, "react@16.8.0 - 18", react@18.x:
+"react@^0.14.8 || ^15.0.1 || ^16.0.0 || ^17.0.1 || ^18.0.0", "react@^16.3.0 || ^17.0.0 || ^18.0.0", "react@^16.3.0 || ^17.0.1 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.4 || ^17.0.0 || ^18.0.0", "react@^17.0.2 || ^18", react@^18.0.0, "react@^18.0.0 || ^0.0.0", react@^18.2.0, "react@>= 0.14.0", react@>=16, react@>=16.3.0, react@>=16.8.0, react@0.0.0-experimental-c8b778b7f-20220825, "react@16.8.0 - 18", react@18.x:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==

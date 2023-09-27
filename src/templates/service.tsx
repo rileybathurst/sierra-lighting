@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { graphql, Link } from 'gatsby'
-
+import MuxPlayer from '@mux/mux-player-react';
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -16,6 +16,110 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 
 // import Process from '../components/fragments/process';
 
+function TypeTitles(types) {
+  console.log('TypeTitles');
+  console.log(types);
+
+  /*   return (
+      <h1>
+        span
+      </h1 >
+    ) */
+
+  return null;
+
+}
+
+
+
+function Base(props) {
+
+  // TODO: I should make 3 here
+  // Array.prototype.splice()
+  // months.splice(4,1,"May");
+  // replaces 1 element at index 4
+
+  // console.log(props.projects)
+  // console.log(props.slug);
+
+  let base = [];
+  if (props?.projects.length > 0) {
+    base.push(props?.projects[0]);
+    base[0].breadcrumb = 'project';
+  }
+  if (props?.projects.length > 1) {
+    base.push(props?.projects[1]);
+    base[1].breadcrumb = 'project';
+  }
+  if (props?.projects.length > 2) {
+    base.push(props?.projects[2]);
+    base[2].breadcrumb = 'project';
+  }
+  // console.log(base)
+
+  if (props?.slug === 'wedding') {
+    if (props?.vendors) {
+      base.splice(1, 1, props?.vendors[0]);
+      base[1].breadcrumb = 'vendor';
+    }
+  }
+
+  if (props?.venues.length > 0) {
+    base.splice(2, 1, props?.venues[0]);
+    // console.log(base[1]);
+    base[2].breadcrumb = 'venue';
+  }
+
+  // console.log(base);
+
+  if (Object.values(base[0]).indexOf('project') > -1) {
+    // console.log('has project');
+  } else {
+    // console.log('no project');
+  }
+
+  let types = [];
+
+  // // (Object.values(base[0]).indexOf('project') > -1) ? console.log('has project') : console.log('no project');
+  // if (base[0].breadcrumb === 'project') {
+  //   console.log('has 1 project');
+  //   types.push('project');
+  // }
+
+  base.map(type => {
+    (types.push(type.breadcrumb))
+  });
+
+  return (
+    <>
+      <div className='measure'>
+        <hr />
+        {/* // ! fix based on the card */}
+        {/* <h3 className="crest">What have we done</h3> */}
+        {/* <h2 className="ridge mixta">Projects</h2> */}
+        {/* // ! the top might have to be in a seperate loop which is kinda ok */}
+        {/* //* rename this */}
+        {/*         <Top
+          base={base}
+        // ? do I need other options
+        /> */}
+        {TypeTitles(types)}
+      </div>
+      <div className='deck'>
+        {base.map((card) => (
+          <div key={card.id}>
+            {/* <h5><Link to={`/${card.breadcrumb}`}>Explore our {card.breadcrumb}s</Link></h5> */}
+            <Card
+              card={card}
+              breadcrumb={card.breadcrumb}
+            />
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
 function ReactDescription(props) {
   // console.log(props.description)
   if (props?.description) {
@@ -23,6 +127,22 @@ function ReactDescription(props) {
       <ReactMarkdown
         children={props?.description}
         remarkPlugins={[remarkGfm]}
+      />
+    );
+  } else {
+    return null;
+  }
+}
+
+function VideoMux(video) {
+  // console.log(video.video)
+  if (video.video) {
+    return (
+      <MuxPlayer
+        streamType="on-demand"
+        playbackId={video.video}
+        // playbackId='EOIi01FuRDaiMY2s00e87J4hFTTFmrFs4iKA008rd63zao'
+        className='hero-video'
       />
     );
   } else {
@@ -42,6 +162,10 @@ const ServiceView = ({ data }) => {
       <Header />
 
       <main>
+
+        {/* // wedding video */}
+        <VideoMux video={data.strapiService.videoMux} />
+
         <section className="measure">
           <h1 className='mixta'>
             {/* // TODO: needs a clamp on the size */}
@@ -100,7 +224,7 @@ const ServiceView = ({ data }) => {
         </div>
 
         <div className='deck'>
-          {data.allStrapiLight.nodes.map((light) => (
+          {data.strapiService.featuredLights.map((light) => (
             <div key={light.id}>
               <Card
                 card={light}
@@ -112,62 +236,47 @@ const ServiceView = ({ data }) => {
         </div>
 
         <div className="measure" >
-          <h5 className="range">
-            {/* <Link
-              // ! I think this link is wrong or the page isnt built yet
-              to={`/lights/${data.strapiService.slug}`}
-              to={`/lights`}
-              className="link--subtle">
-              View all other lights
-            </Link> */}
-          </h5>
+          <h3>
+            <Link
+              to={`/${data.strapiService.slug}/lights`}>
+              View all other <span className='lowercase'>{data.strapiService.name}</span> lights
+            </Link>
+          </h3>
           <p>Have something particular in mind? Just ask!</p>
           <hr />
         </div>
       </section>
 
+      {/* // ? name - why is this split out? */}
       <div id="consultant" className='measure'>
-        <p>
+        <h3>
           Have you ever noticed how much lighting can affect the feeling of space?
-        </p>
+        </h3>
 
-        <p>
+        <ReactMarkdown
+          children={data.strapiService?.after_the_triptych?.data?.after_the_triptych}
+          remarkPlugins={[remarkGfm]}
+        />
+
+        {/* // Wedding */}
+        {/*         <p>
           The natural beauty of the Reno Tahoe area make the perfect backdrop for a wedding. Our custom lighting design enhances your decor and the architectural / landscape features of your venue. Wether your aiming for a low key affair or a luxurious event, we work with you to create the perfect mood.
-        </p>
+        </p> */}
 
-        <p>
+        {/* // Wedding */}
+        {/*         <p>
           We exclusively use modern LED technology, wireless and battery powered where possible. With wireless LEDs, we are eliminating fire risks from traditional technology, reducing tripping hazards and clutter in your photos. We use modern RGB technology to create the perfect lighting effects to highlight your decor and create the ideal mood for your big day. For example, ambers / warm whites add a flattering and romantic glow while deep purple / blue can amp up guests for the dance party portion of the night. You can choose a unified color scheme, select a palette of complimentary colors or even plan changes throughout your event.
-        </p>
-
-
-
-        {/* // 
-        Wedding has services here
-        christmas might have areas? but thats less of a thing
-        */}
+        </p> */}
 
       </div>
 
 
-
-      <div className='measure'>
-        <hr />
-        <h3 className="crest">What have we done</h3>
-        <h2 className="ridge mixta">Projects</h2>
-      </div>
-      <div className='deck'>
-        {data.strapiService.projects.map((project) => (
-          <div key={project.id}>
-            <Card
-              card={project}
-              breadcrumb='project'
-            />
-          </div>
-        ))}
-      </div>
-
-
-      {/* // TODO: Wedding Venues & Vendors as a big link I dont think we bring through any specific as cards */}
+      <Base
+        projects={data?.strapiService?.projects}
+        venues={data?.allStrapiVenue?.nodes}
+        vendors={data?.allStrapiVendor?.nodes}
+        slug={data.strapiService.slug}
+      />
 
       <Footer />
 
@@ -192,6 +301,12 @@ export const query = graphql`
         }
       }
 
+      after_the_triptych {
+        data {
+          after_the_triptych
+        }
+      }
+
       projects {
         ...projectCard
       }
@@ -204,23 +319,51 @@ export const query = graphql`
           }
         }
       }
-    }
-
-    allStrapiLight(
-      limit: 3,
-      filter: {services: {elemMatch: {slug: {eq: $slug}}}}
-      ) {
-      nodes {
+      
+      featuredLights {
         ...lightCard
       }
+
+      videoMux
     }
 
-    allStrapiProcess {
+    allStrapiProcess(filter: {services: {elemMatch: {slug: {eq: $slug}}}}) {
       nodes {
         ...process
       }
     }
+
+    allStrapiVenue(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
+      nodes {
+        ...venueCard
+      }
+    }
+
+    allStrapiVendor(limit: 1) {
+      nodes {
+        ...vendorCard
+      }
+    }
+
   }
 `
 
-// excerpt
+// Header
+// Video (if exists)
+// Description
+// Triptych
+// Process
+// Lights - cards
+
+// ? Consultant
+// ? maybe just after typtich thats sort of what we have at the moment?
+
+// Projects - cards
+// ? Venues - cards
+// ? Vendors - cards
+
+// wedding the bottom 3 cards might be one of each
+// or atleast if has?
+// projects goes last as it fills everything in
+
+// Footer

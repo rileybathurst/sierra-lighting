@@ -112,7 +112,7 @@ const ServiceLightView = ({ data }) => {
   ]
   // if (data.strapiService.name === 'Wedding') {
   if (events.includes(data.strapiService.name)) {
-    let weddingOrganizedgroups = groups.sort((a, b) => a[0].weddingOrder - b[0].weddingOrder);
+    groups.sort((a, b) => a[0].weddingOrder - b[0].weddingOrder);
   }
 
   let xmas = [
@@ -120,7 +120,7 @@ const ServiceLightView = ({ data }) => {
     'Commercial Christmas'
   ]
   if (xmas.includes(data.strapiService.name)) {
-    let xmasOrganizedgroups = groups.sort((a, b) => a[0]?.xmasOrder - b[0]?.xmasOrder);
+    groups.sort((a, b) => a[0]?.xmasOrder - b[0]?.xmasOrder);
   }
 
   return (
@@ -134,9 +134,13 @@ const ServiceLightView = ({ data }) => {
 
       <div className="measure">
         <ol className="breadcrumbs">
-          <li>{data.strapiService.name} Lighting&nbsp;/&nbsp;</li>
           <li>
-            <Link to="/lights">Lights</Link>
+            <Link to={`/${data.strapiService.slug}`}>
+              {data.strapiService.name} Lighting
+            </Link>&nbsp;/&nbsp;
+          </li>
+          <li>
+            Lights
           </li>
         </ol>
         <hr />

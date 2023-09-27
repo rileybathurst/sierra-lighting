@@ -7,11 +7,6 @@ import Footer from "../components/footer";
 import Grouploop from "../components/grouploop";
 import LightSearch from "../components/light-search";
 
-function Console(props) {
-  console.log(props.log);
-  return null;
-}
-
 const lightsPage = () => {
 
   const data = useStaticQuery(graphql`
@@ -131,6 +126,10 @@ const lightsPage = () => {
         }
       }
 
+      season: strapiSeason {
+        wedding
+      }
+
     }
   `)
 
@@ -201,6 +200,35 @@ const lightsPage = () => {
 
   let services = data.service.nodes;
 
+  let season = data.season;
+  if (season.wedding) {
+    groups.sort((a, b) => {
+      if (a[0].weddingOrder === null && b[0].weddingOrder === null) {
+        return 0;
+      } else if (a[0].weddingOrder === null) {
+        return 1;
+      } else if (b[0].weddingOrder === null) {
+        return -1;
+      } else {
+        return a[0].weddingOrder - b[0].weddingOrder;
+      }
+    });
+  } else {
+    // puts null items up top
+    // groups.sort((a, b) => a[0].xmasOrder - b[0].xmasOrder);
+
+    groups.sort((a, b) => {
+      if (a[0].xmasOrder === null && b[0].xmasOrder === null) {
+        return 0;
+      } else if (a[0].xmasOrder === null) {
+        return 1;
+      } else if (b[0].xmasOrder === null) {
+        return -1;
+      } else {
+        return a[0].xmasOrder - b[0].xmasOrder;
+      }
+    });
+  }
 
   return (
     <>

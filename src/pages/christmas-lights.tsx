@@ -210,11 +210,8 @@ const lightsPage = () => {
         }
       }
 
-      xmasOrder: allStrapiLightGroup {
-        nodes {
-          name
-          xmasOrder
-        }
+      season: strapiSeason {
+        wedding
       }
 
     }
@@ -287,10 +284,37 @@ const lightsPage = () => {
     lanterngroup
   ];
 
-  // let services = data.service.nodes;
-  // let xmasOrder = data.xmasOrder.nodes;
+  let season = data.season;
+  // console.log(season);
 
-  // console.log(xmasOrder);
+  if (season.wedding) {
+    groups.sort((a, b) => {
+      if (a[0].weddingOrder === null && b[0].weddingOrder === null) {
+        return 0;
+      } else if (a[0].weddingOrder === null) {
+        return 1;
+      } else if (b[0].weddingOrder === null) {
+        return -1;
+      } else {
+        return a[0].weddingOrder - b[0].weddingOrder;
+      }
+    });
+  } else {
+    // puts null items up top
+    // groups.sort((a, b) => a[0].xmasOrder - b[0].xmasOrder);
+
+    groups.sort((a, b) => {
+      if (a[0].xmasOrder === null && b[0].xmasOrder === null) {
+        return 0;
+      } else if (a[0].xmasOrder === null) {
+        return 1;
+      } else if (b[0].xmasOrder === null) {
+        return -1;
+      } else {
+        return a[0].xmasOrder - b[0].xmasOrder;
+      }
+    });
+  }
 
   return (
     <>
@@ -326,14 +350,16 @@ const lightsPage = () => {
         </div>
 
         {/* // TODO: Grouploop should become a component */}
-        {groups.map((group) => (
-          <div
-            key={group[0].id}
-            id={group[0].slug}
-          >
-            <Grouploop group={group} />
-          </div>
-        ))}
+        {
+          groups.map((group) => (
+            <div
+              key={group[0].id}
+              id={group[0].slug}
+            >
+              <Grouploop group={group} />
+            </div>
+          ))
+        }
 
       </main >
 

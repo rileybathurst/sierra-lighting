@@ -241,3 +241,18 @@ header svg:active {
     max-width: 20rem;
   }
 }
+
+/*------------------*/
+//  #VIDEO
+/*------------------*/
+
+.hero-video {
+  max-width: var(--pelican);
+  margin-inline: auto;
+  display: block; // needed for margin-inline
+  margin-block-end: 2.5rem;
+  box-shadow: var(--troposphere);
+  border-radius: var(--border-radius);
+  border: 1px solid whitesmoke;
+  // TODO: theres a slight white gap at the bottom
+}
