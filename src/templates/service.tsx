@@ -271,13 +271,13 @@ const ServiceView = ({ data }) => {
 
       </div>
 
-
-      <Base
+      {/* // ! currently fails on social */}
+      {/*       <Base
         projects={data?.strapiService?.projects}
         venues={data?.allStrapiVenue?.nodes}
         vendors={data?.allStrapiVendor?.nodes}
         slug={data.strapiService.slug}
-      />
+      /> */}
 
       <Footer />
 
