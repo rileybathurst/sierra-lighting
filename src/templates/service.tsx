@@ -20,6 +20,7 @@ function TypeTitles(types) {
   console.log('TypeTitles');
   console.log(types);
 
+  // TODO: needs vertical borders between the different types
   /*   return (
       <h1>
         span
