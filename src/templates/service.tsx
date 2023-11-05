@@ -17,8 +17,8 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 // import Process from '../components/fragments/process';
 
 function TypeTitles(types) {
-  console.log('TypeTitles');
-  console.log(types);
+  // console.log('TypeTitles');
+  // console.log(types);
 
   // TODO: needs vertical borders between the different types
   /*   return (
@@ -34,91 +34,116 @@ function TypeTitles(types) {
 
 
 function Base(props) {
-
-  // TODO: I should make 3 here
-  // Array.prototype.splice()
-  // months.splice(4,1,"May");
-  // replaces 1 element at index 4
-
-  // console.log(props.projects)
-  // console.log(props.slug);
-
   let base = [];
-  if (props?.projects.length > 0) {
-    base.push(props?.projects[0]);
-    base[0].breadcrumb = 'project';
-  }
-  if (props?.projects.length > 1) {
-    base.push(props?.projects[1]);
-    base[1].breadcrumb = 'project';
-  }
-  if (props?.projects.length > 2) {
-    base.push(props?.projects[2]);
-    base[2].breadcrumb = 'project';
-  }
-  // console.log(base)
 
-  if (props?.slug === 'wedding') {
-    if (props?.vendors) {
-      base.splice(1, 1, props?.vendors[0]);
-      base[1].breadcrumb = 'vendor';
-    }
-  }
-
-  if (props?.venues.length > 0) {
-    base.splice(2, 1, props?.venues[0]);
-    // console.log(base[1]);
-    base[2].breadcrumb = 'venue';
-  }
-
-  // console.log(base);
-
-  if (Object.values(base[0]).indexOf('project') > -1) {
-    // console.log('has project');
+  if (!props?.projects.length && !props?.venues.length && !props?.vendors.length) {
+    // base.push(props?.projects[0]);
+    console.log('no projects, venues or vendors');
+    return null;
   } else {
-    // console.log('no project');
+    // * the heirarchy is projects, vendors, venues
+
+    // first create the 3 spots as projects if possible
+    // if projects has something the first one has a project breadcrumb
+    if (props?.projects.length > 0) {
+      base.push(props?.projects[0]);
+      base[0].breadcrumb = 'project';
+    }
+
+    // if projects has atleast 2 the second one has a project breadcrumb
+    if (props?.projects.length > 1) {
+      base.push(props?.projects[1]);
+      base[1].breadcrumb = 'project';
+    }
+
+    // if projects has atleast 3 the third one has a project breadcrumb
+    if (props?.projects.length > 2) {
+      base.push(props?.projects[2]);
+      base[2].breadcrumb = 'project';
+    }
+
+
+    // if has projects and vendors
+    if (props?.vendors.length && props?.venues.length) {
+
+      console.log('🦄');
+
+      // put the vendor in the second spot
+      let vendorInset = props?.vendors[0];
+      vendorInset.breadcrumb = 'vendor';
+      base.splice(1, 1, vendorInset);
+
+      let venueInset = props?.venues[0];
+      venueInset.breadcrumb = 'venue';
+      base.splice(2, 2, venueInset);
+    } else if (props?.vendors.length) {
+
+      // if has projects and vendors but no venues
+      // put the vendor in the third spot
+
+      let vendorInset = props?.vendors[0];
+      vendorInset.breadcrumb = 'vendor';
+      base.splice(2, 2, vendorInset);
+
+    } else if (props?.venues.length) {
+      // if has projects and venues but no vendors
+      let venueInset = props?.venues[0];
+      venueInset.breadcrumb = 'venue';
+      base.splice(2, 2, venueInset);
+
+    }
+
+    // ? was this the titles?
+    /*     if (Object.values(base[0]).indexOf('project') > -1) {
+          // console.log('has project');
+        } else {
+          // console.log('no project');
+        } */
+
+
+    let titles = [];
+    // first always needs a title
+    titles[0] = base[0].breadcrumb;
+
+    if (base[1]) {
+      if (base[1]?.breadcrumb !== base[0].breadcrumb) {
+        titles[1] = base[1].breadcrumb;
+      }
+    }
+
+    if (base[1] && base[2]) {
+      if (base[2]?.breadcrumb !== base[0].breadcrumb && base[2]?.breadcrumb !== base[1].breadcrumb) {
+        titles[2] = base[2].breadcrumb;
+      }
+    }
+
+    return (
+      <>
+        <hr className='measure' />
+
+        {/* // ! splitting these doesnt work on a small screen */}
+        <div className='deck margin-block-end-0'>
+          {titles.map((title) => (
+            <h3 key={title} className='first-capital'>
+              Explore {title}s
+            </h3>
+          ))}
+        </div>
+
+        <div className='deck'>
+          {base.map((card) => (
+            console.log(card.breadcrumb),
+            <div key={card.id}>
+              <Card
+                card={card}
+                breadcrumb={card.breadcrumb}
+              />
+            </div>
+          ))}
+        </div>
+      </>
+    )
   }
-
-  let types = [];
-
-  // // (Object.values(base[0]).indexOf('project') > -1) ? console.log('has project') : console.log('no project');
-  // if (base[0].breadcrumb === 'project') {
-  //   console.log('has 1 project');
-  //   types.push('project');
-  // }
-
-  base.map(type => {
-    (types.push(type.breadcrumb))
-  });
-
-  return (
-    <>
-      <div className='measure'>
-        <hr />
-        {/* // ! fix based on the card */}
-        {/* <h3 className="crest">What have we done</h3> */}
-        {/* <h2 className="ridge mixta">Projects</h2> */}
-        {/* // ! the top might have to be in a seperate loop which is kinda ok */}
-        {/* //* rename this */}
-        {/*         <Top
-          base={base}
-        // ? do I need other options
-        /> */}
-        {TypeTitles(types)}
-      </div>
-      <div className='deck'>
-        {base.map((card) => (
-          <div key={card.id}>
-            {/* <h5><Link to={`/${card.breadcrumb}`}>Explore our {card.breadcrumb}s</Link></h5> */}
-            <Card
-              card={card}
-              breadcrumb={card.breadcrumb}
-            />
-          </div>
-        ))}
-      </div>
-    </>
-  )
 }
 
 function ReactDescription(props) {
@@ -258,26 +283,14 @@ const ServiceView = ({ data }) => {
           children={data.strapiService?.after_the_triptych?.data?.after_the_triptych}
           remarkPlugins={[remarkGfm]}
         />
-
-        {/* // Wedding */}
-        {/*         <p>
-          The natural beauty of the Reno Tahoe area make the perfect backdrop for a wedding. Our custom lighting design enhances your decor and the architectural / landscape features of your venue. Wether your aiming for a low key affair or a luxurious event, we work with you to create the perfect mood.
-        </p> */}
-
-        {/* // Wedding */}
-        {/*         <p>
-          We exclusively use modern LED technology, wireless and battery powered where possible. With wireless LEDs, we are eliminating fire risks from traditional technology, reducing tripping hazards and clutter in your photos. We use modern RGB technology to create the perfect lighting effects to highlight your decor and create the ideal mood for your big day. For example, ambers / warm whites add a flattering and romantic glow while deep purple / blue can amp up guests for the dance party portion of the night. You can choose a unified color scheme, select a palette of complimentary colors or even plan changes throughout your event.
-        </p> */}
-
       </div>
 
-      {/* // ! currently fails on social */}
-      {/*       <Base
+      <Base
         projects={data?.strapiService?.projects}
         venues={data?.allStrapiVenue?.nodes}
         vendors={data?.allStrapiVendor?.nodes}
         slug={data.strapiService.slug}
-      /> */}
+      />
 
       <Footer />
 
@@ -340,7 +353,7 @@ export const query = graphql`
       }
     }
 
-    allStrapiVendor(limit: 1) {
+    allStrapiVendor(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
       nodes {
         ...vendorCard
       }

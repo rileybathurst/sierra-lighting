@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { CardType } from "../types/card";
 
+// ? should this be an svg?
 export function Missing() {
   return <StaticImage src="https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg" alt="missing image" />
 }

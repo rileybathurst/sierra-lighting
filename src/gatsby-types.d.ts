@@ -2122,6 +2122,7 @@ type Query_strapiServiceArgs = {
   testimonials: InputMaybe<STRAPI_TESTIMONIALFilterListInput>;
   triptych: InputMaybe<STRAPI__MEDIAFilterListInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
+  vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
   venues: InputMaybe<STRAPI_VENUEFilterListInput>;
   videoMux: InputMaybe<StringQueryOperatorInput>;
 };
@@ -2265,6 +2266,7 @@ type Query_strapiVendorArgs = {
   projects: InputMaybe<STRAPI_PROJECTFilterListInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   service: InputMaybe<StringQueryOperatorInput>;
+  services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   testimonials: InputMaybe<STRAPI_TESTIMONIALFilterListInput>;
@@ -4768,6 +4770,7 @@ type STRAPI_SERVICE = Node & {
   readonly testimonials: Maybe<ReadonlyArray<Maybe<STRAPI_TESTIMONIAL>>>;
   readonly triptych: Maybe<ReadonlyArray<Maybe<STRAPI__MEDIA>>>;
   readonly updatedAt: Maybe<Scalars['Date']>;
+  readonly vendors: Maybe<ReadonlyArray<Maybe<STRAPI_VENDOR>>>;
   readonly venues: Maybe<ReadonlyArray<Maybe<STRAPI_VENUE>>>;
   readonly videoMux: Maybe<Scalars['String']>;
 };
@@ -4897,6 +4900,7 @@ type STRAPI_SERVICEFieldSelector = {
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALFieldSelector>;
   readonly triptych: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
+  readonly vendors: InputMaybe<STRAPI_VENDORFieldSelector>;
   readonly venues: InputMaybe<STRAPI_VENUEFieldSelector>;
   readonly videoMux: InputMaybe<FieldSelectorEnum>;
 };
@@ -4925,6 +4929,7 @@ type STRAPI_SERVICEFilterInput = {
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALFilterListInput>;
   readonly triptych: InputMaybe<STRAPI__MEDIAFilterListInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
   readonly venues: InputMaybe<STRAPI_VENUEFilterListInput>;
   readonly videoMux: InputMaybe<StringQueryOperatorInput>;
 };
@@ -5014,6 +5019,7 @@ type STRAPI_SERVICESortInput = {
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALSortInput>;
   readonly triptych: InputMaybe<STRAPI__MEDIASortInput>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
+  readonly vendors: InputMaybe<STRAPI_VENDORSortInput>;
   readonly venues: InputMaybe<STRAPI_VENUESortInput>;
   readonly videoMux: InputMaybe<SortOrderEnum>;
 };
@@ -6410,6 +6416,7 @@ type STRAPI_VENDOR = Node & {
   readonly projects: Maybe<ReadonlyArray<Maybe<STRAPI_PROJECT>>>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly service: Maybe<Scalars['String']>;
+  readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly slug: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly testimonials: Maybe<ReadonlyArray<Maybe<STRAPI_TESTIMONIAL>>>;
@@ -6502,6 +6509,7 @@ type STRAPI_VENDORFieldSelector = {
   readonly projects: InputMaybe<STRAPI_PROJECTFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly service: InputMaybe<FieldSelectorEnum>;
+  readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALFieldSelector>;
@@ -6525,6 +6533,7 @@ type STRAPI_VENDORFilterInput = {
   readonly projects: InputMaybe<STRAPI_PROJECTFilterListInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly service: InputMaybe<StringQueryOperatorInput>;
+  readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALFilterListInput>;
@@ -6593,6 +6602,7 @@ type STRAPI_VENDORSortInput = {
   readonly projects: InputMaybe<STRAPI_PROJECTSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly service: InputMaybe<SortOrderEnum>;
+  readonly services: InputMaybe<STRAPI_SERVICESortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALSortInput>;
