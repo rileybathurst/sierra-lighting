@@ -52,6 +52,7 @@ const ServicesPage = () => {
               </Link>
             </h2>
 
+            {/* // TODO: this is markdown that needs to be formatted */}
             <p>
               {service.description.data.description}
             </p>

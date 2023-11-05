@@ -1,7 +1,11 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import { CardType } from "../types/card";
+
+export function Missing() {
+  return <StaticImage src="https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg" alt="missing image" />
+}
 
 function NameTitle(props: {
   name?: string;
@@ -43,17 +47,18 @@ function Image(props: {
     var image = props?.image;
   }
 
-  return (
-    <>
+  if (image?.localFile?.childImageSharp?.gatsbyImageData) {
+    return (
       <GatsbyImage
-        image={
-          image?.localFile?.childImageSharp
-            ?.gatsbyImageData
-        }
+        image={image?.localFile?.childImageSharp?.gatsbyImageData}
         alt={image?.alternativeText || props.title || props.name}
       />
-    </>
-  )
+    )
+  } else {
+    return (
+      <Missing />
+    )
+  }
 }
 
 function Breadcrumb(props: {

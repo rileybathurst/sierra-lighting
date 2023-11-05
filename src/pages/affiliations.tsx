@@ -10,27 +10,27 @@ const TestimonialsPage = () => {
 
 
   const { allStrapiAffiliation } = useStaticQuery(graphql`
-query AffiliationsQuery {
-  allStrapiAffiliation(filter: { publishedAt: { ne: null } }) {
-    nodes {
-      id
-      name
-      excerpt
-      link
+    query AffiliationsQuery {
+      allStrapiAffiliation(filter: { publishedAt: { ne: null } }) {
+        nodes {
+          id
+          name
+          excerpt
+          link
 
-      logo {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
+          logo {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+              url
+            }
+            alternativeText
           }
-          url
         }
-        alternativeText
       }
     }
-  }
-}
-`)
+  `)
 
   const title = 'Affiliations';
 

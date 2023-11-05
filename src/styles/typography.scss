@@ -151,6 +151,10 @@ small,
   @extend small;
 }
 
+/*------------------*/
+//  #HR
+/*------------------*/
+
 hr {
   border: none;
   border-top: 1px solid hsl(var(--honey), 100%, 50%);
@@ -169,7 +173,16 @@ hr.measure {
   margin-block-end: 0;
 }
 
-/* button {} */
+.hr-grey {
+  border-top-color: grey;
+}
+
+.hr-tin-soldier {
+  border-top-color: var(--tin-soldier);
+  /*   // TODO: @media (prefers-color-scheme: dark) {
+    
+  } */
+}
 
 /*------------------*/
 //  #CLAMPS

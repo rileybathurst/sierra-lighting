@@ -1,37 +1,130 @@
 // specifically removed from the SEO on Rom's request
-
-// I bet eventually you could create these progamatically
+// I bet eventually you could create these progamatically for all services but thats just another level
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
+
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import ChristmasLightsOrdered from "../../components/christmas-lights-ordered";
+
+function ReactDescription(props) {
+  if (props.description) {
+    return <ReactMarkdown
+      children={props.description.data.description}
+      remarkPlugins={[remarkGfm]}
+    />;
+  } else if (props.showcaseDescription) {
+    return <ReactMarkdown
+      children={props.showcaseDescription.data.showcaseDescription}
+      remarkPlugins={[remarkGfm]}
+    />;
+  } else {
+    return null;
+  }
+}
+
+function Attributes(props) {
+
+  const sections = Object.entries(props).map(([key, value]) => {
+
+    return (
+      <section className="attribute">
+        <h3 className="crest first-capital">{key}</h3>
+        <h4 className="range">{value}</h4>
+      </section>
+    )
+  })
+
+  return (
+    <>
+      <hr className="hr-tin-soldier measure" />
+      <div className="attributes">
+        {sections}
+      </div>
+    </>
+  )
+}
 
 function ResidentialShowcase() {
 
-  const { allStrapiProject } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query ShowcaseQuery {
-      allStrapiProject(filter: {services: {elemMatch: {slug: {eq: "residential"}}}}) {
+      gold: allStrapiShowcase(
+        filter: {service: {slug: {eq: "residential"}},
+        tier: {eq: "gold"}}
+      ) {
         nodes {
-          slug
-          title
+          ...showcase
+        }
+      }
 
-          image {
-            alternativeText
-            localFile {
-              childImageSharp {
-                gatsbyImageData
+      silver: allStrapiShowcase(
+        filter: {service: {slug: {eq: "residential"}},
+        tier: {eq: "silver"}}
+      ) {
+        nodes {
+          ...showcase
+        }
+      }
+
+      bronze: allStrapiShowcase(
+        filter: {service: {slug: {eq: "residential"}},
+        tier: {eq: "bronze"}}
+      ) {
+        nodes {
+          ...showcase
+        }
+      }
+
+      description: strapiService(slug: {eq: "residential"}) {
+        showcaseDescription {
+          data {
+            showcaseDescription
+          }
+        }
+      }
+
+      lightGroups: allStrapiLightGroup(
+          filter: {services: {elemMatch: {slug: {eq: "residential"}}}}
+        ) {
+          nodes {
+            name
+            excerpt
+            lights {
+              id
+              name
+              slug
+              excerpt
+              byline
+
+              image {
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(
+                      breakpoints: [111, 165, 222, 444, 880]
+                      width: 222
+                    )
+                  }
+                }
+                alternativeText
               }
             }
           }
-
         }
-      }
+
     }
   `);
 
+  let showcase = [data.gold, data.silver, data.bronze];
+  let description = data.description;
+  let lightGroups = data.lightGroups;
+
+  // console.log(description);
 
   return (
     <>
@@ -47,156 +140,48 @@ function ResidentialShowcase() {
         </ol>
         <hr />
       </div>
-      <main className="measure">
-        <h1 className="mixta">Residential Showcase</h1>
+      <main>
+        <div className="measure">
+          <h1 className="mixta">Residential Showcase</h1>
+          <ReactDescription showcaseDescription={description.showcaseDescription} />
+        </div>
 
-        {/*         <ul>
-          <li>Gold</li>
-          <li>Silver</li>
-          <li>Bronze</li>
-        </ul> */}
+        {showcase.map((level) => (
+          <section>
+            <hr className="measure" />
+            {level.nodes.map(showcase => (
+              <>
+                <Link to={`/project/${showcase.project.slug}`}>
+                  <GatsbyImage
+                    image={showcase.project.image?.localFile?.childImageSharp?.gatsbyImageData}
+                    alt={showcase.project.title}
+                    className="poster"
+                  /></Link>
 
-        <section>
-          <hr />
-          {allStrapiProject.nodes.map(project => (
-            <>
-              <GatsbyImage
-                image={project.image?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={project.title}
-                className="poster"
-              />
-            </>
-          ))}
+                <div className="measure">
+                  <h3 className="first-capital">{showcase.tier} Showcase</h3>
+                  <ReactDescription description={showcase.description} />
+                </div>
 
-          <h3>Gold Project</h3>
-          <div className="attributes">
-            <section className="attribute">
-              <h3 className="crest">Price</h3>
-              <h4 className="range">
-                {/* <Link to={`#`} className="link--subtle"> */}
-                $2k +
-                {/* </Link> */}
-              </h4>
-            </section>
-            <section className="attribute">
-              <h3 className="crest">Roofline</h3>
-              <h4 className="range">
-                <Link to={`#`} className="link--subtle">
-                  Multiple Peaks
-                </Link>
-              </h4>
-            </section>
-            <section className="attribute">
-              <h3 className="crest">Trees</h3>
-              <h4 className="range">
-                <Link to={`#`} className="link--subtle">
-                  Limb and Trunk Wrap
-                </Link>
-              </h4>
-            </section>
-          </div>
-          <hr />
-        </section>
+                <Attributes
+                  price={showcase.price}
+                  roofline={showcase.roofline}
+                  trees={showcase.tree}
+                />
+              </>
+            ))
+            }
+          </section >
+        ))}
 
-        <section>
-          {allStrapiProject.nodes.map(project => (
-            <>
-              <GatsbyImage
-                image={project.image?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={project.title}
-                className="poster"
-              />
-            </>
-          ))}
-          <h3>Silver Project</h3>
-          <div className="attributes">
-            <section className="attribute">
-              <h3 className="crest">Price</h3>
-              <h4 className="range">~ $2k</h4>
-            </section>
-            <section className="attribute">
-              <h3 className="crest">Roofline</h3>
-              <h4 className="range">
-                <Link to={`#`} className="link--subtle">
-                  Single Story with Peaks
-                </Link>
-              </h4>
-            </section>
-            <section className="attribute">
-              <h3 className="crest">Trees</h3>
-              <h4 className="range">
-                <Link to={`#`} className="link--subtle">
-                  C9 Swirls
-                </Link>
-              </h4>
-            </section>
-          </div>
-          <hr />
-        </section>
+        <hr className="measure" />
+      </main >
 
+      <section>
+        <h3 className="measure">Lighting types used on residential christmas displays</h3>
+        <ChristmasLightsOrdered />
+      </section>
 
-
-        <section>
-          {allStrapiProject.nodes.map(project => (
-            <>
-              <GatsbyImage
-                image={project.image?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={project.title}
-                className="poster"
-              />
-            </>
-          ))}
-          <h3>Bronze Project</h3>
-          <div className="attributes">
-            <section className="attribute">
-              <h3 className="crest">Price</h3>
-              <h4 className="range">~ $1k</h4>
-            </section>
-            <section className="attribute">
-              <h3 className="crest">Roofline</h3>
-              <h4 className="range">
-                <Link to={`#`} className="link--subtle">
-                  Single Story
-                </Link>
-              </h4>
-            </section>
-            <section className="attribute">
-              <h3 className="crest">Trees</h3>
-              <h4 className="range">
-                <Link to={`#`} className="link--subtle">
-                  Small Swirl
-                </Link>
-              </h4>
-            </section>
-          </div>
-        </section>
-
-
-
-
-        {/* //?Table Maybe idea? */}
-        {/* <div className="showcase--table">
-          <div>
-            <p>Scale</p>
-            <h3>Gold</h3>
-            <h3>Silver</h3>
-            <h3>Bronze</h3>
-          </div>
-          <div>
-            <p>Roofline</p>
-            <h4>Complex Multistory</h4>
-            <h4>Medium</h4>
-            <h4>Simple Singlestory</h4>
-          </div>
-          <div>
-            <p>Trees</p>
-            <h4>Limb and Trunk Wrap </h4>
-            <h4>Trunk Wrap</h4>
-            <h4>Small Swirl</h4>
-          </div>
-        </div> */}
-
-      </main>
       <Footer />
     </>
   )

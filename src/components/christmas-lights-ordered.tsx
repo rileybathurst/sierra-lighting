@@ -1,39 +1,14 @@
-// * this is a weird extra page as it has to query both sets
-
 import * as React from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 
-import Seo from "../components/seo";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import Grouploop from "../components/grouploop";
-import LightSearch from "../components/light-search";
-import ChristmasLightsOrdered from "../components/christmas-lights-ordered";
+import Grouploop from "./grouploop";
 
-// TODO: rename this its hard searching for a system term
-function Filter({ groups }) {
-  let filtered = groups.filter((group) => group[1].nodes.length > 0);
+const ChristmasLightsOrdered = () => {
 
-  return (
-    filtered.map((gp) => {
-
-      // console.log(gp[0].id);
-
-      return (
-        <li key={gp[0].id}>
-          <Link to={`#${gp[0].slug}`}>
-            {gp[0].name}
-          </Link>
-        </li >
-      )
-    })
-  )
-}
-
-const lightsPage = () => {
+  // TODO: I wonder if you can variable services in the filter
 
   const data = useStaticQuery(graphql`
-    query ChristmasLightsQuery {
+    query ChristmasLightsOrderQuery {
 
       overhead: strapiLightGroup(slug: {eq: "overhead"}) {
         ...lightGroup
@@ -204,16 +179,16 @@ const lightsPage = () => {
         }
       }
 
-      season: strapiSeason {
-        wedding
-      }
-
       service: allStrapiService {
         nodes {
           id
           name
           slug
         }
+      }
+
+      season: strapiSeason {
+        wedding
       }
 
     }
@@ -271,8 +246,6 @@ const lightsPage = () => {
     data.lanternlights
   ]
 
-  // TODO: theres an other were not using as a fallback it should console warning things are not organzized
-
   let groups = [
     overheadgroup,
     accentgroup,
@@ -287,6 +260,7 @@ const lightsPage = () => {
   ];
 
   let season = data.season;
+  // console.log(season);
 
   // ? why is there a wedding order in christmas lights?
   if (season.wedding) {
@@ -320,46 +294,17 @@ const lightsPage = () => {
 
   return (
     <>
-
-      <Seo
-        title="Lights | Sierra Lighting"
-        description="When you're looking for custom, elegant, one of a kind ambiance for you wedding, look no further than Sierra Lighting. Creating beautiful displays is all we do! We also offer landscape lighting services to make your outdoor space shine all summer long with cafe lights, uplighting, and more."
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/lights-og-sierra_lighting.jpg"
-      />
-      <Header />
-      <main className="lights__page">
-
-        <div className="measure">
-          <h2 className="crest">What we build</h2>
-          <h1 className="mixta">Lights</h1>
-
-          <hr />
-
-          {/* // TODO: this shouldnt be deck its not for cards */}
-          <section className="deck">
-            <div>
-              <p>Filter by type:</p>
-              <Filter groups={groups} />
-            </div>
-          </section>
+      {groups.map((group) => (
+        <div
+          key={group[0].id}
+          id={group[0].slug}
+        >
+          <Grouploop group={group} />
         </div>
-
-        <div className="measure">
-          <hr />
-          <h3>
-            Search
-          </h3>
-          <LightSearch />
-        </div>
-
-        <ChristmasLightsOrdered />
-
-      </main >
-
-      <Footer />
-
+      ))
+      }
     </>
-  )
+  );
 }
 
-export default lightsPage
+export default ChristmasLightsOrdered

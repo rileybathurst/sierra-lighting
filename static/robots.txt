@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /residential/*
+
+Disallow: /residential/showcase
