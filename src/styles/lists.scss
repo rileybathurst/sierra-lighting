@@ -66,6 +66,12 @@ ul {
       border-color: hsl(var(--denim), 25%, 25%);
     }
 
+    @media (max-width: $book) {
+      @media (prefers-color-scheme: dark) {
+        background-color: hsl(var(--denim), 25%, 12%);
+      }
+    }
+
     ul {
       padding-inline-start: 0;
       li {

@@ -157,12 +157,21 @@ const Footer = () => {
         <label>Phone
           <input type="tel" name="tel" />
         </label>
-        <label>Address
-          <input type="text" name="address" />
-        </label>
+        <div className='address-together'>
+          <label className='address'>Address
+            <input type="text" name="address" />
+          </label>
+          <label className='zip'>City or Zip
+            <input type="text" name="zip" />
+          </label>
+        </div>
         <label>Message
           <textarea name="message" />
         </label>
+        <label>How did you hear about us?
+          <input type="text" name="referral" />
+        </label>
+
         {/* // TODO: this might be a query in the future if I keep changing it */}
         <label className='checkbox'>I understand there is a minimum of $700 for new clients
           <input type="checkbox" name="minimum" />

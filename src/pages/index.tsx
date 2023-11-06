@@ -129,7 +129,7 @@ const IndexPage = () => {
             <div className="testimonial-links">
               {/* // ? should I have two crests in a row? */}
               <h3 className="crest"><Link to="/testimonials">Read More Reviews</Link></h3>
-              <h3 className="crest"><Link to="#" className="long-title">Or help us you buy submitting your own review</Link></h3>
+              <h3 className="crest"><Link to="#" className="long-title">Help us you buy submitting your own review</Link></h3>
             </div>
           </section>
         </div>

@@ -145,13 +145,14 @@ function ResidentialShowcase() {
         <div className="measure">
           <h1 className="mixta">Residential Showcase</h1>
           <ReactDescription showcaseDescription={description.showcaseDescription} />
+          <h4><Link to="#contact">Enquire Now</Link></h4>
         </div>
 
         {showcase.map((level) => (
           <section key={level.nodes[0].id}>
             <hr className="measure" />
             {level.nodes.map(showcase => (
-              <div key={showcase.id}>
+              <div key={showcase.id} className="pelican">
                 <Link to={`/project/${showcase.project.slug}`}>
                   <GatsbyImage
                     image={showcase.project.image?.localFile?.childImageSharp?.gatsbyImageData}

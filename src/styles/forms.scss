@@ -69,4 +69,18 @@ form {
     // double backwards
     justify-content: flex-end;
   }
+
+  .address-together {
+    width: calc(100% - 2rem);
+    margin-inline: auto;
+    display: flex;
+
+    .address {
+      flex: 2;
+    }
+
+    .zip {
+      flex: 1;
+    }
+  }
 }
