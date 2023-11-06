@@ -33,7 +33,7 @@ function Attributes(props) {
   const sections = Object.entries(props).map(([key, value]) => {
 
     return (
-      <section className="attribute">
+      <section className="attribute" key={key}>
         <h3 className="crest first-capital">{key}</h3>
         <h4 className="range">{value}</h4>
       </section>
@@ -46,6 +46,7 @@ function Attributes(props) {
       <div className="attributes">
         {sections}
       </div>
+      <hr className="hr-tin-soldier measure" />
     </>
   )
 }
@@ -122,7 +123,7 @@ function ResidentialShowcase() {
 
   let showcase = [data.gold, data.silver, data.bronze];
   let description = data.description;
-  let lightGroups = data.lightGroups;
+  // let lightGroups = data.lightGroups;
 
   // console.log(description);
 
@@ -147,10 +148,10 @@ function ResidentialShowcase() {
         </div>
 
         {showcase.map((level) => (
-          <section>
+          <section key={level.nodes[0].id}>
             <hr className="measure" />
             {level.nodes.map(showcase => (
-              <>
+              <div key={showcase.id}>
                 <Link to={`/project/${showcase.project.slug}`}>
                   <GatsbyImage
                     image={showcase.project.image?.localFile?.childImageSharp?.gatsbyImageData}
@@ -168,7 +169,10 @@ function ResidentialShowcase() {
                   roofline={showcase.roofline}
                   trees={showcase.tree}
                 />
-              </>
+
+                {/* // TODO: add smooth scroll here */}
+                <h4 className="measure"><Link to="#contact">Enquire Now</Link></h4>
+              </div>
             ))
             }
           </section >
@@ -178,7 +182,7 @@ function ResidentialShowcase() {
       </main >
 
       <section>
-        <h3 className="measure">Lighting types used on residential christmas displays</h3>
+        <h4 className="measure">Lighting types used on residential christmas displays</h4>
         <ChristmasLightsOrdered />
       </section>
 

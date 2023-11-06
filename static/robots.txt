@@ -1,3 +1,7 @@
 User-agent: *
 
+Allow: /
+
 Disallow: /residential/showcase
+
+Sitemap: https://sierra.lighting/sitemap-0.xml

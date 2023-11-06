@@ -15,6 +15,7 @@ a {
 
 a:hover,
 a:focus {
+  text-decoration: none; // TODO: add somenice animation to this
   color: hsl(var(--honey), 100%, 37%);
 
   @media (prefers-color-scheme: dark) {

@@ -66,7 +66,7 @@ function Base(props) {
     // if has projects and vendors
     if (props?.vendors.length && props?.venues.length) {
 
-      console.log('🦄');
+      // console.log('🦄');
 
       // put the vendor in the second spot
       let vendorInset = props?.vendors[0];
@@ -117,6 +117,9 @@ function Base(props) {
       }
     }
 
+    console.log(titles);
+    console.log(base);
+
     return (
       <>
         <hr className='measure' />
@@ -132,7 +135,7 @@ function Base(props) {
 
         <div className='deck'>
           {base.map((card) => (
-            console.log(card.breadcrumb),
+            // console.log(card.breadcrumb),
             <div key={card.id}>
               <Card
                 card={card}
