@@ -14,31 +14,12 @@ import remarkGfm from 'remark-gfm'
 import Card from '../components/card';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
-// import Process from '../components/fragments/process';
-
-function TypeTitles(types) {
-  // console.log('TypeTitles');
-  // console.log(types);
-
-  // TODO: needs vertical borders between the different types
-  /*   return (
-      <h1>
-        span
-      </h1 >
-    ) */
-
-  return null;
-
-}
-
-
-
 function Base(props) {
   let base = [];
 
   if (!props?.projects.length && !props?.venues.length && !props?.vendors.length) {
     // base.push(props?.projects[0]);
-    console.log('no projects, venues or vendors');
+    // console.log('no projects, venues or vendors');
     return null;
   } else {
     // * the heirarchy is projects, vendors, venues
@@ -48,18 +29,21 @@ function Base(props) {
     if (props?.projects.length > 0) {
       base.push(props?.projects[0]);
       base[0].breadcrumb = 'project';
+      base[0].order = 0;
     }
 
     // if projects has atleast 2 the second one has a project breadcrumb
     if (props?.projects.length > 1) {
       base.push(props?.projects[1]);
       base[1].breadcrumb = 'project';
+      base[1].order = 1;
     }
 
     // if projects has atleast 3 the third one has a project breadcrumb
     if (props?.projects.length > 2) {
       base.push(props?.projects[2]);
       base[2].breadcrumb = 'project';
+      base[2].order = 2;
     }
 
 
@@ -104,6 +88,8 @@ function Base(props) {
     let titles = [];
     // first always needs a title
     titles[0] = base[0].breadcrumb;
+    // console.log(titles[0]);
+    // titles[0]
 
     if (base[1]) {
       if (base[1]?.breadcrumb !== base[0].breadcrumb) {
@@ -117,33 +103,35 @@ function Base(props) {
       }
     }
 
-    console.log(titles);
-    console.log(base);
+    // console.log(titles);
+    // console.log(base);
 
     return (
       <>
         <hr className='measure' />
 
-        {/* // ! splitting these doesnt work on a small screen */}
-        <div className='deck margin-block-end-0'>
+        {/* // TODO: add links */}
+        <div className='deck margin-block-end-0 service-deck'>
           {titles.map((title) => (
-            <h3 key={title} className='first-capital'>
+            <h4
+              key={title}
+              className={`first-capital ${title}-title`}
+            >
               Explore {title}s
-            </h3>
+            </h4>
           ))}
-        </div>
 
-        <div className='deck'>
+
           {base.map((card) => (
             // console.log(card.breadcrumb),
-            <div key={card.id}>
+            <div key={card.id} className={`${card.breadcrumb} ${card.breadcrumb}-${card.order}`} >
               <Card
                 card={card}
                 breadcrumb={card.breadcrumb}
               />
             </div>
           ))}
-        </div>
+        </div >
       </>
     )
   }
@@ -179,7 +167,30 @@ function VideoMux(video) {
   }
 }
 
+function Consultant({ after_the_triptych }) {
+  console.log(after_the_triptych.data.after_the_triptych)
+
+  if (after_the_triptych.data.after_the_triptych) {
+    return (
+      <div id="consultant" className='measure'>
+        <hr />
+        <h3>
+          Have you ever noticed how much lighting can affect the feeling of space?
+        </h3>
+
+        <ReactMarkdown
+          children={after_the_triptych?.data?.after_the_triptych}
+          remarkPlugins={[remarkGfm]}
+        />
+      </div>
+    )
+  } else {
+    return null;
+  }
+}
+
 const ServiceView = ({ data }) => {
+
   return (
     <>
       <Seo
@@ -253,7 +264,7 @@ const ServiceView = ({ data }) => {
         </div>
 
         <div className='deck'>
-          {data.strapiService.featuredLights.map((light) => (
+          {data.strapiService.featured_lights.map((light) => (
             <div key={light.id}>
               <Card
                 card={light}
@@ -272,21 +283,10 @@ const ServiceView = ({ data }) => {
             </Link>
           </h3>
           <p>Have something particular in mind? Just ask!</p>
-          <hr />
         </div>
       </section>
 
-      {/* // ? name - why is this split out? */}
-      <div id="consultant" className='measure'>
-        <h3>
-          Have you ever noticed how much lighting can affect the feeling of space?
-        </h3>
-
-        <ReactMarkdown
-          children={data.strapiService?.after_the_triptych?.data?.after_the_triptych}
-          remarkPlugins={[remarkGfm]}
-        />
-      </div>
+      <Consultant after_the_triptych={data.strapiService?.after_the_triptych} />
 
       <Base
         projects={data?.strapiService?.projects}
@@ -337,7 +337,7 @@ export const query = graphql`
         }
       }
       
-      featuredLights {
+      featured_lights {
         ...lightCard
       }
 

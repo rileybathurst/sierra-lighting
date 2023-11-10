@@ -190,3 +190,61 @@
     }
   }
 }
+
+// shananagins to wrangle the titles
+// TODO: some middle sizes are wrong
+.service-deck {
+  @media (max-width: $stork) {
+    .project-title {
+      grid-row: 1;
+    }
+
+    .project {
+      grid-row: 2;
+    }
+
+    .vendor-title {
+      grid-row: 3;
+    }
+
+    .vendor {
+      grid-row: 4;
+    }
+
+    .venue-title {
+      grid-row: 5;
+    }
+
+    .venue {
+      grid-row: 6;
+    }
+
+    .project-0 {
+      grid-row: 2;
+    }
+
+    .project-1 {
+      grid-row: 3;
+    }
+
+    .project-2 {
+      grid-row: 4;
+    }
+  }
+
+  @media (min-width: $stork) {
+    .project-title {
+      grid-row: 1;
+    }
+
+    .project-0,
+    .project-1,
+    .project-2 {
+      grid-row: 2;
+    }
+  }
+
+  // TODO: theres a complicated has to get sorted on the social events
+  // https://www.matuzo.at/blog/2022/100daysof-day50/
+  // .has not project then do other things
+}

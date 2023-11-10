@@ -100,6 +100,9 @@ const Card = (props: {
   card: CardType;
   breadcrumb?: string;
 }) => {
+
+  // console.log(props.card);
+
   return (
     <section className="card">
       <Breadcrumb

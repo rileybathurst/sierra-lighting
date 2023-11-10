@@ -35,8 +35,8 @@ const FooterList = () => (
     <li className="additional-services">
       <ul>
         <li key="services" className="footer_list--no_link"><strong>Services</strong></li>
-        <li key="permanent"><Link to="/permanent">Patio Lighting</Link></li>
-        <li key="events"><Link to="/events">Non Wedding Events</Link></li>
+        <li key="permanent"><Link to="/patio">Patio Lighting</Link></li>
+        <li key="events"><Link to="/social-events">Social Events</Link></li>
         <li key="commercial-events"><Link to="/commercial-events">Commercial Events</Link></li>
       </ul>
     </li>

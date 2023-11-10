@@ -32,7 +32,7 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiService.edges.forEach(({ node }) => {
       createPage({
         // ! testing only at service
-        path: `/service/${node.slug}`,
+        path: `/${node.slug}`,
         component: path.resolve(`src/templates/service.tsx`),
         context: {
           slug: node.slug,
