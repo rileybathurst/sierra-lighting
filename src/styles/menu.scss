@@ -93,9 +93,10 @@
 }
 
 /*------------------*/
-//  #BIGBOY ORDER
+//  #MENU ORDERS
 /*------------------*/
 
+.menu__small .wedding,
 .bigboy .wedding {
   .xmas_r {
     order: 2;
@@ -111,6 +112,7 @@
   }
 }
 
+.menu__small .holiday,
 .bigboy .holiday {
   .xmas_r {
     order: 1;
