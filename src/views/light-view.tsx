@@ -210,7 +210,7 @@ const LightView = ({ light, other }) => {
               {light.services.map((service) => {
                 return (
                   <li key={service.id} className="first-capital">
-                    <Link to={service.slug}>
+                    <Link to={`/${service.slug}`}>
                       {service.name}
                     </Link>
                   </li>
