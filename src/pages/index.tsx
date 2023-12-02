@@ -42,7 +42,11 @@ const IndexPage = () => {
         <div className="hero-container">
           <section className="hero">
             {/* // * shortened version of site description */}
-            <h2 className="site_title">Dependable holiday, landscape and events light installation</h2>
+            <div>
+              <h2 className="site_title">Dependable holiday, landscape and events light installation</h2>
+
+              <button className="button-hero"><Link to="/contact">Start with a free quote</Link></button>
+            </div>
 
             <HomeHero />
 

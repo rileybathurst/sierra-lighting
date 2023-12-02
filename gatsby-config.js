@@ -12,7 +12,6 @@ const strapiConfig = {
     'venue',
     'light',
     'far',
-    'topbar',
     'project',
     'team',
     'affiliation',

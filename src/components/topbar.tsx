@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 
 const TopBar = () => {
 
-  const {strapiTopbar} = useStaticQuery(graphql`
+  const { strapiTopbar } = useStaticQuery(graphql`
   query TopBarQuery {
     strapiTopbar {
       id
@@ -14,7 +14,7 @@ const TopBar = () => {
 
   return (
     <div className="top-bar">
-      <h2>{strapiTopbar.title}</h2>
+      <h2><Link to="/contact">{strapiTopbar.title}</Link></h2>
       <hr />
     </div>
   );

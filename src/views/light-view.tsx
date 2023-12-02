@@ -175,14 +175,26 @@ const LightView = ({ light, other }) => {
           <hr />
         </div>
 
-        <GatsbyImage
-          image={
-            light?.image?.localFile?.childImageSharp
-              ?.gatsbyImageData
-          }
-          alt={light.image?.alternativeText}
-          className="poster"
-        />
+        <div className="light-hero">
+
+          <GatsbyImage
+            image={
+              light?.image?.localFile?.childImageSharp
+                ?.gatsbyImageData
+            }
+            alt={light.image?.alternativeText}
+            className="poster"
+          />
+          <GatsbyImage
+            image={
+              light?.detail?.localFile?.childImageSharp
+                ?.gatsbyImageData
+            }
+            alt={light.detail?.alternativeText}
+            className="detail"
+          />
+        </div>
+
         <article className="measure">
           {/* // TODO: this could be using a js length test for the lower clamp */}
           <h1 className="clamp-denali_everest">{light.name}</h1>

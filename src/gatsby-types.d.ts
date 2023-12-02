@@ -1927,6 +1927,7 @@ type Query_strapiLightArgs = {
   childrenStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<StringQueryOperatorInput>;
+  detail: InputMaybe<STRAPI__MEDIAFilterInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   featured_service: InputMaybe<STRAPI_SERVICEFilterListInput>;
   gatsbyPath: InputMaybe<StringQueryOperatorInput>;
@@ -3162,6 +3163,7 @@ type STRAPI_LIGHT = Node & {
   readonly childrenStrapiLightAliasJsonnode: Maybe<ReadonlyArray<Maybe<STRAPI_LIGHT_ALIAS_JSONNODE>>>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly detail: Maybe<STRAPI__MEDIA>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly featured_service: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly gatsbyPath: Maybe<Scalars['String']>;
@@ -3264,6 +3266,7 @@ type STRAPI_LIGHTFieldSelector = {
   readonly childrenStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly detail: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly featured_service: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly gatsbyPath: InputMaybe<FieldSelectorEnum>;
@@ -3292,6 +3295,7 @@ type STRAPI_LIGHTFilterInput = {
   readonly childrenStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly detail: InputMaybe<STRAPI__MEDIAFilterInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly featured_service: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly gatsbyPath: InputMaybe<StringQueryOperatorInput>;
@@ -3365,6 +3369,7 @@ type STRAPI_LIGHTSortInput = {
   readonly childrenStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODESortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
+  readonly detail: InputMaybe<STRAPI__MEDIASortInput>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly featured_service: InputMaybe<STRAPI_SERVICESortInput>;
   readonly gatsbyPath: InputMaybe<SortOrderEnum>;
@@ -8292,7 +8297,7 @@ type LightQueryQueryVariables = Exact<{
 }>;
 
 
-type LightQueryQuery = { readonly strapiLight: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly description: string | null, readonly services: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null } | null> | null, readonly light_groups: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null> | null, readonly alias: { readonly internal: { readonly content: string | null } } | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly projects: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null, readonly allStrapiLight: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
+type LightQueryQuery = { readonly strapiLight: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly description: string | null, readonly services: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null } | null> | null, readonly light_groups: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null> | null, readonly alias: { readonly internal: { readonly content: string | null } } | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly detail: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly projects: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null, readonly allStrapiLight: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
 
 type LightsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

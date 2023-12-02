@@ -15,8 +15,8 @@ const LightGroupView = ({
   return (
     <>
       <Seo
-      // title={`${light.name} | Sierra Lighting`}
-      // description={light?.excerpt}
+        title={`${lightgroup.name} | Sierra Lighting`}
+        description={lightgroup?.excerpt}
       // image={light?.image?.localFile?.url}
       />
 

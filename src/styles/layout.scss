@@ -648,3 +648,32 @@ footer {
     }
   }
 }
+
+.light-hero {
+  display: grid;
+  max-width: 60rem;
+  margin-inline: auto;
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .poster {
+    margin-block-end: 2rem;
+  }
+
+  .detail {
+    max-width: 30%;
+    max-height: 50%;
+    border: 1px solid whitesmoke;
+    box-shadow: var(--troposphere);
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin-inline-end: 2rem;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: hsl(var(--denim), 12%, 25%);
+    }
+  }
+}

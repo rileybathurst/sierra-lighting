@@ -46,6 +46,19 @@ export const query = graphql`
         alternativeText
       }
 
+      detail {
+        localFile {
+          url
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [960, 1920]
+              width: 960
+            )
+          }
+        }
+        alternativeText
+      }
+
       projects {
         ...projectCard
       }
