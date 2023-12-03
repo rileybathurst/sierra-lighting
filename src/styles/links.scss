@@ -72,6 +72,14 @@ button {
     border-color: hsl(var(--denim), 12%, 25%);
     color: hsl(var(--denim), 25%, 63%);
   }
+
+  a {
+    color: hsl(
+      var(--honey),
+      100%,
+      25%
+    ) !important; /* // ! fix this bt keep a11y color contrast */
+  }
 }
 
 // TODO active and focus
