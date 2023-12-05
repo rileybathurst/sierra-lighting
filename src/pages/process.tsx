@@ -75,7 +75,7 @@ const ProcessPage = () => {
         <>
           <label className="current">
             <input type="radio" name="season" value="wedding" onChange={seasonSwitcher} checked />
-            Wedding / <span>Social Event</span>
+            <div>Wedding / <span>Social Event</span></div>
           </label>
           <label>
             <input type="radio" name="season" value="holiday" onChange={seasonSwitcher} />
@@ -88,7 +88,7 @@ const ProcessPage = () => {
         <>
           <label>
             <input type="radio" name="season" value="wedding" onChange={seasonSwitcher} />
-            Wedding / <span>Social Event</span>
+            <div>Wedding / <span>Social Event</span></div>
           </label>
           <label className="current">
             <input type="radio" name="season" value="holiday" onChange={seasonSwitcher} checked />
