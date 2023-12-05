@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useStrapiSeason } from "./use-strapi-season";
+import { useStrapiSeason } from "../hooks/use-strapi-season";
 
 function Season({ children }) {
   // useStrapiSeason() // returns true for wedding

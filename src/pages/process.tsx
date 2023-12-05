@@ -1,14 +1,25 @@
-import * as React from "react"
+// TODO: I over simplified this query to holiday wedding /there isnt a specific for permanent and social event isnt labeled add a secondary for them
+
+import React, { useState } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { useStrapiSeason } from "../hooks/use-strapi-season";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
 
 const ProcessPage = () => {
 
-  const { allStrapiProcess } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query ProcessQuery {
-      allStrapiProcess(sort: {order: ASC}){
+      holiday: allStrapiProcess(filter: {services: {elemMatch: {slug: {eq: "residential"}}}}, sort: {order: ASC}) {
+        nodes {
+          ...process
+        }
+      }
+      
+      wedding: allStrapiProcess(filter: {services: {elemMatch: {slug: {eq: "wedding"}}}}, sort: {order: ASC}) {
         nodes {
           ...process
         }
@@ -16,34 +27,98 @@ const ProcessPage = () => {
     }
   `)
 
+  let holidayProcesses = data.holiday.nodes;
+  let weddingProcesses = data.wedding.nodes;
+
+  function ProcessList({ processes }) {
+
+    if (processes === 'weddingProcesses') {
+      return (
+        <ol>
+          {weddingProcesses.map(process => (
+            <li key={process.id}>
+              <h3>{process.name}</h3>
+              <ReactMarkdown children={process.markdown.data.markdown} remarkPlugins={[remarkGfm]} />
+            </li>
+          ))}
+        </ol>
+      )
+    } else if (processes === 'holidayProcesses') {
+      return (
+        <ol>
+          {holidayProcesses.map(process => (
+            <li key={process.id}>
+              <h3>{process.name}</h3>
+              <ReactMarkdown children={process.markdown.data.markdown} remarkPlugins={[remarkGfm]} />
+            </li>
+          ))}
+        </ol>
+      )
+    } else {
+      return null;
+    }
+  }
+
+  let seasonInterpreter = useStrapiSeason() ? 'wedding' : 'holiday';
+  const [seasonRadio, setSeasonRadio] = useState(seasonInterpreter);
+  const [seasonProcesses, setSeasonProcesses] = useState(seasonInterpreter + 'Processes');
+
+  function seasonSwitcher(e) {
+    setSeasonRadio(e.target.value);
+    setSeasonProcesses(e.target.value + 'Processes');
+    return null;
+  }
+
+  function FirstCheck({ checker }) {
+    if (checker === 'wedding') {
+      return (
+        <>
+          <label className="current">
+            <input type="radio" name="season" value="wedding" onChange={seasonSwitcher} checked />
+            Wedding / <span>Social Event</span>
+          </label>
+          <label>
+            <input type="radio" name="season" value="holiday" onChange={seasonSwitcher} />
+            Holiday
+          </label>
+        </>
+      )
+    } else if (checker === 'holiday') {
+      return (
+        <>
+          <label>
+            <input type="radio" name="season" value="wedding" onChange={seasonSwitcher} />
+            Wedding / <span>Social Event</span>
+          </label>
+          <label className="current">
+            <input type="radio" name="season" value="holiday" onChange={seasonSwitcher} checked />
+            Holiday
+          </label>
+        </>
+      )
+    } else {
+      return null;
+    }
+  }
 
   return (
     <>
       <Seo
         title="Process | Sierra Lighting"
         // TODO: probably needs a new description now
-        description="A professional lighting design package will highlight your decor and bring out the beauty of your venue.  Learn about the many design options Sierra Lighting can use to make your Reno Tahoe wedding really shine."
+        description="A professional lighting design package will highlight your decor and bring out the beauty of your venue. Learn about the many design options Sierra Lighting can use to make your Reno Tahoe wedding really shine."
         image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
       />
       <Header />
 
-      {/* // TODO: theres a way to do this with a drop down for what you are working on */}
       <main className="measure">
         <h2>Our Process</h2>
-        {/* // TODO: this is probably a component */}
-        <ol>
-          {allStrapiProcess.nodes.map((process: {
-            id: React.Key;
-            name: string;
-            markdown: { data: { markdown: string } };
-          }) => (
-            <li key={process.id}>
-              <span className="ol-title">{process.name}</span>
-              {/* // TODO: this needs markdown processing, its fine now as theres no links etc */}
-              <span>{process.markdown.data.markdown}</span>
-            </li>
-          ))}
-        </ol>
+
+        <form className='process-switch'>
+          <FirstCheck checker={seasonRadio} />
+        </form>
+
+        <ProcessList processes={seasonProcesses} />
       </main >
 
       <Footer />

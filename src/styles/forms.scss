@@ -84,3 +84,74 @@ form {
     }
   }
 }
+
+/*------------------*/
+//  #ProcessSwitch
+/*------------------*/
+
+.process-switch {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  border-radius: 3rem;
+  background-color: hsl(var(--honey), 100%, 87.5%);
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 25%, 25%);
+  }
+
+  label {
+    flex: 1 1 auto;
+    text-align: center;
+    line-height: 2rem;
+    border-radius: 2rem;
+    margin-block-end: 0; // reset
+    transition: var(--moment);
+    // TODO: make this work with slide across but think about how that would work first
+    padding: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    color: hsl(var(--honey), 100%, 30%);
+
+    @media (prefers-color-scheme: dark) {
+      color: hsl(var(--denim), 37%, 63%);
+    }
+
+    input {
+      appearance: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  label.current {
+    background-color: hsl(var(--honey), 100%, 50%);
+    color: hsl(var(--honey), 100%, 12.5%);
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 25%, 50%);
+      color: hsl(var(--denim), 25%, 87.5%);
+    }
+  }
+
+  label:hover {
+    cursor: pointer;
+    background-color: hsl(var(--honey), 100%, 75%);
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 25%, 75%);
+    }
+  }
+
+  label.current:hover {
+    cursor: default;
+    background-color: hsl(var(--honey), 100%, 50%);
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 25%, 50%);
+    }
+  }
+
+  span {
+    white-space: nowrap;
+  }
+}
