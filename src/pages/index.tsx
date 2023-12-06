@@ -18,16 +18,17 @@ import BistroLights from "../images/bistro-lights";
 import NorthTahoeArts from "../images/northtahoearts";
 import NorthTahoeEvents from "../images/northtahoeevents";
 import InclineChevron from "../images/inclinechevron";
+import Qualities from "../components/qualities";
 
 const IndexPage = () => {
 
   const { strapiSeason } = useStaticQuery(graphql`
-  query MyQuery {
-    strapiSeason {
-      wedding
+    query MyQuery {
+      strapiSeason {
+        wedding
+      }
     }
-  }
-`)
+  `)
 
   return (
     <>
@@ -65,11 +66,8 @@ const IndexPage = () => {
             <section id="service-area" className="service-area">
               <hr />
               <h3 className="crest">Service Area</h3>
-              <h4 className="small">Reno, Truckee, Lake Tahoe, Carson City and Minden</h4>
-              <div className="home__area-acordian">
-                <AreaAccordian />
-              </div>
-              <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area. Get in touch today!</p>
+              <AreaAccordian />
+              <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
             </section>
 
             <div className="home-gallery">
@@ -92,22 +90,12 @@ const IndexPage = () => {
         </div>
 
         <div className="services-wrap">
-          <section id="services" className="services">
-            <h2>Services</h2>
-            <hr />
-            {/* // TODO: Query this from strapi */}
-            {/* // TODO: I need to think about the H levels here */}
-            <h4 className="crest">Locally owned and Fully Insured</h4>
-            <h5 className="range">Professional Experience</h5>
-            <hr />
-            <h4 className="crest">Efficient LEDs, House Safe Install</h4>
-            <h5 className="range">Quality Materials</h5>
-            <hr />
-            <h4 className="crest">Installation, Repair &amp; Removal</h4>
-            <h5 className="range">Hassle Free</h5>
-            <hr />
-            <h4 className="crest">Repairs Free of Charge</h4>
-            <h5 className="range">Guaranteed Upkeep</h5>
+          <section id="qualities" className="qualities">
+            <Qualities />
+            <div className="brow">
+              <h3 className='supra'><Link to="/process">How We Work With You</Link></h3>
+              <h3 className="eyebrow">Our Process</h3>
+            </div>
           </section>
 
           {strapiSeason.wedding === true ? (

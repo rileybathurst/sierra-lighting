@@ -19,7 +19,8 @@ const strapiConfig = {
     'light-group',
     'service',
     'process',
-    'showcase'
+    'showcase',
+    'quality',
   ],
   singleTypes: [
     'topbar',

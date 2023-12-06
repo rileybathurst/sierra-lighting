@@ -1330,6 +1330,8 @@ type Query = {
   readonly allStrapiProcessMarkdownTextnode: STRAPI_PROCESS_MARKDOWN_TEXTNODEConnection;
   readonly allStrapiProject: STRAPI_PROJECTConnection;
   readonly allStrapiProjectDescriptionTextnode: STRAPI_PROJECT_DESCRIPTION_TEXTNODEConnection;
+  readonly allStrapiQuality: STRAPI_QUALITYConnection;
+  readonly allStrapiQualityDescriptionTextnode: STRAPI_QUALITY_DESCRIPTION_TEXTNODEConnection;
   readonly allStrapiSeason: STRAPI_SEASONConnection;
   readonly allStrapiService: STRAPI_SERVICEConnection;
   readonly allStrapiServiceAfterTheTriptychTextnode: STRAPI_SERVICE_AFTER_THE_TRIPTYCH_TEXTNODEConnection;
@@ -1366,6 +1368,8 @@ type Query = {
   readonly strapiProcessMarkdownTextnode: Maybe<STRAPI_PROCESS_MARKDOWN_TEXTNODE>;
   readonly strapiProject: Maybe<STRAPI_PROJECT>;
   readonly strapiProjectDescriptionTextnode: Maybe<STRAPI_PROJECT_DESCRIPTION_TEXTNODE>;
+  readonly strapiQuality: Maybe<STRAPI_QUALITY>;
+  readonly strapiQualityDescriptionTextnode: Maybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODE>;
   readonly strapiSeason: Maybe<STRAPI_SEASON>;
   readonly strapiService: Maybe<STRAPI_SERVICE>;
   readonly strapiServiceAfterTheTriptychTextnode: Maybe<STRAPI_SERVICE_AFTER_THE_TRIPTYCH_TEXTNODE>;
@@ -1556,6 +1560,22 @@ type Query_allStrapiProjectDescriptionTextnodeArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_PROJECT_DESCRIPTION_TEXTNODESortInput>>>;
+};
+
+
+type Query_allStrapiQualityArgs = {
+  filter: InputMaybe<STRAPI_QUALITYFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_QUALITYSortInput>>>;
+};
+
+
+type Query_allStrapiQualityDescriptionTextnodeArgs = {
+  filter: InputMaybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODEFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODESortInput>>>;
 };
 
 
@@ -2078,6 +2098,31 @@ type Query_strapiProjectArgs = {
 
 
 type Query_strapiProjectDescriptionTextnodeArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  description: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+};
+
+
+type Query_strapiQualityArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  createdAt: InputMaybe<DateQueryOperatorInput>;
+  description: InputMaybe<STRAPI_QUALITYDescriptionFilterInput>;
+  eyebrow: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  order: InputMaybe<IntQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_id: InputMaybe<IntQueryOperatorInput>;
+  updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+
+type Query_strapiQualityDescriptionTextnodeArgs = {
   children: InputMaybe<NodeFilterListInput>;
   description: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
@@ -4587,6 +4632,310 @@ type STRAPI_PROJECT_DESCRIPTION_TEXTNODEGroupConnection_sumArgs = {
 };
 
 type STRAPI_PROJECT_DESCRIPTION_TEXTNODESortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly description: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+};
+
+type STRAPI_QUALITY = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly description: Maybe<STRAPI_QUALITYDescription>;
+  readonly eyebrow: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly name: Maybe<Scalars['String']>;
+  readonly order: Maybe<Scalars['Int']>;
+  readonly parent: Maybe<Node>;
+  readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_id: Maybe<Scalars['Int']>;
+  readonly updatedAt: Maybe<Scalars['Date']>;
+};
+
+
+type STRAPI_QUALITY_createdAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_QUALITY_publishedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_QUALITY_updatedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type STRAPI_QUALITYConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_QUALITYEdge>;
+  readonly group: ReadonlyArray<STRAPI_QUALITYGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_QUALITY>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_QUALITYConnection_distinctArgs = {
+  field: STRAPI_QUALITYFieldSelector;
+};
+
+
+type STRAPI_QUALITYConnection_groupArgs = {
+  field: STRAPI_QUALITYFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_QUALITYConnection_maxArgs = {
+  field: STRAPI_QUALITYFieldSelector;
+};
+
+
+type STRAPI_QUALITYConnection_minArgs = {
+  field: STRAPI_QUALITYFieldSelector;
+};
+
+
+type STRAPI_QUALITYConnection_sumArgs = {
+  field: STRAPI_QUALITYFieldSelector;
+};
+
+type STRAPI_QUALITYDescription = {
+  readonly data: Maybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODE>;
+};
+
+type STRAPI_QUALITYDescriptionFieldSelector = {
+  readonly data: InputMaybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector>;
+};
+
+type STRAPI_QUALITYDescriptionFilterInput = {
+  readonly data: InputMaybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODEFilterInput>;
+};
+
+type STRAPI_QUALITYDescriptionSortInput = {
+  readonly data: InputMaybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODESortInput>;
+};
+
+type STRAPI_QUALITYEdge = {
+  readonly next: Maybe<STRAPI_QUALITY>;
+  readonly node: STRAPI_QUALITY;
+  readonly previous: Maybe<STRAPI_QUALITY>;
+};
+
+type STRAPI_QUALITYFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly description: InputMaybe<STRAPI_QUALITYDescriptionFieldSelector>;
+  readonly eyebrow: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly order: InputMaybe<FieldSelectorEnum>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_id: InputMaybe<FieldSelectorEnum>;
+  readonly updatedAt: InputMaybe<FieldSelectorEnum>;
+};
+
+type STRAPI_QUALITYFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly description: InputMaybe<STRAPI_QUALITYDescriptionFilterInput>;
+  readonly eyebrow: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly order: InputMaybe<IntQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
+  readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+type STRAPI_QUALITYGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_QUALITYEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<STRAPI_QUALITYGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_QUALITY>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_QUALITYGroupConnection_distinctArgs = {
+  field: STRAPI_QUALITYFieldSelector;
+};
+
+
+type STRAPI_QUALITYGroupConnection_groupArgs = {
+  field: STRAPI_QUALITYFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_QUALITYGroupConnection_maxArgs = {
+  field: STRAPI_QUALITYFieldSelector;
+};
+
+
+type STRAPI_QUALITYGroupConnection_minArgs = {
+  field: STRAPI_QUALITYFieldSelector;
+};
+
+
+type STRAPI_QUALITYGroupConnection_sumArgs = {
+  field: STRAPI_QUALITYFieldSelector;
+};
+
+type STRAPI_QUALITYSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly description: InputMaybe<STRAPI_QUALITYDescriptionSortInput>;
+  readonly eyebrow: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly order: InputMaybe<SortOrderEnum>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_id: InputMaybe<SortOrderEnum>;
+  readonly updatedAt: InputMaybe<SortOrderEnum>;
+};
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODE = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+};
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_QUALITY_DESCRIPTION_TEXTNODEEdge>;
+  readonly group: ReadonlyArray<STRAPI_QUALITY_DESCRIPTION_TEXTNODEGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_QUALITY_DESCRIPTION_TEXTNODE>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEConnection_distinctArgs = {
+  field: STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEConnection_groupArgs = {
+  field: STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEConnection_maxArgs = {
+  field: STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEConnection_minArgs = {
+  field: STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEConnection_sumArgs = {
+  field: STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEEdge = {
+  readonly next: Maybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODE>;
+  readonly node: STRAPI_QUALITY_DESCRIPTION_TEXTNODE;
+  readonly previous: Maybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODE>;
+};
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+};
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_QUALITY_DESCRIPTION_TEXTNODEEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<STRAPI_QUALITY_DESCRIPTION_TEXTNODEGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_QUALITY_DESCRIPTION_TEXTNODE>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEGroupConnection_distinctArgs = {
+  field: STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEGroupConnection_groupArgs = {
+  field: STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEGroupConnection_maxArgs = {
+  field: STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEGroupConnection_minArgs = {
+  field: STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODEGroupConnection_sumArgs = {
+  field: STRAPI_QUALITY_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+type STRAPI_QUALITY_DESCRIPTION_TEXTNODESortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly description: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
@@ -8329,6 +8678,11 @@ type ProjectsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type ProjectsQueryQuery = { readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly projects: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null }> } };
+
+type QualityQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type QualityQueryQuery = { readonly allStrapiQuality: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly eyebrow: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null }> } };
 
 type SearchQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

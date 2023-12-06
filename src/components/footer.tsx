@@ -215,7 +215,7 @@ const Footer = () => {
         <h5 className="crest">
           <a href="https://www.sierrachristmaslights.com/" target="_blank" rel="noopener noreffer"
             className="link--subtle">
-            Formally known as Sierra Christmas Lights
+            Formerly known as Sierra Christmas Lights
           </a>
         </h5>
         <p>&copy; {new Date().getFullYear()}</p>

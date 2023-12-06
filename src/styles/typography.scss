@@ -7,7 +7,7 @@ body {
 }
 
 .mixta {
-  font-family: "mixta-didone", serif;
+  font-family: var(--mixta);
   font-weight: 700;
   font-style: normal;
 }
@@ -311,10 +311,36 @@ ol li {
   white-space: break-spaces;
 }
 
-#services {
-  h5 {
-    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
-    line-height: clamp(2rem, 2.5vw, 3rem);
+#qualities {
+  section {
+    border-block-end: 1px solid hsl(var(--honey), 100%, 50%);
+    margin-block-end: 1lh;
+    padding-block-end: 1lh;
+  }
+
+  section:last-child {
+    border-block-end: none;
+  }
+
+  .brow {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .supra {
+      font-family: var(--mixta);
+      font-style: normal;
+      font-weight: 700;
+      font-size: var(--aconcagua);
+      line-height: var(--everest);
+      margin-block-end: 0.5lh;
+    }
+
+    .eyebrow {
+      font-size: var(--kilimanjaro);
+      line-height: var(--denali);
+      font-weight: 100;
+      margin-block-end: 0.25lh;
+    }
   }
 }
 
