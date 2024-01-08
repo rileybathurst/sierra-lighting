@@ -8,13 +8,14 @@ const TopBar = () => {
     strapiTopbar {
       id
       title
+      link
     }
   }
 `)
 
   return (
     <div className="top-bar">
-      <h2><Link to="/contact">{strapiTopbar.title}</Link></h2>
+      <h2><Link to={`/${strapiTopbar.link}`}>{strapiTopbar.title}</Link></h2>
       <hr />
     </div>
   );
