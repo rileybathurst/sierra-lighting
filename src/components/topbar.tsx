@@ -6,7 +6,6 @@ const TopBar = () => {
   const { strapiTopbar } = useStaticQuery(graphql`
   query TopBarQuery {
     strapiTopbar {
-      id
       title
       link
     }

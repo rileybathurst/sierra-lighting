@@ -2289,6 +2289,7 @@ type Query_strapiTopbarArgs = {
   createdAt: InputMaybe<DateQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
+  link: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
@@ -6606,6 +6607,7 @@ type STRAPI_TOPBAR = Node & {
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
+  readonly link: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
@@ -6687,6 +6689,7 @@ type STRAPI_TOPBARFieldSelector = {
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly link: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
@@ -6699,6 +6702,7 @@ type STRAPI_TOPBARFilterInput = {
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
+  readonly link: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
@@ -6752,6 +6756,7 @@ type STRAPI_TOPBARSortInput = {
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
+  readonly link: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
@@ -8747,7 +8752,7 @@ type TestimonialsQueryQuery = { readonly allStrapiTestimonial: { readonly nodes:
 type TopBarQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TopBarQueryQuery = { readonly strapiTopbar: { readonly id: string, readonly title: string | null } | null };
+type TopBarQueryQuery = { readonly strapiTopbar: { readonly title: string | null, readonly link: string | null } | null };
 
 type vendorCardFragment = { readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly profile: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null };
 
