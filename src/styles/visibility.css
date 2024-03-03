@@ -1,32 +1,32 @@
 /*------------------*/
-//  # Visibility
+/*  Visibility */
 /*------------------*/
 
-// small
+/*  small */
 .small {
-  // display: none;
+  /*  display: none; */
 
-  @media (min-width: $book) {
+  @media (min-width: 60rem) {
     display: none;
   }
 }
 
-// large
-.large {
+/*  large */
+.large,
+.inherit {
   display: none;
-  @media (min-width: $book) {
+  @media (min-width: 60rem) {
     display: initial;
   }
 }
 
-// testing this out in the footer im not sure if its more useful
+/* testing this out in the footer im not sure if its more useful */
 .inherit {
-  @extend .large;
   display: inherit;
 }
 
 /*------------------*/
-//  #SPECIFICS
+/* SPECIFICS */
 /*------------------*/
 
 .home__area-acordian .state__name {

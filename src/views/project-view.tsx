@@ -1,22 +1,15 @@
 // TODO: this code seems like a mess
 
 import * as React from "react";
-import { Link, useStaticQuery } from "gatsby";
+import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 
-import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import StateAbbreviation from "../components/state-abbreviation";
 import Card from "../components/card";
-
-// ! testing
-function Console(props) {
-  console.log(props.log);
-  return null;
-}
 
 function Triptych(props) {
   if (props.triptych?.length > 0) {
@@ -283,11 +276,6 @@ function IfAttributes(props) {
 const ProjectView = ({ project, triptych, additional, other }) => {
   return (
     <>
-      <Seo
-        title={`${project.title} | Sierra Lighting`}
-        description={project.excerpt}
-        image={project?.ogimage} // TODO this could have an if back to the regular image
-      />
       <Header />
 
       <div className="measure">
@@ -299,6 +287,18 @@ const ProjectView = ({ project, triptych, additional, other }) => {
             <meta itemProp="position" content="1" />
           </li>
 
+          {/* // TODO: finish this */}
+          {/* // ? does it go before or after the project title */}
+          <li>
+            {project.services.map((service, index) => (
+              <>
+                <Link to={`/${service.slug}`} key={index}>
+                  {service.name}
+                </Link>&nbsp;/&nbsp;
+              </>
+            ))}
+          </li>
+
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <span itemProp="name">{project.title}</span>
             <meta itemProp="position" content="2" />
@@ -307,11 +307,19 @@ const ProjectView = ({ project, triptych, additional, other }) => {
         <hr />
       </div>
 
+
+      {/* <figure> */}
       <GatsbyImage
         image={project?.image?.localFile?.childImageSharp?.gatsbyImageData}
         alt={project.image?.alternativeText || project.title}
         className="poster"
       />
+      {/*
+  // TODO: this is what I'm currently working on
+<figcaption>
+          {project.image?.alternativeText}
+        </figcaption >
+      </figure > */}
 
       <main className="measure">
         <article className="single">

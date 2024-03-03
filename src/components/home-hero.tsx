@@ -127,7 +127,7 @@ const HomeHero = () => {
   `)
 
   return (
-    <div className="village-container">
+    <div className="home-hero">
       {data.strapiSeason.wedding === true ? (
         <>
           {data.wedding.nodes.map(project => (

@@ -96,14 +96,12 @@ const Footer = () => {
           <h4 className="range">Say Hello</h4>
 
           <div className="contact-info">
-            {/* // TODO: query this stuff */}
             <p><a href={`mailto:${useSiteMetadata().email}`}><span itemProp="email">{useSiteMetadata().email}</span></a></p>
             <p><a href={`tel:${useSiteMetadata().telephone}`}>Phone: <span itemProp="telephone">{useSiteMetadata().telephone}</span></a></p>
-            {/* <p><a href="tel:+1-530-414-9899">California Number: <span itemProp="telephone">(530) 414-9899</span></a></p> */}
           </div>
         </section>
 
-        <div id="team" className="team measure">
+        <div id="team" className="team">
           <h3 className="crest">Who We Are</h3>
           <h4 className="range">
             <Link to="/team" className="link--subtle">Meet Our Team</Link>

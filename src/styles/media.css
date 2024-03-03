@@ -1,5 +1,5 @@
 /*------------------*/
-//  #SVG
+/* SVG */
 /*------------------*/
 
 svg {
@@ -23,14 +23,14 @@ a svg:hover {
 }
 
 /*------------------*/
-//  #IMAGES
+/* IMAGES */
 /*------------------*/
 
-// ? this might be hero
-.poster {
+.poster,
+.home-gallery > * {
   width: 100%;
   max-width: 60rem;
-  display: block !important; // overwrites gatsby // makes sure the margin-inline works
+  display: block; /*  overwrites gatsby /* makes sure the margin-inline works */
   margin-inline: auto;
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
@@ -38,7 +38,7 @@ a svg:hover {
   aspect-ratio: 3/2;
   margin-block-end: 1.5rem;
 
-  @media (min-width: $book) {
+  @media (min-width: 60rem) {
     margin-block-end: 3rem;
   }
 
@@ -51,17 +51,20 @@ a svg:hover {
   }
 }
 
+a .poster {
+  transition: var(--moment);
+}
+
+a:hover .poster {
+  opacity: 0.9;
+  filter: brightness(0.8);
+}
+
 .poster--small {
   max-width: 40rem;
 }
 
-.home-gallery {
-  > * {
-    @extend .poster;
-  }
-}
-
-.village-container,
+.home-hero,
 .snowyroof-container {
   max-width: var(--measure);
   margin-inline: auto;
@@ -69,15 +72,50 @@ a svg:hover {
 
 .village,
 .snowyroof {
-  aspect-ratio: 4/3; // TODO check on old ios
+  aspect-ratio: 4/3; /*  TODO check on old ios */
 }
 
 /*------------------*/
-//  #HEADER
+/* ADHERE */
+/*------------------*/
+
+.adhere {
+  display: grid;
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .sticker {
+    z-index: var(--understory);
+    align-self: flex-end;
+    /*  text-align: center; */
+    justify-self: center;
+    padding: 0.25rem;
+    border-radius: var(--border-radius);
+    opacity: 0.7;
+    background-color: whitesmoke;
+    border: 1px solid white;
+    margin-block-end: 2lh;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 100%, 12%);
+      border: 1px solid black; /*  TODO */
+    }
+  }
+
+  .gatsby-image-wrapper {
+    z-index: var(--floor);
+  }
+}
+
+/*------------------*/
+/* HEADER */
 /*------------------*/
 
 header svg {
-  margin: 1.5rem 0.75rem; // 24px 12px
+  margin: 1.5rem 0.75rem; /*  24px 12px */
   fill: hsl(var(--denim), 100%, 12%);
   padding: 0.25rem;
   border-radius: var(--border-radius);
@@ -104,18 +142,18 @@ header svg:active {
 }
 
 /*------------------*/
-//  #TEAM HEADS
+/* TEAM HEADS */
 /*------------------*/
 
-// TODO: needs a fix work through storybook first
+/*  TODO: needs a fix work through storybook first */
 .team-heads {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 
   > a {
-    // transition: 20s ease; // TODO: this only seems to want to be either in or out
-    flex: 0 1 4rem; // guess and check
+    /*  transition: 20s ease; /* TODO: this only seems to want to be either in or out */
+    flex: 0 1 4rem; /*  guess and check */
     text-align: center;
     display: block;
 
@@ -123,7 +161,7 @@ header svg:active {
       border-radius: 50%;
       max-height: 8rem;
       transition: 2s ease;
-      border: 2px white solid; // ? white white?
+      border: 2px white solid; /*  ? white white? */
       box-shadow: var(--mesosphere);
       margin-block-end: 0.5rem;
       aspect-ratio: 1;
@@ -140,18 +178,16 @@ header svg:active {
     }
 
     > p {
-      // this is legal even tho not normally the way I do it
+      /* this is legal even tho not normally the way I do it */
       padding: 0.2rem;
       transition: 2s ease;
-      // TODO this should be @extend .hover-back
-    } // .gatsby-image-wrapper
-  } // a
+    }
+  }
 
   > a:hover p {
     border-radius: var(--border-radius);
     box-shadow: var(--stratosphere);
     background: hsl(var(--honey), 100%, 97.5%);
-    // TODO this should be @extend .hover-back_hover
 
     @media (prefers-color-scheme: dark) {
       background: hsl(var(--denim), 25%, 12%);
@@ -162,14 +198,14 @@ header svg:active {
     box-shadow: var(--stratosphere);
     border-color: hsl(var(--honey), 100%, 50%);
   }
-} // .team-heads
+} /*  .team-heads */
 
 /*------------------------------------*/
-//  #SPIN
+/* SPIN */
 /*------------------------------------*/
 
-// built upon https://codepen.io/giana/pen/yYBpVY
-// the first quarter is cheating but its fast enough you don't see it
+/*  built upon https://codepen.io/giana/pen/yYBpVY */
+/*  the first quarter is cheating but its fast enough you don't see it */
 
 .spin .gatsby-image-wrapper {
   border: 0;
@@ -177,25 +213,24 @@ header svg:active {
   box-shadow: none;
   overflow: unset;
 
-  // Required, since we're setting absolute on pseudo-elements
+  /*  Required, since we're setting absolute on pseudo-elements */
   position: relative;
   vertical-align: middle;
 
   &::before {
     transition: border-top-color 0.15s linear,
-      // Stagger border appearances
-      border-right-color 0.15s linear 0.1s,
+      /*  Stagger border appearances */ border-right-color 0.15s linear 0.1s,
       border-bottom-color 0.15s linear 0.2s;
   }
 
   &::after {
-    transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s; // Solid edge post-rotation
+    transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s; /*  Solid edge post-rotation */
   }
 
   &::before,
   &::after {
     transition: 0.5s;
-    top: -2px; // opposite to the border-width
+    top: -2px; /*  opposite to the border-width */
     left: -2px;
     box-sizing: inherit;
     content: "";
@@ -213,14 +248,14 @@ header svg:active {
 
   &:hover::after {
     border-top: 2px solid hsl(var(--honey), 100%, 50%);
-    border-left-width: 2px; // Solid edges, invisible borders
-    border-right-width: 2px; // Solid edges, invisible borders
-    transform: rotate(270deg); // Rotate around circle
+    border-left-width: 2px; /*  Solid edges, invisible borders */
+    border-right-width: 2px; /*  Solid edges, invisible borders */
+    transform: rotate(270deg); /*  Rotate around circle */
   }
 }
 
 /*------------------*/
-//  #AVATAR
+/* AVATAR */
 /*------------------*/
 
 .team-page .avatar-wrapper {
@@ -237,22 +272,22 @@ header svg:active {
   margin-inline: auto;
   aspect-ratio: 1;
   max-width: 80%;
-  @media (min-width: $book) {
+  @media (min-width: 60rem) {
     max-width: 20rem;
   }
 }
 
 /*------------------*/
-//  #VIDEO
+/* VIDEO */
 /*------------------*/
 
 .hero-video {
   max-width: var(--pelican);
   margin-inline: auto;
-  display: block; // needed for margin-inline
+  display: block; /*  needed for margin-inline */
   margin-block-end: 2.5rem;
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
   border: 1px solid whitesmoke;
-  // TODO: theres a slight white gap at the bottom
+  /*  TODO: theres a slight white gap at the bottom */
 }

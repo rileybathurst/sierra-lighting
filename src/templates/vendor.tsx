@@ -1,7 +1,8 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby'
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -110,11 +111,6 @@ function Testimonials(props) {
 const VendorTemplateView = ({ data }) => {
   return (
     <>
-      <Seo
-        title={`${data.strapiVendor.name} | Sierra Lighting`}
-        description={data.strapiVendor?.excerpt}
-        image={data.strapiVendor?.profile?.localFile?.url}
-      />
       <Header />
 
       <div className="measure">
@@ -260,3 +256,14 @@ export const query = graphql`
 
   }
 `
+
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.strapiVendor.name} | ${useSiteMetadata().title}`}
+      description={data.strapiVendor.excerpt}
+      url={`vendor/${data.strapiVendor.slug}`}
+      image={data.strapiVendor?.profile?.localFile?.url}
+    />
+  )
+}

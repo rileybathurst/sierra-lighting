@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
@@ -147,13 +147,6 @@ function Aliases(props) {
 const LightView = ({ light, other }) => {
   return (
     <>
-      {/* // TODO: needs the aliases in the SEO */}
-      <Seo
-        title={`${light.name} | Sierra Lighting`}
-        description={light?.excerpt}
-        image={light?.image?.localFile?.url}
-      />
-
       <Header />
 
       <main>
@@ -208,36 +201,30 @@ const LightView = ({ light, other }) => {
       <hr className="measure" />
       <div className="attributes">
 
-        <section className="attribute" >
+        {/*         <section className="attribute" >
           <h3 className="crest">Group</h3>
           <h4 className="range">
             <Group group={light.light_groups} />
           </h4>
-        </section >
+        </section > */}
 
         <section className="attribute">
           <h3 className="crest">Useage</h3>
-          <h4 className="range">
-            <ul>
-              {light.services.map((service) => {
-                return (
-                  <li key={service.id} className="first-capital">
-                    <Link to={`/${service.slug}`}>
-                      {service.name}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </h4>
+          <ul className="">
+            {light.services.map((service) => {
+              return (
+                <li key={service.id} className="range first-capital">
+                  <Link to={`/${service.slug}`}>
+                    {service.name}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
         </section>
-
-
 
       </div >
 
-      {/* // TODO: this isnt working on wedding */}
-      {/* https://sierra.lighting/lights/wedding/ */}
       <Projects
         projects={light.projects}
         name={light.name}

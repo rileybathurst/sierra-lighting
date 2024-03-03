@@ -1,11 +1,13 @@
 import * as React from "react";
 import { Link, graphql, useStaticQuery } from 'gatsby';
-// import { useSiteMetadata } from "../hooks/use-site-metadata";
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
+import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
-import AreaAccordian from "../components/area-accordian";
+import AreaList from '../lists/area-list';
 import TestimonialList from "../components/testimonial-list";
 import SnowyRoof from "../images/snowyroof";
 import IndoorWedding from "../images/indoorwedding";
@@ -22,6 +24,8 @@ import Qualities from "../components/qualities";
 
 const IndexPage = () => {
 
+  // myUndefinedFunction();
+
   const { strapiSeason } = useStaticQuery(graphql`
     query MyQuery {
       strapiSeason {
@@ -32,11 +36,6 @@ const IndexPage = () => {
 
   return (
     <>
-      <Seo title="Sierra Lighting"
-        description="Sierra Lighting installs Christmas, event, and wedding lights.
-        Quality displays that are guaranteed! Experienced. Professional. Insured."
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg"
-      />
       <Header />
       <main className="margin-0">
 
@@ -46,7 +45,7 @@ const IndexPage = () => {
             <div>
               <h2 className="site_title">Dependable holiday, landscape and events light installation</h2>
 
-              <button className="button-hero"><Link to="/contact">Start with a free quote</Link></button>
+              <Link to="/contact" className="button button-hero">Start with a free quote</Link>
             </div>
 
             <HomeHero />
@@ -66,7 +65,7 @@ const IndexPage = () => {
             <section id="service-area" className="service-area">
               <hr />
               <h3 className="crest">Service Area</h3>
-              <AreaAccordian />
+              <AreaList />
               <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
             </section>
 
@@ -100,9 +99,10 @@ const IndexPage = () => {
 
           {strapiSeason.wedding === true ? (
             // TODO: this has a bad classname
-            <div className="snowyroof-container">
+            <Link to="/light/drapery" className="snowyroof-container adhere">
               <IndoorWedding />
-            </div>
+              <p className="sticker">Drapery</p>
+            </Link>
           ) : (
             <div className="snowyroof-container">
               <SnowyRoof />
@@ -136,4 +136,12 @@ const IndexPage = () => {
 
 export default IndexPage
 
-// TODO: usestrapitopbar
+export const Head = () => {
+  return (
+    <SEO
+      title={`${useSiteMetadata().title} | ${useStrapiTopBar()}`}
+      description="Sierra Lighting installs Christmas, event, and wedding lights. Quality displays that are guaranteed! Experienced.Professional.Insured."
+      image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg"
+    />
+  )
+}

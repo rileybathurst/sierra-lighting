@@ -1,11 +1,11 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import IfHero from "../components/ifHero";
@@ -49,11 +49,6 @@ const TeamPage = () => {
 
   return (
     <>
-      <Seo
-        title="Team | Sierra Lighting"
-        description="A Those of us who work with Sierra Lighting"
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
-      />
       <Header />
       <main>
 
@@ -82,3 +77,14 @@ const TeamPage = () => {
 }
 
 export default TeamPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Team | ${useSiteMetadata().title}`}
+      description="A Those of us who work with Sierra Lighting"
+      image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
+      url="team"
+    />
+  )
+}

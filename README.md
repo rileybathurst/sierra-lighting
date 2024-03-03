@@ -10,7 +10,7 @@ Theres a Strapi CMS running with a webhook on linode so if theres problesms mayb
 
 ## Fonts
 
-Coming in from Adobe Fonts
+Coming in from Adobe Fonts Typekit and google this should be cleaned up
 
 ## StoryBook
 

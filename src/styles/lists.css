@@ -1,11 +1,16 @@
 /*------------------*/
-//  #LISTS
+/* LISTS */
 /*------------------*/
 
 ul {
+  padding-inline-start: 0.5rem;
+
   li {
-    // https://caniuse.com/mdn-css_types_length_lh
-    margin-block-end: 0.5lh;
+    padding: 0;
+    line-height: 1.5rem;
+    margin: 0;
+    /*  https://caniuse.com/mdn-css_types_length_lh */
+    margin-block-end: 0.25lh;
 
     @supports not (margin: 1lh) {
       margin-block-end: 0.625rem;
@@ -13,8 +18,16 @@ ul {
   }
 }
 
+.list-style-none {
+  padding-inline-start: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
 /*------------------*/
-//  #BREADCRUMBS
+/* BREADCRUMBS */
 /*------------------*/
 
 .breadcrumbs {
@@ -23,12 +36,28 @@ ul {
   display: flex;
 }
 
+/*------------------------------------*/
+/* #PAGINATION */
+/*------------------------------------*/
+
+.pagination {
+  display: flex;
+  padding-inline-start: 0;
+  list-style: none;
+  place-content: space-between;
+
+  a.current {
+    color: hsl(var(--denim), 12%, 12%);
+    text-decoration: none;
+  }
+}
+
 /*------------------*/
-//  #FOOTER
+/* FOOTER */
 /*------------------*/
 
 .footer_list > ul {
-  // this is a flex not a grid to be able to reorder with the season
+  /*  this is a flex not a grid to be able to reorder with the season */
   display: flex;
   flex-flow: row wrap;
   padding-inline-start: 0;
@@ -36,16 +65,16 @@ ul {
   justify-items: space-between;
   align-items: space-between;
 
-  // theres not 1 number that does this its close but not there
+  /*  theres not 1 number that does this its close but not there */
   > li {
     flex: 1 1 11rem;
 
-    @media (min-width: $book) {
+    @media (min-width: 60rem) {
       flex: 1 1 9rem;
     }
 
     list-style: none;
-    line-height: 1.6rem; // based on the borders when hovered
+    line-height: 1.6rem; /*  based on the borders when hovered */
     padding-block-end: 0.5rem;
     text-align: center;
     padding-inline-start: 0;
@@ -55,7 +84,7 @@ ul {
     background-color: hsl(var(--honey), 100%, 97.5%);
     padding-block: 0.5rem;
 
-    @media (min-width: $book) {
+    @media (min-width: 60rem) {
       border: none;
       border-right: 1px solid hsl(var(--honey), 100%, 50%);
       border-radius: 0;
@@ -66,7 +95,7 @@ ul {
       border-color: hsl(var(--denim), 25%, 25%);
     }
 
-    @media (max-width: $book) {
+    @media (max-width: 60rem) {
       @media (prefers-color-scheme: dark) {
         background-color: hsl(var(--denim), 25%, 12%);
       }
@@ -79,15 +108,15 @@ ul {
       }
     }
 
-    // this is all just guess and check as its a weird spot
+    /*  this is all just guess and check as its a weird spot */
     .footer_list--no_link {
       padding-block-start: 0.5rem;
-      // padding-block-end: 0.65rem;
+      /*  padding-block-end: 0.65rem; */
     }
   }
 
   li:last-child {
-    @media (min-width: $book) {
+    @media (min-width: 60rem) {
       border-right: none;
     }
   }
@@ -122,11 +151,11 @@ ul {
 }
 
 /*------------------*/
-//  #FAQs
+/* FAQs */
 /*------------------*/
 
 .faqs {
-  padding-inline-start: 0; // reset
+  padding-inline-start: 0; /*  reset */
 
   h2 {
     font-size: clamp(1.5rem, 1.667vw, 2.5rem);
@@ -135,7 +164,7 @@ ul {
 }
 
 /*------------------*/
-//  #TESTIMONIALS
+/* TESTIMONIALS */
 /*------------------*/
 
 .testimonials__page {
@@ -151,7 +180,7 @@ ul {
     box-shadow: var(--mesosphere);
 
     > ul {
-      // stars
+      /*  stars */
       padding-inline-start: 0;
     }
 
@@ -195,24 +224,24 @@ ul {
 
 .list-none {
   list-style: none;
-  // padding-inline-start: 0;
+  /*  padding-inline-start: 0; */
 }
 
 /*------------------*/
-//  #AFFILIATIONS
+/* AFFILIATIONS */
 /*------------------*/
 
 .affiliations {
   list-style: none;
-  gap: 1rem; // this works on grid and flex
-  max-width: var(--page_width); // 60rem
+  gap: 1rem; /*  this works on grid and flex */
+  max-width: var(--page_width); /*  60rem */
   margin-inline: auto;
 
-  // Im not using flex so I can get the subgrid to line up
+  /*  Im not using flex so I can get the subgrid to line up */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   justify-content: stretch;
-  padding: 0.75rem; // reset
+  padding: 0.75rem; /*  reset */
 
   > .affiliation {
     border: 1px solid hsl(var(--honey), 100%, 50%);
@@ -220,9 +249,9 @@ ul {
     box-shadow: var(--mesosphere);
     border-radius: var(--card-radius);
     display: grid;
-    // grid-row: 1 / 5; // this breaking as cards can not drop down rows
-    grid-row: span 4; // this is the key to having the cards line up
-    grid-template-rows: subgrid; // chromium browsers dont line up internally but dont break
+    /*  grid-row: 1 / 5; /* this breaking as cards can not drop down rows */
+    grid-row: span 4; /*  this is the key to having the cards line up */
+    grid-template-rows: subgrid; /*  chromium browsers dont line up internally but dont break */
     gap: 1rem;
 
     @media (prefers-color-scheme: dark) {
@@ -242,27 +271,27 @@ ul {
     h3 {
       font-size: clamp(1.25rem, 1.667vw, 1.5rem);
       line-height: clamp(1.5rem, 1.667vw, 2rem);
-      margin-block-end: 0; // use the gap
+      margin-block-end: 0; /*  use the gap */
     }
 
     p {
-      margin-block-end: 0; // use the gap
+      margin-block-end: 0; /*  use the gap */
     }
   }
 }
 
 /*------------------*/
-//  #LINK LIST
+/* LINK LIST */
 /*------------------*/
 
 .link-list {
-  // this should be a variable of h2 named after a mountain
+  /*  this should be a variable of h2 named after a mountain */
   ul {
     list-style: none;
     padding-inline-start: 0;
 
     li {
-      font-size: 2rem; // TODO: needs a clamp
+      font-size: 2rem; /*  TODO: needs a clamp */
       line-height: 2.5rem;
       margin-block-end: 1.875rem;
       padding-inline-start: 0;
@@ -305,3 +334,5 @@ ul {
     }
   }
 }
+
+/*------------------------------------*/

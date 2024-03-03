@@ -1,14 +1,15 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
 import TestimonialRanking from "../components/testimonial-ranking";
 
-function TestimonialLink(props) {
-  if (props.vendor) {
+function TestimonialLink(props: { aref: string, customer: string, vendor: { name: string, slug: string }, position: string, platform: string }) {
+  if (props.vendor && props.position) {
     // TODO the hypen needs to be on an if
     // TODO if no vendor then maybe it has a platform
     return (
@@ -19,14 +20,14 @@ function TestimonialLink(props) {
         <h4 className='range' itemProp="name">{props.customer}</h4>
       </>
     )
-  } else if (props.platform) {
+  } else if (props.platform && props.position) {
     // console.log('platform');
     return (
       <>
         <h4 className='range' itemProp="name">{props.customer} <span>- {props?.platform}</span></h4>
       </>
     );
-  } else {
+  } else if (props.platform) {
     // console.log('no vendor or platform');
     return (
       <h4 className='range' itemProp="name">{props.customer}</h4>
@@ -54,36 +55,31 @@ const TestimonialsPage = () => {
 
   // ? why do I have this filter? 
   const { allStrapiTestimonial } = useStaticQuery(graphql`
-query TestimonialsQuery {
-  allStrapiTestimonial(filter: { publishedAt: { ne: null } }) {
-    nodes {
-      id
-      customer
-      stars
-      review
-      title
-      createdAt
-      slug
-      link
-      position
-      platform
+    query TestimonialsQuery {
+      allStrapiTestimonial(filter: { publishedAt: { ne: null } }, sort: {order: ASC}) {
+        nodes {
+          id
+          customer
+          stars
+          review
+          title
+          createdAt
+          slug
+          link
+          position
+          platform
 
-      vendor {
-        name
-        slug
+          vendor {
+            name
+            slug
+          }
+        }
       }
     }
-  }
-}
-`)
+  `)
 
   return (
     <>
-      <Seo
-        title="Testimonials | Sierra Lighting"
-        description="Thanks From Our Customers"
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
-      />
       <Header />
 
       <main className="measure">
@@ -205,3 +201,14 @@ query TestimonialsQuery {
 }
 
 export default TestimonialsPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Testimonials | ${useSiteMetadata().title}`}
+      description="Thanks From Our Customers"
+      image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
+      url="testimonials"
+    />
+  )
+}

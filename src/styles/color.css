@@ -1,0 +1,125 @@
+/*------------------*/
+/* COLOR */
+/*------------------*/
+
+body {
+  background: hsl(var(--honey), 100%, 99%); /*  custom */
+  color: hsl(var(--denim), 12%, 12%);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 37%, 5%); /* custom m  */
+    color: hsl(var(--honey), 100%, 97.5%); /* custom m  */
+  }
+}
+
+.backed {
+  background: hsl(var(--honey), 100%, 97.5%); /* custom m  */
+  box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 97.5%);
+  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 25%, 12%);
+  }
+}
+
+.bb {
+  margin-block: 1lh;
+  padding-block: 1lh;
+}
+
+/*------------------*/
+/* TOPBAR */
+/*------------------*/
+
+.top-bar {
+  background-color: whitesmoke;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 25%, 25%);
+  }
+}
+
+/*------------------*/
+/* HEADER */
+/*------------------*/
+
+header {
+  background: hsl(var(--honey), 100%, 97.5%); /* custom m  */
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 25%, 12%);
+  }
+
+  h2 {
+    background-color: hsl(var(--honey), 100%, 97.5%); /* custom m  */
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 100%, 12%);
+    }
+  }
+
+  button:hover svg {
+    background-color: hsl(var(--honey), 100%, 25%);
+  }
+
+  .stripe {
+    background: hsl(
+      /* needed if the menu is large */ var(--honey),
+      100%,
+      97.5%
+    ); /*  needed if the menu is large */
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 25%, 12%);
+    }
+  } /* ? am I sure this isnt a honey color */
+}
+
+.menu__small {
+  background-color: whitesmoke; /*  ? am I sure this isnt a honey color */
+  opacity: 0.9;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 100%, 12%);
+  }
+}
+
+/* match the card --- */
+/* TESTIMONOIALS */
+/*------------------*/
+
+/*  match the card */
+.testimonial {
+  /* header-color // the card might need to match this */
+  background-color: hsl(
+    var(--honey),
+    100%,
+    97.5%
+  ); /*  header-color /* the card might need to match this   */
+  border: 2px solid whitesmoke;
+  box-shadow: var(--mesosphere);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 25%, 12%);
+    border-color: hsl(var(--denim), 25%, 25%);
+  }
+}
+
+.slider-container {
+  display: flex; /*  keeps the margins in */
+  background-color: hsl(var(--honey), 100%, 97.5%); /*  custom */
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 25%, 12%);
+  }
+}
+/* margin-block-end: 1.5rem; */
+.testimonials svg {
+  fill: hsl(var(--honey), 100%, 50%);
+  outline: 1px solid hsl(var(--honey), 100%, 97.5%);
+  /*  margin-block-end: 1.5rem; */
+
+  @media (prefers-color-scheme: dark) {
+    outline: none;
+  }
+}

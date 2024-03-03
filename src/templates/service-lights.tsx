@@ -6,6 +6,7 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import Grouploop from '../components/grouploop';
 import SEO from '../components/seo';
+import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 const ServiceLightView = ({ data }) => {
 
@@ -102,7 +103,7 @@ const ServiceLightView = ({ data }) => {
     groups.push(lanterngroup)
   }
 
-  console.log(data.strapiService.name);
+  // console.log(data.strapiService.name);
 
   // sort by value
   let events = [
@@ -125,11 +126,6 @@ const ServiceLightView = ({ data }) => {
 
   return (
     <>
-      <SEO
-        title={`${data.strapiService.name} Lights`}
-        description={data.strapiService.excerpt}
-      // TODO: image
-      />
       <Header />
 
       <div className="measure">
@@ -409,3 +405,14 @@ export const query = graphql`
 
   }
 `
+
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.strapiService.name} Lights | ${useSiteMetadata().title}`}
+      description={data.strapiService.excerpt}
+      url={`${data.strapiService.slug}/lights`}
+    // TODO: image
+    />
+  )
+}

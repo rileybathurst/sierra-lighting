@@ -1,4 +1,9 @@
-body {
+/*------------------*/
+/* TYPOGRAPHY */
+/*------------------*/
+
+body,
+button {
   font-family: "josefin-sans", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -6,20 +11,19 @@ body {
   line-height: 1.25rem; /* 20px */
 }
 
-.mixta {
-  font-family: var(--mixta);
+.mixta,
+.range,
+.site_title,
+.areas__page .state__name {
+  font-family: var(--font-serif);
   font-weight: 700;
   font-style: normal;
 }
 
-button {
-  @extend body;
-}
-
-// 0.625 // 0.5
-// 1.25 // base
-// 1.875 // 1.5
-// 2.5 // double
+/*  0.625 /* 0.5 */
+/*  1.25 /* base */
+/*  1.875 /* 1.5 */
+/*  2.5 /* double */
 
 /*------------------------------------*\
     #Type Rythym
@@ -46,7 +50,8 @@ h1,
 }
 
 h2,
-.aconcagua {
+.aconcagua,
+.range {
   font-size: 2.5rem; /* 40px */
   line-height: 3rem; /* 48px */
   margin-block-end: 2rem; /* 32px */
@@ -110,7 +115,9 @@ p {
 
 /* start the multi line problem here as itll be worst */
 small,
-.kosciuszko {
+.kosciuszko,
+.two-small-lines,
+.multiple-small-lines {
   font-size: 0.75rem; /* 12px */
   line-height: 1rem; /* 16px */
   margin-block-end: 0.875rem; /* 14px */
@@ -132,9 +139,13 @@ small,
   margin-block-end: 2.5rem;
 }
 
-// im going to need a lot more of these
+/*  im going to need a lot more of these */
 ::selection {
-  background-color: hsl(var(--honey), 100%, 50%); // contrast to background :
+  background-color: hsl(
+    var(--honey),
+    100%,
+    50%
+  ); /*  contrast to background : */
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 12%, 50%);
@@ -142,17 +153,12 @@ small,
 }
 
 .two-small-lines {
-  @extend small;
   margin-block-end: 0.5rem; /* 8px */
   /* two lines 40px */
 }
 
-.multiple-small-lines {
-  @extend small;
-}
-
 /*------------------*/
-//  #HR
+/* HR */
 /*------------------*/
 
 hr {
@@ -179,13 +185,11 @@ hr.measure {
 
 .hr-tin-soldier {
   border-top-color: var(--tin-soldier);
-  /*   // TODO: @media (prefers-color-scheme: dark) {
-    
-  } */
+  /*  TODO: dark */
 }
 
 /*------------------*/
-//  #CLAMPS
+/* CLAMPS */
 /*------------------*/
 
 .clamp-denali_everest {
@@ -195,15 +199,15 @@ hr.measure {
 }
 
 /*------------------*/
-//  #TOP BAR
+/* TOP BAR */
 /*------------------*/
 
 .top-bar {
   text-align: center;
 
   h2 {
-    font-size: 1rem; // ? should this be clamped
-    line-height: 1.5rem; // slightly bigger than font-size 1rem
+    font-size: 1rem; /*  ? should this be clamped */
+    line-height: 1.5rem; /*  slightly bigger than font-size 1rem */
     margin-block: 0;
     padding-block: 1rem;
     margin-inline: 3rem;
@@ -212,33 +216,29 @@ hr.measure {
 }
 
 /*------------------------------------*/
-//  #EYEBROW
+/* EYEBROW */
 /*------------------------------------*/
 
-.crest {
+.crest,
+.services h3,
+.services h4 {
   font-weight: 100;
-  @extend .kilimanjaro;
+
+  font-size: var(--kilimanjaro);
+  line-height: 2rem;
+  margin-block-end: 1.75rem;
+
   margin-block-end: 0.5lh;
   @supports not (margin: 1lh) {
     margin-block-end: 0.625rem;
   }
 }
 
-.range {
-  @extend .mixta;
-  @extend h2;
-}
-
 /*------------------------------------*/
-//  #HOME
+/* HOME */
 /*------------------------------------*/
 
-.services h3,
-.services h4 {
-  @extend .crest;
-}
-
-// TODO: should be in lists
+/*  TODO: should be in lists */
 ol li {
   margin-block-end: 1.5rem;
 }
@@ -250,7 +250,7 @@ ol li {
 }
 
 /*------------------*/
-//  #FOOTER
+/* FOOTER */
 /*------------------*/
 
 .footer-copyright h5 {
@@ -258,7 +258,7 @@ ol li {
 }
 
 /*------------------*/
-//  #REMS
+/* REMS */
 /*------------------*/
 
 /*
@@ -278,31 +278,24 @@ ol li {
 
   h4 span {
     font-size: var(--vinson);
-    font-family: var(--josefin);
+    font-family: var(--font-sans);
     font-weight: 400;
   }
 
   p {
-    white-space: normal; // reset
+    white-space: normal; /*  reset */
   }
 }
 
-.areas__page {
-  .state__name {
-    @extend .mixta;
-  }
-
-  li {
-    line-height: 2rem;
-  }
+.areas__page li {
+  line-height: 2rem;
 }
 
 .site_title {
-  @extend .mixta;
   max-width: var(--measure);
   margin-inline: auto;
   padding-inline: 1rem;
-  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
   line-height: clamp(2rem, 2.5vw, 3rem);
   margin-block-start: 1.5rem;
 }
@@ -311,7 +304,9 @@ ol li {
   white-space: break-spaces;
 }
 
-#qualities {
+.qualities {
+  padding-inline: 1lh;
+
   section {
     border-block-end: 1px solid hsl(var(--honey), 100%, 50%);
     margin-block-end: 1lh;
@@ -327,7 +322,7 @@ ol li {
     flex-direction: column-reverse;
 
     .supra {
-      font-family: var(--mixta);
+      font-family: var(--font-serif);
       font-style: normal;
       font-weight: 700;
       font-size: var(--aconcagua);
@@ -354,4 +349,11 @@ ol li {
 
 .lowercase {
   text-transform: lowercase;
+}
+
+/*------------------------------------*/
+
+.attribute.range {
+  font-family: var(--font-sans);
+  font-size: var(--denali);
 }

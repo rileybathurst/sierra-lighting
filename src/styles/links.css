@@ -1,23 +1,35 @@
 /*------------------------------------*/
-//  #LINKS
+/* LINKS */
 /*------------------------------------*/
 
 a {
-  // color: hsl(var(--honey), 100%, 37%);
-  color: hsl(var(--honey), 100%, 30%); // custom
+  color: hsl(
+    var(--honey),
+    100%,
+    35%
+  ); /*  * lightest I can go to get aa contrast ratio */
   transition: var(--moment);
 
   @media (prefers-color-scheme: dark) {
-    color: hsl(var(--denim), 37%, 63%);
+    color: hsl(var(--denim), 37%, 62.5%);
   }
-  // text-decoration: none;
+  /*  text-decoration: none; */
 }
 
 a:hover,
-a:focus {
-  text-decoration: none; // TODO: add somenice animation to this
-  color: hsl(var(--honey), 100%, 37%);
+.a-hover {
+  text-decoration: none; /*  TODO: add somenice animation to this */
+  color: hsl(var(--honey), 75%, 25%); /*  ! testing */
 
+  @media (prefers-color-scheme: dark) {
+    color: hsl(var(--denim), 37%, 50%);
+  }
+}
+
+a:focus,
+.a-focus {
+  color: hsl(var(--honey), 100%, 2.5%);
+  text-decoration: none;
   @media (prefers-color-scheme: dark) {
     color: hsl(var(--denim), 37%, 37%);
   }
@@ -35,7 +47,7 @@ a::selection {
   color: hsl(var(--denim), 12%, 12%);
 
   @media (prefers-color-scheme: dark) {
-    color: hsl(var(--honey), 100%, 97.5%); // custom
+    color: hsl(var(--honey), 100%, 97.5%); /*  custom */
   }
 
   &:hover,
@@ -44,16 +56,17 @@ a::selection {
     color: hsl(var(--denim), 12%, 12%);
 
     @media (prefers-color-scheme: dark) {
-      color: hsl(var(--honey), 100%, 97.5%); // custom
+      color: hsl(var(--honey), 100%, 97.5%); /*  custom */
     }
   }
 }
 
 /*------------------*/
-//  #BUTTON
+/* BUTTON */
 /*------------------*/
 
-button {
+button,
+.button {
   background-color: hsl(var(--honey), 100%, 75%);
   border: 1px solid hsl(var(--honey), 100%, 63%);
   width: max-content;
@@ -78,13 +91,18 @@ button {
       var(--honey),
       100%,
       25%
-    ) !important; /* // ! fix this bt keep a11y color contrast */
+    ) !important; /* /*  ! fix this bt keep a11y color contrast   */
   }
 }
 
-// TODO active and focus
+.button {
+  text-decoration: none;
+  display: inline-block;
+}
+
+/*  TODO active and focus */
 button:hover,
-button:focus {
+.button:hover {
   color: hsl(var(--honey), 100%, 2.5%);
   box-shadow: var(--stratosphere);
   background-color: hsl(var(--honey), 87%, 63%);
@@ -97,6 +115,11 @@ button:focus {
   }
 }
 
+button:focus,
+.button:focus {
+  /*  TODO: */
+}
+
 .button--left-align {
   margin-inline-start: 0;
 }
@@ -106,12 +129,14 @@ button:focus {
 }
 
 /*------------------*/
-//  #HOVER BACK, this is a kinda button style
-// * this should be on the <a> tag to not have to worry about child styles
+/* HOVER BACK, this is a kinda button style */
+/*  * this should be on the <a> tag to not have to worry about child styles */
 /*------------------*/
 
-.hover-back {
-  // ? how much of this is a button
+.bigboy a,
+.contact-info a,
+.footer_list a .hover-back {
+  /*  ? how much of this is a button */
   padding-block: 0.75rem;
   padding-inline: 0.5rem;
   display: block;
@@ -120,10 +145,15 @@ button:focus {
   border: 1px solid transparent;
   transform: var(--moment);
   transition: var(--moment);
-  // theres no color indicated here it all comes from the <a> so it doesnt need a dark
+  /*  theres no color indicated here it all comes from the <a> so it doesnt need a dark */
 }
 
-// * make this reusable
+/*  * make this reusable */
+.footer_list a:hover,
+.footer_list a:focus .bigboy a:hover,
+.bigboy a:focus,
+.contact-info a:hover,
+.contact-info a:focus .hover-back:hover,
 .hover-back__hover {
   background-color: hsl(var(--honey), 100%, 87%);
   border-color: hsl(var(--honey), 100%, 75%);
@@ -136,33 +166,17 @@ button:focus {
   }
 }
 
-.hover-back:hover {
-  @extend .hover-back__hover;
-}
-
-.bigboy a,
-.contact-info a {
-  @extend .hover-back;
-}
-
-.bigboy a:hover,
-.bigboy a:focus,
-.contact-info a:hover,
-.contact-info a:focus {
-  @extend .hover-back__hover;
-}
-
 .hover-back--inline {
   display: inline;
 }
 
 /*------------------*/
-//  #FOOTER
+/* FOOTER */
 /*------------------*/
 
 .footer-copyright a svg {
   border-radius: var(--border-radius);
-  border: 1px solid transparent; // hold the space itll come in later
+  border: 1px solid transparent; /*  hold the space itll come in later */
   padding-block: 0.75rem;
   padding-inline: 0.5rem;
 }
@@ -177,22 +191,10 @@ button:focus {
 }
 
 .footer_list a {
-  @extend .hover-back;
   margin-inline: auto;
   padding-block: 0.25rem;
   padding-inline: 0.5rem;
   max-width: max-content;
-  line-height: 1.6rem; // TODO: move this to baseline
-}
-
-.footer_list a:hover,
-.footer_list a:focus {
-  @extend .hover-back__hover;
-  /*  background-color: hsl(var(--honey), 100%, 97.5%);
-  border: 1px solid hsl(var(--honey), 100%, 50%);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 12%, 75%);
-    border-color: hsl(var(--denim), 12%, 97.5%);
-  } */
+  line-height: 1.6rem;
+  /*  TODO: move this to baseline */
 }

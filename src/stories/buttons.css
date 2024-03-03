@@ -1,4 +1,7 @@
-/* @layer storybook { */
+/*------------------------------------*/
+/* #STORYBOOK BUTTONS */
+/*------------------------------------*/
+
 .button--hover {
   color: hsl(var(--honey), 100%, 2.5%);
   box-shadow: var(--stratosphere);
@@ -11,4 +14,3 @@
     color: hsl(var(--denim), 25%, 97.5%);
   }
 }
-/* } */

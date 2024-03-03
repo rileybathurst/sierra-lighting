@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Link } from 'gatsby';
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Work from "../images/work";
@@ -9,13 +9,6 @@ import Work from "../images/work";
 const WorkPage = () => {
   return (
     <>
-      {/* // TODO description and info */}
-      <Seo
-        title="Work | Sierra Lighting"
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
-      // TODO I have a new image for this
-      />
-
       <Header />
 
       <Work />
@@ -103,3 +96,15 @@ const WorkPage = () => {
 }
 
 export default WorkPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Work | ${useSiteMetadata().title}`}
+      // TODO description and info
+      // TODO I have a new image for this
+      image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
+      url="work"
+    />
+  )
+}

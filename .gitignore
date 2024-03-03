@@ -2,5 +2,9 @@ node_modules/
 .cache/
 public
 .env*
-storybook-static
+storybook-static/
+```
+# Sentry Config File
+.sentryclirc
+sentry.config.js
 ```

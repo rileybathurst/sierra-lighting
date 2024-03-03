@@ -1,5 +1,5 @@
 /*------------------*/
-//  #SMALL MENU
+/* SMALL MENU */
 /*------------------*/
 
 .menu_s {
@@ -12,26 +12,26 @@
   }
 }
 
-@media (min-width: $book) {
+@media (min-width: 60rem) {
   .menu_s,
   .button-spinner {
-    display: none; // off for testing
+    display: none; /*  off for testing */
   }
 }
 
-// TODO this is getting past inception of 3 deep
+/*  TODO this is getting past inception of 3 deep */
 .menu__small {
   grid-row: 3;
   grid-column: 1;
   padding-inline-start: var(--cadence);
   z-index: -2;
-  // this has a little problem with the header image being infront of the menu
-  // as its in a different parent element
+  /*  this has a little problem with the header image being infront of the menu */
+  /*  as its in a different parent element */
   height: auto;
   grid-column: 1/3;
 
   menu {
-    padding-inline-start: 0; // reset;
+    padding-inline-start: 0; /*  reset; */
 
     ul {
       display: flex;
@@ -42,7 +42,7 @@
         line-height: 2rem;
 
         ul {
-          padding-inline-start: 0; // reset;
+          padding-inline-start: 0; /*  reset; */
         }
       }
     }
@@ -52,7 +52,7 @@
     }
   }
 
-  @media (min-width: $book) {
+  @media (min-width: 60rem) {
     display: none;
   }
 }
@@ -64,10 +64,10 @@
 }
 
 /*------------------*/
-//  #BIGBOY
+/* BIGBOY */
 /*------------------*/
 
-@media (max-width: $book) {
+@media (max-width: 60rem) {
   .bigboy {
     display: none;
   }
@@ -93,7 +93,7 @@
 }
 
 /*------------------*/
-//  #MENU ORDERS
+/* MENU ORDERS */
 /*------------------*/
 
 .menu__small .wedding,
@@ -128,14 +128,14 @@
   }
 }
 
-@media (min-width: $book) {
+@media (min-width: 60rem) {
   .contactlist {
     display: none !important;
   }
 }
 
 /*------------------*/
-//  #HAMBURGER
+/* HAMBURGER */
 /*------------------*/
 
 .hamburger {
@@ -156,16 +156,16 @@
   cursor: pointer;
 }
 
-// circle
+/*  circle */
 .hamburger:before {
   content: "";
   position: absolute;
   box-sizing: border-box;
-  width: 3rem; // starts at 70 4.375rem
+  width: 3rem; /*  starts at 70 4.375rem */
   height: 3rem;
   border: 2px solid transparent;
-  // top: calc(50% - 1rem);
-  // left: calc(50% - 1rem);
+  /*  top: calc(50% - 1rem); */
+  /*  left: calc(50% - 1rem); */
   border-radius: 100%;
   transition: var(--moment);
 }
@@ -174,9 +174,9 @@
   transform: rotate(45deg);
 }
 
-// the circle
+/*  the circle */
 .hamburger.is-active:before {
-  border: 2px solid hsl(var(--honey), 100%, 30%); // TODO not a louie color
+  border: 2px solid hsl(var(--honey), 100%, 30%); /*  TODO not a louie color */
   background-color: hsl(var(--honey), 100%, 85%);
 
   @media (prefers-color-scheme: dark) {
@@ -187,15 +187,14 @@
 
 .hamburger .line {
   width: 2rem;
-  height: 0.1875rem; // 3px this is wierd and custom
+  height: 0.1875rem; /*  3px this is wierd and custom */
   background-color: hsl(var(--honey), 100%, 30%);
   display: block;
   margin-block: 0.5rem;
   transition: var(--moment);
 
-  // TODO this is not working
+  /*  TODO this is not working */
   background-color: hsl(var(--honey__base), var(--dull));
-  // background-color: red; // testing
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 37%, 37%);
@@ -207,10 +206,10 @@
 }
 
 .hamburger.is-active .line:nth-child(1) {
-  transform: translateY(0.7rem); // start at 13px 0.8125rem
+  transform: translateY(0.7rem); /*  start at 13px 0.8125rem */
 }
 
-// middle line this disappears when menu is open
+/*  middle line this disappears when menu is open */
 .hamburger.is-active .line:nth-child(2) {
   opacity: 0;
 }
@@ -218,11 +217,3 @@
 .hamburger.is-active .line:nth-child(3) {
   transform: translateY(-0.7rem) rotate(90deg);
 }
-
-/* .hamburger:hover {
-  .line {
-    background-color: hsl(var(--honey), 100%, 2.5%);
-    background-color: hotpink; // testing
-  }
-}
- */

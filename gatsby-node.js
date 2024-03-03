@@ -31,7 +31,6 @@ exports.createPages = ({ actions, graphql }) => {
 
     result.data.allStrapiService.edges.forEach(({ node }) => {
       createPage({
-        // ! testing only at service
         path: `/${node.slug}`,
         component: path.resolve(`src/templates/service.tsx`),
         context: {
@@ -148,6 +147,28 @@ exports.createPages = ({ actions, graphql }) => {
     })
   });
 
+  const getLookbook = makeRequest(graphql, `
+    {
+      allStrapiLookbook {
+        edges {
+          node {
+            spread
+          }
+        }
+      }
+    }
+    `).then(result => {
+    result.data.allStrapiLookbook.edges.forEach(({ node }) => {
+      createPage({
+        path: `/lookbook/${node.spread}`,
+        component: path.resolve(`src/templates/lookbook-spread.tsx`),
+        context: {
+          spread: node.spread
+        },
+      })
+    })
+  });
+
   // const getServices = makeRequest(graphql, `
 
   // Query for blog nodes to use in creating pages.
@@ -157,6 +178,7 @@ exports.createPages = ({ actions, graphql }) => {
     getVenues,
     getVendors,
     getVendorServices,
+    getLookbook,
     // getLights
   ])
 }

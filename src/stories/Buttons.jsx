@@ -1,17 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import './story.css';
-import './buttons.css';
+import "./story.css";
+import "./buttons.css";
 
-export const Buttons = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary ? 'storybook-Buttons--primary' : 'storybook-Buttons--secondary';
+export const Buttons = ({
+  primary,
+  backgroundColor,
+  size,
+  label,
+  ...props
+}) => {
+  const mode = primary
+    ? "storybook-Buttons--primary"
+    : "storybook-Buttons--secondary";
   return (
     <>
-    <h2>Buttons</h2>
-    <button>Load More</button>
-    <button className='button--hover'>Hovered state</button>
-    <hr />
+      <h2>Buttons</h2>
+      <button>Load More</button>
+      <button className="button--hover">Hovered state</button>
+      <button className="button--focus">Focused state</button>
+      <hr />
     </>
   );
 };

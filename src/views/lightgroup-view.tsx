@@ -1,10 +1,9 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
-import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Badges from "../components/badges"
+// import Badges from "../components/badges"
 import Card from "../components/card";
 import { CardType } from "../types/card";
 
@@ -14,12 +13,6 @@ const LightGroupView = ({
 }) => {
   return (
     <>
-      <Seo
-        title={`${lightgroup.name} | Sierra Lighting`}
-        description={lightgroup?.excerpt}
-      // image={light?.image?.localFile?.url}
-      />
-
       <Header />
 
       <div className="measure">

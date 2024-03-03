@@ -3,6 +3,8 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import AreaView from "../../views/area-view"
+import SEO from "../../components/seo"
+import { useSiteMetadata } from "../../hooks/use-site-metadata"
 
 export const query = graphql`
   query AreaQuery($slug: String!) {
@@ -56,12 +58,22 @@ export const query = graphql`
 `
 
 const AreaPage = ({ data }) => {
-  const area = data.strapiArea;
   return (
     <AreaView
-      area={area}
+      area={data.strapiArea}
     />
   );
 };
 
 export default AreaPage;
+
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.strapiArea.name} | ${useSiteMetadata().title}`}
+      description={data.strapiArea?.excerpt}
+      image={data.strapiArea?.image?.localFile?.url}
+      url={`area/${data.strapiArea.slug}`}
+    />
+  )
+}

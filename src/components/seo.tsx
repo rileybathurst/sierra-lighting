@@ -1,19 +1,16 @@
+// Moving to the new version I lost the SEOShowcase component I still kind of want to rebuild that
+
 // https://www.gatsbyjs.com/docs/add-seo-component/
 
-import React, { useState } from 'react';
-import { IGatsbyImageData } from "gatsby-plugin-image"
-import PropTypes from "prop-types";
-import { Helmet } from "react-helmet";
-import { useLocation } from "@reach/router";
-import { useStaticQuery, graphql } from "gatsby";
-
-// TODO something about titles
+import React from "react";
+import { Script } from "gatsby";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 
 // https://blog.spotibo.com/meta-description-length/
 // less than 120 characters is good
 // more than 160 characters is bad
 
-// TODO this could be behind a state flag
+/* // TODO this could be behind a state flag
 function DescLength(props: { desc: any; }) {
   const desc = props.desc;
   const length = desc.length;
@@ -25,9 +22,9 @@ function DescLength(props: { desc: any; }) {
   } else {
     return <span className="bad key">{length} = Too Short</span>;
   }
-}
+} */
 
-function IfSeoImage(props: { image: string | undefined; }) {
+/* function IfSeoImage(props: { image: string | undefined; }) {
   // TODO: this could be a ternary
   if (props.image) {
 
@@ -35,223 +32,101 @@ function IfSeoImage(props: { image: string | undefined; }) {
 
     return (
       <>
-        {/* // TODO: I should do more with the alt */}
-        <img src={props.image} alt={imagealt} />
+        {/* // TODO: I should do more with the alt
+<img src={props.image} alt={imagealt} />
       </>
     )
   } else {
-    return null;
-  }
+  return null;
 }
+} */
 
-// TODO: I think theres a way to query this but then I always have to query it
-// function GetMeta(image (image: IGatsbyImageData)) {
-function GetMeta(image: IGatsbyImageData) {
-  if (image.image) {
-    // console.log('image');
-    // console.log(image);
-    const [size, setSize] = useState(0);
-    const [reply, setReply] = useState('ok');
-
-    const link = image;
-    // console.log(link);
-
-    const img = new Image();
-    img.src = image.image;
-
-    // console.log(img.naturalWidth);
-
-    /*   useEffect(() => {
-        img.naturalWidth ? setSize(img.naturalWidth) : setSize(0);
-    
-        console.log(size);
-    
-      }, [img.naturalWidth]); */
-
-    // this isnt right there should be a way of using effect for the timing but hack to get around it for now
-    setTimeout(() => {
-      setSize(img.naturalWidth)
-      if (size == 1200) {
-        setReply('good')
-      } else {
-        setReply('bad')
-      }
-    }, 100);
-
-    return (
-      <>
-        <span className={`${reply} key`}>width: {size} = {reply}</span>
-      </>
-    )
-  } else {
-    // console.log('no image');
-    return null;
-  }
+interface SEO {
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+  imageAlt?: string;
+  children?: React.ReactNode;
 }
-
-// area served is coming from the home page list of areas.
 
 // Im not sure what the rules on what goes here vs in the array?
-const SEO = ({
-  title,
-  description,
-  image,
-  itemScope,
-  itemType,
+export const SEO = (SE0: SEO) => {
 
-}) => {
-  const { pathname } = useLocation();
-  const { site } = useStaticQuery(query);
   const {
-    defaultTitle,
-    titleTemplate,
     siteUrl,
     defaultDescription,
     defaultImage,
-    ogImage,
-    twitterImage,
+    defaultImageAlt,
     telephone,
     openingHours,
     areaServed,
     paymentAccepted,
-  } = site.siteMetadata;
+  } = useSiteMetadata()
 
   const seo = {
-    title: title || defaultTitle,
-    description: description || defaultDescription,
-    image: image || defaultImage,
-    ogImage: image,
-    twitterImage: twitterImage,
-    url: `${siteUrl}${pathname}`,
-    openingHours: `${openingHours}`,
-    telephone: telephone,
-    areaServed: areaServed,
-    paymentAccepted: paymentAccepted,
-    itemScope: itemScope,
-    itemType: itemType
+    title: SE0.title,
+    description: SE0.description || defaultDescription,
+    image: SE0.image || defaultImage,
+    imageAlt: SE0.imageAlt || defaultImageAlt,
+    url: SE0.url || siteUrl,
   };
 
   return (
     <>
-      <Helmet
-        title={seo.title}
-        titleTemplate={titleTemplate}
-        htmlAttributes={{
-          lang: 'en-US',
-          // itemScope: undefined, // as was before boolean
-          itemScope: `${seo.itemScope}`, // this seems to be working
-          itemType: `${seo.itemType}`,
-        }}
-      >
+      <title>{seo.title}</title>
 
-        {/* // TODO do this with a query */}
-        <meta itemProp="name" content="Sierra Lighting" />
+      <meta name="description" content={seo.description} />
+      <meta name="image" itemProp="image" content={seo.image} />
 
-        <meta name="description" content={seo.description} />
-        <meta name="image" itemProp="image" content={seo.ogImage} />
-        <meta property="og:type" content="website" />
-        {seo.url && <meta property="og:url" itemProp="URL" content={seo.url} />} {/* // ! this isnt there yet */}
-        {/* {(article ? true : null) && <meta property="og:type" content="article" />} */}
-        {seo.title && <meta property="og:title" content={seo.title} />}
-        {seo.description && (
-          <meta property="og:description" content={seo.description} />
-        )}
+      {/* OG */}
+      <meta property="og:type" content="website" />
+      <meta property="og:url" itemProp="URL" content={seo.url} />
+      <meta property="og:title" content={seo.title} />
+      <meta property="og:description" content={seo.description} />
+      <meta property="og:image" itemProp="image" content={seo.image} />
 
-        {/* // testing off incase this is the alt issue */}
-        {seo.image && <meta property="og:image" itemProp="image" content={seo.ogImage} />}
+      {/* Twitter */}
+      <meta name="twitter:title" content={seo.title} />
+      <meta name="twitter:description" content={seo.description} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content={seo.image} />
+      <meta name="openingHours" itemProp="openingHours" content={openingHours} />
+      <meta name="telephone" itemProp="telephone" content={telephone} />
+      <meta name="paymentAccepted" itemProp="paymentAccepted" content={paymentAccepted} />
 
-        {seo.title && <meta name="twitter:title" content={seo.title} />}
-        {seo.description && (
-          <meta name="twitter:description" content={seo.description} />
-        )}
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org/",
+            "@type": "LocalBusiness",
+            "name": "${seo.title}",
+            "url": "${siteUrl}${seo.url}",
+            "siteurl": "${siteUrl}",
+            "description": "${seo.description}",
+            "image": "${seo.image}",
+            "openingHours": "${openingHours}",
+            "paymentAccepted": "${paymentAccepted}",
+            "telephone": "${telephone}"
+          }
+        `}
+      </Script>
+      {SE0.children}
 
-        <meta name="twitter:card" content="summary_large_image" />
-        {seo.image && <meta name="twitter:image" content={seo.twitterImage} />}
-
-        {seo.openingHours && (
-          <meta name="openingHours" itemProp="openingHours" content={seo.openingHours} />
-        )}
-        {seo.telephone && <meta name="telephone" itemProp="telephone" content={seo.telephone} />}
-
-        {seo.paymentAccepted && (
-          <meta name="paymentAccepted" itemProp="paymentAccepted" content={seo.paymentAccepted} />
-        )}
-
-      </Helmet>
-      {/* // ! this needs to be moved to an external project and with more work but thats later */}
-      {/* {process.env.NODE_ENV === "production" ? ( */}
-      {
-        process.env.NODE_ENV === "development" ? (
-          <div className="seo-showcase">
-            <h1>SEO Showcase</h1>
-            <p key="title"><span className="key">Title</span> = {seo.title}</p>
-            <p key="description"><span className="key">Description</span> = {seo.description}</p>
-            <p>Description charachter length = <DescLength desc={seo.description} /></p>
-            {/* // ? why does this need to be ogImage? */}
-            {/* // regular image doubles the url */}
-            <p key="image"><span className="key">Image</span> = <GetMeta image={seo.ogImage} /></p>
-            <IfSeoImage image={seo.ogImage} />
-          </div>
-        ) : null
-      }
-
+      {/*
+        // Rebuild this sometime
+        <div className="seo-showcase">
+        <h1>SEO Showcase</h1>
+        <p key="title"><span className="key">Title</span> = {seo.title}</p>
+        <p key="description"><span className="key">Description</span> = {seo.description}</p>
+        <p>Description charachter length = <DescLength desc={seo.description} /></p>
+        // ? why does this need to be ogImage?
+        // regular image doubles the url
+        <p key="image"><span className="key">Image</span> = <GetMeta image={seo.ogImage} /></p>
+        <IfSeoImage image={seo.ogImage} />
+      </div> */}
     </>
   );
 };
 
 export default SEO;
-
-SEO.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  image: PropTypes.string,
-  ogImage: PropTypes.string,
-  twitterImage: PropTypes.string,
-  article: PropTypes.bool,
-  openingHours: PropTypes.string,
-  telephone: PropTypes.string,
-  faxNumber: PropTypes.string,
-  areaServed: PropTypes.string,
-  paymentAccepted: PropTypes.string,
-  location: PropTypes.string,
-  slogan: PropTypes.string,
-  gsv: PropTypes.string,
-  itemScope: PropTypes.bool,
-  itemType: PropTypes.string
-};
-
-SEO.defaultProps = {
-  lang: `en`,
-  itemType: `https://schema.org/LocalBusiness`,
-  title: null,
-  description: null,
-  image: null,
-  ogImage: null,
-  twitterImage: null,
-  article: false,
-  openingHours: null,
-  telephone: null,
-  areaServed: null,
-  paymentAccepted: null,
-  itemScope: false,
-};
-
-const query = graphql`
-  query SEO {
-    site {
-      siteMetadata {
-        defaultTitle: title
-        defaultDescription: description
-        siteUrl: url
-        defaultImage: image
-        ogImage: image
-        twitterImage: image
-        openingHours
-        telephone
-        areaServed
-        paymentAccepted
-        itemType
-      }
-    }
-  }
-`;

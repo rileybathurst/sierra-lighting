@@ -1,7 +1,8 @@
 import * as React from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -21,14 +22,6 @@ query FaqQuery {
 
   return (
     <>
-      <Seo
-        title="Sierra Lighting | FAQs"
-        itemType="https://schema.org/FAQPage"
-        itemScope={true}
-        description="Your go to holiday lights installer in the Reno, Truckee, and North Tahoe area. A list of frequently asked questions. Please reach out for more information and estimates."
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/og_image-sierra_lighting-bistro_lights.jpg"
-      />
-
       <Header />
 
       <main className="measure">
@@ -58,3 +51,19 @@ query FaqQuery {
 }
 
 export default FaqsPage
+
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`FAQs | ${useSiteMetadata().title}`}
+      url="faqs"
+      description="Your go to holiday lights installer in the Reno, Truckee, and North Tahoe area. A list of frequently asked questions. Please reach out for more information and estimates."
+      image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/og_image-sierra_lighting-bistro_lights.jpg"
+    />
+  )
+}
+
+// ! FAQ schema
+// itemType="https://schema.org/FAQPage"
+// itemScope={true}

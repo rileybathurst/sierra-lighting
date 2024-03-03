@@ -1,5 +1,5 @@
 /*------------------*/
-//  #BADGES
+/* BADGES */
 /*------------------*/
 
 .badges {
@@ -11,7 +11,7 @@
 
   .badge {
     padding: 0.5rem 1rem;
-    // TODO: fix this it should get lighter not darker as it gets higher in the stack
+    /*  TODO: fix this it should get lighter not darker as it gets higher in the stack */
     background-color: var(--kingly-cloud);
     border: 2px solid whitesmoke;
     border-radius: var(--card-radius);

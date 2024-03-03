@@ -4,7 +4,8 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby'
 import MuxPlayer from '@mux/mux-player-react';
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -13,8 +14,33 @@ import remarkGfm from 'remark-gfm'
 
 import Card from '../components/card';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import { CardType } from '../types/card';
 
-function Base(props) {
+function Breadcrumb(props: { title: string; }) {
+
+  if (props.title === 'project') {
+    return (
+      <Link to="/projects">
+        Explore Projects
+      </Link>
+    )
+  } else {
+
+
+    return (
+      <Link to={`/${props.title}`}>
+        Explore {props.title}s
+      </Link>
+    )
+  }
+}
+
+function Base(props: {
+  projects: string | any[];
+  venues: string | any[];
+  vendors: string | any[];
+  slug: string;
+}) {
   let base = [];
 
   if (!props?.projects.length && !props?.venues.length && !props?.vendors.length) {
@@ -50,8 +76,6 @@ function Base(props) {
     // if has projects and vendors
     if (props?.vendors.length && props?.venues.length) {
 
-      // console.log('🦄');
-
       // put the vendor in the second spot
       let vendorInset = props?.vendors[0];
       vendorInset.breadcrumb = 'vendor';
@@ -76,14 +100,6 @@ function Base(props) {
       base.splice(2, 2, venueInset);
 
     }
-
-    // ? was this the titles?
-    /*     if (Object.values(base[0]).indexOf('project') > -1) {
-          // console.log('has project');
-        } else {
-          // console.log('no project');
-        } */
-
 
     let titles = [];
     // first always needs a title
@@ -110,14 +126,13 @@ function Base(props) {
       <>
         <hr className='measure' />
 
-        {/* // TODO: add links */}
         <div className='deck margin-block-end-0 service-deck'>
           {titles.map((title) => (
             <h4
               key={title}
               className={`first-capital ${title}-title`}
             >
-              Explore {title}s
+              <Breadcrumb title={title} />
             </h4>
           ))}
 
@@ -137,7 +152,7 @@ function Base(props) {
   }
 }
 
-function ReactDescription(props) {
+function ReactDescription(props: { description: string | null | undefined; }) {
   // console.log(props.description)
   if (props?.description) {
     return (
@@ -151,7 +166,7 @@ function ReactDescription(props) {
   }
 }
 
-function VideoMux(video) {
+function VideoMux(video: { video: string | undefined; }) {
   // console.log(video.video)
   if (video.video) {
     return (
@@ -168,12 +183,11 @@ function VideoMux(video) {
 }
 
 function Consultant({ after_the_triptych }) {
-  console.log(after_the_triptych.data.after_the_triptych)
+  // console.log(after_the_triptych.data.after_the_triptych)
 
   if (after_the_triptych.data.after_the_triptych) {
     return (
       <div id="consultant" className='measure'>
-        <hr />
         <h3>
           Have you ever noticed how much lighting can affect the feeling of space?
         </h3>
@@ -189,16 +203,23 @@ function Consultant({ after_the_triptych }) {
   }
 }
 
+// This is super specific and if we build more look books we need to make this more dynamic
+function Lookbook({ slug }) {
+  if (slug === 'wedding') {
+    return (
+      <section id="lookbook" className='measure'>
+        <h3><Link to="/lookbook/2">Browse the 2024 Lookbook</Link></h3>
+      </section>
+    )
+  } else {
+    return null;
+  }
+}
+
 const ServiceView = ({ data }) => {
 
   return (
     <>
-      <Seo
-        title={`${data.strapiService.name} Lighting | Sierra Lighting`}
-        description={data.strapiService?.excerpt}
-        /// TODO: check this query
-        image={data.strapiService?.ogImage}
-      />
       <Header />
 
       <main>
@@ -217,7 +238,7 @@ const ServiceView = ({ data }) => {
           />
         </section>
 
-        <section className="triple">
+        {/*         <section className="triple">
           {data.strapiService?.triptych?.map((image) => (
             <div key={image.id}>
               <GatsbyImage image={image?.localFile?.childImageSharp?.gatsbyImageData}
@@ -226,11 +247,40 @@ const ServiceView = ({ data }) => {
               />
             </div>
           ))}
+        </section> */}
+
+        <section id="lights">
+          <div className="measure">
+            <hr />
+            <h3 className="crest">Bringing the shine</h3>
+            <h2 className="ridge">
+              <Link to={`/${data.strapiService.slug}/lights`}
+              // className="link--subtle"
+              >
+                Lighting Styles
+              </Link>
+            </h2>
+          </div>
+
+          <div className='deck'>
+            {data.strapiService.featured_lights.map((light: CardType) => (
+              <div key={light.id}>
+                <Card
+                  card={light}
+                  breadcrumb='light'
+                />
+              </div>
+            ))}
+
+
+          </div>
+          <Lookbook slug={data.strapiService.slug} />
         </section>
 
       </main>
 
-      <section id="process" className='measure'>
+      <section id="process" className='measure backed bb'>
+        <hr />
         <h2>Our Process</h2>
         <ol>
           {data.allStrapiProcess.nodes.map((process: {
@@ -251,39 +301,6 @@ const ServiceView = ({ data }) => {
           </Link>
         </p>
         <hr />
-      </section>
-
-      <section id="lights">
-        <div className="measure">
-          <h3 className="crest">Bringing the shine</h3>
-          <h2 className="ridge mixta">
-            <Link to={`/${data.strapiService.slug}/lights`} className="link--subtle">
-              Lighting Styles
-            </Link>
-          </h2>
-        </div>
-
-        <div className='deck'>
-          {data.strapiService.featured_lights.map((light) => (
-            <div key={light.id}>
-              <Card
-                card={light}
-                breadcrumb='light'
-              />
-            </div>
-          ))}
-          {/* // TODO: including the view more etc */}
-        </div>
-
-        <div className="measure" >
-          <h3>
-            <Link
-              to={`/${data.strapiService.slug}/lights`}>
-              View all other <span className='lowercase'>{data.strapiService.name}</span> lights
-            </Link>
-          </h3>
-          <p>Have something particular in mind? Just ask!</p>
-        </div>
       </section>
 
       <Consultant after_the_triptych={data.strapiService?.after_the_triptych} />
@@ -384,3 +401,14 @@ export const query = graphql`
 // projects goes last as it fills everything in
 
 // Footer
+
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.strapiService.name} Lighting | ${useSiteMetadata().title}`}
+      description={data.strapiService.excerpt}
+      image={data.strapiService?.ogImage}
+      url={`${data.strapiService.slug}`}
+    />
+  )
+}

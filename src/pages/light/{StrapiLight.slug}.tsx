@@ -1,6 +1,8 @@
 import * as React from "react"
 import { graphql } from "gatsby"
 import LightView from "../../views/light-view"
+import SEO from "../../components/seo"
+import { useSiteMetadata } from "../../hooks/use-site-metadata"
 
 export const query = graphql`
   query LightQuery($slug: String!) {
@@ -73,14 +75,24 @@ export const query = graphql`
 `
 
 const LightPage = ({ data }) => {
-  const light = data.strapiLight;
-  const other = data.allStrapiLight;
   return (
     <LightView
-      light={light}
-      other={other}
+      light={data.strapiLight}
+      other={data.allStrapiLight}
     />
   );
 };
 
 export default LightPage;
+
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.strapiLight.name} | ${useSiteMetadata().title}`}
+      // TODO: needs the aliases in the SEO
+      description={data.strapiLight?.excerpt}
+      image={data.strapiLight?.image?.localFile?.url}
+      url={`light/${data.strapiLight.slug}`}
+    />
+  )
+}

@@ -6,14 +6,10 @@ const config = {
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
-    "@storybook/addon-mdx-gfm",
     {
       name: '@storybook/addon-styling',
       options: {
-        sass: {
-          // Require your Sass preprocessor here
-          implementation: require('sass'),
-        },
+        
       },
     },
   ],

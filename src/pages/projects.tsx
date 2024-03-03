@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
@@ -75,11 +76,6 @@ const ProjectsPage = () => {
 
   return (
     <>
-      <Seo
-        title="Projects | Sierra Lighting"
-        description="A gallery of some of our past work. Photos of residential and commercial displays in Reno, Tahoe, Truckee, Martis Camp, Lahontan, Grays Crossing, Old Greenwood, Somersett, Caughlin Ranch, Verdi, Damonte Ranch, Galena, Montreux, Incline Village, and more!"
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/projects-og-sierra_lighting.jpg"
-      />
       <Header />
 
       <main className="measure">
@@ -104,3 +100,14 @@ const ProjectsPage = () => {
 };
 
 export default ProjectsPage;
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Projects | ${useSiteMetadata().title}`}
+      description="A gallery of some of our past work. Photos of residential and commercial displays in Reno, Tahoe, Truckee, Martis Camp, Lahontan, Grays Crossing, Old Greenwood, Somersett, Caughlin Ranch, Verdi, Damonte Ranch, Galena, Montreux, Incline Village, and more!"
+      image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/projects-og-sierra_lighting.jpg"
+      url="projects"
+    />
+  )
+}

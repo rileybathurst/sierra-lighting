@@ -3,7 +3,8 @@ import { graphql, Link } from 'gatsby'
 
 import ReactMarkdown from "react-markdown";
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from '../components/card';
@@ -121,11 +122,6 @@ function Testimonials(props) {
 const VenueView = ({ data }) => {
   return (
     <>
-      <Seo
-        title={`${data.strapiVenue.name} | Sierra Lighting`}
-        description={data.strapiVenue?.excerpt}
-        image={data.strapiVenue?.venueImage?.localFile?.url}
-      />
       <Header />
 
       <div className="measure">
@@ -285,3 +281,14 @@ export const query = graphql`
       }
   }
 `
+
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.strapiVenue.name} | ${useSiteMetadata().title}`}
+      description={data.strapiVenue.excerpt}
+      image={data.strapiVenue?.venueImage?.localFile?.url}
+      url={`venue/${data.strapiVenue.slug}`}
+    />
+  )
+}

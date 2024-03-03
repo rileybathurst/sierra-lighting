@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
 
-import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -12,10 +11,6 @@ import TestimonialRanking from "../components/testimonial-ranking";
 const TestimonialView = ({ testimonial }) => {
   return (
     <>
-      <Seo
-        title={`${testimonial.name} | Sierra Lighting`}
-        description={testimonial.excerpt}
-      />
       <Header />
       <div className="measure">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">

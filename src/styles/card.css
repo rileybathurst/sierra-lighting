@@ -57,15 +57,15 @@
       }
     }
 
-    // safari needs this
+    /*  safari needs this */
     img {
       border-radius: var(--card-radius);
       transition: transform 0.5s ease;
     }
 
     img:hover {
-      // TODO this breaks the border radius
-      // document which browsers support this
+      /* TODO this breaks the border radius s  */
+      /* document which browsers support this s  */
       transform: scale(1.05);
     }
   }
@@ -85,7 +85,7 @@
     font-size: clamp(1.5rem, 1.5vw, 2.5rem);
     line-height: clamp(2rem, 1.5vw, 3rem);
     margin-block-end: 1.25rem;
-    font-family: var(--josefin);
+    font-family: var(--font-sans);
     font-weight: 400;
   }
 
@@ -110,20 +110,18 @@
 }
 
 /*------------------*/
-//  #SPECIFIC FIXES
+/* SPECIFIC FIXES */
 /*------------------*/
 
-// If this list gets long I will do something more
+/* If this list gets long I will do something more e  */
 
-// vendor
-.card {
-  .marcella img {
-    object-position: 0 15%;
-  }
+/* vendor r  */
+.card .marcella img {
+  object-position: 0 15%;
 }
 
 /*------------------*/
-//  #TEAM CARD
+/* TEAM CARD */
 /*------------------*/
 
 .team_cards {
@@ -144,7 +142,7 @@
     }
 
     article {
-      // display: grid;
+      /* display: grid; ;  */
       gap: 1.5rem;
 
       > * {
@@ -154,17 +152,17 @@
 
     h1 {
       grid-row: 1;
-      // grid-column: 1;
-      margin-block-end: 0.5rem; // the gap is doing a lot of the work here
+      /* grid-column: 1; ;  */
+      margin-block-end: 0.5rem; /* the gap is doing a lot of the work here e  */
     }
 
     p {
       grid-row: 2;
-      // grid-column: 1;
+      /* grid-column: 1; ;  */
     }
 
     .poster {
-      // grid-column: 2;
+      /* grid-column: 2; ;  */
       justify-self: end;
       float: right;
 
@@ -178,7 +176,7 @@
       margin-block-end: 1rem;
     }
 
-    // this seems wrong i need it on both
+    /* this seems wrong i need it on both h  */
     .gatsby-image-wrapper {
       border-radius: 50%;
       aspect-ratio: 1;
@@ -191,10 +189,10 @@
   }
 }
 
-// shananagins to wrangle the titles
-// TODO: some middle sizes are wrong
+/* shananagins to wrangle the titles s  */
+/* TODO: some middle sizes are wrong g  */
 .service-deck {
-  @media (max-width: $stork) {
+  @media (max-width: 40rem) {
     .project-title {
       grid-row: 1;
     }
@@ -232,7 +230,8 @@
     }
   }
 
-  @media (min-width: $stork) {
+  /* stork */
+  @media (min-width: 40rem) {
     .project-title {
       grid-row: 1;
     }
@@ -244,7 +243,7 @@
     }
   }
 
-  // TODO: theres a complicated has to get sorted on the social events
-  // https://www.matuzo.at/blog/2022/100daysof-day50/
-  // .has not project then do other things
+  /* TODO: theres a complicated has to get sorted on the social events s  */
+  /* https://www.matuzo.at/blog/2022/100daysof-day50/ /  */
+  /* .has not project then do other things s  */
 }

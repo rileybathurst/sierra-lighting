@@ -5,7 +5,6 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
-import Seo from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
@@ -38,12 +37,6 @@ function IfProjects(props: {
 const TeamView = ({ team }) => {
   return (
     <>
-      {/* // TODO image and description */}
-      <Seo
-        title={`${team.name} | Sierra Lighting`}
-        description={team?.excerpt}
-        image={team?.avatar?.localFile?.url}
-      />
       <Header />
 
       <div className="measure">

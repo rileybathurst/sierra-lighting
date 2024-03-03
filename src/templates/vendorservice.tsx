@@ -4,7 +4,8 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby'
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from '../components/card';
@@ -13,13 +14,6 @@ import { CardType } from '../types/card';
 const VendorServiceView = ({ data }) => {
   return (
     <>
-      <Seo
-        // ? data.allStrapiVendor.distinct
-        title={`${data.allStrapiVendor.distinct} Vendors | Sierra Lighting`}
-        description="We built our business by providing outstanding quality, value, and service.
-        We support others in Reno/Tahoe that have the same commitment."
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
-      />
       <Header />
 
       <div className="measure">
@@ -78,3 +72,17 @@ export const query = graphql`
   }
 }
 `
+
+
+export const Head = ({ data }) => {
+  return (
+    <SEO
+      title={`${data.allStrapiVendor.distinct} Vendors | ${useSiteMetadata().title}`}
+      description="We built our business by providing outstanding quality, value, and service.
+      We support others in Reno/Tahoe that have the same commitment."
+      image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
+      url={`vendors/${data.allStrapiVendor.distinct}`}
+    />
+  )
+}
+

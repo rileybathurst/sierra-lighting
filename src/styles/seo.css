@@ -1,13 +1,13 @@
 /*------------------*/
-//  # Seo Showcase
+/*  Seo Showcase */
 /*------------------*/
 
-// this is only for showing internally
-// colors come from https://clrs.cc/
+/*  this is only for showing internally */
+/*  colors come from https://clrs.cc/ */
 
 .seo-showcase {
-  background-color: hsla(197, 100%, 75%, 25%); // #aqua
-  border: 1px solid hsla(208, 100%, 43%, 50%); // #blue
+  background-color: hsla(197, 100%, 75%, 25%); /*  #aqua */
+  border: 1px solid hsla(208, 100%, 43%, 50%); /*  #blue */
   border-radius: 0.25rem;
   margin: 1rem;
   padding: 1rem;

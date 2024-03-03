@@ -1,13 +1,13 @@
 import * as React from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
 const TestimonialsPage = () => {
-
 
   const { allStrapiAffiliation } = useStaticQuery(graphql`
     query AffiliationsQuery {
@@ -36,11 +36,6 @@ const TestimonialsPage = () => {
 
   return (
     <>
-      <Seo
-        title={`${title} | Sierra Lighting`}
-      // description="// TODO"
-      // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
-      />
       <Header />
 
       <main>
@@ -77,3 +72,12 @@ const TestimonialsPage = () => {
 }
 
 export default TestimonialsPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Affiliations | ${useSiteMetadata().title}`}
+      url="affiliations"
+    />
+  )
+}

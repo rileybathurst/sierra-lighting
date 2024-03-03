@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { useStrapiWestShoreWedding } from "../hooks/use-strapi-westshorewedding";
 
@@ -11,10 +12,13 @@ const WestShoreWedding = () => {
   }
 
   return (
-    <GatsbyImage
-      image={image?.localFile?.childImageSharp?.gatsbyImageData}
-      alt={title}
-    />
+    <Link to="/west-shore-wedding" className="adhere">
+      <GatsbyImage
+        image={image?.localFile?.childImageSharp?.gatsbyImageData}
+        alt={title}
+      />
+      <p className="sticker">Westshore Wedding</p>
+    </Link>
   );
 };
 

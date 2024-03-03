@@ -21,6 +21,7 @@ const strapiConfig = {
     'process',
     'showcase',
     'quality',
+    'lookbook',
   ],
   singleTypes: [
     'topbar',
@@ -35,23 +36,21 @@ module.exports = {
   graphqlTypegen: true,
   siteMetadata: {
     title: "Sierra Lighting",
-    siteUrl: "https://sierra.lighting",
-    url: "https://sierra.lighting", // No trailing slash allowed!
-    description:
-      "Dependable holiday, landscape and events light installation in Reno, Truckee, Lake Tahoe, Carson City and Minden.", // 📣
-    image: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣 Path to your image you placed in the 'static' folder
-    ogImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
-    // ? is this now the wrong name?
-    twitterImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg', // 📣
+    siteUrl: "https://sierra.lighting/",
+    // url: "https://sierra.lighting", // No trailing slash allowed!
+    defaultDescription: "Dependable holiday, landscape and events light installation in Reno, Truckee, Lake Tahoe, Carson City and Minden.",
+    defaultImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg',
+    defaultImageAlt: 'Sierra Lighting created a beautiful holiday light display', // TODO: wedding
     openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 08:00-18:00',
     telephone: '(775) 525-1898', // nevada number
     email: 'info@sierra.lighting',
     logo: '/images/icon.png',
-    areaServed: 'tahoe', // Im doing a lot with this in seo.tsx
+    areaServed: 'tahoe', // TODO: Im doing a lot with this in seo.tsx do update it here
     author: 'Sierra Lighting',
     paymentAccepted: 'Cash check venmo credit card',
     itemType: 'LocalBusiness',
     priceRange: '$1000-2500',
+    alternateName: 'Sierra Christmas Lights', // TODO: add this to the schema
   },
   plugins: [
     // TODO: check in on the update
@@ -60,7 +59,7 @@ module.exports = {
       options: {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
         trackingIds: [
-          "G-PSZ3PWKQSC", // Google Analytics / GA
+          process.env.GA, // Google Analytics / GA
           // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
           // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
         ],
@@ -88,9 +87,17 @@ module.exports = {
         }
       }
     },
-    "gatsby-plugin-sass",
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [
+          require(`postcss-import`),
+          require("autoprefixer"),
+          require("postcss-nested"),
+        ],
+      },
+    },
     "gatsby-plugin-image",
-    "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     {
       resolve: `gatsby-plugin-sharp`,
@@ -158,6 +165,12 @@ module.exports = {
         typekit: {
           id: process.env.TYPEKIT_ID,
         },
+      },
+    },
+    {
+      resolve: "@sentry/gatsby",
+      options: {
+        dsn: process.env.SENTRY_DSN, // this is the default
       },
     },
   ]

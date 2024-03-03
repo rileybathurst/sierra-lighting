@@ -3,7 +3,8 @@ import { Link } from "gatsby";
 
 import ReactMarkdown from "react-markdown";
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -38,12 +39,6 @@ function Venues(props) {
 const AreaView = ({ area }) => {
   return (
     <>
-      <Seo
-        title={`${area.name} | Sierra Lighting`}
-        description={area?.excerpt}
-        image={area?.image?.localFile?.url}
-      />
-
       <Header />
 
       {/* // using additional microdata for location */}

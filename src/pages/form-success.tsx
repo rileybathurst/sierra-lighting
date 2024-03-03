@@ -1,18 +1,14 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-import Seo from "../components/seo";
+import { SEO } from "../components/seo";
+import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
 const FormSucessPage = () => {
   return (
     <>
-      <Seo
-        title="Form Sucess"
-        description="Looks like this page has left the party."
-        image="https://sierralighting.s3.us-west-1.amazonaws.com/404-og-sierra_lighting.jpg"
-      />
       <Header />
 
       <main className="measure">
@@ -28,3 +24,13 @@ const FormSucessPage = () => {
 }
 
 export default FormSucessPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title={`Form Success | ${useSiteMetadata().title}`}
+      description="Thanks for getting in touch we will get back to you ASAP. Head to our home page."
+      url="form-success"
+    />
+  )
+}
