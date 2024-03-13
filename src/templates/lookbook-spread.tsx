@@ -22,25 +22,47 @@ function LinkedLook({ image, lights }) {
   } else if (lights.length === 1) {
     return (
       <>
-        <Link to={`/light/${lights[0].slug}`}>
+        <Link to={`/light/${lights[0].slug}`} className='adhere'>
           <GatsbyImage
             image={image.localFile.childImageSharp.gatsbyImageData}
             alt={image.alternativeText}
           />
-          <h2>{lights[0].name}</h2>
+          <p className='sticker'>{lights[0].name}</p>
         </Link>
       </>
     );
+  } if (lights.length > 1) {
+
+    const otherLights = lights.slice(1);
+
+    return (
+      <div>
+        <Link to={`/light/${lights[0].slug}`} className='adhere'>
+          <GatsbyImage
+            image={image.localFile.childImageSharp.gatsbyImageData}
+            alt={image.alternativeText}
+          />
+          <p className='sticker'>{lights[0].name}</p>
+
+
+        </Link>
+        <ul className='lookbook-list'>
+          {otherLights.map((light, i) => (
+            <li>
+              <Link to={`/light/${light.slug}`} key={i} className='sticker'>
+                {light.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
   } else {
     return (
-      <>
-        {/* <Link to={`/lookbook/${lights.slug}`}> */}
-        <GatsbyImage
-          image={image.localFile.childImageSharp.gatsbyImageData}
-          alt={image.alternativeText}
-        />
-        {/* </Link> */}
-      </>
+      <GatsbyImage
+        image={image.localFile.childImageSharp.gatsbyImageData}
+        alt={image.alternativeText}
+      />
     );
   }
 }

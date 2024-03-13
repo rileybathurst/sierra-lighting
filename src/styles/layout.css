@@ -648,22 +648,6 @@ footer {
 }
 
 /*------------------*/
-/* showcase--table */
-/*------------------*/
-
-.showcase--table {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
-
-  > * {
-    grid-template-rows: subgrid;
-
-    > * {
-      border-block-end: 1px solid black;
-    }
-  }
-}
 
 .light-hero {
   display: grid;
