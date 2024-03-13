@@ -198,3 +198,14 @@ button:focus,
   line-height: 1.6rem;
   /*  TODO: move this to baseline */
 }
+
+/*------------------------------------*/
+
+.adhere .gatsby-image-wrapper {
+  transition: var(--moment);
+}
+
+.adhere:hover .gatsby-image-wrapper {
+  opacity: 0.8;
+  filter: brightness(0.8);
+}

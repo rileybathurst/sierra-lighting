@@ -7,55 +7,47 @@ import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-function LinkedLook({ image, lights }) {
+function LinkedLook({ image, lights, flex }) {
 
-  // console.log(lights);
-  // console.log(lights.length);
+  console.log(flex);
+  /* if (flex === 3) {
+      flex = 'flex-3';
+    } */
 
-  if (!lights) {
-    return (
-      <GatsbyImage
-        image={image.localFile.childImageSharp.gatsbyImageData}
-        alt={image.alternativeText}
-      />
-    );
-  } else if (lights.length === 1) {
+  if (lights.length === 1) {
     return (
       <>
-        <Link to={`/light/${lights[0].slug}`} className='adhere'>
+        <Link to={`/light/${lights[0].slug}`} className={`adhere flex-${flex}`}>
           <GatsbyImage
             image={image.localFile.childImageSharp.gatsbyImageData}
             alt={image.alternativeText}
           />
-          <p className='sticker'>{lights[0].name}</p>
-        </Link>
+          <p className='sticker'>
+            <span>{lights[0].name}</span>
+          </p>
+        </Link >
       </>
     );
   } if (lights.length > 1) {
 
-    const otherLights = lights.slice(1);
-
     return (
-      <div>
-        <Link to={`/light/${lights[0].slug}`} className='adhere'>
+      <>
+        <Link to={`/light/${lights[0].slug}`} className={`adhere flex-${flex}`}>
           <GatsbyImage
             image={image.localFile.childImageSharp.gatsbyImageData}
             alt={image.alternativeText}
           />
-          <p className='sticker'>{lights[0].name}</p>
-
-
+          <ul className='lookbook-list'>
+            {lights.map((light, i) => (
+              <li>
+                <Link to={`/light/${light.slug}`} key={i} className='sticker'>
+                  <span>{light.name}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </Link>
-        <ul className='lookbook-list'>
-          {otherLights.map((light, i) => (
-            <li>
-              <Link to={`/light/${light.slug}`} key={i} className='sticker'>
-                {light.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      </>
     );
   } else {
     return (
@@ -127,6 +119,7 @@ const LookbookView = ({ data }) => {
             key={i}
             image={lookbook.image}
             lights={lookbook.lights}
+            flex={lookbook.flex}
           />
         ))}
       </section>
@@ -167,10 +160,11 @@ export const query = graphql`
   query LookbookTemplate(
     $spread: Int!
   ) {
-    current:allStrapiLookbook(filter: {spread: {eq: $spread}}) {
+    current:allStrapiLookbook(filter: {spread: {eq: $spread}}, sort: {order: ASC}) {
       nodes {
         spread
         order
+        flex
         image {
           localFile {
             childImageSharp {

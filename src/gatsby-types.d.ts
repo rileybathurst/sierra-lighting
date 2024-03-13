@@ -2027,6 +2027,7 @@ type Query_strapiLookbookArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<STRAPI_LOOKBOOKDescriptionFilterInput>;
+  flex: InputMaybe<IntQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   image: InputMaybe<STRAPI__MEDIAFilterInput>;
   internal: InputMaybe<InternalFilterInput>;
@@ -3823,6 +3824,7 @@ type STRAPI_LOOKBOOK = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<STRAPI_LOOKBOOKDescription>;
+  readonly flex: Maybe<Scalars['Int']>;
   readonly id: Scalars['ID'];
   readonly image: Maybe<STRAPI__MEDIA>;
   readonly internal: Internal;
@@ -3927,6 +3929,7 @@ type STRAPI_LOOKBOOKFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_LOOKBOOKDescriptionFieldSelector>;
+  readonly flex: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly image: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly internal: InputMaybe<InternalFieldSelector>;
@@ -3946,6 +3949,7 @@ type STRAPI_LOOKBOOKFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_LOOKBOOKDescriptionFilterInput>;
+  readonly flex: InputMaybe<IntQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly image: InputMaybe<STRAPI__MEDIAFilterInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
@@ -4010,6 +4014,7 @@ type STRAPI_LOOKBOOKSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_LOOKBOOKDescriptionSortInput>;
+  readonly flex: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly image: InputMaybe<STRAPI__MEDIASortInput>;
   readonly internal: InputMaybe<InternalSortInput>;
@@ -9048,7 +9053,7 @@ type LookbookTemplateQueryVariables = Exact<{
 }>;
 
 
-type LookbookTemplateQuery = { readonly current: { readonly nodes: ReadonlyArray<{ readonly spread: number | null, readonly order: number | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null }> }, readonly all: { readonly distinct: ReadonlyArray<string> } };
+type LookbookTemplateQuery = { readonly current: { readonly nodes: ReadonlyArray<{ readonly spread: number | null, readonly order: number | null, readonly flex: number | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null }> }, readonly all: { readonly distinct: ReadonlyArray<string> } };
 
 type MyQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

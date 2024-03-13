@@ -103,6 +103,10 @@ a:hover .poster {
       background-color: hsl(var(--denim), 100%, 12%);
       border: 1px solid black; /*  TODO */
     }
+
+    span {
+      opacity: 1;
+    }
   }
 
   .gatsby-image-wrapper {
