@@ -327,6 +327,7 @@ export const query = graphql`
     strapiService(slug: {eq: $slug}) {
       id
       name
+      excerpt
       slug
       
       description {

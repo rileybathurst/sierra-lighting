@@ -104,7 +104,7 @@ export const Head = ({ data }) => {
             "@type": "Product",
             "name": "${data.strapiLight.name}",
             "description": "${data.strapiLight.excerpt}",
-            "image": "${data.strapiLight?.image?.url}",
+            "image": "${data.strapiLight?.localFile?.image?.url}",
             "url": "${useSiteMetadata().siteUrl}light/${data.strapiLight.slug}"
           }
         `}
@@ -119,12 +119,13 @@ export const Head = ({ data }) => {
               "position": 1,
               "name": "Light",
               "item": "${useSiteMetadata().url}/light"
-            },{
+            },
+            {
               "@type": "ListItem",
               "position": 2,
               "name": "${data.strapiLight.name}",
               "item": "${useSiteMetadata().url}/light/${data.strapiLight.slug}"
-            }
+            }]
           }
         `}
       </Script>
