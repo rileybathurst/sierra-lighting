@@ -12,7 +12,10 @@ import StateAbbreviation from "../components/state-abbreviation";
 interface Area {
   nodes: {
     id: React.Key;
-    venueImage: { localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } }; alternativeText: string };
+    venueImage: {
+      localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
+      alternativeText: string
+    };
     slug: any;
     excerpt: string
     name: string;
@@ -123,7 +126,9 @@ const VenuePage = () => {
         }
       }
 
-      stateline: allStrapiVenue(filter: {area: {slug: {eq: "stateline"}}, slug: {ne: "blue"}}) {
+      stateline: allStrapiVenue(
+        filter: {area: {slug: {eq: "stateline"}}, slug: {ne: "blue"}}
+        ) {
         nodes {
           ...venueCard
           ...venueAreaInfo

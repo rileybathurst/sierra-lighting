@@ -131,7 +131,11 @@ const HomeHero = () => {
       {data.strapiSeason.wedding === true ? (
         <>
           {data.wedding.nodes.map(project => (
-            <Link to={`/project/${project.slug}`} key={project.id} className="adhere">
+            <Link
+              to={`/project/${project.slug}`}
+              key={project.id}
+              className="adhere"
+            >
               <SchemeImage
                 light={project.image}
                 dark={project.darkImage}
@@ -144,7 +148,11 @@ const HomeHero = () => {
       ) : (
         <>
           {data.xmas.nodes.map(project => (
-            <Link to={`/project/${project.slug}`} key={project.id} className="adhere">
+            <Link
+              to={`/project/${project.slug}`}
+              key={project.id}
+              className="adhere"
+            >
               <SchemeImage
                 light={project.image}
                 dark={project.darkImage}

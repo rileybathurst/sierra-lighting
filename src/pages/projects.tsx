@@ -22,7 +22,9 @@ function Loop(props: any) {
           {/* // TODO: markdown this */}
           {/* // TODO: give some space below */}
           <section>
-            <p className="double-baseline-drop">{props.service?.description.data.description}</p>
+            <p className="double-baseline-drop">
+              {props.service?.description.data.description}
+            </p>
           </section>
         </div>
         <div className="deck">
@@ -105,6 +107,7 @@ export const Head = () => {
   return (
     <SEO
       title={`Projects | ${useSiteMetadata().title}`}
+      // TODO: query
       description="A gallery of some of our past work. Photos of residential and commercial displays in Reno, Tahoe, Truckee, Martis Camp, Lahontan, Grays Crossing, Old Greenwood, Somersett, Caughlin Ranch, Verdi, Damonte Ranch, Galena, Montreux, Incline Village, and more!"
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/projects-og-sierra_lighting.jpg"
       url="projects"

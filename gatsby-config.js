@@ -51,6 +51,7 @@ module.exports = {
     itemType: 'LocalBusiness',
     priceRange: '$1000-2500',
     alternateName: 'Sierra Christmas Lights', // TODO: add this to the schema
+    slogan: 'Dependable holiday, landscape and events light installation',
   },
   plugins: [
     // TODO: check in on the update

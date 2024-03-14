@@ -59,6 +59,7 @@ export const SEO = (SE0: SEO) => {
     defaultImage,
     defaultImageAlt,
     telephone,
+    email,
     openingHours,
     areaServed,
     paymentAccepted,
@@ -108,6 +109,7 @@ export const SEO = (SE0: SEO) => {
             "openingHours": "${openingHours}",
             "paymentAccepted": "${paymentAccepted}",
             "telephone": "${telephone}"
+            "email": ${email}",
           }
         `}
       </Script>

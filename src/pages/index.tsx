@@ -41,11 +41,15 @@ const IndexPage = () => {
 
         <div className="hero-container">
           <section className="hero">
-            {/* // * shortened version of site description */}
             <div>
-              <h2 className="site_title">Dependable holiday, landscape and events light installation</h2>
+              {/* // * shortened version of site description */}
+              <h2 className="site_title">{useSiteMetadata().slogan}</h2>
 
-              <Link to="/contact" className="button button-hero">Start with a free quote</Link>
+              <Link
+                to="/contact"
+                className="button button-hero"
+              >Start with a free quote
+              </Link>
             </div>
 
             <HomeHero />
@@ -92,7 +96,9 @@ const IndexPage = () => {
           <section id="qualities" className="qualities">
             <Qualities />
             <div className="brow">
-              <h3 className='supra'><Link to="/process">How We Work With You</Link></h3>
+              <h3 className='supra'>
+                <Link to="/process">How We Work With You</Link>
+              </h3>
               <h3 className="eyebrow">Our Process</h3>
             </div>
           </section>
@@ -120,8 +126,14 @@ const IndexPage = () => {
 
             <div className="testimonial-links">
               {/* // ? should I have two crests in a row? */}
-              <h3 className="crest"><Link to="/testimonials">Read More Reviews</Link></h3>
-              <h3 className="crest"><Link to="#" className="long-title">Help us you buy submitting your own review</Link></h3>
+              <h3 className="crest">
+                <Link to="/testimonials">Read More Reviews</Link>
+              </h3>
+              <h3 className="crest">
+                <Link to="#" className="long-title">
+                  Help us you buy submitting your own review
+                </Link>
+              </h3>
             </div>
           </section>
         </div>
@@ -140,8 +152,9 @@ export const Head = () => {
   return (
     <SEO
       title={`${useSiteMetadata().title} | ${useStrapiTopBar()}`}
+      // TODO: this is another slogan used.
       description="Sierra Lighting installs Christmas, event, and wedding lights. Quality displays that are guaranteed! Experienced.Professional.Insured."
-      image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg"
+      image={useSiteMetadata().defaultImage}
     />
   )
 }

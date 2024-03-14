@@ -10,22 +10,22 @@ function AreaCatchAll({ params }) {
     <>
       <Header />
       <div className="measure">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/area">
-              <span itemProp="name">Area</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
+        <ol className="breadcrumbs">
+          <li>
+            <Link to="/area">
+              <span>Area</span></Link>&nbsp;/&nbsp;
           </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{params.name}</span>
-            <meta itemProp="position" content="2" />
+          <li>
+            <span>{params.name}</span>
           </li>
         </ol>
         <hr />
       </div>
       <main className="measure">
         <h2 className="crest">404</h2>
-        <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
+        <h1 className="mixta">
+          Oops! Looks like this page has left the party.
+        </h1>
         <p>Want to brighten up?<br />
           <Link to="/">Head to our home page.</Link>
         </p>

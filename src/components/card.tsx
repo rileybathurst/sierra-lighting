@@ -5,7 +5,10 @@ import { CardType } from "../types/card";
 
 // ? should this be an svg?
 export function Missing() {
-  return <StaticImage src="https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg" alt="missing image" />
+  return <StaticImage
+    src="https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg"
+    alt="missing image"
+  />
 }
 
 function NameTitle(props: {

@@ -24,7 +24,9 @@ function TestimonialLink(props: { aref: string, customer: string, vendor: { name
     // console.log('platform');
     return (
       <>
-        <h4 className='range' itemProp="name">{props.customer} <span>- {props?.platform}</span></h4>
+        <h4 className='range' itemProp="name">
+          {props.customer} <span>- {props?.platform}</span>
+        </h4>
       </>
     );
   } else if (props.platform) {
@@ -38,7 +40,7 @@ function TestimonialLink(props: { aref: string, customer: string, vendor: { name
 function ReviewRatings(props) {
   if (props.stars) {
     return (
-      <div className="sr-only" itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
+      <div className="sr-only">
         <p>
           <span itemProp="worstRating">1</span>
           <span itemProp="ratingValue">{props.stars}</span><span>/</span>
@@ -56,7 +58,10 @@ const TestimonialsPage = () => {
   // ? why do I have this filter? 
   const { allStrapiTestimonial } = useStaticQuery(graphql`
     query TestimonialsQuery {
-      allStrapiTestimonial(filter: { publishedAt: { ne: null } }, sort: {order: ASC}) {
+      allStrapiTestimonial(
+        filter: { publishedAt: { ne: null } },
+        sort: {order: ASC}
+        ) {
         nodes {
           id
           customer
@@ -90,13 +95,12 @@ const TestimonialsPage = () => {
         <div itemProp="mainEntity" itemScope itemType="https://schema.org/LocalBusiness">
           <h1 className="sr-only" itemProp="name">Sierra Lighting</h1>
 
-          <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="testimonials">
+          <ul itemProp="review" className="testimonials">
             {allStrapiTestimonial.nodes.map(testimonial => (
               <li key={testimonial.id} className='testimonial'>
                 <figure>
                   <blockquote>
-                    {/* <Link to={`/testimonial/${testimonial.slug}`} itemProp="/testimonail/url">{testimonial.slug}</Link> */}
-                    <h2 itemProp="name" className="sr-only">{testimonial.title}</h2>
+                    <h2 className="sr-only">{testimonial.title}</h2>
 
                     <TestimonialRanking stars={testimonial.stars} />
                     <p className='testimonial--quote_mark range'>&ldquo;</p>
@@ -146,7 +150,8 @@ const TestimonialsPage = () => {
             Yelp
           </a>
         </p>
-        <p><a href="https://nextdoor.com/login/?next=/pages/sierra-lighting-truckee-ca/recommend/"
+        <p><a
+          href="https://nextdoor.com/login/?next=/pages/sierra-lighting-truckee-ca/recommend/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover-back">
@@ -170,7 +175,8 @@ const TestimonialsPage = () => {
 
           <p className="sr-only">
             <label>
-              Don&#39;t fill this out if you&#39;re human: <input name="bot-field" />
+              Don&#39;t fill this out if you&#39;re human:
+              <input name="bot-field" />
             </label>
           </p>
 

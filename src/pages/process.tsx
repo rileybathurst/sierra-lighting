@@ -1,4 +1,5 @@
 // TODO: I over simplified this query to holiday wedding /there isnt a specific for permanent and social event isnt labeled add a secondary for them
+// TODO: I can variable more of this
 
 import React, { useState } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -14,13 +15,19 @@ const ProcessPage = () => {
 
   const data = useStaticQuery(graphql`
     query ProcessQuery {
-      holiday: allStrapiProcess(filter: {services: {elemMatch: {slug: {eq: "residential"}}}}, sort: {order: ASC}) {
+      holiday: allStrapiProcess(
+        filter: {services: {elemMatch: {slug: {eq: "residential"}}}},
+        sort: {order: ASC}
+        ) {
         nodes {
           ...process
         }
       }
       
-      wedding: allStrapiProcess(filter: {services: {elemMatch: {slug: {eq: "wedding"}}}}, sort: {order: ASC}) {
+      wedding: allStrapiProcess(
+        filter: {services: {elemMatch: {slug: {eq: "wedding"}}}},
+        sort: {order: ASC}
+        ) {
         nodes {
           ...process
         }
@@ -39,7 +46,10 @@ const ProcessPage = () => {
           {weddingProcesses.map(process => (
             <li key={process.id}>
               <h3>{process.name}</h3>
-              <ReactMarkdown children={process.markdown.data.markdown} remarkPlugins={[remarkGfm]} />
+              <ReactMarkdown
+                children={process.markdown.data.markdown}
+                remarkPlugins={[remarkGfm]}
+              />
             </li>
           ))}
         </ol>
@@ -50,7 +60,10 @@ const ProcessPage = () => {
           {holidayProcesses.map(process => (
             <li key={process.id}>
               <h3>{process.name}</h3>
-              <ReactMarkdown children={process.markdown.data.markdown} remarkPlugins={[remarkGfm]} />
+              <ReactMarkdown
+                children={process.markdown.data.markdown}
+                remarkPlugins={[remarkGfm]}
+              />
             </li>
           ))}
         </ol>
@@ -75,11 +88,22 @@ const ProcessPage = () => {
       return (
         <>
           <label className="current">
-            <input type="radio" name="season" value="wedding" onChange={seasonSwitcher} checked />
+            <input
+              type="radio"
+              name="season"
+              value="wedding"
+              onChange={seasonSwitcher}
+              checked
+            />
             <div>Wedding / <span>Social Event</span></div>
           </label>
           <label>
-            <input type="radio" name="season" value="holiday" onChange={seasonSwitcher} />
+            <input
+              type="radio"
+              name="season"
+              value="holiday"
+              onChange={seasonSwitcher}
+            />
             Holiday
           </label>
         </>
@@ -88,11 +112,22 @@ const ProcessPage = () => {
       return (
         <>
           <label>
-            <input type="radio" name="season" value="wedding" onChange={seasonSwitcher} />
+            <input
+              type="radio"
+              name="season"
+              value="wedding"
+              onChange={seasonSwitcher}
+            />
             <div>Wedding / <span>Social Event</span></div>
           </label>
           <label className="current">
-            <input type="radio" name="season" value="holiday" onChange={seasonSwitcher} checked />
+            <input
+              type="radio"
+              name="season"
+              value="holiday"
+              onChange={seasonSwitcher}
+              checked
+            />
             Holiday
           </label>
         </>

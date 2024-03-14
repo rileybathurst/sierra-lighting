@@ -12,7 +12,10 @@ import IfHero from "../components/ifHero";
 
 function ReactDescription(props) {
   if (props.bio) {
-    return <ReactMarkdown children={props.bio.data.bio} remarkPlugins={[remarkGfm]} />;
+    return <ReactMarkdown
+      children={props.bio.data.bio}
+      remarkPlugins={[remarkGfm]}
+    />;
   } else {
     return null;
   }
@@ -61,7 +64,9 @@ const TeamPage = () => {
               <li key={team.id} className="team_card">
                 <article className="single" itemScope itemType="https://schema.org/Person">
                   <IfHero hero={team?.avatar} />
-                  <h1 itemProp="name"><Link to={team.slug}>{team.name}</Link></h1>
+                  <h1 itemProp="name"><Link to={team.slug}>
+                    {team.name}
+                  </Link></h1>
                   <ReactDescription bio={team.bio} />
                 </article>
               </li>

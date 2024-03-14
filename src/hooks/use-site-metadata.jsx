@@ -20,6 +20,7 @@ export const useSiteMetadata = () => {
           itemType
           priceRange
           alternateName
+          slogan
         }
       }
     }

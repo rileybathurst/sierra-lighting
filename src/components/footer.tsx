@@ -96,8 +96,16 @@ const Footer = () => {
           <h4 className="range">Say Hello</h4>
 
           <div className="contact-info">
-            <p><a href={`mailto:${useSiteMetadata().email}`}><span itemProp="email">{useSiteMetadata().email}</span></a></p>
-            <p><a href={`tel:${useSiteMetadata().telephone}`}>Phone: <span itemProp="telephone">{useSiteMetadata().telephone}</span></a></p>
+            <p>
+              <a href={`mailto:${useSiteMetadata().email}`}>
+                {useSiteMetadata().email}
+              </a>
+            </p>
+            <p>
+              <a href={`tel:${useSiteMetadata().telephone}`}>
+                Phone: {useSiteMetadata().telephone}
+              </a>
+            </p>
           </div>
         </section>
 
@@ -107,7 +115,9 @@ const Footer = () => {
             <Link to="/team" className="link--subtle">Meet Our Team</Link>
           </h4>
 
-          <h4>or <Link to="/work" className="link--subtle">Work with us</Link></h4>
+          <h4>or&nbsp;
+            <Link to="/work" className="link--subtle">Work with us</Link>
+          </h4>
 
           <div className="team-heads spin">
             {allStrapiTeam.nodes.map(team => (
@@ -171,7 +181,8 @@ const Footer = () => {
         </label>
 
         {/* // TODO: this might be a query in the future if I keep changing it */}
-        <label className='checkbox'>I understand there is a minimum of $700 for new clients
+        <label className='checkbox'>
+          I understand there is a minimum of $700 for new clients
           <input type="checkbox" name="minimum" />
         </label>
         <p className="sr-only">
@@ -211,8 +222,11 @@ const Footer = () => {
         </Link>
         {/* // TODO 2023 This dissappears */}
         <h5 className="crest">
-          <a href="https://www.sierrachristmaslights.com/" target="_blank" rel="noopener noreffer"
-            className="link--subtle">
+          <a
+            href="https://www.sierrachristmaslights.com/"
+            target="_blank" rel="noopener noreffer"
+            className="link--subtle"
+          >
             Formerly known as Sierra Christmas Lights
           </a>
         </h5>

@@ -55,7 +55,9 @@ const VendorsPage = () => {
         }
       }
       
-      other: allStrapiVendor(filter: {service: {nin: ["photography", "planning", "production", "floral"]}}) {
+      other: allStrapiVendor(
+        filter: {service: {nin: ["photography", "planning", "production", "floral"]}}
+        ) {
         nodes {
           ...vendorCard
         }
