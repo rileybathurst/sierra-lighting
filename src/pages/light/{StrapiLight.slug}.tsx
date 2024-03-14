@@ -85,6 +85,8 @@ const LightPage = ({ data }) => {
 
 export default LightPage;
 
+// TODO: might need a image default variable here
+
 export const Head = ({ data }) => {
   return (
     <>
@@ -102,7 +104,7 @@ export const Head = ({ data }) => {
             "@type": "Product",
             "name": "${data.strapiLight.name}",
             "description": "${data.strapiLight.excerpt}",
-            "image": "${data.strapiLight.image.localFile.url}",
+            "image": "${data.strapiLight?.image?.url}",
             "url": "${useSiteMetadata().siteUrl}light/${data.strapiLight.slug}"
           }
         `}
