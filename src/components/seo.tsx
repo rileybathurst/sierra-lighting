@@ -109,7 +109,7 @@ export const SEO = (SE0: SEO) => {
             "openingHours": "${openingHours}",
             "paymentAccepted": "${paymentAccepted}",
             "telephone": "${telephone}"
-            "email": ${email}",
+            "email": "${email}",
           }
         `}
       </Script>

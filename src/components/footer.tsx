@@ -85,7 +85,7 @@ const Footer = () => {
   `)
 
   return (
-    <footer>{/* itemScope itemType="https://schema.org/LocalBusiness" */}
+    <footer>
       <div className="measure">
         <hr />
       </div>
@@ -126,8 +126,8 @@ const Footer = () => {
                   teamImage={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
                   alt={team?.avatar?.alternativeText}
                 />
-                <p itemScope itemProp="Person" itemType="https://schema.org/Person">
-                  <span itemProp="name">{team.name}</span>
+                <p>
+                  {team.name}
                 </p>
               </Link>
             ))
@@ -211,7 +211,7 @@ const Footer = () => {
       <hr className="pelican" />
 
       <div className="footer-copyright">
-        <h4 className="sr-only footer-copyright__mind-the-gap" itemProp="name">
+        <h4 className="sr-only footer-copyright__mind-the-gap">
           <Link to="/" title="to the front page">
             Sierra Lighting
           </Link>
