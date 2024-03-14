@@ -59,7 +59,7 @@ export const Head = ({ data }) => {
         // TODO image
         description={data.strapiTeam?.excerpt}
         image={data.strapiTeam?.avatar?.localFile?.url}
-        url={`team/${data.strapiTeam.slug}`}
+        url={`/team/${data.strapiTeam.slug}`}
       />
       <Script type="application/ld+json">
         {`

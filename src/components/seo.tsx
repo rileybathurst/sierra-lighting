@@ -92,27 +92,40 @@ export const SEO = (SE0: SEO) => {
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={seo.image} />
-      <meta name="openingHours" itemProp="openingHours" content={openingHours} />
-      <meta name="telephone" itemProp="telephone" content={telephone} />
-      <meta name="paymentAccepted" itemProp="paymentAccepted" content={paymentAccepted} />
 
+      {/* <meta name="openingHours" itemProp="openingHours" content={openingHours} />
+      <meta name="telephone" itemProp="telephone" content={telephone} />
+      <meta name="paymentAccepted" itemProp="paymentAccepted" content={paymentAccepted} /> */}
+
+      {/* adjusting the url is defintley wrong */}
       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org/",
             "@type": "LocalBusiness",
             "name": "${seo.title}",
-            "url": "${siteUrl}${seo.url}",
-            "siteurl": "${siteUrl}",
-            "description": "${seo.description}",
+            "url": "${siteUrl}",
             "image": "${seo.image}",
+            "description": "${seo.description}",
             "openingHours": "${openingHours}",
             "paymentAccepted": "${paymentAccepted}",
             "telephone": "${telephone}",
-            "email": "${email}",
+            "email": "${email}"
+          }
+          `}
+      </Script>
+
+      {/* "siteurl": "${siteUrl}", */}
+
+
+      {/* <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
           }
         `}
-      </Script>
+      </Script> */}
       {SE0.children}
 
       {/*
