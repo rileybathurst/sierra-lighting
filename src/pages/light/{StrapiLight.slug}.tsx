@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { graphql, Script } from "gatsby"
 import LightView from "../../views/light-view"
 import SEO from "../../components/seo"
 import { useSiteMetadata } from "../../hooks/use-site-metadata"
@@ -87,12 +87,45 @@ export default LightPage;
 
 export const Head = ({ data }) => {
   return (
-    <SEO
-      title={`${data.strapiLight.name} | ${useSiteMetadata().title}`}
-      // TODO: needs the aliases in the SEO
-      description={data.strapiLight?.excerpt}
-      image={data.strapiLight?.image?.localFile?.url}
-      url={`light/${data.strapiLight.slug}`}
-    />
+    <>
+      <SEO
+        title={`${data.strapiLight.name} | ${useSiteMetadata().title}`}
+        // TODO: needs the aliases in the SEO
+        description={data.strapiLight?.excerpt}
+        image={data.strapiLight?.image?.localFile?.url}
+        url={`light/${data.strapiLight.slug}`}
+      />
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": "${data.strapiLight.name}",
+            "description": "${data.strapiLight.excerpt}",
+            "image": "${data.strapiLight.image.localFile.url}",
+            "url": "${useSiteMetadata().siteUrl}light/${data.strapiLight.slug}"
+          }
+        `}
+      </Script>
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Light",
+              "item": "${useSiteMetadata().url}/light"
+            },{
+              "@type": "ListItem",
+              "position": 2,
+              "name": "${data.strapiLight.name}",
+              "item": "${useSiteMetadata().url}/light/${data.strapiLight.slug}"
+            }
+          }
+        `}
+      </Script>
+    </>
   )
 }

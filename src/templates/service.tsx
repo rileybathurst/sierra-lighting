@@ -2,7 +2,7 @@
 // TODO: add FAQ
 
 import React from 'react';
-import { graphql, Link } from 'gatsby'
+import { graphql, Link, Script } from 'gatsby'
 import MuxPlayer from '@mux/mux-player-react';
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
@@ -404,11 +404,24 @@ export const query = graphql`
 
 export const Head = ({ data }) => {
   return (
-    <SEO
-      title={`${data.strapiService.name} Lighting | ${useSiteMetadata().title}`}
-      description={data.strapiService.excerpt}
-      image={data.strapiService?.ogImage}
-      url={`${data.strapiService.slug}`}
-    />
+    <>
+      <SEO
+        title={`${data.strapiService.name} Lighting | ${useSiteMetadata().title}`}
+        description={data.strapiService.excerpt}
+        image={data.strapiService?.ogImage}
+        url={`${data.strapiService.slug}`}
+      />
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "OfferCatalog",
+            "name": "${data.strapiService.name}",
+            "description": "${data.strapiService.excerpt}",
+            "url": "${useSiteMetadata().url}/${data.strapiService.slug}"
+          }
+        `}
+      </Script>
+    </>
   )
 }

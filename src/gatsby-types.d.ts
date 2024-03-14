@@ -8811,10 +8811,12 @@ type SiteSiteMetadata = {
   readonly openingHours: Maybe<Scalars['String']>;
   readonly paymentAccepted: Maybe<Scalars['String']>;
   readonly priceRange: Maybe<Scalars['String']>;
+  readonly siteTitle: Maybe<Scalars['String']>;
   readonly siteUrl: Maybe<Scalars['String']>;
   readonly slogan: Maybe<Scalars['String']>;
   readonly telephone: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
+  readonly url: Maybe<Scalars['String']>;
 };
 
 type SiteSiteMetadataFieldSelector = {
@@ -8831,10 +8833,12 @@ type SiteSiteMetadataFieldSelector = {
   readonly openingHours: InputMaybe<FieldSelectorEnum>;
   readonly paymentAccepted: InputMaybe<FieldSelectorEnum>;
   readonly priceRange: InputMaybe<FieldSelectorEnum>;
+  readonly siteTitle: InputMaybe<FieldSelectorEnum>;
   readonly siteUrl: InputMaybe<FieldSelectorEnum>;
   readonly slogan: InputMaybe<FieldSelectorEnum>;
   readonly telephone: InputMaybe<FieldSelectorEnum>;
   readonly title: InputMaybe<FieldSelectorEnum>;
+  readonly url: InputMaybe<FieldSelectorEnum>;
 };
 
 type SiteSiteMetadataFilterInput = {
@@ -8851,10 +8855,12 @@ type SiteSiteMetadataFilterInput = {
   readonly openingHours: InputMaybe<StringQueryOperatorInput>;
   readonly paymentAccepted: InputMaybe<StringQueryOperatorInput>;
   readonly priceRange: InputMaybe<StringQueryOperatorInput>;
+  readonly siteTitle: InputMaybe<StringQueryOperatorInput>;
   readonly siteUrl: InputMaybe<StringQueryOperatorInput>;
   readonly slogan: InputMaybe<StringQueryOperatorInput>;
   readonly telephone: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
+  readonly url: InputMaybe<StringQueryOperatorInput>;
 };
 
 type SiteSiteMetadataSortInput = {
@@ -8871,10 +8877,12 @@ type SiteSiteMetadataSortInput = {
   readonly openingHours: InputMaybe<SortOrderEnum>;
   readonly paymentAccepted: InputMaybe<SortOrderEnum>;
   readonly priceRange: InputMaybe<SortOrderEnum>;
+  readonly siteTitle: InputMaybe<SortOrderEnum>;
   readonly siteUrl: InputMaybe<SortOrderEnum>;
   readonly slogan: InputMaybe<SortOrderEnum>;
   readonly telephone: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
+  readonly url: InputMaybe<SortOrderEnum>;
 };
 
 type SiteSortInput = {

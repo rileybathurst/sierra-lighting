@@ -36,8 +36,9 @@ module.exports = {
   graphqlTypegen: true,
   siteMetadata: {
     title: "Sierra Lighting",
+    siteTitle: "Sierra Lighting",
     siteUrl: "https://sierra.lighting/",
-    // url: "https://sierra.lighting", // No trailing slash allowed!
+    url: "https://sierra.lighting", // No trailing slash allowed!
     defaultDescription: "Dependable holiday, landscape and events light installation in Reno, Truckee, Lake Tahoe, Carson City and Minden.",
     defaultImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg',
     defaultImageAlt: 'Sierra Lighting created a beautiful holiday light display', // TODO: wedding

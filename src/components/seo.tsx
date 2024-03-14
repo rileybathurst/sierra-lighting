@@ -54,6 +54,7 @@ interface SEO {
 export const SEO = (SE0: SEO) => {
 
   const {
+    siteTitle,
     siteUrl,
     defaultDescription,
     defaultImage,
@@ -93,20 +94,16 @@ export const SEO = (SE0: SEO) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={seo.image} />
 
-      {/* <meta name="openingHours" itemProp="openingHours" content={openingHours} />
-      <meta name="telephone" itemProp="telephone" content={telephone} />
-      <meta name="paymentAccepted" itemProp="paymentAccepted" content={paymentAccepted} /> */}
-
       {/* adjusting the url is defintley wrong */}
       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org/",
             "@type": "LocalBusiness",
-            "name": "${seo.title}",
+            "name": "${siteTitle}",
             "url": "${siteUrl}",
-            "image": "${seo.image}",
-            "description": "${seo.description}",
+            "image": "${defaultImage}",
+            "description": "${defaultDescription}",
             "openingHours": "${openingHours}",
             "paymentAccepted": "${paymentAccepted}",
             "telephone": "${telephone}",
