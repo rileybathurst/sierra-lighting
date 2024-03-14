@@ -108,7 +108,7 @@ export const SEO = (SE0: SEO) => {
             "image": "${seo.image}",
             "openingHours": "${openingHours}",
             "paymentAccepted": "${paymentAccepted}",
-            "telephone": "${telephone}"
+            "telephone": "${telephone}",
             "email": "${email}",
           }
         `}
