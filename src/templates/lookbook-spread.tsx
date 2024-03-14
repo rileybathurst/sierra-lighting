@@ -25,6 +25,7 @@ function LinkedLook({ image, lights, flex }) {
           <p className='sticker'>
             <span>{lights[0].name}</span>
           </p>
+          <div className='paper'>{/* stay gold */}</div>
         </Link >
       </>
     );
@@ -46,15 +47,20 @@ function LinkedLook({ image, lights, flex }) {
               </li>
             ))}
           </ul>
+          <div className='paper'>{/* stay gold */}</div>
         </Link>
       </>
     );
   } else {
     return (
-      <GatsbyImage
-        image={image.localFile.childImageSharp.gatsbyImageData}
-        alt={image.alternativeText}
-      />
+      <div className='adhere'>
+        <GatsbyImage
+          image={image.localFile.childImageSharp.gatsbyImageData}
+          alt={image.alternativeText}
+          className={`adhere flex-${flex}`}
+        />
+        <div className='paper'>{/* stay gold */}</div>
+      </div>
     );
   }
 }

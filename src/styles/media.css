@@ -81,12 +81,28 @@ a:hover .poster {
 
 .adhere {
   display: grid;
+  container-type: inline-size;
 
   > * {
     grid-row: 1;
     grid-column: 1;
   }
 
+  /* match the card */
+  .paper {
+    grid-row: 1/3;
+    background-color: hsl(var(--honey), 75%, 87%);
+    border: 2px solid whitesmoke;
+    box-shadow: var(--mesosphere);
+    border-radius: var(--card-radius);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 25%, 12%);
+      border-color: hsl(var(--denim), 25%, 25%);
+    }
+  }
+
+  /* TODO: smaller screens the sticker are below the image so not this style I need to keep working on the container query  */
   .sticker {
     z-index: var(--understory);
     align-self: flex-end;
@@ -97,7 +113,10 @@ a:hover .poster {
     opacity: 0.7;
     background-color: whitesmoke;
     border: 1px solid white;
-    margin-block-end: 2lh;
+
+    @container (min-width: 35rem) {
+      margin-block-end: 2lh;
+    }
 
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--denim), 100%, 12%);
@@ -111,6 +130,16 @@ a:hover .poster {
 
   .gatsby-image-wrapper {
     z-index: var(--floor);
+  }
+}
+
+.flex-1 {
+  grid-template-rows: 1fr 3lvh;
+
+  .lookbook-list,
+  .sticker {
+    grid-row: 2;
+    height: min-content;
   }
 }
 

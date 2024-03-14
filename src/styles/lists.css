@@ -340,7 +340,6 @@ ul {
 .lookbook-list {
   align-self: flex-end;
   margin-block-start: 0;
-  margin-block-end: 2lh;
   display: flex;
   gap: 1rem;
   flex-flow: row wrap;
@@ -348,9 +347,15 @@ ul {
   list-style: none;
   padding-inline-start: 0;
   justify-content: center;
+  grid-row: 2;
 
-  /*   li {
-  } */
+  @container (min-width: 35rem) {
+    grid-row: 1;
+    margin-block-end: 2lh;
+    span {
+      /* color: hotpink; ! testing */
+    }
+  }
 }
 
 /*------------------------------------*/
