@@ -104,8 +104,8 @@ export const Head = ({ data }) => {
             "@type": "Product",
             "name": "${data.strapiLight.name}",
             "description": "${data.strapiLight.excerpt}",
-            "image": "${data.strapiLight?.localFile?.image?.url}",
-            "url": "${useSiteMetadata().siteUrl}light/${data.strapiLight.slug}"
+            "image": "${data.strapiLight?.image?.localFile?.url}",
+        "url": "${useSiteMetadata().siteUrl}light/${data.strapiLight.slug}"
           }
         `}
       </Script>
