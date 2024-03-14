@@ -30,7 +30,8 @@ a svg:hover {
 .home-gallery > * {
   width: 100%;
   max-width: 60rem;
-  display: block; /*  overwrites gatsby /* makes sure the margin-inline works */
+  display: block !important; /*  overwrites gatsby /* makes sure the margin-inline works */
+  /* without the important safari will align inline-block on live but not on local */
   margin-inline: auto;
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
