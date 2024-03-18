@@ -10,17 +10,33 @@ import IfHero from "../components/ifHero";
 import StateAbbreviation from "../components/state-abbreviation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
+import Card from '../components/card';
+import { CardType } from '../types/card';
 
-function Venues(props) {
-  const name = props.name;
-  if (props.yes.length !== 0) {
+function Venues({ name, venues }) {
+
+  if (venues.length !== 0) {
     return (
-      <div className="measure">
-        <hr />
-        <h3>Wedding Venues in {name}</h3>
-      </div>
+      <>
+        <div className="measure">
+          <hr />
+          <h3>Wedding Venues in {name}</h3>
+        </div>
+
+        <div className="deck">
+          {venues.map((venue: CardType) => (
+            <section key={venue.id}>
+              <Card
+                card={venue}
+                breadcrumb='venue'
+              />
+            </section>
+          ))}
+        </div>
+      </>
     );
   } else {
+    {/* // TODO if no venues show other places */ }
     return null
   }
 }
@@ -70,21 +86,10 @@ const AreasTemplate = ({ data }) => {
       </main>
 
 
-      <Venues yes={data.strapiArea.venues} name={data.strapiArea.name} />
-
-      {/* // TODO this could all be behing the venues if statement */}
-      <div className="deck">
-        {data.strapiArea?.venues.map((venue: CardType) => (
-          <section key={venue.id}>
-            <Card
-              card={venue}
-              breadcrumb='venue'
-            />
-          </section>
-        ))}
-      </div>
-
-      {/* // TODO if no venues show other places */}
+      <Venues
+        name={data.strapiArea.name}
+        venues={data.strapiArea.venues}
+      />
 
       <Footer />
 
