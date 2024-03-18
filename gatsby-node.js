@@ -169,6 +169,43 @@ exports.createPages = ({ actions, graphql }) => {
     })
   });
 
+  const getAreas = makeRequest(graphql, `
+    {
+      allStrapiArea {
+        edges {
+          node {
+            slug
+            children {
+              children {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+    `).then(result => {
+
+    // TODO: has children only
+    if (result.data.allStrapiArea.edges.node?.children?.children?.id !== null) {
+
+      console.log('has children')
+
+      result.data.allStrapiArea.edges.forEach(({ node }) => {
+
+        console.log(node.slug)
+
+        createPage({
+          path: `/areas/${node.slug}`,
+          component: path.resolve(`src/templates/areas.tsx`),
+          context: {
+            slug: node.slug
+          },
+        })
+      })
+    }
+  });
+
   // const getServices = makeRequest(graphql, `
 
   // Query for blog nodes to use in creating pages.
@@ -179,6 +216,7 @@ exports.createPages = ({ actions, graphql }) => {
     getVendors,
     getVendorServices,
     getLookbook,
+    getAreas,
     // getLights
   ])
 }

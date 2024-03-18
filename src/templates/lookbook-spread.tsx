@@ -88,7 +88,7 @@ const LookbookView = ({ data }) => {
     <>
       <Header />
 
-      <div className="measure">
+      {/* <div className="measure">
         <ol className="breadcrumbs">
           <li>
             <Link to="/wedding">
@@ -105,7 +105,7 @@ const LookbookView = ({ data }) => {
           </li>
         </ol>
         <hr />
-      </div>
+      </div> */}
 
 
       <main className='measure'>

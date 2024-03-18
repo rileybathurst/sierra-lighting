@@ -30,8 +30,7 @@ a svg:hover {
 .home-gallery > * {
   width: 100%;
   max-width: 60rem;
-  display: block !important; /*  overwrites gatsby /* makes sure the margin-inline works */
-  /* without the important safari will align inline-block on live but not on local */
+  display: block;
   margin-inline: auto;
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
@@ -50,6 +49,11 @@ a svg:hover {
   img {
     width: 100%;
   }
+}
+
+.poster > * {
+  display: inline;
+  /* adding !important will add some help to safari but break way more */
 }
 
 a .poster {
@@ -82,7 +86,8 @@ a:hover .poster {
 
 .adhere {
   display: grid;
-  container-type: inline-size;
+  /* container-type: inline-size; */
+  /* this breaks the width */
 
   > * {
     grid-row: 1;

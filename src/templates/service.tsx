@@ -208,7 +208,7 @@ function Lookbook({ slug }) {
   if (slug === 'wedding') {
     return (
       <section id="lookbook" className='measure'>
-        <h3><Link to="/lookbook/2">Browse the 2024 Lookbook</Link></h3>
+        <h3><Link to="/wedding/lookbook">Browse the 2024 Lookbook</Link></h3>
       </section>
     )
   } else {
