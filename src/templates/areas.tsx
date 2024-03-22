@@ -13,36 +13,82 @@ import remarkGfm from 'remark-gfm'
 import Card from '../components/card';
 import { CardType } from '../types/card';
 
-function Venues({ name, venues }) {
+function SubVenues({ venues }) {
+
+  console.log(venues)
+
+  // return null;
 
   if (venues.length !== 0) {
     return (
       <>
-        <div className="measure">
-          <hr />
-          <h3>Wedding Venues in {name}</h3>
-        </div>
-
-        <div className="deck">
-          {venues.map((venue: CardType) => (
-            <section key={venue.id}>
-              <Card
-                card={venue}
-                breadcrumb='venue'
-              />
-            </section>
-          ))}
-        </div>
+        {venues.map((venue: CardType) => (
+          <section key={venue.id}>
+            <Card
+              card={venue}
+              breadcrumb='venue'
+            />
+          </section>
+        ))}
       </>
     );
   } else {
-    {/* // TODO if no venues show other places */ }
     return null
   }
 }
 
-const AreasTemplate = ({ data }) => {
+function SubAreas({ areas }) {
 
+  if (areas.length !== 0) {
+    return (
+      <div className="measure">
+        <hr />
+        <p className='elbrus'>Places in the region</p>
+        {areas.map((area) => (
+          <p className='denali'>
+            {area.name}
+          </p>
+        ))
+        }
+
+        {/* <h3>Wedding Venues in {areas[0].name}</h3> */}
+      </div >
+    );
+  } else {
+    return null
+  }
+}
+
+function Venues({ name, venues, areas }) {
+
+  // this is no longer right as there might only be sub venues
+  // if (venues.length !== 0) {
+  return (
+    <>
+      <div className="measure">
+        <hr />
+        <h3>Wedding Venues in we create lighting for in {name}</h3>
+      </div>
+
+      <div className="deck">
+        {venues.map((venue: CardType) => (
+          <section key={venue.id}>
+            <Card
+              card={venue}
+              breadcrumb='venue'
+            />
+          </section>
+        ))}
+
+        {areas.map((area) => (
+          <SubVenues venues={area.venues} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+const AreasTemplate = ({ data }) => {
 
   return (
     <>
@@ -80,15 +126,18 @@ const AreasTemplate = ({ data }) => {
                 remarkPlugins={[remarkGfm]}
               />
 
-            </div>
-          </div>
-        </article>
-      </main>
+            </div >
+          </div >
+        </article >
+      </main >
 
+      <SubAreas areas={data.strapiArea.areas} />
 
       <Venues
         name={data.strapiArea.name}
         venues={data.strapiArea.venues}
+        // add the sub areas to the venues deck
+        areas={data.strapiArea.areas}
       />
 
       <Footer />
@@ -128,6 +177,30 @@ export const query = graphql`
           url
         }
         alternativeText
+      }
+
+      areas {
+        name
+        slug
+
+        venues {
+          id
+          name
+          slug
+          excerpt
+
+          venueImage {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  breakpoints: [111, 165, 222, 444, 880]
+                  width: 222
+                )
+              }
+            }
+            alternativeText
+          }
+        }
       }
 
       venues {

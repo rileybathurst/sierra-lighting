@@ -2,10 +2,10 @@ import * as React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
+import Start from "../components/start";
 
 function LightGroup(props) {
   if (props.group) {
@@ -195,6 +195,8 @@ const LightView = ({ light, other }) => {
           <Aliases aliases={light?.alias?.internal.content} />
 
           <p>{light.description}</p>
+          <hr />
+          <Start />
         </article>
       </main>
 

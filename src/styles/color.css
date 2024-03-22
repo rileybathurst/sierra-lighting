@@ -13,12 +13,13 @@ body {
 }
 
 .backed {
-  background: hsl(var(--honey), 100%, 97.5%); /* custom m  */
+  background-color: hsl(var(--honey), 100%, 97.5%); /* custom m  */
   box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 97.5%);
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 25%, 12%);
+    box-shadow: 0 0 0 100vmax hsl(var(--denim), 25%, 12%);
   }
 }
 

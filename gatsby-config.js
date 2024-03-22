@@ -28,7 +28,7 @@ const strapiConfig = {
     'season'
   ],
   remoteFileHeaders: {
-    Referer: "http://45.79.101.19:1340",
+    Referer: "http://45.79.101.19:1343",
   },
 };
 

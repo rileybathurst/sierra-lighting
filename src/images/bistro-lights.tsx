@@ -10,12 +10,12 @@ const BistroLights = () => {
   }
 
   return (
-    <a href="#" className="adhere">
+    <a href="/patio" className="adhere">
       <GatsbyImage
         image={image?.localFile?.childImageSharp?.gatsbyImageData}
         alt={title}
       />
-      <p className="sticker">Bistro Lights</p>
+      <p className="sticker">Patio Lighting</p>
     </a>
   );
 };

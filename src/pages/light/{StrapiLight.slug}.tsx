@@ -101,11 +101,11 @@ export const Head = ({ data }) => {
         {`
           {
             "@context": "https://schema.org/",
-            "@type": "Product",
+            "@type": "Offer",
             "name": "${data.strapiLight.name}",
             "description": "${data.strapiLight.excerpt}",
             "image": "${data.strapiLight?.image?.localFile?.url}",
-        "url": "${useSiteMetadata().siteUrl}light/${data.strapiLight.slug}"
+            "url": "${useSiteMetadata().siteUrl}light/${data.strapiLight.slug}"
           }
         `}
       </Script>

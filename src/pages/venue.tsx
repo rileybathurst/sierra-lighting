@@ -76,7 +76,6 @@ const VenuePage = () => {
       area {
         id
         name
-        region
         slug
         state
         tagline

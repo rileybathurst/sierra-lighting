@@ -175,26 +175,14 @@ exports.createPages = ({ actions, graphql }) => {
         edges {
           node {
             slug
-            children {
-              children {
-                id
-              }
-            }
+            featured
           }
         }
       }
     }
     `).then(result => {
-
-    // TODO: has children only
-    if (result.data.allStrapiArea.edges.node?.children?.children?.id !== null) {
-
-      console.log('has children')
-
-      result.data.allStrapiArea.edges.forEach(({ node }) => {
-
-        console.log(node.slug)
-
+    result.data.allStrapiArea.edges.forEach(({ node }) => {
+      if (node.featured === true) {
         createPage({
           path: `/areas/${node.slug}`,
           component: path.resolve(`src/templates/areas.tsx`),
@@ -202,8 +190,10 @@ exports.createPages = ({ actions, graphql }) => {
             slug: node.slug
           },
         })
-      })
-    }
+      }
+    })
+
+    // }
   });
 
   // const getServices = makeRequest(graphql, `
