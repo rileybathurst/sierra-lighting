@@ -11,7 +11,7 @@ const FormSucessPage = () => {
     <>
       <Header />
 
-      <main className="measure">
+      <main className="stork">
         <h2 className="crest">Form Success</h2>
         <h1 className="mixta">Thanks</h1>
         <p>for getting in touch we will get back to you ASAP<br />

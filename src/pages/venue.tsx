@@ -39,7 +39,7 @@ function Populated(props: { area: Area }) {
         id={props.area.nodes[0].area.slug}
       >
         <div
-          className="measure"
+          className="stork"
         >
           <hr />
           <h4 className="crest">{props.area.nodes[0].area.tagline}</h4>
@@ -200,7 +200,7 @@ const VenuePage = () => {
 
       <main className="venues__page">
 
-        <div className="measure">
+        <div className="stork">
 
           <h2 className="crest">Where to be</h2>
           <h1 className="mixta">Wedding Venues</h1>

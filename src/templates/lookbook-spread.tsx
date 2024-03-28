@@ -88,7 +88,7 @@ const LookbookView = ({ data }) => {
     <>
       <Header />
 
-      {/* <div className="measure">
+      {/* <div className="stork">
         <ol className="breadcrumbs">
           <li>
             <Link to="/wedding">
@@ -108,7 +108,7 @@ const LookbookView = ({ data }) => {
       </div> */}
 
 
-      <main className='measure'>
+      <main className='stork'>
         <h2 className='crest'>Spread {data.current.nodes[0].spread}</h2>
         <h1 className='ridge'>2024 Wedding Lookbook</h1>
         <hr />
@@ -130,7 +130,7 @@ const LookbookView = ({ data }) => {
         ))}
       </section>
 
-      <section className='measure'>
+      <section className='stork'>
         <hr />
         <h3 className='sr-only'>Navigation</h3>
         <div className='pagination'>

@@ -41,7 +41,7 @@ function SubAreas({ areas }) {
 
   if (areas.length !== 0) {
     return (
-      <div className="measure">
+      <div className="stork">
         <hr />
         <p className='elbrus'>Places in the region</p>
         {areas.map((area) => (
@@ -65,7 +65,7 @@ function Venues({ name, venues, areas }) {
   // if (venues.length !== 0) {
   return (
     <>
-      <div className="measure">
+      <div className="stork">
         <hr />
         <h3>Wedding Venues in we create lighting for in {name}</h3>
       </div>
@@ -94,7 +94,7 @@ const AreasTemplate = ({ data }) => {
     <>
       <Header />
 
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs">
           <li>
             <Link to="/areas">
@@ -110,7 +110,7 @@ const AreasTemplate = ({ data }) => {
       <main>
         <IfHero hero={data.strapiArea?.image} />
 
-        <article className="measure single" itemProp="address">
+        <article className="stork single" itemProp="address">
           <div itemProp="location" itemScope itemType="https://schema.org/areaServed">
             <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
               <span itemProp="name" className="sr-only">{data.strapiArea.name}</span>

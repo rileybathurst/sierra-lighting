@@ -16,7 +16,7 @@ function Loop(props: any) {
   if (props.service.projects.length > 0) {
     return (
       <div key={props.service.id} className={props.service.slug}>
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h2 className="baseline-drop">{props.service.name} Projects</h2>
           {/* // TODO: markdown this */}
@@ -35,7 +35,7 @@ function Loop(props: any) {
             />
           ))}
         </div>
-        <div className="measure">
+        <div className="stork">
           {/* // TODO: make a big link style here */}
           <h3 className="elbrus">
             <Link to={`/${props.service.slug}`} className="link_subtle">
@@ -80,7 +80,7 @@ const ProjectsPage = () => {
     <>
       <Header />
 
-      <main className="measure">
+      <main className="stork">
 
         {/* // TODO: this can be looped I think I want to add the service compent first */}
         <h1 className="baseline-drop">Projects</h1>

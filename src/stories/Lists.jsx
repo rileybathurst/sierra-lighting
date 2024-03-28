@@ -35,7 +35,7 @@ export const Lists = ({ primary }) => {
         </li>
         <li>Item 3</li>
       </ul>
-      <hr className="measure" />
+      <hr className="stork" />
       <div className="attributes">
         <section className="attribute">
           <h3 className="crest">Useage</h3>
@@ -49,7 +49,7 @@ export const Lists = ({ primary }) => {
           </ul>
         </section>
       </div>
-      <hr className="measure" />
+      <hr className="stork" />
     </div>
   );
 };

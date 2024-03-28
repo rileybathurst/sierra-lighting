@@ -11,19 +11,23 @@ function IfHero(props) {
 
     if (biggy <= 960) {
       return (
-        <GatsbyImage
-          image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.hero?.alternativeText}
-          className='poster poster--small'
-        />
+        <div className="hero-image pelican">
+          <GatsbyImage
+            image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={props?.hero?.alternativeText}
+            className='poster poster--small'
+          />
+        </div>
       );
     } else {
       return (
-        <GatsbyImage
-          image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={props?.hero?.alternativeText}
-          className='poster'
-        />
+        <div className="hero-image stork">
+          <GatsbyImage
+            image={props?.hero?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={props?.hero?.alternativeText}
+            className='poster'
+          />
+        </div>
       )
     }
   } else {

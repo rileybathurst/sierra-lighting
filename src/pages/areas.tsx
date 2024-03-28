@@ -12,7 +12,7 @@ const AreasPage = () => {
     <>
       <Header />
 
-      <main className="measure">
+      <main className="stork">
         <h1>Service Areas</h1>
         <div className="areas__page">
           <AreaList />

@@ -16,7 +16,7 @@ const VendorServiceView = ({ data }) => {
     <>
       <Header />
 
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/vendor">
@@ -33,7 +33,7 @@ const VendorServiceView = ({ data }) => {
 
       <main>
 
-        <div className="measure">
+        <div className="stork">
 
           {/* // TODO: the order is wrong here, it should be: h1 then h2 */}
           <h2 className="crest">Who we like to work with</h2>

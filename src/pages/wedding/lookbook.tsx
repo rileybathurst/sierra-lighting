@@ -99,7 +99,7 @@ const LookbookPage = () => {
     <>
       <Header />
 
-      <main className="measure">
+      <main className="stork">
 
         <h2 className="crest">Wedding</h2>
         <h1 className="range">2024 Lookbook</h1>

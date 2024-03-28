@@ -14,8 +14,8 @@ function LightGroup(props) {
         {props.group.map((index) => {
           return (
             <div key={index.id}>
-              <hr className="measure" />
-              <h3 className="measure">
+              <hr className="stork" />
+              <h3 className="stork">
                 Other Lights in {index.name}
               </h3>
 
@@ -63,7 +63,7 @@ function Projects(props: React.JSX.Element | null) {
   if (props.projects.length !== 0) {
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h3>Projects Using {props.name}</h3>
         </div>
@@ -91,7 +91,7 @@ function Other(props) {
   if (props.needed.length == 0) {
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h4>Other Lighting Styles</h4>
         </div>
@@ -105,7 +105,7 @@ function Other(props) {
           </div>
         </div>
 
-        <div className="measure">
+        <div className="stork">
           <p className="crest">Even More?</p>
           <h5 className="range"><Link to="/lights" className="link--subtle">View all other lights</Link></h5>
         </div>
@@ -151,7 +151,7 @@ const LightView = ({ light, other }) => {
 
       <main>
 
-        <div className="measure">
+        <div className="stork">
           <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
 
             <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="first-capital">
@@ -188,7 +188,7 @@ const LightView = ({ light, other }) => {
           />
         </div>
 
-        <article className="measure">
+        <article className="stork">
           {/* // TODO: this could be using a js length test for the lower clamp */}
           <h1 className="clamp-denali_everest">{light.name}</h1>
 
@@ -200,7 +200,7 @@ const LightView = ({ light, other }) => {
         </article>
       </main>
 
-      <hr className="measure" />
+      <hr className="stork" />
       <div className="attributes">
 
         {/*         <section className="attribute" >

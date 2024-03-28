@@ -15,6 +15,7 @@ import remarkGfm from 'remark-gfm'
 import Card from '../components/card';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { CardType } from '../types/card';
+import Start from '../components/start';
 
 function Breadcrumb(props: { title: string; }) {
 
@@ -124,7 +125,7 @@ function Base(props: {
 
     return (
       <>
-        <hr className='measure' />
+        <hr className='stork' />
 
         <div className='deck margin-block-end-0 service-deck'>
           {titles.map((title) => (
@@ -187,7 +188,7 @@ function Consultant({ after_the_triptych }) {
 
   if (after_the_triptych.data.after_the_triptych) {
     return (
-      <div id="consultant" className='measure'>
+      <div id="consultant" className='stork'>
         <h3>
           Have you ever noticed how much lighting can affect the feeling of space?
         </h3>
@@ -207,7 +208,7 @@ function Consultant({ after_the_triptych }) {
 function Lookbook({ slug }) {
   if (slug === 'wedding') {
     return (
-      <section id="lookbook" className='measure'>
+      <section id="lookbook" className='stork'>
         <h3><Link to="/wedding/lookbook">Browse the 2024 Lookbook</Link></h3>
       </section>
     )
@@ -227,7 +228,7 @@ const ServiceView = ({ data }) => {
         {/* // wedding video */}
         <VideoMux video={data.strapiService.videoMux} />
 
-        <section className="measure">
+        <section className="stork">
           <h1 className='mixta'>
             {/* // TODO: needs a clamp on the size */}
             {data.strapiService.name} Lighting
@@ -236,6 +237,7 @@ const ServiceView = ({ data }) => {
           <ReactDescription
             description={data.strapiService.description.data.description}
           />
+          <Start />
         </section>
 
         {/*         <section className="triple">
@@ -250,7 +252,7 @@ const ServiceView = ({ data }) => {
         </section> */}
 
         <section id="lights">
-          <div className="measure">
+          <div className="stork">
             <hr />
             <h3 className="crest">Bringing the shine</h3>
             <h2 className="ridge">
@@ -279,7 +281,7 @@ const ServiceView = ({ data }) => {
 
       </main>
 
-      <section id="process" className='measure backed bb'>
+      <section id="process" className='stork backed bb'>
         <hr />
         <h2>Our Process</h2>
         <ol>

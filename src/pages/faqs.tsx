@@ -24,7 +24,7 @@ query FaqQuery {
     <>
       <Header />
 
-      <main className="measure">
+      <main className="stork">
 
         <h2 className="crest">What Do You Need To Know</h2>
         <h1 className="range">Frequently Asked Questions</h1>

@@ -171,7 +171,7 @@ hr {
   }
 }
 
-hr.measure {
+hr.stork {
   padding-inline: 0;
 }
 
@@ -292,7 +292,7 @@ ol li {
 }
 
 .site_title {
-  max-width: var(--measure);
+  max-width: var(--stork);
   margin-inline: auto;
   padding-inline: 1rem;
   font-size: clamp(1.25rem, 2.5vw, 2rem);

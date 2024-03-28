@@ -9,6 +9,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 import { CardType } from "../types/card";
+import Start from "../components/start";
 
 function ReactDescription(props: { bio: { data: { bio: string; }; }; }) {
   if (props.bio) {
@@ -24,7 +25,7 @@ function IfProjects(props: {
 }) {
   if (props.projects.length > 0) {
     return (
-      <div className="measure">
+      <div className="stork">
         <hr />
         <h2>Projects {props.name} has worked on</h2>
       </div>
@@ -39,7 +40,7 @@ const TeamView = ({ team }) => {
     <>
       <Header />
 
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/team">
@@ -55,7 +56,7 @@ const TeamView = ({ team }) => {
         <hr />
       </div>
 
-      <main className="measure team-page" itemScope itemType="https://schema.org/Person">
+      <main className="stork team-page" itemScope itemType="https://schema.org/Person">
         <div className="avatar-wrapper">
           <GatsbyImage
             image={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
@@ -65,6 +66,11 @@ const TeamView = ({ team }) => {
         </div>
         <h1 itemProp="name">{team.name}</h1>
         <ReactDescription bio={team.bio.data.bio} />
+
+        <hr />
+
+        <h3>Would you like to work with {team.name}</h3>
+        <Start />
       </main>
 
       <IfProjects projects={team.projects} name={team.name} />

@@ -1978,12 +1978,14 @@ type Query_strapiLightArgs = {
   image: InputMaybe<STRAPI__MEDIAFilterInput>;
   internal: InputMaybe<InternalFilterInput>;
   light_groups: InputMaybe<STRAPI_LIGHT_GROUPFilterListInput>;
+  lights: InputMaybe<STRAPI_LIGHTFilterListInput>;
   lookbooks: InputMaybe<STRAPI_LOOKBOOKFilterListInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   outdoor: InputMaybe<BooleanQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   projects: InputMaybe<STRAPI_PROJECTFilterListInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  related: InputMaybe<STRAPI_LIGHTFilterInput>;
   services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
@@ -3272,12 +3274,14 @@ type STRAPI_LIGHT = Node & {
   readonly image: Maybe<STRAPI__MEDIA>;
   readonly internal: Internal;
   readonly light_groups: Maybe<ReadonlyArray<Maybe<STRAPI_LIGHT_GROUP>>>;
+  readonly lights: Maybe<ReadonlyArray<Maybe<STRAPI_LIGHT>>>;
   readonly lookbooks: Maybe<ReadonlyArray<Maybe<STRAPI_LOOKBOOK>>>;
   readonly name: Maybe<Scalars['String']>;
   readonly outdoor: Maybe<Scalars['Boolean']>;
   readonly parent: Maybe<Node>;
   readonly projects: Maybe<ReadonlyArray<Maybe<STRAPI_PROJECT>>>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly related: Maybe<STRAPI_LIGHT>;
   readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly slug: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
@@ -3376,12 +3380,14 @@ type STRAPI_LIGHTFieldSelector = {
   readonly image: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly light_groups: InputMaybe<STRAPI_LIGHT_GROUPFieldSelector>;
+  readonly lights: InputMaybe<STRAPI_LIGHTFieldSelector>;
   readonly lookbooks: InputMaybe<STRAPI_LOOKBOOKFieldSelector>;
   readonly name: InputMaybe<FieldSelectorEnum>;
   readonly outdoor: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly projects: InputMaybe<STRAPI_PROJECTFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly related: InputMaybe<STRAPI_LIGHTFieldSelector>;
   readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
@@ -3406,12 +3412,14 @@ type STRAPI_LIGHTFilterInput = {
   readonly image: InputMaybe<STRAPI__MEDIAFilterInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly light_groups: InputMaybe<STRAPI_LIGHT_GROUPFilterListInput>;
+  readonly lights: InputMaybe<STRAPI_LIGHTFilterListInput>;
   readonly lookbooks: InputMaybe<STRAPI_LOOKBOOKFilterListInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly outdoor: InputMaybe<BooleanQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly projects: InputMaybe<STRAPI_PROJECTFilterListInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly related: InputMaybe<STRAPI_LIGHTFilterInput>;
   readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
@@ -3481,12 +3489,14 @@ type STRAPI_LIGHTSortInput = {
   readonly image: InputMaybe<STRAPI__MEDIASortInput>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly light_groups: InputMaybe<STRAPI_LIGHT_GROUPSortInput>;
+  readonly lights: InputMaybe<STRAPI_LIGHTSortInput>;
   readonly lookbooks: InputMaybe<STRAPI_LOOKBOOKSortInput>;
   readonly name: InputMaybe<SortOrderEnum>;
   readonly outdoor: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly projects: InputMaybe<STRAPI_PROJECTSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly related: InputMaybe<STRAPI_LIGHTSortInput>;
   readonly services: InputMaybe<STRAPI_SERVICESortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
@@ -9200,7 +9210,7 @@ type VenueTemplateQueryVariables = Exact<{
 }>;
 
 
-type VenueTemplateQuery = { readonly strapiVenue: { readonly id: string, readonly name: string | null, readonly description: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly website: string | null, readonly phone: number | null, readonly area: { readonly name: string | null, readonly state: string | null, readonly slug: string | null } | null, readonly address: { readonly data: { readonly address: string | null } | null } | null, readonly venueImage: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly testimonials: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly review: string | null, readonly stars: number | null, readonly customer: string | null, readonly position: string | null, readonly vendor: { readonly name: string | null } | null } | null> | null } | null, readonly allStrapiVenue: { readonly edges: ReadonlyArray<{ readonly node: { readonly name: string | null, readonly id: string, readonly slug: string | null, readonly excerpt: string | null, readonly venueImage: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly area: { readonly name: string | null, readonly state: string | null } | null } }> } };
+type VenueTemplateQuery = { readonly strapiVenue: { readonly id: string, readonly name: string | null, readonly description: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly website: string | null, readonly phone: number | null, readonly area: { readonly name: string | null, readonly state: string | null, readonly slug: string | null, readonly region: { readonly name: string | null, readonly slug: string | null } | null } | null, readonly address: { readonly data: { readonly address: string | null } | null } | null, readonly venueImage: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly testimonials: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly review: string | null, readonly stars: number | null, readonly customer: string | null, readonly position: string | null, readonly vendor: { readonly name: string | null } | null } | null> | null } | null, readonly allStrapiVenue: { readonly edges: ReadonlyArray<{ readonly node: { readonly name: string | null, readonly id: string, readonly slug: string | null, readonly excerpt: string | null, readonly venueImage: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly area: { readonly name: string | null, readonly state: string | null } | null } }> } };
 
 
 }

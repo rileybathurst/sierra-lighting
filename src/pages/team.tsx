@@ -56,7 +56,7 @@ const TeamPage = () => {
       <main>
 
         {/* TODO: fix this */}
-        <div className="measure">
+        <div className="stork">
           <h3>Team</h3>
 
           <ul className="team_cards">

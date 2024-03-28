@@ -10,7 +10,7 @@ const Grouploop = (props) => {
   if (props.group[1]?.nodes.length > 0) {
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h2 className="baseline-drop">
             <Link to={`/light-group/${props.group[0]?.slug}`}>

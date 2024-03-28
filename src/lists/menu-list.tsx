@@ -13,8 +13,13 @@ const MenuList = () => (
     <li key="commercial" className="xmas_c">
       <Link to="/commercial">Commercial Christmas Lights</Link>
     </li>
-    <li key="contact" className="c">
+    {/*     <li key="contact" className="c">
       <Link to="/contact">Contact</Link>
+    </li> */}
+    <li key="start" className="c">
+      <Link to="/contact">
+        Start With A Free Quote
+      </Link>
     </li>
   </Season>
 )

@@ -17,7 +17,7 @@ function IfExtra(props
 
   if (props.extra.length > 0) {
     return (
-      <div className="measure">
+      <div className="stork">
         <hr />
         <h3>Other Vendors</h3>
       </div>
@@ -78,7 +78,7 @@ const VendorsPage = () => {
 
       <main>
 
-        <div className="measure">
+        <div className="stork">
 
           <h2 className="crest">Who we like to work with</h2>
           <h1 className="mixta">Wedding Vendors</h1>
@@ -96,7 +96,7 @@ const VendorsPage = () => {
           ))}
         </div>
 
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h3><Link to="/vendor/planning">Planning</Link></h3>
         </div>
@@ -109,7 +109,7 @@ const VendorsPage = () => {
           ))}
         </div>
 
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h3><Link to="/vendor/production">Event Production</Link></h3>
         </div>
@@ -122,7 +122,7 @@ const VendorsPage = () => {
           ))}
         </div>
 
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h3><Link to="/vendor/floral">Floral</Link></h3>
         </div>

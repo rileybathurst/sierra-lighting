@@ -57,7 +57,7 @@ function IfOther(props) {
   if (lngth > 0) {
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <h4>Other <Use slug={props.slug} /> Venues in {props.name}, <StateAbbreviation state={props.state} /></h4>
         </div>
 
@@ -71,7 +71,7 @@ function IfOther(props) {
             </div>
           ))}
         </div>
-        <div className="measure">
+        <div className="stork">
           <h3 className="crest">Even More</h3>
           <h2 className="range"><Link to='/venue' className="link--subtle">All Other Venues</Link></h2>
         </div>
@@ -80,7 +80,7 @@ function IfOther(props) {
   } else {
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <h3 className="crest">Looking for somewhere else?</h3>
           <h2 className="range"><Link to='/venue' className="link--subtle">Other <Use slug={props.slug} /> Venues</Link></h2>
         </div>
@@ -92,7 +92,7 @@ function IfOther(props) {
 function Testimonials(props) {
   if (props.testimonials.length > 0) {
     return (
-      <div className="measure" >
+      <div className="stork" >
         <ul className='testimonials'>
           {props.testimonials.map((testimonial) => (
             <li key={testimonial.id} className='testimonial'>
@@ -124,7 +124,7 @@ const VenueView = ({ data }) => {
     <>
       <Header />
 
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li key='1' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/">
@@ -154,9 +154,9 @@ const VenueView = ({ data }) => {
 
       <IfHero hero={data?.strapiVenue?.venueImage} />
 
-      <main className="measure venue">
+      <main className="stork venue">
         <hgroup>
-          <h2 className="crest">{data.strapiVenue.area.name}, <StateAbbreviation state={data.strapiVenue.area.state} /></h2>
+          <p className="crest">{data.strapiVenue.area.name}, <StateAbbreviation state={data.strapiVenue.area.state} /></p>
           <h1 className="range">{data.strapiVenue.name}</h1>
         </hgroup>
         <hr />
@@ -178,7 +178,12 @@ const VenueView = ({ data }) => {
         <hr />
 
       </main>
-
+      {/* 
+      <Region
+        region={data.strapiVenue.area.region}
+        area={data.strapiVenue.area}
+        areas={data.strapiVenue.area.areas}
+      /> */}
 
       {/* // TODO this shouldnt get all of these but get the frist 3 then deal with it from there */}
       <IfOther
@@ -214,6 +219,11 @@ export const query = graphql`
           name
           state
           slug
+
+          region {
+            name
+            slug
+          }
         }
 
         address {

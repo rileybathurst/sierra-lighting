@@ -12,7 +12,7 @@ const WorkPage = () => {
       <Header />
 
       <Work />
-      <main className="measure">
+      <main className="stork">
 
         <h2 className="crest">Hiring Now</h2>
         <h1 className="range">Jobs</h1>

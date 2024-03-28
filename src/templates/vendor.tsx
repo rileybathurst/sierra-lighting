@@ -20,7 +20,7 @@ function IfOther(props) {
 
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h4>Projects we have worked with {props.name} on</h4>
         </div>
@@ -39,7 +39,7 @@ function IfOther(props) {
   } else if (props.other.length > 0) {
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h4>Other <span className='first-capital'>{props.service}</span> Vendors</h4>
         </div>
@@ -56,7 +56,7 @@ function IfOther(props) {
             </div>
           ))}
         </div>
-        <div className="measure">
+        <div className="stork">
           <h3 className="crest">Even More</h3>
           <h2 className="range">
             <Link to={`/vendors/${props.service}`} className="link--subtle">
@@ -69,7 +69,7 @@ function IfOther(props) {
   } else {
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <h3 className="crest">Looking for something else?</h3>
           <h2 className="range"><Link to='/vendor' className="link--subtle">Other Wedding Vendors</Link></h2>
         </div>
@@ -81,7 +81,7 @@ function IfOther(props) {
 function Testimonials(props) {
   if (props.testimonials.length > 0) {
     return (
-      <div className="measure" >
+      <div className="stork" >
         <ul className='testimonials'>
           {props.testimonials.map((testimonial) => (
             <li key={testimonial.id} className='testimonial'>
@@ -113,7 +113,7 @@ const VendorTemplateView = ({ data }) => {
     <>
       <Header />
 
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li key='2' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/vendor">
@@ -137,7 +137,7 @@ const VendorTemplateView = ({ data }) => {
 
       <IfHero hero={data?.strapiVendor?.profile} />
 
-      <main className="measure">
+      <main className="stork">
         <article className="single">
           <h1 className="range">{data.strapiVendor.name}</h1>
           <hr />

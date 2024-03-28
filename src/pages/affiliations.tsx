@@ -39,7 +39,7 @@ const TestimonialsPage = () => {
       <Header />
 
       <main>
-        <div className="measure">
+        <div className="stork">
           {/* <h1 className="crest">Reviews</h1> */}
           <h2 className="ridge">{title}</h2>
         </div>

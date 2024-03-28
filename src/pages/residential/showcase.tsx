@@ -42,11 +42,11 @@ function Attributes(props) {
 
   return (
     <>
-      <hr className="hr-tin-soldier measure" />
+      <hr className="hr-tin-soldier stork" />
       <div className="attributes">
         {sections}
       </div>
-      <hr className="hr-tin-soldier measure" />
+      <hr className="hr-tin-soldier stork" />
     </>
   )
 }
@@ -130,7 +130,7 @@ function ResidentialShowcase() {
   return (
     <>
       <Header />
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs">
           <li >
             <Link to="/residential">
@@ -142,7 +142,7 @@ function ResidentialShowcase() {
         <hr />
       </div>
       <main>
-        <div className="measure">
+        <div className="stork">
           <h1 className="mixta">Residential Showcase</h1>
           <ReactDescription showcaseDescription={description.showcaseDescription} />
           <h4><Link to="#contact">Enquire Now</Link></h4>
@@ -150,7 +150,7 @@ function ResidentialShowcase() {
 
         {showcase.map((level) => (
           <section key={level.nodes[0].id}>
-            <hr className="measure" />
+            <hr className="stork" />
             {level.nodes.map(showcase => (
               <div key={showcase.id} className="pelican">
                 <Link to={`/project/${showcase.project.slug}`}>
@@ -160,7 +160,7 @@ function ResidentialShowcase() {
                     className="poster"
                   /></Link>
 
-                <div className="measure">
+                <div className="stork">
                   <h3 className="first-capital">{showcase.tier} Showcase</h3>
                   <ReactDescription description={showcase.description} />
                 </div>
@@ -172,18 +172,18 @@ function ResidentialShowcase() {
                 />
 
                 {/* // TODO: add smooth scroll here */}
-                <h4 className="measure"><Link to="#contact">Enquire Now</Link></h4>
+                <h4 className="stork"><Link to="#contact">Enquire Now</Link></h4>
               </div>
             ))
             }
           </section >
         ))}
 
-        <hr className="measure" />
+        <hr className="stork" />
       </main >
 
       <section>
-        <h4 className="measure">Lighting types used on residential christmas displays</h4>
+        <h4 className="stork">Lighting types used on residential christmas displays</h4>
         <ChristmasLightsOrdered />
       </section>
 

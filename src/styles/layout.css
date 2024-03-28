@@ -5,10 +5,10 @@ main {
   margin-block-start: 2.5rem;
 }
 
-.measure {
-  max-width: var(--measure);
+.stork {
+  max-width: var(--stork);
   margin-inline: auto;
-  padding-inline: 1lh;
+  padding-inline: 1rem;
 }
 
 .pelican {
@@ -21,19 +21,6 @@ main {
   max-width: var(--albatross);
   margin-inline: auto;
   padding-inline: 1rem;
-}
-
-/*  this is incase the content isnt wide enough */
-.measure__extend {
-  width: 100%;
-  max-width: var(--measure);
-  margin-inline: auto;
-  padding-inline: 1lh;
-}
-
-.pad {
-  max-width: 30rem;
-  margin-inline: auto;
 }
 
 .margin-block-end-0 {
@@ -166,9 +153,14 @@ header {
 
   h2 {
     margin-inline: auto;
-    max-width: var(--measure);
+    max-width: var(--stork);
     padding-inline: auto;
   }
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
 }
 
 /*------------------*/
@@ -229,7 +221,7 @@ header {
 .services,
 .testimonials,
 .contact {
-  max-width: var(--measure);
+  max-width: var(--stork);
   margin-inline: auto;
   padding-inline: 1rem;
 }
@@ -241,7 +233,7 @@ header {
 }
 
 .home-gallery {
-  max-width: var(--measure);
+  max-width: var(--stork);
   margin-inline: auto;
   display: flex;
 
@@ -287,7 +279,7 @@ header {
 
 /*  * this name isnt great as I also use it for vendors */
 .footer-social {
-  max-width: var(--measure);
+  max-width: var(--stork);
   margin-inline: auto;
   width: calc(100% - 2rem);
 
@@ -296,7 +288,7 @@ header {
     flex-flow: row wrap;
     align-items: center;
     gap: 1.5rem; /* reset */
-    max-width: var(--measure);
+    max-width: var(--stork);
     padding-inline-start: 0; /*  reset */
     justify-content: center;
 
@@ -344,7 +336,7 @@ header {
 }
 
 .footer-container {
-  max-width: var(--measure);
+  max-width: var(--stork);
   margin-inline: auto;
   width: calc(100% - 2rem);
   display: flex;
@@ -358,7 +350,7 @@ header {
 }
 
 .footer-copyright {
-  max-width: var(--measure);
+  max-width: var(--stork);
   margin-inline: auto;
   width: calc(100% - 2rem);
   display: flex; /* skip 1rem due to a flex gap from a sr-only element */

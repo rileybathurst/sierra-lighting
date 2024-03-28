@@ -87,7 +87,7 @@ const TestimonialsPage = () => {
     <>
       <Header />
 
-      <main className="measure">
+      <main className="stork">
 
         <h1 className="crest">Reviews</h1>
         <h2 className="ridge">Testimonials</h2>
@@ -160,7 +160,7 @@ const TestimonialsPage = () => {
         </p>
 
         <form
-          className="measure"
+          className="stork"
           name="testimonial"
           method="POST"
           data-netlify="true"

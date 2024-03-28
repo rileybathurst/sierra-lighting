@@ -15,7 +15,7 @@ const LightGroupView = ({
     <>
       <Header />
 
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="first-capital">
@@ -32,7 +32,7 @@ const LightGroupView = ({
         <hr />
       </div>
 
-      <main className="measure">
+      <main className="stork">
         <h1>
           {lightgroup.name}
         </h1>
@@ -58,7 +58,7 @@ const LightGroupView = ({
         ))}
       </section>
 
-      <section className="measure">
+      <section className="stork">
         <hr />
         <h2>Other Light Groups</h2>
         <ul>

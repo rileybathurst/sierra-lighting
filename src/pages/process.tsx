@@ -141,7 +141,7 @@ const ProcessPage = () => {
     <>
       <Header />
 
-      <main className="measure">
+      <main className="stork">
         <h2>Our Process</h2>
 
         <form className='process-switch'>

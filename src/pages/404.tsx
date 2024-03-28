@@ -12,7 +12,7 @@ const NotFoundPage = ({ location }) => {
       <Header />
 
       {/* // TODO: work on the typographic sizes here */}
-      <main className="measure">
+      <main className="stork">
         <h2 className="crest">404 - {location.pathname}</h2>
         <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
         <p>Want to brighten up?<br />

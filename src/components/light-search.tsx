@@ -11,7 +11,7 @@ function ResultList(props) {
   if (props.results.length) {
     return (
       <>
-        <h3 className="measure">Search Results</h3>
+        <h3 className="stork">Search Results</h3>
         <div className="deck">
           {props.results.map(result => (
             <div key={result.id}>
@@ -23,21 +23,21 @@ function ResultList(props) {
           ))}
         </div>
 
-        <hr className="measure" />
-        <h3 className="measure">All Lights</h3>
+        <hr className="stork" />
+        <h3 className="stork">All Lights</h3>
       </>
     )
   } else if (props.searchQuery === "") {
     /* return (
-      <h3 className="measure">Please enter a search query</h3>
+      <h3 className="stork">Please enter a search query</h3>
     ) */
     return null;
   } else {
     return (
       <>
-        <h3 className="measure">Nothing found in the search</h3>
-        <hr className="measure" />
-        <h3 className="measure">All Lights</h3>
+        <h3 className="stork">Nothing found in the search</h3>
+        <hr className="stork" />
+        <h3 className="stork">All Lights</h3>
       </>
     )
   }
@@ -83,7 +83,7 @@ function LightSearch() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="measure"
+        className="stork"
       >
         <div>
           <label htmlFor="Search">

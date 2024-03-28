@@ -2,6 +2,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import Season from "../components/season";
+import Start from "../components/start";
 
 function TopList() {
   return (
@@ -16,8 +17,14 @@ function TopList() {
         <Link to="/wedding">Wedding</Link>
       </li>
       {/* // * dont use class contact as we use that other places */}
-      <li key="contact" className="c">
+      {/*       <li key="contact" className="c">
         <Link to="/contact">Contact</Link>
+      </li> */}
+      <li key="start" className="c">
+        <Link to="/contact">
+          Start With A<br />
+          Free Quote
+        </Link>
       </li>
     </Season>
   );

@@ -86,7 +86,7 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="measure">
+      <div className="stork">
         <hr />
       </div>
       <div className="footer-container">
@@ -138,14 +138,16 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="measure inherit">
+      <div className="stork inherit">
         <hr />
+        <h3>Start With A Free Quote</h3>
       </div>
+
 
       <form
         name="contact"
         data-netlify="true"
-        className="measure"
+        className="stork"
         netlify-honeypot="bot-field"
         method="POST"
         action="/form-success"
@@ -195,7 +197,7 @@ const Footer = () => {
       </form>
 
 
-      <hr className="measure" />
+      <hr className="stork" />
 
       {/* // TODO front page only flex arrangment */}
       <SocialIcons />

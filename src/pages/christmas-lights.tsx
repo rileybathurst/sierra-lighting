@@ -323,7 +323,7 @@ const lightsPage = () => {
       <Header />
       <main className="lights__page">
 
-        <div className="measure">
+        <div className="stork">
           <h2 className="crest">What we build</h2>
           <h1 className="mixta">Lights</h1>
 
@@ -338,7 +338,7 @@ const lightsPage = () => {
           </section>
         </div>
 
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h3>
             Search

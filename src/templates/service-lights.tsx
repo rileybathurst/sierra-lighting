@@ -128,7 +128,7 @@ const ServiceLightView = ({ data }) => {
     <>
       <Header />
 
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs">
           <li>
             <Link to={`/${data.strapiService.slug}`}>
@@ -143,7 +143,7 @@ const ServiceLightView = ({ data }) => {
       </div>
 
       <main>
-        <section className='measure'>
+        <section className='stork'>
           <h1 className='mixta aconcagua'>{data.strapiService.name} Lighting</h1>
           {/* // TODO: markdown this */}
           <p>{data.strapiService.description.data.description}</p>
@@ -164,7 +164,7 @@ const ServiceLightView = ({ data }) => {
         ))}
       </main>
 
-      <section className='measure'>
+      <section className='stork'>
         <hr />
         <h2>Lights For Other Services</h2>
         <ul>

@@ -14,7 +14,7 @@ export const Testimonial = ({
     ? "storybook-Testimonial--primary"
     : "storybook-Testimonial--secondary";
   return (
-    <main className="measure">
+    <main className="stork">
       <ul className="testimonials">
         <li className="testimonial">
           <figure>

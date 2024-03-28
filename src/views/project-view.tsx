@@ -10,12 +10,13 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import StateAbbreviation from "../components/state-abbreviation";
 import Card from "../components/card";
+import Start from "../components/start";
 
 function Triptych(props) {
   if (props.triptych?.length > 0) {
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h3>{props.name} uses these lights</h3>
         </div>
@@ -40,7 +41,7 @@ function Triptych(props) {
 function Additional(props) {
   if (props.additional?.length > 0) {
     return (
-      <div className="measure">
+      <div className="stork">
         <section className="">
           {props.additional.map((light) => (
             <div
@@ -109,7 +110,7 @@ function Lights(props) {
   if (props.yes.length !== 0) {
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h3>{name} uses these lights</h3>
         </div>
@@ -141,7 +142,7 @@ function Other(props) {
   if (props.needed.length == 0) {
     return (
       <>
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h4>Other Projects</h4>
         </div>
@@ -249,7 +250,7 @@ function IfAttributes(props) {
 
     return (
       <>
-        <hr className="measure" />
+        <hr className="stork" />
         <div className="attributes">
 
           <IfVenue
@@ -278,7 +279,7 @@ const ProjectView = ({ project, triptych, additional, other }) => {
     <>
       <Header />
 
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
 
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
@@ -321,12 +322,16 @@ const ProjectView = ({ project, triptych, additional, other }) => {
         </figcaption >
       </figure > */}
 
-      <main className="measure">
+      <main className="stork">
         <article className="single">
           <h1>{project.title}</h1>
           <ReactDescription desc={project?.description} />
         </article>
 
+        <hr />
+        <h3>Interested in a project like this</h3>
+        <Start />
+        <hr />
       </main>
 
       <Gallery triptych={project.gallery} />

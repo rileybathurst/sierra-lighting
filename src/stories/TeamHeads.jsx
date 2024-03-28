@@ -26,7 +26,7 @@ export const TeamHeads = ({
     : "storybook-TeamHeads--secondary";
   return (
     <>
-      <div id="team" className="team measure">
+      <div id="team" className="team stork">
         <h3 className="crest">Who We Are</h3>
         <h4 className="range">
           <a href="/team" className="link--subtle">

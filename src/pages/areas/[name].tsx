@@ -9,7 +9,7 @@ function AreaCatchAll({ params }) {
   return (
     <>
       <Header />
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs">
           <li>
             <Link to="/area">
@@ -21,7 +21,7 @@ function AreaCatchAll({ params }) {
         </ol>
         <hr />
       </div>
-      <main className="measure">
+      <main className="stork">
         <h2 className="crest">404</h2>
         <h1 className="mixta">
           Oops! Looks like this page has left the party.

@@ -71,7 +71,7 @@ a:hover .poster {
 
 .home-hero,
 .snowyroof-container {
-  max-width: var(--measure);
+  max-width: var(--stork);
   margin-inline: auto;
 }
 

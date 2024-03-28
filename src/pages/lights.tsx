@@ -236,7 +236,7 @@ const lightsPage = () => {
       <Header />
       <main className="lights__page">
 
-        <div className="measure">
+        <div className="stork">
           <h2 className="crest">What we build</h2>
           <h1 className="mixta">Lights</h1>
 
@@ -271,7 +271,7 @@ const lightsPage = () => {
           </section>
         </div>
 
-        <div className="measure">
+        <div className="stork">
           <hr />
           <h3>
             Search
@@ -289,7 +289,7 @@ const lightsPage = () => {
           </div>
         ))}
 
-        {/* <div className="measure">
+        {/* <div className="stork">
           <h2>Other Lights</h2>
           <p>These lights are not part of a group, but are still available for rent.</p>
         </div>

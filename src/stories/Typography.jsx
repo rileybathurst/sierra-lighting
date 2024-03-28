@@ -15,7 +15,7 @@ export const Typography = ({
     ? "storybook-Typography--primary"
     : "storybook-Typography--secondary";
   return (
-    <section className="measure">
+    <section className="stork">
       <h1>h1</h1>
       <h2>h2</h2>
       <h3>h3</h3>

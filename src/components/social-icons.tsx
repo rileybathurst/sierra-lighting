@@ -6,7 +6,7 @@ import PinterestIcon from "../images/pinterest-icon";
 
 const SocialIcons = () => (
   <section id="footer-social" className="footer-social footer-social--self">
-    <ul className="measured">
+    <ul className="stork">
       <li key="yelp">
         <a
           href="https://www.yelp.com/biz/sierra-lighting-calpine/"

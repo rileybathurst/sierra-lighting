@@ -12,7 +12,7 @@ const TestimonialView = ({ testimonial }) => {
   return (
     <>
       <Header />
-      <div className="measure">
+      <div className="stork">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to="/">
@@ -34,7 +34,7 @@ const TestimonialView = ({ testimonial }) => {
         <hr />
       </div>
 
-      <article className="measure">
+      <article className="stork">
         <h1>{testimonial.customer}</h1>
         <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
           <TestimonialRanking stars={testimonial.stars} />
