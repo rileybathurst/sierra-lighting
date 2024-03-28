@@ -111,20 +111,7 @@ export const SEO = (SE0: SEO) => {
           }
           `}
       </Script>
-
-      {/* "siteurl": "${siteUrl}", */}
-
-
-      {/* <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-          }
-        `}
-      </Script> */}
       {SE0.children}
-
       {/*
         // Rebuild this sometime
         <div className="seo-showcase">

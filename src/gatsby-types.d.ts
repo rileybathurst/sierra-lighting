@@ -8982,6 +8982,11 @@ type AffiliationsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type AffiliationsQueryQuery = { readonly allStrapiAffiliation: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly link: string | null, readonly logo: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
 
+type AreaCatchAllQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AreaCatchAllQueryQuery = { readonly allStrapiArea: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null }> } };
+
 type areaLinkFragment = { readonly id: string, readonly name: string | null, readonly state: string | null, readonly slug: string | null };
 
 type AreasQueryQueryVariables = Exact<{ [key: string]: never; }>;

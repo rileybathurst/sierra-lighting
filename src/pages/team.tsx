@@ -8,7 +8,7 @@ import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import IfHero from "../components/ifHero";
+import IfHero from "../components/if-hero";
 
 function ReactDescription(props) {
   if (props.bio) {

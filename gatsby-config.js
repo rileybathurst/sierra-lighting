@@ -127,7 +127,6 @@ module.exports = {
       },
       __key: "images"
     },
-    'gatsby-plugin-netlify',
     {
       resolve: "gatsby-source-strapi",
       options: strapiConfig,

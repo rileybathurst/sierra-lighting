@@ -10,7 +10,7 @@ import Footer from "../components/footer";
 import Card from '../components/card';
 import StateAbbreviation from "../components/state-abbreviation";
 import Website from "../components/website";
-import IfHero from "../components/ifHero";
+import IfHero from "../components/if-hero";
 
 import TestimonialRanking from "../components/testimonial-ranking";
 
@@ -89,12 +89,12 @@ function IfOther(props) {
   }
 }
 
-function Testimonials(props) {
-  if (props.testimonials.length > 0) {
+function Testimonials({ testimonials, venue }) {
+  if (testimonials.length > 0) {
     return (
       <div className="stork" >
         <ul className='testimonials'>
-          {props.testimonials.map((testimonial) => (
+          {testimonials.map((testimonial) => (
             <li key={testimonial.id} className='testimonial'>
               <figure>
                 <blockquote>
@@ -104,7 +104,7 @@ function Testimonials(props) {
                   <p className='testimonial--quote_mark range'>&ldquo;</p>
                   <p>{testimonial.review}</p>
                   <figcaption>
-                    <p className='crest'><strong>{props.venue}</strong> - {testimonial.position}</p>
+                    <p className='crest'><strong>{venue}</strong> - {testimonial.position}</p>
                     <h4 className='range'>{testimonial.customer}</h4>
                   </figcaption>
                 </blockquote>
@@ -298,7 +298,11 @@ export const Head = ({ data }) => {
       title={`${data.strapiVenue.name} | ${useSiteMetadata().title}`}
       description={data.strapiVenue.excerpt}
       image={data.strapiVenue?.venueImage?.localFile?.url}
-      url={`venue/${data.strapiVenue.slug}`}
-    />
+    // url={`venue/${data.strapiVenue.slug}`}
+    >
+
+// TODO: breadcrumbs
+
+    </SEO>
   )
 }

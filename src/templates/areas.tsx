@@ -1,12 +1,12 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby'
+import { graphql, Link, Script } from 'gatsby'
 
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import IfHero from "../components/ifHero";
+import IfHero from "../components/if-hero";
 import StateAbbreviation from "../components/state-abbreviation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
@@ -14,10 +14,6 @@ import Card from '../components/card';
 import { CardType } from '../types/card';
 
 function SubVenues({ venues }) {
-
-  console.log(venues)
-
-  // return null;
 
   if (venues.length !== 0) {
     return (
@@ -39,35 +35,43 @@ function SubVenues({ venues }) {
 
 function SubAreas({ areas }) {
 
+  interface SubAreasType {
+    name: string;
+  }
+
   if (areas.length !== 0) {
     return (
       <div className="stork">
         <hr />
         <p className='elbrus'>Places in the region</p>
-        {areas.map((area) => (
-          <p className='denali'>
+        {areas.map((area: SubAreasType) => (
+          <p key={area.name} className='denali'>
             {area.name}
           </p>
-        ))
-        }
-
+        ))}
         {/* <h3>Wedding Venues in {areas[0].name}</h3> */}
-      </div >
+      </div>
     );
   } else {
     return null
   }
 }
 
-function Venues({ name, venues, areas }) {
 
-  // this is no longer right as there might only be sub venues
-  // if (venues.length !== 0) {
+// this is no longer right as there might only be sub venues
+// if (venues.length !== 0) {
+interface VenuesProps {
+  name: string;
+  venues: CardType[];
+  areas: SubAreasType[];
+}
+
+function Venues({ name, venues, areas }: VenuesProps) {
   return (
     <>
       <div className="stork">
         <hr />
-        <h3>Wedding Venues in we create lighting for in {name}</h3>
+        <h3>Wedding Venues in {name} we create lighting</h3>
       </div>
 
       <div className="deck">
@@ -80,7 +84,7 @@ function Venues({ name, venues, areas }) {
           </section>
         ))}
 
-        {areas.map((area) => (
+        {areas.map((area: SubAreasType) => (
           <SubVenues venues={area.venues} />
         ))}
       </div>
@@ -96,11 +100,11 @@ const AreasTemplate = ({ data }) => {
 
       <div className="stork">
         <ol className="breadcrumbs">
-          <li>
+          <li key='areas'>
             <Link to="/areas">
               <span>Areas</span></Link>&nbsp;/&nbsp;
           </li>
-          <li>
+          <li key={data.strapiArea.name}>
             {data.strapiArea.name}
           </li>
         </ol>
@@ -228,10 +232,62 @@ export const query = graphql`
 export const Head = ({ data }) => {
   return (
     <SEO
-    /* title={`${data.strapiVendor.name} | ${useSiteMetadata().title}`}
-    description={data.strapiVendor.excerpt}
-    url={`vendor/${data.strapiVendor.slug}`}
-    image={data.strapiVendor?.profile?.localFile?.url} */
-    />
+      title={`${data.strapiArea.name} | ${useSiteMetadata().title}`}
+      description={data.strapiArea.excerpt}
+      image={data.strapiArea?.image?.localFile?.url}
+    >
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Areas",
+              "item": "${useSiteMetadata().url}/areas"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "${data.strapiArea.name}",
+              "item": "${useSiteMetadata().url}/areas/${data.strapiArea.slug}"
+            }]
+          }
+        `}
+      </Script>
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "${useSiteMetadata().title}",
+            "areaServed": {
+              "@type": "Place",
+              "name": "${data.strapiArea.name}"
+            }
+          }
+        `}
+      </Script>
+
+
+      {/* // TODO: internal map */}
+      {data.strapiArea.areas.map((area) => (
+        <Script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "${useSiteMetadata().title}",
+              "areaServed": {
+                "@type": "Place",
+                "name": "${area.name}"
+              }
+            }
+          `}
+        </Script>
+      ))}
+
+    </SEO >
   )
 }

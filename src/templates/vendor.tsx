@@ -7,7 +7,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 
 import Website from "../components/website";
-import IfHero from "../components/ifHero";
+import IfHero from "../components/if-hero";
 
 import TestimonialRanking from "../components/testimonial-ranking";
 import Card from '../components/card';
