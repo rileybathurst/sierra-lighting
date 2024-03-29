@@ -18,6 +18,8 @@ function IfHero({ hero }: { hero: HeroType }) {
     const biggy = hero?.localFile?.childImageSharp?.gatsbyImageData?.width;
     // this isnt dry but variables didnt like me so I ditched them
 
+    console.log(biggy);
+
     if (biggy <= 960) {
       return (
         <div className="hero-image pelican">

@@ -1,3 +1,5 @@
+// TODO: run this through gatsby-node to get the service in the url
+
 import * as React from "react"
 import { graphql } from "gatsby"
 import ProjectView from "../../views/project-view"
@@ -34,10 +36,7 @@ export const query = graphql`
       gallery {
         localFile {
           childImageSharp {
-            gatsbyImageData(
-              breakpoints: [960, 1840]
-                width: 960
-            )
+            gatsbyImageData
           }
           url
         }
@@ -139,6 +138,10 @@ export const Head = ({ data }) => {
       description={data.strapiProject?.excerpt}
       image={data.strapiProject?.ogimage}
       url={`project/${data.strapiProject.slug}`}
-    />
+    >
+
+      {/* // TODO: breadcrumbs but once I've move the url to include service */}
+
+    </SEO>
   )
 }

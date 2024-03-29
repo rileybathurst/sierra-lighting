@@ -37,13 +37,16 @@ function VenueCount({ area, region }) {
 function SubAreas({ areas }) {
   if (areas.length > 0) {
     return (
-      <ul>
-        {areas.map(area => (
-          <li key={area.name}>
-            {area.name}
-          </li>
-        ))}
-      </ul>
+      <>
+        <p>Including:</p>
+        <ul>
+          {areas.map(area => (
+            <li key={area.name}>
+              {area.name}
+            </li>
+          ))}
+        </ul>
+      </>
     );
   } else {
     return null;

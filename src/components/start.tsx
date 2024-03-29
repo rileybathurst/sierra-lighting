@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-const Start = ({ className }: { className: string }) => {
+const Start = ({ className }: { className?: string }) => {
 
   return (
     <Link

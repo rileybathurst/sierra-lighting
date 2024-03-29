@@ -1,4 +1,5 @@
 // TODO: this code seems like a mess
+// TODO: remove all the if names
 
 import * as React from "react";
 import { Link } from "gatsby";
@@ -11,6 +12,7 @@ import Footer from "../components/footer";
 import StateAbbreviation from "../components/state-abbreviation";
 import Card from "../components/card";
 import Start from "../components/start";
+import IfHero from "../components/if-hero";
 
 function Triptych(props) {
   if (props.triptych?.length > 0) {
@@ -84,6 +86,7 @@ function Gallery(props) {
   }
 }
 
+// TODO: move this inline
 function ReactDescription(props) {
   if (props.desc) {
     return <ReactMarkdown children={props?.desc?.data?.description} />;
@@ -226,13 +229,15 @@ function IfTeam(props) {
     return (
       <section className="attribute">
         <h3 className="crest">Team</h3>
-        {props?.team.map(team => (
-          <h4 className="range last-ampersand" key={team.slug}>
-            <Link to={`/team/${team.slug}`} className="link--subtle">
-              {team.name}
-            </Link>
-          </h4>
-        ))}
+        <div className="">
+          {props?.team.map(team => (
+            <h4 className="range last-ampersand inline" key={team.slug}>
+              <Link to={`/team/${team.slug}`} className="link--subtle">
+                {team.name}
+              </Link>
+            </h4>
+          ))}
+        </div>
       </section>
     );
   } else {
@@ -240,7 +245,7 @@ function IfTeam(props) {
   }
 }
 
-function IfAttributes(props) {
+function Attributes(props) {
   if (props?.venue || props?.area?.length > 0 || props?.vendor?.length > 0 || props?.team?.length > 0) {
 
     // console.log(props?.venue);
@@ -308,19 +313,12 @@ const ProjectView = ({ project, triptych, additional, other }) => {
         <hr />
       </div>
 
-
-      {/* <figure> */}
-      <GatsbyImage
+      <IfHero hero={project?.image} />
+      {/*       <GatsbyImage
         image={project?.image?.localFile?.childImageSharp?.gatsbyImageData}
         alt={project.image?.alternativeText || project.title}
         className="poster"
-      />
-      {/*
-  // TODO: this is what I'm currently working on
-<figcaption>
-          {project.image?.alternativeText}
-        </figcaption >
-      </figure > */}
+      /> */}
 
       <main className="stork">
         <article className="single">
@@ -331,12 +329,11 @@ const ProjectView = ({ project, triptych, additional, other }) => {
         <hr />
         <h3>Interested in a project like this</h3>
         <Start />
-        <hr />
       </main>
 
       <Gallery triptych={project.gallery} />
 
-      <IfAttributes
+      <Attributes
         venue={project?.venue}
         area={project?.areas}
         vendor={project?.vendors}
@@ -344,12 +341,11 @@ const ProjectView = ({ project, triptych, additional, other }) => {
       // TODO: services
       />
 
-      {/*       <Lights
+      <Lights
         yes={project.lights}
         name={project.title}
-      /> */}
+      />
 
-      {/* <Console log={triptych} /> */}
       <Triptych
         triptych={triptych}
         name={project.title}

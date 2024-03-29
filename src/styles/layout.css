@@ -23,6 +23,10 @@ main {
   padding-inline: 1rem;
 }
 
+.inline {
+  display: inline;
+}
+
 .margin-block-end-0 {
   margin-block-end: 0 !important; /* overwrites deck */
 }
@@ -201,6 +205,10 @@ header {
     border-color: hsl(var(--denim), 12.5%, 12.5%);
     background-color: hsl(var(--denim), 50%, 12.5%);
   }
+}
+
+.area-card:not(:has(ul)) h3 {
+  margin-block-end: 0.5rem;
 }
 
 /*  .areas-and-gallery */
@@ -569,7 +577,7 @@ footer {
 
 .attributes {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-flow: row wrap;
   gap: 1lh;
   list-style: none;
