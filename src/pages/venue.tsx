@@ -44,13 +44,17 @@ function Populated(props: { area: Area }) {
           <hr />
           <h4 className="crest">{props.area.nodes[0].area.tagline}</h4>
           <h3 className="range">
+            {/*
+            // TODO: only featured areas maybe restructure this page
+            as we removed a bunch of areas we need to only link to them if there is a page
+            
             <Link
               to={`/area/${props.area.nodes[0].area.slug}`}
               className="link--subtle"
-            >
-              {props.area.nodes[0].area.name},&nbsp;
-              <StateAbbreviation state={props.area.nodes[0].area.state} />.
-            </Link>
+            > */}
+            {props.area.nodes[0].area.name},&nbsp;
+            <StateAbbreviation state={props.area.nodes[0].area.state} />.
+            {/* </Link> */}
           </h3>
         </div>
 

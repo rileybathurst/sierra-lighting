@@ -118,24 +118,17 @@ const AreasTemplate = ({ data }) => {
       <main>
         <IfHero hero={data.strapiArea?.image} />
 
-        <article className="stork single" itemProp="address">
-          <div itemProp="location" itemScope itemType="https://schema.org/areaServed">
-            <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-              <span itemProp="name" className="sr-only">{data.strapiArea.name}</span>
-              {/* // ! this is for the address / postaladdress / name / except its not working and its taking the description */}
-
-              <h2 className="crest">{data.strapiArea.tagline}</h2>
-              <h1 className="range" >
-                <span itemProp="addressLocality">{data.strapiArea.name}</span>,&nbsp;
-                <span itemProp="addressRegion" className="first-capital">< StateAbbreviation state={data.strapiArea.state} /></span>
-              </h1>
-              <ReactMarkdown
-                children={data.strapiArea?.description?.data?.description}
-                remarkPlugins={[remarkGfm]}
-              />
-
-            </div >
-          </div >
+        <article className="stork single">
+          {data.strapiArea.name}
+          <h2 className="crest">{data.strapiArea.tagline}</h2>
+          <h1 className="range">
+            {data.strapiArea.name}&nbsp;
+            <StateAbbreviation state={data.strapiArea.state} />
+          </h1>
+          <ReactMarkdown
+            children={data.strapiArea?.description?.data?.description}
+            remarkPlugins={[remarkGfm]}
+          />
         </article >
       </main >
 
@@ -149,7 +142,6 @@ const AreasTemplate = ({ data }) => {
       />
 
       <Footer />
-
     </>
   );
 };

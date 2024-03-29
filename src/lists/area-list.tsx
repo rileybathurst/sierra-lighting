@@ -93,13 +93,16 @@ function AreaList() {
                     <GatsbyImage
                       image={area.image.localFile.childImageSharp.gatsbyImageData}
                       alt={area.image.alternativeText}
+                      className="poster"
                     />
                     <hr />
                   </>
                 ) : null}
-                <Link to={`/areas/${area.slug}`}>
-                  {area.name}
-                </Link>
+                <h3 className="kilimanjaro">
+                  <Link to={`/areas/${area.slug}`}>
+                    {area.name}
+                  </Link>
+                </h3>
                 <SubAreas areas={area.areas} />
               </li>
             ))}

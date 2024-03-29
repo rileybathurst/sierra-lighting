@@ -16,7 +16,6 @@ export const useSiteMetadata = () => {
           telephone
           email
           logo
-          areaServed
           author
           paymentAccepted
           itemType

@@ -179,19 +179,30 @@ header {
   > *:first-child {
     padding-inline-end: 1rem;
     border-inline-end: 1px solid hsl(var(--honey), 100%, 50%);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: hsl(var(--denim), 37%, 37%);
+    }
   }
 }
 
-.area-card:has(ul) {
+/* TODO: same as buttons might be better */
+.area-card {
+  /* .area-card:has(ul), */
+  /* .area-card:has(.gatsby-image-wrapper):not(:has(ul)) { */
   border-radius: var(--border-radius);
   box-shadow: var(--mesosphere);
   padding: 1rem;
   border: 1px solid whitesmoke;
+  background-color: hsl(var(--honey), 87.5%, 87.5%);
+  margin-block-end: 2rem;
 
   @media (prefers-color-scheme: dark) {
-    border-color: hsl(var(--denim), 12%, 12%);
+    border-color: hsl(var(--denim), 12.5%, 12.5%);
+    background-color: hsl(var(--denim), 50%, 12.5%);
   }
 }
+
 /*  .areas-and-gallery */
 /*------------------------------------*/
 /*   .areas-and-gallery */

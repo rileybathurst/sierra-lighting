@@ -13,7 +13,6 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
 import Card from '../components/card';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import { CardType } from '../types/card';
 import Start from '../components/start';
 
@@ -237,7 +236,7 @@ const ServiceView = ({ data }) => {
           <ReactDescription
             description={data.strapiService.description.data.description}
           />
-          <Start />
+          <Start className="button--left-align" />
         </section>
 
         {/*         <section className="triple">

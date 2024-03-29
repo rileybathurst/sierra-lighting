@@ -215,3 +215,17 @@ button:focus,
   opacity: 0.8;
   filter: brightness(0.8);
 }
+
+/*------------------------------------*/
+
+a svg {
+  transition: var(--moment);
+}
+
+a svg:hover {
+  fill: hsl(var(--honey), 100%, 37%);
+
+  @media (prefers-color-scheme: dark) {
+    fill: hsl(var(--denim), 25%, 63%);
+  }
+}

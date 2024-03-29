@@ -62,8 +62,8 @@ export const SEO = (SE0: SEO) => {
     telephone,
     email,
     openingHours,
-    areaServed,
     paymentAccepted,
+    alternateName,
     geo,
   } = useSiteMetadata()
 
@@ -95,13 +95,13 @@ export const SEO = (SE0: SEO) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={seo.image} />
 
-      {/* adjusting the url is defintley wrong */}
       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org/",
             "@type": "LocalBusiness",
             "name": "${siteTitle}",
+            "alternateName": "${alternateName}",
             "url": "${siteUrl}",
             "image": "${defaultImage}",
             "description": "${defaultDescription}",

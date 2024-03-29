@@ -10,21 +10,27 @@ svg {
   }
 }
 
-a svg {
-  transition: var(--moment);
-}
-
-a svg:hover {
-  fill: hsl(var(--honey), 100%, 37%);
-
-  @media (prefers-color-scheme: dark) {
-    fill: hsl(var(--denim), 25%, 63%);
-  }
-}
-
 /*------------------*/
 /* IMAGES */
 /*------------------*/
+
+.gatsby-image-wrapper {
+  background-color: hsl(var(--honey), 100%, 97.5%);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: hsl(var(--denim), 25%, 12%);
+  }
+}
+
+.poster.gatsby-image-wrapper {
+  box-shadow: var(--troposphere);
+  border-radius: var(--border-radius);
+  border: 1px solid whitesmoke;
+
+  @media (prefers-color-scheme: dark) {
+    border-color: hsl(var(--denim), 12%, 25%);
+  }
+}
 
 .poster,
 .home-gallery > * {

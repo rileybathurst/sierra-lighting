@@ -311,6 +311,10 @@ ol li {
     border-block-end: 1px solid hsl(var(--honey), 100%, 50%);
     margin-block-end: 1lh;
     padding-block-end: 1lh;
+
+    @media (prefers-color-scheme: dark) {
+      border-color: hsl(var(--denim), 12%, 50%);
+    }
   }
 
   section:last-child {
