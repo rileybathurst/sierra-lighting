@@ -64,6 +64,7 @@ export const SEO = (SE0: SEO) => {
     openingHours,
     areaServed,
     paymentAccepted,
+    geo,
   } = useSiteMetadata()
 
   const seo = {
@@ -108,6 +109,20 @@ export const SEO = (SE0: SEO) => {
             "paymentAccepted": "${paymentAccepted}",
             "telephone": "${telephone}",
             "email": "${email}"
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "${geo.latitude}",
+              "longitude": "${geo.longitude}"
+            },
+            "areaServed": {
+              "@type": "GeoCircle",
+              "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": "${geo.latitude}",
+                "longitude": "${geo.longitude}"
+              },
+              "geoRadius": "${geo.geoRadius}"
+            },
           }
           `}
       </Script>

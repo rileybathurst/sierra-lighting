@@ -67,29 +67,33 @@ interface VenuesProps {
 }
 
 function Venues({ name, venues, areas }: VenuesProps) {
-  return (
-    <>
-      <div className="stork">
-        <hr />
-        <h3>Wedding Venues in {name} we create lighting</h3>
-      </div>
+  if (venues.length > 0) {
+    return (
+      <>
+        <div className="stork">
+          <hr />
+          <h3>Wedding Venues in {name} we create lighting</h3>
+        </div>
 
-      <div className="deck">
-        {venues.map((venue: CardType) => (
-          <section key={venue.id}>
-            <Card
-              card={venue}
-              breadcrumb='venue'
-            />
-          </section>
-        ))}
+        <div className="deck">
+          {venues.map((venue: CardType) => (
+            <section key={venue.id}>
+              <Card
+                card={venue}
+                breadcrumb='venue'
+              />
+            </section>
+          ))}
 
-        {areas.map((area: SubAreasType) => (
-          <SubVenues venues={area.venues} />
-        ))}
-      </div>
-    </>
-  );
+          {areas.map((area: SubAreasType) => (
+            <SubVenues venues={area.venues} />
+          ))}
+        </div>
+      </>
+    );
+  } else {
+    return null
+  }
 }
 
 const AreasTemplate = ({ data }) => {

@@ -167,17 +167,22 @@ header {
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
+  list-style: none;
+  padding-inline-start: 0;
+  margin-block: 0;
 
   > * {
     flex: 1 1 10rem;
   }
 
-  > ul:first-child {
+  /* TODO: this should be not last child */
+  > *:first-child {
+    padding-inline-end: 1rem;
     border-inline-end: 1px solid hsl(var(--honey), 100%, 50%);
   }
 }
 
-.area-card {
+.area-card:has(ul) {
   border-radius: var(--border-radius);
   box-shadow: var(--mesosphere);
   padding: 1rem;

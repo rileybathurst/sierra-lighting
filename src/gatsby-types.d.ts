@@ -8856,6 +8856,7 @@ type SiteSiteMetadata = {
   readonly defaultImageAlt: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
   readonly email: Maybe<Scalars['String']>;
+  readonly geo: Maybe<SiteSiteMetadataGeo>;
   readonly itemType: Maybe<Scalars['String']>;
   readonly logo: Maybe<Scalars['String']>;
   readonly openingHours: Maybe<Scalars['String']>;
@@ -8878,6 +8879,7 @@ type SiteSiteMetadataFieldSelector = {
   readonly defaultImageAlt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
   readonly email: InputMaybe<FieldSelectorEnum>;
+  readonly geo: InputMaybe<SiteSiteMetadataGeoFieldSelector>;
   readonly itemType: InputMaybe<FieldSelectorEnum>;
   readonly logo: InputMaybe<FieldSelectorEnum>;
   readonly openingHours: InputMaybe<FieldSelectorEnum>;
@@ -8900,6 +8902,7 @@ type SiteSiteMetadataFilterInput = {
   readonly defaultImageAlt: InputMaybe<StringQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly email: InputMaybe<StringQueryOperatorInput>;
+  readonly geo: InputMaybe<SiteSiteMetadataGeoFilterInput>;
   readonly itemType: InputMaybe<StringQueryOperatorInput>;
   readonly logo: InputMaybe<StringQueryOperatorInput>;
   readonly openingHours: InputMaybe<StringQueryOperatorInput>;
@@ -8913,6 +8916,30 @@ type SiteSiteMetadataFilterInput = {
   readonly url: InputMaybe<StringQueryOperatorInput>;
 };
 
+type SiteSiteMetadataGeo = {
+  readonly geoRadius: Maybe<Scalars['String']>;
+  readonly latitude: Maybe<Scalars['String']>;
+  readonly longitude: Maybe<Scalars['String']>;
+};
+
+type SiteSiteMetadataGeoFieldSelector = {
+  readonly geoRadius: InputMaybe<FieldSelectorEnum>;
+  readonly latitude: InputMaybe<FieldSelectorEnum>;
+  readonly longitude: InputMaybe<FieldSelectorEnum>;
+};
+
+type SiteSiteMetadataGeoFilterInput = {
+  readonly geoRadius: InputMaybe<StringQueryOperatorInput>;
+  readonly latitude: InputMaybe<StringQueryOperatorInput>;
+  readonly longitude: InputMaybe<StringQueryOperatorInput>;
+};
+
+type SiteSiteMetadataGeoSortInput = {
+  readonly geoRadius: InputMaybe<SortOrderEnum>;
+  readonly latitude: InputMaybe<SortOrderEnum>;
+  readonly longitude: InputMaybe<SortOrderEnum>;
+};
+
 type SiteSiteMetadataSortInput = {
   readonly alternateName: InputMaybe<SortOrderEnum>;
   readonly areaServed: InputMaybe<SortOrderEnum>;
@@ -8922,6 +8949,7 @@ type SiteSiteMetadataSortInput = {
   readonly defaultImageAlt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
   readonly email: InputMaybe<SortOrderEnum>;
+  readonly geo: InputMaybe<SiteSiteMetadataGeoSortInput>;
   readonly itemType: InputMaybe<SortOrderEnum>;
   readonly logo: InputMaybe<SortOrderEnum>;
   readonly openingHours: InputMaybe<SortOrderEnum>;
@@ -8989,10 +9017,12 @@ type AreaCatchAllQueryQuery = { readonly allStrapiArea: { readonly nodes: Readon
 
 type areaLinkFragment = { readonly id: string, readonly name: string | null, readonly state: string | null, readonly slug: string | null };
 
+type areaQueryFragment = { readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly state: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null } | null> | null };
+
 type AreasQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type AreasQueryQuery = { readonly cali: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null } | null> | null }> }, readonly nv: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null } | null> | null }> } };
+type AreasQueryQuery = { readonly cali: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly state: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null } | null> | null }> }, readonly nv: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly state: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null } | null> | null }> } };
 
 type AreasTemplateQueryVariables = Exact<{
   slug: Scalars['String'];

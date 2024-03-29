@@ -34,6 +34,22 @@ function VenueCount({ area, region }) {
   );
 }
 
+function SubAreas({ areas }) {
+  if (areas.length > 0) {
+    return (
+      <ul>
+        {areas.map(area => (
+          <li key={area.name}>
+            {area.name}
+          </li>
+        ))}
+      </ul>
+    );
+  } else {
+    return null;
+  }
+}
+
 function AreaList() {
 
   const data = useStaticQuery(graphql`
@@ -45,31 +61,7 @@ function AreaList() {
         },
         ) {
         nodes {
-          name
-          excerpt
-          slug
-
-          image {
-            alternativeText
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-          }
-
-          venues {
-            id
-          }
-
-          areas {
-            name
-            slug
-
-            venues {
-              id
-            }
-          }
+          ...areaQuery
         }
       }
       
@@ -80,111 +72,60 @@ function AreaList() {
         },
         ) {
         nodes {
-          name
-          excerpt
-          slug
-
-          image {
-            alternativeText
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-          }
-
-          venues {
-            id
-          }
-          
-          areas {
-            name
-            slug
-
-            venues {
-              id
-            }
-          }
+          ...areaQuery
         }
       }
     }
   `);
 
-  // TODO: loops 
+  let states = [data.cali, data.nv];
 
   return (
-    <section className="area-list">
-      <div>
-        <h3>California</h3>
-        <ul className="list-style-none">
-          {data.cali.nodes.map(area => (
-            <li key={area.name} className="state__name">
-
-              {area.image ? (
-                <GatsbyImage
-                  image={area.image.localFile.childImageSharp.gatsbyImageData}
-                  alt={area.image.alternativeText}
-                />
-              ) : null}
-
-              <Link to={`/areas/${area.slug}`}>
-                {area.name}
-
-              </Link>
-              {/* <p>{area.excerpt}</p> */}
-              {/* 
-            {area.areas.map(subArea => (
-              <VenueCount
-                area={subArea.venues}
-                region={area.name}
-              />
-            ))} */}
-
-
-
-              {/*             <p>
-              {areaCount[area.name]} venues
-            </p>
- */}
-              {/*             <p>
-              {area.venues.length} venues🦄
-            </p> */}
-
-              <ul>
-                {area.areas.map(subArea => (
-                  <li key={subArea.name} className="area__name">
-                    {subArea.name}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h3>Nevada</h3>
-
-        <ul className="list-style-none">
-          {data.nv.nodes.map(area => (
-            <li key={area.name} className="state__name">
-              <Link to={`/areas/${area.slug}`}>
-                {area.name}
-              </Link>
-              {/* <p>{area.excerpt}</p> */}
-
-              <ul>
-                {area.areas.map(subArea => (
-                  <li key={subArea.name} className="area__name">
-                    {subArea.name}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section >
+    <ul className="area-list">
+      {states.map((state) => (
+        <li>
+          <h3 className="first-capital">{state.nodes[1].state}</h3>
+          <ul className="list-style-none">
+            {state.nodes.map((area) => (
+              <li key={area.name} className="area-card">
+                {area.image ? (
+                  <>
+                    <GatsbyImage
+                      image={area.image.localFile.childImageSharp.gatsbyImageData}
+                      alt={area.image.alternativeText}
+                    />
+                    <hr />
+                  </>
+                ) : null}
+                <Link to={`/areas/${area.slug}`}>
+                  {area.name}
+                </Link>
+                <SubAreas areas={area.areas} />
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ul>
   );
 }
 
 export default AreaList;
+
+
+
+{/* <li key={area.name} className="featured_area">
+
+{area.image ? (
+  <GatsbyImage
+    image={area.image.localFile.childImageSharp.gatsbyImageData}
+    alt={area.image.alternativeText}
+  />
+) : null}
+
+<Link to={`/areas/${area.slug}`}>
+  {area.name}
+
+</Link>
+// <SubAreas areas={area.areas} />
+</li> */}

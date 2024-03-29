@@ -23,6 +23,12 @@ export const useSiteMetadata = () => {
           priceRange
           alternateName
           slogan
+
+          geo {
+            latitude
+            longitude
+            geoRadius
+          }
         }
       }
     }

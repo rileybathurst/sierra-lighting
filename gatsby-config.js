@@ -53,6 +53,11 @@ module.exports = {
     priceRange: '$1000-2500',
     alternateName: 'Sierra Christmas Lights', // TODO: add this to the schema
     slogan: 'Dependable holiday, landscape and events light installation',
+    geo: {
+      latitude: "39.32817",
+      longitude: "-120.18404",
+      geoRadius: "80470",
+    },
   },
   plugins: [
     // TODO: check in on the update
