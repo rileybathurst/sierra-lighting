@@ -119,7 +119,6 @@ const AreasTemplate = ({ data }) => {
         <IfHero hero={data.strapiArea?.image} />
 
         <article className="stork single">
-          {data.strapiArea.name}
           <h2 className="crest">{data.strapiArea.tagline}</h2>
           <h1 className="range">
             {data.strapiArea.name}&nbsp;

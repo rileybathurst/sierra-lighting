@@ -172,7 +172,7 @@ function IfVenue(props) {
         </h4>
         {props?.area.map(area => (
           <p>
-            <Link to={`/area/${area.slug}`} className="link--subtle">
+            <Link to={`/areas/${area.slug}`} className="link--subtle">
               {area.name}, <StateAbbreviation state={area.state} />
             </Link>
           </p>
@@ -185,7 +185,7 @@ function IfVenue(props) {
         <h3 className="crest">Venue</h3>
         {props?.area.map(area => (
           <h4 className="range">
-            <Link to={`/area/${area.slug}`} className="link--subtle">
+            <Link to={`/areas/${area.slug}`} className="link--subtle">
               {area.name}, <StateAbbreviation state={area.state} />
             </Link>
           </h4>

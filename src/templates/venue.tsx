@@ -139,7 +139,7 @@ const VenueView = ({ data }) => {
           </li>
 
           <li key='3' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to={`/area/${data.strapiVenue.area.slug}`}>
+            <Link itemProp="item" to={`/areas/${data.strapiVenue.area.slug}`}>
               <span itemProp="name">{data.strapiVenue.area.name}</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="3" />
           </li>
