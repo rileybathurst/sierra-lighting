@@ -74,6 +74,7 @@ const LookbookPage = () => {
     query LookbookQuery {
       allStrapiLookbook(sort: {order: ASC}) {
         nodes {
+          id
           spread
           order
           flex
@@ -111,9 +112,9 @@ const LookbookPage = () => {
           image={lookbook.image.localFile.childImageSharp.gatsbyImageData}
           alt={lookbook.image.alternativeText}
         /> */}
-        {allStrapiLookbook.nodes.map((lookbook, i) => (
+        {allStrapiLookbook.nodes.map((lookbook) => (
           <LinkedLook
-            key={i}
+            key={lookbook.id}
             image={lookbook.image}
             lights={lookbook.lights}
             flex={lookbook.flex}
@@ -136,8 +137,6 @@ export const Head = () => {
       title={`Wedding Lookbook | ${useSiteMetadata().title}`}
       url="/wedding/lookbook"
     // TODO: 
-    // description="Your go to holiday lights installer in the Reno, Truckee, and North Tahoe area. A list of frequently asked questions. Please reach out for more information and estimates."
-    // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/og_image-sierra_lighting-bistro_lights.jpg"
     />
   )
 }

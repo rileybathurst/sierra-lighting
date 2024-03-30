@@ -2208,6 +2208,8 @@ type Query_strapiServiceArgs = {
   description: InputMaybe<STRAPI_SERVICEDescriptionFilterInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   featured_lights: InputMaybe<STRAPI_LIGHTFilterListInput>;
+  hero_dark: InputMaybe<STRAPI__MEDIAFilterInput>;
+  hero_light: InputMaybe<STRAPI__MEDIAFilterInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   light_groups: InputMaybe<STRAPI_LIGHT_GROUPFilterListInput>;
@@ -5507,6 +5509,8 @@ type STRAPI_SERVICE = Node & {
   readonly description: Maybe<STRAPI_SERVICEDescription>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly featured_lights: Maybe<ReadonlyArray<Maybe<STRAPI_LIGHT>>>;
+  readonly hero_dark: Maybe<STRAPI__MEDIA>;
+  readonly hero_light: Maybe<STRAPI__MEDIA>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly light_groups: Maybe<ReadonlyArray<Maybe<STRAPI_LIGHT_GROUP>>>;
@@ -5638,6 +5642,8 @@ type STRAPI_SERVICEFieldSelector = {
   readonly description: InputMaybe<STRAPI_SERVICEDescriptionFieldSelector>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly featured_lights: InputMaybe<STRAPI_LIGHTFieldSelector>;
+  readonly hero_dark: InputMaybe<STRAPI__MEDIAFieldSelector>;
+  readonly hero_light: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly light_groups: InputMaybe<STRAPI_LIGHT_GROUPFieldSelector>;
@@ -5668,6 +5674,8 @@ type STRAPI_SERVICEFilterInput = {
   readonly description: InputMaybe<STRAPI_SERVICEDescriptionFilterInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly featured_lights: InputMaybe<STRAPI_LIGHTFilterListInput>;
+  readonly hero_dark: InputMaybe<STRAPI__MEDIAFilterInput>;
+  readonly hero_light: InputMaybe<STRAPI__MEDIAFilterInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly light_groups: InputMaybe<STRAPI_LIGHT_GROUPFilterListInput>;
@@ -5759,6 +5767,8 @@ type STRAPI_SERVICESortInput = {
   readonly description: InputMaybe<STRAPI_SERVICEDescriptionSortInput>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly featured_lights: InputMaybe<STRAPI_LIGHTSortInput>;
+  readonly hero_dark: InputMaybe<STRAPI__MEDIASortInput>;
+  readonly hero_light: InputMaybe<STRAPI__MEDIASortInput>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly light_groups: InputMaybe<STRAPI_LIGHT_GROUPSortInput>;
@@ -9078,6 +9088,13 @@ type HeroQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type HeroQueryQuery = { readonly strapiSeason: { readonly wedding: boolean | null } | null, readonly xmas: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly services: ReadonlyArray<{ readonly slug: string | null } | null> | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childrenImageSharp: ReadonlyArray<{ readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null> | null } | null } | null, readonly darkImage: { readonly alternativeText: string | null, readonly localFile: { readonly childrenImageSharp: ReadonlyArray<{ readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null> | null } | null } | null }> }, readonly wedding: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly services: ReadonlyArray<{ readonly slug: string | null } | null> | null, readonly image: { readonly localFile: { readonly childrenImageSharp: ReadonlyArray<{ readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null> | null } | null } | null, readonly darkImage: { readonly localFile: { readonly childrenImageSharp: ReadonlyArray<{ readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null> | null } | null } | null }> } };
 
+type homeGalleryFragmentFragment = { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null };
+
+type HomeGalleryQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type HomeGalleryQueryQuery = { readonly strapiSeason: { readonly wedding: boolean | null } | null, readonly wedding: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly patio: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly socialEvents: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly commercialEvents: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly residential: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly commercial: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null };
+
 type lightCardFragment = { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null };
 
 type lightGroupFragment = { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly weddingOrder: number | null, readonly xmasOrder: number | null, readonly services: ReadonlyArray<{ readonly slug: string | null, readonly id: string, readonly name: string | null } | null> | null };
@@ -9104,7 +9121,7 @@ type LightsQueryQuery = { readonly overhead: { readonly id: string, readonly nam
 type LookbookQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type LookbookQueryQuery = { readonly allStrapiLookbook: { readonly nodes: ReadonlyArray<{ readonly spread: number | null, readonly order: number | null, readonly flex: number | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null }> } };
+type LookbookQueryQuery = { readonly allStrapiLookbook: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly spread: number | null, readonly order: number | null, readonly flex: number | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null }> } };
 
 type LookbookTemplateQueryVariables = Exact<{
   spread: Scalars['Int'];

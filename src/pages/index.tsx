@@ -13,18 +13,10 @@ import SnowyRoof from "../images/snowyroof";
 import IndoorWedding from "../images/indoorwedding";
 import HomeHero from "../components/home-hero";
 
-// HomeGallery images
-import Backyard from "../images/backyard";
-import WestShoreWedding from "../images/WestShoreWedding";
-import BistroLights from "../images/bistro-lights";
-import NorthTahoeArts from "../images/northtahoearts";
-import NorthTahoeEvents from "../images/northtahoeevents";
-import InclineChevron from "../images/inclinechevron";
 import Qualities from "../components/qualities";
+import HomeGallery from "../components/home-gallery";
 
 const IndexPage = () => {
-
-  // myUndefinedFunction();
 
   const { strapiSeason } = useStaticQuery(graphql`
     query MyQuery {
@@ -73,21 +65,7 @@ const IndexPage = () => {
               <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
             </section>
 
-            <div className="home-gallery">
-              {strapiSeason.wedding === true ? (
-                <>
-                  <BistroLights />
-                  <WestShoreWedding />
-                  <Backyard />
-                </>
-              ) : (
-                <>
-                  <NorthTahoeEvents />
-                  <InclineChevron />
-                  <NorthTahoeArts />
-                </>
-              )}
-            </div>
+            <HomeGallery />
 
           </div>
         </div>
