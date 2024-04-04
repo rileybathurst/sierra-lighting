@@ -15,6 +15,7 @@ import remarkGfm from 'remark-gfm'
 import Card from '../components/card';
 import { CardType } from '../types/card';
 import Start from '../components/start';
+import Adjective from '../components/adjective';
 
 function Breadcrumb(props: { title: string; }) {
 
@@ -283,6 +284,8 @@ const ServiceView = ({ data }) => {
       <section id="process" className='stork backed bb'>
         <hr />
         <h2>Our Process</h2>
+        <Adjective service={data.strapiService.slug} />
+        <hr />
         <ol>
           {data.allStrapiProcess.nodes.map((process: {
             id: React.Key;

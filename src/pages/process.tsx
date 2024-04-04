@@ -11,6 +11,9 @@ import { useStrapiSeason } from "../hooks/use-strapi-season";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
+// TODO: I had problems making this work I need to fix it
+// import Adjective from '../components/adjective';
+
 const ProcessPage = () => {
 
   const data = useStaticQuery(graphql`
@@ -42,31 +45,39 @@ const ProcessPage = () => {
 
     if (processes === 'weddingProcesses') {
       return (
-        <ol>
-          {weddingProcesses.map(process => (
-            <li key={process.id}>
-              <h3>{process.name}</h3>
-              <ReactMarkdown
-                children={process.markdown.data.markdown}
-                remarkPlugins={[remarkGfm]}
-              />
-            </li>
-          ))}
-        </ol>
+        <>
+          <p>Ready to bring your vision to life ? Get started with a free estimate today and let us illuminate your wedding or event with an unforgettable lighting display!</p>
+          <hr />
+          <ol>
+            {weddingProcesses.map(process => (
+              <li key={process.id}>
+                <h3>{process.name}</h3>
+                <ReactMarkdown
+                  children={process.markdown.data.markdown}
+                  remarkPlugins={[remarkGfm]}
+                />
+              </li>
+            ))}
+          </ol>
+        </>
       )
     } else if (processes === 'holidayProcesses') {
       return (
-        <ol>
-          {holidayProcesses.map(process => (
-            <li key={process.id}>
-              <h3>{process.name}</h3>
-              <ReactMarkdown
-                children={process.markdown.data.markdown}
-                remarkPlugins={[remarkGfm]}
-              />
-            </li>
-          ))}
-        </ol>
+        <>
+          <p>Ready to bring your vision to life ? Get started with a free estimate today and let us illuminate your home or business with an unforgettable lighting display!</p>
+          <hr />
+          <ol>
+            {holidayProcesses.map(process => (
+              <li key={process.id}>
+                <h3>{process.name}</h3>
+                <ReactMarkdown
+                  children={process.markdown.data.markdown}
+                  remarkPlugins={[remarkGfm]}
+                />
+              </li>
+            ))}
+          </ol>
+        </>
       )
     } else {
       return null;
@@ -118,7 +129,7 @@ const ProcessPage = () => {
               value="wedding"
               onChange={seasonSwitcher}
             />
-            <div>Wedding / <span>Social Event</span></div>
+            <div>Wedding / <span>Commercial or Social Event</span></div>
           </label>
           <label className="current">
             <input

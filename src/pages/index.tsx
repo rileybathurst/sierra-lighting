@@ -83,6 +83,10 @@ const IndexPage = () => {
 
           {strapiSeason.wedding === true ? (
             // TODO: this has a bad classname
+            // TODO: add more featured lights here 
+            // this is going to need the same switch as process to deal with wedding vs christmas on a major level
+            // Im not sure about christmas as much as wedding Roof Line on both vs trees or wreaths and railings?
+
             <Link to="/light/drapery" className="snowyroof-container adhere">
               <IndoorWedding />
               <p className="sticker">Drapery</p>
