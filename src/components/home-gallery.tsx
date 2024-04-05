@@ -58,20 +58,20 @@ const HomeGallery = () => {
     data.wedding
   ]
 
-  console.log(WedddingSeason.map((service) => service))
+  // console.log(WedddingSeason.map((service) => service))
 
   return (
     <div className="home-gallery">
       {data.strapiSeason.wedding === true ? (
         WedddingSeason.map((service) => (
-          <Link to={`/${service.slug}`} key={service.id} className='poster'>
+          <Link to={`/${service.slug}`} key={service.id} className='p2'>
             <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData} alt={service.hero_light.alternativeText} />
             <span>{service.name}</span>
           </Link>
         ))
       ) : (
         ChristmasSeason.map((service) => (
-          <Link to={`/${service.slug}`} key={service.id} className='poster'>
+          <Link to={`/${service.slug}`} key={service.id} className='p2'>
             <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData} alt={service.hero_light.alternativeText} />
             <span>{service.name}</span>
           </Link>

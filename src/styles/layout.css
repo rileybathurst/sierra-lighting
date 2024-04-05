@@ -205,6 +205,10 @@ header {
     border-color: hsl(var(--denim), 12.5%, 12.5%);
     background-color: hsl(var(--denim), 50%, 12.5%);
   }
+
+  .gatsby-image-wrapper {
+    margin-block-end: 1rem;
+  }
 }
 
 .area-card:not(:has(ul)) h3 {
@@ -232,6 +236,7 @@ header {
     .home-gallery {
       grid-row: 1;
       grid-column: 1;
+      margin-block-start: 1rem;
     }
   }
 }

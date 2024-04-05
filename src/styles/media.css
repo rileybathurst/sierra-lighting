@@ -57,7 +57,7 @@ svg {
   }
 }
 
-.poster > * {
+.poster .poster > * {
   display: inline;
   /* adding !important will add some help to safari but break way more */
 }
@@ -335,4 +335,87 @@ header svg:active {
   border-radius: var(--border-radius);
   border: 1px solid whitesmoke;
   /*  TODO: theres a slight white gap at the bottom */
+}
+
+/*------------------------------------*/
+/* #P2 */
+/*------------------------------------*/
+
+/* restart the poster its a super mess */
+
+.p2 {
+  width: 100%;
+  display: grid;
+
+  margin-inline: auto;
+  box-shadow: var(--troposphere);
+  border-radius: 1rem;
+  border: 2px solid whitesmoke;
+  margin-block-end: 1.5rem;
+  max-width: var(--pelican);
+
+  @media (min-width: 60rem) {
+    margin-block-end: 3rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border-color: hsl(var(--denim), 12%, 25%);
+  }
+
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .gatsby-image-wrapper {
+    display: block;
+    transition: var(--moment);
+    z-index: var(--floor);
+    border-radius: calc(1rem - 1px);
+
+    /* get rid of the line test */
+    padding: 0;
+    margin: 0;
+    height: min-content;
+  }
+
+  .gatsby-image-wrapper-constrained {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  img {
+    width: 100%;
+    /* filter: drop-shadow(0 0 3px #333); */
+    border-radius: calc(1rem - 1px);
+  }
+
+  > :not(.gatsby-image-wrapper) {
+    align-self: end;
+    justify-self: center;
+    z-index: var(--understory);
+    background-color: whitesmoke;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-block-end: 1rem;
+    box-shadow: var(--troposphere);
+    border: 1px solid whitesmoke;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 12%, 25%);
+      border-color: hsl(var(--denim), 12%, 25%);
+    }
+  }
+}
+
+/* the unconstraied sclae effect might be different in storybook test it in the wild */
+a.p2:hover {
+  .gatsby-image-wrapper {
+    transform: scale(1.05);
+    /* z-index: var(--floor); */
+  }
+
+  > :not(.gatsby-image-wrapper) {
+    /* z-index: var(--understory); */
+  }
 }

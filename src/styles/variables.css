@@ -107,10 +107,10 @@
   /*  https://en.wikipedia.org/wiki/Forest */
   /*------------------*/
 
-  --floor: 1;
-  --understory: 2;
-  --canopy: 3;
-  --emergent: 4;
+  --floor: 0;
+  --understory: 1;
+  --canopy: 2;
+  --emergent: 3;
 }
 
 @media (prefers-color-scheme: dark) {

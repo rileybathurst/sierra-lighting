@@ -9182,6 +9182,11 @@ type SearchQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type SearchQueryQuery = { readonly allStrapiLight: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
 
+type SeasonalLightsQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SeasonalLightsQueryQuery = { readonly strapiSeason: { readonly wedding: boolean | null } | null, readonly wedding: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly featured_lights: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null }> }, readonly holiday: { readonly nodes: ReadonlyArray<{ readonly slug: string | null, readonly featured_lights: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null }> } };
+
 type ServiceLightsTemplateQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;

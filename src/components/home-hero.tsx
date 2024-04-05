@@ -129,41 +129,38 @@ const HomeHero = () => {
   return (
     <div className="home-hero">
       {data.strapiSeason.wedding === true ? (
-        <>
-          {data.wedding.nodes.map(project => (
-            <Link
-              to={`/project/${project.slug}`}
-              key={project.id}
-              className="adhere"
-            >
-              <SchemeImage
-                light={project.image}
-                dark={project.darkImage}
-                title={project.title}
-              />
-              <p className="sticker">{project.title} See the Project</p>
-            </Link>
-          ))}
-        </>
+        data.wedding.nodes.map(project => (
+          <Link
+            to={`/project/${project.slug}`}
+            key={project.id}
+            className="p2"
+          >
+            <SchemeImage
+              light={project.image}
+              dark={project.darkImage}
+              title={project.title}
+            />
+            <p className="sticker">{project.title} See the Project</p>
+          </Link>
+        ))
       ) : (
-        <>
-          {data.xmas.nodes.map(project => (
-            <Link
-              to={`/project/${project.slug}`}
-              key={project.id}
-              className="adhere"
-            >
-              <SchemeImage
-                light={project.image}
-                dark={project.darkImage}
-                title={project.title}
-              />
-              <p className="sticker">{project.title} See the Project</p>
-            </Link>
-          ))}
-        </>
-      )}
-    </div>
+        data.xmas.nodes.map(project => (
+          <Link
+            to={`/project/${project.slug}`}
+            key={project.id}
+            className="adhere"
+          >
+            <SchemeImage
+              light={project.image}
+              dark={project.darkImage}
+              title={project.title}
+            />
+            <p className="sticker">{project.title} See the Project</p>
+          </Link>
+        ))
+      )
+      }
+    </div >
   )
 }
 

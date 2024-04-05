@@ -9,9 +9,9 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import AreaList from '../lists/area-list';
 import TestimonialList from "../components/testimonial-list";
-import SnowyRoof from "../images/snowyroof";
-import IndoorWedding from "../images/indoorwedding";
 import HomeHero from "../components/home-hero";
+import Start from "../components/start";
+import SeasonalLights from "../components/seasonal-lights";
 
 import Qualities from "../components/qualities";
 import HomeGallery from "../components/home-gallery";
@@ -37,11 +37,7 @@ const IndexPage = () => {
               {/* // * shortened version of site description */}
               <h2 className="site_title">{useSiteMetadata().slogan}</h2>
 
-              <Link
-                to="/contact"
-                className="button button-hero"
-              >Start with a free quote
-              </Link>
+              <Start />
             </div>
 
             <HomeHero />
@@ -62,6 +58,7 @@ const IndexPage = () => {
               <hr />
               <h3 className="crest">Service Area</h3>
               <AreaList />
+              {/* // TODO: this currently doesn't look good above or below the list */}
               <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
             </section>
 
@@ -69,6 +66,8 @@ const IndexPage = () => {
 
           </div>
         </div>
+
+        <hr className="albatross " />
 
         <div className="services-wrap">
           <section id="qualities" className="qualities">
@@ -81,21 +80,7 @@ const IndexPage = () => {
             </div>
           </section>
 
-          {strapiSeason.wedding === true ? (
-            // TODO: this has a bad classname
-            // TODO: add more featured lights here 
-            // this is going to need the same switch as process to deal with wedding vs christmas on a major level
-            // Im not sure about christmas as much as wedding Roof Line on both vs trees or wreaths and railings?
-
-            <Link to="/light/drapery" className="snowyroof-container adhere">
-              <IndoorWedding />
-              <p className="sticker">Drapery</p>
-            </Link>
-          ) : (
-            <div className="snowyroof-container">
-              <SnowyRoof />
-            </div>
-          )}
+          <SeasonalLights />
         </div>
 
         <div className="slider-container">

@@ -2,7 +2,7 @@ import * as React from "react"
 
 function Adj({ adjService }) {
 
-  console.log(adjService);
+  // console.log(adjService);
 
   if (adjService === 'wedding') {
     return (
