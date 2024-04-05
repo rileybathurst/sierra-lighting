@@ -261,7 +261,7 @@ const ServiceView = ({ data }) => {
 
 
           </div>
-          <Lookbook slug={data.strapiService.slug} />
+          <Lookbook slug={data.strapiService.slug} hr="true" />
         </section>
 
       </main>

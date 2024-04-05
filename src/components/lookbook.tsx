@@ -3,9 +3,18 @@
 import React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image';
-// import Gats
 
-const Lookbook = ({ slug }: { slug: string }) => {
+function Hr({ hr }: { hr: string }) {
+  if (hr === 'true') {
+    return (
+      <hr className='pelican' />
+    )
+  } else {
+    return null;
+  }
+}
+
+const Lookbook = ({ slug, hr }: { slug: string; hr: string }) => {
 
   const { strapiLookbook } = useStaticQuery(graphql`
     query LookbookPosterQuery {
@@ -25,14 +34,17 @@ const Lookbook = ({ slug }: { slug: string }) => {
   if (slug === 'wedding') {
     return (
       <>
-        <hr className='pelican' />
+
+        <Hr hr={hr} />
+
         <Link to="/wedding/lookbook" className='p2 ratio-16-9'>
           <GatsbyImage
             image={strapiLookbook.image.localFile.childImageSharp.gatsbyImageData}
             alt={strapiLookbook.image.alternativeText}
             objectPosition="center"
           />
-          <h3>Browse the 2024 Lookbook</h3>
+          {/* // TODO: media query on size */}
+          <h3>Browse our 2024 Wedding Lookbook</h3>
         </Link>
       </>
     )

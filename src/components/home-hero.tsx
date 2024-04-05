@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
+import Lookbook from "./lookbook";
 
 // light to dark switch
 export function useMediaQuery(query) {
@@ -129,20 +130,23 @@ const HomeHero = () => {
   return (
     <div className="home-hero">
       {data.strapiSeason.wedding === true ? (
-        data.wedding.nodes.map(project => (
+        <>
+          <Lookbook slug="wedding" hr="false" />
+          {/* data.wedding.nodes.map(project => (
           <Link
             to={`/project/${project.slug}`}
             key={project.id}
             className="p2"
-          >
+            >
             <SchemeImage
               light={project.image}
               dark={project.darkImage}
               title={project.title}
-            />
+              />
             <p className="sticker">{project.title} See the Project</p>
           </Link>
-        ))
+        )) */}
+        </>
       ) : (
         data.xmas.nodes.map(project => (
           <Link
