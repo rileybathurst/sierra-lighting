@@ -1,6 +1,3 @@
-// ! this needs to move to static Query
-// TODO: add FAQ
-
 import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
 import MuxPlayer from '@mux/mux-player-react';
@@ -16,6 +13,7 @@ import Card from '../components/card';
 import { CardType } from '../types/card';
 import Start from '../components/start';
 import Adjective from '../components/adjective';
+import Lookbook from '../components/lookbook';
 
 function Breadcrumb(props: { title: string; }) {
 
@@ -198,19 +196,6 @@ function Consultant({ after_the_triptych }) {
           remarkPlugins={[remarkGfm]}
         />
       </div>
-    )
-  } else {
-    return null;
-  }
-}
-
-// This is super specific and if we build more look books we need to make this more dynamic
-function Lookbook({ slug }) {
-  if (slug === 'wedding') {
-    return (
-      <section id="lookbook" className='stork'>
-        <h3><Link to="/wedding/lookbook">Browse the 2024 Lookbook</Link></h3>
-      </section>
     )
   } else {
     return null;

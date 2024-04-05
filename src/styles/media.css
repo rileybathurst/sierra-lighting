@@ -419,3 +419,7 @@ a.p2:hover {
     /* z-index: var(--understory); */
   }
 }
+
+.p2.ratio-16-9 > .gatsby-image-wrapper {
+  aspect-ratio: 16/9;
+}
