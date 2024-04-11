@@ -287,8 +287,8 @@ ol li {
   }
 }
 
-.areas__page li {
-  line-height: 2rem;
+.area-list li {
+  line-height: 1.75rem;
 }
 
 .site_title {

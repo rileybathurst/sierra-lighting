@@ -10,31 +10,31 @@ export const Poster = ({ primary }) => {
     : "storybook-Poster--secondary";
   return (
     <>
-      <a href="#" className="p2">
+      <a href="#" className="poster">
         <img src={ImageFile} className="gatsby-image-wrapper" />
-        <p className="">p2</p>
+        <p className="">poster</p>
       </a>
 
-      <a href="#" className="p2">
+      <a href="#" className="poster">
         <div className="gatsby-image-wrapper gatsby-image-wrapper-constrained">
           <img src={ImageFile} />
         </div>
         <p className="">nested gatsby-image-wrapper</p>
       </a>
 
-      <a href="#" className="p2">
+      <a href="#" className="poster">
         <div className="gatsby-image-wrapper gatsby-image-wrapper-constrained">
           <img src={ImageFile} />
         </div>
       </a>
 
-      <div className="p2">
+      <div className="poster">
         <div className="gatsby-image-wrapper gatsby-image-wrapper-constrained">
           <img src={ImageFile} />
         </div>
       </div>
 
-      {/*       <div className="p2">
+      {/*       <div className="poster">
         <img src={ImageFile} className="gatsby-image-wrapper" />
       </div> */}
     </>

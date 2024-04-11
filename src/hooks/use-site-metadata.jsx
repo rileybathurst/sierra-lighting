@@ -9,7 +9,6 @@ export const useSiteMetadata = () => {
           siteTitle
           url
           siteUrl
-          defaultDescription
           defaultImage
           defaultImageAlt
           openingHours

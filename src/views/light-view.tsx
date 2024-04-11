@@ -168,15 +168,13 @@ const LightView = ({ light, other }) => {
           <hr />
         </div>
 
-        <div className="light-hero">
-
+        <div className="light-hero poster">
           <GatsbyImage
             image={
               light?.image?.localFile?.childImageSharp
                 ?.gatsbyImageData
             }
             alt={light.image?.alternativeText}
-            className="poster"
           />
           <GatsbyImage
             image={

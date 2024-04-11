@@ -25,7 +25,11 @@ const strapiConfig = {
   ],
   singleTypes: [
     'topbar',
-    'season'
+    'season',
+    'about',
+    'hero',
+    'area-exploratrion',
+    'minimum'
   ],
   remoteFileHeaders: {
     Referer: "http://45.79.101.19:1343",
@@ -39,7 +43,7 @@ module.exports = {
     siteTitle: "Sierra Lighting",
     siteUrl: "https://sierra.lighting/",
     url: "https://sierra.lighting", // No trailing slash allowed!
-    defaultDescription: "Dependable holiday, landscape and events light installation in Reno, Truckee, Lake Tahoe, Carson City and Minden.",
+    slogan: 'Dependable wedding, event, landscape and Christmas light installation',
     defaultImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg',
     defaultImageAlt: 'Sierra Lighting created a beautiful holiday light display', // TODO: wedding
     openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 08:00-18:00',
@@ -51,7 +55,6 @@ module.exports = {
     itemType: 'LocalBusiness',
     priceRange: '$1000-2500',
     alternateName: 'Sierra Christmas Lights', // TODO: add this to the schema
-    slogan: 'Dependable holiday, landscape and events light installation',
     geo: {
       latitude: "39.32817",
       longitude: "-120.18404",

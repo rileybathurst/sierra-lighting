@@ -8,27 +8,21 @@ import { SEO } from "../../components/seo";
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-
+import Start from "../../components/start";
 
 function LinkedLook({ image, lights, flex }) {
 
-  console.log(flex);
-  /* if (flex === 3) {
-      flex = 'flex-3';
-    } */
+  // console.log(flex);
 
   if (lights.length === 1) {
     return (
       <>
-        <Link to={`/light/${lights[0].slug}`} className={`adhere flex-${flex}`}>
+        <Link to={`/light/${lights[0].slug}`} className={`poster flex-${flex}`}>
           <GatsbyImage
             image={image.localFile.childImageSharp.gatsbyImageData}
             alt={image.alternativeText}
           />
-          <p className='sticker'>
-            <span>{lights[0].name}</span>
-          </p>
-          <div className='paper'>{/* stay gold */}</div>
+          <p>{lights[0].name}</p>
         </Link >
       </>
     );
@@ -36,7 +30,7 @@ function LinkedLook({ image, lights, flex }) {
 
     return (
       <>
-        <Link to={`/light/${lights[0].slug}`} className={`adhere flex-${flex}`}>
+        <Link to={`/light/${lights[0].slug}`} className={`poster flex-${flex}`}>
           <GatsbyImage
             image={image.localFile.childImageSharp.gatsbyImageData}
             alt={image.alternativeText}
@@ -44,25 +38,23 @@ function LinkedLook({ image, lights, flex }) {
           <ul className='lookbook-list'>
             {lights.map((light, i) => (
               <li>
-                <Link to={`/light/${light.slug}`} key={i} className='sticker'>
+                <Link to={`/light/${light.slug}`} key={i}>
                   <span>{light.name}</span>
                 </Link>
               </li>
             ))}
           </ul>
-          <div className='paper'>{/* stay gold */}</div>
         </Link>
       </>
     );
   } else {
     return (
-      <div className='adhere'>
+      <div className='poster'>
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
-          className={`adhere flex-${flex}`}
+          className={`flex-${flex}`}
         />
-        <div className='paper'>{/* stay gold */}</div>
       </div>
     );
   }
@@ -104,6 +96,8 @@ const LookbookPage = () => {
 
         <h2 className="crest">Wedding</h2>
         <h1 className="range">2024 Lookbook</h1>
+        <Start className="button--left-align" />
+        <hr />
       </main>
 
       <section className='lookbook albatross'>

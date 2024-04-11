@@ -1,26 +1,17 @@
 import * as React from "react"
-
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import AreaList from "../lists/area-list";
+import Areas from "../components/areas";
 
 const AreasPage = () => {
 
   return (
     <>
       <Header />
-
-      <main className="stork">
-        <h1>Service Areas</h1>
-        <div className="areas__page">
-          <AreaList />
-        </div>
-      </main>
-
+      <Areas />
       <Footer />
-
     </>
   )
 }

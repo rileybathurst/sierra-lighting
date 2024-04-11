@@ -37,7 +37,7 @@ const Lookbook = ({ slug, hr }: { slug: string; hr: string }) => {
 
         <Hr hr={hr} />
 
-        <Link to="/wedding/lookbook" className='p2 ratio-16-9'>
+        <Link to="/wedding/lookbook" className='poster ratio-16-9'>
           <GatsbyImage
             image={strapiLookbook.image.localFile.childImageSharp.gatsbyImageData}
             alt={strapiLookbook.image.alternativeText}

@@ -35,12 +35,10 @@ function SchemeImage({ light, dark, title }) {
       {isSiteDark && <GatsbyImage
         image={dark.localFile?.childrenImageSharp[0]?.gatsbyImageData}
         alt={dark?.localFile?.alternativeText || title}
-        className='poster'
       />}
       {isSiteDark || <GatsbyImage
         image={light.localFile?.childrenImageSharp[0]?.gatsbyImageData}
         alt={light?.localFile?.alternativeText || title}
-        className='poster'
       />}
     </>
   );
@@ -136,7 +134,7 @@ const HomeHero = () => {
           <Link
             to={`/project/${project.slug}`}
             key={project.id}
-            className="p2"
+            className="poster"
             >
             <SchemeImage
               light={project.image}
@@ -152,7 +150,7 @@ const HomeHero = () => {
           <Link
             to={`/project/${project.slug}`}
             key={project.id}
-            className="adhere"
+            className="poster"
           >
             <SchemeImage
               light={project.image}

@@ -98,33 +98,41 @@
 
 .menu__small .wedding,
 .bigboy .wedding {
+  .logo {
+    order: 3;
+  }
+
   .xmas_r {
-    order: 2;
+    order: 4;
   }
   .xmas_c {
-    order: 3;
+    order: 5;
   }
   .wedding {
     order: 1;
   }
   .c {
-    order: 4;
+    order: 2;
   }
 }
 
 .menu__small .holiday,
 .bigboy .holiday {
-  .xmas_r {
-    order: 1;
-  }
-  .xmas_c {
-    order: 2;
-  }
-  .wedding {
+  .logo {
     order: 3;
   }
-  .c {
+
+  .xmas_r {
+    order: 2;
+  }
+  .xmas_c {
+    order: 3;
+  }
+  .wedding {
     order: 4;
+  }
+  .c {
+    order: 5;
   }
 }
 

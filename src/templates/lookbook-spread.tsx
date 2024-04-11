@@ -1,3 +1,5 @@
+// TODO: I think this is fully gone and now just a single page
+
 import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -17,7 +19,7 @@ function LinkedLook({ image, lights, flex }) {
   if (lights.length === 1) {
     return (
       <>
-        <Link to={`/light/${lights[0].slug}`} className={`adhere flex-${flex}`}>
+        <Link to={`/light/${lights[0].slug}`} className={`flex-${flex}`}>
           <GatsbyImage
             image={image.localFile.childImageSharp.gatsbyImageData}
             alt={image.alternativeText}

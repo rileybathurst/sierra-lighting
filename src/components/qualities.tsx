@@ -29,7 +29,8 @@ function Qualities() {
         <section key={quality.id}>
           <div className='brow'>
             <h3 className='supra'>{quality.name}</h3>
-            <h4 className='eyebrow'>{quality.eyebrow}</h4>
+            {/* TODO: get rid of these everywhere */}
+            {/* <h4 className='eyebrow'>{quality.eyebrow}</h4> */}
           </div>
           <p>{quality.description.data.description}</p>
         </section>

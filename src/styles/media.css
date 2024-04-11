@@ -10,6 +10,10 @@ svg {
   }
 }
 
+.logo {
+  max-width: 10rem;
+}
+
 /*------------------*/
 /* IMAGES */
 /*------------------*/
@@ -22,27 +26,21 @@ svg {
   }
 }
 
-.poster.gatsby-image-wrapper {
-  box-shadow: var(--troposphere);
-  border-radius: var(--border-radius);
-  border: 1px solid whitesmoke;
+/*------------------------------------*/
+/* #POSTER */
+/*------------------------------------*/
 
-  @media (prefers-color-scheme: dark) {
-    border-color: hsl(var(--denim), 12%, 25%);
-  }
-}
-
-.poster,
-.home-gallery > * {
+/* // .home-gallery > * { */
+.poster {
   width: 100%;
-  max-width: 60rem;
-  display: block;
+  display: grid;
+
   margin-inline: auto;
   box-shadow: var(--troposphere);
-  border-radius: var(--border-radius);
-  border: 1px solid whitesmoke;
-  aspect-ratio: 3/2;
+  border-radius: 1rem;
+  border: 2px solid whitesmoke;
   margin-block-end: 1.5rem;
+  max-width: var(--pelican);
 
   @media (min-width: 60rem) {
     margin-block-end: 3rem;
@@ -52,107 +50,73 @@ svg {
     border-color: hsl(var(--denim), 12%, 25%);
   }
 
-  img {
-    width: 100%;
-  }
-}
-
-.poster .poster > * {
-  display: inline;
-  /* adding !important will add some help to safari but break way more */
-}
-
-a .poster {
-  transition: var(--moment);
-}
-
-a:hover .poster {
-  opacity: 0.9;
-  filter: brightness(0.8);
-}
-
-.poster--small {
-  max-width: 40rem;
-}
-
-.home-hero,
-.snowyroof-container {
-  max-width: var(--stork);
-  margin-inline: auto;
-}
-
-.village,
-.snowyroof {
-  aspect-ratio: 4/3; /*  TODO check on old ios */
-}
-
-/*------------------*/
-/* ADHERE */
-/*------------------*/
-
-.adhere {
-  display: grid;
-  /* container-type: inline-size; */
-  /* this breaks the width */
-
   > * {
     grid-row: 1;
     grid-column: 1;
   }
 
-  /* match the card */
-  .paper {
-    grid-row: 1/3;
-    background-color: hsl(var(--honey), 75%, 87%);
-    border: 2px solid whitesmoke;
-    box-shadow: var(--mesosphere);
-    border-radius: var(--card-radius);
-
-    @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 25%, 12%);
-      border-color: hsl(var(--denim), 25%, 25%);
-    }
-  }
-
-  /* TODO: smaller screens the sticker are below the image so not this style I need to keep working on the container query  */
-  .sticker {
-    z-index: var(--understory);
-    align-self: flex-end;
-    /*  text-align: center; */
-    justify-self: center;
-    padding: 0.25rem;
-    border-radius: var(--border-radius);
-    opacity: 0.7;
-    background-color: whitesmoke;
-    border: 1px solid white;
-
-    @container (min-width: 35rem) {
-      margin-block-end: 2lh;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 100%, 12%);
-      border: 1px solid black; /*  TODO */
-    }
-
-    span {
-      opacity: 1;
-    }
-  }
-
   .gatsby-image-wrapper {
+    display: block;
+    transition: var(--moment);
     z-index: var(--floor);
+    border-radius: calc(1rem - 1px);
+
+    /* get rid of the line test */
+    padding: 0;
+    margin: 0;
+    height: min-content;
+  }
+
+  .gatsby-image-wrapper-constrained {
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  img {
+    width: 100%;
+    /* filter: drop-shadow(0 0 3px #333); */
+    border-radius: calc(1rem - 1px);
+  }
+
+  > :not(.gatsby-image-wrapper) {
+    align-self: end;
+    justify-self: center;
+    z-index: var(--understory);
+    background-color: whitesmoke;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-block-end: 1rem;
+    box-shadow: var(--troposphere);
+    border: 1px solid whitesmoke;
+
+    @media (prefers-color-scheme: dark) {
+      background-color: hsl(var(--denim), 12%, 25%);
+      border-color: hsl(var(--denim), 12%, 25%);
+    }
   }
 }
 
-.flex-1 {
-  grid-template-rows: 1fr 3lvh;
+/* the unconstraied sclae effect might be different in storybook test it in the wild */
+a.poster:hover .gatsby-image-wrapper {
+  transform: scale(1.05);
+  filter: brightness(0.8);
+}
 
-  .lookbook-list,
-  .sticker {
-    grid-row: 2;
-    height: min-content;
-  }
+.poster.ratio-16-9 > .gatsby-image-wrapper {
+  aspect-ratio: 16/9;
+}
+
+.poster--stork,
+.home-hero,
+.snowyroof-container {
+  margin-inline: auto;
+  max-width: var(--stork);
+}
+
+/* TODO: I might have already removed these */
+.village,
+.snowyroof {
+  aspect-ratio: 4/3; /*  TODO check on old ios */
 }
 
 /*------------------*/
@@ -335,91 +299,4 @@ header svg:active {
   border-radius: var(--border-radius);
   border: 1px solid whitesmoke;
   /*  TODO: theres a slight white gap at the bottom */
-}
-
-/*------------------------------------*/
-/* #P2 */
-/*------------------------------------*/
-
-/* restart the poster its a super mess */
-
-.p2 {
-  width: 100%;
-  display: grid;
-
-  margin-inline: auto;
-  box-shadow: var(--troposphere);
-  border-radius: 1rem;
-  border: 2px solid whitesmoke;
-  margin-block-end: 1.5rem;
-  max-width: var(--pelican);
-
-  @media (min-width: 60rem) {
-    margin-block-end: 3rem;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    border-color: hsl(var(--denim), 12%, 25%);
-  }
-
-  > * {
-    grid-row: 1;
-    grid-column: 1;
-  }
-
-  .gatsby-image-wrapper {
-    display: block;
-    transition: var(--moment);
-    z-index: var(--floor);
-    border-radius: calc(1rem - 1px);
-
-    /* get rid of the line test */
-    padding: 0;
-    margin: 0;
-    height: min-content;
-  }
-
-  .gatsby-image-wrapper-constrained {
-    display: inline-block;
-    vertical-align: top;
-  }
-
-  img {
-    width: 100%;
-    /* filter: drop-shadow(0 0 3px #333); */
-    border-radius: calc(1rem - 1px);
-  }
-
-  > :not(.gatsby-image-wrapper) {
-    align-self: end;
-    justify-self: center;
-    z-index: var(--understory);
-    background-color: whitesmoke;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    margin-block-end: 1rem;
-    box-shadow: var(--troposphere);
-    border: 1px solid whitesmoke;
-
-    @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 12%, 25%);
-      border-color: hsl(var(--denim), 12%, 25%);
-    }
-  }
-}
-
-/* the unconstraied sclae effect might be different in storybook test it in the wild */
-a.p2:hover {
-  .gatsby-image-wrapper {
-    transform: scale(1.05);
-    /* z-index: var(--floor); */
-  }
-
-  > :not(.gatsby-image-wrapper) {
-    /* z-index: var(--understory); */
-  }
-}
-
-.p2.ratio-16-9 > .gatsby-image-wrapper {
-  aspect-ratio: 16/9;
 }

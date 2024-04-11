@@ -56,7 +56,7 @@ export const SEO = (SE0: SEO) => {
   const {
     siteTitle,
     siteUrl,
-    defaultDescription,
+    slogan,
     defaultImage,
     defaultImageAlt,
     telephone,
@@ -69,7 +69,7 @@ export const SEO = (SE0: SEO) => {
 
   const seo = {
     title: SE0.title,
-    description: SE0.description || defaultDescription,
+    description: SE0.description || slogan,
     image: SE0.image || defaultImage,
     imageAlt: SE0.imageAlt || defaultImageAlt,
     url: SE0.url || siteUrl,
@@ -104,7 +104,7 @@ export const SEO = (SE0: SEO) => {
             "alternateName": "${alternateName}",
             "url": "${siteUrl}",
             "image": "${defaultImage}",
-            "description": "${defaultDescription}",
+            "description": "${slogan}",
             "openingHours": "${openingHours}",
             "paymentAccepted": "${paymentAccepted}",
             "telephone": "${telephone}",

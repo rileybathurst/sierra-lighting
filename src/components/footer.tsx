@@ -60,8 +60,7 @@ const Footer = () => {
 
   const { allStrapiTeam } = useStaticQuery(graphql`
   query FooterQuery {
-    allStrapiTeam
-    (limit: 3) {
+    allStrapiTeam {
       nodes {
         id
         name
@@ -86,10 +85,66 @@ const Footer = () => {
 
   return (
     <footer>
-      <div className="stork">
-        <hr />
-      </div>
+      <hr className="stork" />
+
+      <h3 className="stork">Start With A Free Quote</h3>
+
+      <form
+        name="contact"
+        data-netlify="true"
+        className="stork"
+        netlify-honeypot="bot-field"
+        method="POST"
+        action="/form-success"
+      >
+
+        <input type="hidden" name="form-name" value="contact" />
+
+        <input type="hidden" name="subject"
+          value={`Contact Form from sierra.lighting ${email}`} />
+
+        <label>Name
+          <input type="text" name="name" />
+        </label>
+        <label>Email
+          <input type="email" name="email" onChange={subject} />
+        </label>
+        <label>Phone
+          <input type="tel" name="tel" />
+        </label>
+        <div className='address-together'>
+          <label className='address'>Address
+            <input type="text" name="address" />
+          </label>
+          <label className='zip'>City or Zip
+            <input type="text" name="zip" />
+          </label>
+        </div>
+        <label>Message
+          <textarea name="message" />
+        </label>
+        <label>How did you hear about us?
+          <input type="text" name="referral" />
+        </label>
+
+        {/* // TODO: this might be a query in the future if I keep changing it */}
+        <label className='checkbox'>
+          I understand there is a minimum of $700 for holiday lights and $1,000 for new wedding or event lighting clients
+          <input type="checkbox" name="minimum" />
+        </label>
+        <p className="sr-only">
+          <label>
+            Don&#39;t fill this out if you&#39;re human:
+            <input name="bot-field" />
+          </label>
+        </p>
+        <button type="submit">Send</button>
+      </form>
+
+
+      <hr className='pelican' />
       <div className="footer-container">
+
         <section id="contact" className="contact">
 
           <h3 className="crest">Contact</h3>
@@ -138,77 +193,18 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="stork inherit">
-        <hr />
-        <h3>Start With A Free Quote</h3>
-      </div>
 
 
-      <form
-        name="contact"
-        data-netlify="true"
-        className="stork"
-        netlify-honeypot="bot-field"
-        method="POST"
-        action="/form-success"
-      >
-
-        <input type="hidden" name="form-name" value="contact" />
-
-        <input type="hidden" name="subject"
-          value={`Contact Form from sierra.lighting ${email}`} />
-
-        <label>Name
-          <input type="text" name="name" />
-        </label>
-        <label>Email
-          <input type="email" name="email" onChange={subject} />
-        </label>
-        <label>Phone
-          <input type="tel" name="tel" />
-        </label>
-        <div className='address-together'>
-          <label className='address'>Address
-            <input type="text" name="address" />
-          </label>
-          <label className='zip'>City or Zip
-            <input type="text" name="zip" />
-          </label>
-        </div>
-        <label>Message
-          <textarea name="message" />
-        </label>
-        <label>How did you hear about us?
-          <input type="text" name="referral" />
-        </label>
-
-        {/* // TODO: this might be a query in the future if I keep changing it */}
-        <label className='checkbox'>
-          I understand there is a minimum of $700 for new clients
-          <input type="checkbox" name="minimum" />
-        </label>
-        <p className="sr-only">
-          <label>
-            Don&#39;t fill this out if you&#39;re human:
-            <input name="bot-field" />
-          </label>
-        </p>
-        <button type="submit">Send</button>
-      </form>
-
-
-      <hr className="stork" />
-
-      {/* // TODO front page only flex arrangment */}
-      <SocialIcons />
-
-      <hr className="pelican" />
+      <hr className="albatross" />
 
       <div className="footer_list">
         <Season>
           <FooterList />
         </Season>
       </div>
+
+      <hr className="albatross" />
+      <SocialIcons />
 
       <hr className="pelican" />
 
@@ -222,7 +218,7 @@ const Footer = () => {
         <Link to="/">
           <Logo />
         </Link>
-        {/* // TODO 2023 This dissappears */}
+        <p>&copy; {new Date().getFullYear()}</p>
         <h5 className="crest">
           <a
             href="https://www.sierrachristmaslights.com/"
@@ -232,7 +228,6 @@ const Footer = () => {
             Formerly known as Sierra Christmas Lights
           </a>
         </h5>
-        <p>&copy; {new Date().getFullYear()}</p>
       </div>
 
     </footer>

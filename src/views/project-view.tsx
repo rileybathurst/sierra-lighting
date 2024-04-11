@@ -65,17 +65,15 @@ function Additional(props) {
 function Gallery(props) {
   if (props.triptych?.length > 0) {
     return (
-      <section className="deck">
+      <section className="deck poster">
         {props.triptych.map((image) => (
           <div key={image?.localFile?.url}>
             {/* // TODO: these should be expandable in some way or another */}
             <GatsbyImage
               image={
-                image?.localFile?.childImageSharp
-                  ?.gatsbyImageData
+                image?.localFile?.childImageSharp?.gatsbyImageData
               }
               alt={image.alternativeText}
-              className="poster"
             />
           </div>
         ))}

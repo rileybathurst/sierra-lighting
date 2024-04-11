@@ -1,111 +1,203 @@
 import * as React from "react";
 import { Link, graphql, useStaticQuery } from 'gatsby';
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
 
-import Header from "../components/header";
+import Logo from "../images/logo";
 import Footer from "../components/footer";
-import AreaList from '../lists/area-list';
-import TestimonialList from "../components/testimonial-list";
-import HomeHero from "../components/home-hero";
+import Areas from '../components/areas';
+import TestimonialRanking from "../components/testimonial-ranking"
 import Start from "../components/start";
-import SeasonalLights from "../components/seasonal-lights";
 
 import Qualities from "../components/qualities";
-import HomeGallery from "../components/home-gallery";
+
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm'
+import TopBar from "../components/topbar";
+import Menu from "../components/menu";
+import Season from "../components/season";
+
 
 const IndexPage = () => {
 
-  const { strapiSeason } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query MyQuery {
       strapiSeason {
         wedding
       }
-    }
+      
+      strapiHero {
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
+      }
+
+      strapiAbout {
+        description {
+          data {
+            description
+          }
+        }
+      }
+
+      allStrapiService {
+        nodes {
+          id
+          name
+          slug
+          hero_light {
+            alternativeText
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
+
+          hero_dark {
+            alternativeText
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
+        }
+      }
+
+      allStrapiTestimonial(sort: {position: ASC}) {
+          nodes {
+            id
+            customer
+            platform
+            excerpt
+            createdAt
+            stars
+            title
+            position
+          }
+        }
+
+      }
   `)
 
   return (
     <>
-      <Header />
+      <TopBar />
       <main className="margin-0">
 
-        <div className="hero-container">
-          <section className="hero">
-            <div>
-              {/* // * shortened version of site description */}
-              <h2 className="site_title">{useSiteMetadata().slogan}</h2>
+        <div className="hero-2">
 
-              <Start />
-            </div>
+          <GatsbyImage
+            image={data.strapiHero.image.localFile.childImageSharp.gatsbyImageData}
+            alt={data.strapiHero.image.alternativeText}
+            className="hero-image"
+          />
 
-            <HomeHero />
-
-            <section id="trusted" className="trusted">
-              <hr />{/* ? should this be down below the h tag */}
-              <h3>Trusted and local</h3>
-              {/* // TODO: Query this from strapi */}
-              <p>Sierra Lighting is here to provide beautiful, hassle free holiday and event lighting for your residence or business. We specialize in outdoor Christmas and wedding lights installation, taking pride in the quality, commercial grade materials we sell and maintain for our customers. Let us help make your next holiday or event really shine!</p>
-            </section>
-          </section>
-        </div>
-
-
-        <div className="areas-and-gallery-container">
-          <div className="areas-and-gallery">
-            <section id="service-area" className="service-area">
-              <hr />
-              <h3 className="crest">Service Area</h3>
-              <AreaList />
-              {/* // TODO: this currently doesn't look good above or below the list */}
-              <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
-            </section>
-
-            <HomeGallery />
-
+          <Menu />
+          <div className='bigboy'>
+            <Season>
+              <li key="logo" className="logo">
+                <Link to="/" className="header__logo" itemProp="logo"><Logo /></Link>
+              </li>
+              <li key="residential" className="xmas_r">
+                <Link to="/residential">Residential<br />Christmas Lights</Link>
+              </li>
+              <li key="commercial" className="xmas_c">
+                <Link to="/commercial">Commercial<br />Christmas Lights</Link>
+              </li>
+              <li key="wedding" className="wedding">
+                <Link to="/wedding">Wedding</Link>
+              </li>
+              <li key="start" className="c">
+                <Link to="/contact">
+                  Start With A<br />
+                  Free Quote
+                </Link>
+              </li>
+            </Season>
           </div>
-        </div>
 
-        <hr className="albatross " />
+          <div className="h2-container">
+            <Logo />
+            <h2>{useSiteMetadata().slogan}</h2>
+          </div>
 
-        <div className="services-wrap">
-          <section id="qualities" className="qualities">
-            <Qualities />
-            <div className="brow">
-              <h3 className='supra'>
-                <Link to="/process">How We Work With You</Link>
-              </h3>
-              <h3 className="eyebrow">Our Process</h3>
-            </div>
-          </section>
+          <section className="h2-text">
+            <ReactMarkdown
+              children={data.strapiAbout.description.data.description}
+              remarkPlugins={[remarkGfm]}
+            />
+            <Start className="button--left-align" />
 
-          <SeasonalLights />
-        </div>
+          </section >
+
+        </div >
+
+        <section id="qualities" className="qualities albatross">
+          <Qualities />
+          <h3 className="eyebrow"><Link to="/process">Learn more about our process</Link></h3>
+        </section>
+
+
 
         <div className="slider-container">
           <section id="slider" className="testimonials">
-            <hr />
-            <h2 className="crest">Testimonials</h2>
-            <h3 className="range">Thanks From Our Customers</h3>
+            <h4>Thanks From Our Customers</h4>
 
-            <TestimonialList />
+            <ul>
+              {data.allStrapiTestimonial.nodes.map(testimonial => (
+                <li key={testimonial.id} className="slider">
+                  {/* // TODO: theres a lot of divs and stuff that can be simplified */}
+                  <div>
+                    <div className="five-stars">
+                      <TestimonialRanking stars={testimonial.stars} />
+                      <p className="sr-only">{testimonial.stars}</p>
+                      <p className="sr-only">1/5stars</p>
+                    </div>
+                  </div>
+                  <p>{testimonial.excerpt}</p>
+                  {/* // TODO: className="together" is a bad name */}
+                  <div className="together">
+                    <h4>{testimonial.customer}</h4>
+                    <p>{testimonial.position}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
 
             <div className="testimonial-links">
               {/* // ? should I have two crests in a row? */}
               <h3 className="crest">
                 <Link to="/testimonials">Read More Reviews</Link>
               </h3>
-              <h3 className="crest">
-                <Link to="#" className="long-title">
-                  Help us you buy submitting your own review
-                </Link>
-              </h3>
             </div>
           </section>
         </div>
 
+
+        <div className="home-services">
+          {data.allStrapiService.nodes.map((service) => (
+            <Link to={`/${service.slug}`} key={service.id} className='poster'>
+              <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData} alt={service.hero_light.alternativeText} />
+              <span>{service.name}</span>
+            </Link>
+          ))}
+        </div>
+
       </main >
+
+      <hr className="albatross " />
+
+      <Areas />
 
       <Footer />
 
@@ -119,8 +211,6 @@ export const Head = () => {
   return (
     <SEO
       title={`${useSiteMetadata().title} | ${useStrapiTopBar()}`}
-      // TODO: this is another slogan used.
-      description="Sierra Lighting installs Christmas, event, and wedding lights. Quality displays that are guaranteed! Experienced.Professional.Insured."
       image={useSiteMetadata().defaultImage}
     />
   )

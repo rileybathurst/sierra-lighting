@@ -1,3 +1,5 @@
+// TODO: I garantee I can do this in less steps
+
 import * as React from "react"
 import { useStrapiSeason } from "../hooks/use-strapi-season";
 

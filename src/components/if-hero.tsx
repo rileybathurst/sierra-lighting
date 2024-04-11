@@ -22,21 +22,19 @@ function IfHero({ hero }: { hero: HeroType }) {
 
     if (biggy <= 960) {
       return (
-        <div className="hero-image pelican">
+        <div className="hero-image pelican poster poster--stork">
           <GatsbyImage
             image={hero?.localFile?.childImageSharp?.gatsbyImageData}
             alt={hero?.alternativeText}
-            className='poster poster--small'
           />
         </div>
       );
     } else {
       return (
-        <div className="hero-image stork">
+        <div className="hero-image poster stork">
           <GatsbyImage
             image={hero?.localFile?.childImageSharp?.gatsbyImageData}
             alt={hero?.alternativeText}
-            className='poster'
           />
         </div>
       )

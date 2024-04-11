@@ -7,11 +7,12 @@ const Work = () => {
   const { title, image } = useStrapiWork()
 
   return (
-    <GatsbyImage
-      image={image?.localFile?.childImageSharp?.gatsbyImageData}
-      alt={title}
-      className="poster"
-    />
+    <div className="poster">
+      <GatsbyImage
+        image={image?.localFile?.childImageSharp?.gatsbyImageData}
+        alt={title}
+      />
+    </div>
   );
 };
 

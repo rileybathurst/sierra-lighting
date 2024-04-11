@@ -207,17 +207,6 @@ button:focus,
 
 /*------------------------------------*/
 
-.adhere .gatsby-image-wrapper {
-  transition: var(--moment);
-}
-
-.adhere:hover .gatsby-image-wrapper {
-  opacity: 0.8;
-  filter: brightness(0.8);
-}
-
-/*------------------------------------*/
-
 a svg {
   transition: var(--moment);
 }

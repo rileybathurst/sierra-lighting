@@ -1,7 +1,7 @@
 // TODO: do more than justresidential
 
 import * as React from "react"
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery, Link } from 'gatsby';
 
 import Card from "./card";
 import { CardType } from "../types/card";
@@ -63,7 +63,7 @@ const SeasonalLights = () => {
 
     return (
       <section>
-        <h3>Wedding Lights</h3>
+        <h3><Link to="/wedding/lights">Wedding Lights</Link></h3>
         <p>Our wedding lights are perfect for your special day. We offer a variety of lights to choose from.</p>
         <div className="">
           {data.wedding.nodes.map((service) => (
@@ -80,7 +80,7 @@ const SeasonalLights = () => {
   } else {
     return (
       <section>
-        <h3>Holiday Lights</h3>
+        <h3><Link to="/christmas-lights">Christmas Lights</Link></h3>
         <p>Our holiday lights are perfect for your home or business. We offer a variety of lights to choose from.</p>
         <div className="deck">
           {data.holiday.nodes.map((service: CardType) => (
