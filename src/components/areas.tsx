@@ -45,29 +45,30 @@ const Areas = ({ className }: { className?: string }) => {
       <p className="stork">Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
       <div className="areas__page">
         <ul className="area-list">
-          {allStrapiArea.nodes.map((area) => (
-            <li key={area.name} className="area-card">
-              {area.image ? (
-                <Link to={`/areas/${area.slug}`} className="poster">
-                  <GatsbyImage
-                    image={area.image.localFile.childImageSharp.gatsbyImageData}
-                    alt={area.image.alternativeText}
-                  />
-                </Link>
-              ) : null}
-              <h3 className="kilimanjaro">
-                <Link to={`/areas/${area.slug}`}>
-                  {area.name}
-                </Link>
-              </h3>
-              <SubAreas areas={area.areas} />
-            </li>
-          ))}
-        </ul >
+          {allStrapiArea.nodes
+            .sort((a, b) => b.areas.length - a.areas.length) // Sort by the number of area.areas
+            .map((area) => (
+              <li key={area.name} className="area-card">
+                {area.image ? (
+                  <Link to={`/areas/${area.slug}`} className="poster">
+                    <GatsbyImage
+                      image={area.image.localFile.childImageSharp.gatsbyImageData}
+                      alt={area.image.alternativeText}
+                    />
+                  </Link>
+                ) : null}
+                <h3 className="kilimanjaro">
+                  <Link to={`/areas/${area.slug}`}>
+                    {area.name}
+                  </Link>
+                </h3>
+                <SubAreas areas={area.areas} />
+              </li>
+            ))}
+        </ul>
       </div>
     </main>
-
-  )
+  );
 }
 
 export default Areas

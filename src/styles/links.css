@@ -139,7 +139,7 @@ button:focus,
 /*  * this should be on the <a> tag to not have to worry about child styles */
 /*------------------*/
 
-.bigboy a,
+.bigboy a:not(.header__logo),
 .contact-info a,
 .footer_list a .hover-back {
   /*  ? how much of this is a button */

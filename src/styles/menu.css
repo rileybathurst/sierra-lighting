@@ -60,7 +60,7 @@
 .header__logo {
   grid-row: 1;
   grid-column: 1;
-  z-index: 99;
+  z-index: 99; /* TODO use the variable */
 }
 
 /*------------------*/
@@ -86,6 +86,7 @@
     gap: 1rem;
     text-align: center;
     justify-content: space-between;
+    align-items: center;
     li {
       list-style: none;
     }
@@ -103,16 +104,16 @@
   }
 
   .xmas_r {
-    order: 4;
+    order: 2;
   }
   .xmas_c {
-    order: 5;
+    order: 4;
   }
   .wedding {
     order: 1;
   }
   .c {
-    order: 2;
+    order: 5;
   }
 }
 
@@ -123,10 +124,10 @@
   }
 
   .xmas_r {
-    order: 2;
+    order: 1;
   }
   .xmas_c {
-    order: 3;
+    order: 2;
   }
   .wedding {
     order: 4;

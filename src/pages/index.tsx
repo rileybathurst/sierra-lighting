@@ -157,13 +157,13 @@ const IndexPage = () => {
               {data.allStrapiTestimonial.nodes.map(testimonial => (
                 <li key={testimonial.id} className="slider">
                   {/* // TODO: theres a lot of divs and stuff that can be simplified */}
-                  <div>
+                  {/*  <div>
                     <div className="five-stars">
                       <TestimonialRanking stars={testimonial.stars} />
                       <p className="sr-only">{testimonial.stars}</p>
                       <p className="sr-only">1/5stars</p>
                     </div>
-                  </div>
+                  </div> */}
                   <p>{testimonial.excerpt}</p>
                   {/* // TODO: className="together" is a bad name */}
                   <div className="together">

@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
@@ -8,7 +9,6 @@ import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import IfHero from "../components/if-hero";
 
 function ReactDescription(props) {
   if (props.bio) {
@@ -59,11 +59,16 @@ const TeamPage = () => {
         <div className="stork">
           <h3>Team</h3>
 
-          <ul className="team_cards">
+          <ul className="team_deck">
             {allStrapiTeam.nodes.map(team => (
               <li key={team.id} className="team_card">
                 <article className="single" itemScope itemType="https://schema.org/Person">
-                  <IfHero hero={team?.avatar} />
+                  <div className="poster">
+                    <GatsbyImage
+                      image={team.avatar?.localFile?.childImageSharp?.gatsbyImageData}
+                      alt={team.avatar?.alternativeText}
+                    />
+                  </div>
                   <h1 itemProp="name"><Link to={team.slug}>
                     {team.name}
                   </Link></h1>

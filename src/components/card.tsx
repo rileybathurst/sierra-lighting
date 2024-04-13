@@ -122,8 +122,6 @@ const Card = (props: {
       </Breadcrumb>
       <div className="paper">{/* stay gold */}</div>
       <div className="content">
-        <hr />
-        <Byline byline={props.card.byline} />
         <h2 className="mixta">
           <Breadcrumb
             slug={props.card.slug}
