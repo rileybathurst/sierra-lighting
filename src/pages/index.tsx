@@ -19,6 +19,9 @@ import remarkGfm from 'remark-gfm'
 import TopBar from "../components/topbar";
 import Menu from "../components/menu";
 import Season from "../components/season";
+import SierraHero2 from "../images/sierra-hero-2";
+import HeroTreeScreen from "../images/hero-tree-screen";
+import HeroTreeSolid from "../images/hero-tree-solid";
 
 
 const IndexPage = () => {
@@ -27,17 +30,6 @@ const IndexPage = () => {
     query MyQuery {
       strapiSeason {
         wedding
-      }
-      
-      strapiHero {
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-        }
       }
 
       strapiAbout {
@@ -95,13 +87,6 @@ const IndexPage = () => {
       <main className="margin-0">
 
         <div className="hero-2">
-
-          <GatsbyImage
-            image={data.strapiHero.image.localFile.childImageSharp.gatsbyImageData}
-            alt={data.strapiHero.image.alternativeText}
-            className="hero-image"
-          />
-
           <Menu />
           <div className='bigboy'>
             <Season>
@@ -128,10 +113,15 @@ const IndexPage = () => {
 
           <div className="h2-container">
             <Logo />
-            <h2>{useSiteMetadata().slogan}</h2>
+            <div className="hero-tree">
+              <HeroTreeScreen />
+              <HeroTreeSolid />
+            </div>
+            <h2>Illuminating<br className="medium-up" />Moments,<br className="medium-up" /> Year-Round</h2>
           </div>
 
           <section className="h2-text">
+            <h3>{useSiteMetadata().slogan}</h3>
             <ReactMarkdown
               children={data.strapiAbout.description.data.description}
               remarkPlugins={[remarkGfm]}
@@ -139,8 +129,18 @@ const IndexPage = () => {
             <Start className="button--left-align" />
 
           </section >
+          <div className="hero-2-svg">{/* stay gold */}</div>
+
+
+          {/* <SierraHero2 /> */}
 
         </div >
+
+
+
+
+
+
 
         <section id="qualities" className="qualities albatross">
           <Qualities />
