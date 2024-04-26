@@ -64,14 +64,14 @@ header {
   }
 
   .stripe {
-    background: hsl(
-      /* needed if the menu is large */ var(--honey),
-      100%,
-      97.5%
-    ); /*  needed if the menu is large */
+    /* needed if the menu is large */
+    background: hsl(var(--honey), 100%, 97.5%);
+    box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 97.5%);
+    clip-path: inset(0 -100vmax);
 
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--denim), 25%, 12%);
+      box-shadow: 0 0 0 100vmax hsl(var(--denim), 25%, 12%);
     }
   } /* ? am I sure this isnt a honey color */
 }

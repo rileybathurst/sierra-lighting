@@ -9912,12 +9912,10 @@ type AreaCatchAllQueryQuery = { readonly allStrapiArea: { readonly nodes: Readon
 
 type areaLinkFragment = { readonly id: string, readonly name: string | null, readonly state: string | null, readonly slug: string | null };
 
-type areaQueryFragment = { readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly state: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null } | null> | null };
-
 type AreasQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type AreasQueryQuery = { readonly allStrapiArea: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly state: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null } | null> | null }> } };
+type AreasQueryQuery = { readonly allStrapiArea: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly state: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null } | null> | null }> } };
 
 type AreasTemplateQueryVariables = Exact<{
   slug: Scalars['String'];

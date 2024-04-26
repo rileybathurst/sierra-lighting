@@ -3,6 +3,7 @@
 /*------------------*/
 
 svg {
+  min-width: 5rem;
   max-width: 5rem;
 
   @media (prefers-color-scheme: dark) {

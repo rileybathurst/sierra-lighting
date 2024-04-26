@@ -9,7 +9,6 @@ import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
 import Logo from "../images/logo";
 import Footer from "../components/footer";
 import Areas from '../components/areas';
-import TestimonialRanking from "../components/testimonial-ranking"
 import Start from "../components/start";
 
 import Qualities from "../components/qualities";
@@ -17,9 +16,7 @@ import Qualities from "../components/qualities";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 import TopBar from "../components/topbar";
-import Menu from "../components/menu";
-import Season from "../components/season";
-import SierraHero2 from "../images/sierra-hero-2";
+import Header from "../components/header";
 import HeroTreeScreen from "../images/hero-tree-screen";
 import HeroTreeSolid from "../images/hero-tree-solid";
 
@@ -83,36 +80,14 @@ const IndexPage = () => {
 
   return (
     <>
-      <TopBar />
+      <Header largeLogo={false} />
+
       <main className="margin-0">
-
-        <div className="hero-2">
-          <Menu />
-          <div className='bigboy'>
-            <Season>
-              <li key="logo" className="logo">
-                <Link to="/" className="header__logo" itemProp="logo"><Logo /></Link>
-              </li>
-              <li key="residential" className="xmas_r">
-                <Link to="/residential">Residential<br />Christmas Lights</Link>
-              </li>
-              <li key="commercial" className="xmas_c">
-                <Link to="/commercial">Commercial<br />Christmas Lights</Link>
-              </li>
-              <li key="wedding" className="wedding">
-                <Link to="/wedding">Wedding</Link>
-              </li>
-              <li key="start" className="c">
-                <Link to="/contact">
-                  Start With A<br />
-                  Free Quote
-                </Link>
-              </li>
-            </Season>
-          </div>
-
+        <div className="margin-0 hero-2">
           <div className="h2-container">
-            <Logo />
+            <div className="large logo">
+              <Logo />
+            </div>
             <div className="hero-tree">
               <HeroTreeScreen />
               <HeroTreeSolid />
@@ -131,23 +106,13 @@ const IndexPage = () => {
           </section >
           <div className="hero-2-svg">{/* stay gold */}</div>
 
-
-          {/* <SierraHero2 /> */}
-
-        </div >
-
-
-
-
-
-
+        </div>
+        {/* <SierraHero2 /> */}
 
         <section id="qualities" className="qualities albatross">
           <Qualities />
           <h3 className="eyebrow"><Link to="/process">Learn more about our process</Link></h3>
         </section>
-
-
 
         <div className="slider-container">
           <section id="slider" className="testimonials">

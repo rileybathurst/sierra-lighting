@@ -89,14 +89,45 @@ function Breadcrumb(props: {
   }
 }
 
-function Byline(props: { byline?: string; }) {
-  if (props.byline) {
+function SubAreas({ areas }) {
+  if (areas.length > 0) {
     return (
-      <h3 className="crest">{props.byline}</h3>
-    )
+      <>
+        <p>Including:</p>
+        <ul>
+          {areas.map(area => (
+            <li key={area.name}>
+              {area.name}
+            </li>
+          ))}
+        </ul>
+      </>
+    );
   } else {
     return null;
   }
+}
+
+function Content({ excerpt, subAreas }) {
+
+  console.log('🦄');
+  console.log(subAreas);
+
+  if (excerpt) {
+    return (
+      <p>{excerpt}</p>
+    )
+  }
+  if (subAreas) {
+
+    // console.log(subAreas);
+
+    return (
+      <SubAreas areas={subAreas} />
+    )
+  }
+
+  return null;
 }
 
 const Card = (props: {
@@ -104,7 +135,8 @@ const Card = (props: {
   breadcrumb?: string;
 }) => {
 
-  // console.log(props.card);
+  console.log(props.card);
+  console.log(props.card.areas);
 
   return (
     <section className="card">
@@ -130,6 +162,10 @@ const Card = (props: {
             <NameTitle name={props.card.name} title={props.card.title} />
           </Breadcrumb>
         </h2>
+        <Content
+          excerpt={props.card.excerpt}
+          subAreas={props.card.areas}
+        />
         <p>{props.card.excerpt}</p>
       </div>
     </section>

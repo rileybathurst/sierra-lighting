@@ -71,6 +71,12 @@
   .content {
     grid-row: 3;
     margin-block-end: 1.5rem;
+
+    ul {
+      li {
+        list-style: inside;
+      }
+    }
   }
 
   h3,

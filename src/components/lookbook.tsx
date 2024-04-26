@@ -32,6 +32,7 @@ const Lookbook = ({ slug, hr }: { slug: string; hr: string }) => {
   `)
 
   if (slug === 'wedding') {
+
     return (
       <>
 

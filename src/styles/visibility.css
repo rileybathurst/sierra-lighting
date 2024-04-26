@@ -32,3 +32,13 @@
 .home__area-acordian .state__name {
   display: none;
 }
+
+.logo.false {
+  display: none;
+}
+
+@media (min-width: 60rem) {
+  .hamburger {
+    display: none;
+  }
+}

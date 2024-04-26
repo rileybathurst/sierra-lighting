@@ -10,46 +10,45 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Start from "../../components/start";
 
-function LinkedLook({ image, lights, flex }) {
+// ! masonry-layout the npm package was last published 6 years ago that maybe means it works but maybe not
+
+function LinkedLook({ image, lights, flex }: { image: any, lights: any[], flex: any }) {
 
   // console.log(flex);
 
   if (lights.length === 1) {
     return (
-      <>
-        <Link to={`/light/${lights[0].slug}`} className={`poster flex-${flex}`}>
-          <GatsbyImage
-            image={image.localFile.childImageSharp.gatsbyImageData}
-            alt={image.alternativeText}
-          />
-          <p>{lights[0].name}</p>
-        </Link >
-      </>
+      <Link to={`/light/${lights[0].slug}`} className={`flex-${flex} look`}>
+        <GatsbyImage
+          image={image.localFile.childImageSharp.gatsbyImageData}
+          alt={image.alternativeText}
+        />
+        <p>{lights[0].name}</p>
+      </Link >
     );
   } if (lights.length > 1) {
 
     return (
-      <>
-        <Link to={`/light/${lights[0].slug}`} className={`poster flex-${flex}`}>
-          <GatsbyImage
-            image={image.localFile.childImageSharp.gatsbyImageData}
-            alt={image.alternativeText}
-          />
-          <ul className='lookbook-list'>
-            {lights.map((light, i) => (
-              <li>
-                <Link to={`/light/${light.slug}`} key={i}>
-                  <span>{light.name}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </Link>
-      </>
+      <div className="look">
+        <GatsbyImage
+          image={image.localFile.childImageSharp.gatsbyImageData}
+          alt={image.alternativeText}
+        />
+        <ul className='lookbook-list'>
+          {lights.map((light, i) => (
+            <li>
+              {/* // ! link cant decend link */}
+              <Link to={`/light/${light.slug}`} key={i}>
+                <span>{light.name}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   } else {
     return (
-      <div className='poster'>
+      <div className='look'>
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
