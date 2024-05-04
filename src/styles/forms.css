@@ -14,12 +14,12 @@ form {
     padding-block: 0.5rem; /*  16 */
     padding-inline: 0.5rem; /* 16 /
     margin-block-end: 0.25rem; /* 8px */
-    border: 1px solid hsl(var(--honey), 100%, 50%);
+    border: 1px solid var(--honey-400);
 
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--denim), 25%, 12%);
       border-color: hsl(var(--denim), 25%, 25%);
-      color: hsl(var(--honey), 100%, 97.5%);
+      color: var(--honey-50);
     }
   }
 
@@ -39,10 +39,8 @@ form {
     width: auto;
     margin-block-end: 0;
     margin-inline-end: 0.5rem;
-    background-color: #fff;
-
-    border-color: hsl(var(--honey), 100%, 50%) !important;
-
+    background-color: white;
+    border-color: hsl(var(--honey-400)) !important; /* TODO: why */
     font: inherit;
     color: currentColor;
     width: 1.15em;
@@ -56,7 +54,7 @@ form {
     /* ! testing */
     /* outline: 2px solid pink; */
 
-    border-color: hsl(var(--honey), 100%, 12.5%) !important;
+    border-color: hsl(var(--honey-700)) !important;
   }
 
   .checkbox {
@@ -90,7 +88,7 @@ form {
   flex-direction: row;
   padding: 1rem;
   border-radius: 3rem;
-  background-color: hsl(var(--honey), 100%, 87.5%);
+  background-color: var(--honey-100);
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 25%, 25%);
   }
@@ -108,7 +106,7 @@ form {
     flex-direction: column;
     justify-content: center;
 
-    color: hsl(var(--honey), 100%, 30%);
+    color: var(--honey-600);
 
     @media (prefers-color-scheme: dark) {
       color: hsl(var(--denim), 37%, 63%);
@@ -124,8 +122,8 @@ form {
   }
 
   label.current {
-    background-color: hsl(var(--honey), 100%, 50%);
-    color: hsl(var(--honey), 100%, 12.5%);
+    background-color: var(--honey-400);
+    color: hsl(var(--honey-hue), 100%, 12.5%);
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--denim), 25%, 50%);
       color: hsl(var(--denim), 25%, 87.5%);
@@ -134,7 +132,7 @@ form {
 
   label:hover {
     cursor: pointer;
-    background-color: hsl(var(--honey), 100%, 75%);
+    background-color: var(--honey-200);
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--denim), 25%, 37.5%);
       color: hsl(var(--denim), 25%, 87.5%);
@@ -143,7 +141,7 @@ form {
 
   label.current:hover {
     cursor: default;
-    background-color: hsl(var(--honey), 100%, 50%);
+    background-color: var(--honey-400);
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--denim), 25%, 50%);
     }

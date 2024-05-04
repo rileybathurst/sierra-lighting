@@ -163,7 +163,7 @@ small,
 
 hr {
   border: none;
-  border-top: 1px solid hsl(var(--honey), 100%, 50%);
+  border-top: 1px solid hsl(var(--honey-hue), 100%, 50%);
   margin-block: 1.5rem; /* 20px */
 
   @media (prefers-color-scheme: dark) {
@@ -308,7 +308,7 @@ ol li {
   padding-inline: 1lh;
 
   section {
-    border-block-end: 1px solid hsl(var(--honey), 100%, 50%);
+    border-block-end: 1px solid hsl(var(--honey-hue), 100%, 50%);
     margin-block-end: 1lh;
     padding-block-end: 1lh;
 

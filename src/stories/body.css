@@ -1,5 +1,5 @@
 /*------------------------------------*/
-  /* #BODY */
+/* #BODY */
 /*------------------------------------*/
 
 .box {
@@ -17,21 +17,15 @@
   color: hsl(35, 100%, 30%);
 }
 
-.dark__test {
-  background-color: hsl(var(--denim), 100%, 5%);
-  color: hsl(var(--honey), 100%, 99%);
-}
-
 .dark__link {
-  color: hsl(var(--honey), 100%, 37%);
+  color: hsl(var(--honey-hue), 100%, 37%);
 }
 
 .selection__test {
-  background: hsl(var(--honey), var(--louie-h), var(--louie-d));
+  background: hsl(var(--honey-hue), var(--louie-h), var(--louie-d));
 }
 
 .hover__test {
-  color: hsl(var(--honey), 12%, 50%));
-  color: hsl(var(--honey), 100%, 50%);
+  color: hsl(var(--honey-hue), 100%, 50%);
   text-decoration: underline;
 }

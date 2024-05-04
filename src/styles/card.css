@@ -19,7 +19,7 @@
 
   .paper {
     grid-row: 2/4;
-    background-color: hsl(var(--honey), 75%, 87%);
+    background-color: var(--honey-100);
     box-shadow: var(--mesosphere);
     border: 2px solid whitesmoke;
     border-radius: var(--card-radius);
@@ -114,7 +114,7 @@
 
   .team_card {
     list-style: none;
-    background-color: hsl(var(--honey), 75%, 87%);
+    background-color: var(--honey-100);
     padding: 1rem;
     border-radius: 0.5rem;
     border: 2px solid whitesmoke;

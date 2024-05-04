@@ -20,7 +20,7 @@ svg {
 /*------------------*/
 
 .gatsby-image-wrapper {
-  background-color: hsl(var(--honey), 100%, 97.5%);
+  background-color: hsl(var(--honey-hue), 100%, 97.5%);
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 25%, 12%);
@@ -131,12 +131,12 @@ header svg {
   border-radius: var(--border-radius);
 
   @media (prefers-color-scheme: dark) {
-    fill: hsl(var(--honey), 12%, 97.5%);
+    fill: hsl(var(--honey-hue), 12%, 97.5%);
   }
 }
 
 header svg:hover {
-  fill: hsl(var(--honey), 100%, var(--dim));
+  fill: hsl(var(--honey-hue), 100%, var(--dim));
 
   @media (prefers-color-scheme: dark) {
     fill: hsl(var(--denim), 12%, var(--mid));
@@ -144,7 +144,7 @@ header svg:hover {
 }
 
 header svg:active {
-  fill: hsl(var(--honey), 100%, var(--dull));
+  fill: hsl(var(--honey-hue), 100%, var(--dull));
 
   @media (prefers-color-scheme: dark) {
     fill: hsl(var(--denim), 12%, 50%);
@@ -197,7 +197,7 @@ header svg:active {
   > a:hover p {
     border-radius: var(--border-radius);
     box-shadow: var(--stratosphere);
-    background: hsl(var(--honey), 100%, 97.5%);
+    background: hsl(var(--honey-hue), 100%, 97.5%);
 
     @media (prefers-color-scheme: dark) {
       background: hsl(var(--denim), 25%, 12%);
@@ -206,7 +206,7 @@ header svg:active {
 
   > a:hover > .gatsby-image-wrapper {
     box-shadow: var(--stratosphere);
-    border-color: hsl(var(--honey), 100%, 50%);
+    border-color: hsl(var(--honey-hue), 100%, 50%);
   }
 } /*  .team-heads */
 
@@ -252,12 +252,12 @@ header svg:active {
   }
 
   &:hover::before {
-    border-color: hsl(var(--honey), 100%, 50%);
+    border-color: hsl(var(--honey-hue), 100%, 50%);
     border-left-color: transparent;
   }
 
   &:hover::after {
-    border-top: 2px solid hsl(var(--honey), 100%, 50%);
+    border-top: 2px solid hsl(var(--honey-hue), 100%, 50%);
     border-left-width: 2px; /*  Solid edges, invisible borders */
     border-right-width: 2px; /*  Solid edges, invisible borders */
     transform: rotate(270deg); /*  Rotate around circle */

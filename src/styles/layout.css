@@ -115,7 +115,7 @@ header {
 
 .hero-container {
   @media (min-width: 60rem) {
-    background-color: hsl(var(--honey), 100%, 97.5%);
+    background-color: var(--honey-50);
 
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--denim), 37%, 12%);
@@ -177,7 +177,7 @@ header {
   box-shadow: var(--mesosphere);
   padding: 1rem;
   border: 1px solid whitesmoke;
-  background-color: hsl(var(--honey), 87.5%, 87.5%);
+  background-color: var(--honey-100);
   margin-block-end: 2rem;
 
   @media (prefers-color-scheme: dark) {
@@ -303,7 +303,7 @@ header {
     flex-flow: row wrap;
     align-items: center;
     gap: 1.5rem; /* reset */
-    max-width: var(--stork);
+    max-width: var(--stork); /* ? this is nested under the same width */
     padding-inline-start: 0; /*  reset */
     justify-content: center;
 
@@ -324,7 +324,8 @@ header {
       svg {
         margin-inline: auto;
         max-width: 2.5rem;
-        fill: hsl(var(--honey), 62%, 62%);
+        fill: hsl(var(--honey-hue), 62%, 62%);
+        fill: var(--honey-300);
 
         @media (prefers-color-scheme: dark) {
           fill: hsl(var(--denim), 25%, 37%);
@@ -332,7 +333,7 @@ header {
       }
 
       a svg:hover {
-        fill: hsl(var(--honey), 100%, 50%);
+        fill: hsl(var(--honey-hue), 100%, 50%);
 
         @media (prefers-color-scheme: dark) {
           fill: hsl(var(--denim), 25%, 63%);
@@ -513,7 +514,7 @@ footer {
 /* TODO */
 .team {
   @media (min-width: 30rem) {
-    border-left: 1px solid hsl(var(--honey), 100%, 50%); /*  TODO */
+    border-left: 1px solid hsl(var(--honey-hue), 100%, 50%); /*  TODO */
     padding-inline-start: 1rem;
 
     @media (prefers-color-scheme: dark) {
@@ -579,9 +580,9 @@ footer {
   max-width: var(--book);
   margin-inline: auto;
   padding-inline: 1rem;
-  /* border-inline-end: 1px solid hsl(var(--honey), 100%, 50%); */
+  /* border-inline-end: 1px solid hsl(var(--honey-hue), 100%, 50%); */
   .attribute {
-    /*  border-inline-end: 1px solid hsl(var(--honey), 100%, 50%); */
+    /*  border-inline-end: 1px solid hsl(var(--honey-hue), 100%, 50%); */
     padding-inline-end: 1rem;
 
     .crest {
@@ -701,9 +702,9 @@ footer {
     flex-flow: row wrap;
     gap: 1rem;
 
-    .look {
+    /*  .look {
       flex: auto;
-    }
+    } */
 
     .gatsby-image-wrapper {
       height: 200px;
@@ -735,14 +736,29 @@ footer {
   }
 
   > .look {
-    background-color: hsl(var(--honey), 75%, 87%);
+    background-color: hsl(var(--honey-hue), 75%, 87%);
     border-radius: var(--card-radius);
     box-shadow: var(--mesosphere);
     border: 2px solid whitesmoke;
+    transition: var(--moment);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--denim-700);
+      background-color: var(--denim-750);
+    }
 
     > * a {
       margin: 1rem;
     }
+
+    .gatsby-image-wrapper {
+      margin-block-end: 1rem;
+      border-radius: var(--card-radius);
+    }
+  }
+
+  > a:hover .gatsby-image-wrapper {
+    opacity: 0.9;
   }
 }
 
@@ -777,8 +793,8 @@ footer {
 /*------------------------------------*/
 
 .qualities {
-  background: hsl(var(--honey), 100%, 97.5%);
-  box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 97.5%);
+  background: hsl(var(--honey-hue), 100%, 97.5%);
+  box-shadow: 0 0 0 100vmax hsl(var(--honey-hue), 100%, 97.5%);
   clip-path: inset(0 -100vmax);
   padding-block-start: 5rem;
 
@@ -801,8 +817,8 @@ footer {
 .hero-2 {
   display: grid;
 
-  background: hsl(var(--honey), 100%, 87.5%);
-  box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 87.5%);
+  background: hsl(var(--honey-hue), 100%, 87.5%);
+  box-shadow: 0 0 0 100vmax hsl(var(--honey-hue), 100%, 87.5%);
   clip-path: inset(0 -100vmax);
 
   > * {
@@ -910,7 +926,7 @@ footer {
     max-width: var(--stork);
     margin-inline: auto;
     grid-row: 3;
-    background-color: hsl(var(--honey), 100%, 97.5%);
+    background-color: hsl(var(--honey-hue), 100%, 97.5%);
     height: min-content;
     z-index: var(--understory);
     margin-inline: auto;

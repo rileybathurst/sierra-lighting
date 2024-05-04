@@ -53,7 +53,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
               className="colorblock"
               type="Honey"
               {...props}
-              style={{ backgroundColor: `hsl(var(--honey), 12%, 50%))` }}
+              style={{ backgroundColor: `hsl(var(--honey-hue), 12%, 50%))` }}
             ></div>
             {label}-a-4
           </article>
@@ -63,7 +63,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
               className="colorblock"
               type="Honey"
               {...props}
-              style={{ backgroundColor: `hsl(var(--honey), 12%, 97.5%)` }}
+              style={{ backgroundColor: `hsl(var(--honey-hue), 12%, 97.5%)` }}
             ></div>
             {label}-a-8
           </article>
@@ -76,7 +76,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
           className="colorblock"
           type="Honey"
           {...props}
-          style={{ backgroundColor: `hsl(var(--honey), 75%, 87%)` }}
+          style={{ backgroundColor: `hsl(var(--honey-hue), 75%, 87%)` }}
         ></div>
         {label}-f-7
       </section>
@@ -99,7 +99,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
               className="colorblock"
               type="Honey"
               {...props}
-              style={{ backgroundColor: `hsl(var(--honey), 100%, 25%)` }}
+              style={{ backgroundColor: `hsl(var(--honey-hue), 100%, 25%)` }}
             ></div>
             {label}-h-2
           </article>
@@ -109,7 +109,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
               className="colorblock"
               type="Honey"
               {...props}
-              style={{ backgroundColor: `hsl(var(--honey), 100%, 50%)` }}
+              style={{ backgroundColor: `hsl(var(--honey-hue), 100%, 50%)` }}
             ></div>
             {label}-h-4
           </article>
@@ -119,7 +119,7 @@ export const Honey = ({ primary, backgroundColor, size, label, ...props }) => {
               className="colorblock"
               type="Honey"
               {...props}
-              style={{ backgroundColor: `hsl(var(--honey), 100%, 97.5%)` }}
+              style={{ backgroundColor: `hsl(var(--honey-hue), 100%, 97.5%)` }}
             ></div>
             {label}-h-8
           </article>

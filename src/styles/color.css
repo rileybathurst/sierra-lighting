@@ -3,18 +3,22 @@
 /*------------------*/
 
 body {
-  background: hsl(var(--honey), 100%, 99%); /*  custom */
+  background: hsl(var(--honey-hue), 100%, 99%); /*  custom */
+  background: var(--honey-50);
   color: hsl(var(--denim), 12%, 12%);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 37%, 5%); /* custom m  */
-    color: hsl(var(--honey), 100%, 97.5%); /* custom m  */
+    background-color: hsl(var(--denim), 37%, 5%); /* custom m */
+    color: hsl(var(--honey-hue), 100%, 97.5%); /* custom */
+    color: var(--honey-100); /* * test  */
   }
 }
 
 .backed {
-  background-color: hsl(var(--honey), 100%, 97.5%); /* custom m  */
-  box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 97.5%);
+  background-color: hsl(var(--honey-hue), 100%, 97.5%); /* custom */
+  background-color: var(--honey-50);
+  box-shadow: 0 0 0 100vmax hsl(var(--honey-hue), 100%, 97.5%);
+  box-shadow: 0 0 0 100vmax var(--honey-50);
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
@@ -45,14 +49,16 @@ body {
 /*------------------*/
 
 header {
-  background: hsl(var(--honey), 100%, 97.5%); /* custom m  */
+  background: hsl(var(--honey-hue), 100%, 97.5%); /* custom */
+  background: var(--honey-100); /* * test  */
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 25%, 12%);
   }
 
   h2 {
-    background-color: hsl(var(--honey), 100%, 97.5%); /* custom m  */
+    background-color: hsl(var(--honey-hue), 100%, 97.5%); /* custom */
+    background-color: var(--honey-50);
 
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--denim), 100%, 12%);
@@ -60,13 +66,15 @@ header {
   }
 
   button:hover svg {
-    background-color: hsl(var(--honey), 100%, 25%);
+    background-color: var(--honey-600);
   }
 
   .stripe {
     /* needed if the menu is large */
-    background: hsl(var(--honey), 100%, 97.5%);
-    box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 97.5%);
+    background: hsl(var(--honey-hue), 100%, 97.5%);
+    background: var(--honey-50);
+    box-shadow: 0 0 0 100vmax hsl(var(--honey-hue), 100%, 97.5%);
+    box-shadow: 0 0 0 100vmax var(--honey-50);
     clip-path: inset(0 -100vmax);
 
     @media (prefers-color-scheme: dark) {
@@ -96,7 +104,8 @@ header {
     var(--honey),
     100%,
     97.5%
-  ); /*  header-color /* the card might need to match this   */
+  ); /*  header-color /* the card might need to match this */
+  background-color: var(--honey-50);
   border: 2px solid whitesmoke;
   box-shadow: var(--mesosphere);
 
@@ -108,17 +117,17 @@ header {
 
 .slider-container {
   display: flex; /*  keeps the margins in */
-  background-color: hsl(var(--honey), 100%, 97.5%); /*  custom */
+  background-color: hsl(var(--honey-hue), 100%, 97.5%); /*  custom */
+  background-color: var(--honey-50);
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 25%, 12%);
   }
 }
-/* margin-block-end: 1.5rem; */
+
 .testimonials svg {
-  fill: hsl(var(--honey), 100%, 50%);
-  outline: 1px solid hsl(var(--honey), 100%, 97.5%);
-  /*  margin-block-end: 1.5rem; */
+  fill: hsl(var(--honey-hue), 100%, 50%);
+  outline: 1px solid var(--honey-50);
 
   @media (prefers-color-scheme: dark) {
     outline: none;

@@ -1,8 +1,8 @@
-/* a color: color: hsl(var(--honey), 100%, 30%); // custom to fit the contrast ratios */
+/* a color: color: hsl(var(--honey-hue), 100%, 30%); // custom to fit the contrast ratios */
 
 .a--hover {
   text-decoration: none;
-  color: hsl(var(--honey), 100%, 37%);
+  color: hsl(var(--honey-hue), 100%, 37%);
 
   @media (prefers-color-scheme: dark) {
     color: hsl(var(--denim), 37%, 37%);

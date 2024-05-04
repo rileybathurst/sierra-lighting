@@ -172,8 +172,8 @@
 
 /*  the circle */
 .hamburger.is-active:before {
-  border: 2px solid hsl(var(--honey), 100%, 30%); /*  TODO not a louie color */
-  background-color: hsl(var(--honey), 100%, 85%);
+  border: 2px solid hsl(var(--honey-hue), 100%, 30%); /*  TODO not a louie color */
+  background-color: hsl(var(--honey-hue), 100%, 85%);
 
   @media (prefers-color-scheme: dark) {
     border-color: hsl(var(--denim), 37%, 37%);
@@ -184,7 +184,7 @@
 .hamburger .line {
   width: 2rem;
   height: 0.1875rem; /*  3px this is wierd and custom */
-  background-color: hsl(var(--honey), 100%, 30%);
+  background-color: hsl(var(--honey-hue), 100%, 30%);
   display: block;
   margin-block: 0.5rem;
   transition: var(--moment);
