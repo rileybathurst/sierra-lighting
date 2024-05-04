@@ -22,12 +22,10 @@ export const Contrasts = ({
         <li>--denim: 215;</li>
       </ul>
       <hr />
-      <p>
-        Light mode background: hsl(var(--honey-hue), 100%, 99%); not a variable
-      </p>
+      <p>Light mode background: hsl(var(--honey), 100%, 99%); not a variable</p>
       <p>Regular color: hsl(var(--denim), 12%, 12%) : 16.36</p>
       <p>
-        <a href="#">Link</a> hsl(var(--honey-hue), 100%, 25%) : 7.09
+        <a href="#">Link</a> hsl(var(--honey), 100%, 25%) : 7.09
       </p>
       <hr />
     </>

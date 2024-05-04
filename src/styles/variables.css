@@ -6,22 +6,18 @@
   /*------------------*/
   /* COLOR */
   /*------------------*/
-  --honey-hue: 35;
+  --honey: 35;
   --denim: 215;
   /*  also using whitesmoke */
 
-  /* --honey: hsl(35, 100%, 37.5%); */
-  /* --honey__base: 35, 100%; */
-
-  --honey-700: hsl(var(--honey-hue), 100%, 12.5%);
-  --honey-600: hsl(var(--honey-hue), 100%, 25%);
-  /* 500 is default honey but needed for storybook */
-  --honey-500: hsl(var(--honey-hue), 100%, 37.5%);
-  --honey-400: hsl(var(--honey-hue), 100%, 50%);
-  --honey-300: hsl(var(--honey-hue), 100%, 62.5%);
-  --honey-200: hsl(var(--honey-hue), 100%, 75%);
-  --honey-100: hsl(var(--honey-hue), 100%, 87.5%);
-  --honey-50: hsl(var(--honey-hue), 100%, 97.5%);
+  --honey-700: hsl(var(--honey), 100%, 12.5%);
+  --honey-600: hsl(var(--honey), 100%, 25%);
+  --honey-500: hsl(var(--honey), 100%, 37.5%);
+  --honey-400: hsl(var(--honey), 100%, 50%);
+  --honey-300: hsl(var(--honey), 100%, 62.5%);
+  --honey-200: hsl(var(--honey), 100%, 75%);
+  --honey-100: hsl(var(--honey), 100%, 87.5%);
+  --honey-50: hsl(var(--honey), 100%, 97.5%);
 
   --denim-750: hsl(var(--denim), 100%, 2.5%);
   --denim-700: hsl(var(--denim), 100%, 12.5%);

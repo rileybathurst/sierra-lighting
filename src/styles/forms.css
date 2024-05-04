@@ -123,7 +123,7 @@ form {
 
   label.current {
     background-color: var(--honey-400);
-    color: hsl(var(--honey-hue), 100%, 12.5%);
+    color: hsl(var(--honey), 100%, 12.5%);
     @media (prefers-color-scheme: dark) {
       background-color: hsl(var(--denim), 25%, 50%);
       color: hsl(var(--denim), 25%, 87.5%);

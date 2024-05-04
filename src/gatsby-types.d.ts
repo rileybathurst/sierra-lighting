@@ -10008,7 +10008,7 @@ type LookbookPosterQueryQuery = { readonly strapiLookbook: { readonly image: { r
 type LookbookQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type LookbookQueryQuery = { readonly allStrapiLookbook: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly spread: number | null, readonly order: number | null, readonly flex: number | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null }> } };
+type LookbookQueryQuery = { readonly allStrapiLookbook: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly spread: number | null, readonly order: number | null, readonly flex: number | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData, readonly fluid: { readonly aspectRatio: number } | null } | null } | null } | null, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null }> } };
 
 type LookbookTemplateQueryVariables = Exact<{
   spread: Scalars['Int'];

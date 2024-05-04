@@ -14,11 +14,14 @@ import Start from "../../components/start";
 
 function LinkedLook({ image, lights, flex }: { image: any, lights: any[], flex: any }) {
 
-  // console.log(flex);
+  // console.log(image.localFile.childImageSharp.fluid.aspectRatio);
 
   if (lights.length === 1) {
     return (
-      <Link to={`/light/${lights[0].slug}`} className={`flex-${flex} look`}>
+      <Link
+        to={`/light/${lights[0].slug}`}
+        className={`look flex-${flex}`}
+      >
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
@@ -29,7 +32,7 @@ function LinkedLook({ image, lights, flex }: { image: any, lights: any[], flex: 
   } if (lights.length > 1) {
 
     return (
-      <div className="look">
+      <div className={`look flex-${flex}`}>
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
@@ -37,7 +40,6 @@ function LinkedLook({ image, lights, flex }: { image: any, lights: any[], flex: 
         <ul className='lookbook-list'>
           {lights.map((light, i) => (
             <li>
-              {/* // ! link cant decend link */}
               <Link to={`/light/${light.slug}`} key={i}>
                 <span>{light.name}</span>
               </Link>
@@ -48,13 +50,52 @@ function LinkedLook({ image, lights, flex }: { image: any, lights: any[], flex: 
     );
   } else {
     return (
-      <div className='look'>
+      <div className={`look flex-${flex}`}>
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
-          className={`flex-${flex}`}
         />
       </div>
+    );
+  }
+}
+
+function Aspect({ image, lights }) {
+  if (image.localFile.childImageSharp.fluid.aspectRatio > 1) {
+    // console.log('landscape');
+    return (
+      <LinkedLook
+        image={image}
+        lights={lights}
+        flex={3}
+      />
+    );
+  } else if (image.localFile.childImageSharp.fluid.aspectRatio < 1) {
+    // console.log('portrait');
+    return (
+      <LinkedLook
+        image={image}
+        lights={lights}
+        flex={1}
+      />
+    );
+  } else if (image.localFile.childImageSharp.fluid.aspectRatio < 0.6) {
+    console.log('super tall');
+    return (
+      <LinkedLook
+        image={image}
+        lights={lights}
+        flex={11}
+      />
+    );
+  } else {
+    // console.log('square');
+    return (
+      <LinkedLook
+        image={image}
+        lights={lights}
+        flex={2}
+      />
     );
   }
 }
@@ -73,6 +114,9 @@ const LookbookPage = () => {
             localFile {
               childImageSharp {
                 gatsbyImageData
+                fluid {
+                  aspectRatio
+                }
               }
             }
             alternativeText
@@ -89,7 +133,9 @@ const LookbookPage = () => {
 
   return (
     <>
-      <Header />
+      <Header
+        largeLogo={true}
+      />
 
       <main className="stork">
 
@@ -106,11 +152,11 @@ const LookbookPage = () => {
           alt={lookbook.image.alternativeText}
         /> */}
         {allStrapiLookbook.nodes.map((lookbook) => (
-          <LinkedLook
+          <Aspect
             key={lookbook.id}
             image={lookbook.image}
             lights={lookbook.lights}
-            flex={lookbook.flex}
+          // flex={lookbook.flex}
           />
         ))}
       </section>

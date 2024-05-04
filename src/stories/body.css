@@ -18,14 +18,14 @@
 }
 
 .dark__link {
-  color: hsl(var(--honey-hue), 100%, 37%);
+  color: hsl(var(--honey), 100%, 37%);
 }
 
 .selection__test {
-  background: hsl(var(--honey-hue), var(--louie-h), var(--louie-d));
+  background: hsl(var(--honey), var(--louie-h), var(--louie-d));
 }
 
 .hover__test {
-  color: hsl(var(--honey-hue), 100%, 50%);
+  color: hsl(var(--honey), 100%, 50%);
   text-decoration: underline;
 }

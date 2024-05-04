@@ -324,7 +324,7 @@ header {
       svg {
         margin-inline: auto;
         max-width: 2.5rem;
-        fill: hsl(var(--honey-hue), 62%, 62%);
+        fill: hsl(var(--honey), 62%, 62%);
         fill: var(--honey-300);
 
         @media (prefers-color-scheme: dark) {
@@ -333,7 +333,7 @@ header {
       }
 
       a svg:hover {
-        fill: hsl(var(--honey-hue), 100%, 50%);
+        fill: hsl(var(--honey), 100%, 50%);
 
         @media (prefers-color-scheme: dark) {
           fill: hsl(var(--denim), 25%, 63%);
@@ -514,7 +514,7 @@ footer {
 /* TODO */
 .team {
   @media (min-width: 30rem) {
-    border-left: 1px solid hsl(var(--honey-hue), 100%, 50%); /*  TODO */
+    border-left: 1px solid hsl(var(--honey), 100%, 50%); /*  TODO */
     padding-inline-start: 1rem;
 
     @media (prefers-color-scheme: dark) {
@@ -580,9 +580,9 @@ footer {
   max-width: var(--book);
   margin-inline: auto;
   padding-inline: 1rem;
-  /* border-inline-end: 1px solid hsl(var(--honey-hue), 100%, 50%); */
+  /* border-inline-end: 1px solid hsl(var(--honey), 100%, 50%); */
   .attribute {
-    /*  border-inline-end: 1px solid hsl(var(--honey-hue), 100%, 50%); */
+    /*  border-inline-end: 1px solid hsl(var(--honey), 100%, 50%); */
     padding-inline-end: 1rem;
 
     .crest {
@@ -718,6 +718,10 @@ footer {
       justify-content: flex-start;
     }
 
+    .flex-11 {
+      flex: 1 1 10rem;
+    }
+
     .flex-1 {
       flex: 1 1 15rem;
     }
@@ -736,7 +740,7 @@ footer {
   }
 
   > .look {
-    background-color: hsl(var(--honey-hue), 75%, 87%);
+    background-color: hsl(var(--honey), 75%, 87%);
     border-radius: var(--card-radius);
     box-shadow: var(--mesosphere);
     border: 2px solid whitesmoke;
@@ -793,8 +797,8 @@ footer {
 /*------------------------------------*/
 
 .qualities {
-  background: hsl(var(--honey-hue), 100%, 97.5%);
-  box-shadow: 0 0 0 100vmax hsl(var(--honey-hue), 100%, 97.5%);
+  background: hsl(var(--honey), 100%, 97.5%);
+  box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 97.5%);
   clip-path: inset(0 -100vmax);
   padding-block-start: 5rem;
 
@@ -817,8 +821,8 @@ footer {
 .hero-2 {
   display: grid;
 
-  background: hsl(var(--honey-hue), 100%, 87.5%);
-  box-shadow: 0 0 0 100vmax hsl(var(--honey-hue), 100%, 87.5%);
+  background: hsl(var(--honey), 100%, 87.5%);
+  box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 87.5%);
   clip-path: inset(0 -100vmax);
 
   > * {
@@ -926,7 +930,7 @@ footer {
     max-width: var(--stork);
     margin-inline: auto;
     grid-row: 3;
-    background-color: hsl(var(--honey-hue), 100%, 97.5%);
+    background-color: hsl(var(--honey), 100%, 97.5%);
     height: min-content;
     z-index: var(--understory);
     margin-inline: auto;
