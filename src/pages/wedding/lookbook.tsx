@@ -61,7 +61,16 @@ function LinkedLook({ image, lights, flex }: { image: any, lights: any[], flex: 
 }
 
 function Aspect({ image, lights }) {
-  if (image.localFile.childImageSharp.fluid.aspectRatio > 1) {
+  if (image.localFile.childImageSharp.fluid.aspectRatio > 1.5) {
+    // console.log('landscape');
+    return (
+      <LinkedLook
+        image={image}
+        lights={lights}
+        flex={2}
+      />
+    );
+  } else if (image.localFile.childImageSharp.fluid.aspectRatio > 1 || lights.length > 2) {
     // console.log('landscape');
     return (
       <LinkedLook
@@ -81,11 +90,12 @@ function Aspect({ image, lights }) {
     );
   } else if (image.localFile.childImageSharp.fluid.aspectRatio < 0.6) {
     console.log('super tall');
+    // TODO: needs work
     return (
       <LinkedLook
         image={image}
         lights={lights}
-        flex={11}
+        flex={1}
       />
     );
   } else {
