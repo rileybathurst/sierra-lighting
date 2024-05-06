@@ -68,9 +68,9 @@ const Book4Page = () => {
             key={lookbook.id}
             className={`look ${btnState[lookbook.id]}`}
             onClick={handleClick(lookbook.id, lookbook.image.localFile.childImageSharp.fluid.aspectRatio)}
-            style={{
-              aspectRatio: lookbook.image.localFile.childImageSharp.fluid.aspectRatio,
-            }}
+          /*             style={{
+                        aspectRatio: lookbook.image.localFile.childImageSharp.fluid.aspectRatio,
+                      }} */
           >
             <GatsbyImage
               image={lookbook.image.localFile.childImageSharp.gatsbyImageData}

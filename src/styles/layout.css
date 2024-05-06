@@ -708,14 +708,14 @@ footer {
     } */
 
     .gatsby-image-wrapper {
-      /* height: 200px; */
+      height: 12rem;
       width: auto;
       min-width: 100%;
       object-fit: cover;
     }
 
     > * {
-      flex: 1 1 20rem;
+      flex: 1 1 15rem;
       /* max-height: 90vh; */
     }
 
@@ -755,7 +755,11 @@ footer {
     }
 
     .true {
-      flex: 4 1 80rem;
+      flex: 1 1 35rem;
+
+      .gatsby-image-wrapper {
+        height: fit-content;
+      }
     }
   }
 
