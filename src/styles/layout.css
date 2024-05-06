@@ -708,7 +708,7 @@ footer {
     } */
 
     .gatsby-image-wrapper {
-      height: 200px;
+      /* height: 200px; */
       width: auto;
       min-width: 100%;
       object-fit: cover;
@@ -716,6 +716,7 @@ footer {
 
     > * {
       flex: 1 1 20rem;
+      /* max-height: 90vh; */
     }
 
     /*     .flex-11 {
@@ -751,6 +752,10 @@ footer {
       @media (min-width: 30rem) {
         flex: 3 1 40rem;
       }
+    }
+
+    .true {
+      flex: 4 1 80rem;
     }
   }
 
@@ -960,3 +965,25 @@ footer {
     margin-block-end: 5rem;
   }
 }
+
+/*------------------------------------*/
+
+/* ! testing */
+.book2 {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  max-width: var(--albatross);
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  > * {
+    flex: 1 1 10rem;
+  }
+
+  > .true {
+    flex: 4 1 80rem;
+  }
+}
+
+/*------------------------------------*/

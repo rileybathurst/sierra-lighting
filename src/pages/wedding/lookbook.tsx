@@ -1,6 +1,6 @@
 // TODO: this page needs love
 
-import * as React from "react"
+import React from 'react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
