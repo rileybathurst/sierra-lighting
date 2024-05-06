@@ -301,3 +301,12 @@ header svg:active {
   border: 1px solid whitesmoke;
   /*  TODO: theres a slight white gap at the bottom */
 }
+
+/*------------------------------------*/
+
+.look5 {
+  button,
+  .gatsby-image-wrapper {
+    width: 100%;
+  }
+}
