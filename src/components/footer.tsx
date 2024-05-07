@@ -158,7 +158,7 @@ const Footer = () => {
             </p>
             <p>
               <a href={`tel:${useSiteMetadata().telephone}`}>
-                Phone: {useSiteMetadata().telephone}
+                Call or Text: {useSiteMetadata().telephone}
               </a>
             </p>
           </div>

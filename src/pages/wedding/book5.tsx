@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
@@ -7,6 +7,54 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Start from "../../components/start";
+
+function LinkedLook({ image, lights }: { image: any, lights: any[] }) {
+
+  // console.log(image.localFile.childImageSharp.fluid.aspectRatio);
+
+  if (lights.length === 1) {
+    return (
+      <Link
+        to={`/light/${lights[0].slug}`}
+        className='look'
+      >
+        <GatsbyImage
+          image={image.localFile.childImageSharp.gatsbyImageData}
+          alt={image.alternativeText}
+        />
+        <p>{lights[0].name}</p>
+      </Link >
+    );
+  } if (lights.length > 1) {
+
+    return (
+      <div className='look'>
+        <GatsbyImage
+          image={image.localFile.childImageSharp.gatsbyImageData}
+          alt={image.alternativeText}
+        />
+        <ul className='lookbook-list'>
+          {lights.map((light, i) => (
+            <li>
+              <Link to={`/light/${light.slug}`} key={i}>
+                <span>{light.name}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  } else {
+    return (
+      <div className='look'>
+        <GatsbyImage
+          image={image.localFile.childImageSharp.gatsbyImageData}
+          alt={image.alternativeText}
+        />
+      </div>
+    );
+  }
+}
 
 const Book5Page = () => {
   const { allStrapiLookbook } = useStaticQuery(graphql`
@@ -38,22 +86,6 @@ const Book5Page = () => {
     }
   `);
 
-  const looks = allStrapiLookbook.nodes.reduce((acc, look) => {
-    acc[look.id] = false;
-    return acc;
-  }, {});
-
-  // console.log(looks);
-
-  const [btnState, setBtnState] = useState({});
-
-  const handleClick = (look, aspectRatio) => () =>
-    setBtnState((looks) => ({
-      ...look,
-
-      [look]: !looks[look],
-    }));
-
   return (
     <>
       <Header largeLogo={true} />
@@ -67,33 +99,14 @@ const Book5Page = () => {
 
       <section className="albatross look5">
         <ResponsiveMasonry
-          columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}
+          columnsCountBreakPoints={{ 320: 1, 740: 2, 960: 3 }}
         >
-          <Masonry>
+          <Masonry className="test">
             {allStrapiLookbook.nodes.map((lookbook) => (
-              <button
-                key={lookbook.id}
-                className={`look ${btnState[lookbook.id]}`}
-                onClick={handleClick(lookbook.id, lookbook.image.localFile.childImageSharp.fluid.aspectRatio)}
-              /*             style={{
-                            aspectRatio: lookbook.image.localFile.childImageSharp.fluid.aspectRatio,
-                          }} */
-              >
-                <GatsbyImage
-                  image={lookbook.image.localFile.childImageSharp.gatsbyImageData}
-                  alt={lookbook.image.alternativeText}
-                />
-
-                <ul className="lookbook-list">
-                  {lookbook.lights.map((light, i) => (
-                    <li>
-                      <Link to={`/light/${light.slug}`} key={i}>
-                        <span>{light.name}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </button>
+              <LinkedLook
+                image={lookbook.image}
+                lights={lookbook.lights}
+              />
             ))}
           </Masonry>
         </ResponsiveMasonry>

@@ -1,18 +1,16 @@
-// TODO: this page needs love
+import React from "react";
+import { Link, useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 
-import React from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
-import { SEO } from "../../components/seo";
-import { useSiteMetadata } from "../../hooks/use-site-metadata";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Start from "../../components/start";
+import SEO from "../../components/seo";
+import { useSiteMetadata } from "../../hooks/use-site-metadata"
 
-// ! masonry-layout the npm package was last published 6 years ago that maybe means it works but maybe not
-
-function LinkedLook({ image, lights, flex }: { image: any, lights: any[], flex: any }) {
+function LinkedLook({ image, lights }: { image: any, lights: any[] }) {
 
   // console.log(image.localFile.childImageSharp.fluid.aspectRatio);
 
@@ -20,7 +18,7 @@ function LinkedLook({ image, lights, flex }: { image: any, lights: any[], flex: 
     return (
       <Link
         to={`/light/${lights[0].slug}`}
-        className={`look flex-${flex}`}
+        className='look'
       >
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
@@ -32,7 +30,7 @@ function LinkedLook({ image, lights, flex }: { image: any, lights: any[], flex: 
   } if (lights.length > 1) {
 
     return (
-      <div className={`look flex-${flex}`}>
+      <div className='look'>
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
@@ -50,62 +48,12 @@ function LinkedLook({ image, lights, flex }: { image: any, lights: any[], flex: 
     );
   } else {
     return (
-      <div className={`look flex-${flex}`}>
+      <div className='look'>
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
         />
       </div>
-    );
-  }
-}
-
-function Aspect({ image, lights }) {
-  if (image.localFile.childImageSharp.fluid.aspectRatio > 1.5) {
-    // console.log('landscape');
-    return (
-      <LinkedLook
-        image={image}
-        lights={lights}
-        flex={2}
-      />
-    );
-  } else if (image.localFile.childImageSharp.fluid.aspectRatio > 1 || lights.length > 2) {
-    // console.log('landscape');
-    return (
-      <LinkedLook
-        image={image}
-        lights={lights}
-        flex={3}
-      />
-    );
-  } else if (image.localFile.childImageSharp.fluid.aspectRatio < 1) {
-    // console.log('portrait');
-    return (
-      <LinkedLook
-        image={image}
-        lights={lights}
-        flex={1}
-      />
-    );
-  } else if (image.localFile.childImageSharp.fluid.aspectRatio < 0.6) {
-    console.log('super tall');
-    // TODO: needs work
-    return (
-      <LinkedLook
-        image={image}
-        lights={lights}
-        flex={1}
-      />
-    );
-  } else {
-    // console.log('square');
-    return (
-      <LinkedLook
-        image={image}
-        lights={lights}
-        flex={2}
-      />
     );
   }
 }
@@ -143,34 +91,29 @@ const LookbookPage = () => {
 
   return (
     <>
-      <Header
-        largeLogo={true}
-      />
+      <Header largeLogo={true} />
 
       <main className="stork">
-
         <h2 className="crest">Wedding</h2>
         <h1 className="range">2024 Lookbook</h1>
         <Start className="button--left-align" />
         <hr />
       </main>
 
-      <section className='lookbook albatross'>
-        {/* <GatsbyImage
-          key={i}
-          image={lookbook.image.localFile.childImageSharp.gatsbyImageData}
-          alt={lookbook.image.alternativeText}
-        /> */}
-        {allStrapiLookbook.nodes.map((lookbook) => (
-          <Aspect
-            key={lookbook.id}
-            image={lookbook.image}
-            lights={lookbook.lights}
-          // flex={lookbook.flex}
-          />
-        ))}
+      <section className="albatross look5">
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{ 320: 1, 740: 2, 960: 3 }}
+        >
+          <Masonry className="test">
+            {allStrapiLookbook.nodes.map((lookbook) => (
+              <LinkedLook
+                image={lookbook.image}
+                lights={lookbook.lights}
+              />
+            ))}
+          </Masonry>
+        </ResponsiveMasonry>
       </section>
-
       <Footer />
 
     </>

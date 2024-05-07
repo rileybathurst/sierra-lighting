@@ -5,10 +5,7 @@
 svg {
   min-width: 5rem;
   max-width: 5rem;
-
-  @media (prefers-color-scheme: dark) {
-    fill: whitesmoke;
-  }
+  fill: whitesmoke;
 }
 
 .logo {
@@ -305,8 +302,60 @@ header svg:active {
 /*------------------------------------*/
 
 .look5 {
-  button,
+  .test {
+    /* > *:not(:last-child) { */
+    > * {
+      align-items: center;
+    }
+  }
+
+  .look,
   .gatsby-image-wrapper {
-    width: 100%;
+    width: calc(100% - 1rem);
+  }
+
+  .look {
+    background-color: var(--honey-100);
+    margin-block-end: 1rem;
+    border-radius: var(--card-radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ! testing */
+  /*   .look:has(p) .gatsby-image-wrapper {
+    opacity: 0.5;
+  } */
+
+  .look:not(:has(ul, p)) .gatsby-image-wrapper {
+    margin-block: 0.5rem;
+  }
+
+  /*
+  .look:has(:not(ul)) .gatsby-image-wrapper,
+  .look:has(:not(p)) .gatsby-image-wrapper {
+    margin-block-end: 0;
+  } */
+
+  .gatsby-image-wrapper {
+    border-radius: var(--card-radius);
+    margin-inline: auto;
+    margin-block-end: 1rem;
+  }
+
+  a .gatsby-image-wrapper {
+    transition: var(--moment);
+  }
+
+  a:hover {
+    .gatsby-image-wrapper {
+      transform: scale(1.05);
+      filter: brightness(0.8);
+    }
+  }
+
+  ul {
+    margin-inline: auto;
   }
 }
