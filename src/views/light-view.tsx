@@ -146,8 +146,9 @@ const LightView = ({ light, other }) => {
   // Aliases
   // this combines with a specific regex in strapi
   // console.log(light.alias);
+  let aka = null;
   if (light.alias) {
-    const aka = light?.alias.split('\n').map(line => line.replace('- ', ''));
+    let aka = light?.alias.split('\n').map(line => line.replace('- ', ''));
     // console.log(aka); // ["cafe lights", "bistro lights"]
   }
 
@@ -196,7 +197,7 @@ const LightView = ({ light, other }) => {
           {/* // TODO: this could be using a js length test for the lower clamp */}
           <h1 className="clamp-denali_everest">{light.name}</h1>
 
-          {light.alias && <Aliases aliases={aka} />}
+          {aka ? <Aliases aliases={aka} /> : null}
           {/* <Aliases aliases={aka} /> */}
 
           <p>{light.description}</p>
