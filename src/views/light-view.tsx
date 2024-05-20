@@ -80,9 +80,9 @@ function Projects(props: React.JSX.Element | null) {
         </div>
       </>
     );
-  } else {
-    return null
+
   }
+  return null
 }
 
 {/* // * Break this up in a very large way almost to the point these could be components */ }
@@ -146,7 +146,7 @@ const LightView = ({ light, other }) => {
   // Aliases
   // this combines with a specific regex in strapi
   // console.log(light.alias);
-  const aka = light.alias.split('\n').map(line => line.replace('- ', ''));
+  const aka = light?.alias.split('\n').map(line => line.replace('- ', ''));
   // console.log(aka); // ["cafe lights", "bistro lights"]
 
   return (
