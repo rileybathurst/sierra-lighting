@@ -1,6 +1,9 @@
 import * as React from "react"
 
-function Adj({ adjService }) {
+interface AdjTypes {
+  adjService: string;
+}
+function Adj({ adjService }: AdjTypes) {
 
   // console.log(adjService);
 
@@ -8,28 +11,38 @@ function Adj({ adjService }) {
     return (
       <>special day</>
     );
-  } else if (adjService === 'residential') {
+  }
+
+  if (adjService === 'residential') {
     return (
       <>home</>
     );
-  } else if (adjService === 'commercial' || adjService === 'commercial-events') {
+  }
+
+  if (adjService === 'commercial' || adjService === 'commercial-events') {
     return (
       <>business</>
     );
-  } else if (adjService === 'social-events') {
+  }
+
+  if (adjService === 'social-events') {
     return (
       <>event</>
     );
-  } else if (adjService === 'patio') {
+  }
+
+  if (adjService === 'patio') {
     return (
       <>patio</>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
-const Adjective = ({ service }: string) => {
+interface AdjectiveTypes {
+  service: string;
+}
+const Adjective = ({ service }: AdjectiveTypes) => {
 
   return (
     <p>

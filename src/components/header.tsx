@@ -6,7 +6,10 @@ import SlideMenu from "./slide-menu";
 import TopBar from "./topbar";
 import Season from "../components/season";
 
-const Header = ({ largeLogo }: { largeLogo: boolean }) => {
+interface HeaderTyes {
+  largeLogo?: boolean
+}
+const Header = ({ largeLogo }: HeaderTyes) => {
   return (
     <>
       <TopBar />

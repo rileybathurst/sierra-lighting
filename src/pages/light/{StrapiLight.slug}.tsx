@@ -29,11 +29,7 @@ export const query = graphql`
         }
       }
 
-      alias {
-        internal {
-          content
-        }
-      }
+      alias
 
       image {
         localFile {

@@ -111,40 +111,44 @@ function Other(props) {
         </div>
       </>
     );
-  } else {
-    return null
   }
+  return null
 }
 
-function Aliases(props) {
-  if (props.aliases) {
-
-    const obj = JSON.parse(props.aliases);
-    var values = Object.values(obj);
-
+interface AliasTypes {
+  aliases: string[];
+}
+function Aliases({ aliases }: AliasTypes) {
+  if (aliases) {
     return (
       <>
         {/* // TODO: more design here */}
         <h3 className="kilimanjaro">Also known as:</h3>
         <ul>
-          {values.map((index) => {
+          {aliases.map((aka) => {
             return (
-              <li key={index} className="first-capital">
-                {index}
+              <li key={aka} className="first-capital">
+                {aka}
               </li>
             )
           })}
         </ul>
         <hr />
       </>
-    )
-
-  } else {
-    return null
+    );
   }
+
+  return null
 }
 
 const LightView = ({ light, other }) => {
+
+  // Aliases
+  // this combines with a specific regex in strapi
+  // console.log(light.alias);
+  const aka = light.alias.split('\n').map(line => line.replace('- ', ''));
+  // console.log(aka); // ["cafe lights", "bistro lights"]
+
   return (
     <>
       <Header />
@@ -190,7 +194,7 @@ const LightView = ({ light, other }) => {
           {/* // TODO: this could be using a js length test for the lower clamp */}
           <h1 className="clamp-denali_everest">{light.name}</h1>
 
-          <Aliases aliases={light?.alias?.internal.content} />
+          <Aliases aliases={aka} />
 
           <p>{light.description}</p>
           <hr />

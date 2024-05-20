@@ -10,6 +10,7 @@ svg {
 
 .logo {
   max-width: 10rem;
+  fill: var(--black-metal);
 }
 
 /*------------------*/

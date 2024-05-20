@@ -1,10 +1,10 @@
-// TODO: order
-
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby";
 import Card from "../components/card";
+// ? does the card type actually work here?
+import type { CardType } from "../types/card";
 
-const Areas = ({ className }: { className?: string }) => {
+const Areas = () => {
 
   const { allStrapiArea } = useStaticQuery(graphql`
     query AreasQuery {
@@ -45,6 +45,11 @@ const Areas = ({ className }: { className?: string }) => {
     }
   `);
 
+  interface SortTypes {
+    a: { areas: { length: number } },
+    b: { areas: { length: number } }
+  };
+
   return (
     <main className="albatross">
       <h1 className="stork">Service Areas</h1>
@@ -52,9 +57,10 @@ const Areas = ({ className }: { className?: string }) => {
       <div className="areas__page">
         <section className="deck">
           {allStrapiArea.nodes
-            .sort((a, b) => b.areas.length - a.areas.length) // Sort by the number of area.areas
-            .map((area) => (
+            .sort((a: SortTypes['a'], b: SortTypes['b']) => b.areas.length - a.areas.length) // Sort by the number of area.areas
+            .map((area: CardType) => (
               <Card
+                key={area.slug} // * biome asks for this even if its in the card component
                 card={area}
                 breadcrumb={area.slug}
               />
@@ -66,24 +72,3 @@ const Areas = ({ className }: { className?: string }) => {
 }
 
 export default Areas
-
-
-
-/*   < li key = { area.name } className = "area-card" >
-  {
-    area.image ? (
-      <Link to={`/areas/${area.slug}`} className="poster">
-        <GatsbyImage
-          image={area.image.localFile.childImageSharp.gatsbyImageData}
-          alt={area.image.alternativeText}
-        />
-      </Link>
-    ) : null
-  }
-    < h3 className = "kilimanjaro" >
-      <Link to={`/areas/${area.slug}`}>
-        {area.name}
-      </Link>
-                </h3 >
-  <SubAreas areas={area.areas} />
-              </li > */

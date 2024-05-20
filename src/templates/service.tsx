@@ -10,7 +10,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
 import Card from '../components/card';
-import { CardType } from '../types/card';
+import type { CardType } from '../types/card';
 import Start from '../components/start';
 import Adjective from '../components/adjective';
 import Lookbook from '../components/lookbook';

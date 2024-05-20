@@ -126,7 +126,7 @@ module.exports = {
       options: strapiConfig,
     },
     {
-      resolve: `gatsby-plugin-csp`,
+      resolve: 'gatsby-plugin-csp',
       options: {
         mergeSecurityHeaders: true, // ? testing june 18 2022 csp issue // boolean to turn off the default security headers
         mergeScriptHashes: false, // you can disable scripts sha256 hashes

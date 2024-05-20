@@ -1328,7 +1328,6 @@ type Query = {
   readonly allStrapiHero: STRAPI_HEROConnection;
   readonly allStrapiImageGrab: STRAPI_IMAGE_GRABConnection;
   readonly allStrapiLight: STRAPI_LIGHTConnection;
-  readonly allStrapiLightAliasJsonnode: STRAPI_LIGHT_ALIAS_JSONNODEConnection;
   readonly allStrapiLightGroup: STRAPI_LIGHT_GROUPConnection;
   readonly allStrapiLookbook: STRAPI_LOOKBOOKConnection;
   readonly allStrapiLookbookDescriptionTextnode: STRAPI_LOOKBOOK_DESCRIPTION_TEXTNODEConnection;
@@ -1373,7 +1372,6 @@ type Query = {
   readonly strapiHero: Maybe<STRAPI_HERO>;
   readonly strapiImageGrab: Maybe<STRAPI_IMAGE_GRAB>;
   readonly strapiLight: Maybe<STRAPI_LIGHT>;
-  readonly strapiLightAliasJsonnode: Maybe<STRAPI_LIGHT_ALIAS_JSONNODE>;
   readonly strapiLightGroup: Maybe<STRAPI_LIGHT_GROUP>;
   readonly strapiLookbook: Maybe<STRAPI_LOOKBOOK>;
   readonly strapiLookbookDescriptionTextnode: Maybe<STRAPI_LOOKBOOK_DESCRIPTION_TEXTNODE>;
@@ -1544,14 +1542,6 @@ type Query_allStrapiLightArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_LIGHTSortInput>>>;
-};
-
-
-type Query_allStrapiLightAliasJsonnodeArgs = {
-  filter: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFilterInput>;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODESortInput>>>;
 };
 
 
@@ -2061,11 +2051,9 @@ type Query_strapiImageGrabArgs = {
 
 
 type Query_strapiLightArgs = {
-  alias: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFilterInput>;
+  alias: InputMaybe<StringQueryOperatorInput>;
   byline: InputMaybe<StringQueryOperatorInput>;
-  childStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
-  childrenStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<StringQueryOperatorInput>;
   detail: InputMaybe<STRAPI__MEDIAFilterInput>;
@@ -2090,16 +2078,6 @@ type Query_strapiLightArgs = {
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   weddingOrder: InputMaybe<IntQueryOperatorInput>;
   xmasOrder: InputMaybe<IntQueryOperatorInput>;
-};
-
-
-type Query_strapiLightAliasJsonnodeArgs = {
-  children: InputMaybe<NodeFilterListInput>;
-  id: InputMaybe<StringQueryOperatorInput>;
-  internal: InputMaybe<InternalFilterInput>;
-  one: InputMaybe<StringQueryOperatorInput>;
-  parent: InputMaybe<NodeFilterInput>;
-  two: InputMaybe<StringQueryOperatorInput>;
 };
 
 
@@ -3978,13 +3956,9 @@ type STRAPI_IMAGE_GRABSortInput = {
 };
 
 type STRAPI_LIGHT = Node & {
-  readonly alias: Maybe<STRAPI_LIGHT_ALIAS_JSONNODE>;
+  readonly alias: Maybe<Scalars['String']>;
   readonly byline: Maybe<Scalars['String']>;
-  /** Returns the first child node of type STRAPI_LIGHT_ALIAS_JSONNODE or null if there are no children of given type on this node */
-  readonly childStrapiLightAliasJsonnode: Maybe<STRAPI_LIGHT_ALIAS_JSONNODE>;
   readonly children: ReadonlyArray<Node>;
-  /** Returns all children nodes filtered by type STRAPI_LIGHT_ALIAS_JSONNODE */
-  readonly childrenStrapiLightAliasJsonnode: Maybe<ReadonlyArray<Maybe<STRAPI_LIGHT_ALIAS_JSONNODE>>>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
   readonly detail: Maybe<STRAPI__MEDIA>;
@@ -4086,11 +4060,9 @@ type STRAPI_LIGHTEdge = {
 };
 
 type STRAPI_LIGHTFieldSelector = {
-  readonly alias: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector>;
+  readonly alias: InputMaybe<FieldSelectorEnum>;
   readonly byline: InputMaybe<FieldSelectorEnum>;
-  readonly childStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
-  readonly childrenStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
   readonly detail: InputMaybe<STRAPI__MEDIAFieldSelector>;
@@ -4118,11 +4090,9 @@ type STRAPI_LIGHTFieldSelector = {
 };
 
 type STRAPI_LIGHTFilterInput = {
-  readonly alias: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFilterInput>;
+  readonly alias: InputMaybe<StringQueryOperatorInput>;
   readonly byline: InputMaybe<StringQueryOperatorInput>;
-  readonly childStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
-  readonly childrenStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly detail: InputMaybe<STRAPI__MEDIAFilterInput>;
@@ -4195,11 +4165,9 @@ type STRAPI_LIGHTGroupConnection_sumArgs = {
 };
 
 type STRAPI_LIGHTSortInput = {
-  readonly alias: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODESortInput>;
+  readonly alias: InputMaybe<SortOrderEnum>;
   readonly byline: InputMaybe<SortOrderEnum>;
-  readonly childStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODESortInput>;
   readonly children: InputMaybe<NodeSortInput>;
-  readonly childrenStrapiLightAliasJsonnode: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODESortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
   readonly detail: InputMaybe<STRAPI__MEDIASortInput>;
@@ -4224,132 +4192,6 @@ type STRAPI_LIGHTSortInput = {
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly weddingOrder: InputMaybe<SortOrderEnum>;
   readonly xmasOrder: InputMaybe<SortOrderEnum>;
-};
-
-type STRAPI_LIGHT_ALIAS_JSONNODE = Node & {
-  readonly children: ReadonlyArray<Node>;
-  readonly id: Scalars['ID'];
-  readonly internal: Internal;
-  readonly one: Maybe<Scalars['String']>;
-  readonly parent: Maybe<Node>;
-  readonly two: Maybe<Scalars['String']>;
-};
-
-type STRAPI_LIGHT_ALIAS_JSONNODEConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<STRAPI_LIGHT_ALIAS_JSONNODEEdge>;
-  readonly group: ReadonlyArray<STRAPI_LIGHT_ALIAS_JSONNODEGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<STRAPI_LIGHT_ALIAS_JSONNODE>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type STRAPI_LIGHT_ALIAS_JSONNODEConnection_distinctArgs = {
-  field: STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector;
-};
-
-
-type STRAPI_LIGHT_ALIAS_JSONNODEConnection_groupArgs = {
-  field: STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type STRAPI_LIGHT_ALIAS_JSONNODEConnection_maxArgs = {
-  field: STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector;
-};
-
-
-type STRAPI_LIGHT_ALIAS_JSONNODEConnection_minArgs = {
-  field: STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector;
-};
-
-
-type STRAPI_LIGHT_ALIAS_JSONNODEConnection_sumArgs = {
-  field: STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector;
-};
-
-type STRAPI_LIGHT_ALIAS_JSONNODEEdge = {
-  readonly next: Maybe<STRAPI_LIGHT_ALIAS_JSONNODE>;
-  readonly node: STRAPI_LIGHT_ALIAS_JSONNODE;
-  readonly previous: Maybe<STRAPI_LIGHT_ALIAS_JSONNODE>;
-};
-
-type STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector = {
-  readonly children: InputMaybe<NodeFieldSelector>;
-  readonly id: InputMaybe<FieldSelectorEnum>;
-  readonly internal: InputMaybe<InternalFieldSelector>;
-  readonly one: InputMaybe<FieldSelectorEnum>;
-  readonly parent: InputMaybe<NodeFieldSelector>;
-  readonly two: InputMaybe<FieldSelectorEnum>;
-};
-
-type STRAPI_LIGHT_ALIAS_JSONNODEFilterInput = {
-  readonly children: InputMaybe<NodeFilterListInput>;
-  readonly id: InputMaybe<StringQueryOperatorInput>;
-  readonly internal: InputMaybe<InternalFilterInput>;
-  readonly one: InputMaybe<StringQueryOperatorInput>;
-  readonly parent: InputMaybe<NodeFilterInput>;
-  readonly two: InputMaybe<StringQueryOperatorInput>;
-};
-
-type STRAPI_LIGHT_ALIAS_JSONNODEFilterListInput = {
-  readonly elemMatch: InputMaybe<STRAPI_LIGHT_ALIAS_JSONNODEFilterInput>;
-};
-
-type STRAPI_LIGHT_ALIAS_JSONNODEGroupConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<STRAPI_LIGHT_ALIAS_JSONNODEEdge>;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-  readonly group: ReadonlyArray<STRAPI_LIGHT_ALIAS_JSONNODEGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<STRAPI_LIGHT_ALIAS_JSONNODE>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type STRAPI_LIGHT_ALIAS_JSONNODEGroupConnection_distinctArgs = {
-  field: STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector;
-};
-
-
-type STRAPI_LIGHT_ALIAS_JSONNODEGroupConnection_groupArgs = {
-  field: STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type STRAPI_LIGHT_ALIAS_JSONNODEGroupConnection_maxArgs = {
-  field: STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector;
-};
-
-
-type STRAPI_LIGHT_ALIAS_JSONNODEGroupConnection_minArgs = {
-  field: STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector;
-};
-
-
-type STRAPI_LIGHT_ALIAS_JSONNODEGroupConnection_sumArgs = {
-  field: STRAPI_LIGHT_ALIAS_JSONNODEFieldSelector;
-};
-
-type STRAPI_LIGHT_ALIAS_JSONNODESortInput = {
-  readonly children: InputMaybe<NodeSortInput>;
-  readonly id: InputMaybe<SortOrderEnum>;
-  readonly internal: InputMaybe<InternalSortInput>;
-  readonly one: InputMaybe<SortOrderEnum>;
-  readonly parent: InputMaybe<NodeSortInput>;
-  readonly two: InputMaybe<SortOrderEnum>;
 };
 
 type STRAPI_LIGHT_GROUP = Node & {
@@ -9993,7 +9835,7 @@ type LightQueryQueryVariables = Exact<{
 }>;
 
 
-type LightQueryQuery = { readonly strapiLight: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly description: string | null, readonly services: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null } | null> | null, readonly light_groups: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null> | null, readonly alias: { readonly internal: { readonly content: string | null } } | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly detail: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly projects: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null, readonly allStrapiLight: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
+type LightQueryQuery = { readonly strapiLight: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly description: string | null, readonly alias: string | null, readonly services: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null } | null> | null, readonly light_groups: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null> | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly detail: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly projects: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null, readonly allStrapiLight: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
 
 type LightsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
