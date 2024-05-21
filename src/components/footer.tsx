@@ -7,23 +7,6 @@ import SocialIcons from "../components/social-icons";
 import FooterList from "../lists/footer-list";
 import Season from './season';
 
-// I dont have all of these and it might fix the caching issue
-function IfTeamImage(props) {
-
-  if (props.teamImage) {
-    return (
-      <GatsbyImage
-        image={
-          props.teamImage
-        }
-        alt={props.alt}
-      />
-    )
-  } else {
-    return null
-  }
-}
-
 // ? I believe this was the jobber form which I couldnt get working
 /* function encode(data) {
   return Object.keys(data)
@@ -157,6 +140,7 @@ const Footer = () => {
               </a>
             </p>
             <p>
+              {/* TODO: I think this is wrong if its not broken up correctly */}
               <a href={`tel:${useSiteMetadata().telephone}`}>
                 Call or Text: {useSiteMetadata().telephone}
               </a>
@@ -176,19 +160,19 @@ const Footer = () => {
 
           <div className="team-heads spin">
             {allStrapiTeam.nodes.map(team => (
-              <Link to={`/team/${team.slug}`} key={team.slug}>
-                <IfTeamImage
-                  teamImage={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
+              <Link
+                key={team.slug}
+                to={`/team/${team.slug}`}
+              >
+                <GatsbyImage
+                  image={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
                   alt={team?.avatar?.alternativeText}
                 />
-                <p>
-                  {team.name}
-                </p>
+                <p>{team.name}</p>
               </Link>
             ))
             }
           </div>
-
 
         </div>
       </div>
@@ -222,7 +206,7 @@ const Footer = () => {
         <h5 className="crest">
           <a
             href="https://www.sierrachristmaslights.com/"
-            target="_blank" rel="noopener noreffer"
+            target="_blank" rel="noopener noreferrer"
             className="link--subtle"
           >
             Formerly known as Sierra Christmas Lights

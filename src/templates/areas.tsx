@@ -11,26 +11,25 @@ import StateAbbreviation from "../components/state-abbreviation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 import Card from '../components/card';
-import { CardType } from '../types/card';
+import type { CardType } from '../types/card-type';
 
 function SubVenues({ venues }) {
 
+  // TODO: check on this double return I dont think its needed
   if (venues.length !== 0) {
     return (
       <>
         {venues.map((venue: CardType) => (
-          <section key={venue.id}>
-            <Card
-              card={venue}
-              breadcrumb='venue'
-            />
-          </section>
+          <Card
+            key={venue.id}
+            card={venue}
+            breadcrumb='venue'
+          />
         ))}
       </>
     );
-  } else {
-    return null
   }
+  return null
 }
 
 function SubAreas({ areas }) {
@@ -52,9 +51,8 @@ function SubAreas({ areas }) {
         {/* <h3>Wedding Venues in {areas[0].name}</h3> */}
       </div>
     );
-  } else {
-    return null
   }
+  return null
 }
 
 
@@ -77,23 +75,25 @@ function Venues({ name, venues, areas }: VenuesProps) {
 
         <div className="deck">
           {venues.map((venue: CardType) => (
-            <section key={venue.id}>
-              <Card
-                card={venue}
-                breadcrumb='venue'
-              />
-            </section>
+            <Card
+              key={venue.id}
+              card={venue}
+              breadcrumb='venue'
+            />
           ))}
 
+          {/* TODO: check on this [0] */}
           {areas.map((area: SubAreasType) => (
-            <SubVenues venues={area.venues} />
+            <SubVenues
+              id={area.venues[0].id}
+              venues={area.venues}
+            />
           ))}
         </div>
       </>
     );
-  } else {
-    return null
   }
+  return null
 }
 
 const AreasTemplate = ({ data }) => {

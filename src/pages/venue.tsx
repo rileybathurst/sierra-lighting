@@ -16,7 +16,7 @@ interface Area {
       localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
       alternativeText: string
     };
-    slug: any;
+    slug: string;
     excerpt: string
     name: string;
 
@@ -60,16 +60,17 @@ function Populated(props: { area: Area }) {
 
         <div className="deck">
           {props.area?.nodes.map(venue => (
-            <div key={venue.id}>
-              <Card card={venue} breadcrumb="venue" />
-            </div>
+            <Card
+              key={venue.id}
+              card={venue}
+              breadcrumb="venue"
+            />
           ))}
         </div>
       </div>
     )
-  } else {
-    return null
   }
+  return null
 }
 
 const VenuePage = () => {
@@ -172,30 +173,17 @@ const VenuePage = () => {
   `)
 
   // TODO: stateline is a heavyhanded way until I do other uses on venues
-
-  let southlake = data.southlake
-  let reno = data.reno
-  let incline = data.incline
-  let truckee = data.truckee
-  let olympic = data.olympic
-  let donner = data.donner
-  let stateline = data.stateline
-  let tahoma = data.tahoma
-  let minden = data.minden
-  let other = data.other
-
-  // TODO: this is the loop to take other places
-  let areas = [
-    southlake,
-    reno,
-    incline,
-    truckee,
-    olympic,
-    donner,
-    stateline,
-    tahoma,
-    minden,
-    other
+  const areas = [
+    data.southlake,
+    data.reno,
+    data.incline,
+    data.truckee,
+    data.olympic,
+    data.donner,
+    data.stateline,
+    data.tahoma,
+    data.minden,
+    data.other
   ];
 
   return (

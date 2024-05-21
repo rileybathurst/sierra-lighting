@@ -291,8 +291,6 @@ header {
 /*------------------------------------*/
 /* FOOTER */
 /* * this name isnt great as I also use it for vendors */
-
-/*  * this name isnt great as I also use it for vendors */
 .footer-social {
   max-width: var(--stork);
   margin-inline: auto;
@@ -313,6 +311,7 @@ header {
 
     li {
       list-style: none;
+      flex: 1 1 2.5rem; /* ! test */
 
       a {
         display: flex;
@@ -323,8 +322,10 @@ header {
 
       svg {
         margin-inline: auto;
-        max-width: 2.5rem;
-        fill: hsl(var(--honey), 62%, 62%);
+        max-width: 2.5rem; /* ! this isnt working */
+        width: 1.5rem; /* ! test */
+        max-height: 1rem; /* ! test */
+
         fill: var(--honey-300);
 
         @media (prefers-color-scheme: dark) {
@@ -343,13 +344,13 @@ header {
   }
 }
 
-.footer-social--self ul {
+/* .footer-social--self ul {
   justify-content: flex-start;
 
   @media (min-width: 60rem) {
     justify-content: space-between;
   }
-}
+} */
 
 .footer-container {
   max-width: var(--pelican);
@@ -479,7 +480,8 @@ footer {
 /* BREADCRUMBS */
 /*------------------*/
 
-.breadcrumbs {
+.breadcrumbs,
+.react-aria-Breadcrumbs {
   margin-block-start: 1.5rem;
 }
 

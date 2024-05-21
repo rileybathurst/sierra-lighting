@@ -1,17 +1,42 @@
 import * as React from "react"
-
+import { useStaticQuery, graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Work from "../images/work";
 
 const WorkPage = () => {
+
+  const { strapiImageGrab } = useStaticQuery(graphql`
+    query strapiImageGrabWork {
+      strapiImageGrab(title: {eq: "Work"}) {
+        title
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  // console.log(strapiImageGrab)
+
   return (
     <>
       <Header />
 
-      <Work />
+      <div className="poster">
+        <GatsbyImage
+          image={strapiImageGrab.image.localFile.childImageSharp.gatsbyImageData}
+          alt={strapiImageGrab.title}
+        />
+      </div>
+
       <main className="stork">
 
         <h2 className="crest">Hiring Now</h2>
@@ -23,7 +48,7 @@ const WorkPage = () => {
           <p><strong>Location: </strong>
             <span itemProp="jobLocation" itemScope itemType="https://schema.org/Place">
               <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                <span itemProp="addressLocality">Truckee</span><span itemProp="addressRegion">CA</span>
+                <span itemProp="addressLocality">Truckee</span>, <span itemProp="addressRegion">CA</span>
               </span>
             </span>
           </p>
@@ -41,51 +66,6 @@ const WorkPage = () => {
           <p>Full time Oct - Jan with holidays off. Can start earlier if desired.</p>
 
           <h3>↓ Contact us below ↓</h3>
-
-          {/* // TODO where is this going? Ive asked in Asana */}
-          {/* <p>Email: SierraChristmasLights@gmail.com with a resume and any questions to set up an interview.</p> */}
-          {/* <p>Fill in the form below with any questions</p> */}
-          {/* }
-          <p>
-            <strong>Industry:</strong> <span itemProp="industry">Lighting</span>
-            <br /><strong>Hours:</strong> <span itemProp="employmentType">Full-time</span>, <span itemProp="workHours">40 hours per week</span>
-            <br /><strong>Salary:</strong> <span itemProp="salaryCurrency">USD</span> <span itemProp="baseSalary">8000</span>
-          </p>
-
-          <p itemProp="description">
-            <strong>Description:</strong> <span itemProp="hiringOrganization" itemScope itemType="https://schema.org/Organization">
-              <span itemProp="name" className="sr-only">Sierra Lighting </span>
-              seeks a full-time mid-level software engineer to develop in-house tools.</span>
-          </p>
-
-          <p><strong>Responsibilities:</strong></p>
-          <ul itemProp="responsibilities">
-            <li>Design and write specifications for tools for in-house customers</li>
-            <li>Build tools according to specifications</li>
-          </ul>
-
-          <p><strong>Experience requirements:</strong></p>
-          <ul itemProp="experienceRequirements">
-            <li>Minumum 3 years experience as a software engineer</li>
-          </ul>
-
-          <p><strong>Desired Skills:</strong></p>
-          <ul itemProp="skills">
-            <li>Web application development using Java/J2EE</li>
-            <li>Web application development using Python or familiarity with dynamic programming languages</li>
-          </ul>
-
-          <p><strong>Benefits:</strong></p>
-          <ul><li>ABC Corp provides top-tier employee compensation benefits and a relaxed, team-oriented work environment, including:<span itemprop="jobBenefits"> Medical, Life, Dental</span></li>
-          </ul>
-
-          <p><strong>Incentives:</strong></p>
-          <ul><li><span itemProp="incentiveCompensation">Performance-based annual bonus plan, project-completion bonuses</span></li>
-          </ul>
-
-          <p>If interested in this position, please email us your resume, along with salary requirements and a cover letter to Jobs@abc.123.</p>
-          <p>Date Posted: <span itemProp="datePosted">2022-4-13</span></p>
-  */}
         </div>
       </main >
 

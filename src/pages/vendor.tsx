@@ -6,26 +6,7 @@ import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
-import { CardType } from "../types/card";
-
-function IfExtra(props
-  // TODO: props type
-  // props: { extra.length: number; }
-) {
-
-  // console.log(props.extra?.length);
-
-  if (props.extra.length > 0) {
-    return (
-      <div className="stork">
-        <hr />
-        <h3>Other Vendors</h3>
-      </div>
-    )
-  } else {
-    return null
-  }
-}
+import type { DeckType } from "../types/deck-type";
 
 const VendorsPage = () => {
 
@@ -66,11 +47,29 @@ const VendorsPage = () => {
     }
 `)
 
-  let photography = data.photography
-  let planning = data.planning
-  let production = data.production
-  let floral = data.floral
-  let other = data.other
+  // TODO: test this
+  if (data.other.nodes.length > 0) {
+    console.log(`Services outside the set ${data.other.nodes}`)
+
+    const vendorServices = [
+      data.photography,
+      data.planning,
+      data.production,
+      data.floral,
+      data.other
+    ]
+
+    return (
+      vendorServices
+    )
+  }
+
+  const vendorServices = [
+    data.photography,
+    data.planning,
+    data.production,
+    data.floral,
+  ]
 
   return (
     <>
@@ -80,71 +79,36 @@ const VendorsPage = () => {
 
         <div className="stork">
 
-          <h2 className="crest">Who we like to work with</h2>
           <h1 className="mixta">Wedding Vendors</h1>
 
-          <hr />
-
-          <h3><Link to="/vendor/photography">Photography</Link></h3>
+          {/* // TODO: query this */}
+          <p>We built our business by providing outstanding quality, value, and service. We support others in Reno/Tahoe that have the same commitment.</p>
         </div>
 
-        <div className="deck">
-          {photography.nodes.map((vendor: CardType) => (
-            <div key={vendor.id}>
-              <Card card={vendor} breadcrumb="vendor" />
+        {vendorServices.map((service) => (
+          <div
+            key={service.nodes[0].id}
+          >
+            <div className="stork">
+              <hr />
+              <h3 className="capitalize">
+                <Link to={`/vendors/${service?.nodes[0].service}`}>
+                  {service?.nodes[0].service}
+                </Link>
+              </h3>
             </div>
-          ))}
-        </div>
 
-        <div className="stork">
-          <hr />
-          <h3><Link to="/vendor/planning">Planning</Link></h3>
-        </div>
-
-        <div className="deck">
-          {planning.nodes.map((vendor: CardType) => (
-            <div key={vendor.id}>
-              <Card card={vendor} breadcrumb="vendor" />
+            <div className="deck">
+              {service.nodes.map((vendor: DeckType) => (
+                <Card
+                  key={vendor.id}
+                  card={vendor}
+                  breadcrumb="vendor"
+                />
+              ))}
             </div>
-          ))}
-        </div>
-
-        <div className="stork">
-          <hr />
-          <h3><Link to="/vendor/production">Event Production</Link></h3>
-        </div>
-
-        <div className="deck">
-          {production.nodes.map((vendor: CardType) => (
-            <div key={vendor.id}>
-              <Card card={vendor} breadcrumb="vendor" />
-            </div>
-          ))}
-        </div>
-
-        <div className="stork">
-          <hr />
-          <h3><Link to="/vendor/floral">Floral</Link></h3>
-        </div>
-
-        <div className="deck">
-          {floral.nodes.map((vendor: CardType) => (
-            <div key={vendor.id}>
-              <Card card={vendor} breadcrumb="vendor" />
-            </div>
-          ))}
-        </div>
-
-        {/* This is a ctach all if anything comes up here build a new thing and add it to its own query */}
-        <IfExtra extra={data.other} />
-
-        <div className="deck">
-          {other.nodes.map((vendor: CardType) => (
-            <div key={vendor.id}>
-              <Card card={vendor} breadcrumb="vendor" />
-            </div>
-          ))}
-        </div>
+          </div >
+        ))}
 
       </main >
 

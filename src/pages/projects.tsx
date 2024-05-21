@@ -6,7 +6,7 @@ import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
-import { CardType } from "../types/card";
+import { CardType } from "../types/card-type";
 import Season from "../components/season";
 
 function Loop(props: any) {
@@ -30,6 +30,7 @@ function Loop(props: any) {
         <div className="deck">
           {props.service.projects.map((project: CardType) => (
             <Card
+              key={project.id}
               card={project}
               breadcrumb="project"
             />

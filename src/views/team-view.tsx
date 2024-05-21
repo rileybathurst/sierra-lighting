@@ -1,60 +1,41 @@
 import * as React from "react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
+import type { IGatsbyImageData } from "gatsby-plugin-image";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
-import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
+import Markdown from "react-markdown";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
-import { CardType } from "../types/card";
+import type { DeckType } from "../types/deck-type";
 import Start from "../components/start";
 
-function ReactDescription(props: { bio: { data: { bio: string; }; }; }) {
-  if (props.bio) {
-    return <ReactMarkdown children={props.bio} remarkPlugins={[remarkGfm]} />;
-  } else {
-    return null;
+interface TeamTypes {
+  team: {
+    id: string;
+    name: string;
+    bio: {
+      data: {
+        bio: string;
+      };
+    };
+    avatar: {
+      alternativeText: string;
+      localFile: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData;
+        };
+      };
+    };
+    projects: DeckType[];
   }
 }
-
-function IfProjects(props: {
-  projects: string;
-  name: string;
-}) {
-  if (props.projects.length > 0) {
-    return (
-      <div className="stork">
-        <hr />
-        <h2>Projects {props.name} has worked on</h2>
-      </div>
-    );
-  } else {
-    return null;
-  }
-}
-
-const TeamView = ({ team }) => {
+const TeamView = ({ team }: TeamTypes) => {
   return (
     <>
       <Header />
-
-      <div className="stork">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/team">
-              <span itemProp="name">Team</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{team.name}</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
 
       <main className="stork team-page" itemScope itemType="https://schema.org/Person">
         <div className="avatar-wrapper">
@@ -65,7 +46,15 @@ const TeamView = ({ team }) => {
           />
         </div>
         <h1 itemProp="name">{team.name}</h1>
-        <ReactDescription bio={team.bio.data.bio} />
+
+        {team.bio ?
+          <Markdown
+            className="react-markdown"
+          >
+            {team.bio.data.bio}
+          </Markdown>
+          : null
+        }
 
         <hr />
 
@@ -73,17 +62,31 @@ const TeamView = ({ team }) => {
         <Start />
       </main>
 
-      <IfProjects projects={team.projects} name={team.name} />
-      <div className="deck">
-        {team.projects.map((project: CardType) => (
-          <div key={project.id}>
-            <Card
-              card={project}
-              breadcrumb="project"
-            />
+      {team.projects ?
+        <>
+          <div className="stork">
+            <hr />
+            <h3>Projects {team.name} has worked on</h3>
           </div>
-        ))}
-      </div>
+          <div className="deck">
+            {team.projects.map((project: DeckType) => (
+              <Card
+                key={project.id}
+                card={project}
+                breadcrumb="project"
+              />
+            ))}
+          </div>
+        </>
+        : null
+      }
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/team">Team</Link></Breadcrumb>
+        <Breadcrumb>{team.name}</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>

@@ -14,12 +14,11 @@ function ResultList(props) {
         <h3 className="stork">Search Results</h3>
         <div className="deck">
           {props.results.map(result => (
-            <div key={result.id}>
-              <Card
-                card={result}
-                breadcrumb="light"
-              />
-            </div>
+            <Card
+              key={result.id}
+              card={result}
+              breadcrumb="light"
+            />
           ))}
         </div>
 
@@ -27,20 +26,22 @@ function ResultList(props) {
         <h3 className="stork">All Lights</h3>
       </>
     )
-  } else if (props.searchQuery === "") {
+  }
+
+  if (props.searchQuery === "") {
     /* return (
       <h3 className="stork">Please enter a search query</h3>
     ) */
     return null;
-  } else {
-    return (
-      <>
-        <h3 className="stork">Nothing found in the search</h3>
-        <hr className="stork" />
-        <h3 className="stork">All Lights</h3>
-      </>
-    )
   }
+
+  return (
+    <>
+      <h3 className="stork">Nothing found in the search</h3>
+      <hr className="stork" />
+      <h3 className="stork">All Lights</h3>
+    </>
+  )
 }
 
 function LightSearch() {
@@ -55,7 +56,7 @@ function LightSearch() {
     }
   `)
 
-  var search = new JsSearch.Search('id');
+  const search = new JsSearch.Search('id');
 
   allStrapiLight.nodes.map((node) => {
     search.addDocuments(node);

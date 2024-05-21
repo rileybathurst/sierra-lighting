@@ -1,3 +1,5 @@
+// TODO: ? what is going on why are these different
+
 import React from "react";
 
 import FacebookIcon from "../images/facebook-icon";
@@ -91,7 +93,6 @@ const SocialIcons = () => (
           title="Sierra Lighting pinterest"
         >
           <PinterestIcon />
-
         </a>
       </li>
 

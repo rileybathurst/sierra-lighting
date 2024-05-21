@@ -9,16 +9,16 @@ import Footer from "../components/footer";
 const FaqsPage = () => {
 
   const { allStrapiFar } = useStaticQuery(graphql`
-query FaqQuery {
-  allStrapiFar(filter: { publishedAt: { ne: null } }) {
-    nodes {
-      id
-      question
-      answer
+    query FaqQuery {
+      allStrapiFar(filter: { publishedAt: { ne: null } }) {
+        nodes {
+          id
+          question
+          answer
+        }
+      }
     }
-  }
-}
-`)
+  `)
 
   return (
     <>

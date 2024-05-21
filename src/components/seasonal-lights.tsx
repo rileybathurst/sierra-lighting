@@ -4,7 +4,7 @@ import * as React from "react"
 import { graphql, useStaticQuery, Link } from 'gatsby';
 
 import Card from "./card";
-import { CardType } from "../types/card";
+import type { CardType } from "../types/card-type";
 
 const SeasonalLights = () => {
 
@@ -16,6 +16,7 @@ const SeasonalLights = () => {
 
       wedding: allStrapiService(filter: {slug: {eq: "wedding"}}) {
         nodes {
+          id
           slug
           featured_lights {
             name
@@ -36,6 +37,7 @@ const SeasonalLights = () => {
 
       holiday: allStrapiService(filter: {slug: {eq: "residential"}}) {
         nodes {
+          id
           slug
           featured_lights {
             name
@@ -69,6 +71,7 @@ const SeasonalLights = () => {
           {data.wedding.nodes.map((service) => (
             service.featured_lights.map((light: CardType) => (
               <Card
+                key={light.id}
                 card={light}
                 breadcrumb="light"
               />

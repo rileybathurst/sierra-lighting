@@ -5,7 +5,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 // import Badges from "../components/badges"
 import Card from "../components/card";
-import { CardType } from "../types/card";
+import { CardType } from "../types/card-type";
 
 const LightGroupView = ({
   lightgroup,
@@ -18,7 +18,7 @@ const LightGroupView = ({
       <div className="stork">
         <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
 
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="first-capital">
+          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="capitalize">
             <Link itemProp="item" to="/lights">
               <span itemProp="name">Lights</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="1" />
@@ -49,12 +49,11 @@ const LightGroupView = ({
 
       <section className="deck">
         {lightgroup.lights.map((light: CardType) => (
-          <div key={light.id}>
-            <Card
-              card={light}
-              breadcrumb="light"
-            />
-          </div>
+          <Card
+            key={light.id}
+            card={light}
+            breadcrumb="light"
+          />
         ))}
       </section>
 

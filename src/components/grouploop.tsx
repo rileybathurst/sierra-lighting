@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 
 import Badges from "./badges"
 import Card from "./card"
-import { CardType } from "../types/card";
+import type { DeckType } from "../types/deck-type";
 
 const Grouploop = (props) => {
 
@@ -24,10 +24,12 @@ const Grouploop = (props) => {
         </div>
 
         <div className="deck">
-          {props.group[1].nodes.map((light: CardType) => (
-            <div key={light.id}>
-              <Card card={light} breadcrumb="light" />
-            </div>
+          {props.group[1].nodes.map((light: DeckType) => (
+            <Card
+              id={light.id}
+              card={light}
+              breadcrumb="light"
+            />
           ))}
         </div>
       </>

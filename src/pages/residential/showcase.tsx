@@ -34,7 +34,7 @@ function Attributes(props) {
 
     return (
       <section className="attribute" key={key}>
-        <h3 className="crest first-capital">{key}</h3>
+        <h3 className="crest capitalize">{key}</h3>
         <h4 className="range">{value}</h4>
       </section>
     )
@@ -161,7 +161,7 @@ function ResidentialShowcase() {
                   /></Link>
 
                 <div className="stork">
-                  <h3 className="first-capital">{showcase.tier} Showcase</h3>
+                  <h3 className="capitalize">{showcase.tier} Showcase</h3>
                   <ReactDescription description={showcase.description} />
                 </div>
 

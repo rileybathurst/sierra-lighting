@@ -29,15 +29,15 @@ exports.createPages = ({ actions, graphql }) => {
     }
     `).then(result => {
 
-    result.data.allStrapiService.edges.forEach(({ node }) => {
+    for (const { node } of result.data.allStrapiService.edges) {
       createPage({
         path: `/${node.slug}`,
-        component: path.resolve(`src/templates/service.tsx`),
+        component: path.resolve("src/templates/service.tsx"),
         context: {
           slug: node.slug,
         },
-      })
-    })
+      });
+    }
   }); // .then(result)
 
   // why did I do this?
@@ -99,6 +99,7 @@ exports.createPages = ({ actions, graphql }) => {
   // * Im creating this twice to do
   // vendors aka vendor/twinefloralco
   // vendorservice aka vendors/floral
+  // ? I think this is creating /wedding/vendors/floral
 
   const getVendorServices = makeRequest(graphql, `
       {
@@ -214,6 +215,7 @@ exports.createPages = ({ actions, graphql }) => {
 
 
 /*  // TODO: this was trying to create the vendors page without having to manually make each service on the enum
+// I dont think this needs a node I can maybe do it in the files
   I havent been able to make it work yet
   does this work doing both queries in the same place?
   const getVendorServicesLoop = makeRequest(graphql, `

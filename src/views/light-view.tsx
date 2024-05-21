@@ -21,12 +21,11 @@ function LightGroup(props) {
 
               <div className="deck">
                 {index.lights.map((light) => (
-                  <div key={light.id}>
-                    <Card
-                      card={light}
-                      breadcrumb="light"
-                    />
-                  </div>
+                  <Card
+                    key={light.id}
+                    card={light}
+                    breadcrumb="light"
+                  />
                 ))}
               </div>
             </div>
@@ -34,9 +33,8 @@ function LightGroup(props) {
         })}
       </div>
     )
-  } else {
-    return null
   }
+  return null
 }
 
 function Group(props) {
@@ -45,7 +43,7 @@ function Group(props) {
       <ul className="listed">
         {props.group.map((index) => {
           return (
-            <li key={index.id} className="first-capital">
+            <li key={index.id} className="capitalize">
               <Link to={`/light-group/${index.slug}`}>
                 {index.name}
               </Link>
@@ -54,9 +52,8 @@ function Group(props) {
         })}
       </ul>
     )
-  } else {
-    return null
   }
+  return null
 }
 
 function Projects(props: React.JSX.Element | null) {
@@ -127,7 +124,7 @@ function Aliases({ aliases }: AliasTypes) {
         <ul>
           {aliases.map((aka) => {
             return (
-              <li key={aka} className="first-capital">
+              <li key={aka} className="capitalize">
                 {aka}
               </li>
             )
@@ -161,7 +158,7 @@ const LightView = ({ light, other }) => {
         <div className="stork">
           <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
 
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="first-capital">
+            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem" className="capitalize">
               <Link itemProp="item" to="/lights">
                 <span itemProp="name">Lights</span></Link>&nbsp;/&nbsp;
               <meta itemProp="position" content="1" />
@@ -221,7 +218,7 @@ const LightView = ({ light, other }) => {
           <ul className="">
             {light.services.map((service) => {
               return (
-                <li key={service.id} className="range first-capital">
+                <li key={service.id} className="range capitalize">
                   <Link to={`/${service.slug}`}>
                     {service.name}
                   </Link>

@@ -10,7 +10,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm'
 
 import Card from '../components/card';
-import type { CardType } from '../types/card';
+import type { DeckType } from '../types/deck-type';
 import Start from '../components/start';
 import Adjective from '../components/adjective';
 import Lookbook from '../components/lookbook';
@@ -40,115 +40,113 @@ function Base(props: {
   vendors: string | any[];
   slug: string;
 }) {
+  // Im not sure if this can be a const im changing the internals
   let base = [];
 
   if (!props?.projects.length && !props?.venues.length && !props?.vendors.length) {
     // base.push(props?.projects[0]);
     // console.log('no projects, venues or vendors');
     return null;
-  } else {
-    // * the heirarchy is projects, vendors, venues
-
-    // first create the 3 spots as projects if possible
-    // if projects has something the first one has a project breadcrumb
-    if (props?.projects.length > 0) {
-      base.push(props?.projects[0]);
-      base[0].breadcrumb = 'project';
-      base[0].order = 0;
-    }
-
-    // if projects has atleast 2 the second one has a project breadcrumb
-    if (props?.projects.length > 1) {
-      base.push(props?.projects[1]);
-      base[1].breadcrumb = 'project';
-      base[1].order = 1;
-    }
-
-    // if projects has atleast 3 the third one has a project breadcrumb
-    if (props?.projects.length > 2) {
-      base.push(props?.projects[2]);
-      base[2].breadcrumb = 'project';
-      base[2].order = 2;
-    }
-
-
-    // if has projects and vendors
-    if (props?.vendors.length && props?.venues.length) {
-
-      // put the vendor in the second spot
-      let vendorInset = props?.vendors[0];
-      vendorInset.breadcrumb = 'vendor';
-      base.splice(1, 1, vendorInset);
-
-      let venueInset = props?.venues[0];
-      venueInset.breadcrumb = 'venue';
-      base.splice(2, 2, venueInset);
-    } else if (props?.vendors.length) {
-
-      // if has projects and vendors but no venues
-      // put the vendor in the third spot
-
-      let vendorInset = props?.vendors[0];
-      vendorInset.breadcrumb = 'vendor';
-      base.splice(2, 2, vendorInset);
-
-    } else if (props?.venues.length) {
-      // if has projects and venues but no vendors
-      let venueInset = props?.venues[0];
-      venueInset.breadcrumb = 'venue';
-      base.splice(2, 2, venueInset);
-
-    }
-
-    let titles = [];
-    // first always needs a title
-    titles[0] = base[0].breadcrumb;
-    // console.log(titles[0]);
-    // titles[0]
-
-    if (base[1]) {
-      if (base[1]?.breadcrumb !== base[0].breadcrumb) {
-        titles[1] = base[1].breadcrumb;
-      }
-    }
-
-    if (base[1] && base[2]) {
-      if (base[2]?.breadcrumb !== base[0].breadcrumb && base[2]?.breadcrumb !== base[1].breadcrumb) {
-        titles[2] = base[2].breadcrumb;
-      }
-    }
-
-    // console.log(titles);
-    // console.log(base);
-
-    return (
-      <>
-        <hr className='stork' />
-
-        <div className='deck margin-block-end-0 service-deck'>
-          {titles.map((title) => (
-            <h4
-              key={title}
-              className={`first-capital ${title}-title`}
-            >
-              <Breadcrumb title={title} />
-            </h4>
-          ))}
-
-
-          {base.map((card) => (
-            // console.log(card.breadcrumb),
-            <div key={card.id} className={`${card.breadcrumb} ${card.breadcrumb}-${card.order}`} >
-              <Card
-                card={card}
-                breadcrumb={card.breadcrumb}
-              />
-            </div>
-          ))}
-        </div >
-      </>
-    )
   }
+  // * the heirarchy is projects, vendors, venues
+
+  // first create the 3 spots as projects if possible
+  // if projects has something the first one has a project breadcrumb
+  if (props?.projects.length > 0) {
+    base.push(props?.projects[0]);
+    base[0].breadcrumb = 'project';
+    base[0].order = 0;
+  }
+
+  // if projects has atleast 2 the second one has a project breadcrumb
+  if (props?.projects.length > 1) {
+    base.push(props?.projects[1]);
+    base[1].breadcrumb = 'project';
+    base[1].order = 1;
+  }
+
+  // if projects has atleast 3 the third one has a project breadcrumb
+  if (props?.projects.length > 2) {
+    base.push(props?.projects[2]);
+    base[2].breadcrumb = 'project';
+    base[2].order = 2;
+  }
+
+  // if has projects and vendors
+  if (props?.vendors.length && props?.venues.length) {
+
+    // put the vendor in the second spot
+    let vendorInset = props?.vendors[0];
+    vendorInset.breadcrumb = 'vendor';
+    base.splice(1, 1, vendorInset);
+
+    let venueInset = props?.venues[0];
+    venueInset.breadcrumb = 'venue';
+    base.splice(2, 2, venueInset);
+  } else if (props?.vendors.length) {
+
+    // if has projects and vendors but no venues
+    // put the vendor in the third spot
+
+    let vendorInset = props?.vendors[0];
+    vendorInset.breadcrumb = 'vendor';
+    base.splice(2, 2, vendorInset);
+
+  } else if (props?.venues.length) {
+    // if has projects and venues but no vendors
+    let venueInset = props?.venues[0];
+    venueInset.breadcrumb = 'venue';
+    base.splice(2, 2, venueInset);
+
+  }
+
+  let titles = [];
+  // first always needs a title
+  titles[0] = base[0].breadcrumb;
+  // console.log(titles[0]);
+  // titles[0]
+
+  if (base[1]) {
+    if (base[1]?.breadcrumb !== base[0].breadcrumb) {
+      titles[1] = base[1].breadcrumb;
+    }
+  }
+
+  if (base[1] && base[2]) {
+    if (base[2]?.breadcrumb !== base[0].breadcrumb && base[2]?.breadcrumb !== base[1].breadcrumb) {
+      titles[2] = base[2].breadcrumb;
+    }
+  }
+
+  // console.log(titles);
+  // console.log(base);
+
+  return (
+    <>
+      <hr className='stork' />
+
+      <div className='deck margin-block-end-0 service-deck'>
+        {titles.map((title) => (
+          <h4
+            key={title}
+            className={`capitalize ${title}-title`}
+          >
+            <Breadcrumb title={title} />
+          </h4>
+        ))}
+
+        {base.map((card) => (
+
+          <Card
+            key={card.id}
+            card={card}
+            breadcrumb={card.breadcrumb}
+            className={`${card.breadcrumb} ${card.breadcrumb}-${card.order}`}
+          />
+        ))}
+      </div >
+    </>
+  )
 }
 
 function ReactDescription(props: { description: string | null | undefined; }) {
@@ -160,9 +158,8 @@ function ReactDescription(props: { description: string | null | undefined; }) {
         remarkPlugins={[remarkGfm]}
       />
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 function VideoMux(video: { video: string | undefined; }) {
@@ -176,9 +173,8 @@ function VideoMux(video: { video: string | undefined; }) {
         className='hero-video'
       />
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 function Consultant({ after_the_triptych }) {
@@ -197,9 +193,8 @@ function Consultant({ after_the_triptych }) {
         />
       </div>
     )
-  } else {
-    return null;
   }
+  return null;
 }
 
 const ServiceView = ({ data }) => {
@@ -250,13 +245,12 @@ const ServiceView = ({ data }) => {
           </div>
 
           <div className='deck'>
-            {data.strapiService.featured_lights.map((light: CardType) => (
-              <div key={light.id}>
-                <Card
-                  card={light}
-                  breadcrumb='light'
-                />
-              </div>
+            {data.strapiService.featured_lights.map((light: DeckType) => (
+              <Card
+                key={light.id}
+                card={light}
+                breadcrumb='light'
+              />
             ))}
 
 

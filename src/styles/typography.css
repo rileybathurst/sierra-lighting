@@ -343,7 +343,7 @@ ol li {
   }
 }
 
-.first-capital {
+.capitalize {
   text-transform: capitalize;
 }
 
@@ -360,4 +360,10 @@ ol li {
 .attribute.range {
   font-family: var(--font-sans);
   font-size: var(--denali);
+}
+
+/*------------------------------------*/
+
+.react-markdown {
+  white-space: pre-wrap;
 }

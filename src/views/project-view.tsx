@@ -24,20 +24,17 @@ function Triptych(props) {
         </div>
         <section className="deck">
           {props.triptych.map((light) => (
-            <div
+            <Card
               key={light?.id}
-            >
-              <Card card={light}
-                breadcrumb="light"
-              />
-            </div>
+              card={light}
+              breadcrumb="light"
+            />
           ))}
         </section>
       </>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 function Additional(props) {
@@ -79,9 +76,8 @@ function Gallery(props) {
         ))}
       </section>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 // TODO: move this inline
@@ -121,9 +117,8 @@ function Lights(props) {
         </div>
       </>
     );
-  } else {
-    return null
   }
+  return null
 }
 
 
@@ -131,12 +126,11 @@ function Other(props) {
   const map = props.other.nodes.map((project, index) => {
 
     return (
-      <div key={index}>
-        <Card
-          card={project}
-          breadcrumb="project"
-        />
-      </div>
+      <Card
+        key={index}
+        card={project}
+        breadcrumb="project"
+      />
     );
   });
 
@@ -153,9 +147,8 @@ function Other(props) {
         </div>
       </>
     );
-  } else {
-    return null
   }
+  return null
 }
 
 function IfVenue(props) {
@@ -177,7 +170,9 @@ function IfVenue(props) {
         ))}
       </section>
     );
-  } else if (props.area.length > 0) {
+  }
+
+  if (props.area.length > 0) {
     return (
       <section className="attribute">
         <h3 className="crest">Venue</h3>
@@ -190,9 +185,8 @@ function IfVenue(props) {
         ))}
       </section>
     );
-  } else {
-    return null
   }
+  return null
 }
 
 function IfVendor(props) {
@@ -210,16 +204,15 @@ function IfVendor(props) {
             </h4>
             <p>
               <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
-                <span className="first-capital">{vendor.service}</span><br />
+                <span className="capitalize">{vendor.service}</span><br />
               </Link>
             </p>
           </>
         ))}
       </section>
     );
-  } else {
-    return null
   }
+  return null
 }
 
 function IfTeam(props) {
@@ -238,9 +231,8 @@ function IfTeam(props) {
         </div>
       </section>
     );
-  } else {
-    return null
   }
+  return null
 }
 
 function Attributes(props) {
@@ -270,11 +262,10 @@ function Attributes(props) {
         </div>
       </>
     );
-  } else {
-    // console.log('no attributes');
-
-    return null
   }
+
+  // console.log('no attributes');
+  return null
 }
 
 const ProjectView = ({ project, triptych, additional, other }) => {

@@ -1,34 +1,60 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import Card from "../../components/card";
+import type { DeckType } from "../../types/deck-type";
 
-function VendorCatchAll({ params }) {
+function VendorCatchAll({ params }: { params: { name: string } }) {
+
+  const { allStrapiVendor } = useStaticQuery(graphql`
+    query VendorCatchAllQuery {
+      allStrapiVendor {
+          nodes {
+            ...vendorCard
+        }
+      }
+    }
+  `)
+
   return (
     <>
       <Header />
-      <div className="stork">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/venue">
-              <span itemProp="name">Vendor</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{params.name}</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
+
+      <hr className="stork" />
+
       <main className="stork">
-        <h2 className="crest">404</h2>
+        <h2 className="crest">404 - {params.name}</h2>
         <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
         <p>Want to brighten up?<br />
           <Link to="/">Head to our home page.</Link>
         </p>
       </main>
+
+      <hr className="stork" />
+
+      <h3 className="stork elbrus">Browse some of our other prefered vendors</h3>
+
+      <section className="deck">
+        {allStrapiVendor.nodes.map((vendor: DeckType) => (
+          <Card
+            key={vendor.id}
+            card={vendor}
+            breadcrumb="vendor"
+          />
+        ))}
+      </section>
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/vendor/">Vendor</Link></Breadcrumb>
+        {/* ? should this be a different and broken breadcrumb? */}
+        <Breadcrumb>{params.name}</Breadcrumb>
+      </Breadcrumbs>
+
       <Footer />
     </>
   )

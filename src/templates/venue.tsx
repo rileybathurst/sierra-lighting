@@ -63,12 +63,11 @@ function IfOther(props) {
 
         <div className="deck">
           {props.other.map((other) => (
-            <div key={other.node.id}>
-              <Card
-                card={other.node}
-                breadcrumb='venue'
-              />
-            </div>
+            <Card
+              key={other.node.id}
+              card={other.node}
+              breadcrumb='venue'
+            />
           ))}
         </div>
         <div className="stork">

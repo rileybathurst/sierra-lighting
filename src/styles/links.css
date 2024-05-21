@@ -206,9 +206,16 @@ button:focus,
 }
 
 /*------------------------------------*/
+/* #SVG */
+/*------------------------------------*/
 
 a svg {
   transition: var(--moment);
+  fill: hsl(var(--honey), 100%, 35%);
+
+  @media (prefers-color-scheme: dark) {
+    fill: hsl(var(--denim), 37%, 62.5%);
+  }
 }
 
 a svg:hover {

@@ -13,9 +13,7 @@ import Start from "../components/start";
 
 import Qualities from "../components/qualities";
 
-import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
-import TopBar from "../components/topbar";
+import Markdown from "react-markdown";
 import Header from "../components/header";
 import HeroTreeScreen from "../images/hero-tree-screen";
 import HeroTreeSolid from "../images/hero-tree-solid";
@@ -92,15 +90,18 @@ const IndexPage = () => {
               <HeroTreeScreen />
               <HeroTreeSolid />
             </div>
+            {/* // TODO: query this */}
             <h2>Illuminating<br className="medium-up" />Moments,<br className="medium-up" /> Year-Round</h2>
           </div>
 
           <section className="h2-text">
             <h3>{useSiteMetadata().slogan}</h3>
-            <ReactMarkdown
-              children={data.strapiAbout.description.data.description}
-              remarkPlugins={[remarkGfm]}
-            />
+            {data.strapiAbout ?
+              <Markdown className='react-markdown'>
+                {data.strapiAbout.description.data.description}
+              </Markdown>
+              : null
+            }
             <Start className="button--left-align" />
 
           </section >
@@ -151,8 +152,14 @@ const IndexPage = () => {
 
         <div className="home-services">
           {data.allStrapiService.nodes.map((service) => (
-            <Link to={`/${service.slug}`} key={service.id} className='poster'>
-              <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData} alt={service.hero_light.alternativeText} />
+            <Link
+              key={service.id}
+              to={`/${service.slug}`}
+              className='poster'
+            >
+              <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
+                alt={service.hero_light.alternativeText}
+              />
               <span>{service.name}</span>
             </Link>
           ))}

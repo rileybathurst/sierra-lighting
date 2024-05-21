@@ -11,13 +11,11 @@ import IfHero from "../components/if-hero";
 
 import TestimonialRanking from "../components/testimonial-ranking";
 import Card from '../components/card';
-import { CardType } from '../types/card';
+import type { CardType } from '../types/card-type';
 
 function IfOther(props) {
   if (props.projects.length > 0) {
-
     // console.log(props.projects);
-
     return (
       <>
         <div className="stork">
@@ -26,22 +24,23 @@ function IfOther(props) {
         </div>
         <div className="deck">
           {props.projects.map((project: CardType) => (
-            <div key={project.id}>
-              <Card
-                card={project}
-                breadcrumb='project'
-              />
-            </div>
+            <Card
+              key={project.id}
+              card={project}
+              breadcrumb='project'
+            />
           ))}
         </div>
       </>
     );
-  } else if (props.other.length > 0) {
+  }
+
+  if (props.other.length > 0) {
     return (
       <>
         <div className="stork">
           <hr />
-          <h4>Other <span className='first-capital'>{props.service}</span> Vendors</h4>
+          <h4>Other <span className='capitalize'>{props.service}</span> Vendors</h4>
         </div>
 
         <div className="deck">
@@ -60,22 +59,21 @@ function IfOther(props) {
           <h3 className="crest">Even More</h3>
           <h2 className="range">
             <Link to={`/vendors/${props.service}`} className="link--subtle">
-              All Other <span className='first-capital'>{props.service}</span> Vendors
+              All Other <span className='capitalize'>{props.service}</span> Vendors
             </Link>
           </h2>
         </div>
       </>
     );
-  } else {
-    return (
-      <>
-        <div className="stork">
-          <h3 className="crest">Looking for something else?</h3>
-          <h2 className="range"><Link to='/vendor' className="link--subtle">Other Wedding Vendors</Link></h2>
-        </div>
-      </>
-    )
   }
+  return (
+    <>
+      <div className="stork">
+        <h3 className="crest">Looking for something else?</h3>
+        <h2 className="range"><Link to='/vendor' className="link--subtle">Other Wedding Vendors</Link></h2>
+      </div>
+    </>
+  )
 }
 
 function Testimonials(props) {
@@ -103,9 +101,8 @@ function Testimonials(props) {
         </ul>
       </div>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 const VendorTemplateView = ({ data }) => {
@@ -123,7 +120,7 @@ const VendorTemplateView = ({ data }) => {
 
           <li key='3' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
             <Link itemProp="item" to={`/vendors/${data.strapiVendor.service}`}>
-              <span itemProp="name" className='first-capital'>{data.strapiVendor.service}</span></Link>&nbsp;/&nbsp;
+              <span itemProp="name" className='capitalize'>{data.strapiVendor.service}</span></Link>&nbsp;/&nbsp;
             <meta itemProp="position" content="2" />
           </li>
 

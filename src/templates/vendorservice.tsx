@@ -9,7 +9,7 @@ import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from '../components/card';
-import { CardType } from '../types/card';
+import { CardType } from '../types/card-type';
 
 const VendorServiceView = ({ data }) => {
   return (
@@ -24,7 +24,7 @@ const VendorServiceView = ({ data }) => {
             <meta itemProp="position" content="1" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name" className='first-capital'>{data.allStrapiVendor.distinct}</span>
+            <span itemProp="name" className='capitalize'>{data.allStrapiVendor.distinct}</span>
             <meta itemProp="position" content="2" />
           </li>
         </ol>
@@ -37,19 +37,17 @@ const VendorServiceView = ({ data }) => {
 
           {/* // TODO: the order is wrong here, it should be: h1 then h2 */}
           <h2 className="crest">Who we like to work with</h2>
-          <h1 className="mixta first-capital">{data.allStrapiVendor.distinct}</h1>
+          <h1 className="mixta capitalize">{data.allStrapiVendor.distinct}</h1>
           <hr />
         </div>
 
         <div className="deck">
           {data.allStrapiVendor.edges.map((job: CardType) => (
-            <div key={job.node.id}>
-              {/* // TODO: I might have to component this to get it to work with the type */}
-              <Card
-                card={job.node}
-                breadcrumb='vendor'
-              />
-            </div>
+            <Card
+              key={job.node.id}
+              card={job.node}
+              breadcrumb='vendor'
+            />
           ))}
         </div>
       </main>

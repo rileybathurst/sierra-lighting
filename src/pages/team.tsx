@@ -1,25 +1,11 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
-
-import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
-
+import Markdown from "react-markdown";
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
-
-function ReactDescription(props) {
-  if (props.bio) {
-    return <ReactMarkdown
-      children={props.bio.data.bio}
-      remarkPlugins={[remarkGfm]}
-    />;
-  } else {
-    return null;
-  }
-}
 
 const TeamPage = () => {
 
@@ -27,24 +13,7 @@ const TeamPage = () => {
     query TeamPageQuery {
       allStrapiTeam {
         nodes {
-          id
-          name
-          slug
-          excerpt
-          bio { data { bio } }
-
-          avatar {
-            localFile {
-              childImageSharp {
-                gatsbyImageData (
-                  breakpoints: [160, 320, 480]
-                  width: 160
-                )
-              }
-              url
-            }
-            alternativeText
-          }
+          ...teamFragment
         }
       }
     }
@@ -55,9 +24,8 @@ const TeamPage = () => {
       <Header />
       <main>
 
-        {/* TODO: fix this */}
         <div className="stork">
-          <h3>Team</h3>
+          <h3>The Sierra Lighting Team</h3>
 
           <ul className="team_deck">
             {allStrapiTeam.nodes.map(team => (
@@ -69,17 +37,33 @@ const TeamPage = () => {
                       alt={team.avatar?.alternativeText}
                     />
                   </div>
-                  <h1 itemProp="name"><Link to={team.slug}>
-                    {team.name}
-                  </Link></h1>
-                  <ReactDescription bio={team.bio} />
+                  <h1 itemProp="name">
+                    <Link to={team.slug}>
+                      {team.name}
+                    </Link>
+                  </h1>
+                  {team.bio ?
+                    <Markdown>
+                      {team.bio.data.bio}
+                    </Markdown>
+                    : null
+                  }
                 </article>
               </li>
             ))
             }
           </ul>
-        </div>
+        </div >
       </main >
+
+      <section className="stork">
+        <hr />
+        <h3>
+          <Link to="/work">
+            Work with us
+          </Link>
+        </h3>
+      </section>
 
       < Footer />
     </>
