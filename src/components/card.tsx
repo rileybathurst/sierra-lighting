@@ -1,8 +1,9 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import type { DeckType } from "../types/deck-type";
 
+// TODO: rename this they are not breadcrumbs they are kinda just links but its not the direct link
 interface BreadcrumbTypes {
   breadcrumb: string;
   slug: string;
@@ -55,16 +56,24 @@ const Card = ({ card, breadcrumb }: DeckType) => {
         breadcrumb={breadcrumb}
         className="image"
       >
-        <GatsbyImage
-          image={
-            card?.image?.localFile?.childImageSharp?.gatsbyImageData ||
-            card?.venueImage?.localFile?.childImageSharp?.gatsbyImageData ||
-            card?.profile?.localFile?.childImageSharp?.gatsbyImageData ||
-            'https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg'
-          }
-          alt={card?.image?.alternativeText || card.title || card.name}
-        />
-
+        {/* // TODO: this seems dumb cant I always just pass the correct prop or is it folded inside */}
+        {card?.image?.localFile?.childImageSharp?.gatsbyImageData ||
+          card?.venueImage?.localFile?.childImageSharp?.gatsbyImageData ||
+          card?.profile?.localFile?.childImageSharp?.gatsbyImageData ?
+          <GatsbyImage
+            image={
+              card?.image?.localFile?.childImageSharp?.gatsbyImageData ??
+              card?.venueImage?.localFile?.childImageSharp?.gatsbyImageData ??
+              card?.profile?.localFile?.childImageSharp?.gatsbyImageData
+            }
+            alt={card?.image?.alternativeText ?? card.title ?? card.name ?? ""}
+          />
+          :
+          <StaticImage
+            src="https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg"
+            alt={card.title ?? card.name ?? ""}
+          />
+        }
       </Breadcrumb>
       <div className="paper">{/* stay gold */}</div>
       <div className="content">

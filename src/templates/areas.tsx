@@ -8,8 +8,7 @@ import Footer from "../components/footer";
 
 import IfHero from "../components/if-hero";
 import StateAbbreviation from "../components/state-abbreviation";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
+import Markdown from "react-markdown";
 import Card from '../components/card';
 import type { CardType } from '../types/card-type';
 
@@ -44,7 +43,7 @@ function SubAreas({ areas }) {
         <hr />
         <p className='elbrus'>Places in the region</p>
         {areas.map((area: SubAreasType) => (
-          <p key={area.name} className='denali'>
+          <p key={area.name} className='kilimanjaro'>
             {area.name}
           </p>
         ))}
@@ -65,12 +64,25 @@ interface VenuesProps {
 }
 
 function Venues({ name, venues, areas }: VenuesProps) {
+
+  // console.log(areas);
+
+  const subVenues = [];
+  areas.map((area) => {
+    if (area.venues.length > 0) {
+      subVenues.push(area.venues);
+    }
+  });
+
+  // console.log(subVenues);
+
   if (venues.length > 0) {
     return (
       <>
         <div className="stork">
           <hr />
-          <h3>Wedding Venues in {name} we create lighting</h3>
+          {/* // TODO: this is bold in a way it shouldnt be */}
+          <h3 className='elbrus'>Wedding Venues in {name} we create lighting for</h3>
         </div>
 
         <div className="deck">
@@ -82,13 +94,16 @@ function Venues({ name, venues, areas }: VenuesProps) {
             />
           ))}
 
-          {/* TODO: check on this [0] */}
-          {areas.map((area: SubAreasType) => (
-            <SubVenues
-              id={area.venues[0].id}
-              venues={area.venues}
-            />
-          ))}
+          {subVenues.length > 0 ?
+            areas.map((area) => (
+              <SubVenues
+                key={area.id}
+                venues={area.venues}
+              />
+            ))
+            : null
+          }
+
         </div>
       </>
     );
@@ -118,16 +133,18 @@ const AreasTemplate = ({ data }) => {
       <main>
         <IfHero hero={data.strapiArea?.image} />
 
-        <article className="stork single">
+        <article className="stork">
+          {/* // TODO: THIS IS A MESS */}
           <h2 className="crest">{data.strapiArea.tagline}</h2>
           <h1 className="range">
             {data.strapiArea.name}&nbsp;
             <StateAbbreviation state={data.strapiArea.state} />
           </h1>
-          <ReactMarkdown
-            children={data.strapiArea?.description?.data?.description}
-            remarkPlugins={[remarkGfm]}
-          />
+          <Markdown
+            className="react-markdown"
+          >
+            {data.strapiArea?.description?.data?.description}
+          </Markdown>
         </article >
       </main >
 
@@ -139,6 +156,8 @@ const AreasTemplate = ({ data }) => {
         // add the sub areas to the venues deck
         areas={data.strapiArea.areas}
       />
+
+      {/* // TODO: where in the state do we work */}
 
       <Footer />
     </>

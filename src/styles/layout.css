@@ -5,8 +5,26 @@ main {
   margin-block-start: 2.5rem;
 }
 
+.swan {
+  max-width: var(--swan);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.vulture {
+  max-width: var(--vulture);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
 .stork {
   max-width: var(--stork);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.condor {
+  max-width: var(--condor);
   margin-inline: auto;
   padding-inline: 1rem;
 }
