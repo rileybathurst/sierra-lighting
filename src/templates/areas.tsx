@@ -10,15 +10,16 @@ import IfHero from "../components/if-hero";
 import StateAbbreviation from "../components/state-abbreviation";
 import Markdown from "react-markdown";
 import Card from '../components/card';
-import type { CardType } from '../types/card-type';
+import type { DeckType } from '../types/deck-type';
 
+// TODO: this can be done with a ? :
 function SubVenues({ venues }) {
 
   // TODO: check on this double return I dont think its needed
   if (venues.length !== 0) {
     return (
       <>
-        {venues.map((venue: CardType) => (
+        {venues.map((venue: DeckType) => (
           <Card
             key={venue.id}
             card={venue}
@@ -86,7 +87,7 @@ function Venues({ name, venues, areas }: VenuesProps) {
         </div>
 
         <div className="deck">
-          {venues.map((venue: CardType) => (
+          {venues.map((venue: DeckType) => (
             <Card
               key={venue.id}
               card={venue}
@@ -96,12 +97,28 @@ function Venues({ name, venues, areas }: VenuesProps) {
 
           {subVenues.length > 0 ?
             areas.map((area) => (
-              <SubVenues
-                key={area.id}
-                venues={area.venues}
-              />
-            ))
-            : null
+              console.log(area.venues.length),
+              area.venues.length >= 1 ?
+                area.venues.map((venue: DeckType) => (
+                  // console.log('🦖'),
+                  // console.log(venue),
+                  return (
+          // this breaks but currently not getting a return
+          <>
+            hey
+            <Card
+              key={venue.id}
+              card={venue}
+              breadcrumb='venue'
+            />
+          </>
+          )
+          ))
+          :
+          console.log('🦄🦄'),
+          null
+          ))
+          : null
           }
 
         </div>

@@ -9759,13 +9759,6 @@ type AreasQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type AreasQueryQuery = { readonly allStrapiArea: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly state: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly venues: ReadonlyArray<{ readonly id: string } | null> | null } | null> | null }> } };
 
-type AreasTemplateQueryVariables = Exact<{
-  slug: Scalars['String'];
-}>;
-
-
-type AreasTemplateQuery = { readonly strapiArea: { readonly id: string, readonly name: string | null, readonly tagline: string | null, readonly state: string | null, readonly slug: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly venues: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly venueImage: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null> | null, readonly venues: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly venueImage: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null };
-
 type ChristmasLightsOrderQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
