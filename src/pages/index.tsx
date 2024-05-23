@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
@@ -10,19 +11,15 @@ import Logo from "../images/logo";
 import Footer from "../components/footer";
 import Areas from '../components/areas';
 import Start from "../components/start";
-
-import Qualities from "../components/qualities";
-
 import Markdown from "react-markdown";
 import Header from "../components/header";
 import HeroTreeScreen from "../images/hero-tree-screen";
 import HeroTreeSolid from "../images/hero-tree-solid";
 
-
 const IndexPage = () => {
 
   const data = useStaticQuery(graphql`
-    query MyQuery {
+    query IndexQuery {
       strapiSeason {
         wedding
       }
@@ -61,20 +58,77 @@ const IndexPage = () => {
       }
 
       allStrapiTestimonial(sort: {position: ASC}) {
-          nodes {
-            id
-            customer
-            platform
-            excerpt
-            createdAt
-            stars
-            title
-            position
+        nodes {
+          id
+          customer
+          platform
+          excerpt
+          createdAt
+          stars
+          title
+          position
+        }
+      }
+
+      allStrapiQuality {
+        nodes {
+          id
+          name
+          eyebrow
+          description {
+            data {
+              description
+            }
           }
         }
-
       }
+
+    }
   `)
+
+  interface QualityTypes {
+    id: string;
+    name: string;
+    eyebrow: string;
+    description: {
+      data: {
+        description: string;
+      }
+    }
+  }
+
+  interface TestimonialTypes {
+    id: string;
+    customer: string;
+    platform: string;
+    excerpt: string;
+    createdAt: string;
+    stars: number;
+    title: string;
+    position: string;
+  }
+
+  interface ServiceTypes {
+    id: string;
+    name: string;
+    slug: string;
+    hero_light: {
+      alternativeText: string;
+      localFile: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData;
+        }
+      }
+    }
+    hero_dark: {
+      alternativeText: string;
+      localFile: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData;
+        }
+      }
+    }
+  }
 
   return (
     <>
@@ -111,7 +165,14 @@ const IndexPage = () => {
         {/* <SierraHero2 /> */}
 
         <section id="qualities" className="qualities albatross">
-          <Qualities />
+          {data.allStrapiQuality.nodes.map((quality: QualityTypes) => (
+            <section key={quality.id}>
+              <div className='brow'>
+                <h3 className='supra'>{quality.name}</h3>
+              </div>
+              <p>{quality.description.data.description}</p>
+            </section>
+          ))}
           <h3 className="eyebrow"><Link to="/process">Learn more about our process</Link></h3>
         </section>
 
@@ -120,7 +181,7 @@ const IndexPage = () => {
             <h4>Thanks From Our Customers</h4>
 
             <ul>
-              {data.allStrapiTestimonial.nodes.map(testimonial => (
+              {data.allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
                 <li key={testimonial.id} className="slider">
                   {/* // TODO: theres a lot of divs and stuff that can be simplified */}
                   {/*  <div>
@@ -151,7 +212,7 @@ const IndexPage = () => {
 
 
         <div className="home-services">
-          {data.allStrapiService.nodes.map((service) => (
+          {data.allStrapiService.nodes.map((service: ServiceTypes) => (
             <Link
               key={service.id}
               to={`/${service.slug}`}
