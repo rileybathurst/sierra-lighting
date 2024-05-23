@@ -1,4 +1,4 @@
-// * this page is /vendors/floral.tsx
+// * this page is /vendor/floral.tsx
 // not /vendor/twinefloralco
 
 import React from 'react';
@@ -79,7 +79,7 @@ export const Head = ({ data }) => {
       description="We built our business by providing outstanding quality, value, and service.
       We support others in Reno/Tahoe that have the same commitment."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
-      url={`vendors/${data.allStrapiVendor.distinct}`}
+      url={`vendor/${data.allStrapiVendor.distinct}`}
     />
   )
 }

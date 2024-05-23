@@ -92,7 +92,7 @@ const VendorsPage = () => {
             <div className="stork">
               <hr />
               <h3 className="capitalize">
-                <Link to={`/vendors/${service?.nodes[0].service}`}>
+                <Link to={`/vendor/${service?.nodes[0].service}`}>
                   {service?.nodes[0].service}
                 </Link>
               </h3>

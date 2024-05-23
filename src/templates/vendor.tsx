@@ -55,7 +55,7 @@ function IfOther(props) {
         <div className="stork">
           <h3 className="crest">Even More</h3>
           <h2 className="range">
-            <Link to={`/vendors/${props.service}`}>
+            <Link to={`/vendor/${props.service}`}>
               All Other <span className='capitalize'>{props.service}</span> Vendors
             </Link>
           </h2>
@@ -157,8 +157,8 @@ const VendorTemplateView = ({ data }) => {
       <hr className='stork' />
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/vendors/">Vendors</Link></Breadcrumb>
-        <Breadcrumb><Link to={`/vendors/${data.strapiVendor.service}`}>{data.strapiVendor.service}</Link></Breadcrumb>
+        <Breadcrumb><Link to="/vendor/">Vendors</Link></Breadcrumb>
+        {/* <Breadcrumb><Link to={`/vendor/${data.strapiVendor.service}`}>{data.strapiVendor.service}</Link></Breadcrumb> */}
         <Breadcrumb>{data.strapiVendor.name}</Breadcrumb>
       </Breadcrumbs>
 

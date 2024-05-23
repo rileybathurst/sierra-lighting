@@ -11,6 +11,7 @@ import StrShort from "../components/StrShort";
 import Hero from "../components/hero";
 import TestimonialRanking from "../components/testimonial-ranking";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import type { DeckType } from '../types/deck-type';
 
 function Phone(props) {
   if (props.phone) {
@@ -37,7 +38,7 @@ function IfOther(props) {
         </div>
 
         <div className="deck">
-          {props.other.map((other) => (
+          {props.other.map((other: DeckType) => (
             <Card
               key={other.node.id}
               card={other.node}
