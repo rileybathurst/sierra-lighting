@@ -172,6 +172,12 @@ header {
 .hero-image {
   display: flex;
   justify-content: center;
+
+  max-width: var(--stork);
+}
+
+.hero-pelican {
+  max-width: var(--pelican);
 }
 
 /*------------------*/

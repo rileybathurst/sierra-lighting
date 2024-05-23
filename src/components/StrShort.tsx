@@ -1,10 +1,13 @@
 import * as React from "react"
 
-function StrShort(props) {
-  let str = props.str;
-  let secure = 'https://';
-  let http = 'http://';
-  let www = 'www.';
+interface StrShortTypes {
+  website: string;
+}
+function StrShort({ website }: StrShortTypes) {
+  let str = website;
+  const secure = 'https://';
+  const http = 'http://';
+  const www = 'www.';
 
   if (str.includes(secure) || str.includes(http)) {
     if (str.includes(secure)) {
@@ -14,7 +17,7 @@ function StrShort(props) {
     }
   }
 
-  if (str.includes(www) || str.includes(www)) {
+  if (str.includes('www') || str.includes(www)) {
     str = str.replace(www, '');
   }
 
@@ -38,7 +41,6 @@ function StrShort(props) {
   if (str.endsWith('/')) {
     // console.log('ends with slash');
     str = str.slice(0, -1);
-    // console.log('🤡 ' + shorter);
   }
 
   return (

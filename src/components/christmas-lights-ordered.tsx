@@ -194,59 +194,59 @@ const ChristmasLightsOrdered = () => {
     }
   `)
 
-  // let other = data.other;
+  // const other = data.other;
 
-  let overheadgroup = [
+  const overheadgroup = [
     data.overhead,
     data.overheadlights
   ]
 
-  let accentgroup = [
+  const accentgroup = [
     data.accent,
     data.accentlights
   ]
 
-  let dancegroup = [
+  const dancegroup = [
     data.dance,
     data.dancelights
   ]
 
-  let pipegroup = [
+  const pipegroup = [
     data.pipe,
     data.pipelights
   ]
 
-  let pathgroup = [
+  const pathgroup = [
     data.path,
     data.pathlights
   ]
 
-  let treegroup = [
+  const treegroup = [
     data.tree,
     data.treelights
   ]
 
-  let buildinggroup = [
+  const buildinggroup = [
     data.building,
     data.buildinglights
   ]
 
-  let greenerygroup = [
+  const greenerygroup = [
     data.greenery,
     data.greenerylights
   ]
 
-  let ornamentsgroup = [
+  const ornamentsgroup = [
     data.ornaments,
     data.ornamentslights
   ]
 
-  let lanterngroup = [
+  const lanterngroup = [
     data.lantern,
     data.lanternlights
   ]
 
-  let groups = [
+  const groups = [
     overheadgroup,
     accentgroup,
     dancegroup,
@@ -259,7 +259,7 @@ const ChristmasLightsOrdered = () => {
     lanterngroup
   ];
 
-  let season = data.season;
+  const season = data.season;
   // console.log(season);
 
   // ? why is there a wedding order in christmas lights?
@@ -267,28 +267,32 @@ const ChristmasLightsOrdered = () => {
     groups.sort((a, b) => {
       if (a[0].weddingOrder === null && b[0].weddingOrder === null) {
         return 0;
-      } else if (a[0].weddingOrder === null) {
-        return 1;
-      } else if (b[0].weddingOrder === null) {
-        return -1;
-      } else {
-        return a[0].weddingOrder - b[0].weddingOrder;
       }
+      if (a[0].weddingOrder === null) {
+        return 1;
+      }
+      if (b[0].weddingOrder === null) {
+        return -1;
+      }
+
+      return a[0].weddingOrder - b[0].weddingOrder;
     });
   } else {
     // puts null items up top
     // groups.sort((a, b) => a[0].xmasOrder - b[0].xmasOrder);
 
+    // TODO: really seems like you could combine a bunch of this logic
     groups.sort((a, b) => {
       if (a[0].xmasOrder === null && b[0].xmasOrder === null) {
         return 0;
-      } else if (a[0].xmasOrder === null) {
-        return 1;
-      } else if (b[0].xmasOrder === null) {
-        return -1;
-      } else {
-        return a[0].xmasOrder - b[0].xmasOrder;
       }
+      if (a[0].xmasOrder === null) {
+        return 1;
+      }
+      if (b[0].xmasOrder === null) {
+        return -1;
+      }
+      return a[0].xmasOrder - b[0].xmasOrder;
     });
   }
 

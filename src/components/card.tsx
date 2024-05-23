@@ -3,62 +3,17 @@ import { Link } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import type { DeckType } from "../types/deck-type";
 
-// TODO: rename this they are not breadcrumbs they are kinda just links but its not the direct link
-interface BreadcrumbTypes {
-  breadcrumb: string;
-  slug: string;
-  className?: string | undefined;
-  children?: React.ReactElement | string;
-}
-function Breadcrumb({ breadcrumb, slug, className, children }: BreadcrumbTypes) {
-  return (
-    <Link
-      to={`/${breadcrumb}/${slug}`}
-      className={className}
-    >
-      {children}
-    </Link>
-  )
-}
-
-interface ContentTypes {
-  excerpt: string;
-  subAreas: Array<{ name: string }>;
-}
-function Content({ excerpt, subAreas }: ContentTypes) {
-
-  if (subAreas?.length > 0) {
-    return (
-      <>
-        <p>Including:</p>
-        <ul>
-          {subAreas.map(area => (
-            <li key={area.name}>
-              {area.name}
-            </li>
-          ))}
-        </ul>
-      </>
-    );
-  }
-
-  return (
-    <p>{excerpt}</p>
-  );
-}
-
 const Card = ({ card, breadcrumb }: DeckType) => {
 
   return (
     <section className="card">
-      <Breadcrumb
-        slug={card.slug}
-        breadcrumb={breadcrumb}
+      <Link
+        to={`/${breadcrumb}/${card.slug}`}
         className="image"
       >
         {/* // TODO: this seems dumb cant I always just pass the correct prop or is it folded inside */}
-        {card?.image?.localFile?.childImageSharp?.gatsbyImageData ||
-          card?.venueImage?.localFile?.childImageSharp?.gatsbyImageData ||
+        {card?.image?.localFile?.childImageSharp?.gatsbyImageData ??
+          card?.venueImage?.localFile?.childImageSharp?.gatsbyImageData ??
           card?.profile?.localFile?.childImageSharp?.gatsbyImageData ?
           <GatsbyImage
             image={
@@ -74,24 +29,30 @@ const Card = ({ card, breadcrumb }: DeckType) => {
             alt={card.title ?? card.name ?? ""}
           />
         }
-      </Breadcrumb>
+      </Link>
       <div className="paper">{/* stay gold */}</div>
-      <div className="content">
-        <h2 className="mixta">
-          <Breadcrumb
-            slug={card.slug}
-            breadcrumb={breadcrumb}
-          >
-            {card.name ?? card.title}
-          </Breadcrumb>
-        </h2>
-
-        <Content
-          excerpt={card.excerpt}
-          subAreas={card.areas}
-        />
-
-      </div>
+      <h2 className="mixta">
+        <Link
+          to={`/${breadcrumb}/${card.slug}`}
+        >
+          {card.name ?? card.title}
+        </Link>
+      </h2>
+      {/* // ? can i just card.areas this and skip the length */}
+      {card?.areas?.length > 0 ?
+        <div className="subarea">
+          <p>Including:</p>
+          <ul>
+            {card.areas.map(area => (
+              <li key={area.name}>
+                {area.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+        :
+        <p>{card.excerpt}</p>
+      }
     </section>
   )
 }

@@ -1,59 +1,17 @@
 import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import IfHero from "../components/if-hero";
+import Hero from "../components/hero";
 import StateAbbreviation from "../components/state-abbreviation";
 import Markdown from "react-markdown";
 import Card from '../components/card';
 import type { DeckType } from '../types/deck-type';
-
-// TODO: this can be done with a ? :
-function SubVenues({ venues }) {
-
-  // TODO: check on this double return I dont think its needed
-  if (venues.length !== 0) {
-    return (
-      <>
-        {venues.map((venue: DeckType) => (
-          <Card
-            key={venue.id}
-            card={venue}
-            breadcrumb='venue'
-          />
-        ))}
-      </>
-    );
-  }
-  return null
-}
-
-function SubAreas({ areas }) {
-
-  interface SubAreasType {
-    name: string;
-  }
-
-  if (areas.length !== 0) {
-    return (
-      <div className="stork">
-        <hr />
-        <p className='elbrus'>Places in the region</p>
-        {areas.map((area: SubAreasType) => (
-          <p key={area.name} className='kilimanjaro'>
-            {area.name}
-          </p>
-        ))}
-        {/* <h3>Wedding Venues in {areas[0].name}</h3> */}
-      </div>
-    );
-  }
-  return null
-}
 
 
 // this is no longer right as there might only be sub venues
@@ -76,8 +34,7 @@ function Venues({ name, venues, areas }: VenuesProps) {
   });
 
   // console.log(subVenues);
-
-  if (venues.length > 0) {
+  if (venues.length || subVenues.length > 0) {
     return (
       <>
         <div className="stork">
@@ -97,28 +54,17 @@ function Venues({ name, venues, areas }: VenuesProps) {
 
           {subVenues.length > 0 ?
             areas.map((area) => (
-              console.log(area.venues.length),
               area.venues.length >= 1 ?
                 area.venues.map((venue: DeckType) => (
-                  // console.log('🦖'),
-                  // console.log(venue),
-                  return (
-          // this breaks but currently not getting a return
-          <>
-            hey
-            <Card
-              key={venue.id}
-              card={venue}
-              breadcrumb='venue'
-            />
-          </>
-          )
-          ))
-          :
-          console.log('🦄🦄'),
-          null
-          ))
-          : null
+                  <Card
+                    key={venue.id}
+                    card={venue}
+                    breadcrumb='venue'
+                  />
+                ))
+                : null
+            ))
+            : null
           }
 
         </div>
@@ -134,24 +80,10 @@ const AreasTemplate = ({ data }) => {
     <>
       <Header />
 
-      <div className="stork">
-        <ol className="breadcrumbs">
-          <li key='areas'>
-            <Link to="/areas">
-              <span>Areas</span></Link>&nbsp;/&nbsp;
-          </li>
-          <li key={data.strapiArea.name}>
-            {data.strapiArea.name}
-          </li>
-        </ol>
-        <hr />
-      </div>
-
       <main>
-        <IfHero hero={data.strapiArea?.image} />
+        <Hero hero={data.strapiArea?.image} />
 
         <article className="stork">
-          {/* // TODO: THIS IS A MESS */}
           <h2 className="crest">{data.strapiArea.tagline}</h2>
           <h1 className="range">
             {data.strapiArea.name}&nbsp;
@@ -165,16 +97,41 @@ const AreasTemplate = ({ data }) => {
         </article >
       </main >
 
-      <SubAreas areas={data.strapiArea.areas} />
+      {data.strapiArea.areas.length > 0 ?
+        <div
+          key={data.strapiArea.name}
+          className="stork"
+        >
+          <hr />
+          <p className='elbrus'>Regions in {data.strapiArea.name}</p>
+          <ul className='list-style-none'>
+            {data.strapiArea.areas.map((area) => (
+              <li
+                key={area.name}
+                className='kilimanjaro'
+              >
+                {area.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+        : null
+      }
 
       <Venues
         name={data.strapiArea.name}
         venues={data.strapiArea.venues}
-        // add the sub areas to the venues deck
         areas={data.strapiArea.areas}
       />
 
       {/* // TODO: where in the state do we work */}
+
+      <hr className='stork' />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/areas/">Areas</Link></Breadcrumb>
+        <Breadcrumb>{data.strapiArea.name}</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>

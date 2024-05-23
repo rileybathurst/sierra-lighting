@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import { faker } from "@faker-js/faker";
 import ImageFile from "./assets/missing-card-image.jpg";
 
 export const Card = ({ primary }) => {
@@ -10,19 +10,20 @@ export const Card = ({ primary }) => {
   return (
     <div className="card">
       <div className="image">
-        <img src={ImageFile} className="gatsby-image-wrapper" />
+        <img
+          src={ImageFile}
+          alt={faker.animal.bird()}
+          className="gatsby-image-wrapper"
+        />
       </div>
 
-      <div className="paper"></div>
-      <div className="content">
-        <h2 className="mixta">
-          <a href="#">Roof Line</a>
-        </h2>
-        <p className="description">
-          Roof lines hung with damage free attachment methods outlined in high
-          efficiency energy saving C9 LED bulbs
-        </p>
-      </div>
+      <div className="paper">{/* stay gold */}</div>
+
+      <h2 className="mixta">
+        <a href={faker.animal.bird()}>{faker.animal.bird()}</a>
+      </h2>
+      <p className="description">{faker.lorem.sentences(2)}</p>
+      {/* theres a chance theres a ul here on the area cards */}
     </div>
   );
 };

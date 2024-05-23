@@ -12,7 +12,7 @@ import Footer from "../components/footer";
 import StateAbbreviation from "../components/state-abbreviation";
 import Card from "../components/card";
 import Start from "../components/start";
-import IfHero from "../components/if-hero";
+import Hero from "../components/hero";
 
 function Triptych(props) {
   if (props.triptych?.length > 0) {
@@ -302,7 +302,7 @@ const ProjectView = ({ project, triptych, additional, other }) => {
         <hr />
       </div>
 
-      <IfHero hero={project?.image} />
+      <Hero hero={project?.image} />
       {/*       <GatsbyImage
         image={project?.image?.localFile?.childImageSharp?.gatsbyImageData}
         alt={project.image?.alternativeText || project.title}

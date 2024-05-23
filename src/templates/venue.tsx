@@ -1,64 +1,39 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby'
-
-import ReactMarkdown from "react-markdown";
-
+import Markdown from "react-markdown";
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from '../components/card';
 import StateAbbreviation from "../components/state-abbreviation";
-import Website from "../components/website";
-import IfHero from "../components/if-hero";
-
+import StrShort from "../components/StrShort";
+import Hero from "../components/hero";
 import TestimonialRanking from "../components/testimonial-ranking";
-
-function Use(props) {
-  // TODO: heavy handed way of doing this until I have filled out venue uses
-  // This can now be done with services
-  if (props.slug === 'blue') {
-    return null;
-  } else {
-    return (
-      <>Wedding</>
-    );
-  }
-}
-
-function ReactAddress(props) {
-  if (props.address) {
-    return <ReactMarkdown children={props.address?.data?.address} />;
-  } else {
-    return null;
-  }
-}
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 function Phone(props) {
   if (props.phone) {
-    var phone = props.phone;
-    var string = phone.toString();
-    var change = string.replace(/(\d{3})(\d{3})(\d{4})/, "($1)$2-$3");
+    const phone = props.phone;
+    const string = phone.toString();
+    const change = string.replace(/(\d{3})(\d{3})(\d{4})/, "($1)$2-$3");
 
     // console.log(change);
 
     return (
       <p>Phone <a href={`tel:${props.phone}`}>{change}</a></p>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 function IfOther(props) {
-  // console.log(props.other.length);
-  let lngth = props.other.length;
 
-  if (lngth > 0) {
+  if (props.other.length > 0) {
     return (
       <>
         <div className="stork">
-          <h4>Other <Use slug={props.slug} /> Venues in {props.name}, <StateAbbreviation state={props.state} /></h4>
+          <h4>Other {props.slug === 'blue' ? null : 'Wedding'} Venues in {props.name}, <StateAbbreviation state={props.state} /></h4>
         </div>
 
         <div className="deck">
@@ -76,46 +51,19 @@ function IfOther(props) {
         </div>
       </>
     );
-  } else {
-    return (
-      <>
-        <div className="stork">
-          <h3 className="crest">Looking for somewhere else?</h3>
-          <h2 className="range"><Link to='/venue' className="link--subtle">Other <Use slug={props.slug} /> Venues</Link></h2>
-        </div>
-      </>
-    )
   }
-}
-
-function Testimonials({ testimonials, venue }) {
-  if (testimonials.length > 0) {
-    return (
-      <div className="stork" >
-        <ul className='testimonials'>
-          {testimonials.map((testimonial) => (
-            <li key={testimonial.id} className='testimonial'>
-              <figure>
-                <blockquote>
-                  <h3 className='sr-only'>{testimonial.title}</h3>
-                  {/* // TODO stars */}
-                  <TestimonialRanking stars={testimonial.stars} />
-                  <p className='testimonial--quote_mark range'>&ldquo;</p>
-                  <p>{testimonial.review}</p>
-                  <figcaption>
-                    <p className='crest'><strong>{venue}</strong> - {testimonial.position}</p>
-                    <h4 className='range'>{testimonial.customer}</h4>
-                  </figcaption>
-                </blockquote>
-              </figure>
-            </li>
-          ))}
-        </ul>
+  return (
+    <>
+      <div className="stork">
+        <h3 className="crest">Looking for somewhere else?</h3>
+        <h2 className="range">
+          <Link to='/venue'>
+            Other {props.slug === 'blue' ? null : 'Wedding'} Venues
+          </Link>
+        </h2>
       </div>
-    );
-  } else {
-    return null;
-  }
+    </>
+  )
 }
 
 const VenueView = ({ data }) => {
@@ -123,35 +71,7 @@ const VenueView = ({ data }) => {
     <>
       <Header />
 
-      <div className="stork">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li key='1' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-
-          <li key='2' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/venue">
-              <span itemProp="name">Venues</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="2" />
-          </li>
-
-          <li key='3' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to={`/areas/${data.strapiVenue.area.slug}`}>
-              <span itemProp="name">{data.strapiVenue.area.name}</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="3" />
-          </li>
-
-          <li key='4' itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{data.strapiVenue.name}</span>
-            <meta itemProp="position" content="4" />
-          </li>
-        </ol>
-        <hr />
-      </div>
-
-      <IfHero hero={data?.strapiVenue?.venueImage} />
+      <Hero hero={data?.strapiVenue?.venueImage} />
 
       <main className="stork venue">
         <hgroup>
@@ -161,19 +81,64 @@ const VenueView = ({ data }) => {
         <hr />
         <p>{data.strapiVenue.description}</p>
 
-        <Testimonials testimonials={data.strapiVenue.testimonials} venue={data.strapiVenue.name} />
+        {data.strapiVenue.testimonials.length > 0 ?
+          <div className="stork" >
+            <ul className='testimonials'>
+              {data.strapiVenue.testimonials.map((testimonial) => (
+                <li key={testimonial.id} className='testimonial'>
+                  <figure>
+                    <blockquote>
+                      <h3 className='sr-only'>{testimonial.title}</h3>
+                      {/* // TODO stars */}
+                      <TestimonialRanking stars={testimonial.stars} />
+                      <p className='testimonial--quote_mark range'>&ldquo;</p>
+                      <p>{testimonial.review}</p>
+                      <figcaption>
+                        <p className='crest'><strong>{data.strapiVenue.name}</strong> - {testimonial.position}</p>
+                        <h4 className='range'>{testimonial.customer}</h4>
+                      </figcaption>
+                    </blockquote>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+          </div> : null
+        }
 
         <hr />
         <address>
-
-
           {/* // TODO this could probably be more structured with seo */}
-          <ReactAddress address={data.strapiVenue.address} />
+          {data.strapiVenue.address ?
+            <Markdown className='react-markdown'>
+              {data.strapiVenue.address.data.address}
+            </Markdown>
+            : null
+          }
         </address>
 
-        <Website website={data.strapiVenue.website} />
+
         <Phone phone={data.strapiVenue.phone} />
-        {/* {data.strapiVenue.website} */}
+
+        <p>
+          Website&nbsp;
+          {data.strapiVenue.website.includes('https://') ?
+            <a href={data.strapiVenue.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={data.strapiVenue.website}
+            >
+              <StrShort website={data.strapiVenue.website} />
+            </a>
+            :
+            <a href={`https://${data.strapiVenue.website}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={data.strapiVenue.website}
+            >
+              <StrShort website={data.strapiVenue.website} />
+            </a>
+          }
+        </p>
         <hr />
 
       </main>
@@ -191,6 +156,22 @@ const VenueView = ({ data }) => {
         state={data.strapiVenue.area.state}
         slug={data.strapiVenue.slug}
       />
+
+      <hr className='stork' />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/venue/">Venues</Link></Breadcrumb>
+        <Breadcrumb>
+          {data.strapiVenue.area.featured ?
+            <Link to={`/areas/${data.strapiVenue.area.slug}`}>
+              {data.strapiVenue.area.name}
+            </Link>
+            :
+            data.strapiVenue.area.name
+          }
+        </Breadcrumb>
+        <Breadcrumb>{data.strapiVenue.name}</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -218,6 +199,7 @@ export const query = graphql`
           name
           state
           slug
+          featured
 
           region {
             name

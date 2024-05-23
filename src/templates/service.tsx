@@ -6,8 +6,7 @@ import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
+import Markdown from "react-markdown";
 
 import Card from '../components/card';
 import type { DeckType } from '../types/deck-type';
@@ -23,15 +22,12 @@ function Breadcrumb(props: { title: string; }) {
         Explore Projects
       </Link>
     )
-  } else {
-
-
-    return (
-      <Link to={`/${props.title}`}>
-        Explore {props.title}s
-      </Link>
-    )
   }
+  return (
+    <Link to={`/${props.title}`}>
+      Explore {props.title}s
+    </Link>
+  )
 }
 
 function Base(props: {
@@ -124,7 +120,7 @@ function Base(props: {
   return (
     <>
       <hr className='stork' />
-
+      {/* // ! this is wrong its defintley not a deck but touching this is also scary build it with storybook */}
       <div className='deck margin-block-end-0 service-deck'>
         {titles.map((title) => (
           <h4
@@ -135,8 +131,8 @@ function Base(props: {
           </h4>
         ))}
 
+        {/* // ! this has a classname the card isnt taking */}
         {base.map((card) => (
-
           <Card
             key={card.id}
             card={card}
@@ -149,52 +145,10 @@ function Base(props: {
   )
 }
 
-function ReactDescription(props: { description: string | null | undefined; }) {
-  // console.log(props.description)
-  if (props?.description) {
-    return (
-      <ReactMarkdown
-        children={props?.description}
-        remarkPlugins={[remarkGfm]}
-      />
-    );
-  }
-  return null;
-}
-
-function VideoMux(video: { video: string | undefined; }) {
-  // console.log(video.video)
-  if (video.video) {
-    return (
-      <MuxPlayer
-        streamType="on-demand"
-        playbackId={video.video}
-        // playbackId='EOIi01FuRDaiMY2s00e87J4hFTTFmrFs4iKA008rd63zao'
-        className='hero-video'
-      />
-    );
-  }
-  return null;
-}
-
-function Consultant({ after_the_triptych }) {
-  // console.log(after_the_triptych.data.after_the_triptych)
-
-  if (after_the_triptych.data.after_the_triptych) {
-    return (
-      <div id="consultant" className='stork'>
-        <h3>
-          Have you ever noticed how much lighting can affect the feeling of space?
-        </h3>
-
-        <ReactMarkdown
-          children={after_the_triptych?.data?.after_the_triptych}
-          remarkPlugins={[remarkGfm]}
-        />
-      </div>
-    )
-  }
-  return null;
+interface ProcessTypes {
+  id: React.Key;
+  name: string;
+  markdown: { data: { markdown: string } };
 }
 
 const ServiceView = ({ data }) => {
@@ -202,11 +156,15 @@ const ServiceView = ({ data }) => {
   return (
     <>
       <Header />
-
       <main>
-
-        {/* // wedding video */}
-        <VideoMux video={data.strapiService.videoMux} />
+        {data.strapiService.videoMux ?
+          <MuxPlayer
+            streamType="on-demand"
+            playbackId={data.strapiService.videoMux}
+            className='hero-video'
+          />
+          : null
+        }
 
         <section className="stork">
           <h1 className='mixta'>
@@ -214,9 +172,9 @@ const ServiceView = ({ data }) => {
             {data.strapiService.name} Lighting
           </h1>
 
-          <ReactDescription
-            description={data.strapiService.description.data.description}
-          />
+          <Markdown className='react-markdown'>
+            {data.strapiService.description.data.description}
+          </Markdown>
           <Start className="button--left-align" />
         </section>
 
@@ -252,13 +210,12 @@ const ServiceView = ({ data }) => {
                 breadcrumb='light'
               />
             ))}
-
-
           </div>
-          <Lookbook slug={data.strapiService.slug} hr="true" />
+
+          <Lookbook slug={data.strapiService.slug} />
         </section>
 
-      </main>
+      </main >
 
       <section id="process" className='stork backed bb'>
         <hr />
@@ -266,15 +223,12 @@ const ServiceView = ({ data }) => {
         <Adjective service={data.strapiService.slug} />
         <hr />
         <ol>
-          {data.allStrapiProcess.nodes.map((process: {
-            id: React.Key;
-            name: string;
-            markdown: { data: { markdown: string } };
-          }) => (
+          {data.allStrapiProcess.nodes.map((process: ProcessTypes) => (
             <li key={process.id}>
               <span className="ol-title">{process.name}</span>
-              {/* // TODO: this needs markdown processing, its fine now as theres no links etc */}
-              <span>{process.markdown.data.markdown}</span>
+              <Markdown className='react-markdown'>
+                {process.markdown.data.markdown}
+              </Markdown>
             </li>
           ))}
         </ol>
@@ -286,7 +240,18 @@ const ServiceView = ({ data }) => {
         <hr />
       </section>
 
-      <Consultant after_the_triptych={data.strapiService?.after_the_triptych} />
+      {data.strapiService.after_the_triptych ?
+        <div id="consultant" className='stork'>
+          <h3>
+            Have you ever noticed how much lighting can affect the feeling of space?
+          </h3>
+
+          <Markdown className='react-markdown'>
+            {data.strapiService.after_the_triptych.data.after_the_triptych}
+          </Markdown>
+        </div>
+        : null
+      }
 
       <Base
         projects={data?.strapiService?.projects}

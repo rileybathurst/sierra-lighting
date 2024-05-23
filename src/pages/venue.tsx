@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { IGatsbyImageData } from "gatsby-plugin-image"
+import type { IGatsbyImageData } from "gatsby-plugin-image"
 
 import { SEO } from "../components/seo";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
@@ -26,57 +26,14 @@ interface Area {
       tagline: string;
       name: string;
       state: string;
+      featured: boolean;
     };
   }[];
-}
-
-function Populated(props: { area: Area }) {
-
-  if (props.area.nodes.length) {
-    return (
-      <div
-        key={props.area.nodes[0].area.id}
-        id={props.area.nodes[0].area.slug}
-      >
-        <div
-          className="stork"
-        >
-          <hr />
-          <h4 className="crest">{props.area.nodes[0].area.tagline}</h4>
-          <h3 className="range">
-            {/*
-            // TODO: only featured areas maybe restructure this page
-            as we removed a bunch of areas we need to only link to them if there is a page
-            
-            <Link
-              to={`/area/${props.area.nodes[0].area.slug}`}
-              className="link--subtle"
-            > */}
-            {props.area.nodes[0].area.name},&nbsp;
-            <StateAbbreviation state={props.area.nodes[0].area.state} />.
-            {/* </Link> */}
-          </h3>
-        </div>
-
-        <div className="deck">
-          {props.area?.nodes.map(venue => (
-            <Card
-              key={venue.id}
-              card={venue}
-              breadcrumb="venue"
-            />
-          ))}
-        </div>
-      </div>
-    )
-  }
-  return null
 }
 
 const VenuePage = () => {
 
   const data = useStaticQuery(graphql`
-
     fragment venueAreaInfo on STRAPI_VENUE {
       area {
         id
@@ -84,6 +41,7 @@ const VenuePage = () => {
         slug
         state
         tagline
+        featured
       }
     }
 
@@ -172,7 +130,7 @@ const VenuePage = () => {
     }
   `)
 
-  // TODO: stateline is a heavyhanded way until I do other uses on venues
+  // TODO: stateline excluding blue is a heavyhanded way until I do other uses on venues
   const areas = [
     data.southlake,
     data.reno,
@@ -193,18 +151,49 @@ const VenuePage = () => {
       <main className="venues__page">
 
         <div className="stork">
-
-          <h2 className="crest">Where to be</h2>
-          <h1 className="mixta">Wedding Venues</h1>
+          <h1 className="mixta">Wedding venues we create lighting at</h1>
         </div>
 
         {areas.map((area: Area) => (
-          <Populated
-            area={area}
-            key={area?.nodes[0]?.area?.id || "other"}
-          />
-        ))}
+          area.nodes.length > 0 ?
+            <div
+              key={area.nodes[0].area.id}
+              id={area.nodes[0].area.slug}
+            >
+              <div
+                className="stork"
+              >
+                <hr />
+                <h4 className="crest">{area.nodes[0].area.tagline}</h4>
+                <h3 className="range">
+                  {area.nodes[0].area.featured ?
+                    <Link
+                      to={`/areas/${area.nodes[0].area.slug}`}
+                    >
+                      {area.nodes[0].area.name},&nbsp;
+                      <StateAbbreviation state={area.nodes[0].area.state} />.
+                    </Link>
+                    :
+                    <>
+                      {area.nodes[0].area.name},&nbsp;
+                      <StateAbbreviation state={area.nodes[0].area.state} />.
+                    </>
+                  }
+                </h3>
+              </div>
 
+              <div className="deck">
+                {area?.nodes.map(venue => (
+                  <Card
+                    key={venue.id}
+                    card={venue}
+                    breadcrumb="venue"
+                  />
+                ))}
+              </div>
+            </div>
+            : null
+        ))}
       </main >
 
       <Footer />

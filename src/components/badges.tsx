@@ -1,15 +1,8 @@
 import * as React from "react"
 
-const Badges = (props
-  /*   : {
-    commercialchristmas
-    residentialchristmas
-    wedding
-    outdoor
-  } */
-) => {
+const Badges = (props) => {
 
-  let badges = [
+  const badges = [
     props.commercialchristmas ? "Commercial Christmas" : null,
     props.residentialchristmas ? "Residential Christmas" : null,
     props.wedding ? "Wedding" : null,
@@ -25,13 +18,16 @@ const Badges = (props
       <div className="badges">
         <p>Used for:</p>
         {filteredArr.map((badge) => (
-          <span className="badge">{badge}</span>
+          <span
+            key={badge}
+            className="badge">
+            {badge}
+          </span>
         ))}
       </div>
     )
-  } else {
-    return null;
   }
+  return null;
 }
 
 export default Badges

@@ -1,70 +1,66 @@
 import React, { useState } from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import Logo from "../images/logo";
 import SocialIcons from "../components/social-icons";
 import FooterList from "../lists/footer-list";
 import Season from './season';
 
-// ? I believe this was the jobber form which I couldnt get working
-/* function encode(data) {
-  return Object.keys(data)
-    .map(
-      (key) =>
-        encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-    )
-    .join("&");
-} */
-
-/* const handleSubmit = (event) => {
-  event.preventDefault();
-  fetch("/", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: encode({
-      "form-name": event.target.getAttribute("name"),
-      ...name,
-    }),
-  })
-    .then(() => navigate("/thank-you/"))
-    .catch((error) => alert(error));
-}; */
-
 const Footer = () => {
 
   // ? this seems a weird way to do this as it could just be hard coded
   const [email, setEmail] = useState('');
 
-  function subject(e) {
+  interface SubjectType {
+    target: {
+      value: string;
+    };
+  }
+  function subject(e: SubjectType) {
     setEmail(e.target.value);
     return null;
   }
 
   const { allStrapiTeam } = useStaticQuery(graphql`
-  query FooterQuery {
-    allStrapiTeam {
-      nodes {
-        id
-        name
-        slug
-  
-        avatar {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                breakpoints: [128]
-                width: 128
-              )
+    query FooterQuery {
+      allStrapiTeam {
+        nodes {
+          id
+          name
+          slug
+    
+          avatar {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  breakpoints: [128]
+                  width: 128
+                )
+              }
             }
+            alternativeText
           }
-          alternativeText
+    
         }
-  
       }
     }
-  }
   `)
+
+  interface TeamType {
+    id: string;
+    name: string;
+    slug: string;
+    avatar: {
+      localFile: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData;
+        };
+      };
+      alternativeText: string;
+    };
+  }
 
   return (
     <footer>
@@ -140,7 +136,7 @@ const Footer = () => {
               </a>
             </p>
             <p>
-              {/* TODO: I think this is wrong if its not broken up correctly */}
+              {/* // TODO: I think this is wrong if its not broken up correctly */}
               <a href={`tel:${useSiteMetadata().telephone}`}>
                 Call or Text: {useSiteMetadata().telephone}
               </a>
@@ -159,7 +155,7 @@ const Footer = () => {
           </h4>
 
           <div className="team-heads spin">
-            {allStrapiTeam.nodes.map(team => (
+            {allStrapiTeam.nodes.map((team: TeamType) => (
               <Link
                 key={team.slug}
                 to={`/team/${team.slug}`}
@@ -177,8 +173,6 @@ const Footer = () => {
         </div>
       </div>
 
-
-
       <hr className="albatross" />
 
       <div className="footer_list">
@@ -194,7 +188,7 @@ const Footer = () => {
 
       <div className="footer-copyright">
         <h4 className="sr-only footer-copyright__mind-the-gap">
-          <Link to="/" title="to the front page">
+          <Link to="/">
             Sierra Lighting
           </Link>
         </h4>
