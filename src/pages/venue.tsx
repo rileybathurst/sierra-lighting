@@ -150,9 +150,7 @@ const VenuePage = () => {
 
       <main className="venues__page">
 
-        <div className="stork">
-          <h1 className="mixta">Wedding venues we create lighting at</h1>
-        </div>
+        <h1 className="stork kilimanjaro">Wedding venues we create lighting at</h1>
 
         {areas.map((area: Area) => (
           area.nodes.length > 0 ?

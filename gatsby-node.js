@@ -1,24 +1,14 @@
-const path = require(`path`)
+const path = require('node:path');
 
-const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
-  // Query for nodes to use in creating pages.
-  resolve(
-    graphql(request).then(result => {
-      if (result.errors) {
-        reject(result.errors)
-      }
+exports.onPostBuild = ({ reporter }) => {
+  reporter.info('Your Gatsby site has been built!')
+}
 
-      return result;
-    })
-  )
-}); // makeRequests
-
-// Create blog pages dynamically
-exports.createPages = ({ actions, graphql }) => {
+exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions
 
-  const getServices = makeRequest(graphql, `
-    {
+  const getServices = await graphql(`
+    query {
       allStrapiService {
         edges {
           node {
@@ -27,54 +17,47 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-    `).then(result => {
+  `)
 
-    for (const { node } of result.data.allStrapiService.edges) {
-      createPage({
-        path: `/${node.slug}`,
-        component: path.resolve("src/templates/service.tsx"),
-        context: {
-          slug: node.slug,
-        },
-      });
-    }
-  }); // .then(result)
-
-  // why did I do this?
-  // this is slightly different that what it currently does
-  // it should actuall be service lights
-  // at the moment its just lights
-  // ! Still working on this
-  const getServiceLights = makeRequest(graphql, `
-    {
-      allStrapiService {
-        edges {
-          node {
-            slug
-          }
-        }
-      }
-    }
-    `).then(result => {
-
-    result.data.allStrapiService.edges.forEach(({ node }) => {
-      createPage({
-        path: `${node.slug}/lights/`,
-        component: path.resolve(`src/templates/service-lights.tsx`),
-        context: {
-          slug: node.slug,
-        },
-      })
+  for (const { node } of getServices.data.allStrapiService.edges) {
+    createPage({
+      path: `/${node.slug}`,
+      component: path.resolve("src/templates/service.tsx"),
+      context: {
+        slug: node.slug,
+      },
     })
-  }); // .then(result)
+  }
 
-  const getVenues = makeRequest(graphql, `
-    {
+  // * Im also using /christmas-lights/ which might be replaced with a node query before here
+  const getServiceLights = await graphql(`
+    query {
+      allStrapiService {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+  `)
+
+  for (const { node } of getServiceLights.data.allStrapiService.edges) {
+    createPage({
+      path: `/${node.slug}/lights/`,
+      component: path.resolve("src/templates/service-lights.tsx"),
+      context: {
+        slug: node.slug,
+      },
+    })
+  }
+
+  const getVenues = await graphql(`
+    query {
       allStrapiVenue {
         edges {
           node {
             slug
-
             area {
               slug
             }
@@ -82,50 +65,45 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-    `).then(result => {
+  `)
 
-    result.data.allStrapiVenue.edges.forEach(({ node }) => {
-      createPage({
-        path: `/venue/${node.slug}`,
-        component: path.resolve(`src/templates/venue.tsx`),
-        context: {
-          slug: node.slug,
-          area: node.area.slug
-        },
-      })
+  for (const { node } of getVenues.data.allStrapiVenue.edges) {
+    createPage({
+      path: `/venue/${node.slug}`,
+      component: path.resolve("src/templates/venue.tsx"),
+      context: {
+        slug: node.slug,
+        area: node.area.slug,
+      },
     })
-  }); // .then(result)
+  }
 
-  // * Im creating this twice to do
-  // vendors aka vendor/twinefloralco
-  // vendorservice aka vendors/floral
-  // ? I think this is creating /wedding/vendors/floral
-
-  const getVendorServices = makeRequest(graphql, `
-      {
-        allStrapiVendor {
-          edges {
-            node {
-              service
-            }
+  // * /vendor/photography/
+  const getVendorServices = await graphql(`
+    query {
+      allStrapiVendor {
+        edges {
+          node {
+            service
           }
         }
       }
-      `).then(result => {
+    }
+  `)
 
-    result.data.allStrapiVendor.edges.forEach(({ node }) => {
-      createPage({
-        path: `/vendors/${node.service}`,
-        component: path.resolve(`src/templates/vendorservice.tsx`),
-        context: {
-          service: node.service
-        },
-      })
+  for (const { node } of getVendorServices.data.allStrapiVendor.edges) {
+    createPage({
+      path: `/vendor/${node.service}`,
+      component: path.resolve("src/templates/vendorservice.tsx"),
+      context: {
+        service: node.service,
+      },
     })
-  }); // .then(result) */
+  }
 
-  const getVendors = makeRequest(graphql, `
-    {
+  // * /vendor/envyeventmanagement/
+  const getVendors = await graphql(`
+    query {
       allStrapiVendor {
         edges {
           node {
@@ -135,108 +113,38 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-    `).then(result => {
-    result.data.allStrapiVendor.edges.forEach(({ node }) => {
-      createPage({
-        path: `/vendor/${node.slug}`,
-        component: path.resolve(`src/templates/vendor.tsx`),
-        context: {
-          slug: node.slug,
-          service: node.service
-        },
-      })
-    })
-  });
+  `)
 
-  const getLookbook = makeRequest(graphql, `
-    {
-      allStrapiLookbook {
-        edges {
-          node {
-            spread
-          }
-        }
-      }
-    }
-    `).then(result => {
-    result.data.allStrapiLookbook.edges.forEach(({ node }) => {
-      createPage({
-        path: `/lookbook/${node.spread}`,
-        component: path.resolve(`src/templates/lookbook-spread.tsx`),
-        context: {
-          spread: node.spread
-        },
-      })
+  for (const { node } of getVendors.data.allStrapiVendor.edges) {
+    createPage({
+      path: `/vendor/${node.slug}`,
+      component: path.resolve("src/templates/vendor.tsx"),
+      context: {
+        slug: node.slug,
+        service: node.service,
+      },
     })
-  });
+  }
 
-  const getAreas = makeRequest(graphql, `
-    {
+  const getAreas = await graphql(`
+    query {
       allStrapiArea {
         edges {
           node {
             slug
-            featured
           }
         }
       }
     }
-    `).then(result => {
-    result.data.allStrapiArea.edges.forEach(({ node }) => {
-      if (node.featured === true) {
-        createPage({
-          path: `/areas/${node.slug}`,
-          component: path.resolve(`src/templates/areas.tsx`),
-          context: {
-            slug: node.slug
-          },
-        })
-      }
+  `)
+
+  for (const { node } of getAreas.data.allStrapiArea.edges) {
+    createPage({
+      path: `/areas/${node.slug}`,
+      component: path.resolve("src/templates/areas.tsx"),
+      context: {
+        slug: node.slug,
+      },
     })
-
-    // }
-  });
-
-  // const getServices = makeRequest(graphql, `
-
-  // Query for blog nodes to use in creating pages.
-  return Promise.all([
-    getServices,
-    getServiceLights,
-    getVenues,
-    getVendors,
-    getVendorServices,
-    getLookbook,
-    getAreas,
-    // getLights
-  ])
-}
-
-
-
-/*  // TODO: this was trying to create the vendors page without having to manually make each service on the enum
-// I dont think this needs a node I can maybe do it in the files
-  I havent been able to make it work yet
-  does this work doing both queries in the same place?
-  const getVendorServicesLoop = makeRequest(graphql, `
-    {
-      allStrapiVendor {
-    edges {
-    node {
-    service
   }
-        }
-      }
-    }
-`).then(result => {
-    Create pages for each partner resorts.
-    result.data.allStrapiVendor.edges.forEach(({ node }) => {
-      createPage({
-        path: `/ vendorsloop`,
-        component: path.resolve(`src / templates / vendorserviceloop.tsx`),
-        context: {
-          service: node.service
-        },
-      })
-    })
-  }); // .then(result) */
+}

@@ -5,10 +5,19 @@
 /venues /venue
 /vendors /vendor
 
+## there was a plural here
+
+/vendors/photography /vendor/photography
+/vendors/planning /vendor/planning
+/vendors/production /vendor/production
+/vendors/floral /vendor/floral
+
 /projects/wedding-projects/ /projects
 /projects/christmas-light-projects/ /projects
 
-# moved to programatically created services
+## moved to programatically created services
 
 /permanent /patio
 /events /social-events
+
+## dont try to format it will pull back
