@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-function AreaCatchAll({ params }) {
+function TeamCatchAll({ params }) {
   return (
     <>
       <Header />
@@ -39,4 +39,4 @@ function AreaCatchAll({ params }) {
   )
 }
 
-export default AreaCatchAll
+export default TeamCatchAll

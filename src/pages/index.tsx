@@ -4,6 +4,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 import { SEO } from "../components/seo";
+// TODO: am I sure I cant run this as a variable in the seo file
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
 

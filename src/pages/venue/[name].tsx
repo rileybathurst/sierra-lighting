@@ -1,3 +1,5 @@
+// TODO: show venues that we do have
+
 import * as React from "react"
 import { Link } from "gatsby"
 

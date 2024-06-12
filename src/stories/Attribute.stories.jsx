@@ -1,8 +1,8 @@
-import React from 'react';
-import { Attribute } from './Attribute';
+import React from "react";
+import { Attribute } from "./Attribute";
 
 export default {
-  title: 'Attribute',
+  title: "Attribute",
   component: Attribute,
 };
 
@@ -11,5 +11,5 @@ const Template = (args) => <Attribute {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
-  label: 'Attribute',
+  label: "Attribute",
 };

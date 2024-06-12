@@ -1,8 +1,8 @@
-import React from 'react';
-import { Testimonial } from './Testimonial';
+import React from "react";
+import { Testimonial } from "./Testimonial";
 
 export default {
-  title: 'Testimonial',
+  title: "Testimonial",
   component: Testimonial,
 };
 
@@ -11,5 +11,5 @@ const Template = (args) => <Testimonial {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
-  label: 'Testimonial',
+  label: "Testimonial",
 };

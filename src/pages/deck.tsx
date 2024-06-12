@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Link } from "gatsby";
+import { SEO } from "../components/seo";
 
 interface deckTypes {
   key: number,
@@ -62,3 +63,15 @@ const DeckPage = () => {
 }
 
 export default DeckPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title='Deck'
+      breadcrumbs={{
+        one: { name: 'Test', item: 'test' },
+        two: { name: 'Deck', item: 'deck' }
+      }}
+    />
+  )
+}

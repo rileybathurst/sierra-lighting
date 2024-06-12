@@ -37,6 +37,8 @@ export const Head = ({ data }) => {
         image={data.strapiTeam?.avatar?.localFile?.url}
         url={`/team/${data.strapiTeam.slug}`}
       />
+
+      {/* // TODO: jobTitle */}
       <Script type="application/ld+json">
         {`
           {

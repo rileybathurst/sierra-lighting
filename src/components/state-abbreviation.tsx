@@ -3,13 +3,14 @@ import * as React from "react"
 function StateAbbreviation(props:
   { state: "california" | "nevada" | string | undefined; }
 ) {
-  if (props.state == "california") {
+  if (props.state === "california") {
     return (<>CA</>);
-  } else if (props.state == "nevada") {
-    return (<>NV</>);
-  } else {
-    return null;
   }
+
+  if (props.state === "nevada") {
+    return (<>NV</>);
+  }
+  return null;
 }
 
 export default StateAbbreviation

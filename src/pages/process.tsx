@@ -119,7 +119,9 @@ const ProcessPage = () => {
           </label>
         </>
       )
-    } else if (checker === 'holiday') {
+    }
+
+    if (checker === 'holiday') {
       return (
         <>
           <label>
@@ -143,9 +145,9 @@ const ProcessPage = () => {
           </label>
         </>
       )
-    } else {
-      return null;
     }
+
+    return null;
   }
 
   return (

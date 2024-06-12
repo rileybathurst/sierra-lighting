@@ -1,4 +1,4 @@
-// TODO: do more than justresidential
+// TODO: do more than just residential
 
 import * as React from "react"
 import { graphql, useStaticQuery, Link } from 'gatsby';
@@ -9,6 +9,26 @@ import type { CardType } from "../types/card-type";
 const SeasonalLights = () => {
 
   const data = useStaticQuery(graphql`
+
+    fragment SeasonalService on STRAPI_SERVICE {
+      id
+      slug
+      featured_lights {
+        name
+        slug
+        excerpt
+
+        image {
+          alternativeText
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+
     query SeasonalLightsQuery {
       strapiSeason {
         wedding
@@ -16,43 +36,13 @@ const SeasonalLights = () => {
 
       wedding: allStrapiService(filter: {slug: {eq: "wedding"}}) {
         nodes {
-          id
-          slug
-          featured_lights {
-            name
-            slug
-            excerpt
-
-            image {
-              alternativeText
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-            }
-          }
+          ...SeasonalService
         }
       }
 
       holiday: allStrapiService(filter: {slug: {eq: "residential"}}) {
         nodes {
-          id
-          slug
-          featured_lights {
-            name
-            slug
-            excerpt
-
-            image {
-              alternativeText
-              localFile {
-                childImageSharp {
-                  gatsbyImageData
-                }
-              }
-            }
-          }
+          ...SeasonalService
         }
       }
     }
@@ -61,7 +51,7 @@ const SeasonalLights = () => {
 
   if (data.strapiSeason.wedding === true) {
 
-    console.log(data.wedding);
+    // console.log(data.wedding);
 
     return (
       <section>

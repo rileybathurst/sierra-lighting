@@ -1,8 +1,8 @@
-import React from 'react';
-import { Deck } from './Deck';
+import React from "react";
+import { Deck } from "./Deck";
 
 export default {
-  title: 'Deck',
+  title: "Deck",
   component: Deck,
 };
 
@@ -11,5 +11,5 @@ const Template = (args) => <Deck {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   primary: true,
-  label: 'Deck',
+  label: "Deck",
 };

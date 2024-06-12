@@ -114,6 +114,7 @@ export const query = graphql`
   }
 `
 
+// TODO: inline the variables
 const ProjectPage = ({ data }) => {
   const project = data.strapiProject;
   const triptych = data.triptych.nodes;
@@ -138,6 +139,10 @@ export const Head = ({ data }) => {
       description={data.strapiProject?.excerpt}
       image={data.strapiProject?.ogimage}
       url={`project/${data.strapiProject.slug}`}
+      breadcrumbs={{
+        one: { name: 'Project', item: 'project' },
+        two: { name: data.strapiProject.slug, item: data.strapiProject.slug }
+      }}
     >
 
       {/* // TODO: breadcrumbs but once I've move the url to include service */}

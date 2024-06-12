@@ -1,8 +1,8 @@
-import React from 'react';
-import { Body } from './Body';
+import React from "react";
+import { Body } from "./Body";
 
 export default {
-  title: 'Body',
+  title: "Body",
   component: Body,
 };
 
@@ -11,11 +11,11 @@ const Template = (args) => <Body {...args} />;
 export const Light = Template.bind({});
 Light.args = {
   primary: true,
-  label: 'Body',
+  label: "Body",
 };
 
 export const Dark = Template.bind({});
 Dark.args = {
   primary: true,
-  label: 'Body',
+  label: "Body",
 };

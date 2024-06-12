@@ -1,8 +1,8 @@
-import React from 'react';
-import { Typography } from './Typography';
+import React from "react";
+import { Typography } from "./Typography";
 
 export default {
-  title: 'Typography',
+  title: "Typography",
   component: Typography,
 };
 
@@ -11,11 +11,11 @@ const Template = (args) => <Typography {...args} />;
 export const Light = Template.bind({});
 Light.args = {
   primary: true,
-  label: 'Typography',
+  label: "Typography",
 };
 
 export const Dark = Template.bind({});
 Dark.args = {
   primary: true,
-  label: 'Typography',
+  label: "Typography",
 };

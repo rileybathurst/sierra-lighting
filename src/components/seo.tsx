@@ -6,41 +6,6 @@ import React from "react";
 import { Script } from "gatsby";
 import { useSiteMetadata } from "../hooks/use-site-metadata";
 
-// https://blog.spotibo.com/meta-description-length/
-// less than 120 characters is good
-// more than 160 characters is bad
-
-/* // TODO this could be behind a state flag
-function DescLength(props: { desc: any; }) {
-  const desc = props.desc;
-  const length = desc.length;
-
-  if (length >= 160) {
-    return <span className="bad key">{length} = Too long</span>;
-  } else if (length >= 120) {
-    return <span className="good key">{length} = Great</span>;
-  } else {
-    return <span className="bad key">{length} = Too Short</span>;
-  }
-} */
-
-/* function IfSeoImage(props: { image: string | undefined; }) {
-  // TODO: this could be a ternary
-  if (props.image) {
-
-    let imagealt = props.image ? props.image : 'seo checking';
-
-    return (
-      <>
-        {/* // TODO: I should do more with the alt
-<img src={props.image} alt={imagealt} />
-      </>
-    )
-  } else {
-  return null;
-}
-} */
-
 interface SEO {
   title?: string;
   description?: string;
@@ -48,10 +13,61 @@ interface SEO {
   image?: string;
   imageAlt?: string;
   children?: React.ReactNode;
+  breadcrumbs?: {
+    one: {
+      name: string;
+      item: string;
+    };
+    two: {
+      name: string;
+      item: string;
+    };
+  };
 }
 
 // Im not sure what the rules on what goes here vs in the array?
 export const SEO = (SE0: SEO) => {
+
+  // TODO: shift everything to this
+  interface BreadcrumbsTypes {
+    one: {
+      name: string;
+      item: string;
+    };
+    two: {
+      name: string;
+      item: string;
+    };
+  }
+  function Breadcrumbs({ one, two }: BreadcrumbsTypes) {
+
+    if (!one) return null;
+
+    return (
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "${one.name}",
+                "item": "/${one.item}"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "${two.name}",
+                "item": "/${one.item}/${two.item}"
+              }
+            ]
+          }
+        `}
+      </Script>
+    );
+  }
 
   const {
     siteTitle,
@@ -67,12 +83,20 @@ export const SEO = (SE0: SEO) => {
     geo,
   } = useSiteMetadata()
 
+  // Do I need this maybe I just inline everything
   const seo = {
     title: SE0.title,
+    // TODO: combine with
+    // title: `SE0.title | siteTitle`,
+    // but also needs a ? : if theres no specific one sent in make it
+    // `siteTitle | topbar`
+    // I might need to bring this in from a hook as Im not really querying here
+    // but also might start queries here instead I dont see why I couldnt
     description: SE0.description || slogan,
     image: SE0.image || defaultImage,
     imageAlt: SE0.imageAlt || defaultImageAlt,
     url: SE0.url || siteUrl,
+    breadcrumbs: SE0.breadcrumbs,
   };
 
   return (
@@ -90,6 +114,8 @@ export const SEO = (SE0: SEO) => {
       <meta property="og:image" itemProp="image" content={seo.image} />
 
       {/* Twitter */}
+      {/* is this twitter I really cant see anyone caring about this for sierra */}
+      {/* TODO: do research into who uses other than og: */}
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:card" content="summary_large_image" />
@@ -126,6 +152,9 @@ export const SEO = (SE0: SEO) => {
           }
           `}
       </Script>
+
+      <Breadcrumbs {...seo.breadcrumbs} />
+
       {SE0.children}
       {/*
         // Rebuild this sometime

@@ -253,6 +253,7 @@ const ServiceView = ({ data }) => {
         : null
       }
 
+      {/* // TODO: look at passing objects like length up from here maybe i need more to make it easier */}
       <Base
         projects={data?.strapiService?.projects}
         venues={data?.allStrapiVenue?.nodes}

@@ -46,8 +46,5 @@ export const useSiteMetadata = () => {
   `);
 
   const siteMetadata: SiteMetadataTypes = data.site.siteMetadata;
-
   return siteMetadata;
-
-  // return data.site.siteMetadata;
 };

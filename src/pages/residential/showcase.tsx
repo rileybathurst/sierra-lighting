@@ -1,4 +1,4 @@
-// specifically removed from the SEO on Rom's request
+// * specifically removed from the SEO on Rom's request
 // I bet eventually you could create these progamatically for all services but thats just another level
 
 import * as React from "react"
@@ -18,20 +18,25 @@ function ReactDescription(props) {
       children={props.description.data.description}
       remarkPlugins={[remarkGfm]}
     />;
-  } else if (props.showcaseDescription) {
+  }
+
+  if (props.showcaseDescription) {
     return <ReactMarkdown
       children={props.showcaseDescription.data.showcaseDescription}
       remarkPlugins={[remarkGfm]}
     />;
-  } else {
-    return null;
   }
+
+  return null;
 }
 
-function Attributes(props) {
-
-  const sections = Object.entries(props).map(([key, value]) => {
-
+type AttributeTypes = {
+  price: string;
+  roofline: string;
+  trees: string;
+}
+function Attributes({ price, roofline, trees }: AttributeTypes) {
+  const sections = Object.entries({ price, roofline, trees }).map(([key, value]) => {
     return (
       <section className="attribute" key={key}>
         <h3 className="crest capitalize">{key}</h3>
@@ -121,8 +126,8 @@ function ResidentialShowcase() {
     }
   `);
 
-  let showcase = [data.gold, data.silver, data.bronze];
-  let description = data.description;
+  const showcase = [data.gold, data.silver, data.bronze];
+  const description = data.description;
   // let lightGroups = data.lightGroups;
 
   // console.log(description);
