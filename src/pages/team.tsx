@@ -3,7 +3,7 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import Markdown from "react-markdown";
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -75,7 +75,7 @@ export default TeamPage
 export const Head = () => {
   return (
     <SEO
-      title={`Team | ${useSiteMetadata().title}`}
+      title={`Team`}
       description="A Those of us who work with Sierra Lighting"
       image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
       url="team"

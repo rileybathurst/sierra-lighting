@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, Link } from 'gatsby'
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -261,10 +261,20 @@ export const query = graphql`
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiVendor.name} | ${useSiteMetadata().title}`}
+      title={`${data.strapiVendor.name}`}
       description={data.strapiVendor.excerpt}
       url={`vendor/${data.strapiVendor.slug}`}
       image={data.strapiVendor?.profile?.localFile?.url}
+      breadcrumbs={[
+        {
+          name: 'Vendors',
+          item: 'vendor'
+        },
+        {
+          name: data.strapiVendor.name,
+          item: `vendor/${data.strapiVendor.slug}`
+        }
+      ]}
     />
   )
 }

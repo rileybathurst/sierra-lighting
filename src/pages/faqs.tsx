@@ -2,7 +2,7 @@ import * as React from "react"
 import { useStaticQuery, graphql } from 'gatsby';
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -56,7 +56,7 @@ export default FaqsPage
 export const Head = () => {
   return (
     <SEO
-      title={`FAQs | ${useSiteMetadata().title}`}
+      title={`FAQs`}
       url="faqs"
       description="Your go to holiday lights installer in the Reno, Truckee, and North Tahoe area. A list of frequently asked questions. Please reach out for more information and estimates."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/og_image-sierra_lighting-bistro_lights.jpg"

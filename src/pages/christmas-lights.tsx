@@ -4,7 +4,7 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 import LightSearch from "../components/light-search";
@@ -361,7 +361,7 @@ export default lightsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Christmas Lights | ${useSiteMetadata().title}`}
+      title={`Christmas Lights`}
       description="When you're looking for custom, elegant, one of a kind ambiance for you wedding, look no further than Sierra Lighting. Creating beautiful displays is all we do! We also offer landscape lighting services to make your outdoor space shine all summer long with cafe lights, uplighting, and more."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/lights-og-sierra_lighting.jpg"
       url="christmas-lights"

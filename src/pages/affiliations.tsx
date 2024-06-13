@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -76,7 +76,7 @@ export default TestimonialsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Affiliations | ${useSiteMetadata().title}`}
+      title={`Affiliations`}
       url="affiliations"
     />
   )

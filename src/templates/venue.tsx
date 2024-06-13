@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, Link } from 'gatsby'
 import Markdown from "react-markdown";
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from '../components/card';
@@ -277,14 +277,29 @@ export const query = graphql`
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiVenue.name} | ${useSiteMetadata().title}`}
+      title={`${data.strapiVenue.name}`}
       description={data.strapiVenue.excerpt}
       image={data.strapiVenue?.venueImage?.localFile?.url}
-    // url={`venue/${data.strapiVenue.slug}`}
-    >
-
-// TODO: breadcrumbs
-
-    </SEO>
+      // url={`venue/${data.strapiVenue.slug}`}
+      // TODO: is this actually three levels deep? and why is it featured and state etc
+      breadcrumbs={
+        [
+          {
+            name: 'Venues',
+            item: '/venue'
+          },
+          {
+            name: data.strapiVenue.area.featured ?
+              data.strapiVenue.area.name :
+              `${data.strapiVenue.area.name}, ${data.strapiVenue.area.state}`,
+            item: `/areas/${data.strapiVenue.area.slug}`
+          },
+          {
+            name: data.strapiVenue.name,
+            item: `/venue/${data.strapiVenue.slug}`
+          }
+        ]
+      }
+    />
   )
 }

@@ -2,7 +2,7 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -80,7 +80,7 @@ export default WorkPage
 export const Head = () => {
   return (
     <SEO
-      title={`Work | ${useSiteMetadata().title}`}
+      title={`Work`}
       // TODO description and info
       // TODO I have a new image for this
       image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"

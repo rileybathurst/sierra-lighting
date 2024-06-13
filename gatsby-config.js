@@ -38,29 +38,29 @@ const strapiConfig = {
 
 module.exports = {
   graphqlTypegen: true,
-  siteMetadata: {
-    title: "Sierra Lighting",
-    siteTitle: "Sierra Lighting",
-    siteUrl: "https://sierra.lighting/",
-    url: "https://sierra.lighting", // No trailing slash allowed!
-    slogan: 'Dependable wedding, event, landscape and Christmas light installation',
-    defaultImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg',
-    defaultImageAlt: 'Sierra Lighting created a beautiful holiday light display', // TODO: wedding
-    openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 08:00-18:00',
-    telephone: '(775) 525-1898', // nevada number
-    email: 'info@sierra.lighting',
-    logo: '/images/icon.png',
-    author: 'Sierra Lighting',
-    paymentAccepted: 'Cash check venmo credit card',
-    itemType: 'LocalBusiness',
-    priceRange: '$1000-2500',
-    alternateName: 'Sierra Christmas Lights', // TODO: add this to the schema
-    geo: {
-      latitude: "39.32817",
-      longitude: "-120.18404",
-      geoRadius: "80470",
-    },
-  },
+  /*   siteMetadata: {
+      title: "Sierra Lighting",
+      siteTitle: "Sierra Lighting",
+      siteUrl: "https://sierra.lighting/",
+      url: "https://sierra.lighting", // No trailing slash allowed!
+      slogan: 'Dependable wedding, event, landscape and Christmas light installation',
+      defaultImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg',
+      defaultImageAlt: 'Sierra Lighting created a beautiful holiday light display', // TODO: wedding
+      openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 08:00-18:00',
+      telephone: '(775) 525-1898', // nevada number
+      email: 'info@sierra.lighting',
+      logo: '/images/icon.png',
+      author: 'Sierra Lighting',
+      paymentAccepted: 'Cash check venmo credit card',
+      itemType: 'LocalBusiness',
+      priceRange: '$1000-2500',
+      alternateName: 'Sierra Christmas Lights', // TODO: add this to the schema
+      geo: {
+        latitude: "39.32817",
+        longitude: "-120.18404",
+        geoRadius: "80470",
+      },
+    }, */
   plugins: [
     // TODO: check in on the update
     {

@@ -1,9 +1,11 @@
 // TODO: link names
 import * as React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
-
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import { SEO } from "../../components/seo";
+import { Title } from "@storybook/blocks";
 
 function AreaCatchAll({ params }) {
 
@@ -26,26 +28,15 @@ function AreaCatchAll({ params }) {
   return (
     <>
       <Header />
-      <div className="stork">
-        <ol className="breadcrumbs">
-          <li key='area'>
-            <Link to="/area">
-              <span>Area</span></Link>&nbsp;/&nbsp;
-          </li>
-          <li key={params.name}>
-            <span>{params.name}</span>
-          </li>
-        </ol>
-        <hr />
-      </div>
       <main className="stork">
-        <h2 className="crest">404</h2>
+        <h2 className="crest">404 - light / {params.name}</h2>
         <h1 className="mixta">
           Oops! Looks like this page has left the party.
         </h1>
         <p>
           We Can't find that area. Maybe try one of these instead:
         </p>
+        {/* // TODO: these should be cards */}
         <ul>
           {allStrapiArea.nodes.map((area: AreaCatchAllType) => (
             <li key={area.slug}>
@@ -55,10 +46,28 @@ function AreaCatchAll({ params }) {
             </li>
           ))}
         </ul>
+
       </main>
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/areas/">Areas</Link></Breadcrumb>
+        {/* ? should this be a different and broken breadcrumb? */}
+        <Breadcrumb>{params.name}</Breadcrumb>
+      </Breadcrumbs>
+
       <Footer />
     </>
   )
 }
 
 export default AreaCatchAll
+
+export const Head = ({ params }) => {
+  return (
+    <SEO
+      title={`404 - light / ${params.name}`}
+    />
+  )
+}

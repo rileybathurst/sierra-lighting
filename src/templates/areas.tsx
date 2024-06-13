@@ -3,7 +3,7 @@ import { graphql, Link, Script } from 'gatsby'
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -214,42 +214,35 @@ export const query = graphql`
         }
       }
     }
+
+    strapiAbout {
+      businessName
+    }
   }
 `
 
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiArea.name} | ${useSiteMetadata().title}`}
+      title={`${data.strapiArea.name}`}
       description={data.strapiArea.excerpt}
       image={data.strapiArea?.image?.localFile?.url}
+      breadcrumbs={[
+        {
+          name: 'Areas',
+          item: 'areas'
+        }, {
+          name: data.strapiArea.name,
+          item: `areas/${data.strapiArea.slug}`
+        }
+      ]}
     >
       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Areas",
-              "item": "${useSiteMetadata().url}/areas"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "${data.strapiArea.name}",
-              "item": "${useSiteMetadata().url}/areas/${data.strapiArea.slug}"
-            }]
-          }
-        `}
-      </Script>
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "${useSiteMetadata().title}",
+            "name": "${data.strapiAbout.businessName}",
             "areaServed": {
               "@type": "Place",
               "name": "${data.strapiArea.name}"
@@ -258,15 +251,14 @@ export const Head = ({ data }) => {
         `}
       </Script>
 
-
-      {/* // TODO: internal map */}
-      {data.strapiArea.areas.map((area) => (
+      {/* TODO: these are the sub areas */}
+      {/*       {data.strapiArea.areas.map((area) => (
         <Script type="application/ld+json">
           {`
             {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "${useSiteMetadata().title}",
+              "name": "${data.strapiAbout.businessName}",
               "areaServed": {
                 "@type": "Place",
                 "name": "${area.name}"
@@ -274,7 +266,7 @@ export const Head = ({ data }) => {
             }
           `}
         </Script>
-      ))}
+      ))} */}
 
     </SEO >
   )

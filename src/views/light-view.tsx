@@ -50,6 +50,11 @@ const LightView = ({ light }) => {
     lights: DeckType[];
   }
 
+  {/* // ! testing */ }
+  light.image?.alternativeText ?
+    console.log(`light view image alt ${light.image?.alternativeText}`)
+    : console.warn('light view image has no alt');
+
   return (
     <>
       <Header />
@@ -62,16 +67,16 @@ const LightView = ({ light }) => {
               light?.image?.localFile?.childImageSharp
                 ?.gatsbyImageData
             }
-            alt={light.image?.alternativeText}
+            alt={light.image?.alternativeText ? light.image?.alternativeText : light.name}
           />
-          <GatsbyImage
-            image={
-              light?.detail?.localFile?.childImageSharp
-                ?.gatsbyImageData
-            }
-            alt={light.detail?.alternativeText}
-            className="detail"
-          />
+          {light?.detail ?
+            <GatsbyImage
+              image={light.detail?.localFile?.childImageSharp?.gatsbyImageData}
+              alt={light.detail?.alternativeText ? light.detail?.alternativeText : light.name}
+              className="detail"
+            />
+            : null
+          }
         </div>
 
         <article className="stork">
@@ -113,6 +118,7 @@ const LightView = ({ light }) => {
               <hr />
               <h3>Projects Using {light.name}</h3>
             </div>
+
 
             <div className="deck">
               {light.projects.map((project: DeckType) => (

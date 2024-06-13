@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 import { useStrapiSeason } from "../hooks/use-strapi-season";
@@ -175,7 +175,7 @@ export default ProcessPage
 export const Head = () => {
   return (
     <SEO
-      title={`Process | ${useSiteMetadata().title}`}
+      title={`Process`}
       // TODO: probably needs a new description now
       description="A professional lighting design package will highlight your decor and bring out the beauty of your venue. Learn about the many design options Sierra Lighting can use to make your Reno Tahoe wedding really shine."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"

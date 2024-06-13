@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 
 import Logo from "../images/logo"
 
@@ -36,8 +36,8 @@ export default LinkListPage
 export const Head = () => {
   return (
     <SEO
-      title={useSiteMetadata().title}
-      description="Sierra Lighting Social Media Links."
+      title='Social Media Links'
+      description="Social Media Links."
       url="link-list"
     />
   )

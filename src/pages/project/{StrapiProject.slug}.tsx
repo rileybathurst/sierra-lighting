@@ -4,7 +4,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import ProjectView from "../../views/project-view"
 import SEO from "../../components/seo"
-import { useSiteMetadata } from "../../hooks/use-site-metadata"
+
 
 export const query = graphql`
   query ProjectQuery($slug: String!) {
@@ -135,18 +135,20 @@ export default ProjectPage;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiProject.title} | ${useSiteMetadata().title}`}
+      title={`${data.strapiProject.title}`}
       description={data.strapiProject?.excerpt}
       image={data.strapiProject?.ogimage}
       url={`project/${data.strapiProject.slug}`}
-      breadcrumbs={{
-        one: { name: 'Project', item: 'project' },
-        two: { name: data.strapiProject.slug, item: data.strapiProject.slug }
-      }}
-    >
-
-      {/* // TODO: breadcrumbs but once I've move the url to include service */}
-
-    </SEO>
+      breadcrumbs={[
+        {
+          name: 'Project',
+          item: 'project'
+        },
+        {
+          name: data.strapiProject.slug,
+          item: `project/${data.strapiProject.slug}`
+        }
+      ]}
+    />
   )
 }

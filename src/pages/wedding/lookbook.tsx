@@ -8,7 +8,7 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Start from "../../components/start";
 import SEO from "../../components/seo";
-import { useSiteMetadata } from "../../hooks/use-site-metadata"
+
 
 function LinkedLook({ image, lights }: { image: any, lights: any[] }) {
 
@@ -126,7 +126,7 @@ export default LookbookPage
 export const Head = () => {
   return (
     <SEO
-      title={`Wedding Lookbook | ${useSiteMetadata().title}`}
+      title={`Wedding Lookbook`}
       url="/wedding/lookbook"
     // TODO: 
     />

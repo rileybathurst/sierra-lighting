@@ -6,7 +6,6 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import Grouploop from '../components/grouploop';
 import SEO from '../components/seo';
-import { useSiteMetadata } from '../hooks/use-site-metadata';
 
 const ServiceLightView = ({ data }) => {
 
@@ -409,9 +408,19 @@ export const query = graphql`
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiService.name} Lights | ${useSiteMetadata().title}`}
+      title={`${data.strapiService.name} Lights`}
       description={data.strapiService.excerpt}
       url={`${data.strapiService.slug}/lights`}
+      breadcrumbs={[
+        {
+          name: data.strapiService.name,
+          item: data.strapiService.slug
+        },
+        {
+          name: `${data.strapiService.name} Lights`,
+          item: `${data.strapiService.slug}/lights`
+        }
+      ]}
     // TODO: image
     />
   )

@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
 import MuxPlayer from '@mux/mux-player-react';
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -356,7 +356,7 @@ export const Head = ({ data }) => {
   return (
     <>
       <SEO
-        title={`${data.strapiService.name} Lighting | ${useSiteMetadata().title}`}
+        title={`${data.strapiService.name} Lighting`}
         description={data.strapiService.excerpt}
         image={data.strapiService?.ogImage}
         url={`${data.strapiService.slug}`}
@@ -368,7 +368,7 @@ export const Head = ({ data }) => {
             "@type": "OfferCatalog",
             "name": "${data.strapiService.name}",
             "description": "${data.strapiService.excerpt}",
-            "url": "${useSiteMetadata().url}/${data.strapiService.slug}"
+            "url": "/${data.strapiService.slug}"
           }
         `}
       </Script>

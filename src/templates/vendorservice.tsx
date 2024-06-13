@@ -5,7 +5,7 @@ import React from 'react';
 import { graphql, Link } from 'gatsby'
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from '../components/card';
@@ -75,11 +75,21 @@ export const query = graphql`
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.allStrapiVendor.distinct} Vendors | ${useSiteMetadata().title}`}
+      title={`${data.allStrapiVendor.distinct} Vendors`}
       description="We built our business by providing outstanding quality, value, and service.
       We support others in Reno/Tahoe that have the same commitment."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
       url={`vendor/${data.allStrapiVendor.distinct}`}
+      breadcrumbs={[
+        {
+          name: 'Vendors',
+          item: 'vendor'
+        },
+        {
+          name: data.allStrapiVendor.distinct,
+          item: `vendor/${data.allStrapiVendor.distinct}`
+        }
+      ]}
     />
   )
 }

@@ -1,5 +1,9 @@
 // TODO: I havent moved to the new SEO so I cant use this yet 
 
+interface StrapiTopBarTypes {
+  title: string;
+}
+
 import { graphql, useStaticQuery } from "gatsby"
 
 export const useStrapiTopBar = () => {
@@ -11,5 +15,6 @@ export const useStrapiTopBar = () => {
     }
   `)
 
-  return data.strapiTopbar.title
+  const strapiTopbar: StrapiTopBarTypes = data.strapiTopbar
+  return strapiTopbar
 }

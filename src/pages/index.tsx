@@ -2,12 +2,7 @@ import * as React from "react";
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
-
 import { SEO } from "../components/seo";
-// TODO: am I sure I cant run this as a variable in the seo file
-import { useSiteMetadata } from "../hooks/use-site-metadata";
-import { useStrapiTopBar } from "../hooks/use-strapi-topbar";
-
 import Logo from "../images/logo";
 import Footer from "../components/footer";
 import Areas from '../components/areas';
@@ -31,6 +26,7 @@ const IndexPage = () => {
             description
           }
         }
+        slogan
       }
 
       allStrapiService {
@@ -150,7 +146,7 @@ const IndexPage = () => {
           </div>
 
           <section className="h2-text">
-            <h3>{useSiteMetadata().slogan}</h3>
+            <h3>{data.strapiAbout.slogan}</h3>
             {data.strapiAbout ?
               <Markdown className='react-markdown'>
                 {data.strapiAbout.description.data.description}
@@ -219,10 +215,14 @@ const IndexPage = () => {
               to={`/${service.slug}`}
               className='poster'
             >
-              <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
-                alt={service.hero_light.alternativeText}
-              />
-              <span>{service.name}</span>
+              {service.hero_light ?
+                <>
+                  <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
+                    alt={service.hero_light.alternativeText}
+                  />
+                  <span>{service.name}</span>
+                </>
+                : null}
             </Link>
           ))}
         </div>
@@ -243,9 +243,6 @@ export default IndexPage
 
 export const Head = () => {
   return (
-    <SEO
-      title={`${useSiteMetadata().title} | ${useStrapiTopBar()}`}
-      image={useSiteMetadata().defaultImage}
-    />
+    <SEO />
   )
 }

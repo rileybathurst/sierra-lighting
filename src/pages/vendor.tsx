@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
@@ -124,7 +124,7 @@ export default VendorsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Vendors | ${useSiteMetadata().title}`}
+      title={`Vendors`}
       description="We built our business by providing outstanding quality, value, and service. We support others in Reno/Tahoe that have the same commitment."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
       url="vendor"

@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql, Script } from "gatsby"
 import LightView from "../../views/light-view"
 import SEO from "../../components/seo"
-import { useSiteMetadata } from "../../hooks/use-site-metadata"
+
 
 export const query = graphql`
   query LightQuery($slug: String!) {
@@ -70,7 +70,95 @@ export const query = graphql`
   }
 `
 
-const LightPage = ({ data }) => {
+interface LightPageTypes {
+  data: {
+    strapiLight: {
+      id: string;
+      name: string;
+      slug: string;
+      excerpt: string;
+      description: string;
+      services: {
+        id: string;
+        name: string;
+        slug: string;
+      }[];
+      light_groups: {
+        id: string;
+        name: string;
+        slug: string;
+        lights: {
+          id: string;
+          name: string;
+          slug: string;
+          excerpt: string;
+          image: {
+            localFile: {
+              url: string;
+              childImageSharp: {
+                gatsbyImageData: any;
+              };
+            };
+            alternativeText: string;
+          };
+        }[];
+      }[];
+      alias: string;
+      image: {
+        localFile: {
+          url: string;
+          childImageSharp: {
+            gatsbyImageData: any;
+          };
+        };
+        alternativeText: string;
+      };
+      detail: {
+        localFile: {
+          url: string;
+          childImageSharp: {
+            gatsbyImageData: any;
+          };
+        };
+        alternativeText: string;
+      };
+      projects: {
+        id: string;
+        name: string;
+        slug: string;
+        excerpt: string;
+        image: {
+          localFile: {
+            url: string;
+            childImageSharp: {
+              gatsbyImageData: any;
+            };
+          };
+          alternativeText: string;
+        };
+      }[];
+    };
+    allStrapiLight: {
+      nodes: {
+        id: string;
+        name: string;
+        slug: string;
+        excerpt: string;
+        image: {
+          localFile: {
+            url: string;
+            childImageSharp: {
+              gatsbyImageData: any;
+            };
+          };
+          alternativeText: string;
+        };
+      }[];
+    };
+  };
+}
+
+const LightPage = ({ data }: LightPageTypes) => {
   return (
     <LightView
       light={data.strapiLight}
@@ -83,15 +171,25 @@ export default LightPage;
 
 // TODO: might need a image default variable here
 
-export const Head = ({ data }) => {
+export const Head = ({ data }: LightPageTypes) => {
   return (
     <>
       <SEO
-        title={`${data.strapiLight.name} | ${useSiteMetadata().title}`}
+        title={`${data.strapiLight.name}`}
         // TODO: needs the aliases in the SEO
         description={data.strapiLight?.excerpt}
         image={data.strapiLight?.image?.localFile?.url}
         url={`light/${data.strapiLight.slug}`}
+        breadcrumbs={[
+          {
+            name: "Light",
+            item: "light"
+          },
+          {
+            name: data.strapiLight.name,
+            item: `light/${data.strapiLight.slug}`
+          }
+        ]}
       />
       <Script type="application/ld+json">
         {`
@@ -101,29 +199,9 @@ export const Head = ({ data }) => {
             "name": "${data.strapiLight.name}",
             "description": "${data.strapiLight.excerpt}",
             "image": "${data.strapiLight?.image?.localFile?.url}",
-            "url": "${useSiteMetadata().siteUrl}light/${data.strapiLight.slug}"
-          }
-        `}
-      </Script>
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [{
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Light",
-              "item": "${useSiteMetadata().url}/light"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "${data.strapiLight.name}",
-              "item": "${useSiteMetadata().url}/light/${data.strapiLight.slug}"
-            }]
-          }
-        `}
+            "url": "light/${data.strapiLight.slug}"
+            }
+            `}
       </Script>
     </>
   )

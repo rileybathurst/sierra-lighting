@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -29,7 +29,7 @@ export default NotFoundPage
 export const Head = ({ location }) => {
   return (
     <SEO
-      title={`404 - ${location.pathname} | ${useSiteMetadata().title}`}
+      title={`404 - ${location.pathname}`}
       description="Looks like this page has left the party."
       url="404"
       image="https://sierralighting.s3.us-west-1.amazonaws.com/404-og-sierra_lighting.jpg"

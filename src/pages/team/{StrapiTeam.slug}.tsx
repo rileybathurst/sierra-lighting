@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql, Script } from "gatsby"
 import TeamView from "../../views/team-view"
 import SEO from "../../components/seo"
-import { useSiteMetadata } from "../../hooks/use-site-metadata"
+
 
 export const query = graphql`
   query TeamQuery($slug: String!) {
@@ -12,6 +12,10 @@ export const query = graphql`
       projects {
         ...projectCard
       }
+    }
+
+    strapiAbout {
+      businessName
     }
   }
 `
@@ -26,12 +30,11 @@ const TeamPage = ({ data }) => {
 
 export default TeamPage;
 
-
 export const Head = ({ data }) => {
   return (
     <>
       <SEO
-        title={`${data.strapiTeam.name} | ${useSiteMetadata().title}`}
+        title={`${data.strapiTeam.name}`}
         // TODO image
         description={data.strapiTeam?.excerpt}
         image={data.strapiTeam?.avatar?.localFile?.url}
@@ -45,13 +48,13 @@ export const Head = ({ data }) => {
             "@context": "https://schema.org/",
             "@type": "Person",
             "name": "${data.strapiTeam.name}",
-            "url": "${useSiteMetadata().siteUrl}/team/${data.strapiTeam.slug}",
+            "url": "/team/${data.strapiTeam.slug}",
             "image": "${data.strapiTeam.avatar?.localFile?.url}",
             "description": "${data.strapiTeam?.excerpt}",
             "jobTitle": "Team Member",
             "worksFor": {
               "@type": "Organization",
-              "name": "${useSiteMetadata().title}"
+              "name": "${data.strapiAbout.businessName}"
             }
           }
         `}

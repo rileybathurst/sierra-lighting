@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import { SEO } from "../components/seo";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
 
@@ -213,7 +213,7 @@ export default TestimonialsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Testimonials | ${useSiteMetadata().title}`}
+      title={`Testimonials`}
       description="Thanks From Our Customers"
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
       url="testimonials"

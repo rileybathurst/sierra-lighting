@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 import type { IGatsbyImageData } from "gatsby-plugin-image";
-import { useSiteMetadata } from "../hooks/use-site-metadata";
+
 import Logo from "../images/logo";
 import SocialIcons from "../components/social-icons";
 import FooterList from "../lists/footer-list";
@@ -23,7 +23,7 @@ const Footer = () => {
     return null;
   }
 
-  const { allStrapiTeam } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query FooterQuery {
       allStrapiTeam {
         nodes {
@@ -45,6 +45,13 @@ const Footer = () => {
     
         }
       }
+    
+      strapiAbout {
+        businessName
+        email
+        telephone
+      }
+    
     }
   `)
 
@@ -131,14 +138,14 @@ const Footer = () => {
 
           <div className="contact-info">
             <p>
-              <a href={`mailto:${useSiteMetadata().email}`}>
-                {useSiteMetadata().email}
+              <a href={`mailto:${data.strapiAbout.email}`}>
+                {data.strapiAbout.email}
               </a>
             </p>
             <p>
               {/* // TODO: I think this is wrong if its not broken up correctly */}
-              <a href={`tel:${useSiteMetadata().telephone}`}>
-                Call or Text: {useSiteMetadata().telephone}
+              <a href={`tel:${data.strapiAbout.telephone}`}>
+                Call or Text: {data.strapiAbout.telephone}
               </a>
             </p>
           </div>
@@ -155,7 +162,7 @@ const Footer = () => {
           </h4>
 
           <div className="team-heads spin">
-            {allStrapiTeam.nodes.map((team: TeamType) => (
+            {data.allStrapiTeam.nodes.map((team: TeamType) => (
               <Link
                 key={team.slug}
                 to={`/team/${team.slug}`}
@@ -189,10 +196,11 @@ const Footer = () => {
       <div className="footer-copyright">
         <h4 className="sr-only footer-copyright__mind-the-gap">
           <Link to="/">
-            Sierra Lighting
+            {data.strapiAbout.businessName}
           </Link>
         </h4>
 
+        {/* // TODO: current link */}
         <Link to="/">
           <Logo />
         </Link>

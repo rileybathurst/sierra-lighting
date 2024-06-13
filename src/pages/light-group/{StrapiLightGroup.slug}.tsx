@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import LightGroupView from "../../views/lightgroup-view"
 import SEO from "../../components/seo"
-import { useSiteMetadata } from "../../hooks/use-site-metadata"
+
 
 export const query = graphql`
   query LightGroupQuery($slug: String!) {
@@ -39,7 +39,7 @@ export default LightPage;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiLightGroup.name} | ${useSiteMetadata().title}`}
+      title={`${data.strapiLightGroup.name}`}
       description={data.strapiLightGroup?.excerpt}
       // image={data.strapiArea?.image?.localFile?.url}
       url={`light-group/${data.strapiLightGroup.slug}`}

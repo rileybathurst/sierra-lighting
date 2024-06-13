@@ -5,6 +5,11 @@ import type { DeckType } from "../types/deck-type";
 
 const Card = ({ card, breadcrumb }: DeckType) => {
 
+  // * testing for missing alt text
+  card?.image?.alternativeText ?
+    null
+    : console.warn(`${card.title ?? card.name} image has no alt`);
+
   return (
     <section className="card">
       <Link

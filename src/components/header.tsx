@@ -23,6 +23,7 @@ const Header = ({ largeLogo }: HeaderTyes) => {
         <SlideMenu />
 
         <div className='bigboy'>
+          {/* ? can this be ul class season instead so theres no error */}
           <Season>
             <li key="logo" className={`logo ${largeLogo}`}>
               <Link to="/" className="header__logo">

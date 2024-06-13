@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import TestimonialView from "../../views/testimonial-view"
 import SEO from "../../components/seo"
-import { useSiteMetadata } from "../../hooks/use-site-metadata"
+
 
 export const query = graphql`
   query TestimonialQuery($slug: String!) {
@@ -31,7 +31,7 @@ export default CustomerPage;
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiTestimonial.name} | ${useSiteMetadata().title}`}
+      title={`${data.strapiTestimonial.name}`}
       description={data.strapiTestimonial?.excerpt}
       url={`testimonial/${data.strapiTestimonial.slug}`}
     />
