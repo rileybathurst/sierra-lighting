@@ -38,33 +38,15 @@ const strapiConfig = {
 
 module.exports = {
   graphqlTypegen: true,
-  /*   siteMetadata: {
-      title: "Sierra Lighting",
-      siteTitle: "Sierra Lighting",
-      siteUrl: "https://sierra.lighting/",
-      url: "https://sierra.lighting", // No trailing slash allowed!
-      slogan: 'Dependable wedding, event, landscape and Christmas light installation',
-      defaultImage: 'https://sierralighting.s3.us-west-1.amazonaws.com/sierra-lighting-og_image.jpg',
-      defaultImageAlt: 'Sierra Lighting created a beautiful holiday light display', // TODO: wedding
-      openingHours: 'Mo, Tu, We, Th, Fr, Sa, Su 08:00-18:00',
-      telephone: '(775) 525-1898', // nevada number
-      email: 'info@sierra.lighting',
-      logo: '/images/icon.png',
-      author: 'Sierra Lighting',
-      paymentAccepted: 'Cash check venmo credit card',
-      itemType: 'LocalBusiness',
-      priceRange: '$1000-2500',
-      alternateName: 'Sierra Christmas Lights', // TODO: add this to the schema
-      geo: {
-        latitude: "39.32817",
-        longitude: "-120.18404",
-        geoRadius: "80470",
-      },
-    }, */
+
+  // * gatsby-plugin-sitemap needs this
+  siteMetadata: {
+    siteUrl: 'https://www.sierralighting.com',
+  },
   plugins: [
     // TODO: check in on the update
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: "gatsby-plugin-google-gtag",
       options: {
         trackingIds: [
           process.env.GA, // Google Analytics / GA
@@ -84,10 +66,10 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-postcss`,
+      resolve: "gatsby-plugin-postcss",
       options: {
         postCssPlugins: [
-          require(`postcss-import`),
+          require("postcss-import"),
           require("autoprefixer"),
           require("postcss-nested"),
         ],
@@ -96,14 +78,15 @@ module.exports = {
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     {
-      resolve: `gatsby-plugin-sharp`,
+      resolve: "gatsby-plugin-sharp",
       options: {
         defaults: {
-          formats: [`auto`, `webp`],  //, this was off to get under a ram limit bug on netlify it seems to be working May '22
-          placeholder: `dominantColor`,
+          //, TODO: check as this was off to get under a ram limit bug on netlify it seems to be working May '22
+          formats: ["auto", "webp"],
+          placeholder: "dominantColor",
           quality: 50,
           breakpoints: [300, 750, 1080, 1366, 1920],
-          backgroundColor: `transparent`,
+          backgroundColor: "transparent",
           tracedSVGOptions: {},
           blurredOptions: {},
           jpgOptions: {},
@@ -143,14 +126,16 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      // ? can you query for this?
+      resolve: "gatsby-plugin-manifest",
       options: {
-        name: `Sierra Lighting`,
-        short_name: `Sierra Lighting`,
-        start_url: `/`,
-        background_color: `#fffaf2`,
-        theme_color: `#fff`,
-        display: `standalone`,
+        name: "Sierra Lighting",
+        short_name: "Sierra Lighting",
+        start_url: "/",
+        background_color: "#fffaf2",
+        // TODO: check this white isnt a theme color
+        theme_color: "#fff",
+        display: "standalone",
         icon: "src/images/sierra-lighting-icon.svg",
       },
     },
