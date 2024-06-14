@@ -4,11 +4,25 @@
 
 body,
 button {
-  font-family: "josefin-sans", sans-serif;
+  font-family: var(--font-sans);
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
   line-height: 1.25rem; /* 20px */
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/*  TODO maybe this https://fonts.adobe.com/fonts/park-lane but it needs to only get the apostrophe */
+.font-quote, /* make it this */
+.testimonials .testimonial--quote_mark {
+  font-family: var(--font-quote);
 }
 
 .mixta,

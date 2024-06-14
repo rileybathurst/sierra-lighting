@@ -2,7 +2,7 @@ import React from "react";
 import { Svgs } from "./Svgs";
 
 export default {
-  title: "Svg",
+  title: "Atoms/Svg",
   component: Svgs,
 };
 

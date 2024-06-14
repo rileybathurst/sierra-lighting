@@ -143,7 +143,7 @@ header {
 
 .hero {
   @media (min-width: 60rem) {
-    max-width: var(--page_width);
+    max-width: var(--albatross);
     margin-inline: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -238,7 +238,7 @@ header {
   @media (min-width: 60rem) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    max-width: var(--page_width);
+    max-width: var(--albatross);
     margin-inline: auto;
     gap: 1.25rem;
 
@@ -429,8 +429,6 @@ footer {
 
 /*------------------*/
 /* TESTIMONIALS */
-/* TODO inception rule */
-
 /*  TODO inception rule */
 /* reset */
 .testimonials {
@@ -450,16 +448,14 @@ footer {
         display: grid;
         gap: 1rem;
 
+        /*  TODO inception rule */
         > * {
           grid-column: 2;
         }
       }
     }
 
-    /* TODO maybe this https://fonts.adobe.com/fonts/park-lane but it needs to only get the apostrophe */
     .testimonial--quote_mark {
-      /*  TODO maybe this https://fonts.adobe.com/fonts/park-lane but it needs to only get the apostrophe */
-      font-family: "BIZ UDPMincho", serif;
       grid-column: 1;
     }
 
@@ -477,12 +473,6 @@ footer {
     /* reset */
     padding-inline-start: 0;
     margin-block-start: 0; /*  reset */
-    /* padding-block-end: 3rem; */
-
-    /*  padding-block-end: 3rem; */
-    h3 {
-    }
-    /* padding-block-end: 1.5rem; */
     display: block;
     /*  padding-block-end: 1.5rem; */
     font-size: 1.25rem;
@@ -561,7 +551,7 @@ footer {
 }
 
 .services-wrap {
-  max-width: var(--page_width);
+  max-width: var(--albatross);
   margin-inline: auto;
   display: flex;
   flex-flow: row wrap;
@@ -824,19 +814,22 @@ footer {
 /* #HOME SERVICES */
 /*------------------------------------*/
 
+/* TODO: this should be a basic grid odd numbers are gross */
+/* as shown by storybook */
 .home-services {
   display: flex;
   flex-flow: row wrap;
-  gap: 1rem;
+  gap: clamp(var(--vinson), 3vw, var(--aconcagua));
   list-style: none;
   padding-inline-start: 0;
-  margin-inline-start: 3rem;
   margin-block: 0;
+  margin-inline-start: 3rem; /* ? */
   max-width: var(--albatross);
   margin-inline: auto;
 
   > * {
     flex: 1 1 var(--vulture);
+    margin-block-end: 0; /* use the grid gap */
   }
 }
 

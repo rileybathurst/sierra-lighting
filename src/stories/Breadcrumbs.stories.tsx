@@ -5,7 +5,7 @@ import { Breadcrumbs } from "./Breadcrumbs";
 
 const meta = {
   component: Breadcrumbs,
-  title: "Uncategorized/Breadcrumbs",
+  title: "Molecules/Breadcrumbs",
   args: { onClick: fn() },
 } satisfies Meta<typeof Breadcrumbs>;
 

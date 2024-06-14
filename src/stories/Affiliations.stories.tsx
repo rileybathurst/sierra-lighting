@@ -3,7 +3,7 @@ import React from "react";
 import { Affiliations } from "./Affiliations";
 
 export default {
-  title: "Affiliations",
+  title: "Molecules/Affiliations",
   component: Affiliations,
 };
 

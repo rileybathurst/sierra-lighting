@@ -85,6 +85,7 @@ const VenueView = ({ data }) => {
         {data.strapiVenue.testimonials.length > 0 ?
           <div className="stork" >
             <ul className='testimonials'>
+              {/* // ! make this a component */}
               {data.strapiVenue.testimonials.map((testimonial) => (
                 <li key={testimonial.id} className='testimonial'>
                   <figure>

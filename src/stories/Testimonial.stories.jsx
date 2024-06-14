@@ -2,7 +2,7 @@ import React from "react";
 import { Testimonial } from "./Testimonial";
 
 export default {
-  title: "Testimonial",
+  title: "Molecules/Testimonial",
   component: Testimonial,
 };
 

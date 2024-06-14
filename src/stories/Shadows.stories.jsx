@@ -2,7 +2,7 @@ import React from "react";
 import { Shadows } from "./Shadows";
 
 export default {
-  title: "Shadows",
+  title: "Atoms/Shadows",
   component: Shadows,
 };
 

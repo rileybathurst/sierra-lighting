@@ -139,6 +139,7 @@ module.exports = {
         icon: "src/images/sierra-lighting-icon.svg",
       },
     },
+    // TODO: this has way more fonts than I'm running
     {
       resolve: "gatsby-plugin-web-font-loader",
       options: {

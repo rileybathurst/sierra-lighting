@@ -1,4 +1,5 @@
 // this is the Name.tsx file
+// TODO: https://www.npmjs.com/package/color-cards
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -14,7 +15,9 @@ function ColorCard({ color, variables }) {
       }}
     >
       {variables.map((variable) => (
-        <div className={`color-card ${color}-${variable}`} >
+        <div
+          key={`${color}-${variable}`}
+          className={`color-card ${color}-${variable}`} >
           {color} - {variable}
           <div
             style={{
@@ -25,7 +28,6 @@ function ColorCard({ color, variables }) {
           >
             {/* stay gold */}
           </div>
-
         </div>
       ))}
     </section>

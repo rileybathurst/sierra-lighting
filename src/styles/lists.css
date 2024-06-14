@@ -250,7 +250,7 @@ ul {
 .affiliations {
   list-style: none;
   gap: 1rem; /*  this works on grid and flex */
-  max-width: var(--page_width); /*  60rem */
+  max-width: var(--albatross); /*  60rem */
   margin-inline: auto;
 
   /*  Im not using flex so I can get the subgrid to line up */

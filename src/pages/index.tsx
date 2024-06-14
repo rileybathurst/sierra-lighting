@@ -170,7 +170,9 @@ const IndexPage = () => {
               <p>{quality.description.data.description}</p>
             </section>
           ))}
-          <h3 className="eyebrow"><Link to="/process">Learn more about our process</Link></h3>
+          <h3 className="eyebrow">
+            <Link to="/process">Learn more about our process</Link>
+          </h3>
         </section>
 
         <div className="slider-container">

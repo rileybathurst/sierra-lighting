@@ -1,6 +1,9 @@
+// TODO: the versions need to be args
+
 // this is the Name.jsx file
 import React from "react";
 import PropTypes from "prop-types";
+import { faker } from "@faker-js/faker";
 
 import ImageFile from "./assets/assets.png";
 
@@ -12,10 +15,10 @@ export const Poster = ({ primary }) => {
     <>
       <a href="#" className="poster">
         <img src={ImageFile} className="gatsby-image-wrapper" />
-        <p className="">poster</p>
+        <p className="">{faker.location.city()}</p>
       </a>
 
-      <a href="#" className="poster">
+      {/* <a href="#" className="poster">
         <div className="gatsby-image-wrapper gatsby-image-wrapper-constrained">
           <img src={ImageFile} />
         </div>
@@ -32,7 +35,7 @@ export const Poster = ({ primary }) => {
         <div className="gatsby-image-wrapper gatsby-image-wrapper-constrained">
           <img src={ImageFile} />
         </div>
-      </div>
+      </div> */}
 
       {/*       <div className="poster">
         <img src={ImageFile} className="gatsby-image-wrapper" />

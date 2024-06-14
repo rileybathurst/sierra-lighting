@@ -3,7 +3,7 @@ import React from "react";
 import { Lists } from "./Lists";
 
 export default {
-  title: "Lists",
+  title: "Atoms/Lists",
   component: Lists,
 };
 

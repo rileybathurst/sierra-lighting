@@ -16,32 +16,28 @@ export const Typography = ({
     : "storybook-Typography--secondary";
   return (
     <section className="stork">
-      <h1>h1</h1>
-      <h2>h2</h2>
-      <h3>h3</h3>
-      <h4>h4</h4>
-      <h5>h5</h5>
-      <h6>h6</h6>
+      <h1>h1 - everest</h1>
+      <h2>h2 - aconcagua</h2>
+      <h3>h3 - denali</h3>
+      <h4>h4 - kilimanjaro</h4>
+      <h5>h5 - elbrus</h5>
+      <h6>h6 - vinson</h6>
+      <p>p - vinson</p>
       <p>
         Yes, Yes, without the oops! So you two dig up, dig up dinosaurs? We
         gotta burn the rain forest, dump toxic waste, pollute the air, and rip
         up the OZONE! 'Cause maybe if we screw up this planet enough, they won't
         want it anymore! Hey, take a look at the earthlings. Goodbye!
       </p>
-      <p>
-        What do they got in there? King Kong? Must go faster. I was part of
-        something special. God help us, we're in the hands of engineers. They're
-        using our own satellites against us. And the clock is ticking. I gave it
-        a cold? I gave it a virus. A computer virus.
-      </p>
+      <small>small - kosciuszko</small>
       <hr />
-      <p>
-        <span className="crest">Crest</span>
-        <br />
-        <span className="range">Range</span>
-        <br />
-      </p>
 
+      {/* // TODO: */}
+      <p className="font-sans">font-sans</p>
+      <p className="font-serif">font-serif</p>
+      <p className="font-quote">&ldquo;font-quote</p>
+
+      {/* // TODO: document this */}
       <p>
         Mixta should only be used on major headings prefereably with an eyebrow
       </p>

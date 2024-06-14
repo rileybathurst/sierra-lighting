@@ -2,7 +2,7 @@ import React from "react";
 import { Attribute } from "./Attribute";
 
 export default {
-  title: "Attribute",
+  title: "Molecules/Attribute",
   component: Attribute,
 };
 

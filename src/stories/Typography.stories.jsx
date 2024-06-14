@@ -2,7 +2,7 @@ import React from "react";
 import { Typography } from "./Typography";
 
 export default {
-  title: "Typography",
+  title: "Atoms/Typography",
   component: Typography,
 };
 

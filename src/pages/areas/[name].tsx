@@ -5,7 +5,6 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { SEO } from "../../components/seo";
-import { Title } from "@storybook/blocks";
 
 function AreaCatchAll({ params }) {
 
@@ -29,7 +28,7 @@ function AreaCatchAll({ params }) {
     <>
       <Header />
       <main className="stork">
-        <h2 className="crest">404 - light / {params.name}</h2>
+        <h2 className="crest">404 - areas / {params.name}</h2>
         <h1 className="mixta">
           Oops! Looks like this page has left the party.
         </h1>

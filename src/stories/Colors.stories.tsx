@@ -3,7 +3,7 @@ import React from "react";
 import { Colors } from "./Colors";
 
 export default {
-  title: "Colors",
+  title: "Atoms/Colors",
   component: Colors,
 };
 

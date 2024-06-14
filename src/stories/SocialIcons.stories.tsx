@@ -3,7 +3,7 @@ import React from "react";
 import { SocialIcons } from "./SocialIcons";
 
 export default {
-  title: "SocialIcons",
+  title: "Molecules/SocialIcons",
   component: SocialIcons,
 };
 

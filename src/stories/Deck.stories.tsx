@@ -2,7 +2,7 @@ import React from "react";
 import { Deck } from "./Deck";
 
 export default {
-  title: "Deck",
+  title: "Organisms/Deck",
   component: Deck,
 };
 
