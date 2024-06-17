@@ -1,23 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { faker } from '@faker-js/faker';
 
 import { Card } from './Card';
 
-export const Deck = ({ primary }) => {
-  const mode = primary ? 'storybook-Deck--primary' : 'storybook-Deck--secondary';
+export const Deck = () => {
   return (
     <div className='deck'>
-      <Card />
-      <Card />
-      <Card />
+      {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map((_,) => (
+        <Card key={faker.number.int()} />
+      ))}
     </div>
   );
-};
-
-Deck.propTypes = {
-  primary: PropTypes.bool,
-};
-
-Deck.defaultProps = {
-  primary: false,
 };

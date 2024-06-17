@@ -1,15 +1,37 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-
+import { Link } from 'gatsby';
+import Season from './season';
 import Hamburger from "../images/hamburger";
-import MenuList from '../lists/menu-list';
+
+const MenuList = () => (
+  <ul className={Season()}>
+    <li key="wedding" className="wedding">
+      <Link to="/wedding">Wedding Lighting</Link>
+    </li>
+    <li key="residential" className="xmas_r">
+      <Link to="/residential">Residential Christmas Lights</Link>
+    </li>
+    <li key="commercial" className="xmas_c">
+      <Link to="/commercial">Commercial Christmas Lights</Link>
+    </li>
+    {/*     <li key="contact" className="c">
+      <Link to="/contact">Contact</Link>
+    </li> */}
+    <li key="start" className="c">
+      <Link to="/contact">
+        Start With A Free Quote
+      </Link>
+    </li>
+  </ul>
+)
 
 function SlideMenu() {
   const [slide, setSlide] = useState('firstload');
   const [amount, setAmount] = useState(0);
   const ref = useRef();
 
-  if (slide == "firstload") {
+  if (slide === "firstload") {
 
     useEffect(() => {
       // console.log('firstload');

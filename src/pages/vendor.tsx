@@ -6,7 +6,7 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
-import type { DeckType } from "../types/deck-type";
+import type { CardType } from "../types/card-type";
 
 const VendorsPage = () => {
 
@@ -99,11 +99,11 @@ const VendorsPage = () => {
             </div>
 
             <div className="deck">
-              {service.nodes.map((vendor: DeckType) => (
+              {service.nodes.map((vendor: CardType) => (
                 <Card
                   key={vendor.id}
-                  card={vendor}
                   breadcrumb="vendor"
+                  {...vendor}
                 />
               ))}
             </div>
@@ -124,7 +124,7 @@ export default VendorsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Vendors`}
+      title='Vendors'
       description="We built our business by providing outstanding quality, value, and service. We support others in Reno/Tahoe that have the same commitment."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
       url="vendor"

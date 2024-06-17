@@ -7,9 +7,8 @@ import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import { useStrapiSeason } from "../hooks/use-strapi-season";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
+import remarkGfm from 'remark-gfm' // TODO: I dont think I need this
 
 // TODO: I had problems making this work I need to fix it
 // import Adjective from '../components/adjective';
@@ -38,8 +37,8 @@ const ProcessPage = () => {
     }
   `)
 
-  let holidayProcesses = data.holiday.nodes;
-  let weddingProcesses = data.wedding.nodes;
+  const holidayProcesses = data.holiday.nodes;
+  const weddingProcesses = data.wedding.nodes;
 
   function ProcessList({ processes }) {
 
@@ -61,7 +60,9 @@ const ProcessPage = () => {
           </ol>
         </>
       )
-    } else if (processes === 'holidayProcesses') {
+    }
+
+    if (processes === 'holidayProcesses') {
       return (
         <>
           <p>Ready to bring your vision to life ? Get started with a free estimate today and let us illuminate your home or business with an unforgettable lighting display!</p>
@@ -79,9 +80,8 @@ const ProcessPage = () => {
           </ol>
         </>
       )
-    } else {
-      return null;
     }
+    return null;
   }
 
   let seasonInterpreter = useStrapiSeason() ? 'wedding' : 'holiday';

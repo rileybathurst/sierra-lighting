@@ -62,25 +62,8 @@ const SeasonalLights = () => {
             service.featured_lights.map((light: CardType) => (
               <Card
                 key={light.id}
-                card={light}
                 breadcrumb="light"
-              />
-            ))
-          ))}
-        </div>
-      </section>
-    )
-  } else {
-    return (
-      <section>
-        <h3><Link to="/christmas-lights">Christmas Lights</Link></h3>
-        <p>Our holiday lights are perfect for your home or business. We offer a variety of lights to choose from.</p>
-        <div className="deck">
-          {data.holiday.nodes.map((service: CardType) => (
-            service.featured_lights.map((light: CardType) => (
-              <Card
-                card={light}
-                breadcrumb="light"
+                {...light}
               />
             ))
           ))}
@@ -88,6 +71,23 @@ const SeasonalLights = () => {
       </section>
     )
   }
+  return (
+    <section>
+      <h3><Link to="/christmas-lights">Christmas Lights</Link></h3>
+      <p>Our holiday lights are perfect for your home or business. We offer a variety of lights to choose from.</p>
+      <div className="deck">
+        {data.holiday.nodes.map((service: CardType) => (
+          service.featured_lights.map((light: CardType) => (
+            <Card
+              key={light.id}
+              breadcrumb="light"
+              {...light}
+            />
+          ))
+        ))}
+      </div>
+    </section>
+  )
 }
 
 export default SeasonalLights

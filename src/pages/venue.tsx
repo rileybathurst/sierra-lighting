@@ -184,8 +184,8 @@ const VenuePage = () => {
                 {area?.nodes.map(venue => (
                   <Card
                     key={venue.id}
-                    card={venue}
                     breadcrumb="venue"
+                    {...venue}
                   />
                 ))}
               </div>
@@ -205,7 +205,7 @@ export default VenuePage
 export const Head = () => {
   return (
     <SEO
-      title={`Venues`}
+      title='Venues'
       description="The natural beauty of the Lake Tahoe area makes the perfect backdrop for a wedding. Check out these Tahoe wedding venues that range from rustic to glamorous."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
       url="venue"

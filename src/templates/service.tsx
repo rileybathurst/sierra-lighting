@@ -9,7 +9,7 @@ import Footer from "../components/footer";
 import Markdown from "react-markdown";
 
 import Card from '../components/card';
-import type { DeckType } from '../types/deck-type';
+import type { CardType } from '../types/card-type';
 import Start from '../components/start';
 import Adjective from '../components/adjective';
 import Lookbook from '../components/lookbook';
@@ -96,7 +96,7 @@ function Base(props: {
 
   }
 
-  let titles = [];
+  const titles = [];
   // first always needs a title
   titles[0] = base[0].breadcrumb;
   // console.log(titles[0]);
@@ -135,9 +135,9 @@ function Base(props: {
         {base.map((card) => (
           <Card
             key={card.id}
-            card={card}
             breadcrumb={card.breadcrumb}
-            className={`${card.breadcrumb} ${card.breadcrumb}-${card.order}`}
+            {...card}
+          // className={`${card.breadcrumb} ${card.breadcrumb}-${card.order}`}
           />
         ))}
       </div >
@@ -152,6 +152,8 @@ interface ProcessTypes {
 }
 
 const ServiceView = ({ data }) => {
+
+  console.log(data);
 
   return (
     <>
@@ -203,11 +205,11 @@ const ServiceView = ({ data }) => {
           </div>
 
           <div className='deck'>
-            {data.strapiService.featured_lights.map((light: DeckType) => (
+            {data.strapiService.featured_lights.map((light: CardType) => (
               <Card
                 key={light.id}
-                card={light}
                 breadcrumb='light'
+                {...light}
               />
             ))}
           </div>
@@ -240,11 +242,10 @@ const ServiceView = ({ data }) => {
         <hr />
       </section>
 
-      {data.strapiService.after_the_triptych ?
+      {/* with only data.strapiService.after_the_triptych it was showing on /patio */}
+      {data.strapiService.after_the_triptych.data.after_the_triptych !== '' ?
         <div id="consultant" className='stork'>
-          <h3>
-            Have you ever noticed how much lighting can affect the feeling of space?
-          </h3>
+          <h3 className='kilimanjaro'>Have you ever noticed how much lighting can affect the feeling of space?</h3>
 
           <Markdown className='react-markdown'>
             {data.strapiService.after_the_triptych.data.after_the_triptych}

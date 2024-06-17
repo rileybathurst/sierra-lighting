@@ -1,28 +1,20 @@
-// TODO: I garantee I can do this in less steps
-// its a ? :
-
 import * as React from "react"
-import { useStrapiSeason } from "../hooks/use-strapi-season";
+import { graphql, useStaticQuery } from "gatsby"
 
-interface SeasonTypes {
-  children: React.ReactNode;
-}
-function Season({ children }: SeasonTypes) {
-  // useStrapiSeason() // returns true for wedding
+function Season() {
+  const { strapiSeason } = useStaticQuery(graphql`
+    query {
+      strapiSeason {
+        wedding
+      }
+    }
+  `)
 
-  if (useStrapiSeason()) {
-    return (
-      <ul className="wedding">
-        {children}
-      </ul>
-    )
-  } else {
-    return (
-      <ul className="holiday">
-        {children}
-      </ul>
-    );
+  if (strapiSeason.wedding) {
+    return 'wedding'
+
   }
+  return 'wedding'
 }
 
 export default Season

@@ -24,6 +24,7 @@ export const Typography = ({
       <h6>h6 - vinson</h6>
       <p>p - vinson</p>
       <p>
+        {/* TODO: faker */}
         Yes, Yes, without the oops! So you two dig up, dig up dinosaurs? We
         gotta burn the rain forest, dump toxic waste, pollute the air, and rip
         up the OZONE! 'Cause maybe if we screw up this planet enough, they won't

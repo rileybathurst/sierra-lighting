@@ -26,8 +26,8 @@ function Triptych(props) {
           {props.triptych.map((light) => (
             <Card
               key={light?.id}
-              card={light}
               breadcrumb="light"
+              {...light}
             />
           ))}
         </section>
@@ -54,9 +54,8 @@ function Additional(props) {
         </section>
       </div>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 function Gallery(props) {
@@ -83,24 +82,27 @@ function Gallery(props) {
 // TODO: move this inline
 function ReactDescription(props) {
   if (props.desc) {
-    return <ReactMarkdown children={props?.desc?.data?.description} />;
-  } else {
-    return null;
+    return (
+      <ReactMarkdown className='react-markdown'>
+        {props?.desc?.data?.description}
+      </ReactMarkdown>
+    );
   }
+  return null;
 }
 
+// TDOO: move this inline
 function Lights(props) {
   const yes = props.yes;
   const name = props.name;
 
-  const map = yes.map((light, index) => {
+  const map = yes.map((light) => {
     return (
-      <div key={index}>
-        <Card
-          card={light}
-          breadcrumb="light"
-        />
-      </div>
+      <Card
+        key={light.id}
+        breadcrumb="light"
+        {...light}
+      />
     );
   });
 
@@ -123,18 +125,18 @@ function Lights(props) {
 
 
 function Other(props) {
-  const map = props.other.nodes.map((project, index) => {
+  const map = props.other.nodes.map((project) => {
 
     return (
       <Card
-        key={index}
-        card={project}
+        key={project.id}
         breadcrumb="project"
+        {...project}
       />
     );
   });
 
-  if (props.needed.length == 0) {
+  if (props.needed.length === 0) {
     return (
       <>
         <div className="stork">

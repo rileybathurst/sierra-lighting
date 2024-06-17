@@ -11,7 +11,7 @@ import Hero from "../components/hero";
 import StateAbbreviation from "../components/state-abbreviation";
 import Markdown from "react-markdown";
 import Card from '../components/card';
-import type { DeckType } from '../types/deck-type';
+import type { CardType } from '../types/card-type';
 
 
 // this is no longer right as there might only be sub venues
@@ -44,22 +44,22 @@ function Venues({ name, venues, areas }: VenuesProps) {
         </div>
 
         <div className="deck">
-          {venues.map((venue: DeckType) => (
+          {venues.map((venue: CardType) => (
             <Card
               key={venue.id}
-              card={venue}
               breadcrumb='venue'
+              {...venue}
             />
           ))}
 
           {subVenues.length > 0 ?
             areas.map((area) => (
               area.venues.length >= 1 ?
-                area.venues.map((venue: DeckType) => (
+                area.venues.map((venue: CardType) => (
                   <Card
                     key={venue.id}
-                    card={venue}
                     breadcrumb='venue'
+                    {...venue}
                   />
                 ))
                 : null

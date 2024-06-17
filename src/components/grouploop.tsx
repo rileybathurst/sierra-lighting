@@ -3,11 +3,12 @@ import { Link } from 'gatsby';
 
 import Badges from "./badges"
 import Card from "./card"
-import type { DeckType } from "../types/deck-type";
+import type { CardType } from "../types/card-type";
 
-interface GrouploopTypes {
+// TODO:
+/* interface GrouploopTypes {
   group: any;
-}
+} */
 const Grouploop = ({ group }: GrouploopTypes) => {
   if (group[1]?.nodes.length > 0) {
     return (
@@ -26,11 +27,11 @@ const Grouploop = ({ group }: GrouploopTypes) => {
         </div>
 
         <div className="deck">
-          {group[1].nodes.map((light: DeckType) => (
+          {group[1].nodes.map((light: CardType) => (
             <Card
               key={light.id}
-              card={light}
               breadcrumb="light"
+              {...light}
             />
           ))}
         </div>

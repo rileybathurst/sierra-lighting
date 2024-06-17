@@ -1,17 +1,12 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { faker } from "@faker-js/faker";
-import ImageFile from "./assets/missing-card-image.jpg";
 
-export const Card = ({ primary }) => {
-  const mode = primary
-    ? "storybook-Card--primary"
-    : "storybook-Card--secondary";
+export const Card = () => {
   return (
     <div className="card">
       <div className="image">
         <img
-          src={ImageFile}
+          src={faker.image.urlLoremFlickr()}
           alt={faker.animal.bird()}
           className="gatsby-image-wrapper"
         />
@@ -26,12 +21,4 @@ export const Card = ({ primary }) => {
       {/* theres a chance theres a ul here on the area cards */}
     </div>
   );
-};
-
-Card.propTypes = {
-  primary: PropTypes.bool,
-};
-
-Card.defaultProps = {
-  primary: false,
 };

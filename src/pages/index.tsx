@@ -16,10 +16,6 @@ const IndexPage = () => {
 
   const data = useStaticQuery(graphql`
     query IndexQuery {
-      strapiSeason {
-        wedding
-      }
-
       strapiAbout {
         description {
           data {

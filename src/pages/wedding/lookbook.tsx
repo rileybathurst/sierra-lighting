@@ -9,7 +9,6 @@ import Footer from "../../components/footer";
 import Start from "../../components/start";
 import SEO from "../../components/seo";
 
-
 function LinkedLook({ image, lights }: { image: any, lights: any[] }) {
 
   // console.log(image.localFile.childImageSharp.fluid.aspectRatio);
@@ -37,8 +36,8 @@ function LinkedLook({ image, lights }: { image: any, lights: any[] }) {
         />
         <ul className='lookbook-list'>
           {lights.map((light, i) => (
-            <li>
-              <Link to={`/light/${light.slug}`} key={i}>
+            <li key={i}>
+              <Link to={`/light/${light.slug}`} >
                 <span>{light.name}</span>
               </Link>
             </li>
@@ -46,16 +45,16 @@ function LinkedLook({ image, lights }: { image: any, lights: any[] }) {
         </ul>
       </div>
     );
-  } else {
-    return (
-      <div className='look'>
-        <GatsbyImage
-          image={image.localFile.childImageSharp.gatsbyImageData}
-          alt={image.alternativeText}
-        />
-      </div>
-    );
   }
+
+  return (
+    <div className='look'>
+      <GatsbyImage
+        image={image.localFile.childImageSharp.gatsbyImageData}
+        alt={image.alternativeText}
+      />
+    </div>
+  );
 }
 
 const LookbookPage = () => {
@@ -107,6 +106,7 @@ const LookbookPage = () => {
           <Masonry className="test">
             {allStrapiLookbook.nodes.map((lookbook) => (
               <LinkedLook
+                key={lookbook.id}
                 image={lookbook.image}
                 lights={lookbook.lights}
               />
@@ -126,7 +126,7 @@ export default LookbookPage
 export const Head = () => {
   return (
     <SEO
-      title={`Wedding Lookbook`}
+      title='Wedding Lookbook'
       url="/wedding/lookbook"
     // TODO: 
     />

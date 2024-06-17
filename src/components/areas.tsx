@@ -1,7 +1,7 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby";
 import Card from "../components/card";
-import type { DeckType } from "../types/deck-type";
+import type { CardType } from "../types/card-type";
 
 const Areas = () => {
 
@@ -13,6 +13,7 @@ const Areas = () => {
         },
         ) {
         nodes {
+          id
           name
           slug
 
@@ -57,11 +58,11 @@ const Areas = () => {
         <section className="deck">
           {allStrapiArea.nodes
             .sort((a: SortTypes['a'], b: SortTypes['b']) => b.areas.length - a.areas.length) // Sort by the number of area.areas
-            .map((area: DeckType) => (
+            .map((area: CardType) => (
               <Card
-                key={area.slug} // * biome asks for this even if its in the card component
-                card={area}
+                key={area.id}
                 breadcrumb='areas'
+                {...area}
               />
             ))}
         </section>

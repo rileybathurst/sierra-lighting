@@ -11,7 +11,7 @@ import Hero from "../components/hero";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import TestimonialRanking from "../components/testimonial-ranking";
 import Card from '../components/card';
-import type { DeckType } from '../types/deck-type';
+import type { CardType } from '../types/card-type';
 
 function IfOther(props) {
   if (props.projects.length > 0) {
@@ -23,11 +23,11 @@ function IfOther(props) {
           <h4>Projects we have worked with {props.name} on</h4>
         </div>
         <div className="deck">
-          {props.projects.map((project: DeckType) => (
+          {props.projects.map((project: CardType) => (
             <Card
               key={project.id}
-              card={project}
               breadcrumb='project'
+              {...project}
             />
           ))}
         </div>
@@ -44,11 +44,11 @@ function IfOther(props) {
         </div>
 
         <div className="deck">
-          {props.other.map((other: DeckType) => (
+          {props.other.map((other: CardType) => (
             <Card
               key={other.node.id}
-              card={other.node}
               breadcrumb='vendor'
+              {...other.node} // TODO: check this
             />
           ))}
         </div>

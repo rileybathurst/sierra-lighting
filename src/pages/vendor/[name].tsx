@@ -5,7 +5,7 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Card from "../../components/card";
-import type { DeckType } from "../../types/deck-type";
+import type { CardType } from "../../types/card-type";
 
 function VendorCatchAll({ params }: { params: { name: string } }) {
 
@@ -38,11 +38,11 @@ function VendorCatchAll({ params }: { params: { name: string } }) {
       <h3 className="stork elbrus">Browse some of our other prefered vendors</h3>
 
       <section className="deck">
-        {allStrapiVendor.nodes.map((vendor: DeckType) => (
+        {allStrapiVendor.nodes.map((vendor: CardType) => (
           <Card
             key={vendor.id}
-            card={vendor}
             breadcrumb="vendor"
+            {...vendor}
           />
         ))}
       </section>

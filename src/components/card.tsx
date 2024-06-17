@@ -1,63 +1,76 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
-import type { DeckType } from "../types/deck-type";
+import type { CardType } from "../types/card-type";
 
-const Card = ({ card, breadcrumb }: DeckType) => {
+const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, breadcrumb }: CardType) => {
+
+  // console.log(Object.entries({ image, venueImage, profile, title, name, slug, excerpt, areas, breadcrumb }));
+  // console.log(areas);
+  // console.log(excerpt);
+
+  if (areas) {
+    areas.length === 0 && !excerpt ? console.warn(`${title ?? name} card has no content`)
+      : null
+  }
+
+  if (!areas && !excerpt) {
+    console.warn(`${title ?? name} card has no content`);
+  }
 
   // * testing for missing alt text
-  card?.image?.alternativeText ?
+  image?.alternativeText ?
     null
-    : console.warn(`${card.title ?? card.name} image has no alt`);
+    : console.warn(`${title ?? name} image has no alt`);
 
   return (
     <section className="card">
       <Link
-        to={`/${breadcrumb}/${card.slug}`}
+        to={`/${breadcrumb}/${slug}`}
         className="image"
       >
         {/* // TODO: this seems dumb cant I always just pass the correct prop or is it folded inside */}
-        {card?.image?.localFile?.childImageSharp?.gatsbyImageData ??
-          card?.venueImage?.localFile?.childImageSharp?.gatsbyImageData ??
-          card?.profile?.localFile?.childImageSharp?.gatsbyImageData ?
+        {/* {image ?? venueImage ?? profile ? */}
+        {image || venueImage || profile ?
           <GatsbyImage
             image={
-              card?.image?.localFile?.childImageSharp?.gatsbyImageData ??
-              card?.venueImage?.localFile?.childImageSharp?.gatsbyImageData ??
-              card?.profile?.localFile?.childImageSharp?.gatsbyImageData
+              image?.localFile?.childImageSharp?.gatsbyImageData ??
+              venueImage?.localFile?.childImageSharp?.gatsbyImageData ??
+              profile?.localFile?.childImageSharp?.gatsbyImageData
             }
-            alt={card?.image?.alternativeText ?? card.title ?? card.name ?? ""}
+            alt={image?.alternativeText ?? title ?? name ?? ""}
           />
           :
           <StaticImage
+            // TODO: I can probably do something interesting with an svg
             src="https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg"
-            alt={card.title ?? card.name ?? ""}
+            alt={title ?? name ?? ""}
           />
         }
       </Link>
       <div className="paper">{/* stay gold */}</div>
       <h2 className="mixta">
         <Link
-          to={`/${breadcrumb}/${card.slug}`}
+          to={`/${breadcrumb}/${slug}`}
         >
-          {card.name ?? card.title}
+          {name ?? title}
         </Link>
       </h2>
-      {/* // ? can i just card.areas this and skip the length */}
-      {card?.areas?.length > 0 ?
-        <div className="subarea">
-          <p>Including:</p>
-          <ul>
-            {card.areas.map(area => (
-              <li key={area.name}>
-                {area.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-        :
-        <p>{card.excerpt}</p>
-      }
+      {areas ?
+        areas?.length > 0 ?
+          <div className="subarea">
+            <p>Including:</p>
+            <ul>
+              {areas.map(area => (
+                <li key={area.name}>
+                  {area.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+          :
+          <p>{excerpt}</p>
+        : <p>{excerpt}</p>}
     </section>
   )
 }

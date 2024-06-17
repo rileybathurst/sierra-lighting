@@ -9,8 +9,8 @@ import Markdown from "react-markdown";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
-import type { DeckType } from "../types/deck-type";
 import Start from "../components/start";
+import type { CardType } from "../types/card-type";
 
 interface TeamTypes {
   team: {
@@ -29,7 +29,7 @@ interface TeamTypes {
         };
       };
     };
-    projects: DeckType[];
+    projects: CardType[];
   }
 }
 const TeamView = ({ team }: TeamTypes) => {
@@ -37,6 +37,7 @@ const TeamView = ({ team }: TeamTypes) => {
     <>
       <Header />
 
+      {/* // TODO: move this to the SEO */}
       <main className="stork team-page" itemScope itemType="https://schema.org/Person">
         <div className="avatar-wrapper">
           <GatsbyImage
@@ -48,9 +49,7 @@ const TeamView = ({ team }: TeamTypes) => {
         <h1 itemProp="name">{team.name}</h1>
 
         {team.bio ?
-          <Markdown
-            className="react-markdown"
-          >
+          <Markdown className="react-markdown">
             {team.bio.data.bio}
           </Markdown>
           : null
@@ -69,11 +68,11 @@ const TeamView = ({ team }: TeamTypes) => {
             <h3>Projects {team.name} has worked on</h3>
           </div>
           <div className="deck">
-            {team.projects.map((project: DeckType) => (
+            {team.projects.map((project: CardType) => (
               <Card
                 key={project.id}
-                card={project}
                 breadcrumb="project"
+                {...project}
               />
             ))}
           </div>

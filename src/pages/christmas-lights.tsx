@@ -286,20 +286,21 @@ const lightsPage = () => {
     lanterngroup
   ];
 
-  let season = data.season;
+  const season = data.season;
 
   // ? why is there a wedding order in christmas lights?
   if (season.wedding) {
     groups.sort((a, b) => {
       if (a[0].weddingOrder === null && b[0].weddingOrder === null) {
         return 0;
-      } else if (a[0].weddingOrder === null) {
-        return 1;
-      } else if (b[0].weddingOrder === null) {
-        return -1;
-      } else {
-        return a[0].weddingOrder - b[0].weddingOrder;
       }
+      if (a[0].weddingOrder === null) {
+        return 1;
+      }
+      if (b[0].weddingOrder === null) {
+        return -1;
+      }
+      return a[0].weddingOrder - b[0].weddingOrder;
     });
   } else {
     // puts null items up top
@@ -308,13 +309,14 @@ const lightsPage = () => {
     groups.sort((a, b) => {
       if (a[0].xmasOrder === null && b[0].xmasOrder === null) {
         return 0;
-      } else if (a[0].xmasOrder === null) {
-        return 1;
-      } else if (b[0].xmasOrder === null) {
-        return -1;
-      } else {
-        return a[0].xmasOrder - b[0].xmasOrder;
       }
+      if (a[0].xmasOrder === null) {
+        return 1;
+      }
+      if (b[0].xmasOrder === null) {
+        return -1;
+      }
+      return a[0].xmasOrder - b[0].xmasOrder;
     });
   }
 
@@ -361,9 +363,9 @@ export default lightsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Christmas Lights`}
-      description="When you're looking for custom, elegant, one of a kind ambiance for you wedding, look no further than Sierra Lighting. Creating beautiful displays is all we do! We also offer landscape lighting services to make your outdoor space shine all summer long with cafe lights, uplighting, and more."
-      image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/lights-og-sierra_lighting.jpg"
+      title='Christmas Lights'
+      // TODO: this is a bad description
+      // description="When you're looking for custom, elegant, one of a kind ambiance for you wedding, look no further than Sierra Lighting. Creating beautiful displays is all we do! We also offer landscape lighting services to make your outdoor space shine all summer long with cafe lights, uplighting, and more."
       url="christmas-lights"
     />
   )

@@ -23,8 +23,7 @@ const Header = ({ largeLogo }: HeaderTyes) => {
         <SlideMenu />
 
         <div className='bigboy'>
-          {/* ? can this be ul class season instead so theres no error */}
-          <Season>
+          <ul className={Season()}>
             <li key="logo" className={`logo ${largeLogo}`}>
               <Link to="/" className="header__logo">
                 <Logo />
@@ -45,7 +44,7 @@ const Header = ({ largeLogo }: HeaderTyes) => {
                 Free Quote
               </Link>
             </li>
-          </Season>
+          </ul>
         </div>
       </header>
     </>

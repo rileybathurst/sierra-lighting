@@ -51,8 +51,8 @@ const LightGroupView = ({
         {lightgroup.lights.map((light: CardType) => (
           <Card
             key={light.id}
-            card={light}
             breadcrumb="light"
+            {...light}
           />
         ))}
       </section>

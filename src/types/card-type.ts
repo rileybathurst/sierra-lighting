@@ -24,6 +24,11 @@ export interface CardType {
   title?: string;
   byline?: string;
 
-  areas?: string;
+  areas?: {
+    name: string;
+    slug: string;
+  }[];
   subAreas?: string;
+
+  breadcrumb: string;
 }

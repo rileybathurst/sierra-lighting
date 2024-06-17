@@ -7,7 +7,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 import Start from "../components/start";
-import type { DeckType } from "../types/deck-type";
+import type { CardType } from "../types/card-type";
 
 interface AliasTypes {
   alias: string;
@@ -47,7 +47,7 @@ const LightView = ({ light }) => {
   interface GroupTypes {
     id: React.Key;
     name: string;
-    lights: DeckType[];
+    lights: CardType[];
   }
 
   {/* // ! testing */ }
@@ -121,11 +121,11 @@ const LightView = ({ light }) => {
 
 
             <div className="deck">
-              {light.projects.map((project: DeckType) => (
+              {light.projects.map((project: CardType) => (
                 <Card
                   key={project.id}
-                  card={project}
                   breadcrumb="project"
+                  {...project}
                 />
               ))}
             </div>
@@ -146,11 +146,11 @@ const LightView = ({ light }) => {
                   </h3>
 
                   <div className="deck">
-                    {group.lights.map((light: DeckType) => (
+                    {group.lights.map((light: CardType) => (
                       <Card
                         key={light.id}
-                        card={light}
                         breadcrumb="light"
+                        {...light}
                       />
                     ))}
                   </div>
