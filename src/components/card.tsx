@@ -1,3 +1,5 @@
+// when passing with the spread you have to pass the breadcrumb after
+
 import * as React from "react"
 import { Link } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"

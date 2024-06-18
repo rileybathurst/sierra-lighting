@@ -30,7 +30,7 @@ svg {
 /* #POSTER */
 /*------------------------------------*/
 
-/* // .home-gallery > * { */
+/* always wraps the image never on the image */
 .poster {
   width: 100%;
   display: grid;

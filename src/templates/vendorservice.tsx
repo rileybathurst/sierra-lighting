@@ -46,8 +46,8 @@ const VendorServiceView = ({ data }) => {
           {data.allStrapiVendor.edges.map((job: CardType) => (
             <Card
               key={job.node.id}
-              breadcrumb='vendor'
               {...job.node}
+              breadcrumb='vendor'
             />
           ))}
         </div>

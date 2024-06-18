@@ -41,8 +41,8 @@ function IfOther(props) {
           {props.other.map((other: CardType) => (
             <Card
               key={other.node.id}
-              breadcrumb='venue'
               {...other.node}
+              breadcrumb='venue'
             />
           ))}
         </div>

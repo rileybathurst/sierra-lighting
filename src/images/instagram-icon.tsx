@@ -7,7 +7,6 @@ const InstagramIcon = () => {
       id="Logo"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 503.84 503.84"
-      width="40"
     >
       <title>Instagram Icon</title>
       <path

@@ -124,8 +124,8 @@ const LightView = ({ light }) => {
               {light.projects.map((project: CardType) => (
                 <Card
                   key={project.id}
-                  breadcrumb="project"
                   {...project}
+                  breadcrumb="project"
                 />
               ))}
             </div>
@@ -149,8 +149,8 @@ const LightView = ({ light }) => {
                     {group.lights.map((light: CardType) => (
                       <Card
                         key={light.id}
-                        breadcrumb="light"
                         {...light}
+                        breadcrumb="light"
                       />
                     ))}
                   </div>

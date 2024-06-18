@@ -14,135 +14,116 @@ import Start from '../components/start';
 import Adjective from '../components/adjective';
 import Lookbook from '../components/lookbook';
 
-function Breadcrumb(props: { title: string; }) {
+interface BaseTypes {
+  projects?: {
+    card: CardType;
+    breadcrumb: string;
+    order: number;
+  }[];
+  venues?: {
+    card: CardType;
+    breadcrumb: string;
+    order: number;
+  }[];
+  vendors?: {
+    card: CardType;
+    breadcrumb: string;
+    order: number;
+  }[];
+}
+function Base({ projects, venues, vendors }: BaseTypes) {
+  const base = [
+    { card: {}, title: false, breadcrumb: '', order: 0 },
+    { card: {}, title: false, breadcrumb: '', order: 1 },
+    { card: {}, title: false, breadcrumb: '', order: 2 },
+  ];
 
-  if (props.title === 'project') {
+  // wrap everything as they are always passed but often have no length
+  if (projects && venues && vendors) {
+
+    // * the heirarchy is projects, vendors, venues
+
+    // first create the 3 spots as projects if possible
+    // if projects has something the first one has a project breadcrumb
+    if (projects.length > 0) {
+      base[0].card = projects[0];
+      base[0].title = true;
+      base[0].breadcrumb = 'projects';
+      base[0].order = 0;
+    }
+
+    // if projects has atleast 2 the second one has a project breadcrumb
+    if (projects.length > 1) {
+      base[1].card = projects[1];
+      base[1].breadcrumb = 'projects';
+      base[1].order = 1;
+    }
+
+    // if projects has atleast 3 the third one has a project breadcrumb
+    if (projects.length > 2) {
+      base[2].card = projects[2];
+      base[2].breadcrumb = 'projects';
+      base[2].order = 2;
+    }
+
+    // if has projects and vendors
+    if (vendors.length > 0 && venues.length > 0) {
+
+      // put the vendor in the second spot
+      base[1].card = vendors[0];
+      base[1].title = true;
+      base[1].breadcrumb = 'vendor';
+
+      // put the venue in the third spot
+      base[2].card = venues[0];
+      base[2].title = true;
+      base[2].breadcrumb = 'venue';
+
+      // if has projects and vendors but no venues
+      // put the vendor in the third spot
+    } else if (vendors.length > 0) {
+      base[2].card = vendors[0];
+      base[2].title = true;
+      base[2].breadcrumb = 'vendor';
+    } else if (venues.length > 0) {
+      // if has projects and venues but no vendors
+      // put the venue in the second spot
+      base[1].card = venues[0];
+      base[1].title = true;
+      base[1].breadcrumb = 'venue';
+    }
+
+    // console.log(base);
+
     return (
-      <Link to="/projects">
-        Explore Projects
-      </Link>
+      <div className='pelican service-deck' >
+        {base.map((item) => (
+          <>
+            {item.title ?
+              <h4
+                key={item.breadcrumb}
+                className={`capitalize project-title ${item.breadcrumb}-title`}
+              >
+                <Link to={`/${item.breadcrumb}`}>
+                  {item.breadcrumb}
+                </Link>
+              </h4>
+              : null
+            }
+
+            {item.card.id ?
+              <Card
+                key={item.card.id}
+                {...item.card}
+                breadcrumb={item.breadcrumb}
+              />
+              : null}
+          </>
+        ))
+        }
+      </div>
     )
   }
-  return (
-    <Link to={`/${props.title}`}>
-      Explore {props.title}s
-    </Link>
-  )
-}
-
-function Base(props: {
-  projects: string | any[];
-  venues: string | any[];
-  vendors: string | any[];
-  slug: string;
-}) {
-  // Im not sure if this can be a const im changing the internals
-  let base = [];
-
-  if (!props?.projects.length && !props?.venues.length && !props?.vendors.length) {
-    // base.push(props?.projects[0]);
-    // console.log('no projects, venues or vendors');
-    return null;
-  }
-  // * the heirarchy is projects, vendors, venues
-
-  // first create the 3 spots as projects if possible
-  // if projects has something the first one has a project breadcrumb
-  if (props?.projects.length > 0) {
-    base.push(props?.projects[0]);
-    base[0].breadcrumb = 'project';
-    base[0].order = 0;
-  }
-
-  // if projects has atleast 2 the second one has a project breadcrumb
-  if (props?.projects.length > 1) {
-    base.push(props?.projects[1]);
-    base[1].breadcrumb = 'project';
-    base[1].order = 1;
-  }
-
-  // if projects has atleast 3 the third one has a project breadcrumb
-  if (props?.projects.length > 2) {
-    base.push(props?.projects[2]);
-    base[2].breadcrumb = 'project';
-    base[2].order = 2;
-  }
-
-  // if has projects and vendors
-  if (props?.vendors.length && props?.venues.length) {
-
-    // put the vendor in the second spot
-    let vendorInset = props?.vendors[0];
-    vendorInset.breadcrumb = 'vendor';
-    base.splice(1, 1, vendorInset);
-
-    let venueInset = props?.venues[0];
-    venueInset.breadcrumb = 'venue';
-    base.splice(2, 2, venueInset);
-  } else if (props?.vendors.length) {
-
-    // if has projects and vendors but no venues
-    // put the vendor in the third spot
-
-    let vendorInset = props?.vendors[0];
-    vendorInset.breadcrumb = 'vendor';
-    base.splice(2, 2, vendorInset);
-
-  } else if (props?.venues.length) {
-    // if has projects and venues but no vendors
-    let venueInset = props?.venues[0];
-    venueInset.breadcrumb = 'venue';
-    base.splice(2, 2, venueInset);
-
-  }
-
-  const titles = [];
-  // first always needs a title
-  titles[0] = base[0].breadcrumb;
-  // console.log(titles[0]);
-  // titles[0]
-
-  if (base[1]) {
-    if (base[1]?.breadcrumb !== base[0].breadcrumb) {
-      titles[1] = base[1].breadcrumb;
-    }
-  }
-
-  if (base[1] && base[2]) {
-    if (base[2]?.breadcrumb !== base[0].breadcrumb && base[2]?.breadcrumb !== base[1].breadcrumb) {
-      titles[2] = base[2].breadcrumb;
-    }
-  }
-
-  // console.log(titles);
-  // console.log(base);
-
-  return (
-    <>
-      <hr className='stork' />
-      {/* // ! this is wrong its defintley not a deck but touching this is also scary build it with storybook */}
-      <div className='deck margin-block-end-0 service-deck'>
-        {titles.map((title) => (
-          <h4
-            key={title}
-            className={`capitalize ${title}-title`}
-          >
-            <Breadcrumb title={title} />
-          </h4>
-        ))}
-
-        {/* // ! this has a classname the card isnt taking */}
-        {base.map((card) => (
-          <Card
-            key={card.id}
-            breadcrumb={card.breadcrumb}
-            {...card}
-          // className={`${card.breadcrumb} ${card.breadcrumb}-${card.order}`}
-          />
-        ))}
-      </div >
-    </>
-  )
 }
 
 interface ProcessTypes {
@@ -153,7 +134,10 @@ interface ProcessTypes {
 
 const ServiceView = ({ data }) => {
 
-  console.log(data);
+  // console.log(data);
+  // console.log(data.strapiService.projects);
+
+  console.log(data.strapiService.featured_lights);
 
   return (
     <>
@@ -208,8 +192,8 @@ const ServiceView = ({ data }) => {
             {data.strapiService.featured_lights.map((light: CardType) => (
               <Card
                 key={light.id}
-                breadcrumb='light'
                 {...light}
+                breadcrumb='light'
               />
             ))}
           </div>
@@ -254,15 +238,15 @@ const ServiceView = ({ data }) => {
         : null
       }
 
-      {/* // TODO: look at passing objects like length up from here maybe i need more to make it easier */}
-      <Base
-        projects={data?.strapiService?.projects}
-        venues={data?.allStrapiVenue?.nodes}
-        vendors={data?.allStrapiVendor?.nodes}
-        slug={data.strapiService.slug}
-      />
+      {data.strapiService.projects || data.strapiService.venues || data.strapiService.vendors ?
+        <Base
+          projects={data.strapiService?.projects}
+          venues={data.allStrapiVenue?.nodes}
+          vendors={data.allStrapiVendor?.nodes}
+        />
+        : null}
 
-      <Footer />
+      < Footer />
 
     </>
   );
@@ -271,67 +255,67 @@ const ServiceView = ({ data }) => {
 export default ServiceView;
 
 export const query = graphql`
-  query ServiceTemplate(
-    $slug: String!,
-  ) {
-    strapiService(slug: {eq: $slug}) {
-      id
+        query ServiceTemplate(
+        $slug: String!,
+        ) {
+          strapiService(slug: {eq: $slug}) {
+          id
       name
-      excerpt
-      slug
-      
-      description {
-        data {
+        excerpt
+        slug
+
+        description {
+          data {
           description
         }
       }
 
-      after_the_triptych {
-        data {
+        after_the_triptych {
+          data {
           after_the_triptych
         }
       }
 
-      projects {
-        ...projectCard
-      }
+        projects {
+          ...projectCard
+        }
 
-      triptych {
-        id
+        triptych {
+          id
         localFile {
           childImageSharp {
-            gatsbyImageData
-          }
+          gatsbyImageData
+        }
         }
       }
-      
-      featured_lights {
-        ...lightCard
-      }
 
-      videoMux
+        featured_lights {
+          ...lightCard
+        }
+
+        videoMux
     }
 
-    allStrapiProcess(filter: {services: {elemMatch: {slug: {eq: $slug}}}}) {
-      nodes {
-        ...process
-      }
+        allStrapiProcess(filter: {services: {elemMatch: {slug: {eq: $slug}}}}) {
+          nodes {
+          ...process
+        }
     }
 
-    allStrapiVenue(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
-      nodes {
-        ...venueCard
-      }
+        allStrapiVenue(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
+          nodes {
+          ...venueCard
+        }
     }
 
-    allStrapiVendor(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
-      nodes {
-        ...vendorCard
-      }
+        allStrapiVendor(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
+          nodes {
+          ...vendorCard
+        }
     }
 
   }
-`
+        `
 
 // Header
 // Video (if exists)

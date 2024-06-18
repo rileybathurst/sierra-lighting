@@ -102,8 +102,8 @@ const VendorsPage = () => {
               {service.nodes.map((vendor: CardType) => (
                 <Card
                   key={vendor.id}
-                  breadcrumb="vendor"
                   {...vendor}
+                  breadcrumb="vendor"
                 />
               ))}
             </div>

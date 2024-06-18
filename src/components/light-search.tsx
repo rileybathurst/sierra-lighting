@@ -16,8 +16,8 @@ function ResultList(props) {
           {props.results.map(result => (
             <Card
               key={result.id}
-              breadcrumb="light"
               {...result}
+              breadcrumb="light"
             />
           ))}
         </div>

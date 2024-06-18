@@ -26,8 +26,8 @@ function IfOther(props) {
           {props.projects.map((project: CardType) => (
             <Card
               key={project.id}
-              breadcrumb='project'
               {...project}
+              breadcrumb='project'
             />
           ))}
         </div>
@@ -47,8 +47,8 @@ function IfOther(props) {
           {props.other.map((other: CardType) => (
             <Card
               key={other.node.id}
-              breadcrumb='vendor'
               {...other.node} // TODO: check this
+              breadcrumb='vendor'
             />
           ))}
         </div>

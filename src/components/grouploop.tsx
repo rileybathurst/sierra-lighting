@@ -30,8 +30,8 @@ const Grouploop = ({ group }: GrouploopTypes) => {
           {group[1].nodes.map((light: CardType) => (
             <Card
               key={light.id}
-              breadcrumb="light"
               {...light}
+              breadcrumb="light"
             />
           ))}
         </div>

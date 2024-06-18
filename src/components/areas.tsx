@@ -61,8 +61,8 @@ const Areas = () => {
             .map((area: CardType) => (
               <Card
                 key={area.id}
-                breadcrumb='areas'
                 {...area}
+                breadcrumb='areas'
               />
             ))}
         </section>

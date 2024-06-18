@@ -62,8 +62,8 @@ const SeasonalLights = () => {
             service.featured_lights.map((light: CardType) => (
               <Card
                 key={light.id}
-                breadcrumb="light"
                 {...light}
+                breadcrumb="light"
               />
             ))
           ))}
@@ -80,8 +80,8 @@ const SeasonalLights = () => {
           service.featured_lights.map((light: CardType) => (
             <Card
               key={light.id}
-              breadcrumb="light"
               {...light}
+              breadcrumb="light"
             />
           ))
         ))}

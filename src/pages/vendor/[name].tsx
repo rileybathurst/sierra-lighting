@@ -41,8 +41,8 @@ function VendorCatchAll({ params }: { params: { name: string } }) {
         {allStrapiVendor.nodes.map((vendor: CardType) => (
           <Card
             key={vendor.id}
-            breadcrumb="vendor"
             {...vendor}
+            breadcrumb="vendor"
           />
         ))}
       </section>

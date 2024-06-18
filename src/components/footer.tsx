@@ -256,7 +256,7 @@ const Footer = () => {
       <hr className="albatross" />
       <SocialIcons />
 
-      <hr className="pelican" />
+      <hr className="condor" />
 
       <div className="footer-copyright">
         <h4 className="sr-only footer-copyright__mind-the-gap">

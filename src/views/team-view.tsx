@@ -71,8 +71,8 @@ const TeamView = ({ team }: TeamTypes) => {
             {team.projects.map((project: CardType) => (
               <Card
                 key={project.id}
-                breadcrumb="project"
                 {...project}
+                breadcrumb="project"
               />
             ))}
           </div>

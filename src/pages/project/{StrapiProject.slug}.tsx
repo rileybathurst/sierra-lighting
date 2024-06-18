@@ -114,18 +114,16 @@ export const query = graphql`
   }
 `
 
-// TODO: inline the variables
 const ProjectPage = ({ data }) => {
-  const project = data.strapiProject;
-  const triptych = data.triptych.nodes;
-  const additional = data.additional.nodes;
-  const other = data.allStrapiProject;
+
+  // console.log(data);
+
   return (
     <ProjectView
-      project={project}
-      triptych={triptych}
-      additional={additional}
-      other={other}
+      project={data.strapiProject}
+      triptych={data.triptych.nodes}
+      additional={data.additional.nodes}
+      other={data.allStrapiProject}
     />
   );
 };

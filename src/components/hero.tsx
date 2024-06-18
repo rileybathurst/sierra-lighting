@@ -10,24 +10,21 @@ interface HeroType {
   }
   alternativeText: string
 }
+function Hero({ localFile, alternativeText }: HeroType) {
 
-function Hero({ hero }: { hero: HeroType }) {
-  // TODO: throw errors if the images are too small or missing
+  localFile.childImageSharp.gatsbyImageData.width <= 960
+    ? console.log('Image is too small')
+    : null
+
+  alternativeText ? null : console.log('hero has no alt text')
+
   return (
-    hero?.localFile?.childImageSharp?.gatsbyImageData?.width <= 960 ?
-      <div className="hero-image hero-pelican poster ">
-        <GatsbyImage
-          image={hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={hero?.alternativeText}
-        />
-      </div>
-      :
-      <div className="hero-image poster">
-        <GatsbyImage
-          image={hero?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={hero?.alternativeText}
-        />
-      </div>
+    <div className={`hero-image poster ${localFile.childImageSharp.gatsbyImageData.width <= 960 ? 'hero-pelican' : null}`}>
+      <GatsbyImage
+        image={localFile.childImageSharp.gatsbyImageData}
+        alt={alternativeText || "Hero Image"}
+      />
+    </div>
   )
 }
 

@@ -22,7 +22,6 @@ export interface CardType {
 
   name?: string;
   title?: string;
-  byline?: string;
 
   areas?: {
     name: string;

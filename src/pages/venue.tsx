@@ -184,8 +184,8 @@ const VenuePage = () => {
                 {area?.nodes.map(venue => (
                   <Card
                     key={venue.id}
-                    breadcrumb="venue"
                     {...venue}
+                    breadcrumb="venue"
                   />
                 ))}
               </div>

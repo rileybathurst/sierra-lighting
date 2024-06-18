@@ -80,8 +80,8 @@ const ProjectsPage = () => {
                 {service.projects.map((project: CardType) => (
                   <Card
                     key={project.id}
-                    breadcrumb="project"
                     {...project}
+                    breadcrumb="project"
                   />
                 ))}
               </div>

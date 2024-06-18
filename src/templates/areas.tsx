@@ -47,8 +47,8 @@ function Venues({ name, venues, areas }: VenuesProps) {
           {venues.map((venue: CardType) => (
             <Card
               key={venue.id}
-              breadcrumb='venue'
               {...venue}
+              breadcrumb='venue'
             />
           ))}
 
@@ -58,8 +58,8 @@ function Venues({ name, venues, areas }: VenuesProps) {
                 area.venues.map((venue: CardType) => (
                   <Card
                     key={venue.id}
-                    breadcrumb='venue'
                     {...venue}
+                    breadcrumb='venue'
                   />
                 ))
                 : null
