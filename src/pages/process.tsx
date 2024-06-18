@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { SEO } from "../components/seo";
-
+import Season from '../components/season';
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
@@ -71,10 +71,9 @@ const ProcessPage = () => {
             {holidayProcesses.map(process => (
               <li key={process.id}>
                 <h3>{process.name}</h3>
-                <ReactMarkdown
-                  children={process.markdown.data.markdown}
-                  remarkPlugins={[remarkGfm]}
-                />
+                <ReactMarkdown className='react-markdown'>
+                  {process.markdown.data.markdown}
+                </ReactMarkdown>
               </li>
             ))}
           </ol>
@@ -83,10 +82,8 @@ const ProcessPage = () => {
     }
     return null;
   }
-
-  let seasonInterpreter = useStrapiSeason() ? 'wedding' : 'holiday';
-  const [seasonRadio, setSeasonRadio] = useState(seasonInterpreter);
-  const [seasonProcesses, setSeasonProcesses] = useState(seasonInterpreter + 'Processes');
+  const [seasonRadio, setSeasonRadio] = useState(Season());
+  const [seasonProcesses, setSeasonProcesses] = useState(`${Season()}Processes`);
 
   function seasonSwitcher(e) {
     setSeasonRadio(e.target.value);
@@ -175,8 +172,8 @@ export default ProcessPage
 export const Head = () => {
   return (
     <SEO
-      title={`Process`}
-      // TODO: probably needs a new description now
+      title='Process'
+      // TODO: needs a new description now
       description="A professional lighting design package will highlight your decor and bring out the beauty of your venue. Learn about the many design options Sierra Lighting can use to make your Reno Tahoe wedding really shine."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
     />

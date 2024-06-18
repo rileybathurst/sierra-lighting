@@ -80,8 +80,10 @@ const AreasTemplate = ({ data }) => {
     <>
       <Header />
 
+      {data.strapiArea.image ?
+        <Hero {...data.strapiArea.image} />
+        : null}
       <main>
-        <Hero hero={data.strapiArea?.image} />
 
         <article className="stork">
           <h2 className="crest">{data.strapiArea.tagline}</h2>
