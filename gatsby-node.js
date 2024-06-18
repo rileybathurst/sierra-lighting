@@ -128,7 +128,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
   const getAreas = await graphql(`
     query {
-      allStrapiArea {
+      allStrapiArea(filter: {featured: {eq: true}}) {
         edges {
           node {
             slug

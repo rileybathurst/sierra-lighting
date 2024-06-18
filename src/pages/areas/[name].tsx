@@ -66,7 +66,7 @@ export default AreaCatchAll
 export const Head = ({ params }) => {
   return (
     <SEO
-      title={`404 - light / ${params.name}`}
+      title={`404 - area / ${params.name}`}
     />
   )
 }
