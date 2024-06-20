@@ -23,7 +23,8 @@ main {
   padding-inline: var(--vinson);
 }
 
-.condor {
+.condor,
+main {
   max-width: var(--condor);
   margin-inline: auto;
   padding-inline: var(--vinson);

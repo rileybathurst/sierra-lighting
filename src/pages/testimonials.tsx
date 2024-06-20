@@ -20,7 +20,9 @@ function TestimonialLink(props: { aref: string, customer: string, vendor: { name
         <h4 className='range' itemProp="name">{props.customer}</h4>
       </>
     )
-  } else if (props.platform && props.position) {
+  }
+
+  if (props.platform && props.position) {
     // console.log('platform');
     return (
       <>
@@ -29,28 +31,15 @@ function TestimonialLink(props: { aref: string, customer: string, vendor: { name
         </h4>
       </>
     );
-  } else if (props.platform) {
+  }
+
+  if (props.platform) {
     // console.log('no vendor or platform');
     return (
       <h4 className='range' itemProp="name">{props.customer}</h4>
     );
   }
-}
 
-function ReviewRatings(props) {
-  if (props.stars) {
-    return (
-      <div className="sr-only">
-        <p>
-          <span itemProp="worstRating">1</span>
-          <span itemProp="ratingValue">{props.stars}</span><span>/</span>
-          <span itemProp="bestRating">5</span>stars
-        </p>
-      </div>
-    );
-  } else {
-    return null;
-  }
 }
 
 const TestimonialsPage = () => {
@@ -123,7 +112,14 @@ const TestimonialsPage = () => {
                       </span>
                       <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
                     </figcaption>
-                    <ReviewRatings stars={testimonial.stars} />
+                    {testimonial.stars ? <div className="sr-only">
+                      <p>
+                        <span itemProp="worstRating">1</span>
+                        <span itemProp="ratingValue">{testimonial.stars}</span><span>/</span>
+                        <span itemProp="bestRating">5</span>stars
+                      </p>
+                    </div>
+                      : null}
                   </blockquote>
                 </figure>
               </li>
@@ -213,7 +209,7 @@ export default TestimonialsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Testimonials`}
+      title='Testimonials'
       description="Thanks From Our Customers"
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
       url="testimonials"

@@ -1,3 +1,4 @@
+// TODO: I need to check this on the xmas season
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
@@ -5,121 +6,44 @@ import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import Grouploop from "../components/grouploop";
-import LightSearch from "../components/light-search";
+import Card from "../components/card";
 
 const lightsPage = () => {
 
   const data = useStaticQuery(graphql`
-    query LightsQuery {
+    query Lights2Query {
 
-      overhead: strapiLightGroup(slug: {eq: "overhead"}) {
-        ...lightGroup
-      }
-
-      overheadlights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "overhead"}}}}) {
+      wedding: allStrapiLight(sort: {weddingOrder: ASC}) {
         nodes {
-          ...lightCard
-        }
-      }
-      
-      accent: strapiLightGroup(slug: {eq: "accent"}) {
-        ...lightGroup
-      }
-
-      accentlights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "accent"}}}}) {
-        nodes {
-          ...lightCard
-        }
-      }
-      
-      dance: strapiLightGroup(slug: {eq: "dance"}) {
-        ...lightGroup
-      }
-
-      dancelights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "dance"}}}}) {
-        nodes {
-          ...lightCard
-        }
-      }
-      
-      pipe: strapiLightGroup(slug: {eq: "pipe-drape"}) {
-        ...lightGroup
-      }
-
-      pipelights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "pipe-drape"}}}}) {
-        nodes {
-          ...lightCard
-        }
-      }
-      
-      path: strapiLightGroup(slug: {eq: "path"}) {
-        ...lightGroup
-      }
-
-      pathlights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "path"}}}}) {
-        nodes {
-          ...lightCard
-        }
-      }
-      
-      tree: strapiLightGroup(slug: {eq: "tree"}) {
-        ...lightGroup
-      }
-
-      treelights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "tree"}}}}) {
-        nodes {
-          ...lightCard
-        }
-      }
-      
-      building: strapiLightGroup(slug: {eq: "building"}) {
-        ...lightGroup
-      }
-      
-      buildinglights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "building"}}}}) {
-        nodes {
+          light_groups {
+            name
+            slug
+            excerpt
+            weddingOrder
+            xmasOrder
+          }
           ...lightCard
         }
       }
 
-      greenery: strapiLightGroup(slug: {eq: "greenery"}) {
-        ...lightGroup
-      }
-
-      greenerylights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "greenery"}}}}) {
+      xmas: allStrapiLight(sort: {xmasOrder: ASC}) {
         nodes {
+          light_groups {
+            name
+            slug
+            excerpt
+            weddingOrder
+            xmasOrder
+          }
           ...lightCard
         }
       }
 
-      ornaments: strapiLightGroup(slug: {eq: "ornaments"}) {
-        ...lightGroup
+      strapiSeason {
+        wedding
       }
 
-      ornamentslights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "ornaments"}}}}) {
-        nodes {
-          ...lightCard
-        }
-      }
-      
-      lantern: strapiLightGroup(slug: {eq: "lantern"}) {
-        ...lightGroup
-      }
-
-      lanternlights: allStrapiLight(sort: {weddingOrder: ASC}, filter: {light_groups: {elemMatch: {slug: {eq: "lantern"}}}}) {
-        nodes {
-          ...lightCard
-        }
-      }
-
-      other: allStrapiLight(filter: {light_groups: {elemMatch: {slug: {eq: "lanterns"}}}}) {
-        nodes {
-          ...lightCard
-        }
-      }
-
-      service: allStrapiService {
+      allStrapiService {
         nodes {
           id
           name
@@ -127,201 +51,146 @@ const lightsPage = () => {
         }
       }
 
-      season: strapiSeason {
-        wedding
-      }
-
     }
   `)
 
-  // const other = data.other;
+  // TODO: allStrapiService should probably be sorted
 
-  const overheadgroup = [
-    data.overhead,
-    data.overheadlights
-  ]
+  const dataSeason = data.strapiSeason.wedding ? data.wedding : data.xmas;
 
-  const accentgroup = [
-    data.accent,
-    data.accentlights
-  ]
+  const lightGroupSet = new Set();
+  for (const light of dataSeason.nodes) {
+    light.light_groups.map((group) => {
+      // lightGroupSet.add(group.slug)
+      lightGroupSet.add(group.slug)
+    })
+  }
+  // ? what if I go to an object so I can deal with the order
+  const lightGroupArray = Array.from(lightGroupSet);
 
-  const dancegroup = [
-    data.dance,
-    data.dancelights
-  ]
+  const lightGroupArrayOrder = [];
 
-  const pipegroup = [
-    data.pipe,
-    data.pipelights
-  ]
+  lightGroupArray.map((group) => {
+    dataSeason.nodes
+      .filter((light) => light.light_groups.map((group) => group.slug).includes(group))
+      .slice(0, 1)
+      .map((light) => (
+        // console.log(light.light_groups[0].weddingOrder)
+        lightGroupArrayOrder.push([group, light.light_groups[0].weddingOrder, light.light_groups[0].xmasOrder])
+      ))
+  })
 
-  const pathgroup = [
-    data.path,
-    data.pathlights
-  ]
-
-  const treegroup = [
-    data.tree,
-    data.treelights
-  ]
-
-  const buildinggroup = [
-    data.building,
-    data.buildinglights
-  ]
-
-  const greenerygroup = [
-    data.greenery,
-    data.greenerylights
-  ]
-
-  const ornamentsgroup = [
-    data.ornaments,
-    data.ornamentslights
-  ]
-
-  const lanterngroup = [
-    data.lantern,
-    data.lanternlights
-  ]
-
-  const groups = [
-    overheadgroup,
-    accentgroup,
-    dancegroup,
-    pipegroup,
-    pathgroup,
-    treegroup,
-    buildinggroup,
-    greenerygroup,
-    ornamentsgroup,
-    lanterngroup
-  ];
-
-  const services = data.service.nodes;
-
-  const season = data.season;
-  if (season.wedding) {
-    groups.sort((a, b) => {
-      if (a[0].weddingOrder === null && b[0].weddingOrder === null) {
+  if (data.strapiSeason.wedding) {
+    lightGroupArrayOrder.sort((a, b) => {
+      if (a[1] === null && b[1] === null) {
         return 0;
       }
-      if (a[0].weddingOrder === null) {
+      if (a[1] === null) {
         return 1;
       }
-      if (b[0].weddingOrder === null) {
+      if (b[1].weddingOrder === null) {
         return -1;
       }
 
-      return a[0].weddingOrder - b[0].weddingOrder;
+      return a[1] - b[1];
     });
   } else {
-    // puts null items up top
-    // groups.sort((a, b) => a[0].xmasOrder - b[0].xmasOrder);
-
-    groups.sort((a, b) => {
-      if (a[0].xmasOrder === null && b[0].xmasOrder === null) {
+    lightGroupArray.sort((a, b) => {
+      if (a[2] === null && b[2] === null) {
         return 0;
       }
-      if (a[0].xmasOrder === null) {
+      if (a[2] === null) {
         return 1;
       }
-      if (b[0].xmasOrder === null) {
+      if (b[2] === null) {
         return -1;
       }
-      return a[0].xmasOrder - b[0].xmasOrder;
+      return a[2] - b[2];
     });
   }
 
-  interface ServiceType {
-    id: string;
-    name: string;
-    slug: string;
-  }
+  console.log(lightGroupArrayOrder);
 
   return (
     <>
       <Header />
       <main className="lights__page">
-
-        <div className="stork">
-          <h2 className="crest">What we build</h2>
-          <h1 className="mixta">Lights</h1>
-
-          <hr />
-
-          <section className="deck">
-            <div>
-              Filter by use:
-              <ul>
-                {services.map((service: ServiceType) => (
-                  <li key={service.id}>
-                    <Link to={`/${service.slug}/lights`}>
-                      {service.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <p>or by type:</p>
-              <ul>
-                {groups.map((group) => (
-                  <li key={group[0].id}>
-                    {/* // TODO: slide */}
-                    <Link to={`#${group[0].slug}`}>
-                      {group[0].name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        </div>
-
-        <div className="stork">
-          <hr />
-          <h3>
-            Search
-          </h3>
-          <LightSearch />
-        </div>
-
-        {groups.map((group) => (
-          <div
-            key={group[0].id}
-            id={group[0].slug}
-          >
-            <Grouploop group={group} />
-          </div>
-        ))}
-
-        {/* <div className="stork">
-          <h2>Other Lights</h2>
-          <p>These lights are not part of a group, but are still available for rent.</p>
-        </div>
-        <div className="deck">
-          {other.nodes.map((light: CardType) => (
-            <div key={light.id}>
-              <Card card={light} breadcrumb="light" />
-            </div>
-          ))}
-        </div> */}
-
-        {/* <hr /> */}
-
-        {/*         <div className="deck">
-          {data.overweddingOrder.nodes.map((light: CardType) => (
-            <div key={light.id}>
-              <Card card={light} breadcrumb="light" />
-            </div>
-          ))}
-        </div> */}
-
+        <h1 className="mixta">Lights</h1>
       </main >
 
-      <Footer />
+      {/* TODO: this probably shouldnt be a deck we can split in better ways */}
+      <section className="deck">
+        <div>
+          Filter by use:
+          <ul>
+            {data.allStrapiService.nodes.map((service) => (
+              <li key={service.id}>
+                <Link to={`/${service.slug}/lights`}>
+                  {service.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p>or by type:</p>
+          <ul>
+            {lightGroupArrayOrder.map((group) => (
+              dataSeason.nodes
+                .filter((light) => light.light_groups.map((group) => group.slug).includes(group[0]))
+                .slice(0, 1)
+                .map((light) => (
+                  <li key={light.id}>
+                    {/* // TODO: slide */}
+                    <Link to={`#${light.light_groups[0].slug}`}>
+                      {light.light_groups[0].name}
+                    </Link>
+                  </li>
+                ))
+            ))}
+          </ul>
+        </div >
+      </section >
+
+      {lightGroupArrayOrder.map((group) => (
+        <div
+          key={group}
+          id={group[0]}
+        >
+          <div className="stork">
+            {/* TODO: hr can probably be a border */}
+            <hr />
+
+            {dataSeason.nodes
+              .filter((light) => light.light_groups.map((group) => group.slug).includes(group[0]))
+              .slice(0, 1)
+              .map((light) => (
+                <>
+                  <h3 key={light.id}>
+                    <Link to={`/light-group/${light.slug}`}>{light.light_groups[0].name}</Link>
+                  </h3>
+                  <p key={light.id}>{light.light_groups[0].excerpt}</p>
+                </>
+              ))
+            }
+
+          </div>
+          <div className="deck">
+            {dataSeason.nodes
+              .filter((light) => light.light_groups.map((group) => group.slug).includes(group[0]))
+              .map((light) => (
+                <Card key={light.id}
+                  {...light}
+                  breadcrumb="light"
+                />
+              ))
+            }
+          </div>
+        </div>
+      ))
+      }
+
+      < Footer />
 
     </>
   )
@@ -332,7 +201,7 @@ export default lightsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Lights`}
+      title='Lights'
       // TODO: where does this come from?
       description="When you're looking for custom, elegant, one of a kind ambiance for you wedding, look no further than Sierra Lighting. Creating beautiful displays is all we do! We also offer landscape lighting services to make your outdoor space shine all summer long with cafe lights, uplighting, and more."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/lights-og-sierra_lighting.jpg"

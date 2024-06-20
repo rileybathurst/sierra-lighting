@@ -1,3 +1,4 @@
+// ? do these ever get used?
 import * as React from "react"
 
 const Badges = (props) => {

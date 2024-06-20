@@ -10,66 +10,21 @@ import type { CardType } from "../types/card-type";
 
 const VendorsPage = () => {
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiVendor } = useStaticQuery(graphql`
     query VendorsQuery {
-      photography: allStrapiVendor(filter: {service: {eq: "photography"}}) {
+      allStrapiVendor {
         nodes {
           ...vendorCard
         }
       }
-      
-      planning: allStrapiVendor(filter: {service: {eq: "planning"}}) {
-        nodes {
-          ...vendorCard
-        }
-      }
-      
-      production: allStrapiVendor(filter: {service: {eq: "production"}}) {
-        nodes {
-          ...vendorCard
-        }
-      }
-      
-      floral: allStrapiVendor(filter: {service: {eq: "floral"}}) {
-        nodes {
-          ...vendorCard
-        }
-      }
-      
-      other: allStrapiVendor(
-        filter: {service: {nin: ["photography", "planning", "production", "floral"]}}
-        ) {
-        nodes {
-          ...vendorCard
-        }
-      }
-
     }
-`)
+  `)
 
-  // TODO: test this
-  if (data.other.nodes.length > 0) {
-    console.log(`Services outside the set ${data.other.nodes}`)
-
-    const vendorServices = [
-      data.photography,
-      data.planning,
-      data.production,
-      data.floral,
-      data.other
-    ]
-
-    return (
-      vendorServices
-    )
+  const vendorSet = new Set();
+  for (const vendorService of allStrapiVendor.nodes) {
+    vendorSet.add(vendorService.service)
   }
-
-  const vendorServices = [
-    data.photography,
-    data.planning,
-    data.production,
-    data.floral,
-  ]
+  const vendorArray = Array.from(vendorSet);
 
   return (
     <>
@@ -85,27 +40,27 @@ const VendorsPage = () => {
           <p>We built our business by providing outstanding quality, value, and service. We support others in Reno/Tahoe that have the same commitment.</p>
         </div>
 
-        {vendorServices.map((service) => (
+        {vendorArray.map((service) => (
           <div
-            key={service.nodes[0].id}
+            key={service}
           >
             <div className="stork">
               <hr />
               <h3 className="capitalize">
-                <Link to={`/vendor/${service?.nodes[0].service}`}>
-                  {service?.nodes[0].service}
-                </Link>
+                <Link to={`/vendor/${service}`}>{service}</Link>
               </h3>
             </div>
 
             <div className="deck">
-              {service.nodes.map((vendor: CardType) => (
-                <Card
-                  key={vendor.id}
-                  {...vendor}
-                  breadcrumb="vendor"
-                />
-              ))}
+              {allStrapiVendor.nodes
+                .filter((vendor) => vendor.service === service)
+                .map((vendor: CardType) => (
+                  <Card
+                    key={vendor.id}
+                    {...vendor}
+                    breadcrumb="vendor"
+                  />
+                ))}
             </div>
           </div >
         ))}

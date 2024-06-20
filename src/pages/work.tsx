@@ -24,8 +24,6 @@ const WorkPage = () => {
     }
   `)
 
-  // console.log(strapiImageGrab)
-
   return (
     <>
       <Header />
@@ -53,6 +51,7 @@ const WorkPage = () => {
             </span>
           </p>
 
+          {/* // TODO move to strapi */}
           {/* // TODO SEO */}
           <ul>
             <li key="earn">Earn $9,000 - $13,000 in ten weeks work</li>
