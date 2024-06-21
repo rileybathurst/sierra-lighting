@@ -127,7 +127,7 @@ const IndexPage = () => {
     <>
       <Header largeLogo={false} />
 
-      <main className="margin-0">
+      <main className="albatross">
         <div className="margin-0 hero-2">
           <div className="h2-container">
             <div className="large logo">
