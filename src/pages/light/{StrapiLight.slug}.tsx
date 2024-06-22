@@ -3,7 +3,6 @@ import { graphql, Script } from "gatsby"
 import LightView from "../../views/light-view"
 import SEO from "../../components/seo"
 
-
 export const query = graphql`
   query LightQuery($slug: String!) {
     strapiLight(slug: { eq: $slug }) {

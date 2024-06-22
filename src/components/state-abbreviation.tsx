@@ -1,16 +1,11 @@
-import * as React from "react"
-
-function StateAbbreviation(props:
-  { state: "california" | "nevada" | string | undefined; }
-) {
-  if (props.state === "california") {
-    return (<>CA</>);
-  }
-
-  if (props.state === "nevada") {
-    return (<>NV</>);
-  }
-  return null;
+interface StateAbbreviationTypes {
+  state: 'california' | 'nevada';
 }
-
-export default StateAbbreviation
+export default function StateAbbreviation({ state }: StateAbbreviationTypes) {
+  switch (state) {
+    case "california":
+      return "CA";
+    case "nevada":
+      return "NV";
+  }
+};

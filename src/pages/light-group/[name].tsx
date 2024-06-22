@@ -1,32 +1,17 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-function LightCatchAll({ params }) {
+// types
+import type { CatchAllTypes } from "../../types/catch-all-types";
+
+function LightGroupCatchAll({ params }: CatchAllTypes) {
   return (
     <>
       <Header />
-      <div className="stork">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/light">
-              <span itemProp="name">Light</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="2" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{params.name}</span>
-            <meta itemProp="position" content="3" />
-          </li>
-        </ol>
-        <hr />
-      </div>
       <main className="stork">
         <h2 className="crest">404</h2>
         <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
@@ -34,9 +19,21 @@ function LightCatchAll({ params }) {
           <Link to="/">Head to our home page.</Link>
         </p>
       </main>
+
+      {/* // TODO: list the other groups */}
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/light-group/">Light Group</Link></Breadcrumb>
+        <Breadcrumb>{params.name}</Breadcrumb>
+      </Breadcrumbs>
+
       <Footer />
     </>
   )
 }
 
-export default LightCatchAll
+export default LightGroupCatchAll
+
+// TODO: needs SEO for the title

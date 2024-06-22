@@ -6,7 +6,7 @@ const Start = ({ className }: { className?: string }) => {
   return (
     <Link
       to="/contact"
-      className={'button button-hero ' + className}
+      className={`button button-hero ${className}`}
     >
       Start with a free quote
     </Link>

@@ -1,19 +1,21 @@
 import React, { useState } from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import * as JsSearch from "js-search"
 
 import Card from "./card"
+import type { CardType } from "../types/card-type";
 
-function ResultList(props) {
-
-  // console.log(props);
-
-  if (props.results.length) {
+interface ResultListTypes {
+  searchQuery: string;
+  results: CardType[];
+}
+function ResultList({ searchQuery, results }: ResultListTypes) {
+  if (results.length) {
     return (
       <>
         <h3 className="stork">Search Results</h3>
         <div className="deck">
-          {props.results.map(result => (
+          {results.map(result => (
             <Card
               key={result.id}
               {...result}
@@ -21,26 +23,16 @@ function ResultList(props) {
             />
           ))}
         </div>
-
-        <hr className="stork" />
-        <h3 className="stork">All Lights</h3>
       </>
     )
   }
 
-  if (props.searchQuery === "") {
-    /* return (
-      <h3 className="stork">Please enter a search query</h3>
-    ) */
+  if (searchQuery === "") {
     return null;
   }
 
   return (
-    <>
-      <h3 className="stork">Nothing found in the search</h3>
-      <hr className="stork" />
-      <h3 className="stork">All Lights</h3>
-    </>
+    <h3 className="stork">Nothing found in the search</h3>
   )
 }
 
@@ -58,25 +50,24 @@ function LightSearch() {
 
   const search = new JsSearch.Search('id');
 
-  allStrapiLight.nodes.map((node) => {
-    search.addDocuments(node);
-    return null;
+  allStrapiLight.nodes.map((cards: CardType[]) => {
+    search.addDocuments(cards);
   })
 
   search.addIndex('name');
   search.addIndex('slug');
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState<CardType[]>([] as CardType[]);
 
-  function SearchData(e) {
-    // console.log(e.target.value);
+  function SearchData(e: React.ChangeEvent<HTMLInputElement>) {
     setSearchQuery(e.target.value);
     setSearchResults(search.search(searchQuery));
-    return null;
+
+    console.log(search.search(searchQuery));
   }
 
-  const handleSubmit = event => {
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
   }
 

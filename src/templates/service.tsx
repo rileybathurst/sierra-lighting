@@ -11,22 +11,49 @@ import Markdown from "react-markdown";
 import Card from '../components/card';
 import type { CardType } from '../types/card-type';
 import Start from '../components/start';
-import Adjective from '../components/adjective';
 import Lookbook from '../components/lookbook';
+import type { IGatsbyImageData } from 'gatsby-plugin-image';
+
+interface ServiceTypes {
+  data: {
+    strapiService: {
+      name: string;
+      excerpt: string;
+      slug: string;
+      description: { data: { description: string } };
+      after_the_triptych: { data: { after_the_triptych: string } };
+      projects: CardType[];
+      triptych: { id: string; localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } } }[];
+      featured_lights: CardType[];
+      videoMux: string;
+      venues: CardType[];
+      vendors: CardType[];
+    }
+    allStrapiProcess: {
+      nodes: {
+        id: string;
+        name: string;
+        markdown: { data: { markdown: string } };
+      }[]
+    };
+    allStrapiVenue: { nodes: CardType[] };
+    allStrapiVendor: { nodes: CardType[] };
+  }
+}
 
 interface BaseTypes {
   projects?: {
-    card: CardType;
     breadcrumb: string;
     order: number;
+    card: CardType[];
   }[];
   venues?: {
-    card: CardType;
+    card: CardType[];
     breadcrumb: string;
     order: number;
   }[];
   vendors?: {
-    card: CardType;
+    card: CardType[];
     breadcrumb: string;
     order: number;
   }[];
@@ -110,7 +137,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
               </h4>
               : null
             }
-
+            {/* // ! this has a problem with css colapsing the subgrid */}
             {item.card.id ?
               <Card
                 key={item.card.id}
@@ -126,18 +153,17 @@ function Base({ projects, venues, vendors }: BaseTypes) {
   }
 }
 
-interface ProcessTypes {
-  id: React.Key;
-  name: string;
-  markdown: { data: { markdown: string } };
-}
+const ServiceView = ({ data }: ServiceTypes) => {
 
-const ServiceView = ({ data }) => {
-
-  // console.log(data);
-  // console.log(data.strapiService.projects);
-
-  console.log(data.strapiService.featured_lights);
+  const adj: { [key: string]: string } = {
+    wedding: 'special day',
+    residential: 'home',
+    commercial: 'business',
+    'commercial-events': 'business',
+    'social_events': 'event',
+    patio: 'patio'
+  };
+  const adjective = adj[data.strapiService.slug];
 
   return (
     <>
@@ -174,42 +200,42 @@ const ServiceView = ({ data }) => {
             </div>
           ))}
         </section> */}
-
-        <section id="lights">
-          <div className="stork">
-            <hr />
-            <h3 className="crest">Bringing the shine</h3>
-            <h2 className="ridge">
-              <Link to={`/${data.strapiService.slug}/lights`}
-              // className="link--subtle"
-              >
-                Lighting Styles
-              </Link>
-            </h2>
-          </div>
-
-          <div className='deck'>
-            {data.strapiService.featured_lights.map((light: CardType) => (
-              <Card
-                key={light.id}
-                {...light}
-                breadcrumb='light'
-              />
-            ))}
-          </div>
-
-          <Lookbook slug={data.strapiService.slug} />
-        </section>
-
       </main >
+
+      <section id="lights">
+        <div className="stork">
+          <hr />
+          <h3 className="crest">Bringing the shine</h3>
+          <h2 className="ridge">
+            <Link to={`/${data.strapiService.slug}/lights`}>
+              Lighting Styles
+            </Link>
+          </h2>
+        </div>
+
+
+        <div className='deck'>
+          {data.strapiService.featured_lights.map((light: CardType) => (
+            <Card
+              key={light.id}
+              {...light}
+              breadcrumb='light'
+            />
+          ))}
+        </div>
+
+        <Lookbook slug={data.strapiService.slug} />
+      </section >
 
       <section id="process" className='stork backed bb'>
         <hr />
         <h2>Our Process</h2>
-        <Adjective service={data.strapiService.slug} />
+        <p>
+          Ready to bring your vision to life? Get started with a free estimate today and let us illuminate your {adjective} with an unforgettable lighting display!
+        </p>
         <hr />
         <ol>
-          {data.allStrapiProcess.nodes.map((process: ProcessTypes) => (
+          {data.allStrapiProcess.nodes.map((process) => (
             <li key={process.id}>
               <span className="ol-title">{process.name}</span>
               <Markdown className='react-markdown'>
@@ -226,7 +252,6 @@ const ServiceView = ({ data }) => {
         <hr />
       </section>
 
-      {/* with only data.strapiService.after_the_triptych it was showing on /patio */}
       {data.strapiService.after_the_triptych.data.after_the_triptych !== '' ?
         <div id="consultant" className='stork'>
           <h3 className='kilimanjaro'>Have you ever noticed how much lighting can affect the feeling of space?</h3>
@@ -238,13 +263,15 @@ const ServiceView = ({ data }) => {
         : null
       }
 
-      {data.strapiService.projects || data.strapiService.venues || data.strapiService.vendors ?
-        <Base
-          projects={data.strapiService?.projects}
-          venues={data.allStrapiVenue?.nodes}
-          vendors={data.allStrapiVendor?.nodes}
-        />
-        : null}
+      {
+        data.strapiService.projects || data.strapiService.venues || data.strapiService.vendors ?
+          <Base
+            projects={data.strapiService?.projects}
+            venues={data.allStrapiVenue?.nodes}
+            vendors={data.allStrapiVendor?.nodes}
+          />
+          : null
+      }
 
       < Footer />
 
@@ -337,7 +364,7 @@ export const query = graphql`
 
 // Footer
 
-export const Head = ({ data }) => {
+export const Head = ({ data }: ServiceTypes) => {
   return (
     <>
       <SEO

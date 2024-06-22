@@ -1,4 +1,5 @@
-// TODO: I need to check this on the xmas season
+// TODO: check this on the xmas season
+// TODO: storybook and fragment more of this if not componentize it
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
@@ -7,11 +8,12 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
+import LightSearch from "../components/light-search";
 
 const lightsPage = () => {
 
   const data = useStaticQuery(graphql`
-    query Lights2Query {
+    query LightsQuery {
 
       wedding: allStrapiLight(sort: {weddingOrder: ASC}) {
         nodes {
@@ -109,7 +111,7 @@ const lightsPage = () => {
     });
   }
 
-  console.log(lightGroupArrayOrder);
+  // console.log(lightGroupArrayOrder);
 
   return (
     <>
@@ -152,13 +154,21 @@ const lightsPage = () => {
         </div >
       </section >
 
+      <div className="stork">
+        <hr />
+        <h3>
+          Search
+        </h3>
+      </div>
+      <LightSearch />
+
       {lightGroupArrayOrder.map((group) => (
         <div
           key={group}
           id={group[0]}
         >
           <div className="stork">
-            {/* TODO: hr can probably be a border */}
+            {/* // TODO: hr can probably be a border */}
             <hr />
 
             {dataSeason.nodes
@@ -167,7 +177,7 @@ const lightsPage = () => {
               .map((light) => (
                 <>
                   <h3 key={light.id}>
-                    <Link to={`/light-group/${light.slug}`}>{light.light_groups[0].name}</Link>
+                    <Link to={`/light-group/${light.light_groups[0].slug}`}>{light.light_groups[0].name}</Link>
                   </h3>
                   <p key={light.id}>{light.light_groups[0].excerpt}</p>
                 </>

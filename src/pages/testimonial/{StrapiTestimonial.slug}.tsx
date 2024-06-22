@@ -1,8 +1,9 @@
+// ! broken stars
+
 import * as React from "react"
 import { graphql } from "gatsby"
 import TestimonialView from "../../views/testimonial-view"
 import SEO from "../../components/seo"
-
 
 export const query = graphql`
   query TestimonialQuery($slug: String!) {

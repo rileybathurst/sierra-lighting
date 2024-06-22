@@ -1,4 +1,3 @@
-import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 
 function Season() {
@@ -14,7 +13,7 @@ function Season() {
     return 'wedding'
 
   }
-  return 'wedding'
+  return 'xmas'
 }
 
 export default Season

@@ -31,41 +31,33 @@ const VendorsPage = () => {
       <Header />
 
       <main>
-
-        <div className="stork">
-
-          <h1 className="mixta">Wedding Vendors</h1>
-
-          {/* // TODO: query this */}
-          <p>We built our business by providing outstanding quality, value, and service. We support others in Reno/Tahoe that have the same commitment.</p>
-        </div>
-
-        {vendorArray.map((service) => (
-          <div
-            key={service}
-          >
-            <div className="stork">
-              <hr />
-              <h3 className="capitalize">
-                <Link to={`/vendor/${service}`}>{service}</Link>
-              </h3>
-            </div>
-
-            <div className="deck">
-              {allStrapiVendor.nodes
-                .filter((vendor) => vendor.service === service)
-                .map((vendor: CardType) => (
-                  <Card
-                    key={vendor.id}
-                    {...vendor}
-                    breadcrumb="vendor"
-                  />
-                ))}
-            </div>
-          </div >
-        ))}
-
+        <h1 className="mixta">Wedding Vendors</h1>
+        {/* // TODO: query this */}
+        <p>We built our business by providing outstanding quality, value, and service. We support others in Reno/Tahoe that have the same commitment.</p>
       </main >
+
+      {vendorArray.map((service) => (
+        <div key={service}>
+          <div className="stork">
+            <hr />
+            <h3 className="capitalize">
+              <Link to={`/vendor/${service}`}>{service}</Link>
+            </h3>
+          </div>
+
+          <div className="deck">
+            {allStrapiVendor.nodes
+              .filter((vendor) => vendor.service === service)
+              .map((vendor: CardType) => (
+                <Card
+                  key={vendor.id}
+                  {...vendor}
+                  breadcrumb="vendor"
+                />
+              ))}
+          </div>
+        </div >
+      ))}
 
       <Footer />
 

@@ -1,34 +1,16 @@
 // * specifically removed from the SEO on Rom's request
-// I bet eventually you could create these progamatically for all services but thats just another level
+// TODO: create these progamatically for all services if they have tiers but thats just another level
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
-
+import Start from "../../components/start";
+import Card from "../../components/card";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import ChristmasLightsOrdered from "../../components/christmas-lights-ordered";
-
-function ReactDescription(props) {
-  if (props.description) {
-    return <ReactMarkdown
-      children={props.description.data.description}
-      remarkPlugins={[remarkGfm]}
-    />;
-  }
-
-  if (props.showcaseDescription) {
-    return <ReactMarkdown
-      children={props.showcaseDescription.data.showcaseDescription}
-      remarkPlugins={[remarkGfm]}
-    />;
-  }
-
-  return null;
-}
 
 type AttributeTypes = {
   price: string;
@@ -60,34 +42,15 @@ function ResidentialShowcase() {
 
   const data = useStaticQuery(graphql`
     query ShowcaseQuery {
-      gold: allStrapiShowcase(
-        filter: {service: {slug: {eq: "residential"}},
-        tier: {eq: "gold"}}
+      allStrapiShowcase(
+        filter: {service: {slug: {eq: "residential"}}}
       ) {
         nodes {
           ...showcase
         }
       }
 
-      silver: allStrapiShowcase(
-        filter: {service: {slug: {eq: "residential"}},
-        tier: {eq: "silver"}}
-      ) {
-        nodes {
-          ...showcase
-        }
-      }
-
-      bronze: allStrapiShowcase(
-        filter: {service: {slug: {eq: "residential"}},
-        tier: {eq: "bronze"}}
-      ) {
-        nodes {
-          ...showcase
-        }
-      }
-
-      description: strapiService(slug: {eq: "residential"}) {
+      strapiService(slug: {eq: "residential"}) {
         showcaseDescription {
           data {
             showcaseDescription
@@ -95,30 +58,15 @@ function ResidentialShowcase() {
         }
       }
 
-      lightGroups: allStrapiLightGroup(
-          filter: {services: {elemMatch: {slug: {eq: "residential"}}}}
-        ) {
+      allStrapiLight(
+        sort: {fields: xmasOrder, order: ASC},
+        filter: {
+          services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
+        }) {
           nodes {
-            name
-            excerpt
-            lights {
-              id
-              name
-              slug
-              excerpt
-              byline
-
-              image {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData(
-                      breakpoints: [111, 165, 222, 444, 880]
-                      width: 222
-                    )
-                  }
-                }
-                alternativeText
-              }
+            ...lightCard
+            light_groups {
+              ...lightGroup
             }
           }
         }
@@ -126,38 +74,39 @@ function ResidentialShowcase() {
     }
   `);
 
-  const showcase = [data.gold, data.silver, data.bronze];
-  const description = data.description;
-  // let lightGroups = data.lightGroups;
+  const showcaseSet = new Set();
+  for (const showcase of data.allStrapiShowcase.nodes) {
+    showcaseSet.add(showcase.tier)
+  }
+  const showcaseArray = Array.from(showcaseSet);
 
-  // console.log(description);
+  const lightGroupSet = new Set();
+  for (const light of data.allStrapiLight.nodes) {
+    light.light_groups.map((group) => {
+      lightGroupSet.add(group.slug)
+    })
+  }
+  const lightGroupArray = Array.from(lightGroupSet);
 
   return (
     <>
       <Header />
-      <div className="stork">
-        <ol className="breadcrumbs">
-          <li >
-            <Link to="/residential">
-              Residential
-            </Link>&nbsp;/&nbsp;
-          </li>
-          <li>Showcase</li>
-        </ol>
-        <hr />
-      </div>
+
       <main>
         <div className="stork">
           <h1 className="mixta">Residential Showcase</h1>
-          <ReactDescription showcaseDescription={description.showcaseDescription} />
+          <ReactMarkdown className='react-markdown'>
+            {data.strapiService.showcaseDescription.data.showcaseDescription}
+          </ReactMarkdown>
+          {/* // TODO: start */}
           <h4><Link to="#contact">Enquire Now</Link></h4>
         </div>
 
-        {showcase.map((level) => (
-          <section key={level.nodes[0].id}>
-            <hr className="stork" />
-            {level.nodes.map(showcase => (
-              <div key={showcase.id} className="pelican">
+        {showcaseArray.map((tier) => (
+          data.allStrapiShowcase.nodes
+            .filter((showcase) => showcase.tier === tier)
+            .map((showcase) => (
+              <div key={tier.id} className="pelican">
                 <Link to={`/project/${showcase.project.slug}`}>
                   <GatsbyImage
                     image={showcase.project.image?.localFile?.childImageSharp?.gatsbyImageData}
@@ -167,7 +116,9 @@ function ResidentialShowcase() {
 
                 <div className="stork">
                   <h3 className="capitalize">{showcase.tier} Showcase</h3>
-                  <ReactDescription description={showcase.description} />
+                  <ReactMarkdown className='react-markdown'>
+                    {showcase.description.data.description}
+                  </ReactMarkdown>
                 </div>
 
                 <Attributes
@@ -175,22 +126,61 @@ function ResidentialShowcase() {
                   roofline={showcase.roofline}
                   trees={showcase.tree}
                 />
-
-                {/* // TODO: add smooth scroll here */}
-                <h4 className="stork"><Link to="#contact">Enquire Now</Link></h4>
+                <Start />
               </div>
             ))
-            }
-          </section >
         ))}
 
-        <hr className="stork" />
+        < hr className="stork" />
       </main >
 
       <section>
         <h4 className="stork">Lighting types used on residential christmas displays</h4>
-        <ChristmasLightsOrdered />
+
+        {lightGroupArray.map((group) => (
+          data.allStrapiLight.nodes
+            .filter((light) => light.light_groups[0].slug === (group))
+            .slice(0, 1)
+            .map((light) => (
+              <>
+                <section
+                  key={light.id}
+                  id={light.light_groups[0].slug}
+                  className="stork"
+                >
+                  <hr />
+                  <h3>
+                    <Link to={`/lights#${light.light_groups[0].slug}`}>
+                      {light.light_groups[0].name}
+                    </Link>
+                  </h3>
+                  <p key={light.id}>{light.light_groups[0].excerpt}</p>
+                </section>
+
+                <section
+                  key={light.id}
+                  className="deck">
+                  {data.allStrapiLight.nodes
+                    .filter((light) => light.light_groups[0].slug === (group))
+                    .map((light) => (
+                      <Card
+                        key={light.id}
+                        {...light}
+                        breadcrumb='light'
+                      />
+                    ))}
+                </section>
+              </>
+            ))
+        ))}
       </section>
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/residential/">Residential</Link></Breadcrumb>
+        <Breadcrumb>Showcase</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -198,3 +188,5 @@ function ResidentialShowcase() {
 }
 
 export default ResidentialShowcase
+
+// TODO: needs SEO for the title

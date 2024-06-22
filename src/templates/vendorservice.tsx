@@ -1,57 +1,51 @@
-// * this page is /vendor/floral.tsx
-// not /vendor/twinefloralco
-
+// * this page is /vendor/floral
 import React from 'react';
 import { graphql, Link } from 'gatsby'
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import { SEO } from "../components/seo";
-
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from '../components/card';
-import { CardType } from '../types/card-type';
+import type { CardType } from '../types/card-type';
 
-const VendorServiceView = ({ data }) => {
+interface VendorServiceViewTypes {
+  data: {
+    allStrapiVendor: {
+      nodes: CardType[];
+      distinct: string;
+    };
+  };
+}
+const VendorServiceView = ({ data }: VendorServiceViewTypes) => {
   return (
     <>
       <Header />
 
-      <div className="stork">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/vendor">
-              <span itemProp="name">Vendors</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name" className='capitalize'>{data.allStrapiVendor.distinct}</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
+      <main>
+        {/* // TODO: the order is wrong here, it should be: h1 then h2 */}
+        <h2 className="crest">Who we like to work with</h2>
+        <h1 className="mixta capitalize">{data.allStrapiVendor.distinct}</h1>
         <hr />
+      </main>
+
+      <div className="deck">
+        {data.allStrapiVendor.nodes.map((job: CardType) => (
+          <Card
+            key={job.id}
+            {...job}
+            breadcrumb='vendor'
+          />
+        ))}
       </div>
 
-      <main>
+      <hr className="stork" />
 
-        <div className="stork">
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/vendor/">Vendors</Link></Breadcrumb>
+        <Breadcrumb>{data.allStrapiVendor.distinct}</Breadcrumb>
+      </Breadcrumbs>
 
-          {/* // TODO: the order is wrong here, it should be: h1 then h2 */}
-          <h2 className="crest">Who we like to work with</h2>
-          <h1 className="mixta capitalize">{data.allStrapiVendor.distinct}</h1>
-          <hr />
-        </div>
-
-        <div className="deck">
-          {/* // ? why am I working with edges */}
-          {data.allStrapiVendor.edges.map((job: CardType) => (
-            <Card
-              key={job.node.id}
-              {...job.node}
-              breadcrumb='vendor'
-            />
-          ))}
-        </div>
-      </main>
       <Footer />
     </>
   );
@@ -62,23 +56,21 @@ export default VendorServiceView;
 export const query = graphql`
   query VendorServiceTemplate($service: String!) {
   allStrapiVendor(filter: {service: {eq: $service}}) {
-    edges {
-      node {
+      nodes {
         ...vendorCard
       }
-    }
     distinct(field: {service: SELECT})
   }
 }
 `
 
-
-export const Head = ({ data }) => {
+export const Head = ({ data }: VendorServiceViewTypes) => {
   return (
     <SEO
       title={`${data.allStrapiVendor.distinct} Vendors`}
       description="We built our business by providing outstanding quality, value, and service.
       We support others in Reno/Tahoe that have the same commitment."
+      // TODO: good idea bad implementation of the image
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
       url={`vendor/${data.allStrapiVendor.distinct}`}
       breadcrumbs={[

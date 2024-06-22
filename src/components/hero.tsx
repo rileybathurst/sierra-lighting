@@ -13,7 +13,7 @@ interface HeroType {
 function Hero({ localFile, alternativeText }: HeroType) {
 
   localFile.childImageSharp.gatsbyImageData.width <= 960
-    ? console.log('Image is too small')
+    ? console.log('Hero Image is too small')
     : null
 
   alternativeText ? null : console.log('hero has no alt text')

@@ -1,21 +1,16 @@
 // this is the Name.tsx file
 import React from 'react';
+import { faker } from '@faker-js/faker';
 
-interface BreadcrumbsProps {
-  primary?: boolean;
-  onClick?: () => void;
-}
-
-export const Breadcrumbs = ({
-  primary = false,
-  // ...props
-}: BreadcrumbsProps) => {
-
+export const Breadcrumbs = () => {
   return (
-    <main
-    // {...props}
-    >
-      {primary ? 'primary' : 'secondary'}
-    </main>
+    <ol className='react-aria-Breadcrumbs'>
+      <li className='react-aria-Breadcrumb'>
+        <a href='/'>{faker.company.buzzNoun()}</a>
+      </li>
+      <li className='react-aria-Breadcrumb'>
+        {faker.company.buzzPhrase()}
+      </li>
+    </ol>
   );
 };

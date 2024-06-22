@@ -2,91 +2,61 @@ import React from 'react';
 import { graphql, Link } from 'gatsby'
 
 import { SEO } from "../components/seo";
-
 import Header from "../components/header";
 import Footer from "../components/footer";
-
 import StrShort from "../components/StrShort";
 import Hero from "../components/hero";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import TestimonialRanking from "../components/testimonial-ranking";
 import Card from '../components/card';
+
+// types
 import type { CardType } from '../types/card-type';
+import type { IGatsbyImageData } from 'gatsby-plugin-image';
 
-function IfOther(props) {
-  if (props.projects.length > 0) {
-    // console.log(props.projects);
-    return (
-      <>
-        <div className="stork">
-          <hr />
-          <h4>Projects we have worked with {props.name} on</h4>
-        </div>
-        <div className="deck">
-          {props.projects.map((project: CardType) => (
-            <Card
-              key={project.id}
-              {...project}
-              breadcrumb='project'
-            />
-          ))}
-        </div>
-      </>
-    );
-  }
+interface VendorTemplateViewTypes {
+  data: {
+    strapiVendor: {
+      id: string;
+      name: string;
+      description: string;
+      slug: string;
+      instagram: string;
+      facebook: string;
+      website: string;
+      pinterest: string;
+      service: string;
+      excerpt: string;
 
-  if (props.other.length > 0) {
-    return (
-      <>
-        <div className="stork">
-          <hr />
-          <h4>Other <span className='capitalize'>{props.service}</span> Vendors</h4>
-        </div>
+      profile: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+          url: string;
+        };
+        alternativeText: string;
+      };
 
-        <div className="deck">
-          {props.other.map((other: CardType) => (
-            <Card
-              key={other.node.id}
-              {...other.node} // TODO: check this
-              breadcrumb='vendor'
-            />
-          ))}
-        </div>
-        <div className="stork">
-          <h3 className="crest">Even More</h3>
-          <h2 className="range">
-            <Link to={`/vendor/${props.service}`}>
-              All Other <span className='capitalize'>{props.service}</span> Vendors
-            </Link>
-          </h2>
-        </div>
-      </>
-    );
-  }
-  return (
-    <>
-      <div className="stork">
-        <h3 className="crest">Looking for something else?</h3>
-        <h2 className="range">
-          <Link to='/vendor'>
-            Other Wedding Vendors
-          </Link>
-        </h2>
-      </div>
-    </>
-  )
+      testimonials: {
+        id: string;
+        title: string;
+        review: string;
+        stars: number;
+        customer: string;
+        position: string;
+      }[];
+
+      projects: CardType[];
+    };
+
+    allStrapiVendor: {
+      nodes: CardType[];
+    };
+  };
 }
 
-interface TestimonialTypes {
-  id: string;
-  title: string;
-  review: string;
-  stars: number;
-  customer: string;
-  position: string;
-}
-
-const VendorTemplateView = ({ data }) => {
+const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
   return (
     <>
       <Header />
@@ -103,7 +73,8 @@ const VendorTemplateView = ({ data }) => {
         {data.strapiVendor.testimonials.length > 0 ?
           <div className="stork" >
             <ul className='testimonials'>
-              {data.strapiVendor.testimonials.map((testimonial: TestimonialTypes) => (
+              {/* // TODO: component this */}
+              {data.strapiVendor.testimonials.map((testimonial) => (
                 <li key={testimonial.id} className='testimonial'>
                   <figure>
                     <blockquote>
@@ -149,18 +120,63 @@ const VendorTemplateView = ({ data }) => {
         </p>
       </main>
 
-      <IfOther
-        projects={data.strapiVendor.projects}
-        other={data.allStrapiVendor.edges}
-        service={data.strapiVendor.service}
-        name={data.strapiVendor.name}
-      />
+      {data.strapiVendor.projects.length > 0 ?
+        <>
+          <div className="stork">
+            <hr />
+            <h4>Projects we have worked with {data.strapiVendor.name} on</h4>
+          </div>
+          <div className="deck">
+            {data.strapiVendor.projects.map((project: CardType) => (
+              <Card
+                key={project.id}
+                {...project}
+                breadcrumb='project'
+              />
+            ))}
+          </div>
+        </>
+        : null
+      }
+
+      {data.allStrapiVendor.nodes.length > 0 ?
+        <>
+          <div className="stork">
+            <hr />
+            <Link to={`/vendor/${data.strapiVendor.service}`}>
+              <h4>Other <span className='capitalize'>{data.strapiVendor.service}</span> Vendors</h4>
+            </Link>
+          </div>
+
+          <div className="deck">
+            {data.allStrapiVendor.nodes.map((vendor: CardType) => (
+              <Card
+                key={vendor.id}
+                {...vendor}
+                breadcrumb='vendor'
+              />
+            ))}
+          </div>
+        </>
+        : null}
+
+      {data.strapiVendor.projects.length === 0 && data.allStrapiVendor.nodes.length === 0 ?
+        <>
+          <div className="stork">
+            <h3 className="crest">Looking for something else?</h3>
+            <h2 className="range">
+              <Link to='/vendor'>
+                Other Wedding Vendors
+              </Link>
+            </h2>
+          </div>
+        </>
+        : null}
 
       <hr className='stork' />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/vendor/">Vendors</Link></Breadcrumb>
-        {/* <Breadcrumb><Link to={`/vendor/${data.strapiVendor.service}`}>{data.strapiVendor.service}</Link></Breadcrumb> */}
         <Breadcrumb>{data.strapiVendor.name}</Breadcrumb>
       </Breadcrumbs>
 
@@ -235,24 +251,22 @@ export const query = graphql`
         limit: 3,
         filter: {service: {eq: $service}, slug: {ne: $slug}}
       ) {
-        edges {
-          node {
-            name
-            id
-            slug
-            excerpt
-      
-            profile {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(
-                    breakpoints: [111, 165, 222, 444, 880]
-                    width: 222
-                  )
-                }
+        nodes {
+          name
+          id
+          slug
+          excerpt
+    
+          profile {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  breakpoints: [111, 165, 222, 444, 880]
+                  width: 222
+                )
               }
-              alternativeText
             }
+            alternativeText
           }
         }
       }
@@ -260,7 +274,7 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }) => {
+export const Head = ({ data }: VendorTemplateViewTypes) => {
   return (
     <SEO
       title={`${data.strapiVendor.name}`}

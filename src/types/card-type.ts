@@ -1,33 +1,51 @@
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
-export interface CardType {
+interface BaseCardTypes {
   id: React.Key;
-
-  image?: {
-    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
-    alternativeText: string;
-  };
-  venueImage?: {
-    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
-    alternativeText: string;
-  };
-  profile?: {
-    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
-    alternativeText: string;
-  };
-  alt?: string;
-
   slug: string;
   excerpt: string;
-
-  name?: string;
-  title?: string;
-
   areas?: {
     name: string;
     slug: string;
   }[];
   subAreas?: string;
-
   breadcrumb: string;
 }
+
+interface Title {
+  title: string;
+  name?: never;
+}
+interface Name {
+  title?: never;
+  name: string;
+}
+type TitleOrName = Title | Name;
+
+interface Image {
+  image: {
+    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
+    alternativeText: string;
+  };
+  venueImage?: never;
+  profile?: never;
+}
+interface VenueImage {
+  image?: never;
+  venueImage: {
+    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
+    alternativeText: string;
+  };
+  profile?: never;
+}
+interface Profile {
+  image?: never;
+  venueImage?: never;
+  profile: {
+    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
+    alternativeText: string;
+  };
+}
+type ImageOrVenueImageOrProfile = Image | VenueImage | Profile;
+
+export type CardType = BaseCardTypes & TitleOrName & ImageOrVenueImageOrProfile;

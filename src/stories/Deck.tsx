@@ -1,3 +1,5 @@
+// TODO: add a description and title area, might be its own story
+
 import React from 'react';
 import { faker } from '@faker-js/faker';
 

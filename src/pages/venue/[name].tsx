@@ -2,38 +2,41 @@
 
 import * as React from "react"
 import { Link } from "gatsby"
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 
-function VenueCatchAll({ params }) {
+// types
+import type { CatchAllTypes } from "../../types/catch-all-types";
+
+function VenueCatchAll({ params }: CatchAllTypes) {
   return (
     <>
       <Header />
-      <div className="stork">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/venue">
-              <span itemProp="name">Venue</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{params.name}</span>
-            <meta itemProp="position" content="2" />
-          </li>
-        </ol>
-        <hr />
-      </div>
+
       <main className="stork">
-        <h2 className="crest">404</h2>
+        <h2 className="crest">404 - {params.name}</h2>
         <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
         <p>Want to brighten up?<br />
           <Link to="/">Head to our home page.</Link>
         </p>
       </main>
+
+      {/* // TODO: list other venues */}
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/venue/">Venue</Link></Breadcrumb>
+        <Breadcrumb>{params.name}</Breadcrumb>
+      </Breadcrumbs>
+
       <Footer />
     </>
   )
 }
 
 export default VenueCatchAll
+
+// TODO: needs SEO for the title

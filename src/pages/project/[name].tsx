@@ -1,42 +1,61 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import Card from "../../components/card";
 
-function ProjectCatchAll({ params }) {
+// types
+import type { CatchAllTypes } from "../../types/catch-all-types";
+import type { CardType } from "../../types/card-type";
+
+function ProjectCatchAll({ params }: CatchAllTypes) {
+
+  const { allStrapiProject } = useStaticQuery(graphql`
+    query {
+      allStrapiProject(limit: 3) {
+        nodes {
+          ...projectCard
+        }
+      }
+    }
+  `)
+
   return (
     <>
       <Header />
-      <div className="stork">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/area">
-              <span itemProp="project">Project</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="2" />
-          </li>
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{params.name}</span>
-            <meta itemProp="position" content="3" />
-          </li>
-        </ol>
-        <hr />
-      </div>
+
       <main className="stork">
-        <h2 className="crest">404</h2>
+        <h2 className="crest">404 - Project - {params.name}</h2>
         <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
         <p>Want to brighten up?<br />
           <Link to="/">Head to our home page.</Link>
         </p>
       </main>
+
+      <div className="deck">
+        {allStrapiProject.nodes.map((project: CardType) => (
+          <Card
+            key={project.id}
+            {...project}
+            breadcrumb="project"
+          />
+        ))}
+      </div>
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/project/">Project</Link></Breadcrumb>
+        <Breadcrumb>{params.name}</Breadcrumb>
+      </Breadcrumbs>
+
       <Footer />
     </>
   )
 }
 
 export default ProjectCatchAll
+
+// TODO: needs SEO for the title

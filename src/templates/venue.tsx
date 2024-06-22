@@ -13,58 +13,15 @@ import TestimonialRanking from "../components/testimonial-ranking";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import type { CardType } from '../types/card-type';
 
-function Phone(props) {
-  if (props.phone) {
-    const phone = props.phone;
+function Phone({ phone }: { phone: number }) {
+  if (phone) {
     const string = phone.toString();
     const change = string.replace(/(\d{3})(\d{3})(\d{4})/, "($1)$2-$3");
-
-    // console.log(change);
-
     return (
-      <p>Phone <a href={`tel:${props.phone}`}>{change}</a></p>
+      <p>Phone <a href={`tel:${phone}`}>{change}</a></p>
     );
   }
   return null;
-}
-
-function IfOther(props) {
-
-  if (props.other.length > 0) {
-    return (
-      <>
-        <div className="stork">
-          <h4>Other {props.slug === 'blue' ? null : 'Wedding'} Venues in {props.name}, <StateAbbreviation state={props.state} /></h4>
-        </div>
-
-        <div className="deck">
-          {props.other.map((other: CardType) => (
-            <Card
-              key={other.node.id}
-              {...other.node}
-              breadcrumb='venue'
-            />
-          ))}
-        </div>
-        <div className="stork">
-          <h3 className="crest">Even More</h3>
-          <h2 className="range"><Link to='/venue' className="link--subtle">All Other Venues</Link></h2>
-        </div>
-      </>
-    );
-  }
-  return (
-    <>
-      <div className="stork">
-        <h3 className="crest">Looking for somewhere else?</h3>
-        <h2 className="range">
-          <Link to='/venue'>
-            Other {props.slug === 'blue' ? null : 'Wedding'} Venues
-          </Link>
-        </h2>
-      </div>
-    </>
-  )
 }
 
 const VenueView = ({ data }) => {
@@ -110,15 +67,14 @@ const VenueView = ({ data }) => {
         }
 
         <hr />
-        <address>
-          {/* // TODO this could probably be more structured with seo */}
-          {data.strapiVenue.address ?
+        {/* // TODO this could probably be more structured with seo */}
+        {data.strapiVenue.address ?
+          <address>
             <Markdown className='react-markdown'>
               {data.strapiVenue.address.data.address}
             </Markdown>
-            : null
-          }
-        </address>
+          </address>
+          : null}
 
 
         <Phone phone={data.strapiVenue.phone} />
@@ -153,16 +109,37 @@ const VenueView = ({ data }) => {
         areas={data.strapiVenue.area.areas}
       /> */}
 
-      {/* // TODO this shouldnt get all of these but get the frist 3 then deal with it from there */}
-      <IfOther
-        other={data.allStrapiVenue.edges}
-        name={data.strapiVenue.area.name}
-        state={data.strapiVenue.area.state}
-        slug={data.strapiVenue.slug}
-      />
+      {data.allStrapiVenue.nodes.length > 0 ?
+        <>
+          <div className="stork">
+            <h3 className="crest">More Venues in {data.strapiVenue.area.name}, <StateAbbreviation state={data.strapiVenue.area.state} /></h3>
+          </div>
+          <div className="deck">
+            {data.allStrapiVenue.nodes.map((card: CardType) => (
+              <Card
+                key={card.id}
+                {...card}
+                breadcrumb='venue'
+              />
+            ))}
+          </div>
+        </>
+        :
+        <>
+          <div className="stork">
+            <h3 className="crest">Looking for somewhere else?</h3>
+            <h2 className="range">
+              <Link to='/venue'>
+                Other {data.strapiVenue.slug === 'blue' ? null : 'Wedding'} Venues
+              </Link>
+            </h2>
+          </div>
+        </>
+      }
 
       <hr className='stork' />
 
+      {/* // ? I dont think we have non featured pages anymore */}
       <Breadcrumbs>
         <Breadcrumb><Link to="/venue/">Venues</Link></Breadcrumb>
         <Breadcrumb>
@@ -248,29 +225,27 @@ export const query = graphql`
           slug: {nin: [$slug, "blue"]}
         }
       ) {
-        edges {
-          node {
-            name
-            id
-            slug
-            excerpt
+        nodes {
+          name
+          id
+          slug
+          excerpt
 
-            venueImage {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(
-                    breakpoints: [660]
-                    width: 660
-                  )
-                }
+          venueImage {
+            localFile {
+              childImageSharp {
+                gatsbyImageData(
+                  breakpoints: [660]
+                  width: 660
+                )
               }
-              alternativeText
             }
+            alternativeText
+          }
 
-            area {
-              name
-              state
-            }
+          area {
+            name
+            state
           }
         }
       }

@@ -1,41 +1,21 @@
 import * as React from "react";
 import { Link } from "gatsby";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Header from "../components/header";
-import Footer from "../components/footer";
-
+import Footer from "../components/footer"
 import TestimonialRanking from "../components/testimonial-ranking";
 
-// TODO this whole page
+// TODO this whole page but also can it be inlined
 
 const TestimonialView = ({ testimonial }) => {
   return (
     <>
       <Header />
-      <div className="stork">
-        <ol className="breadcrumbs" itemScope itemType="https://schema.org/BreadcrumbList">
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/">
-              <span itemProp="name">Home</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="1" />
-          </li>
-
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <Link itemProp="item" to="/testimonial">
-              <span itemProp="name">Testimonial</span></Link>&nbsp;/&nbsp;
-            <meta itemProp="position" content="2" />
-          </li>
-
-          <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-            <span itemProp="name">{testimonial.customer}</span>
-            <meta itemProp="position" content="3" />
-          </li>
-        </ol>
-        <hr />
-      </div>
 
       <article className="stork">
         <h1>{testimonial.customer}</h1>
+        {/* TODO: component */}
         <div itemProp="reviewRating" itemScope itemType="https://schema.org/Rating">
           <TestimonialRanking stars={testimonial.stars} />
           <p className="sr-only">
@@ -48,6 +28,14 @@ const TestimonialView = ({ testimonial }) => {
           <p itemProp="reviewBody">{testimonial.review}</p>
         </div>
       </article>
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/testimonial/">Testimonial</Link></Breadcrumb>
+        <Breadcrumb>{testimonial.slug}</Breadcrumb>
+      </Breadcrumbs>
+
       <Footer />
     </>
   );

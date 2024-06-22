@@ -2,166 +2,97 @@
 
 import React from 'react';
 import { Link, graphql } from "gatsby";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+
 import Header from '../components/header';
 import Footer from '../components/footer';
-import Grouploop from '../components/grouploop';
+import ReactMarkdown from 'react-markdown';
 import SEO from '../components/seo';
+import Card from '../components/card';
 
 const ServiceLightView = ({ data }) => {
 
-  // ? this is written twice should I dry it out?
-  let overheadgroup = [
-    data.overhead,
-    data.overheadlights
-  ]
-
-  let accentgroup = [
-    data.accent,
-    data.accentlights
-  ]
-
-  let dancegroup = [
-    data.dance,
-    data.dancelights
-  ]
-
-  let pipegroup = [
-    data.pipe,
-    data.pipelights
-  ]
-
-  let pathgroup = [
-    data.path,
-    data.pathlights
-  ]
-
-  let treegroup = [
-    data.tree,
-    data.treelights
-  ]
-
-  let buildinggroup = [
-    data.building,
-    data.buildinglights
-  ]
-
-  let greenerygroup = [
-    data.greenery,
-    data.greenerylights
-  ]
-
-  let ornamentsgroup = [
-    data.ornaments,
-    data.ornamentslights
-  ]
-
-  let lanterngroup = [
-    data.lantern,
-    data.lanternlights
-  ]
-
-  let groups = []
-
-  if (data.overhead?.services?.length > 0) {
-    groups.push(overheadgroup)
-  }
-
-  if (data.accent?.services?.length > 0) {
-    groups.push(accentgroup)
-  }
-
-  if (data.dance?.services?.length > 0) {
-    groups.push(dancegroup)
-  }
-
-  if (data.pipe?.services?.length > 0) {
-    groups.push(pipegroup)
-  }
-
-  if (data.path?.services?.length > 0) {
-    groups.push(pathgroup)
-  }
-
-  if (data.tree?.services?.length > 0) {
-    groups.push(treegroup)
-  }
-
-  if (data.building?.services?.length > 0) {
-    groups.push(buildinggroup)
-  }
-
-  if (data.grennery?.services?.length > 0) {
-    groups.push(greenerygroup)
-  }
-
-  if (data.ornaments?.services?.length > 0) {
-    groups.push(ornamentsgroup)
-  }
-
-  if (data.lantern?.services?.length > 0) {
-    groups.push(lanterngroup)
-  }
-
-  // console.log(data.strapiService.name);
-
   // sort by value
-  let events = [
+  const events = [
     'Wedding',
     'Non-wedding Events',
     'Commercial Events'
   ]
   // if (data.strapiService.name === 'Wedding') {
-  if (events.includes(data.strapiService.name)) {
-    groups.sort((a, b) => a[0].weddingOrder - b[0].weddingOrder);
-  }
+  /*   if (events.includes(data.strapiService.name)) {
+      groups.sort((a, b) => a[0].weddingOrder - b[0].weddingOrder);
+    } */
 
-  let xmas = [
+  const xmas = [
     'Residential Christmas',
     'Commercial Christmas'
   ]
-  if (xmas.includes(data.strapiService.name)) {
-    groups.sort((a, b) => a[0]?.xmasOrder - b[0]?.xmasOrder);
+  /*   if (xmas.includes(data.strapiService.name)) {
+      groups.sort((a, b) => a[0]?.xmasOrder - b[0]?.xmasOrder);
+    } */
+
+
+  const lightGroupSet = new Set();
+  for (const light of data.allStrapiLight.nodes) {
+    light.light_groups.map((group) => {
+      lightGroupSet.add(group.slug)
+    })
   }
+  const lightGroupArray = Array.from(lightGroupSet);
 
   return (
     <>
       <Header />
 
-      <div className="stork">
-        <ol className="breadcrumbs">
-          <li>
-            <Link to={`/${data.strapiService.slug}`}>
-              {data.strapiService.name} Lighting
-            </Link>&nbsp;/&nbsp;
-          </li>
-          <li>
-            Lights
-          </li>
-        </ol>
-        <hr />
-      </div>
-
       <main>
         <section className='stork'>
           <h1 className='mixta aconcagua'>{data.strapiService.name} Lighting</h1>
-          {/* // TODO: markdown this */}
-          <p>{data.strapiService.description.data.description}</p>
+          <ReactMarkdown
+            className='react-markdown'>
+            {data.strapiService.description.data.description}
+          </ReactMarkdown>
           <p>
             <Link to={`/${data.strapiService.slug}`}>
               Learn more about how we can light up your {data.strapiService.name}
             </Link>
           </p>
         </section>
-
-        {groups.map((group) => (
-          <div
-            id={group[0]?.slug}
-            key={group[0]?.id}
-          >
-            <Grouploop group={group} />
-          </div>
-        ))}
       </main>
+
+      <section>
+        {lightGroupArray.map((group) => (
+          data.allStrapiLight.nodes
+            .filter((light) => light.light_groups.map((group) => group.slug).includes(group))
+            .slice(0, 1)
+            .map((light) => (
+              <>
+                <div
+                  key={group}
+                  className='stork'
+                >
+                  <hr />
+                  <h2>
+                    <Link to={`/light-group/${light.light_groups[0].slug}`}>
+                      {light.light_groups[0].name}
+                    </Link>
+                  </h2>
+                  <p>{light.light_groups[0].excerpt}</p>
+                </div>
+                <div className='deck'>
+                  {data.allStrapiLight.nodes
+                    .filter((light) => light.light_groups.map((group) => group.slug).includes(group))
+                    .map((light) => (
+                      <Card
+                        key={light.id}
+                        {...light}
+                        breadcrumb='light'
+                      />
+                    ))}
+                </div>
+              </>
+            ))
+        ))}
+      </section>
 
       <section className='stork'>
         <hr />
@@ -169,11 +100,18 @@ const ServiceLightView = ({ data }) => {
         <ul>
           {data.allStrapiService.nodes.map((service) => (
             <li key={service.id}>
-              <a href={`/${service.slug}/lights`}>{service.name} Lights</a>
+              <Link to={`/${service.slug}/lights`}>{service.name} Lights</Link>
             </li>
           ))}
         </ul>
       </section>
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name} Lighting</Link></Breadcrumb>
+        <Breadcrumb>Lights</Breadcrumb>
+      </Breadcrumbs>
 
       <Footer />
     </>
@@ -198,195 +136,6 @@ export const query = graphql`
       }
     }
 
-    overhead: strapiLightGroup(
-      slug: {eq: "overhead"},
-      services: {elemMatch: {slug: {eq: $slug}}}
-      ) {
-      ...lightGroup
-    }
-
-    overheadlights: allStrapiLight(
-      sort: {weddingOrder: ASC},
-      filter: {
-        services: {elemMatch: {slug: {eq: $slug}}},
-        light_groups: {elemMatch: {slug: {eq: "overhead"}}}
-      }
-    ) {
-      nodes {
-        ...lightCard
-      }
-    }
-
-    accent: strapiLightGroup(
-      slug: {eq: "accent"},
-      services: {elemMatch: {slug: {eq: $slug}}}
-      ) {
-      ...lightGroup
-    }
-
-    accentlights: allStrapiLight(
-      sort: {weddingOrder: ASC},
-      filter: {
-        services: {elemMatch: {slug: {eq: $slug}}},
-        light_groups: {elemMatch: {slug: {eq: "accent"}}}
-        }
-      ) {
-      nodes {
-        ...lightCard
-      }
-    }
-      
-    dance: strapiLightGroup(
-      slug: {eq: "dance"},
-      services: {elemMatch: {slug: {eq: $slug}}}
-      ) {
-      ...lightGroup
-    }
-
-    dancelights: allStrapiLight(
-      sort: {weddingOrder: ASC},
-      filter: {
-        services: {elemMatch: {slug: {eq: $slug}}},
-        light_groups: {elemMatch: {slug: {eq: "dance"}}}
-        }
-      ) {
-      nodes {
-        ...lightCard
-      }
-    }
-    
-    pipe: strapiLightGroup(
-      slug: {eq: "pipe-drape"},
-      services: {elemMatch: {slug: {eq: $slug}}}
-      ) {
-      ...lightGroup
-    }
-
-    pipelights: allStrapiLight(
-      sort: {weddingOrder: ASC},
-      filter: {
-        services: {elemMatch: {slug: {eq: $slug}}},
-        light_groups: {elemMatch: {slug: {eq: "pipe-drape"}}}
-        }
-      ) {
-      nodes {
-        ...lightCard
-      }
-    }
-    
-    path: strapiLightGroup(
-      slug: {eq: "path"},
-      services: {elemMatch: {slug: {eq: $slug}}}
-      ) {
-      ...lightGroup
-    }
-
-    pathlights: allStrapiLight(
-      sort: {weddingOrder: ASC},
-      filter: {
-        services: {elemMatch: {slug: {eq: $slug}}},
-        light_groups: {elemMatch: {slug: {eq: "path"}}}
-        }
-      ) {
-      nodes {
-        ...lightCard
-      }
-    }
-    
-    tree: strapiLightGroup(
-      slug: {eq: "tree"},
-      services: {elemMatch: {slug: {eq: $slug}}}
-      ) {
-      ...lightGroup
-    }
-
-    treelights: allStrapiLight(
-      sort: {weddingOrder: ASC},
-      filter: {
-        services: {elemMatch: {slug: {eq: $slug}}},
-      light_groups: {elemMatch: {slug: {eq: "tree"}}}
-      }
-      ) {
-      nodes {
-        ...lightCard
-      }
-    }
-    
-    building: strapiLightGroup(
-      slug: {eq: "building"},
-      services: {elemMatch: {slug: {eq: $slug}}}
-      ) {
-      ...lightGroup
-    }
-    
-    buildinglights: allStrapiLight(
-      sort: {weddingOrder: ASC},
-      filter: {
-        services: {elemMatch: {slug: {eq: $slug}}},
-        light_groups: {elemMatch: {slug: {eq: "building"}}}
-        }
-      ) {
-      nodes {
-        ...lightCard
-      }
-    }
-
-    greenery: strapiLightGroup(
-      slug: {eq: "greenery"},
-      services: {elemMatch: {slug: {eq: $slug}}}
-      ) {
-      ...lightGroup
-    }
-
-    greenerylights: allStrapiLight(
-      sort: {weddingOrder: ASC},
-      filter: {
-        services: {elemMatch: {slug: {eq: $slug}}},
-        light_groups: {elemMatch: {slug: {eq: "greenery"}}}
-        }) {
-      nodes {
-        ...lightCard
-      }
-    }
-
-    ornaments: strapiLightGroup(
-      slug: {eq: "ornaments"},
-      services: {elemMatch: {slug: {eq: $slug}}}
-      ) {
-      ...lightGroup
-    }
-
-    ornamentslights: allStrapiLight(
-      sort: {weddingOrder: ASC},
-      filter: {
-        services: {elemMatch: {slug: {eq: $slug}}},
-        light_groups: {elemMatch: {slug: {eq: "ornaments"}}}
-        }
-      ) {
-      nodes {
-        ...lightCard
-      }
-    }
-    
-    lantern: strapiLightGroup(
-      slug: {eq: "lantern"},
-      services: {elemMatch: {slug: {eq: $slug}}}
-      ) {
-      ...lightGroup
-    }
-
-    lanternlights: allStrapiLight(
-      sort: {weddingOrder: ASC},
-      filter: {
-        services: {elemMatch: {slug: {eq: $slug}}},
-        light_groups: {elemMatch: {slug: {eq: "lantern"}}}
-        }
-      ) {
-      nodes {
-        ...lightCard
-      }
-    }
-
     allStrapiService(filter: {slug: {ne: $slug}}) {
       nodes {
         id
@@ -395,12 +144,21 @@ export const query = graphql`
       }
     }
 
-    allStrapiLightGroup {
+    allStrapiLight(
+      filter: {services: {elemMatch: {slug: {eq: $slug}}}}
+      ) {
       nodes {
-        slug
-        weddingOrder
+        ...lightCard
+        light_groups {
+            name
+            slug
+            excerpt
+            weddingOrder
+            xmasOrder
+          }
       }
     }
+
 
   }
 `

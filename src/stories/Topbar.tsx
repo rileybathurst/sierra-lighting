@@ -1,21 +1,16 @@
 // this is the Name.tsx file
 import React from 'react';
-import PropTypes from 'prop-types';
+import { faker } from '@faker-js/faker';
 
-export const Topbar = ({ primary }) => {
-  const mode = primary ? 'storybook-Topbar--primary' : 'storybook-Topbar--secondary';
+export const Topbar = () => {
   return (
     <div className="top-bar">
-      <h2><a href="#">topbar</a></h2>
+      <h2>
+        <a href={faker.company.name()}>
+          {faker.company.buzzPhrase()}
+        </a>
+      </h2>
       <hr />
     </div>
   );
-};
-
-Topbar.propTypes = {
-  primary: PropTypes.bool,
-};
-
-Topbar.defaultProps = {
-  primary: false,
 };

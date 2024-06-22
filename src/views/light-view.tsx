@@ -50,7 +50,6 @@ const LightView = ({ light }) => {
     lights: CardType[];
   }
 
-  {/* // ! testing */ }
   light.image?.alternativeText ?
     console.log(`light view image alt ${light.image?.alternativeText}`)
     : console.warn('light view image has no alt');
@@ -94,7 +93,7 @@ const LightView = ({ light }) => {
       <hr className="stork" />
 
       <section className="attribute stork">
-        <h3 className="crest">Use {light.name} for</h3>
+        <h3 className="crest">We use {light.name} for</h3>
         <ul className="">
           {light.services.map((service: ServiceTypes) => {
             return (
@@ -111,55 +110,51 @@ const LightView = ({ light }) => {
         </ul>
       </section>
 
-      {
-        light.projects ?
-          <>
-            <div className="stork">
-              <hr />
-              <h3>Projects Using {light.name}</h3>
-            </div>
-
-
-            <div className="deck">
-              {light.projects.map((project: CardType) => (
-                <Card
-                  key={project.id}
-                  {...project}
-                  breadcrumb="project"
-                />
-              ))}
-            </div>
-          </>
-          : null
-      }
-
-      {
-        light.light_groups ?
-          <div>
-            {light.light_groups.map((group: GroupTypes) => {
-              return (
-                <div key={group.id}>
-
-                  <hr className="stork" />
-                  <h3 className="stork">
-                    Other Lights in {group.name}
-                  </h3>
-
-                  <div className="deck">
-                    {group.lights.map((light: CardType) => (
-                      <Card
-                        key={light.id}
-                        {...light}
-                        breadcrumb="light"
-                      />
-                    ))}
-                  </div>
-                </div>
-              )
-            })}
+      {light.projects.length > 0 ?
+        <>
+          <div className="stork">
+            <hr />
+            <h3>Projects Using {light.name}</h3>
           </div>
-          : null
-      }
+
+
+          <div className="deck">
+            {light.projects.map((project: CardType) => (
+              <Card
+                key={project.id}
+                {...project}
+                breadcrumb="project"
+              />
+            ))}
+          </div>
+        </>
+        : null}
+
+      {light.light_groups ?
+        <div>
+          {light.light_groups.map((group: GroupTypes) => {
+            return (
+              <div key={group.id}>
+
+                <hr className="stork" />
+                <h3 className="stork">
+                  Other Lights in {group.name}
+                </h3>
+
+                <div className="deck">
+                  {group.lights.map((light: CardType) => (
+                    <Card
+                      key={light.id}
+                      {...light}
+                      breadcrumb="light"
+                    />
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+        : null}
 
       <hr className="stork" />
 
