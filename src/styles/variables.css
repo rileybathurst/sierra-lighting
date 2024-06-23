@@ -58,8 +58,8 @@
 
   --font-sans: "josefin-sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif: "mixta-didone", ui-serif, Georgia, Cambria,
-    "Times New Roman" serif;
+  --font-serif: "mixta-didone", ui-serif, Georgia, Cambria, "Times New Roman",
+    serif;
   --font-quote: "BIZ UDPMincho", serif;
 
   --line-height: 1.25rem;
