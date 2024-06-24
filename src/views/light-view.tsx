@@ -50,9 +50,11 @@ const LightView = ({ light }) => {
     lights: CardType[];
   }
 
-  light.image?.alternativeText ?
-    console.log(`light view image alt ${light.image?.alternativeText}`)
-    : console.warn('light view image has no alt');
+  process.env.NODE_ENV === "development" ?
+    light.image?.alternativeText ?
+      console.log(`light view image alt ${light.image?.alternativeText}`)
+      : console.warn('light view image has no alt')
+    : null
 
   return (
     <>

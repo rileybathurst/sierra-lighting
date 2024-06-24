@@ -8,13 +8,18 @@ import type { CardType } from "../types/card-type";
 const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, breadcrumb }: CardType) => {
 
   if (!areas && !excerpt) {
-    console.warn(`${title ?? name} card has no content`);
+    process.env.NODE_ENV === "development" ?
+      console.warn(`${title ?? name} card has no content`)
+      : null
   }
 
   if (areas) {
-    areas.length === 0 && !excerpt ? console.warn(`${title ?? name} card has no content`)
+    process.env.NODE_ENV === "development" ?
+      areas.length === 0 && !excerpt ? console.warn(`${title ?? name} card has no content`)
+        : null
       : null
   }
+
 
   const CardImage = image?.localFile?.childImageSharp?.gatsbyImageData ?? venueImage?.localFile?.childImageSharp?.gatsbyImageData ?? profile?.localFile?.childImageSharp?.gatsbyImageData;
   const CardAlt = image?.alternativeText ?? venueImage?.alternativeText ?? profile?.alternativeText ?? title ?? name ?? "";

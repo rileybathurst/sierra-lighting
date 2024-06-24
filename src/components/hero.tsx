@@ -12,11 +12,15 @@ interface HeroType {
 }
 function Hero({ localFile, alternativeText }: HeroType) {
 
-  localFile.childImageSharp.gatsbyImageData.width <= 960
-    ? console.warn('Hero Image is too small')
+  process.env.NODE_ENV === "development" ?
+    localFile.childImageSharp.gatsbyImageData.width <= 960
+      ? console.warn('Hero Image is too small')
+      : null
     : null
 
-  alternativeText ? null : console.warn('hero has no alt text')
+  process.env.NODE_ENV === "development" ?
+    alternativeText ? null : console.warn('hero has no alt text')
+    : null
 
   return (
     <div className={`hero-image poster ${localFile.childImageSharp.gatsbyImageData.width <= 960 ? 'hero-pelican' : null}`}>
