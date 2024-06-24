@@ -1,6 +1,13 @@
 import React from "react";
 import { Script, useStaticQuery, graphql } from "gatsby";
 
+interface BreadcrumbsTypes {
+  [key: number]: {
+    name: string;
+    item: string;
+  };
+}[]
+
 interface SEO {
   title?: string;
   description?: string;
@@ -42,14 +49,6 @@ export const SEO = (SE0: SEO) => {
     }
   `);
 
-
-
-  interface BreadcrumbsTypes {
-    [key: number]: {
-      name: string;
-      item: string;
-    };
-  }[]
   // I could probably pass it two arguments instead but for now
   function Breadcrumbs(breadcrumbs: BreadcrumbsTypes) {
 
@@ -62,21 +61,21 @@ export const SEO = (SE0: SEO) => {
     return (
       <Script type="application/ld+json">
         {`
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            ${Object.entries(breadcrumbs).map(([key, breadcrumb]) => {
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              ${Object.entries(breadcrumbs).map(([key, breadcrumb]) => {
           return `{
-          "@type": "ListItem",
-          "position": ${Number.parseInt(key) + 1},
-          "name": "${breadcrumb.name}",
-          "item": "${data.strapiAbout.url}/${breadcrumb.item}"
-        }`
+                  "@type": "ListItem",
+                  "position": ${Number.parseInt(key) + 1},
+                  "name": "${breadcrumb.name}",
+                  "item": "${data.strapiAbout.url}/${breadcrumb.item}"
+                }`
         })}
-          ]
-        }
-      `}
+            ]
+          }
+        `}
       </Script>
     );
   }
@@ -105,33 +104,33 @@ export const SEO = (SE0: SEO) => {
       <Script type="application/ld+json">
         {`
           {
-          "@context": "https://schema.org/",
-          "@type": "LocalBusiness",
-          "name": "${data.strapiAbout.businessName}",
-          "description": "${data.strapiAbout.slogan}",
-          "url": "${data.strapiAbout.url}",
-          "alternateName": "${data.strapiAbout.alternateName}",
-          "image": "${data.strapiAbout.defaultImage}",
-          "openingHours": "${data.strapiAbout.openingHours}",
-          "paymentAccepted": "${data.strapiAbout.paymentAccepted}",
-          "telephone": "${data.strapiAbout.telephone}",
-          "email": "${data.strapiAbout.email}"
-          "geo": {
-            "@type": "GeoCoordinates",
-          "latitude": "${data.strapiAbout.geoLatitude}",
-          "longitude": "${data.strapiAbout.geoLongitude}"
-              },
-          "areaServed": {
-            "@type": "GeoCircle",
-          "geoMidpoint": {
-            "@type": "GeoCoordinates",
-          "latitude": "${data.strapiAbout.geoLatitude}",
-          "longitude": "${data.strapiAbout.geLongitude}"
+            "@context": "https://schema.org/",
+            "@type": "LocalBusiness",
+            "name": "${data.strapiAbout.businessName}",
+            "description": "${data.strapiAbout.slogan}",
+            "url": "${data.strapiAbout.url}",
+            "alternateName": "${data.strapiAbout.alternateName}",
+            "image": "${data.strapiAbout.defaultImage}",
+            "openingHours": "${data.strapiAbout.openingHours}",
+            "paymentAccepted": "${data.strapiAbout.paymentAccepted}",
+            "telephone": "${data.strapiAbout.telephone}",
+            "email": "${data.strapiAbout.email}",
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "${data.strapiAbout.geoLatitude}",
+              "longitude": "${data.strapiAbout.geoLongitude}"
                 },
-          "geoRadius": "${data.strapiAbout.geoRadius}"
+            "areaServed": {
+              "@type": "GeoCircle",
+              "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": "${data.strapiAbout.geoLatitude}",
+                "longitude": "${data.strapiAbout.geLongitude}"
               },
-            }
-          `}
+              "geoRadius": "${data.strapiAbout.geoRadius}"
+            },
+          }
+        `}
       </Script>
 
       <Breadcrumbs
