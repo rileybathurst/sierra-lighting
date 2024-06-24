@@ -47,10 +47,6 @@ const ProjectsPage = () => {
     projects: CardType[];
   }
 
-  allStrapiService.nodes.map((service: ServiceType) => (
-    console.log(service)
-  ))
-
   return (
     <>
       <Header />

@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ColorCard({ color, variables }) {
-  console.log('variables', variables);
+  // console.log('variables', variables);
 
   return (
     <section

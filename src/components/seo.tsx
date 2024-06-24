@@ -58,6 +58,8 @@ export const SEO = (SE0: SEO) => {
 
     // console.log(rest);
 
+    // auto format is weird on here dont manually fix it
+    // (key) + 1 js counts from 0 breadcrumbs count from 1
     return (
       <Script type="application/ld+json">
         {`
@@ -67,11 +69,11 @@ export const SEO = (SE0: SEO) => {
             "itemListElement": [
               ${Object.entries(breadcrumbs).map(([key, breadcrumb]) => {
           return `{
-                  "@type": "ListItem",
-                  "position": ${Number.parseInt(key) + 1},
-                  "name": "${breadcrumb.name}",
-                  "item": "${data.strapiAbout.url}/${breadcrumb.item}"
-                }`
+                        "@type": "ListItem",
+                        "position": ${Number.parseInt(key) + 1},
+                        "name": "${breadcrumb.name}",
+                        "item": "${data.strapiAbout.url}/${breadcrumb.item}"
+                      }`
         })}
             ]
           }
@@ -119,7 +121,7 @@ export const SEO = (SE0: SEO) => {
               "@type": "GeoCoordinates",
               "latitude": "${data.strapiAbout.geoLatitude}",
               "longitude": "${data.strapiAbout.geoLongitude}"
-                },
+            },
             "areaServed": {
               "@type": "GeoCircle",
               "geoMidpoint": {
@@ -128,7 +130,7 @@ export const SEO = (SE0: SEO) => {
                 "longitude": "${data.strapiAbout.geLongitude}"
               },
               "geoRadius": "${data.strapiAbout.geoRadius}"
-            },
+            }
           }
         `}
       </Script>

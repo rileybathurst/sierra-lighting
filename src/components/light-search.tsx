@@ -64,7 +64,7 @@ function LightSearch() {
     setSearchQuery(e.target.value);
     setSearchResults(search.search(searchQuery));
 
-    console.log(search.search(searchQuery));
+    // console.log(search.search(searchQuery));
   }
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
