@@ -1,3 +1,5 @@
+// TODO: im getting a @type organization error for address but not sure from where
+
 import React from "react";
 import { Script, useStaticQuery, graphql } from "gatsby";
 

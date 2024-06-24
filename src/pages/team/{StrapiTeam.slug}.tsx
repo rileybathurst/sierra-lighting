@@ -42,7 +42,7 @@ export const Head = ({ data }) => {
       />
 
       {/* // TODO: jobTitle */}
-      {/* TODO: move the organization to seo */}
+      {/* TODO: move the organization to seo file */}
       {/* works for has to be an org but that needs an address so normally use local bus */}
       <Script type="application/ld+json">
         {`
@@ -56,8 +56,8 @@ export const Head = ({ data }) => {
             "jobTitle": "Team Member",
             "worksFor": {
               "@type": "Organization",
-              "name": "${data.strapiAbout.businessName}"
-                "address": {
+              "name": "${data.strapiAbout.businessName}",
+              "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "12831 Dulzura Street"
                 "addressLocality": "Truckee",
@@ -72,7 +72,3 @@ export const Head = ({ data }) => {
     </>
   )
 }
-
-
-
-> >  
