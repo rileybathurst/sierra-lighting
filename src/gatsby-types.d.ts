@@ -2250,6 +2250,7 @@ type Query_strapiProjectArgs = {
   slug: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   teams: InputMaybe<STRAPI_TEAMFilterListInput>;
+  testimonial: InputMaybe<STRAPI_TESTIMONIALFilterInput>;
   title: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
@@ -5491,6 +5492,7 @@ type STRAPI_PROJECT = Node & {
   readonly slug: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly teams: Maybe<ReadonlyArray<Maybe<STRAPI_TEAM>>>;
+  readonly testimonial: Maybe<STRAPI_TESTIMONIAL>;
   readonly title: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly vendors: Maybe<ReadonlyArray<Maybe<STRAPI_VENDOR>>>;
@@ -5609,6 +5611,7 @@ type STRAPI_PROJECTFieldSelector = {
   readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly teams: InputMaybe<STRAPI_TEAMFieldSelector>;
+  readonly testimonial: InputMaybe<STRAPI_TESTIMONIALFieldSelector>;
   readonly title: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORFieldSelector>;
@@ -5637,6 +5640,7 @@ type STRAPI_PROJECTFilterInput = {
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly teams: InputMaybe<STRAPI_TEAMFilterListInput>;
+  readonly testimonial: InputMaybe<STRAPI_TESTIMONIALFilterInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
@@ -5710,6 +5714,7 @@ type STRAPI_PROJECTSortInput = {
   readonly slug: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly teams: InputMaybe<STRAPI_TEAMSortInput>;
+  readonly testimonial: InputMaybe<STRAPI_TESTIMONIALSortInput>;
   readonly title: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORSortInput>;
@@ -9808,7 +9813,7 @@ type homeGalleryFragmentFragment = { readonly id: string, readonly name: string 
 type IndexQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type IndexQueryQuery = { readonly strapiAbout: { readonly slogan: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiTestimonial: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly customer: string | null, readonly platform: string | null, readonly excerpt: string | null, readonly createdAt: string | null, readonly stars: number | null, readonly title: string | null, readonly position: string | null }> }, readonly allStrapiQuality: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly eyebrow: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null }> } };
+type IndexQueryQuery = { readonly strapiAbout: { readonly slogan: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiTestimonial: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly customer: string | null, readonly platform: string | null, readonly excerpt: string | null, readonly createdAt: string | null, readonly stars: number | null, readonly title: string | null, readonly position: string | null, readonly project: { readonly slug: string | null, readonly title: string | null } | null }> }, readonly allStrapiQuality: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly eyebrow: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null }> } };
 
 type lightCardFragment = { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null };
 
@@ -9857,7 +9862,7 @@ type ProjectQueryQueryVariables = Exact<{
 }>;
 
 
-type ProjectQueryQuery = { readonly strapiProject: { readonly id: string, readonly title: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly ogimage: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly gallery: ReadonlyArray<{ readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null> | null, readonly lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly state: string | null, readonly slug: string | null } | null> | null, readonly teams: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null } | null> | null, readonly vendors: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly service: string | null } | null> | null, readonly venue: { readonly name: string | null, readonly slug: string | null } | null, readonly services: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null } | null> | null } | null, readonly triptych: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly additional: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null }> }, readonly allStrapiProject: { readonly nodes: ReadonlyArray<{ readonly title: string | null, readonly id: string, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
+type ProjectQueryQuery = { readonly strapiProject: { readonly id: string, readonly title: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly ogimage: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly gallery: ReadonlyArray<{ readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null> | null, readonly lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly state: string | null, readonly slug: string | null } | null> | null, readonly teams: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null } | null> | null, readonly vendors: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly service: string | null } | null> | null, readonly venue: { readonly name: string | null, readonly slug: string | null } | null, readonly services: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null } | null> | null, readonly testimonial: { readonly id: string, readonly customer: string | null, readonly position: string | null, readonly review: string | null, readonly vendor: { readonly name: string | null, readonly slug: string | null } | null } | null } | null, readonly triptych: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly additional: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null }> }, readonly allStrapiProject: { readonly nodes: ReadonlyArray<{ readonly title: string | null, readonly id: string, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
 
 type ProjectsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

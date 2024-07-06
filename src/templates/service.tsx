@@ -1,3 +1,5 @@
+// TODO: needs testimonials per service
+
 import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
 import MuxPlayer from '@mux/mux-player-react';
@@ -131,6 +133,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
                 key={item.breadcrumb}
                 className={`capitalize project-title ${item.breadcrumb}-title`}
               >
+                {/* // ! project is breaking when its singular on social events */}
                 <Link to={`/${item.breadcrumb}`}>
                   {item.breadcrumb}
                 </Link>

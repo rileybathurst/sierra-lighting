@@ -3,11 +3,7 @@
 /*------------------------------------*/
 
 a {
-  color: hsl(
-    var(--honey),
-    100%,
-    35%
-  ); /*  * lightest I can go to get aa contrast ratio */
+  color: var(--honey-600);
   transition: var(--moment);
 
   @media (prefers-color-scheme: dark) {
@@ -19,7 +15,7 @@ a {
 a:hover,
 .a-hover {
   text-decoration: none; /*  TODO: add somenice animation to this */
-  color: hsl(var(--honey), 75%, 25%); /*  ! testing */
+  color: var(--honey-700);
 
   @media (prefers-color-scheme: dark) {
     color: hsl(var(--denim), 37%, 50%);

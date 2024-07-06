@@ -125,11 +125,17 @@ header {
   }
 }
 
-.testimonials svg {
-  fill: hsl(var(--honey), 100%, 50%);
-  outline: 1px solid var(--honey-50);
-
+.testimonial {
+  background-color: var(--brilliance);
   @media (prefers-color-scheme: dark) {
-    outline: none;
+    background-color: var(--denim-750);
+  }
+  svg {
+    fill: hsl(var(--honey), 100%, 50%);
+    outline: 1px solid var(--honey-50);
+
+    @media (prefers-color-scheme: dark) {
+      outline: none;
+    }
   }
 }

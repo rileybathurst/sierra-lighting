@@ -74,6 +74,17 @@ export const query = graphql`
         slug
       }
 
+      testimonial {
+        id
+        customer
+        position
+        review
+        vendor {
+          name
+          slug
+        }
+      }
+
     }
 
     triptych: allStrapiLight(limit: 3, filter: {projects: {elemMatch: {slug: {eq: "red"}}}}) {

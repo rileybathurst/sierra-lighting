@@ -254,6 +254,7 @@ ol li {
 
   p {
     white-space: normal; /*  reset */
+    margin-block-end: 0; /* let the grid do the work */
   }
 }
 

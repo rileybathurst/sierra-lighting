@@ -11,6 +11,7 @@ import Card from "../components/card";
 import Start from "../components/start";
 import Hero from "../components/hero";
 import type { CardType } from "../types/card-type";
+import Testimonial from "../components/testimonial";
 
 interface ProjectViewTypes {
   project: {
@@ -125,6 +126,13 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
             </div>
           ))}
         </section>
+        : null}
+
+
+      {project.testimonial ?
+        <div className="stork">
+          <Testimonial {...project.testimonial} />
+        </div>
         : null}
 
       {project.venue || project.areas || project.vendors || project.team ?

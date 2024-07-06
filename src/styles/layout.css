@@ -17,7 +17,12 @@ main {
   padding-inline: var(--vinson);
 }
 
-.stork {
+.stork,
+.trusted,
+.service-area,
+.services,
+.testimonials,
+.contact {
   max-width: var(--stork);
   margin-inline: auto;
   padding-inline: var(--vinson);
@@ -256,16 +261,6 @@ header {
   }
 }
 
-.trusted,
-.service-area,
-.services,
-.testimonials,
-.contact {
-  max-width: var(--stork);
-  margin-inline: auto;
-  padding-inline: var(--vinson);
-}
-
 @media (max-width: 60rem) {
   .contact {
     padding-inline: 0;
@@ -436,42 +431,40 @@ footer {
 
 /*------------------*/
 /* TESTIMONIALS */
-/*  TODO inception rule */
-/* reset */
-.testimonials {
-  /*  match card */
-  .testimonial {
-    list-style: none;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    margin-block-end: 1rem;
-    box-shadow: var(--mesosphere);
+.testimonial {
+  list-style: none;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-block-end: var(--kilimanjaro);
+  box-shadow: var(--mesosphere);
+  /* reset */
+  figure {
+    margin: 0; /*  reset */
     /* reset */
-    figure {
+    blockquote {
       margin: 0; /*  reset */
-      /* reset */
-      blockquote {
-        margin: 0; /*  reset */
-        display: grid;
-        gap: 1rem;
+      display: grid;
+      gap: 1rem;
 
-        /*  TODO inception rule */
-        > * {
-          grid-column: 2;
-        }
+      /*  TODO inception rule */
+      > * {
+        grid-column: 2;
       }
-    }
-
-    .testimonial--quote_mark {
-      grid-column: 1;
-    }
-
-    .testimonial--stars {
-      list-style: none;
-      display: flex;
     }
   }
 
+  .testimonial--quote_mark {
+    grid-column: 1;
+  }
+
+  .testimonial--stars {
+    list-style: none;
+    display: flex;
+  }
+}
+
+.testimonials {
+  margin-block-end: var(--aconcagua);
   hr {
     padding-block-start: 1.5rem;
   }
@@ -484,9 +477,10 @@ footer {
     /*  padding-block-end: 1.5rem; */
     font-size: 1.25rem;
     line-height: 1.875rem;
-    margin-block-end: 0.625rem;
+    margin-block-end: 0;
   }
 
+  /* TODO: this seems like a mess */
   .together h3,
   .together p {
     display: inline-block;

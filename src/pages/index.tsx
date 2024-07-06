@@ -60,6 +60,11 @@ const IndexPage = () => {
           stars
           title
           position
+
+          project {
+            slug
+            title
+          }
         }
       }
 
@@ -99,6 +104,11 @@ const IndexPage = () => {
     stars: number;
     title: string;
     position: string;
+
+    project?: {
+      slug?: string;
+      title?: string;
+    }
   }
 
   interface ServiceTypes {
@@ -186,6 +196,13 @@ const IndexPage = () => {
                       <p className="sr-only">1/5stars</p>
                     </div>
                   </div> */}
+
+                  {testimonial.project ?
+                    <h4>
+                      <Link to={`/${testimonial.project.slug}`}>{testimonial.project.title}</Link>
+                    </h4>
+                    : null}
+
                   <p>{testimonial.excerpt}</p>
                   {/* // TODO: className="together" is a bad name */}
                   <div className="together">

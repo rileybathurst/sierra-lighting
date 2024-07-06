@@ -2,6 +2,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
+import { faker } from "@faker-js/faker";
 
 import Star from "../images/star.tsx";
 
@@ -16,86 +17,43 @@ export const Testimonial = ({
     ? "storybook-Testimonial--primary"
     : "storybook-Testimonial--secondary";
   return (
-    <main className="stork">
-      <ul className="testimonials">
-        <li className="testimonial">
-          <figure>
-            <blockquote>
-              <h3 className="sr-only">testimonial title</h3>
-              <ul className="testimonial--stars">
-                <li>
-                  <Star />
-                  <Star />
-                  <Star />
-                  <Star />
-                  <Star />
-                </li>
-              </ul>
-              {/* // TODO: storybook isnt bringing in the BIZ UDPMincho font */}
-              <p className="testimonial--quote_mark range">&quot;</p>
-              <p>
-                What do they got in there? King Kong? My dad once told me, laugh
-                and the world laughs with you, Cry, and I'll give you something
-                to cry about you little bastard! Remind me to thank John for a
-                lovely weekend. You know what? It is beets. I've crashed into a
-                beet truck.
-              </p>
-              <figcaption>
-                <h4 className="range">Everything</h4>
-                <p className="crest">
-                  <strong>Business Name</strong> - Position
-                </p>
-              </figcaption>
-            </blockquote>
-          </figure>
-        </li>
-
-        <li className="testimonial">
-          <figure>
-            <blockquote>
-              <p className="testimonial--quote_mark range">&quot;</p>
-              <p>
-                What do they got in there? King Kong? My dad once told me, laugh
-                and the world laughs with you, Cry, and I'll give you something
-                to cry about you little bastard! Remind me to thank John for a
-                lovely weekend. You know what? It is beets. I've crashed into a
-                beet truck.
-              </p>
-              <figcaption>
-                <h4 className="range">No Stars</h4>
-                <p className="crest">
-                  <strong>Business Name</strong> - Position
-                </p>
-              </figcaption>
-            </blockquote>
-          </figure>
-        </li>
-
-        <li className="testimonial">
-          <figure>
-            <blockquote>
-              <p className="testimonial--quote_mark range">&quot;</p>
-              <p>
-                What do they got in there? King Kong? My dad once told me, laugh
-                and the world laughs with you, Cry, and I'll give you something
-                to cry about you little bastard! Remind me to thank John for a
-                lovely weekend. You know what? It is beets. I've crashed into a
-                beet truck.
-              </p>
-              <figcaption>
-                <h4 className="range">No Position</h4>
-                <p className="crest">
-                  <strong>Business Name</strong>
-                </p>
-              </figcaption>
-            </blockquote>
-          </figure>
-        </li>
-      </ul>
-
-      <h3 className="crest">Hear what other customers say about us</h3>
-      <h4 className="range">More Reviews</h4>
-    </main>
+    <li className="testimonial">
+      <figure>
+        <blockquote>
+          {/* // TODO: this isnt really an either or */}
+          {faker.datatype.boolean() ? (
+            <ul className="testimonial--stars">
+              <li>
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+                <Star />
+              </li>
+            </ul>
+          ) : (
+            <h3>
+              <a href="#">project name</a>
+            </h3>
+          )}
+          <p className="testimonial--quote_mark range">&quot;</p>
+          <p>{faker.lorem.paragraph()}</p>
+          <figcaption>
+            <h4>
+              {faker.datatype.boolean()
+                ? faker.person.fullName()
+                : faker.person.firstName()}
+            </h4>
+            <p>
+              <strong>{faker.company.name()}</strong>
+              {faker.datatype.boolean() ? "- Position" : null}
+            </p>
+          </figcaption>
+        </blockquote>
+        {/* // TODO: project */}
+        {/* // TODO: services or is that in the org */}
+      </figure>
+    </li>
   );
 };
 

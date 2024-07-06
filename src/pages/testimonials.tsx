@@ -83,49 +83,47 @@ const TestimonialsPage = () => {
 
         <p>Welcome to our testimonials page, where our satisfied customers speak for us! At Sierra Lighting, we pride ourselves on providing exceptional products/services and ensuring that our clients' experiences exceed expectations, year after year! Don't just take our word for it, hear directly from those who have experienced the quality, reliability, and excellence we deliver firsthand. Dive into the testimonials below to discover why our customers choose us and why you should too!</p>
 
-        <div itemProp="mainEntity" itemScope itemType="https://schema.org/LocalBusiness">
-          <h1 className="sr-only" itemProp="name">Sierra Lighting</h1>
+        <ul itemProp="review" className="testimonials">
 
-          <ul itemProp="review" className="testimonials">
-            {allStrapiTestimonial.nodes.map(testimonial => (
-              <li key={testimonial.id} className='testimonial'>
-                <figure>
-                  <blockquote>
-                    <h2 className="sr-only">{testimonial.title}</h2>
+          {/* // TODO: make this a component for the page and the index */}
+          {allStrapiTestimonial.nodes.map(testimonial => (
+            <li key={testimonial.id} className='testimonial'>
+              <figure>
+                <blockquote>
+                  <h2 className="sr-only">{testimonial.title}</h2>
 
-                    <TestimonialRanking stars={testimonial.stars} />
-                    <p className='testimonial--quote_mark range'>&ldquo;</p>
-                    <p itemProp="reviewBody">{testimonial.review}</p>
+                  <TestimonialRanking stars={testimonial.stars} />
+                  <p className='testimonial--quote_mark range'>&ldquo;</p>
+                  <p itemProp="reviewBody">{testimonial.review}</p>
 
 
-                    <figcaption>
-                      <span itemProp="author" itemScope itemType="https://schema.org/Person">
+                  <figcaption>
+                    <span itemProp="author" itemScope itemType="https://schema.org/Person">
 
-                        <TestimonialLink
-                          aref={testimonial.link}
-                          customer={testimonial.customer}
-                          vendor={testimonial?.vendor}
-                          position={testimonial?.position}
-                          platform={testimonial?.platform}
-                        />
+                      <TestimonialLink
+                        aref={testimonial.link}
+                        customer={testimonial.customer}
+                        vendor={testimonial?.vendor}
+                        position={testimonial?.position}
+                        platform={testimonial?.platform}
+                      />
 
-                      </span>
-                      <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
-                    </figcaption>
-                    {testimonial.stars ? <div className="sr-only">
-                      <p>
-                        <span itemProp="worstRating">1</span>
-                        <span itemProp="ratingValue">{testimonial.stars}</span><span>/</span>
-                        <span itemProp="bestRating">5</span>stars
-                      </p>
-                    </div>
-                      : null}
-                  </blockquote>
-                </figure>
-              </li>
-            ))}
-          </ul>
-        </div>
+                    </span>
+                    <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
+                  </figcaption>
+                  {testimonial.stars ? <div className="sr-only">
+                    <p>
+                      <span itemProp="worstRating">1</span>
+                      <span itemProp="ratingValue">{testimonial.stars}</span><span>/</span>
+                      <span itemProp="bestRating">5</span>stars
+                    </p>
+                  </div>
+                    : null}
+                </blockquote>
+              </figure>
+            </li>
+          ))}
+        </ul>
 
         <hr />
         <h3 className="crest">
@@ -196,7 +194,9 @@ const TestimonialsPage = () => {
           <button type="submit">Send</button>
         </form>
 
-      </main>
+        <hr />
+
+      </main >
 
       <Footer />
 
