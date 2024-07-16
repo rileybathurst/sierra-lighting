@@ -12,6 +12,10 @@ svg {
 .logo {
   max-width: 10rem;
   fill: var(--black-metal);
+
+  @media (prefers-color-scheme: dark) {
+    fill: var(--brilliance);
+  }
 }
 
 /*------------------*/

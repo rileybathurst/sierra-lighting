@@ -93,6 +93,21 @@ header {
   }
 }
 
+/*------------------------------------*/
+/* #QUALITIES */
+/*------------------------------------*/
+
+.qualities {
+  background: hsl(var(--honey), 100%, 97.5%);
+  box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 97.5%);
+  clip-path: inset(0 -100vmax);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--denim-700);
+    box-shadow: 0 0 0 100vmax var(--denim-700);
+  }
+}
+
 /* match the card --- */
 /* TESTIMONOIALS */
 /*------------------*/
