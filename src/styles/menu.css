@@ -135,7 +135,6 @@
 /*------------------*/
 
 .hamburger {
-  margin-inline-end: 1rem;
   position: relative;
   transition: var(--moment);
 
@@ -188,9 +187,6 @@
   display: block;
   margin-block: 0.5rem;
   transition: var(--moment);
-
-  /*  TODO this is not working */
-  background-color: hsl(var(--honey__base), var(--dull));
 
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 37%, 37%);
