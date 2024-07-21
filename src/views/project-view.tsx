@@ -235,16 +235,19 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
       {/* // TODO: this design need love */}
       {additional ?
         <div className="stork">
-          <section className="">
-            {additional.map((light) => (
-              <div
-                key={light?.id}
-              >
-                <Link to={`/light/${light.slug}`}>
-                  {light.name}
-                </Link>
-              </div>
-            ))}
+          <section className="attribute">
+            <ul>
+              {additional.map((light) => (
+                <li
+                  key={light?.id}
+                  className="range denali"
+                >
+                  <Link to={`/light/${light.slug}`}>
+                    {light.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </section>
         </div>
         : null}

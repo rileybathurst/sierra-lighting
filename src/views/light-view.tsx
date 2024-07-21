@@ -36,7 +36,7 @@ function Aliases({ alias }: AliasTypes) {
   );
 }
 
-const LightView = ({ light }) => {
+const LightView = ({ light, other }) => {
 
   interface ServiceTypes {
     id: React.Key;
@@ -54,7 +54,7 @@ const LightView = ({ light }) => {
     light.image?.alternativeText ?
       console.log(`light view image alt ${light.image?.alternativeText}`)
       : console.warn('light view image has no alt')
-    : null
+    : null;
 
   return (
     <>
@@ -132,7 +132,7 @@ const LightView = ({ light }) => {
         </>
         : null}
 
-      {light.light_groups ?
+      {light.light_groups.length > 0 ?
         <div>
           {light.light_groups.map((group: GroupTypes) => {
             return (
@@ -144,24 +144,34 @@ const LightView = ({ light }) => {
                 </h3>
 
                 <div className="deck">
-                  {group.lights.map((light: CardType) => (
-                    <Card
-                      key={light.id}
-                      {...light}
-                      breadcrumb="light"
-                    />
-                  ))}
+                  {group.lights
+                    .filter((lightSlug) => lightSlug.slug !== light.slug)
+                    .map((light: CardType) => (
+                      <Card
+                        key={light.id}
+                        {...light}
+                        breadcrumb="light"
+                      />
+                    ))}
                 </div>
               </div>
             )
           })}
         </div>
-        : null}
+        :
+        other.nodes.map((light: CardType) => (
+          <Card
+            key={light.id}
+            {...light}
+            breadcrumb="light"
+          />
+        ))
+      }
 
       <hr className="stork" />
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/light/">Lights</Link></Breadcrumb>
+        <Breadcrumb><Link to="/lights/">Lights</Link></Breadcrumb>
         <Breadcrumb>{light.name}</Breadcrumb>
       </Breadcrumbs>
 

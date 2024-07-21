@@ -10,7 +10,51 @@ import ReactMarkdown from 'react-markdown';
 import SEO from '../components/seo';
 import Card from '../components/card';
 
-const ServiceLightView = ({ data }) => {
+interface ServiceLightViewTypes {
+  data: {
+    strapiService: {
+      id: string,
+      name: string,
+      slug: string,
+      description: {
+        data: {
+          description: string
+        }
+      }
+    },
+    allStrapiService: {
+      nodes: {
+        id: string,
+        name: string,
+        slug: string,
+      }[]
+    },
+    allStrapiLight: {
+      nodes: {
+        id: string,
+        name: string,
+        slug: string,
+        excerpt: string,
+        light_groups: {
+          name: string,
+          slug: string,
+          excerpt: string,
+          weddingOrder: number,
+          xmasOrder: number,
+        }[]
+      }[]
+    },
+    allStrapiLightGroup: {
+      nodes: {
+        name: string,
+        slug: string,
+        weddingOrder: number,
+        xmasOrder: number,
+      }[]
+    }
+  }
+}
+const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
 
   // sort by value
   const events = [
@@ -18,19 +62,17 @@ const ServiceLightView = ({ data }) => {
     'Non-wedding Events',
     'Commercial Events'
   ]
-  // if (data.strapiService.name === 'Wedding') {
-  /*   if (events.includes(data.strapiService.name)) {
-      groups.sort((a, b) => a[0].weddingOrder - b[0].weddingOrder);
-    } */
 
   const xmas = [
     'Residential Christmas',
     'Commercial Christmas'
   ]
-  /*   if (xmas.includes(data.strapiService.name)) {
-      groups.sort((a, b) => a[0]?.xmasOrder - b[0]?.xmasOrder);
-    } */
 
+  if (events.includes(data.strapiService.name)) {
+    data.allStrapiLightGroup.nodes.sort((a, b) => a.weddingOrder - b.weddingOrder);
+  } else if (xmas.includes(data.strapiService.name)) {
+    data.allStrapiLightGroup.nodes.sort((a, b) => a.xmasOrder - b.xmasOrder);
+  }
 
   const lightGroupSet = new Set();
   for (const light of data.allStrapiLight.nodes) {
@@ -59,6 +101,36 @@ const ServiceLightView = ({ data }) => {
         </section>
       </main>
 
+      <section className='stork'>
+        <hr />
+        <p>Filter by type:</p>
+        <ul>
+          {data.allStrapiLightGroup.nodes
+            .filter((group) => lightGroupArray.includes(group.slug))
+
+            // TODO: sort by value
+            /* if (data.strapiService.slug === 'wedding') {
+                        .sort((a, b) => a.weddingOrder - b.weddingOrder)
+                      } else if(data.strapiService.slug === 'christmas') {
+                        .sort((a, b) => a.xmasOrder - b.xmasOrder)
+                      } */
+            // {data.strapiService.slug}
+            // ? do I need to put the sort order before the return?
+
+
+
+
+            .map((group) => (
+              <li key={group.slug}>
+                <Link to={`#${group.slug}`}>
+                  {group.name}
+                </Link>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
       <section>
         {lightGroupArray.map((group) => (
           data.allStrapiLight.nodes
@@ -69,6 +141,7 @@ const ServiceLightView = ({ data }) => {
                 <div
                   key={group}
                   className='stork'
+                  id={light.light_groups[0].slug}
                 >
                   <hr />
                   <h2>
@@ -150,15 +223,23 @@ export const query = graphql`
       nodes {
         ...lightCard
         light_groups {
-            name
-            slug
-            excerpt
-            weddingOrder
-            xmasOrder
-          }
+          name
+          slug
+          excerpt
+          weddingOrder
+          xmasOrder
+        }
       }
     }
 
+    allStrapiLightGroup {
+      nodes {
+        name
+        slug
+        weddingOrder
+        xmasOrder
+      }
+    }
 
   }
 `
