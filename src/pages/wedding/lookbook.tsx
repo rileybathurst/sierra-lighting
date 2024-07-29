@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
@@ -9,9 +9,19 @@ import Footer from "../../components/footer";
 import Start from "../../components/start";
 import SEO from "../../components/seo";
 
-function LinkedLook({ image, lights }: { image: any, lights: any[] }) {
-
-  // console.log(image.localFile.childImageSharp.fluid.aspectRatio);
+type LinkedLookImageTypes = {
+  localFile: {
+    childImageSharp: {
+      gatsbyImageData: IGatsbyImageData
+    }
+  }
+  alternativeText: string
+}
+type LinkedLooklightsTypes = {
+  slug: string
+  name: string
+}
+function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: LinkedLooklightsTypes[] }) {
 
   if (lights.length === 1) {
     return (
@@ -71,9 +81,6 @@ const LookbookPage = () => {
             localFile {
               childImageSharp {
                 gatsbyImageData
-                fluid {
-                  aspectRatio
-                }
               }
             }
             alternativeText
@@ -88,11 +95,21 @@ const LookbookPage = () => {
     }
   `)
 
+  type LookbookTypes = {
+    id: string
+    spread: boolean
+    order: number
+    flex: boolean
+    image: LinkedLookImageTypes
+    lights: LinkedLooklightsTypes[]
+  }
+
   return (
     <>
       <Header largeLogo={true} />
 
       <main className="stork">
+        {/* // TODO wedding needs to become a variable */}
         <h2 className="crest">Wedding</h2>
         <h1 className="range">2024 Lookbook</h1>
         <Start className="button--left-align" />
@@ -104,7 +121,7 @@ const LookbookPage = () => {
           columnsCountBreakPoints={{ 320: 1, 740: 2, 960: 3 }}
         >
           <Masonry className="test">
-            {allStrapiLookbook.nodes.map((lookbook) => (
+            {allStrapiLookbook.nodes.map((lookbook: LookbookTypes) => (
               <LinkedLook
                 key={lookbook.id}
                 image={lookbook.image}

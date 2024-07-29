@@ -5,7 +5,7 @@ import { Link } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import type { CardType } from "../types/card-type";
 
-const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, breadcrumb }: CardType) => {
+const Card = ({ id, image, venueImage, profile, title, name, slug, excerpt, areas, breadcrumb }: CardType) => {
 
   if (!areas && !excerpt) {
     process.env.NODE_ENV === "development" ?
@@ -20,16 +20,17 @@ const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, b
       : null
   }
 
-
   const CardImage = image?.localFile?.childImageSharp?.gatsbyImageData ?? venueImage?.localFile?.childImageSharp?.gatsbyImageData ?? profile?.localFile?.childImageSharp?.gatsbyImageData;
   const CardAlt = image?.alternativeText ?? venueImage?.alternativeText ?? profile?.alternativeText ?? title ?? name ?? "";
 
-  image?.alternativeText ?
+  image?.alternativeText || venueImage?.alternativeText ?
     null
     : console.warn(`${title ?? name} image has no alt`);
 
   return (
-    <section className="card">
+    <section
+      key={id}
+      className="card">
       <Link
         to={`/${breadcrumb}/${slug}`}
         className="image"

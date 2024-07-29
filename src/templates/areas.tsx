@@ -12,6 +12,7 @@ import StateAbbreviation from "../components/state-abbreviation";
 import Markdown from "react-markdown";
 import Card from '../components/card';
 import type { CardType } from '../types/card-type';
+import type { IGatsbyImageData } from 'gatsby-plugin-image';
 
 
 // this is no longer right as there might only be sub venues
@@ -23,8 +24,6 @@ interface VenuesProps {
 }
 
 function Venues({ name, venues, areas }: VenuesProps) {
-
-  // console.log(areas);
 
   const subVenues = [];
   areas.map((area) => {
@@ -74,7 +73,37 @@ function Venues({ name, venues, areas }: VenuesProps) {
   return null
 }
 
-const AreasTemplate = ({ data }) => {
+type AreasTemplateTypes = {
+  data: {
+    strapiArea: {
+      id: string;
+      name: string;
+      tagline: string;
+      description: {
+        data: {
+          description: string;
+        };
+      };
+      state: string;
+      slug: string;
+      image: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+          url: string;
+        };
+        alternativeText: string;
+      };
+      areas: SubAreasType[];
+      venues: CardType[];
+    };
+    strapiAbout: {
+      businessName: string;
+    };
+  };
+};
+const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
   return (
     <>
@@ -88,7 +117,7 @@ const AreasTemplate = ({ data }) => {
         <article className="stork">
           <h2 className="crest">{data.strapiArea.tagline}</h2>
           <h1 className="range">
-            {data.strapiArea.name}&nbsp;
+            {data.strapiArea.name},&nbsp;
             <StateAbbreviation state={data.strapiArea.state} />
           </h1>
           <Markdown

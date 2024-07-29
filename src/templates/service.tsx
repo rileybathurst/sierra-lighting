@@ -44,28 +44,45 @@ interface ServiceTypes {
 }
 
 interface BaseTypes {
-  projects?: {
-    breadcrumb: string;
-    order: number;
-    card: CardType[];
-  }[];
-  venues?: {
-    card: CardType[];
-    breadcrumb: string;
-    order: number;
-  }[];
-  vendors?: {
-    card: CardType[];
-    breadcrumb: string;
-    order: number;
-  }[];
+  projects: CardType[];
+  venues: CardType[];
+  vendors: CardType[];
 }
 function Base({ projects, venues, vendors }: BaseTypes) {
-  const base = [
-    { card: {}, title: false, breadcrumb: '', order: 0 },
-    { card: {}, title: false, breadcrumb: '', order: 1 },
-    { card: {}, title: false, breadcrumb: '', order: 2 },
+
+  console.log(projects, venues, vendors);
+
+  const emptyCard = {
+    id: '',
+    slug: '',
+    excerpt: '',
+    breadcrumb: '',
+    title: '',
+    name: '',
+    image: {
+      localFile: {
+        childImageSharp: {
+          gatsbyImageData: {
+            images: {
+              fallback: {
+                src: ''
+              }
+            }
+          }
+        }
+      },
+      alternativeText: ''
+    }
+  };
+
+  // empty card slots
+  const base: { card: CardType, title: boolean, breadcrumb: string, order: number, id: React.Key }[] = [
+    { card: emptyCard, title: false, breadcrumb: '', order: 0, id: '' },
+    { card: {}, title: false, breadcrumb: '', order: 1, id: '' },
+    { card: {}, title: false, breadcrumb: '', order: 2, id: '' },
   ];
+
+  console.log(base);
 
   // wrap everything as they are always passed but often have no length
   if (projects && venues && vendors) {
@@ -79,6 +96,8 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[0].title = true;
       base[0].breadcrumb = 'projects';
       base[0].order = 0;
+      base[0].id = self.crypto.randomUUID();
+
     }
 
     // if projects has atleast 2 the second one has a project breadcrumb
@@ -86,6 +105,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[1].card = projects[1];
       base[1].breadcrumb = 'projects';
       base[1].order = 1;
+      base[1].id = self.crypto.randomUUID();
     }
 
     // if projects has atleast 3 the third one has a project breadcrumb
@@ -93,6 +113,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[2].card = projects[2];
       base[2].breadcrumb = 'projects';
       base[2].order = 2;
+      base[2].id = self.crypto.randomUUID();
     }
 
     // if has projects and vendors
@@ -102,11 +123,13 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[1].card = vendors[0];
       base[1].title = true;
       base[1].breadcrumb = 'vendor';
+      base[1].id = self.crypto.randomUUID();
 
       // put the venue in the third spot
       base[2].card = venues[0];
       base[2].title = true;
       base[2].breadcrumb = 'venue';
+      base[2].id = self.crypto.randomUUID();
 
       // if has projects and vendors but no venues
       // put the vendor in the third spot
@@ -114,12 +137,15 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[2].card = vendors[0];
       base[2].title = true;
       base[2].breadcrumb = 'vendor';
+      base[2].id = self.crypto.randomUUID();
+
     } else if (venues.length > 0) {
       // if has projects and venues but no vendors
       // put the venue in the second spot
       base[1].card = venues[0];
       base[1].title = true;
       base[1].breadcrumb = 'venue';
+      base[1].id = self.crypto.randomUUID();
     }
 
     // console.log(base);
@@ -130,7 +156,8 @@ function Base({ projects, venues, vendors }: BaseTypes) {
           <>
             {item.title ?
               <h4
-                key={item.breadcrumb}
+                // TODO: this key isnt working im still getting the error
+                key={item.id}
                 className={`capitalize project-title ${item.breadcrumb}-title`}
               >
                 {/* // ! project is breaking when its singular on social events */}
@@ -138,20 +165,23 @@ function Base({ projects, venues, vendors }: BaseTypes) {
                   {item.breadcrumb}
                 </Link>
               </h4>
-              : null
-            }
-            {/* // ! this has a problem with css colapsing the subgrid */}
-            {item.card.id ?
-              <Card
-                key={item.card.id}
-                {...item.card}
-                breadcrumb={item.breadcrumb}
-              />
+              : null}
+            {/* // addition div fixes a problem with css colapsing the subgrid */}
+            {item.card?.id ?
+              <div
+                key={`${item.id}-card`}
+              >
+                <Card
+                  key={item.card.id}
+                  {...item.card}
+                  breadcrumb={item.breadcrumb}
+                />
+              </div >
               : null}
           </>
         ))
         }
-      </div>
+      </div >
     )
   }
 }
@@ -268,11 +298,14 @@ const ServiceView = ({ data }: ServiceTypes) => {
 
       {
         data.strapiService.projects || data.strapiService.venues || data.strapiService.vendors ?
-          <Base
-            projects={data.strapiService?.projects}
-            venues={data.allStrapiVenue?.nodes}
-            vendors={data.allStrapiVendor?.nodes}
-          />
+          <>
+            <hr className='pelican' />
+            <Base
+              projects={data.strapiService?.projects}
+              venues={data.allStrapiVenue?.nodes}
+              vendors={data.allStrapiVendor?.nodes}
+            />
+          </>
           : null
       }
 
@@ -285,67 +318,67 @@ const ServiceView = ({ data }: ServiceTypes) => {
 export default ServiceView;
 
 export const query = graphql`
-        query ServiceTemplate(
-        $slug: String!,
-        ) {
-          strapiService(slug: {eq: $slug}) {
-          id
+  query ServiceTemplate(
+    $slug: String!,
+  ) {
+    strapiService(slug: {eq: $slug}) {
+      id
       name
-        excerpt
-        slug
+      excerpt
+      slug
 
-        description {
+      description {
           data {
           description
         }
       }
 
-        after_the_triptych {
-          data {
+      after_the_triptych {
+        data {
           after_the_triptych
         }
       }
 
-        projects {
-          ...projectCard
-        }
+      projects {
+        ...projectCard
+      }
 
-        triptych {
-          id
+      triptych {
+        id
         localFile {
           childImageSharp {
-          gatsbyImageData
-        }
+            gatsbyImageData
+          }
         }
       }
 
-        featured_lights {
-          ...lightCard
-        }
+      featured_lights {
+        ...lightCard
+      }
 
-        videoMux
+      videoMux
     }
 
-        allStrapiProcess(filter: {services: {elemMatch: {slug: {eq: $slug}}}}) {
-          nodes {
-          ...process
-        }
+    allStrapiProcess(filter: {services: {elemMatch: {slug: {eq: $slug}}}}) {
+      nodes {
+        ...process
+      }
     }
 
-        allStrapiVenue(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
-          nodes {
-          ...venueCard
-        }
+    allStrapiVenue(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
+      nodes {
+        ...venueCard
+      }
     }
 
-        allStrapiVendor(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
-          nodes {
-          ...vendorCard
-        }
+    allStrapiVendor(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
+      nodes {
+        ...vendorCard
+      }
     }
 
   }
-        `
+`
 
 // Header
 // Video (if exists)

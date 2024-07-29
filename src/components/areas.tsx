@@ -16,6 +16,7 @@ const Areas = () => {
           id
           name
           slug
+          excerpt
 
           state
 

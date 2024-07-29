@@ -233,7 +233,7 @@ const IndexPage = () => {
               {service.hero_light ?
                 <>
                   <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
-                    alt={service.hero_light.alternativeText}
+                    alt={service.hero_light.alternativeText || service.name}
                   />
                   <span>{service.name}</span>
                 </>

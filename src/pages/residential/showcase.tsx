@@ -59,7 +59,7 @@ function ResidentialShowcase() {
       }
 
       allStrapiLight(
-        sort: {fields: xmasOrder, order: ASC},
+        sort: {xmasOrder: ASC}
         filter: {
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
         }) {

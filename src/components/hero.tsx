@@ -12,8 +12,10 @@ interface HeroType {
 }
 function Hero({ localFile, alternativeText }: HeroType) {
 
+  // console.log(alternativeText);
+
   process.env.NODE_ENV === "development" ?
-    localFile.childImageSharp.gatsbyImageData.width <= 960
+    localFile.childImageSharp.gatsbyImageData.width <= 959
       ? console.warn('Hero Image is too small')
       : null
     : null
