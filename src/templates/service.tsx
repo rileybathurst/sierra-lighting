@@ -1,4 +1,5 @@
 // TODO: needs testimonials per service
+// Couple biome errors that im not sure how to get rid of yet
 
 import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
@@ -50,7 +51,7 @@ interface BaseTypes {
 }
 function Base({ projects, venues, vendors }: BaseTypes) {
 
-  console.log(projects, venues, vendors);
+  // console.log(projects, venues, vendors);
 
   const emptyCard = {
     id: '',
@@ -82,7 +83,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
     { card: {}, title: false, breadcrumb: '', order: 2, id: '' },
   ];
 
-  console.log(base);
+  // console.log(base);
 
   // wrap everything as they are always passed but often have no length
   if (projects && venues && vendors) {
@@ -96,7 +97,8 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[0].title = true;
       base[0].breadcrumb = 'projects';
       base[0].order = 0;
-      base[0].id = self.crypto.randomUUID();
+      // this doesnt work on gatsby build
+      // base[0].id = self.crypto.randomUUID();
 
     }
 
@@ -105,7 +107,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[1].card = projects[1];
       base[1].breadcrumb = 'projects';
       base[1].order = 1;
-      base[1].id = self.crypto.randomUUID();
+      // base[1].id = self.crypto.randomUUID();
     }
 
     // if projects has atleast 3 the third one has a project breadcrumb
@@ -113,7 +115,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[2].card = projects[2];
       base[2].breadcrumb = 'projects';
       base[2].order = 2;
-      base[2].id = self.crypto.randomUUID();
+      // base[2].id = self.crypto.randomUUID();
     }
 
     // if has projects and vendors
@@ -123,13 +125,13 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[1].card = vendors[0];
       base[1].title = true;
       base[1].breadcrumb = 'vendor';
-      base[1].id = self.crypto.randomUUID();
+      // base[1].id = self.crypto.randomUUID();
 
       // put the venue in the third spot
       base[2].card = venues[0];
       base[2].title = true;
       base[2].breadcrumb = 'venue';
-      base[2].id = self.crypto.randomUUID();
+      // base[2].id = self.crypto.randomUUID();
 
       // if has projects and vendors but no venues
       // put the vendor in the third spot
@@ -137,7 +139,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[2].card = vendors[0];
       base[2].title = true;
       base[2].breadcrumb = 'vendor';
-      base[2].id = self.crypto.randomUUID();
+      // base[2].id = self.crypto.randomUUID();
 
     } else if (venues.length > 0) {
       // if has projects and venues but no vendors
@@ -145,43 +147,37 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[1].card = venues[0];
       base[1].title = true;
       base[1].breadcrumb = 'venue';
-      base[1].id = self.crypto.randomUUID();
+      // base[1].id = self.crypto.randomUUID();
     }
 
-    // console.log(base);
-
     return (
-      <div className='pelican service-deck' >
+      <div className='pelican service-deck'>
         {base.map((item) => (
-          <>
-            {item.title ?
+          <React.Fragment key={item.order}>
+            {item.title ? (
               <h4
-                // TODO: this key isnt working im still getting the error
-                key={item.id}
+                key={`${item.id}-title`}
                 className={`capitalize project-title ${item.breadcrumb}-title`}
               >
-                {/* // ! project is breaking when its singular on social events */}
                 <Link to={`/${item.breadcrumb}`}>
                   {item.breadcrumb}
                 </Link>
               </h4>
-              : null}
-            {/* // addition div fixes a problem with css colapsing the subgrid */}
-            {item.card?.id ?
+            ) : null}
+            {item.card?.id ? (
               <div
                 key={`${item.id}-card`}
               >
                 <Card
-                  key={item.card.id}
+                  key={`${item.id}-card`}
                   {...item.card}
                   breadcrumb={item.breadcrumb}
                 />
-              </div >
-              : null}
-          </>
-        ))
-        }
-      </div >
+              </div>
+            ) : null}
+          </React.Fragment>
+        ))}
+      </div>
     )
   }
 }

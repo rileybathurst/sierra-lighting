@@ -1,24 +1,20 @@
 import * as React from "react"
-import { useStaticQuery, graphql } from 'gatsby';
+import { Script } from 'gatsby';
 
 import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { useStrapiFaq } from "../hooks/use-strapi-faq";
+
 
 const FaqsPage = () => {
 
-  const { allStrapiFar } = useStaticQuery(graphql`
-    query FaqQuery {
-      allStrapiFar(filter: { publishedAt: { ne: null } }) {
-        nodes {
-          id
-          question
-          answer
-        }
-      }
-    }
-  `)
+  type faqTypes = {
+    id: string;
+    question: string;
+    answer: string;
+  }
 
   return (
     <>
@@ -30,12 +26,12 @@ const FaqsPage = () => {
         <h1 className="range">Frequently Asked Questions</h1>
 
         <ul className="faqs">
-          {allStrapiFar.nodes.map(faq => (
-            <li key={faq.id} itemScope itemProp="mainEntity" itemType="https://schema.org/Question">
+          {useStrapiFaq().nodes.map((faq: faqTypes) => (
+            <li key={faq.id}>
               <hr />
-              <h2 itemProp="name">{faq.question}</h2>
-              <div itemScope itemProp="acceptedAnswer" itemType="https://schema.org/Answer">
-                <div itemProp="text">
+              <h2>{faq.question}</h2>
+              <div>
+                <div>
                   {faq.answer}
                 </div>
               </div>
@@ -52,18 +48,35 @@ const FaqsPage = () => {
 
 export default FaqsPage
 
-
 export const Head = () => {
   return (
     <SEO
-      title={`FAQs`}
+      title='FAQs'
       url="faqs"
       description="Your go to holiday lights installer in the Reno, Truckee, and North Tahoe area. A list of frequently asked questions. Please reach out for more information and estimates."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/og_image-sierra_lighting-bistro_lights.jpg"
-    />
+    >
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              ${useStrapiFaq().nodes.map((faq: { question: string; answer: string; }) => (
+          `{
+                  "@type": "Question",
+                  "name": "${faq.question}",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "${faq.answer}"
+                  }
+                }`
+        ))
+            .join(',')}
+            ]
+          }
+        `}
+      </Script>
+    </SEO>
   )
 }
-
-// ! FAQ schema
-// itemType="https://schema.org/FAQPage"
-// itemScope={true}

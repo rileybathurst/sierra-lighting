@@ -23,7 +23,7 @@ const Card = ({ id, image, venueImage, profile, title, name, slug, excerpt, area
   const CardImage = image?.localFile?.childImageSharp?.gatsbyImageData ?? venueImage?.localFile?.childImageSharp?.gatsbyImageData ?? profile?.localFile?.childImageSharp?.gatsbyImageData;
   const CardAlt = image?.alternativeText ?? venueImage?.alternativeText ?? profile?.alternativeText ?? title ?? name ?? "";
 
-  image?.alternativeText || venueImage?.alternativeText ?
+  image?.alternativeText || venueImage?.alternativeText || profile?.alternativeText ?
     null
     : console.warn(`${title ?? name} image has no alt`);
 

@@ -115,7 +115,7 @@ module.exports = {
         mergeScriptHashes: false, // you can disable scripts sha256 hashes
         mergeStyleHashes: false, // you can disable styles sha256 hashes
         directives: {
-          "script-src": "'self' 'unsafe-inline' use.typekit.net www.google-analytics.com www.googletagmanager.com https://d3ey4dbjkt2f6s.cloudfront.net/",
+          "script-src": "'self' 'unsafe-inline' use.typekit.net www.google-analytics.com www.googletagmanager.com https://d3ey4dbjkt2f6s.cloudfront.net/ gstatic.com",
           "style-src": "'self' 'unsafe-inline' use.typekit.net https://d3ey4dbjkt2f6s.cloudfront.net/",
           "font-src": "'self' 'unsafe-inline' use.typekit.net data:",
           "img-src": "'self' p.typekit.net https://www.google-analytics.com *.mux.com data: about:", // I think use.typekit.net is a tracking pixel
