@@ -36,7 +36,8 @@ main {
   padding-inline: var(--vinson);
 }
 
-.pelican {
+.pelican,
+.deck {
   max-width: var(--pelican);
   margin-inline: auto;
   padding-inline: var(--vinson);
@@ -47,6 +48,41 @@ main {
   margin-inline: auto;
   padding-inline: var(--vinson);
 }
+
+/*------------------------------------*/
+
+.wrap,
+.deck {
+  display: flex;
+  flex-flow: row wrap;
+  gap: clamp(var(--kosciuszko), 1.667vw, var(--denali));
+  padding-inline: var(--kosciuszko);
+
+  > * {
+    flex: 1 1;
+    width: 100%;
+    height: fit-content;
+  }
+}
+
+.pelican.wrap > *,
+.albatross.wrap > *,
+.deck > * {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.pelican.wrap > * {
+  flex: 1 1 calc(var(--pelican) / 2 - 1rem);
+}
+
+.albatross.wrap > *,
+.deck > * {
+  flex: 1 1 calc(var(--albatross) / 2 - 1rem);
+}
+
+/*------------------------------------*/
 
 .inline {
   display: inline;

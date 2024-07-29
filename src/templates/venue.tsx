@@ -12,6 +12,8 @@ import Hero from "../components/hero";
 import TestimonialRanking from "../components/testimonial-ranking";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import type { CardType } from '../types/card-type';
+import Testimonial from '../components/testimonial';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 function Phone({ phone }: { phone: number }) {
   if (phone) {
@@ -24,7 +26,58 @@ function Phone({ phone }: { phone: number }) {
   return null;
 }
 
-const VenueView = ({ data }) => {
+type VenueViewTypes = {
+  data: {
+    strapiVenue: {
+      id: string;
+      name: string;
+      description: string;
+      slug: string;
+      excerpt: string;
+      website: string;
+      phone: number;
+      area: {
+        name: string;
+        state: string;
+        slug: string;
+        featured: boolean;
+        region: {
+          name: string;
+          slug: string;
+        }
+      }
+      address: {
+        data: {
+          address: string;
+        }
+      }
+      venueImage: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          }
+          url: string;
+        }
+        alternativeText: string;
+      }
+      testimonials: {
+        id: string;
+        title: string;
+        review: string;
+        stars: number;
+        customer: string;
+        position: string;
+        vendor: {
+          name: string;
+        }
+      }[]
+    }
+    allStrapiVenue: {
+      nodes: CardType[]
+    }
+  }
+}
+const VenueView = ({ data }: VenueViewTypes) => {
   return (
     <>
       <Header />
@@ -42,28 +95,8 @@ const VenueView = ({ data }) => {
         <p>{data.strapiVenue.description}</p>
 
         {data.strapiVenue.testimonials.length > 0 ?
-          <div className="stork" >
-            <ul className='testimonials'>
-              {/* // ! make this a component */}
-              {data.strapiVenue.testimonials.map((testimonial) => (
-                <li key={testimonial.id} className='testimonial'>
-                  <figure>
-                    <blockquote>
-                      <h3 className='sr-only'>{testimonial.title}</h3>
-                      {/* // TODO stars */}
-                      <TestimonialRanking stars={testimonial.stars} />
-                      <p className='testimonial--quote_mark range'>&ldquo;</p>
-                      <p>{testimonial.review}</p>
-                      <figcaption>
-                        <p className='crest'><strong>{data.strapiVenue.name}</strong> - {testimonial.position}</p>
-                        <h4 className='range'>{testimonial.customer}</h4>
-                      </figcaption>
-                    </blockquote>
-                  </figure>
-                </li>
-              ))}
-            </ul>
-          </div> : null
+          <Testimonial {...data.strapiVenue.testimonials[0]} />
+          : null
         }
 
         <hr />
@@ -75,7 +108,6 @@ const VenueView = ({ data }) => {
             </Markdown>
           </address>
           : null}
-
 
         <Phone phone={data.strapiVenue.phone} />
 
@@ -252,7 +284,7 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }) => {
+export const Head = ({ data }: VenueViewTypes) => {
   return (
     <SEO
       title={`${data.strapiVenue.name}`}

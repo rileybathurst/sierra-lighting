@@ -138,6 +138,7 @@ const IndexPage = () => {
       <Header largeLogo={false} />
 
       <main className="albatross">
+        {/* // TODO: tidy up these classes */}
         <div className="margin-0 hero-2">
           <div className="h2-container">
             <div className="large logo">
@@ -199,7 +200,9 @@ const IndexPage = () => {
 
                   {testimonial.project ?
                     <h4>
-                      <Link to={`/${testimonial.project.slug}`}>{testimonial.project.title}</Link>
+                      <Link to={`/project/${testimonial.project.slug}`}>
+                        {testimonial.project.title}
+                      </Link>
                     </h4>
                     : null}
 

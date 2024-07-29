@@ -51,9 +51,15 @@ const LightView = ({ light, other }) => {
   }
 
   process.env.NODE_ENV === "development" ?
+    light?.image
+      ? null
+      : console.warn(`${light.name} image is missing`)
+    : null;
+
+  process.env.NODE_ENV === "development" ?
     light.image?.alternativeText ?
-      console.log(`light view image alt ${light.image?.alternativeText}`)
-      : console.warn('light view image has no alt')
+      null
+      : console.warn(`${light.name} image has no alt`)
     : null;
 
   return (
@@ -61,24 +67,25 @@ const LightView = ({ light, other }) => {
       <Header />
 
       <main>
-
-        <div className="light-hero poster">
-          <GatsbyImage
-            image={
-              light?.image?.localFile?.childImageSharp
-                ?.gatsbyImageData
-            }
-            alt={light.image?.alternativeText ? light.image?.alternativeText : light.name}
-          />
-          {light?.detail ?
+        {light.image ?
+          <div className="light-hero poster">
             <GatsbyImage
-              image={light.detail?.localFile?.childImageSharp?.gatsbyImageData}
-              alt={light.detail?.alternativeText ? light.detail?.alternativeText : light.name}
-              className="detail"
+              image={
+                light?.image?.localFile?.childImageSharp
+                  ?.gatsbyImageData
+              }
+              alt={light.image?.alternativeText ? light.image?.alternativeText : light.name}
             />
-            : null
-          }
-        </div>
+            {light?.detail ?
+              <GatsbyImage
+                image={light.detail?.localFile?.childImageSharp?.gatsbyImageData}
+                alt={light.detail?.alternativeText ? light.detail?.alternativeText : light.name}
+                className="detail"
+              />
+              : null
+            }
+          </div>
+          : null}
 
         <article className="stork">
           {/* // TODO: this could be using a js length test for the lower clamp */}

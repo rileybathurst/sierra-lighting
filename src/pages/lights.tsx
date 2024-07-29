@@ -62,15 +62,14 @@ const lightsPage = () => {
 
   const lightGroupSet = new Set();
   for (const light of dataSeason.nodes) {
-    light.light_groups.map((group) => {
-      // lightGroupSet.add(group.slug)
+    light.light_groups.map((group: { slug: string }) => {
       lightGroupSet.add(group.slug)
     })
   }
   // ? what if I go to an object so I can deal with the order
   const lightGroupArray = Array.from(lightGroupSet);
 
-  const lightGroupArrayOrder = [];
+  const lightGroupArrayOrder: [string, number | null, number | null][] = [];
 
   lightGroupArray.map((group) => {
     dataSeason.nodes
@@ -116,12 +115,12 @@ const lightsPage = () => {
   return (
     <>
       <Header />
-      <main className="lights__page">
+      <main className="stork">
         <h1 className="mixta">Lights</h1>
       </main >
 
-      {/* TODO: this probably shouldnt be a deck we can split in better ways */}
-      <section className="deck">
+      {/* // TODO: this probably shouldnt be a deck we can split in better ways */}
+      <section className="stork wrap">
         <div>
           Filter by use:
           <ul>
@@ -168,19 +167,18 @@ const lightsPage = () => {
           id={group[0]}
         >
           <div className="stork">
-            {/* // TODO: hr can probably be a border */}
             <hr />
 
             {dataSeason.nodes
               .filter((light) => light.light_groups.map((group) => group.slug).includes(group[0]))
               .slice(0, 1)
               .map((light) => (
-                <>
-                  <h3 key={light.id}>
+                <React.Fragment key={light.id}>
+                  <h3>
                     <Link to={`/light-group/${light.light_groups[0].slug}`}>{light.light_groups[0].name}</Link>
                   </h3>
-                  <p key={light.id}>{light.light_groups[0].excerpt}</p>
-                </>
+                  <p>{light.light_groups[0].excerpt}</p>
+                </React.Fragment>
               ))
             }
 

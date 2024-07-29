@@ -25,7 +25,7 @@ function Hero({ localFile, alternativeText }: HeroType) {
     : null
 
   return (
-    <div className={`hero-image poster ${localFile.childImageSharp.gatsbyImageData.width <= 960 ? 'hero-pelican' : null}`}>
+    <div className={`hero-image poster ${localFile.childImageSharp.gatsbyImageData.width <= 960 ? 'hero-condor' : null}`}>
       <GatsbyImage
         image={localFile.childImageSharp.gatsbyImageData}
         alt={alternativeText || "Hero Image"}

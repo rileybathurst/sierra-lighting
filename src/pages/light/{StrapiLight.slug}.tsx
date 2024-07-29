@@ -2,7 +2,8 @@ import * as React from "react"
 import { graphql, Script } from "gatsby"
 import LightView from "../../views/light-view"
 import SEO from "../../components/seo"
-import { IGatsbyImageData } from "gatsby-plugin-image"
+import type { IGatsbyImageData } from "gatsby-plugin-image"
+import type { CardType } from "../../types/card-type"
 
 export const query = graphql`
   query LightQuery($slug: String!) {
@@ -122,38 +123,10 @@ interface LightPageTypes {
         };
         alternativeText: string;
       };
-      projects: {
-        id: string;
-        name: string;
-        slug: string;
-        excerpt: string;
-        image: {
-          localFile: {
-            url: string;
-            childImageSharp: {
-              gatsbyImageData: IGatsbyImageData;
-            };
-          };
-          alternativeText: string;
-        };
-      }[];
+      projects: CardType[];
     };
     allStrapiLight: {
-      nodes: {
-        id: string;
-        name: string;
-        slug: string;
-        excerpt: string;
-        image: {
-          localFile: {
-            url: string;
-            childImageSharp: {
-              gatsbyImageData: IGatsbyImageData;
-            };
-          };
-          alternativeText: string;
-        };
-      }[];
+      nodes: CardType[];
     };
   };
 }

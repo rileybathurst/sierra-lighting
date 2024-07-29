@@ -10,14 +10,14 @@
     auto-fill,
     minmax(calc(var(--swan) - 1rem), 1fr)
   );
+}
+
+.service-deck {
   grid-template-rows: 1fr min-content;
 }
 
 .deck {
   row-gap: 1.5rem;
-  max-width: var(--pelican);
-  margin-inline: auto;
-  margin-block-end: 3rem;
 }
 
 .card {
@@ -232,7 +232,7 @@
       grid-row: 1;
     }
 
-    .card {
+    .service-card {
       grid-row: 2;
     }
   }

@@ -21,6 +21,7 @@ interface ServiceLightViewTypes {
           description: string
         }
       }
+      excerpt: string
     },
     allStrapiService: {
       nodes: {
@@ -77,8 +78,8 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
   const lightGroupSet = new Set();
   for (const light of data.allStrapiLight.nodes) {
     light.light_groups.map((group) => {
-      lightGroupSet.add(group.slug)
-    })
+      lightGroupSet.add(group.slug);
+    });
   }
   const lightGroupArray = Array.from(lightGroupSet);
 
@@ -117,9 +118,6 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
             // {data.strapiService.slug}
             // ? do I need to put the sort order before the return?
 
-
-
-
             .map((group) => (
               <li key={group.slug}>
                 <Link to={`#${group.slug}`}>
@@ -137,9 +135,8 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
             .filter((light) => light.light_groups.map((group) => group.slug).includes(group))
             .slice(0, 1)
             .map((light) => (
-              <>
+              <React.Fragment key={group}>
                 <div
-                  key={group}
                   className='stork'
                   id={light.light_groups[0].slug}
                 >
@@ -149,9 +146,10 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
                       {light.light_groups[0].name}
                     </Link>
                   </h2>
-                  <p>{light.light_groups[0].excerpt}</p>
                 </div>
-                <div className='deck'>
+                <div
+                  className='deck'
+                >
                   {data.allStrapiLight.nodes
                     .filter((light) => light.light_groups.map((group) => group.slug).includes(group))
                     .map((light) => (
@@ -162,7 +160,7 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
                       />
                     ))}
                 </div>
-              </>
+              </React.Fragment>
             ))
         ))}
       </section>
@@ -223,6 +221,7 @@ export const query = graphql`
       nodes {
         ...lightCard
         light_groups {
+          id
           name
           slug
           excerpt
@@ -234,6 +233,7 @@ export const query = graphql`
 
     allStrapiLightGroup {
       nodes {
+        id
         name
         slug
         weddingOrder
@@ -244,7 +244,7 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }) => {
+export const Head = ({ data }: ServiceLightViewTypes) => {
   return (
     <SEO
       title={`${data.strapiService.name} Lights`}

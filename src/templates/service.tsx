@@ -78,7 +78,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
 
   // empty card slots
   const base: { card: CardType, title: boolean, breadcrumb: string, order: number, id: React.Key }[] = [
-    { card: emptyCard, title: false, breadcrumb: '', order: 0, id: '' },
+    { card: {}, title: false, breadcrumb: '', order: 0, id: '' },
     { card: {}, title: false, breadcrumb: '', order: 1, id: '' },
     { card: {}, title: false, breadcrumb: '', order: 2, id: '' },
   ];
@@ -95,7 +95,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
     if (projects.length > 0) {
       base[0].card = projects[0];
       base[0].title = true;
-      base[0].breadcrumb = 'projects';
+      base[0].breadcrumb = 'project';
       base[0].order = 0;
       // this doesnt work on gatsby build
       // base[0].id = self.crypto.randomUUID();
@@ -105,7 +105,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
     // if projects has atleast 2 the second one has a project breadcrumb
     if (projects.length > 1) {
       base[1].card = projects[1];
-      base[1].breadcrumb = 'projects';
+      base[1].breadcrumb = 'project';
       base[1].order = 1;
       // base[1].id = self.crypto.randomUUID();
     }
@@ -113,7 +113,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
     // if projects has atleast 3 the third one has a project breadcrumb
     if (projects.length > 2) {
       base[2].card = projects[2];
-      base[2].breadcrumb = 'projects';
+      base[2].breadcrumb = 'project';
       base[2].order = 2;
       // base[2].id = self.crypto.randomUUID();
     }
@@ -160,13 +160,14 @@ function Base({ projects, venues, vendors }: BaseTypes) {
                 className={`capitalize project-title ${item.breadcrumb}-title`}
               >
                 <Link to={`/${item.breadcrumb}`}>
-                  {item.breadcrumb}
+                  {item.breadcrumb}{item.breadcrumb === 'project' ? 's' : ''}
                 </Link>
               </h4>
             ) : null}
             {item.card?.id ? (
               <div
                 key={`${item.id}-card`}
+                className='service-card'
               >
                 <Card
                   key={`${item.id}-card`}
