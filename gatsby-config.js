@@ -34,24 +34,23 @@ const strapiConfig = {
     'minimum'
   ],
   remoteFileHeaders: {
-    Referer: "http://45.79.101.19:1343",
+    Referer: process.env.STRAPI_API_URL,
   },
 };
 
 module.exports = {
   graphqlTypegen: true,
 
-  adapter: adapter({
-    excludeDatastoreFromEngineFunction: false,
-    imageCDN: false,
-  }),
+  /*   adapter: adapter({
+      excludeDatastoreFromEngineFunction: false,
+      imageCDN: false,
+    }), */
 
   // * gatsby-plugin-sitemap needs this
   siteMetadata: {
     siteUrl: 'https://www.sierralighting.com',
   },
   plugins: [
-    // TODO: check in on the update
     {
       resolve: "gatsby-plugin-google-gtag",
       options: {
