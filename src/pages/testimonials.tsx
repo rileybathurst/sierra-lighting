@@ -23,7 +23,6 @@ function TestimonialLink(props: { aref: string, customer: string, vendor: { name
   }
 
   if (props.platform && props.position) {
-    // console.log('platform');
     return (
       <>
         <h4 className='range' itemProp="name">
@@ -34,7 +33,6 @@ function TestimonialLink(props: { aref: string, customer: string, vendor: { name
   }
 
   if (props.platform) {
-    // console.log('no vendor or platform');
     return (
       <h4 className='range' itemProp="name">{props.customer}</h4>
     );
@@ -44,13 +42,11 @@ function TestimonialLink(props: { aref: string, customer: string, vendor: { name
 
 const TestimonialsPage = () => {
 
-  // ? why do I have this filter? 
   const { allStrapiTestimonial } = useStaticQuery(graphql`
     query TestimonialsQuery {
       allStrapiTestimonial(
-        filter: { publishedAt: { ne: null } },
         sort: {order: ASC}
-        ) {
+      ) {
         nodes {
           id
           customer

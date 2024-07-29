@@ -22,6 +22,7 @@ main {
 .service-area,
 .services,
 .testimonials,
+.testimonial,
 .contact {
   max-width: var(--stork);
   margin-inline: auto;
@@ -431,6 +432,8 @@ footer {
 
 /*------------------*/
 /* TESTIMONIALS */
+/*------------------*/
+
 .testimonial {
   list-style: none;
   padding: 1rem;
