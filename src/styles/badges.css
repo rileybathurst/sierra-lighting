@@ -5,12 +5,12 @@
 .badges {
   display: flex;
   flex-flow: row wrap;
-  gap: 1rem;
-  margin-block-end: 1rem;
+  gap: var(--vinson);
+  margin-block-end: var(--vinson);
   align-items: baseline;
 
   .badge {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem var(--vinson);
     /*  TODO: fix this it should get lighter not darker as it gets higher in the stack */
     background-color: var(--kingly-cloud);
     border: 2px solid whitesmoke;

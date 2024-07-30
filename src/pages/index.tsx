@@ -148,12 +148,18 @@ const IndexPage = () => {
               <HeroTreeScreen />
               <HeroTreeSolid />
             </div>
-            {/* // TODO: query this */}
-            <h2>Illuminating<br className="medium-up" />Moments,<br className="medium-up" /> Year-Round</h2>
+            <h2>
+              {data.strapiAbout.slogan.split(" ").map((word: string) => (
+                <React.Fragment key={word}>
+                  {word}
+                  <br className="medium-up" />
+                </React.Fragment>
+              ))}
+            </h2>
+
           </div>
 
           <section className="h2-text">
-            <h3>{data.strapiAbout.slogan}</h3>
             {data.strapiAbout ?
               <Markdown className='react-markdown'>
                 {data.strapiAbout.description.data.description}
@@ -164,9 +170,7 @@ const IndexPage = () => {
 
           </section >
           <div className="hero-2-svg">{/* stay gold */}</div>
-
         </div>
-        {/* <SierraHero2 /> */}
 
         <section id="qualities" className="qualities albatross">
           {data.allStrapiQuality.nodes.map((quality: QualityTypes) => (

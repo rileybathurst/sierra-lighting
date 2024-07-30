@@ -8,7 +8,7 @@ button {
   font-weight: 400;
   font-style: normal;
   font-size: 16px;
-  line-height: 1.25rem; /* 20px */
+  line-height: var(--elbrus); /* 20px */
 }
 
 .font-sans {
@@ -45,37 +45,37 @@ p {
 h1,
 .everest {
   margin-top: 0; /* browser reset */
-  font-size: 3rem; /* 48px */
+  font-size: var(--everest); /* 48px */
   line-height: 3.75rem; /* 60px */
-  margin-block-end: 2.5rem; /* 40px */
+  margin-block-end: var(--aconcagua); /* 40px */
 }
 
 h2,
 .aconcagua,
 .range {
-  font-size: 2.5rem; /* 40px */
-  line-height: 3rem; /* 48px */
-  margin-block-end: 2rem; /* 32px */
+  font-size: var(--aconcagua); /* 40px */
+  line-height: var(--everest); /* 48px */
+  margin-block-end: var(--denali); /* 32px */
 }
 
 h3,
 .denali {
-  font-size: 2rem; /* 32px */
-  line-height: 2.5rem; /* 40px */
+  font-size: var(--denali); /* 32px */
+  line-height: var(--aconcagua); /* 40px */
   margin-block-end: 1.875rem; /* 30px */
 }
 
 h4,
 .kilimanjaro {
-  font-size: 1.5rem; /* 24px */
-  line-height: 2rem; /* 32px */
+  font-size: var(--kilimanjaro); /* 24px */
+  line-height: var(--denali); /* 32px */
   margin-block-end: 1.75rem; /* 28px */
   font-weight: 400;
 }
 
 h5,
 .elbrus {
-  font-size: 1.25rem; /* 20px */
+  font-size: var(--elbrus); /* 20px */
   line-height: 1.875rem; /* 30px */
   margin-block-end: 0.625rem; /* 10px */
   font-weight: 400;
@@ -83,8 +83,8 @@ h5,
 
 h6,
 .vinson {
-  font-size: 1rem; /* 16px */
-  line-height: 1.25rem; /* 20px this becomes the vertical rythym */
+  font-size: var(--vinson); /* 16px */
+  line-height: var(--elbrus); /* 20px this becomes the vertical rythym */
   margin-block-end: 0.625rem; /* 10px skips some of the lines */
   font-weight: 400;
 }
@@ -101,17 +101,17 @@ p {
 
 small,
 .kosciuszko {
-  font-size: 0.75rem; /* 12px */
-  line-height: 1rem; /* 16px */
+  font-size: var(--kosciuszko); /* 12px */
+  line-height: var(--vinson); /* 16px */
   margin-block-end: 0.875rem; /* 14px */
 }
 
 .baseline-drop {
-  margin-block-end: 1.25rem;
+  margin-block-end: var(--elbrus);
 }
 
 .double-baseline-drop {
-  margin-block-end: 2.5rem;
+  margin-block-end: var(--aconcagua);
 }
 
 /* TODO: im going to need a lot more of these */
@@ -134,7 +134,7 @@ small,
 hr {
   border: none;
   border-top: 1px solid hsl(var(--honey), 100%, 50%);
-  margin-block: 1.5rem; /* 20px */
+  margin-block: var(--kilimanjaro); /* 20px */
 
   @media (prefers-color-scheme: dark) {
     border-color: hsl(var(--denim), 37%, 37%);
@@ -163,9 +163,9 @@ hr.stork {
 /*------------------*/
 
 .clamp-denali_everest {
-  font-size: clamp(2.5rem, 1.5vw, 3rem);
-  line-height: clamp(2.5rem, 1.5vw, 3.75rem);
-  margin-block-end: clamp(1.875rem, 1.5vw, 2.5rem);
+  font-size: clamp(var(--aconcagua), 1.5vw, var(--everest));
+  line-height: clamp(var(--aconcagua), 1.5vw, 3.75rem);
+  margin-block-end: clamp(1.875rem, 1.5vw, var(--aconcagua));
 }
 
 /*------------------*/
@@ -176,11 +176,13 @@ hr.stork {
   text-align: center;
 
   h2 {
-    font-size: 1rem; /*  ? should this be clamped */
-    line-height: 1.5rem; /*  slightly bigger than font-size 1rem */
+    font-size: var(--vinson); /*  ? should this be clamped */
+    line-height: var(
+      --kilimanjaro
+    ); /*  slightly bigger than font-size var(--vinson) */
     margin-block: 0;
-    padding-block: 1rem;
-    margin-inline: 3rem;
+    padding-block: var(--vinson);
+    margin-inline: var(--everest);
     font-weight: 400;
   }
 }
@@ -195,11 +197,11 @@ hr.stork {
   font-weight: 100;
 
   font-size: var(--kilimanjaro);
-  line-height: 2rem;
+  line-height: var(--denali);
   margin-block-end: 1.75rem;
 
   margin-block-end: 0.5lh;
-  @supports not (margin: 1lh) {
+  @supports not (margin: var(--elbrus)) {
     margin-block-end: 0.625rem;
   }
 }
@@ -210,13 +212,13 @@ hr.stork {
 
 /*  TODO: should be in lists */
 ol li {
-  margin-block-end: 1.5rem;
+  margin-block-end: var(--kilimanjaro);
 }
 
 .ol-title {
   display: block;
-  font-size: 1.5rem;
-  margin-block-end: 1.5rem;
+  font-size: var(--kilimanjaro);
+  margin-block-end: var(--kilimanjaro);
 }
 
 /*------------------*/
@@ -224,7 +226,7 @@ ol li {
 /*------------------*/
 
 .footer-copyright h5 {
-  margin-inline: 3rem;
+  margin-inline: var(--everest);
 }
 
 /*------------------*/
@@ -236,9 +238,9 @@ ol li {
 0.375rem = 6px
 0.5rem = 8px
 0.625rem = 10px
-0.75rem = 12px
-1rem = 16px
-1.5rem = 24px
+var(--kosciuszko) = 12px
+var(--vinson) = 16px
+var(--kilimanjaro) = 24px
 */
 
 .testimonials {
@@ -265,10 +267,10 @@ ol li {
 .site_title {
   max-width: var(--stork);
   margin-inline: auto;
-  padding-inline: 1rem;
-  font-size: clamp(1.25rem, 2.5vw, 2rem);
-  line-height: clamp(2rem, 2.5vw, 3rem);
-  margin-block-start: 1.5rem;
+  padding-inline: var(--vinson);
+  font-size: clamp(var(--elbrus), 2.5vw, var(--denali));
+  line-height: clamp(var(--denali), 2.5vw, var(--everest));
+  margin-block-start: var(--kilimanjaro);
 }
 
 .long-title {
@@ -276,22 +278,6 @@ ol li {
 }
 
 .qualities {
-  padding-inline: 1lh;
-
-  section {
-    border-block-end: 1px solid hsl(var(--honey), 100%, 50%);
-    margin-block-end: 1lh;
-    padding-block-end: 1lh;
-
-    @media (prefers-color-scheme: dark) {
-      border-color: hsl(var(--denim), 12%, 50%);
-    }
-  }
-
-  section:last-child {
-    border-block-end: none;
-  }
-
   .brow {
     display: flex;
     flex-direction: column-reverse;

@@ -22,7 +22,7 @@
       list-style: none;
 
       li {
-        line-height: 2rem;
+        line-height: var(--denali);
 
         ul {
           padding-inline-start: 0; /*  reset; */
@@ -31,7 +31,7 @@
     }
 
     hr {
-      width: calc(100% - 1rem);
+      width: calc(100% - var(--vinson));
     }
   }
 
@@ -70,7 +70,7 @@
     margin: 0;
     display: flex;
     flex-flow: row wrap;
-    gap: 1rem;
+    gap: var(--vinson);
     text-align: center;
     justify-content: space-between;
     align-items: center;
@@ -156,11 +156,11 @@
   content: "";
   position: absolute;
   box-sizing: border-box;
-  width: 3rem; /*  starts at 70 4.375rem */
-  height: 3rem;
+  width: var(--everest); /*  starts at 70 4.375rem */
+  height: var(--everest);
   border: 2px solid transparent;
-  /*  top: calc(50% - 1rem); */
-  /*  left: calc(50% - 1rem); */
+  /*  top: calc(50% - var(--vinson)); */
+  /*  left: calc(50% - var(--vinson)); */
   border-radius: 100%;
   transition: var(--moment);
 }
@@ -181,7 +181,7 @@
 }
 
 .hamburger .line {
-  width: 2rem;
+  width: var(--denali);
   height: 0.1875rem; /*  3px this is wierd and custom */
   background-color: hsl(var(--honey), 100%, 30%);
   display: block;
@@ -194,7 +194,7 @@
 }
 
 .hamburger.is-active .line {
-  width: 1.5rem;
+  width: var(--kilimanjaro);
 }
 
 .hamburger.is-active .line:nth-child(1) {

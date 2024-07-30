@@ -35,7 +35,8 @@ const Footer = () => {
               childImageSharp {
                 gatsbyImageData(
                   breakpoints: [128]
-                  width: 128
+                  width: 128,
+                  aspectRatio: 1
                 )
               }
             }

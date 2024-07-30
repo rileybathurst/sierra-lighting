@@ -8,7 +8,7 @@
   column-gap: var(--vinson);
   grid-template-columns: repeat(
     auto-fill,
-    minmax(calc(var(--swan) - 1rem), 1fr)
+    minmax(calc(var(--swan) - var(--vinson)), 1fr)
   );
 }
 
@@ -17,12 +17,12 @@
 }
 
 .deck {
-  row-gap: 1.5rem;
+  row-gap: var(--kilimanjaro);
 }
 
 .card {
   display: grid;
-  row-gap: 1rem;
+  row-gap: var(--vinson);
   grid-row: span 5;
   grid-template-rows: subgrid; /* this is breaking when on the service page as theres title pushing the size */
   /* TODO: I can wrap it in a not */
@@ -47,7 +47,7 @@
   .image {
     grid-row: 1/3;
     border-radius: var(--card-radius);
-    width: calc(100% - 2rem);
+    width: calc(100% - var(--denali));
     margin-inline: auto;
     z-index: var(--understory);
 
@@ -83,13 +83,13 @@
   }
 
   > * {
-    padding-inline: 1rem;
+    padding-inline: var(--vinson);
   }
 
   h2 {
     grid-row: 3;
-    font-size: clamp(1.5rem, 1.5vw, 2.5rem);
-    line-height: clamp(2rem, 1.5vw, 3rem);
+    font-size: clamp(var(--kilimanjaro), 1.5vw, var(--aconcagua));
+    line-height: clamp(var(--denali), 1.5vw, var(--everest));
     margin-block-end: 0;
     font-family: var(--font-sans);
     font-weight: 400;
@@ -123,10 +123,10 @@
   .team_card {
     list-style: none;
     background-color: var(--honey-100);
-    padding: 1rem;
+    padding: var(--vinson);
     border-radius: 0.5rem;
     border: 2px solid whitesmoke;
-    margin-block-end: 1rem;
+    margin-block-end: var(--vinson);
     box-shadow: var(--mesosphere);
 
     @media (prefers-color-scheme: dark) {
@@ -136,7 +136,7 @@
 
     article {
       /* display: grid; ;  */
-      gap: 1.5rem;
+      gap: var(--kilimanjaro);
 
       > * {
         grid-column: 1;
@@ -163,11 +163,11 @@
       grid-row: 1/3;
       max-width: 10rem;
       margin-inline: 0;
-      margin-block-end: 1.5rem;
+      margin-block-end: var(--kilimanjaro);
       overflow: visible !important;
       border-radius: 50%;
-      margin-inline-start: 1rem;
-      margin-block-end: 1rem;
+      margin-inline-start: var(--vinson);
+      margin-block-end: var(--vinson);
     }
 
     /* this seems wrong i need it on both h  */

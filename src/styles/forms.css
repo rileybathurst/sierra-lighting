@@ -1,14 +1,14 @@
 form {
   display: flex;
   flex-direction: column;
-  margin-block-end: 1.5rem;
+  margin-block-end: var(--kilimanjaro);
 
   input,
   textarea,
   input[type="checkbox"] {
     margin-block-end: 0.5rem;
     display: block;
-    width: calc(100% - 2rem);
+    width: calc(100% - var(--denali));
     max-width: 60rem;
     border-radius: calc(var(--border-radius) * 2);
     padding-block: 0.5rem; /*  16 */
@@ -28,8 +28,8 @@ form {
   }
 
   label {
-    width: calc(100% - 2rem);
-    margin-block-end: 1.25rem;
+    width: calc(100% - var(--denali));
+    margin-block-end: var(--elbrus);
     margin-inline: auto;
   }
 
@@ -65,7 +65,7 @@ form {
   }
 
   .address-together {
-    width: calc(100% - 2rem);
+    width: calc(100% - var(--denali));
     margin-inline: auto;
     display: flex;
 
@@ -86,8 +86,8 @@ form {
 .process-switch {
   display: flex;
   flex-direction: row;
-  padding: 1rem;
-  border-radius: 3rem;
+  padding: var(--vinson);
+  border-radius: var(--everest);
   background-color: var(--honey-100);
   @media (prefers-color-scheme: dark) {
     background-color: hsl(var(--denim), 25%, 25%);
@@ -96,8 +96,8 @@ form {
   label {
     flex: 1 1 auto;
     text-align: center;
-    line-height: 2rem;
-    border-radius: 2rem;
+    line-height: var(--denali);
+    border-radius: var(--denali);
     margin-block-end: 0; /* reset */
     transition: var(--moment);
     /* TODO: make this work with slide across but think about how that would work first */

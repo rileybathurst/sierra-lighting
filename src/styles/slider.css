@@ -1,12 +1,12 @@
 .slider-container {
-  margin-block-end: 1.5rem;
+  margin-block-end: var(--kilimanjaro);
 }
 
 #slider {
   margin-inline: auto;
   max-width: var(--stork);
   white-space: nowrap;
-  width: calc(100vw - 2rem);
+  width: calc(100vw - var(--denali));
 
   > ul {
     overflow-x: hidden;

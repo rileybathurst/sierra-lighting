@@ -66,13 +66,13 @@ button,
   background-color: hsl(var(--honey), 100%, 75%);
   border: 1px solid hsl(var(--honey), 100%, 63%);
   width: max-content;
-  padding-block-start: 0.75rem;
+  padding-block-start: var(--kosciuszko);
   padding-block-end: 0.5rem;
-  padding-inline: 1rem;
+  padding-inline: var(--vinson);
   box-shadow: var(--mesosphere);
   transition: var(--moment);
-  margin-inline-start: 1rem;
-  margin-block-end: 1.5rem;
+  margin-inline-start: var(--vinson);
+  margin-block-end: var(--kilimanjaro);
   border-radius: var(--border-radius);
   color: hsl(var(--honey), 100%, 25%);
 
@@ -92,14 +92,14 @@ button,
 }
 
 button {
-  padding-block-start: 0.75rem;
+  padding-block-start: var(--kosciuszko);
   padding-block-end: 0.5rem;
 }
 
 .button {
   text-decoration: none;
   display: inline-block;
-  padding-block: 0.75rem;
+  padding-block: var(--kosciuszko);
 }
 
 /*  TODO active and focus */
@@ -139,7 +139,7 @@ button:focus,
 .contact-info a,
 .footer_list a .hover-back {
   /*  ? how much of this is a button */
-  padding-block: 0.75rem;
+  padding-block: var(--kosciuszko);
   padding-inline: 0.5rem;
   display: block;
   max-width: max-content;
@@ -179,7 +179,7 @@ button:focus,
 .footer-copyright a svg {
   border-radius: var(--border-radius);
   border: 1px solid transparent; /*  hold the space itll come in later */
-  padding-block: 0.75rem;
+  padding-block: var(--kosciuszko);
   padding-inline: 0.5rem;
 }
 

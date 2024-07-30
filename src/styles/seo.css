@@ -9,15 +9,15 @@
   background-color: hsla(197, 100%, 75%, 25%); /*  #aqua */
   border: 1px solid hsla(208, 100%, 43%, 50%); /*  #blue */
   border-radius: 0.25rem;
-  margin: 1rem;
-  padding: 1rem;
+  margin: var(--vinson);
+  padding: var(--vinson);
   line-height: 1.75;
 
   .key,
   .green,
   .yellow,
   .red {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem var(--vinson);
     border-radius: var(--border-radius);
   }
 
@@ -49,7 +49,7 @@
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: var(--denali);
     margin: 0;
   }
 }

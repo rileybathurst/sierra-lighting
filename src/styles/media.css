@@ -41,13 +41,13 @@ svg {
 
   margin-inline: auto;
   box-shadow: var(--troposphere);
-  border-radius: 1rem;
+  border-radius: var(--vinson);
   border: 2px solid whitesmoke;
-  margin-block-end: 1.5rem;
+  margin-block-end: var(--kilimanjaro);
   max-width: var(--pelican);
 
   @media (min-width: 60rem) {
-    margin-block-end: 3rem;
+    margin-block-end: var(--everest);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -63,7 +63,7 @@ svg {
     display: block;
     transition: var(--moment);
     z-index: var(--floor);
-    border-radius: calc(1rem - 1px);
+    border-radius: calc(var(--vinson) - 1px);
 
     /* get rid of the line test */
     padding: 0;
@@ -79,7 +79,7 @@ svg {
   img {
     width: 100%;
     /* filter: drop-shadow(0 0 3px #333); */
-    border-radius: calc(1rem - 1px);
+    border-radius: calc(var(--vinson) - 1px);
   }
 
   > :not(.gatsby-image-wrapper) {
@@ -88,8 +88,8 @@ svg {
     z-index: var(--understory);
     background-color: whitesmoke;
     border-radius: 0.5rem;
-    padding: 1rem;
-    margin-block-end: 1rem;
+    padding: var(--vinson);
+    margin-block-end: var(--vinson);
     box-shadow: var(--troposphere);
     border: 1px solid whitesmoke;
 
@@ -134,7 +134,7 @@ a.poster:hover .gatsby-image-wrapper {
 /*------------------*/
 
 header svg {
-  margin: 1.5rem 0.75rem; /*  24px 12px */
+  margin: var(--kilimanjaro) var(--kosciuszko); /*  24px 12px */
   fill: hsl(var(--denim), 100%, 12%);
   padding: 0.25rem;
   border-radius: var(--border-radius);
@@ -198,7 +198,7 @@ header svg:active {
 
     > p {
       /* this is legal even tho not normally the way I do it */
-      padding: 0.2rem;
+      padding: 0var (--denali);
       transition: 2s ease;
     }
   }
@@ -237,13 +237,16 @@ header svg:active {
   vertical-align: middle;
 
   &::before {
-    transition: border-top-color 0.15s linear,
+    transition:
+      border-top-color 0.15s linear,
       /*  Stagger border appearances */ border-right-color 0.15s linear 0.1s,
       border-bottom-color 0.15s linear 0.2s;
   }
 
   &::after {
-    transition: transform 0.4s linear 0s, border-left-width 0s linear 0.35s; /*  Solid edge post-rotation */
+    transition:
+      transform 0.4s linear 0s,
+      border-left-width 0s linear 0.35s; /*  Solid edge post-rotation */
   }
 
   &::before,
@@ -287,7 +290,7 @@ header svg:active {
   border-radius: var(--border-radius);
   border-radius: 50%;
   border: 1px solid whitesmoke;
-  margin-block-end: 1.5rem;
+  margin-block-end: var(--kilimanjaro);
   margin-inline: auto;
   aspect-ratio: 1;
   max-width: 80%;
@@ -304,7 +307,7 @@ header svg:active {
   max-width: var(--pelican);
   margin-inline: auto;
   display: block; /*  needed for margin-inline */
-  margin-block-end: 2.5rem;
+  margin-block-end: var(--aconcagua);
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
   border: 1px solid whitesmoke;
@@ -323,11 +326,11 @@ header svg:active {
 
   .look,
   .gatsby-image-wrapper {
-    width: calc(100% - 1rem);
+    width: calc(100% - var(--vinson));
   }
 
   .look {
-    margin-block-end: 1rem;
+    margin-block-end: var(--vinson);
     border-radius: var(--card-radius);
     display: flex;
     flex-direction: column;
@@ -357,7 +360,7 @@ header svg:active {
   .gatsby-image-wrapper {
     border-radius: var(--card-radius);
     margin-inline: auto;
-    margin-block-end: 1rem;
+    margin-block-end: var(--vinson);
   }
 
   a .gatsby-image-wrapper {
