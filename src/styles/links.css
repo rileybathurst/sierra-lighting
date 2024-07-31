@@ -76,9 +76,9 @@ button,
   color: var(--honey-600);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(denim-700);
+    background-color: var(--denim-700);
     border-color: var(--denim-600);
-    color: var(--denim-300);
+    color: var(--denim-200);
   }
 
   a {
@@ -86,7 +86,7 @@ button,
       var(--honey),
       100%,
       25%
-    ) !important; /* /*  ! fix this bt keep a11y color contrast   */
+    ) !important; /*  ! fix this but keep a11y color contrast */
   }
 }
 
@@ -220,3 +220,5 @@ a svg:hover {
     fill: var(--denim-300);
   }
 }
+
+/*------------------------------------*/

@@ -113,7 +113,7 @@ ul {
 
     @media (max-width: 60rem) {
       @media (prefers-color-scheme: dark) {
-        background-color: var(denim-700);
+        background-color: var(--denim-700);
       }
     }
 
@@ -328,7 +328,7 @@ ul {
         color: var(--honey-600);
 
         @media (prefers-color-scheme: dark) {
-          background-color: var(denim-700);
+          background-color: var(--denim-700);
           border-color: var(--denim-600);
           color: var(--denim-300);
         }

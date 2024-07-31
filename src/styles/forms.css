@@ -17,7 +17,7 @@ form {
     border: 1px solid var(--honey-400);
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(denim-700);
+      background-color: var(--denim-700);
       border-color: var(--denim-600);
       color: var(--honey-50);
     }

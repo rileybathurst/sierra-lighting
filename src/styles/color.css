@@ -34,8 +34,8 @@ body {
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(denim-700);
-    box-shadow: 0 0 0 100vmax var(denim-700);
+    background-color: var(--denim-700);
+    box-shadow: 0 0 0 100vmax var(--denim-700);
   }
 }
 
@@ -53,7 +53,12 @@ body {
   background-color: var(--brilliance);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-700);
+    background-color: var(--denim-600);
+
+    a {
+      color: var(--denim-300);
+      color: var(--brilliance);
+    }
   }
 }
 
@@ -65,7 +70,7 @@ header {
   background: var(--honey-100);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(denim-700);
+    background-color: var(--denim-700);
   }
 
   h2 {
@@ -87,8 +92,8 @@ header {
     clip-path: inset(0 -100vmax);
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(denim-700);
-      box-shadow: 0 0 0 100vmax var(denim-700);
+      background-color: var(--denim-700);
+      box-shadow: 0 0 0 100vmax var(--denim-700);
     }
   }
 }
@@ -140,7 +145,7 @@ header {
   box-shadow: var(--mesosphere);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(denim-700);
+    background-color: var(--denim-700);
     border-color: var(--denim-600);
   }
 }
@@ -150,7 +155,7 @@ header {
   background-color: var(--honey-50);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(denim-700);
+    background-color: var(--denim-700);
   }
 }
 

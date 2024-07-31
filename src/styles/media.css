@@ -26,7 +26,7 @@ svg {
   background-color: var(--honey-50);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(denim-700);
+    background-color: var(--denim-700);
   }
 }
 
@@ -94,7 +94,7 @@ svg {
     border: 1px solid var(--brilliance);
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(--denim-600);
+      background-color: var(--denim-700);
       border-color: var(--denim-600);
     }
   }
@@ -210,7 +210,7 @@ header svg:active {
     background: var(--honey-50);
 
     @media (prefers-color-scheme: dark) {
-      background: var(denim-700);
+      background: var(--denim-700);
     }
   }
 

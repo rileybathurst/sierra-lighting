@@ -39,7 +39,7 @@
     border-radius: var(--card-radius);
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(denim-700);
+      background-color: var(--denim-700);
       border-color: var(--denim-600);
     }
   }
@@ -130,7 +130,7 @@
     box-shadow: var(--mesosphere);
 
     @media (prefers-color-scheme: dark) {
-      background-color: var(denim-700);
+      background-color: var(--denim-700);
       border-color: var(--denim-600);
     }
 

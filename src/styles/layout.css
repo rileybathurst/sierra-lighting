@@ -1041,6 +1041,12 @@ footer {
 
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-700);
+
+      .button {
+        background-color: var(--denim-600);
+        border-color: var(--denim-500);
+        color: var(--denim-200);
+      }
     }
   }
 }
