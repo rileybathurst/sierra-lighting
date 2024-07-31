@@ -35,12 +35,12 @@
     grid-row: 2/5;
     background-color: var(--honey-100);
     box-shadow: var(--mesosphere);
-    border: 2px solid whitesmoke;
+    border: 2px solid var(--brilliance);
     border-radius: var(--card-radius);
 
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 25%, 12%);
-      border-color: hsl(var(--denim), 25%, 25%);
+      background-color: var(denim-700);
+      border-color: var(--denim-600);
     }
   }
 
@@ -52,7 +52,7 @@
     z-index: var(--understory);
 
     @media (prefers-color-scheme: dark) {
-      border-color: hsl(var(--denim), 12%, 12%);
+      border-color: var(--denim-700);
     }
 
     .gatsby-image-wrapper {
@@ -62,10 +62,10 @@
       box-shadow: var(--stratosphere);
       border-radius: var(--card-radius);
       transition: transform 0.5s ease;
-      border: 2px solid whitesmoke;
+      border: 2px solid var(--brilliance);
 
       @media (prefers-color-scheme: dark) {
-        border-color: hsl(var(--denim), 25%, 25%);
+        border-color: var(--denim-600);
       }
     }
 
@@ -75,9 +75,9 @@
       transition: transform 0.5s ease;
     }
 
+    /* TODO this breaks the border radius s  */
+    /* document which browsers support this s  */
     img:hover {
-      /* TODO this breaks the border radius s  */
-      /* document which browsers support this s  */
       transform: scale(1.05);
     }
   }
@@ -125,13 +125,13 @@
     background-color: var(--honey-100);
     padding: var(--vinson);
     border-radius: 0.5rem;
-    border: 2px solid whitesmoke;
+    border: 2px solid var(--brilliance);
     margin-block-end: var(--vinson);
     box-shadow: var(--mesosphere);
 
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 25%, 12%);
-      border-color: hsl(var(--denim), 25%, 25%);
+      background-color: var(denim-700);
+      border-color: var(--denim-600);
     }
 
     article {

@@ -13,7 +13,7 @@
     padding: 0.5rem var(--vinson);
     /*  TODO: fix this it should get lighter not darker as it gets higher in the stack */
     background-color: var(--kingly-cloud);
-    border: 2px solid whitesmoke;
+    border: 2px solid var(--brilliance);
     border-radius: var(--card-radius);
   }
 }

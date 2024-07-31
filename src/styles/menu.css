@@ -156,11 +156,9 @@
   content: "";
   position: absolute;
   box-sizing: border-box;
-  width: var(--everest); /*  starts at 70 4.375rem */
+  width: var(--everest);
   height: var(--everest);
   border: 2px solid transparent;
-  /*  top: calc(50% - var(--vinson)); */
-  /*  left: calc(50% - var(--vinson)); */
   border-radius: 100%;
   transition: var(--moment);
 }
@@ -171,25 +169,25 @@
 
 /*  the circle */
 .hamburger.is-active:before {
-  border: 2px solid hsl(var(--honey), 100%, 30%); /*  TODO not a louie color */
-  background-color: hsl(var(--honey), 100%, 85%);
+  border: 2px solid var(--honey-500);
+  background-color: var(--honey-100);
 
   @media (prefers-color-scheme: dark) {
-    border-color: hsl(var(--denim), 37%, 37%);
-    background-color: hsl(var(--denim), 37%, 7.5%);
+    border-color: var(--denim-500);
+    background-color: var(--denim-750);
   }
 }
 
 .hamburger .line {
   width: var(--denali);
-  height: 0.1875rem; /*  3px this is wierd and custom */
-  background-color: hsl(var(--honey), 100%, 30%);
+  height: 0.1875rem; /* TODO: 3px this is wierd and custom */
+  background-color: var(--honey-500);
   display: block;
   margin-block: 0.5rem;
   transition: var(--moment);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 37%, 37%);
+    background-color: var(--denim-500);
   }
 }
 

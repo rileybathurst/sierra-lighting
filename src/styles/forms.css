@@ -17,8 +17,8 @@ form {
     border: 1px solid var(--honey-400);
 
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 25%, 12%);
-      border-color: hsl(var(--denim), 25%, 25%);
+      background-color: var(denim-700);
+      border-color: var(--denim-600);
       color: var(--honey-50);
     }
   }
@@ -40,7 +40,7 @@ form {
     margin-block-end: 0;
     margin-inline-end: 0.5rem;
     background-color: white;
-    border-color: hsl(var(--honey-400)) !important; /* TODO: why */
+    border-color: var(--honey-400) !important; /* TODO: why */
     font: inherit;
     color: currentColor;
     width: 1.15em;
@@ -51,10 +51,7 @@ form {
   }
 
   input:checked {
-    /* ! testing */
-    /* outline: 2px solid pink; */
-
-    border-color: hsl(var(--honey-700)) !important;
+    border-color: var(--honey-700) !important;
   }
 
   .checkbox {
@@ -90,7 +87,7 @@ form {
   border-radius: var(--everest);
   background-color: var(--honey-100);
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 25%, 25%);
+    background-color: var(--denim-600);
   }
 
   label {
@@ -105,11 +102,10 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     color: var(--honey-600);
 
     @media (prefers-color-scheme: dark) {
-      color: hsl(var(--denim), 37%, 63%);
+      color: var(--denim-300);
     }
 
     input {
@@ -123,10 +119,10 @@ form {
 
   label.current {
     background-color: var(--honey-400);
-    color: hsl(var(--honey), 100%, 12.5%);
+    color: var(--honey-700);
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 25%, 50%);
-      color: hsl(var(--denim), 25%, 87.5%);
+      background-color: var(--denim-400);
+      color: var(--denim-100);
     }
   }
 
@@ -134,8 +130,8 @@ form {
     cursor: pointer;
     background-color: var(--honey-200);
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 25%, 37.5%);
-      color: hsl(var(--denim), 25%, 87.5%);
+      background-color: var(--denim-500);
+      color: var(--denim-100);
     }
   }
 
@@ -143,7 +139,7 @@ form {
     cursor: default;
     background-color: var(--honey-400);
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 25%, 50%);
+      background-color: var(--denim-400);
     }
   }
 

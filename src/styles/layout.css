@@ -179,7 +179,7 @@ header {
     background-color: var(--honey-50);
 
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 37%, 12%);
+      background-color: var(--denim-700);
     }
   }
 }
@@ -243,13 +243,13 @@ header {
   border-radius: var(--vinson);
   box-shadow: var(--mesosphere);
   padding: var(--vinson);
-  border: 1px solid whitesmoke;
+  border: 1px solid var(--brilliance);
   background-color: var(--honey-100);
   margin-block-end: var(--denali);
 
   @media (prefers-color-scheme: dark) {
-    border-color: hsl(var(--denim), 12.5%, 12.5%);
-    background-color: hsl(var(--denim), 50%, 12.5%);
+    border-color: var(--denim-700);
+    background-color: var(--denim-700); /* TODO these shouldnt match */
   }
 
   .poster,
@@ -331,7 +331,7 @@ header {
       padding: 0.25rem;
       border-radius: var(--border-radius);
       opacity: 0.7;
-      background-color: whitesmoke;
+      background-color: var(--brilliance);
       /* * deals with poster margin-block-end */
 
       @media (min-width: 60rem) {
@@ -339,7 +339,7 @@ header {
       }
 
       @media (prefers-color-scheme: dark) {
-        background-color: hsl(var(--denim), 100%, 12%);
+        background-color: var(--denim-700);
       }
     }
   }
@@ -392,16 +392,16 @@ header {
 
       /* TODO: variable */
       @media (prefers-color-scheme: dark) {
-        fill: hsl(var(--denim), 25%, 37%);
+        fill: var(--denim-500);
       }
     }
 
     a svg:hover {
-      fill: hsl(var(--honey), 100%, 50%);
+      fill: var(--honey-400);
 
       /* TODO: variable */
       @media (prefers-color-scheme: dark) {
-        fill: hsl(var(--denim), 25%, 63%);
+        fill: var(--denim-300);
       }
     }
   }
@@ -517,7 +517,7 @@ footer {
     display: block;
     /*  padding-block-end: var(--kilimanjaro); */
     font-size: var(--elbrus);
-    line-height: 1.875rem;
+    line-height: 1.875rem; /* TODO: variable */
     margin-block-end: 0;
   }
 
@@ -556,10 +556,10 @@ footer {
     width: 33%;
     box-shadow: var(--troposphere);
     border-radius: var(--border-radius);
-    border: 1px solid whitesmoke;
+    border: 1px solid var(--brilliance);
 
     @media (prefers-color-scheme: dark) {
-      border-color: hsl(var(--denim), 12%, 12%);
+      border-color: var(--denim-700);
     }
   }
   /* width: 100%; */
@@ -572,11 +572,11 @@ footer {
 /* TODO */
 .team {
   @media (min-width: 30rem) {
-    border-left: 1px solid hsl(var(--honey), 100%, 50%); /*  TODO */
+    border-left: 1px solid var(--honey-400); /*  TODO */
     padding-inline-start: var(--vinson);
 
     @media (prefers-color-scheme: dark) {
-      border-color: hsl(var(--denim), 12%, 12%);
+      border-color: var(--denim-700);
     }
   }
 }
@@ -638,9 +638,9 @@ footer {
   max-width: var(--book);
   margin-inline: auto;
   padding-inline: var(--vinson);
-  /* border-inline-end: 1px solid hsl(var(--honey), 100%, 50%); */
+  /* border-inline-end: 1px solid var(--honey-400); */
   .attribute {
-    /*  border-inline-end: 1px solid hsl(var(--honey), 100%, 50%); */
+    /*  border-inline-end: 1px solid var(--honey-400); */
     padding-inline-end: var(--vinson);
 
     .crest {
@@ -689,10 +689,10 @@ footer {
     flex: 1 1 10rem;
     border-radius: var(--border-radius);
     box-shadow: var(--troposphere);
-    border: 1px solid whitesmoke;
+    border: 1px solid var(--brilliance);
 
     @media (prefers-color-scheme: dark) {
-      border-color: hsl(var(--denim), 12%, 12%);
+      border-color: var(--denim-700);
     }
   }
 }
@@ -732,14 +732,14 @@ footer {
   .detail {
     max-width: 30%;
     max-height: 50%;
-    border: 1px solid whitesmoke;
+    border: 1px solid var(--brilliance);
     box-shadow: var(--troposphere);
     justify-self: flex-end;
     align-self: flex-end;
     margin-inline-end: var(--denali);
 
     @media (prefers-color-scheme: dark) {
-      border-color: hsl(var(--denim), 12%, 25%);
+      border-color: var(--denim-600);
     }
   }
 }
@@ -766,7 +766,7 @@ footer {
     } */
 
     .gatsby-image-wrapper {
-      height: 1var (--denali);
+      height: var(--denali);
       width: auto;
       min-width: 100%;
       object-fit: cover;
@@ -826,10 +826,10 @@ footer {
   }
 
   > .look {
-    background-color: hsl(var(--honey), 75%, 87%);
+    background-color: var(--honey-100);
     border-radius: var(--card-radius);
     box-shadow: var(--mesosphere);
-    border: 2px solid whitesmoke;
+    border: 2px solid var(--brilliance);
     transition: var(--moment);
 
     @media (prefers-color-scheme: dark) {
@@ -914,8 +914,8 @@ footer {
 .hero-2 {
   display: grid;
 
-  background: hsl(var(--honey), 100%, 87.5%);
-  box-shadow: 0 0 0 100vmax hsl(var(--honey), 100%, 87.5%);
+  background: var(--honey-100);
+  box-shadow: 0 0 0 100vmax var(--honey-100); /* ? */
   clip-path: inset(0 -100vmax);
 
   @media (prefers-color-scheme: dark) {
@@ -1029,16 +1029,19 @@ footer {
     max-width: var(--stork);
     margin-inline: auto;
     grid-row: 3;
-    background-color: hsl(var(--honey), 100%, 97.5%);
     height: min-content;
     z-index: var(--understory);
     margin-inline: auto;
     padding: var(--vinson);
     align-self: flex-end;
     border-radius: var(--border-radius);
-    background-color: rgb(255 255 255 / 50%);
+    background-color: rgb(255 255 255 / 50%); /* TODO: variable */
     margin-block-end: 5rem;
     margin-block-end: clamp(var(--denali), 5vw, var(--everest));
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--denim-700);
+    }
   }
 }
 

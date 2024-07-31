@@ -123,7 +123,7 @@ small,
   ); /*  contrast to background : */
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 12%, 50%);
+    background-color: var(--denim-400);
   }
 }
 
@@ -133,11 +133,11 @@ small,
 
 hr {
   border: none;
-  border-top: 1px solid hsl(var(--honey), 100%, 50%);
+  border-top: 1px solid var(--honey-400);
   margin-block: var(--kilimanjaro); /* 20px */
 
   @media (prefers-color-scheme: dark) {
-    border-color: hsl(var(--denim), 37%, 37%);
+    border-color: var(--denim-500);
   }
 }
 

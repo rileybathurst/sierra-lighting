@@ -33,6 +33,7 @@
     "@sentry/gatsby": "^8.20.0",
     "@storybook/addon-docs": "^8.2.6",
     "axios": "^1.7.2",
+    "color-cards": "^1.0.18",
     "gatsby": "^5.13.7",
     "gatsby-adapter-netlify": "^1.1.7",
     "gatsby-plugin-csp": "^1.1.4",
@@ -82,7 +83,8 @@
     "postcss-nested": "^6.2.0",
     "prop-types": "^15.8.1",
     "storybook": "^8.2.6",
-    "style-loader": "^4.0.0"
+    "style-loader": "^4.0.0",
+    "tsconfig-paths-webpack-plugin": "^4.1.0"
   },
   "optionalDependencies": {
     "@parcel/watcher-linux-x64-glibc": "^2.4.2-alpha.0"

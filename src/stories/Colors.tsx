@@ -1,47 +1,35 @@
 // this is the Name.tsx file
-// TODO: https://www.npmjs.com/package/color-cards
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ColorCard({ color, variables }) {
-  // console.log('variables', variables);
+// This isnt working from the npm import I dont really understand it if I can do it locally
+// I can go to storybook vite I know that works or maybe I have to write storybook components
+import { ColorCards } from './ColorCards';
 
+type ColorProps = {
+  one: string;
+};
+function TypeTest({ one }: ColorProps) {
   return (
-    <section
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        borderRadius: '1rem',
-      }}
-    >
-      {variables.map((variable) => (
-        <div
-          key={`${color}-${variable}`}
-          className={`color-card ${color}-${variable}`} >
-          {color} - {variable}
-          <div
-            style={{
-              height: '100px',
-              width: '100px',
-              backgroundColor: `var(--${color}-${variable})`,
-            }}
-          >
-            {/* stay gold */}
-          </div>
-        </div>
-      ))}
-    </section>
+    <div>
+      <h1>{one}</h1>
+    </div>
   );
 }
 
-export const Colors = ({ primary }) => {
+type ColorsTypes = {
+  primary?: boolean;
+};
+export const Colors = ({ primary }: ColorsTypes) => {
   const mode = primary ? 'storybook-Colors--primary' : 'storybook-Colors--secondary';
   return (
     <main className='color-deck'>
       <h1>Color</h1>
 
-      <ColorCard color="honey" variables={[50, 100, 200, 300, 400, 500, 600, 700]} />
-      <ColorCard color="denim" variables={[100, 200, 300, 400, 500, 600, 700, 750]} />
+      <TypeTest one='hello' />
+
+      <ColorCards color="honey" variables={['50', '100', '200', '300', '400', '500', '600', '700']} />
+      <ColorCards color="denim" variables={['100', '200', '300', '400', '500', '600', '700', '750']} />
     </main>
   );
 };

@@ -7,9 +7,8 @@ a {
   transition: var(--moment);
 
   @media (prefers-color-scheme: dark) {
-    color: hsl(var(--denim), 37%, 62.5%);
+    color: var(--denim-300);
   }
-  /*  text-decoration: none; */
 }
 
 a:hover,
@@ -18,41 +17,41 @@ a:hover,
   color: var(--honey-700);
 
   @media (prefers-color-scheme: dark) {
-    color: hsl(var(--denim), 37%, 50%);
+    color: var(--denim-400);
   }
 }
 
 a:focus,
 .a-focus {
-  color: hsl(var(--honey), 100%, 2.5%);
+  color: var(--honey-700);
   text-decoration: none;
   @media (prefers-color-scheme: dark) {
-    color: hsl(var(--denim), 37%, 37%);
+    color: var(--denim-500);
   }
 }
 
 a::selection {
-  background-color: hsl(var(--honey), 100%, 25%);
+  background-color: var(--honey-600);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 37%, 25%);
+    background-color: var(--denim-600);
   }
 }
 
 .link--subtle {
-  color: hsl(var(--denim), 12%, 12%);
+  color: var(--denim-700);
 
   @media (prefers-color-scheme: dark) {
-    color: hsl(var(--honey), 100%, 97.5%); /*  custom */
+    color: var(--honey-50); /*  custom */
   }
 
   &:hover,
   &:focus {
     text-decoration: none;
-    color: hsl(var(--denim), 12%, 12%);
+    color: var(--denim-700);
 
     @media (prefers-color-scheme: dark) {
-      color: hsl(var(--honey), 100%, 97.5%); /*  custom */
+      color: var(--honey-50); /*  custom */
     }
   }
 }
@@ -63,8 +62,8 @@ a::selection {
 
 button,
 .button {
-  background-color: hsl(var(--honey), 100%, 75%);
-  border: 1px solid hsl(var(--honey), 100%, 63%);
+  background-color: var(--honey-200);
+  border: 1px solid var(--honey-300);
   width: max-content;
   padding-block-start: var(--kosciuszko);
   padding-block-end: 0.5rem;
@@ -74,12 +73,12 @@ button,
   margin-inline-start: var(--vinson);
   margin-block-end: var(--kilimanjaro);
   border-radius: var(--border-radius);
-  color: hsl(var(--honey), 100%, 25%);
+  color: var(--honey-600);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 25%, 12%);
-    border-color: hsl(var(--denim), 12%, 25%);
-    color: hsl(var(--denim), 25%, 63%);
+    background-color: var(denim-700);
+    border-color: var(--denim-600);
+    color: var(--denim-300);
   }
 
   a {
@@ -105,22 +104,22 @@ button {
 /*  TODO active and focus */
 button:hover,
 .button:hover {
-  color: hsl(var(--honey), 100%, 2.5%);
+  color: var(--honey-700);
   box-shadow: var(--stratosphere);
-  background-color: hsl(var(--honey), 87%, 63%);
-  border-color: hsl(var(--honey), 87%, 50%);
+  background-color: var(--honey-300);
+  border-color: var(--honey-400);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 25%, 37%);
-    border-color: hsl(var(--denim), 12%, 50%);
-    color: hsl(var(--denim), 25%, 97.5%);
+    background-color: var(--denim-500);
+    border-color: var(--denim-400);
+    color: var(--denim-100);
   }
 }
 
-button:focus,
+/*  TODO: */
+/* button:focus,
 .button:focus {
-  /*  TODO: */
-}
+} */
 
 .button--left-align {
   margin-inline-start: 0;
@@ -157,14 +156,14 @@ button:focus,
 .contact-info a:hover,
 .contact-info a:focus .hover-back:hover,
 .hover-back__hover {
-  background-color: hsl(var(--honey), 100%, 87%);
-  border-color: hsl(var(--honey), 100%, 75%);
+  background-color: var(--honey-100);
+  border-color: var(--honey-200);
   box-shadow: var(--mesosphere);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 100%, 12%);
-    border-color: hsl(var(--denim), 100%, 25%);
-    color: hsl(var(--denim), 37%, 75%);
+    background-color: var(--denim-700);
+    border-color: var(--denim-600);
+    color: var(--denim-200);
   }
 }
 
@@ -185,10 +184,10 @@ button:focus,
 
 .footer-copyright a:hover svg,
 .footer-copyright a:focus svg {
-  border-color: hsl(var(--honey), 100%, 50%);
+  border-color: var(--honey-400);
 
   @media (prefers-color-scheme: dark) {
-    border-color: hsl(var(--denim), 12%, 50%);
+    border-color: var(--denim-400);
   }
 }
 
@@ -207,17 +206,17 @@ button:focus,
 
 a svg {
   transition: var(--moment);
-  fill: hsl(var(--honey), 100%, 35%);
+  fill: var(--honey-500);
 
   @media (prefers-color-scheme: dark) {
-    fill: hsl(var(--denim), 37%, 62.5%);
+    fill: var(--denim-300);
   }
 }
 
 a svg:hover {
-  fill: hsl(var(--honey), 100%, 37%);
+  fill: var(--honey-500);
 
   @media (prefers-color-scheme: dark) {
-    fill: hsl(var(--denim), 25%, 63%);
+    fill: var(--denim-300);
   }
 }

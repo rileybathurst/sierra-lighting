@@ -5,7 +5,7 @@
 svg {
   min-width: 5rem;
   max-width: 5rem;
-  fill: whitesmoke;
+  fill: var(--brilliance);
   fill: black;
 }
 
@@ -23,10 +23,10 @@ svg {
 /*------------------*/
 
 .gatsby-image-wrapper {
-  background-color: hsl(var(--honey), 100%, 97.5%);
+  background-color: var(--honey-50);
 
   @media (prefers-color-scheme: dark) {
-    background-color: hsl(var(--denim), 25%, 12%);
+    background-color: var(denim-700);
   }
 }
 
@@ -42,7 +42,7 @@ svg {
   margin-inline: auto;
   box-shadow: var(--troposphere);
   border-radius: var(--vinson);
-  border: 2px solid whitesmoke;
+  border: 2px solid var(--brilliance);
   margin-block-end: var(--kilimanjaro);
   max-width: var(--pelican);
 
@@ -51,7 +51,7 @@ svg {
   }
 
   @media (prefers-color-scheme: dark) {
-    border-color: hsl(var(--denim), 12%, 25%);
+    border-color: var(--denim-600);
   }
 
   > * {
@@ -86,16 +86,16 @@ svg {
     align-self: end;
     justify-self: center;
     z-index: var(--understory);
-    background-color: whitesmoke;
+    background-color: var(--brilliance);
     border-radius: 0.5rem;
     padding: var(--vinson);
     margin-block-end: var(--vinson);
     box-shadow: var(--troposphere);
-    border: 1px solid whitesmoke;
+    border: 1px solid var(--brilliance);
 
     @media (prefers-color-scheme: dark) {
-      background-color: hsl(var(--denim), 12%, 25%);
-      border-color: hsl(var(--denim), 12%, 25%);
+      background-color: var(--denim-600);
+      border-color: var(--denim-600);
     }
   }
 }
@@ -135,7 +135,7 @@ a.poster:hover .gatsby-image-wrapper {
 
 header svg {
   margin: var(--kilimanjaro) var(--kosciuszko); /*  24px 12px */
-  fill: hsl(var(--denim), 100%, 12%);
+  fill: var(--denim-700);
   padding: 0.25rem;
   border-radius: var(--border-radius);
 
@@ -145,18 +145,19 @@ header svg {
 }
 
 header svg:hover {
-  fill: hsl(var(--honey), 100%, var(--dim));
+  fill: var(--honey-500);
 
   @media (prefers-color-scheme: dark) {
-    fill: hsl(var(--denim), 12%, var(--mid));
+    fill: var(--denim-400);
   }
 }
 
 header svg:active {
   fill: hsl(var(--honey), 100%, var(--dull));
+  fill: var(--honey-600);
 
   @media (prefers-color-scheme: dark) {
-    fill: hsl(var(--denim), 12%, 50%);
+    fill: var(--denim-400);
   }
 }
 
@@ -192,7 +193,7 @@ header svg:active {
 
     @media (prefers-color-scheme: dark) {
       > .gatsby-image-wrapper {
-        border-color: hsl(var(--denim), 37%, 63%);
+        border-color: var(--denim-300);
       }
     }
 
@@ -206,16 +207,16 @@ header svg:active {
   > a:hover p {
     border-radius: var(--border-radius);
     box-shadow: var(--stratosphere);
-    background: hsl(var(--honey), 100%, 97.5%);
+    background: var(--honey-50);
 
     @media (prefers-color-scheme: dark) {
-      background: hsl(var(--denim), 25%, 12%);
+      background: var(denim-700);
     }
   }
 
   > a:hover > .gatsby-image-wrapper {
     box-shadow: var(--stratosphere);
-    border-color: hsl(var(--honey), 100%, 50%);
+    border-color: var(--honey-400);
   }
 } /*  .team-heads */
 
@@ -264,12 +265,12 @@ header svg:active {
   }
 
   &:hover::before {
-    border-color: hsl(var(--honey), 100%, 50%);
+    border-color: var(--honey-400);
     border-left-color: transparent;
   }
 
   &:hover::after {
-    border-top: 2px solid hsl(var(--honey), 100%, 50%);
+    border-top: 2px solid var(--honey-400);
     border-left-width: 2px; /*  Solid edges, invisible borders */
     border-right-width: 2px; /*  Solid edges, invisible borders */
     transform: rotate(270deg); /*  Rotate around circle */
@@ -289,7 +290,7 @@ header svg:active {
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
   border-radius: 50%;
-  border: 1px solid whitesmoke;
+  border: 1px solid var(--brilliance);
   margin-block-end: var(--kilimanjaro);
   margin-inline: auto;
   aspect-ratio: 1;
@@ -310,7 +311,7 @@ header svg:active {
   margin-block-end: var(--aconcagua);
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
-  border: 1px solid whitesmoke;
+  border: 1px solid var(--brilliance);
   /*  TODO: theres a slight white gap at the bottom */
 }
 
