@@ -1,5 +1,9 @@
 // TODO: check this on the xmas season
 // TODO: storybook and fragment more of this if not componentize it
+
+// this doesnt find lights that arent in a group?
+// chandeliers were missing and that didnt get caught
+
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
@@ -9,6 +13,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 import LightSearch from "../components/light-search";
+import type { CardType } from "../types/card-type";
 
 const lightsPage = () => {
 
@@ -41,6 +46,18 @@ const lightsPage = () => {
         }
       }
 
+      all: allStrapiLight {
+        nodes {
+          name
+          services {
+            slug
+          }
+          light_groups {
+            slug
+          }
+        }
+      }
+
       strapiSeason {
         wedding
       }
@@ -55,6 +72,30 @@ const lightsPage = () => {
 
     }
   `)
+
+  type FilterLightType = {
+    name: string
+    services: {
+      slug: string
+    }[]
+    light_groups: {
+      slug: string
+    }[]
+  }
+
+  if (process.env.NODE_ENV === "development") {
+
+    const noService = data.all.nodes.filter((light: FilterLightType) => !light.services.length);
+    noService.map((light: { name: string; }) => {
+      console.warn(`${light.name} does not have a service`);
+    });
+
+    const noGroup = data.all.nodes.filter((light: FilterLightType) => !light.light_groups.length);
+    noGroup.map((light: { name: string; }) => {
+      console.warn(`${light.name} is not in a group`);
+    });
+
+  }
 
   // TODO: allStrapiService should probably be sorted
 

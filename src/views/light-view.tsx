@@ -166,13 +166,21 @@ const LightView = ({ light, other }) => {
           })}
         </div>
         :
-        other.nodes.map((light: CardType) => (
-          <Card
-            key={light.id}
-            {...light}
-            breadcrumb="light"
-          />
-        ))
+        <>
+          <hr className="stork" />
+          <h3 className="stork">
+            Other Lights
+          </h3>
+          <div className="deck">
+            {other.nodes.map((light: CardType) => (
+              <Card
+                key={light.id}
+                {...light}
+                breadcrumb="light"
+              />
+            ))}
+          </div>
+        </>
       }
 
       <hr className="stork" />
