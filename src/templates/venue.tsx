@@ -9,22 +9,11 @@ import Card from '../components/card';
 import StateAbbreviation from "../components/state-abbreviation";
 import StrShort from "../components/StrShort";
 import Hero from "../components/hero";
-import TestimonialRanking from "../components/testimonial-ranking";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import type { CardType } from '../types/card-type';
 import Testimonial from '../components/testimonial';
-import { IGatsbyImageData } from 'gatsby-plugin-image';
-
-function Phone({ phone }: { phone: number }) {
-  if (phone) {
-    const string = phone.toString();
-    const change = string.replace(/(\d{3})(\d{3})(\d{4})/, "($1)$2-$3");
-    return (
-      <p>Phone <a href={`tel:${phone}`}>{change}</a></p>
-    );
-  }
-  return null;
-}
+import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import { Phone } from '../components/phone';
 
 type VenueViewTypes = {
   data: {
@@ -109,7 +98,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
           </address>
           : null}
 
-        <Phone phone={data.strapiVenue.phone} />
+        <p>Phone: <Phone phone={data.strapiVenue.phone} /></p>
 
         <p>
           Website&nbsp;

@@ -11,6 +11,7 @@ import Markdown from "react-markdown";
 import Header from "../components/header";
 import HeroTreeScreen from "../images/hero-tree-screen";
 import HeroTreeSolid from "../images/hero-tree-solid";
+import Season from "../components/season";
 
 const IndexPage = () => {
 
@@ -230,12 +231,12 @@ const IndexPage = () => {
         </div>
 
 
-        <div className="home-services">
+        <div className={`home-services ${Season()}`}>
           {data.allStrapiService.nodes.map((service: ServiceTypes) => (
             <Link
               key={service.id}
               to={`/${service.slug}`}
-              className='poster'
+              className={`poster ${service.slug}`}
             >
               {service.hero_light ?
                 <>

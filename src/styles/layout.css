@@ -875,6 +875,24 @@ footer {
   }
 }
 
+.home-services.xmas {
+  .residential {
+    order: 1;
+  }
+
+  .commercial {
+    order: 2;
+  }
+
+  .wedding {
+    order: 3;
+  }
+
+  > a {
+    order: 4;
+  }
+}
+
 /*------------------------------------*/
 
 .footer_list {

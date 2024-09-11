@@ -6,6 +6,7 @@ import type { IGatsbyImageData } from "gatsby-plugin-image";
 import Logo from "../images/logo";
 import SocialIcons from "../components/social-icons";
 import Season from './season';
+import { Phone } from './phone';
 
 const Footer = () => {
 
@@ -138,15 +139,16 @@ const Footer = () => {
 
           <div className="contact-info">
             <p>
-              <a href={`mailto:${data.strapiAbout.email}`}>
+              <a
+                href={`mailto:${data.strapiAbout.email}`}
+              // className='button'
+              >
                 {data.strapiAbout.email}
               </a>
             </p>
             <p>
-              {/* // TODO: I think this is wrong if its not broken up correctly */}
-              <a href={`tel:${data.strapiAbout.telephone}`}>
-                Call or Text: {data.strapiAbout.telephone}
-              </a>
+              {/* // TODO: fix the styling */}
+              Call or Text: <Phone phone={data.strapiAbout.telephone} />
             </p>
           </div>
         </section>

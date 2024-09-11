@@ -152,17 +152,22 @@ ul {
   }
 }
 
-.footer_list .holiday {
-  .wedding {
-    order: 2;
-  }
-
-  .christmas {
+.footer_list .holiday,
+.footer_list .xmas {
+  .residential {
     order: 1;
   }
 
-  > li {
+  .commercial {
+    order: 2;
+  }
+
+  .wedding {
     order: 3;
+  }
+
+  > li {
+    order: 4;
   }
 }
 
