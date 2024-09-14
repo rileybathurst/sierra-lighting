@@ -87,13 +87,13 @@ export const query = graphql`
 
     }
 
-    triptych: allStrapiLight(limit: 3, filter: {projects: {elemMatch: {slug: {eq: "red"}}}}) {
+    triptych: allStrapiLight(limit: 3, filter: {projects: {elemMatch: {slug: {eq: $slug}}}}) {
       nodes {
         ...lightCard
       }
     }
 
-    additional: allStrapiLight(skip: 3, filter: {projects: {elemMatch: {slug: {eq: "red"}}}}) {
+    additional: allStrapiLight(skip: 3, filter: {projects: {elemMatch: {slug: {eq: $slug}}}}) {
       nodes {
         id
         name

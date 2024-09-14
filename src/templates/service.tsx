@@ -53,6 +53,13 @@ function Base({ projects, venues, vendors }: BaseTypes) {
 
   // console.log(projects, venues, vendors);
 
+  // order the projects by updatedAt
+  projects.sort((a, b) => {
+    const dateA = new Date(a.updatedAt);
+    const dateB = new Date(b.updatedAt);
+    return dateB.getTime() - dateA.getTime();
+  });
+
   const emptyCard = {
     id: '',
     slug: '',
@@ -76,6 +83,8 @@ function Base({ projects, venues, vendors }: BaseTypes) {
     }
   };
 
+
+
   // empty card slots
   const base: { card: CardType, title: boolean, breadcrumb: string, order: number, id: React.Key }[] = [
     { card: {}, title: false, breadcrumb: '', order: 0, id: '' },
@@ -95,6 +104,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
     if (projects.length > 0) {
       base[0].card = projects[0];
       base[0].title = true;
+      // TODO: this has an ugly hard code to fix the link
       base[0].breadcrumb = 'project';
       base[0].order = 0;
       // this doesnt work on gatsby build
@@ -159,7 +169,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
                 key={`${item.id}-title`}
                 className={`capitalize project-title ${item.breadcrumb}-title`}
               >
-                <Link to={`/${item.breadcrumb}`}>
+                <Link to={`/${item.breadcrumb}${item.breadcrumb === 'project' ? 's' : ''}`}>
                   {item.breadcrumb}{item.breadcrumb === 'project' ? 's' : ''}
                 </Link>
               </h4>
@@ -337,6 +347,7 @@ export const query = graphql`
       }
 
       projects {
+        updatedAt
         ...projectCard
       }
 

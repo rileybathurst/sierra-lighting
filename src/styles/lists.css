@@ -154,7 +154,8 @@ ul {
 
 .footer_list .holiday,
 .footer_list .xmas {
-  .residential {
+  .residential,
+  .christmas {
     order: 1;
   }
 

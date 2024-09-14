@@ -10,6 +10,8 @@ interface BaseCardTypes {
   }[];
   subAreas?: string;
   breadcrumb: string;
+
+  updatedAt?: string | number | undefined;
 }
 
 interface Title {

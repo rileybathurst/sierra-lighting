@@ -26,6 +26,7 @@ const ProjectsPage = () => {
           }
 
           projects {
+            updatedAt
             ...projectCard
           }
 
@@ -73,13 +74,19 @@ const ProjectsPage = () => {
                   : null}
               </div>
               <div className="deck">
-                {service.projects.map((project: CardType) => (
-                  <Card
-                    key={project.id}
-                    {...project}
-                    breadcrumb="project"
-                  />
-                ))}
+                {service.projects
+                  .sort((a, b) => {
+                    const dateA = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
+                    const dateB = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
+                    return dateB - dateA;
+                  })
+                  .map((project: CardType) => (
+                    <Card
+                      key={project.id}
+                      {...project}
+                      breadcrumb="project"
+                    />
+                  ))}
               </div>
               <div className="stork">
                 {/* // TODO: make a big link style here */}

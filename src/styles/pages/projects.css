@@ -1,24 +1,41 @@
 .projects {
+  display: flex;
+  flex-direction: column;
+
   > * {
     display: flex;
     flex-direction: column;
     padding-inline-start: 0; /*  reset */
-
-    * {
-      order: 2;
-    }
+  }
+}
+/* ? double check this is right */
+.projects.holiday,
+.projects.xmas {
+  .residential {
+    order: 1;
   }
 
-  /* ? double check this is right */
-  .holiday {
-    .wedding {
-      order: 3;
-    }
+  .commercial {
+    order: 2;
   }
 
   .wedding {
-    .wedding {
-      order: 1;
-    }
+    order: 3;
+  }
+
+  > * {
+    order: 4;
+  }
+}
+
+.projects.wedding {
+  .wedding {
+    order: 1;
+  }
+}
+
+.projects.wedding {
+  * {
+    order: 2;
   }
 }

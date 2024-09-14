@@ -60,6 +60,9 @@ type VenueViewTypes = {
           name: string;
         }
       }[]
+
+      projects: CardType[]
+
     }
     allStrapiVenue: {
       nodes: CardType[]
@@ -67,6 +70,7 @@ type VenueViewTypes = {
   }
 }
 const VenueView = ({ data }: VenueViewTypes) => {
+
   return (
     <>
       <Header />
@@ -120,7 +124,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
             </a>
           }
         </p>
-        <hr />
+
 
       </main>
       {/* 
@@ -130,8 +134,28 @@ const VenueView = ({ data }: VenueViewTypes) => {
         areas={data.strapiVenue.area.areas}
       /> */}
 
+      {data.strapiVenue.projects.length > 0 ?
+        <>
+          <hr className='stork' />
+          <div className="stork">
+            <h3 className="crest">Projects at {data.strapiVenue.name}</h3>
+          </div>
+          <div className="deck">
+            {data.strapiVenue.projects.map((card: CardType) => (
+              <Card
+                key={card.id}
+                {...card}
+                breadcrumb='venue'
+              />
+            ))}
+          </div>
+        </>
+        : null
+      }
+
       {data.allStrapiVenue.nodes.length > 0 ?
         <>
+          <hr className="stork" />
           <div className="stork">
             <h3 className="crest">More Venues in {data.strapiVenue.area.name}, <StateAbbreviation state={data.strapiVenue.area.state} /></h3>
           </div>
@@ -223,6 +247,10 @@ export const query = graphql`
             url
           }
           alternativeText
+        }
+
+        projects {
+          ...projectCard
         }
 
         testimonials {

@@ -130,72 +130,78 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
 
 
       {project.testimonial ?
-        <div className="stork">
-          <Testimonial {...project.testimonial} />
-        </div>
+        <>
+          <hr className="pelican" />
+          <div className="stork">
+            <Testimonial {...project.testimonial} />
+          </div>
+        </>
         : null}
 
       {project.venue || project.areas || project.vendors || project.team ?
-        <div className="attributes">
+        <>
+          <hr className="pelican" />
+          <div className="attributes">
 
-          {project.venue ?
-            <section className="attribute">
-              <h3 className="crest">Venue</h3>
-              <h4 className="range">
-                <Link to={`/venue/${project.venue.slug}`} className="link--subtle">
-                  {project.venue.name}
-                </Link>
-              </h4>
+            {project.venue ?
+              <section className="attribute">
+                <h3 className="crest">Venue</h3>
+                <h4 className="range">
+                  <Link to={`/venue/${project.venue.slug}`} className="link--subtle">
+                    {project.venue.name}
+                  </Link>
+                </h4>
 
-              {project.venue.area ?
-                project.venue.area.map(area => (
-                  <p key={area.id}>
-                    <Link to={`/areas/${area.slug}`} className="link--subtle">
-                      {area.name}, <StateAbbreviation state={area.state} />
-                    </Link>
-                  </p>
-                ))
-                : null}
-            </section>
-            : null}
+                {project.venue.area ?
+                  project.venue.area.map(area => (
+                    <p key={area.id}>
+                      <Link to={`/areas/${area.slug}`} className="link--subtle">
+                        {area.name}, <StateAbbreviation state={area.state} />
+                      </Link>
+                    </p>
+                  ))
+                  : null}
+              </section>
+              : null}
 
-          {project.vendors.length > 0 ?
-            <section className="attribute">
-              <h3 className="crest">Vendor{project.vendors.length > 1 ? 's' : null}</h3>
-              {project.vendors.map(vendor => (
-                <div key={vendor.id}>
-                  <h4 className="range">
-                    {/* // TODO these could kinda be attached so the hover state is nicer */}
-                    <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
-                      {vendor.name}
-                    </Link>
-                  </h4>
-                  <p>
-                    <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
-                      <span className="capitalize">{vendor.service}</span><br />
-                    </Link>
-                  </p>
-                </div>
-              ))}
-            </section>
-            : null}
-
-          {project.team ?
-            <section className="attribute">
-              <h3 className="crest">Team</h3>
-              <div className="">
-                {project.team.map(team => (
-                  <h4 className="range last-ampersand inline" key={team.slug}>
-                    <Link to={`/team/${team.slug}`} className="link--subtle">
-                      {team.name}
-                    </Link>
-                  </h4>
+            {project.vendors.length > 0 ?
+              <section className="attribute">
+                <h3 className="crest">Vendor{project.vendors.length > 1 ? 's' : null}</h3>
+                {project.vendors.map(vendor => (
+                  <div key={vendor.id}>
+                    <h4 className="range">
+                      {/* // TODO these could kinda be attached so the hover state is nicer */}
+                      <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
+                        {vendor.name}
+                      </Link>
+                    </h4>
+                    <p>
+                      <Link to={`/vendor/${vendor.slug}`} className="link--subtle">
+                        <span className="capitalize">{vendor.service}</span><br />
+                      </Link>
+                    </p>
+                  </div>
                 ))}
-              </div>
-            </section>
-            : null}
+              </section>
+              : null}
 
-        </div>
+            {project.team ?
+              <section className="attribute">
+                <h3 className="crest">Team</h3>
+                <div className="">
+                  {project.team.map(team => (
+                    <h4 className="range last-ampersand inline" key={team.slug}>
+                      <Link to={`/team/${team.slug}`} className="link--subtle">
+                        {team.name}
+                      </Link>
+                    </h4>
+                  ))}
+                </div>
+              </section>
+              : null}
+
+          </div>
+        </>
         : null}
 
       {/* 3 featured lights or other projects */}
