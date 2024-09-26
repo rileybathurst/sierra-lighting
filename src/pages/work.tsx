@@ -86,16 +86,14 @@ export const Head = () => {
       <Script type="application/ld+json">
         {`
           {
+            ${useStrapiJob().nodes.map((job: JobTypes) => (`
             "@context": "https://schema.org",
             "@type": "JobPosting",
-            ${useStrapiJob().nodes.map((job: JobTypes) => (
-          `{
-                "title": "${job.title}",
-                "datePosted": "${job.updatedAt}",
-                "description": "${job.description.data.description}",
-              }`
-        )).join(',')}
-          }
+              "title": "${job.title}",
+              "datePosted": "${job.updatedAt}",
+              "description": "${job.description.data.description.split('\n').join(' ')}"
+              }
+          `)).join(',')}
         `}
       </Script>
     </SEO>
