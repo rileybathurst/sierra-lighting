@@ -21,7 +21,7 @@ type JobTypes = {
 
 const WorkPage = () => {
 
-  const { strapiImageGrab } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query strapiImageGrabWork {
 
       strapiImageGrab(title: {eq: "Work"}) {
@@ -34,6 +34,7 @@ const WorkPage = () => {
           }
         }
       }
+
     }
   `)
 
@@ -44,8 +45,8 @@ const WorkPage = () => {
 
       <div className="poster">
         <GatsbyImage
-          image={strapiImageGrab.image.localFile.childImageSharp.gatsbyImageData}
-          alt={strapiImageGrab.title}
+          image={data.strapiImageGrab.image.localFile.childImageSharp.gatsbyImageData}
+          alt={data.strapiImageGrab.title}
         />
       </div>
 
@@ -55,7 +56,7 @@ const WorkPage = () => {
         <h1 className="range">Jobs</h1>
         <hr />
 
-        {useStrapiJob().nodes.map((job: JobTypes) => (
+        {useStrapiJob().allStrapiJob.nodes.map((job: JobTypes) => (
           <div key={job.id}>
             <h2 itemProp="title">{job.title}</h2>
             <h3>Updated: {job.updatedAt}</h3>
@@ -86,14 +87,26 @@ export const Head = () => {
       <Script type="application/ld+json">
         {`
           {
-            ${useStrapiJob().nodes.map((job: JobTypes) => (`
+            ${useStrapiJob().allStrapiJob.nodes.map((job: JobTypes) => (`
             "@context": "https://schema.org",
             "@type": "JobPosting",
               "title": "${job.title}",
               "datePosted": "${job.updatedAt}",
               "description": "${job.description.data.description.split('\n').join(' ')}"
-              }
-          `)).join(',')}
+          `)).join(',')},
+              "jobLocation": {
+                "@type": "Place",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Truckee",
+                  "addressRegion": "CA"
+                }
+              },
+            "hiringOrganization": {
+              "@type": "Organization",
+              "name": "${useStrapiJob().strapiAbout.businessName}"
+            }
+          }
         `}
       </Script>
     </SEO>

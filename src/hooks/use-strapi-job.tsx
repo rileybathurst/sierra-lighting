@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 
 export const useStrapiJob = () => {
-  const { allStrapiJob } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query {
       allStrapiJob {
         nodes {
@@ -15,8 +15,13 @@ export const useStrapiJob = () => {
           }
         }
       }
+
+      strapiAbout {
+        businessName
+      }
+
     }
   `);
 
-  return allStrapiJob;
+  return data;
 };
