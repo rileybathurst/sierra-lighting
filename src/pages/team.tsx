@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 import Markdown from "react-markdown";
 import { SEO } from "../components/seo";
 
@@ -19,6 +19,25 @@ const TeamPage = () => {
     }
   `)
 
+  type TeamTypes = {
+    id: string;
+    name: string;
+    slug: string;
+    bio: {
+      data: {
+        bio: string;
+      };
+    };
+    avatar: {
+      localFile: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData;
+        };
+      };
+      alternativeText: string;
+    };
+  }
+
   return (
     <>
       <Header />
@@ -28,16 +47,16 @@ const TeamPage = () => {
           <h3>The Sierra Lighting Team</h3>
 
           <ul className="team_deck">
-            {allStrapiTeam.nodes.map(team => (
+            {allStrapiTeam.nodes.map((team: TeamTypes) => (
               <li key={team.id} className="team_card">
-                <article className="single" itemScope itemType="https://schema.org/Person">
+                <article className="single">
                   <div className="poster">
                     <GatsbyImage
                       image={team.avatar?.localFile?.childImageSharp?.gatsbyImageData}
                       alt={team.avatar?.alternativeText}
                     />
                   </div>
-                  <h1 itemProp="name">
+                  <h1>
                     <Link to={team.slug}>
                       {team.name}
                     </Link>
@@ -75,7 +94,7 @@ export default TeamPage
 export const Head = () => {
   return (
     <SEO
-      title={`Team`}
+      title='Team'
       description="A Those of us who work with Sierra Lighting"
       image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
       url="team"

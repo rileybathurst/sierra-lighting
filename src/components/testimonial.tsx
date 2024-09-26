@@ -21,7 +21,7 @@ function Testimonial({ id, customer, position, review, vendor }: TestimonialType
         <blockquote>
 
           <p className='testimonial--quote_mark range'>&ldquo;</p>
-          <p itemProp="reviewBody">{review}</p>
+          <p>{review}</p>
 
           <figcaption>
 

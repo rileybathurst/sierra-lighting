@@ -1,16 +1,29 @@
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Script } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { SEO } from "../components/seo";
-
+import ReactMarkdown from "react-markdown";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { useStrapiJob } from "../hooks/use-strapi-job";
+
+type JobTypes = {
+  id: string
+  title: string
+  updatedAt: string
+  description: {
+    data: {
+      description: string
+    }
+  }
+}
 
 const WorkPage = () => {
 
   const { strapiImageGrab } = useStaticQuery(graphql`
     query strapiImageGrabWork {
+
       strapiImageGrab(title: {eq: "Work"}) {
         title
         image {
@@ -23,6 +36,7 @@ const WorkPage = () => {
       }
     }
   `)
+
 
   return (
     <>
@@ -41,31 +55,14 @@ const WorkPage = () => {
         <h1 className="range">Jobs</h1>
         <hr />
 
-        <div itemScope itemType="https://schema.org/JobPosting">
-          <h2 itemProp="title">Lights Installer</h2>
-          <p><strong>Location: </strong>
-            <span itemProp="jobLocation" itemScope itemType="https://schema.org/Place">
-              <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-                <span itemProp="addressLocality">Truckee</span>, <span itemProp="addressRegion">CA</span>
-              </span>
-            </span>
-          </p>
-
-          {/* // TODO move to strapi */}
-          {/* // TODO SEO */}
-          <ul>
-            <li key="earn">Earn $9,000 - $13,000 in ten weeks work</li>
-            <li key="bonus">Hourly + bonus incentive program</li>
-            <li key="trade">Learn a new trade, work outside</li>
-            <li key="heights">have fun at heights with a great team</li>
-            <li key="housing">Housing / vehicle dwelling possible</li >
-          </ul >
-
-          <p>Locally owned and operated in Truckee, Tahoe and Reno. We are in need of reliable, hardworking employees to install wedding and Christmas lights.</p>
-          <p>Full time Oct - Jan with holidays off. Can start earlier if desired.</p>
-
-          <h3>↓ Contact us below ↓</h3>
-        </div>
+        {useStrapiJob().nodes.map((job: JobTypes) => (
+          <div key={job.id}>
+            <h2 itemProp="title">{job.title}</h2>
+            <h3>Updated: {job.updatedAt}</h3>
+            <ReactMarkdown>{job.description.data.description}</ReactMarkdown>
+            <h3>↓ Contact us below ↓</h3>
+          </div>
+        ))}
       </main >
 
       <Footer />
@@ -76,14 +73,56 @@ const WorkPage = () => {
 
 export default WorkPage
 
+// TODO: https://schema.org/JobPosting
 export const Head = () => {
   return (
     <SEO
-      title={`Work`}
+      title='Work'
       // TODO description and info
       // TODO I have a new image for this
       image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
       url="work"
-    />
+    >
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "JobPosting",
+            ${useStrapiJob().nodes.map((job: JobTypes) => (
+          `{
+                "title": "${job.title}",
+                "datePosted": "${job.updatedAt}",
+                "description": "${job.description.data.description}",
+              }`
+        )).join(',')}
+          }
+        `}
+      </Script>
+    </SEO>
   )
 }
+
+/* // TODO: schema.org/JobPosting
+                "baseSalary": "9000",
+                                "jobBenefits": "Medical, Life, Dental",
+"educationRequirements": "Bachelor's Degree in Computer Science, Information Systems or related fields of study.",
+"employmentType": "Full-time",
+"experienceRequirements": "Minumum 3 years experience as a software engineer",
+"incentiveCompensation": "Performance-based annual bonus plan, project-completion bonuses",
+"industry": "Computer Software",
+"jobLocation": {
+  "@type": "Place",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kirkland",
+    "addressRegion": "WA"
+  }
+},
+"occupationalCategory": "15-1132.00 Software Developers, Application",
+"qualifications": "Ability to work in a team environment with members of varying skill levels. Highly motivated. Learns quickly.",
+"responsibilities": "Design and write specifications for tools for in-house customers Build tools according to specifications",
+"salaryCurrency": "USD",
+"skills": "Web application development using Java/J2EE Web application development using Python or familiarity with dynamic programming languages",
+"specialCommitments": "VeteranCommit",
+"title": "Software Engineer",
+"workHours": "40 hours per week" */

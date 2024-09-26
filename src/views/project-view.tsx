@@ -129,6 +129,8 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
         : null}
 
 
+      {/* // ! testing removed
+      
       {project.testimonial ?
         <>
           <hr className="pelican" />
@@ -136,7 +138,7 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
             <Testimonial {...project.testimonial} />
           </div>
         </>
-        : null}
+        : null} */}
 
       {project.venue || project.areas || project.vendors || project.team ?
         <>

@@ -4,7 +4,8 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import ProjectView from "../../views/project-view"
 import SEO from "../../components/seo"
-
+import type { IGatsbyImageData } from "gatsby-plugin-image"
+import type { CardType } from "../../types/card-type"
 
 export const query = graphql`
   query ProjectQuery($slug: String!) {
@@ -54,6 +55,7 @@ export const query = graphql`
       }
 
       teams {
+        id
         name
         slug
       }
@@ -74,16 +76,7 @@ export const query = graphql`
         slug
       }
 
-      testimonial {
-        id
-        customer
-        position
-        review
-        vendor {
-          name
-          slug
-        }
-      }
+      
 
     }
 
@@ -125,9 +118,98 @@ export const query = graphql`
   }
 `
 
-const ProjectPage = ({ data }) => {
+/* 
+! testing removed
 
-  // console.log(data);
+testimonial {
+  id
+  customer
+  position
+  review
+  vendor {
+    name
+    slug
+  }
+} */
+
+type ProjectPageTypes = {
+  data: {
+    strapiProject: {
+      id: string;
+      title: string;
+      description: {
+        data: {
+          description: string;
+        };
+      };
+      excerpt: string;
+      slug: string;
+      ogimage: string;
+      image: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+          url: string;
+        };
+        alternativeText: string;
+      };
+      gallery: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+          url: string;
+        };
+        alternativeText: string;
+      }[];
+
+      lights: CardType[];
+
+      areas: {
+        name: string;
+        state: string;
+        slug: string;
+      }[];
+
+      teams: {
+        id: string;
+        name: string;
+        slug: string;
+      }[];
+
+      vendors: {
+        name: string;
+        slug: string;
+        service: string;
+      }[];
+
+      venue: {
+        name: string;
+        slug: string;
+      };
+
+      services: {
+        name: string;
+        slug: string;
+      }[];
+    }
+
+    triptych: {
+      nodes: []
+    }
+    additional: {
+      nodes: []
+    }
+    allStrapiProject: {
+      nodes: []
+    }
+  }
+}
+
+// console.log(data)
+
+const ProjectPage = ({ data }: ProjectPageTypes) => {
 
   return (
     <ProjectView
@@ -141,7 +223,17 @@ const ProjectPage = ({ data }) => {
 
 export default ProjectPage;
 
-export const Head = ({ data }) => {
+type ProjectPageHeadTypes = {
+  data: {
+    strapiProject: {
+      title: string;
+      excerpt: string;
+      ogimage: string;
+      slug: string;
+    }
+  }
+}
+export const Head = ({ data }: ProjectPageHeadTypes) => {
   return (
     <SEO
       title={`${data.strapiProject.title}`}

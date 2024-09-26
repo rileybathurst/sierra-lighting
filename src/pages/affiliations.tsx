@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
 
 import { SEO } from "../components/seo";
 
@@ -32,7 +32,21 @@ const TestimonialsPage = () => {
     }
   `)
 
-  const title = 'Affiliations';
+  type AffiliationTypes = {
+    id: string;
+    name: string;
+    excerpt: string;
+    link: string;
+    logo: {
+      localFile: {
+        childImageSharp: {
+          gatsbyImageData: IGatsbyImageData;
+        };
+        url: string;
+      };
+      alternativeText: string;
+    };
+  }
 
   return (
     <>
@@ -41,12 +55,12 @@ const TestimonialsPage = () => {
       <main>
         <div className="stork">
           {/* <h1 className="crest">Reviews</h1> */}
-          <h2 className="ridge">{title}</h2>
+          <h2 className="ridge">Affiliations</h2>
         </div>
 
-
-        <ul itemProp="review" itemScope itemType="https://schema.org/Review" className="affiliations">
-          {allStrapiAffiliation.nodes.map(affiliation => (
+        {/* // TODO: https://schema.org/Review */}
+        <ul className="affiliations">
+          {allStrapiAffiliation.nodes.map((affiliation: AffiliationTypes) => (
             <li key={affiliation.id} className='affiliation'>
               <GatsbyImage
                 image={affiliation?.logo?.localFile?.childImageSharp?.gatsbyImageData}
@@ -76,7 +90,7 @@ export default TestimonialsPage
 export const Head = () => {
   return (
     <SEO
-      title={`Affiliations`}
+      title="Affiliations"
       url="affiliations"
     />
   )

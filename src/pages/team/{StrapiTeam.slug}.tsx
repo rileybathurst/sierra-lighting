@@ -20,7 +20,21 @@ export const query = graphql`
   }
 `
 
-const TeamPage = ({ data }) => {
+type TeamPageTypes = {
+  data: {
+    strapiTeam: {
+      name: string;
+      avatar: {
+        localFile: {
+          url: string;
+        };
+      };
+      excerpt: string;
+      slug: string;
+    };
+  };
+};
+const TeamPage = ({ data }: TeamPageTypes) => {
   return (
     <TeamView
       team={data.strapiTeam}
@@ -30,7 +44,24 @@ const TeamPage = ({ data }) => {
 
 export default TeamPage;
 
-export const Head = ({ data }) => {
+type TeamPageHeadTypes = {
+  data: {
+    strapiTeam: {
+      name: string;
+      avatar: {
+        localFile: {
+          url: string;
+        };
+      };
+      excerpt: string;
+      slug: string;
+    };
+    strapiAbout: {
+      businessName: string;
+    };
+  };
+};
+export const Head = ({ data }: TeamPageHeadTypes) => {
   return (
     <>
       <SEO
@@ -42,7 +73,7 @@ export const Head = ({ data }) => {
       />
 
       {/* // TODO: jobTitle */}
-      {/* TODO: move the organization to seo file */}
+      {/* // TODO: move the organization to seo file */}
       {/* works for has to be an org but that needs an address so normally use local bus */}
       <Script type="application/ld+json">
         {`

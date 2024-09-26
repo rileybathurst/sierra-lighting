@@ -71,11 +71,11 @@ export const SEO = (SE0: SEO) => {
             "itemListElement": [
               ${Object.entries(breadcrumbs).map(([key, breadcrumb]) => {
           return `{
-                        "@type": "ListItem",
-                        "position": ${Number.parseInt(key) + 1},
-                        "name": "${breadcrumb.name}",
-                        "item": "${data.strapiAbout.url}/${breadcrumb.item}"
-                      }`
+                    "@type": "ListItem",
+                    "position": ${Number.parseInt(key) + 1},
+                    "name": "${breadcrumb.name}",
+                    "item": "${data.strapiAbout.url}/${breadcrumb.item}"
+                  }`
         })}
             ]
           }

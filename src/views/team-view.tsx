@@ -37,8 +37,7 @@ const TeamView = ({ team }: TeamTypes) => {
     <>
       <Header />
 
-      {/* // TODO: move this to the SEO */}
-      <main className="stork team-page" itemScope itemType="https://schema.org/Person">
+      <main className="stork team-page">
         <div className="avatar-wrapper">
           <GatsbyImage
             image={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
@@ -46,7 +45,7 @@ const TeamView = ({ team }: TeamTypes) => {
             className='avatar'
           />
         </div>
-        <h1 itemProp="name">{team.name}</h1>
+        <h1>{team.name}</h1>
 
         {team.bio ?
           <Markdown className="react-markdown">

@@ -61,11 +61,6 @@ const IndexPage = () => {
           stars
           title
           position
-
-          project {
-            slug
-            title
-          }
         }
       }
 
@@ -84,6 +79,25 @@ const IndexPage = () => {
 
     }
   `)
+
+  /* 
+  // ! testing removed project but also make this a fragment
+  allStrapiTestimonial(sort: {position: ASC}) {
+    nodes {
+      id
+      customer
+      platform
+      excerpt
+      createdAt
+      stars
+      title
+      position
+  
+      project {
+        slug
+        title
+      }
+    } */
 
   interface QualityTypes {
     id: string;
@@ -192,24 +206,18 @@ const IndexPage = () => {
             <h4>Thanks From Our Customers</h4>
 
             <ul>
+              {/* // TODO: make this a component */}
               {data.allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
                 <li key={testimonial.id} className="slider">
-                  {/* // TODO: theres a lot of divs and stuff that can be simplified */}
-                  {/*  <div>
-                    <div className="five-stars">
-                      <TestimonialRanking stars={testimonial.stars} />
-                      <p className="sr-only">{testimonial.stars}</p>
-                      <p className="sr-only">1/5stars</p>
-                    </div>
-                  </div> */}
-
+                  {/* 
+                  // ! testing removed
                   {testimonial.project ?
                     <h4>
                       <Link to={`/project/${testimonial.project.slug}`}>
                         {testimonial.project.title}
                       </Link>
                     </h4>
-                    : null}
+                    : null} */}
 
                   <p>{testimonial.excerpt}</p>
                   {/* // TODO: className="together" is a bad name */}

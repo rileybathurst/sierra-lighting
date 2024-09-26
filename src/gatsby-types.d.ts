@@ -1327,6 +1327,8 @@ type Query = {
   readonly allStrapiFar: STRAPI_FARConnection;
   readonly allStrapiHero: STRAPI_HEROConnection;
   readonly allStrapiImageGrab: STRAPI_IMAGE_GRABConnection;
+  readonly allStrapiJob: STRAPI_JOBConnection;
+  readonly allStrapiJobDescriptionTextnode: STRAPI_JOB_DESCRIPTION_TEXTNODEConnection;
   readonly allStrapiLight: STRAPI_LIGHTConnection;
   readonly allStrapiLightGroup: STRAPI_LIGHT_GROUPConnection;
   readonly allStrapiLookbook: STRAPI_LOOKBOOKConnection;
@@ -1371,6 +1373,8 @@ type Query = {
   readonly strapiFar: Maybe<STRAPI_FAR>;
   readonly strapiHero: Maybe<STRAPI_HERO>;
   readonly strapiImageGrab: Maybe<STRAPI_IMAGE_GRAB>;
+  readonly strapiJob: Maybe<STRAPI_JOB>;
+  readonly strapiJobDescriptionTextnode: Maybe<STRAPI_JOB_DESCRIPTION_TEXTNODE>;
   readonly strapiLight: Maybe<STRAPI_LIGHT>;
   readonly strapiLightGroup: Maybe<STRAPI_LIGHT_GROUP>;
   readonly strapiLookbook: Maybe<STRAPI_LOOKBOOK>;
@@ -1534,6 +1538,22 @@ type Query_allStrapiImageGrabArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_IMAGE_GRABSortInput>>>;
+};
+
+
+type Query_allStrapiJobArgs = {
+  filter: InputMaybe<STRAPI_JOBFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_JOBSortInput>>>;
+};
+
+
+type Query_allStrapiJobDescriptionTextnodeArgs = {
+  filter: InputMaybe<STRAPI_JOB_DESCRIPTION_TEXTNODEFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_JOB_DESCRIPTION_TEXTNODESortInput>>>;
 };
 
 
@@ -2065,6 +2085,29 @@ type Query_strapiImageGrabArgs = {
 };
 
 
+type Query_strapiJobArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  createdAt: InputMaybe<DateQueryOperatorInput>;
+  description: InputMaybe<STRAPI_JOBDescriptionFilterInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_id: InputMaybe<IntQueryOperatorInput>;
+  title: InputMaybe<StringQueryOperatorInput>;
+  updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+
+type Query_strapiJobDescriptionTextnodeArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  description: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+};
+
+
 type Query_strapiLightArgs = {
   alias: InputMaybe<StringQueryOperatorInput>;
   byline: InputMaybe<StringQueryOperatorInput>;
@@ -2251,7 +2294,6 @@ type Query_strapiProjectArgs = {
   slug: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   teams: InputMaybe<STRAPI_TEAMFilterListInput>;
-  testimonial: InputMaybe<STRAPI_TESTIMONIALFilterInput>;
   title: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
@@ -2437,7 +2479,6 @@ type Query_strapiTestimonialArgs = {
   parent: InputMaybe<NodeFilterInput>;
   platform: InputMaybe<StringQueryOperatorInput>;
   position: InputMaybe<StringQueryOperatorInput>;
-  project: InputMaybe<STRAPI_PROJECTFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   review: InputMaybe<StringQueryOperatorInput>;
   services: InputMaybe<STRAPI_SERVICEFilterListInput>;
@@ -4033,6 +4074,302 @@ type STRAPI_IMAGE_GRABSortInput = {
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
 
+type STRAPI_JOB = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly description: Maybe<STRAPI_JOBDescription>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+  readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_id: Maybe<Scalars['Int']>;
+  readonly title: Maybe<Scalars['String']>;
+  readonly updatedAt: Maybe<Scalars['Date']>;
+};
+
+
+type STRAPI_JOB_createdAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_JOB_publishedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_JOB_updatedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type STRAPI_JOBConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_JOBEdge>;
+  readonly group: ReadonlyArray<STRAPI_JOBGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_JOB>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_JOBConnection_distinctArgs = {
+  field: STRAPI_JOBFieldSelector;
+};
+
+
+type STRAPI_JOBConnection_groupArgs = {
+  field: STRAPI_JOBFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_JOBConnection_maxArgs = {
+  field: STRAPI_JOBFieldSelector;
+};
+
+
+type STRAPI_JOBConnection_minArgs = {
+  field: STRAPI_JOBFieldSelector;
+};
+
+
+type STRAPI_JOBConnection_sumArgs = {
+  field: STRAPI_JOBFieldSelector;
+};
+
+type STRAPI_JOBDescription = {
+  readonly data: Maybe<STRAPI_JOB_DESCRIPTION_TEXTNODE>;
+};
+
+type STRAPI_JOBDescriptionFieldSelector = {
+  readonly data: InputMaybe<STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector>;
+};
+
+type STRAPI_JOBDescriptionFilterInput = {
+  readonly data: InputMaybe<STRAPI_JOB_DESCRIPTION_TEXTNODEFilterInput>;
+};
+
+type STRAPI_JOBDescriptionSortInput = {
+  readonly data: InputMaybe<STRAPI_JOB_DESCRIPTION_TEXTNODESortInput>;
+};
+
+type STRAPI_JOBEdge = {
+  readonly next: Maybe<STRAPI_JOB>;
+  readonly node: STRAPI_JOB;
+  readonly previous: Maybe<STRAPI_JOB>;
+};
+
+type STRAPI_JOBFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly description: InputMaybe<STRAPI_JOBDescriptionFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_id: InputMaybe<FieldSelectorEnum>;
+  readonly title: InputMaybe<FieldSelectorEnum>;
+  readonly updatedAt: InputMaybe<FieldSelectorEnum>;
+};
+
+type STRAPI_JOBFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly description: InputMaybe<STRAPI_JOBDescriptionFilterInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
+  readonly title: InputMaybe<StringQueryOperatorInput>;
+  readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+type STRAPI_JOBGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_JOBEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<STRAPI_JOBGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_JOB>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_JOBGroupConnection_distinctArgs = {
+  field: STRAPI_JOBFieldSelector;
+};
+
+
+type STRAPI_JOBGroupConnection_groupArgs = {
+  field: STRAPI_JOBFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_JOBGroupConnection_maxArgs = {
+  field: STRAPI_JOBFieldSelector;
+};
+
+
+type STRAPI_JOBGroupConnection_minArgs = {
+  field: STRAPI_JOBFieldSelector;
+};
+
+
+type STRAPI_JOBGroupConnection_sumArgs = {
+  field: STRAPI_JOBFieldSelector;
+};
+
+type STRAPI_JOBSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly description: InputMaybe<STRAPI_JOBDescriptionSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_id: InputMaybe<SortOrderEnum>;
+  readonly title: InputMaybe<SortOrderEnum>;
+  readonly updatedAt: InputMaybe<SortOrderEnum>;
+};
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODE = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+};
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_JOB_DESCRIPTION_TEXTNODEEdge>;
+  readonly group: ReadonlyArray<STRAPI_JOB_DESCRIPTION_TEXTNODEGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_JOB_DESCRIPTION_TEXTNODE>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEConnection_distinctArgs = {
+  field: STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEConnection_groupArgs = {
+  field: STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEConnection_maxArgs = {
+  field: STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEConnection_minArgs = {
+  field: STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEConnection_sumArgs = {
+  field: STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEEdge = {
+  readonly next: Maybe<STRAPI_JOB_DESCRIPTION_TEXTNODE>;
+  readonly node: STRAPI_JOB_DESCRIPTION_TEXTNODE;
+  readonly previous: Maybe<STRAPI_JOB_DESCRIPTION_TEXTNODE>;
+};
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+};
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_JOB_DESCRIPTION_TEXTNODEEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<STRAPI_JOB_DESCRIPTION_TEXTNODEGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_JOB_DESCRIPTION_TEXTNODE>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEGroupConnection_distinctArgs = {
+  field: STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEGroupConnection_groupArgs = {
+  field: STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEGroupConnection_maxArgs = {
+  field: STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEGroupConnection_minArgs = {
+  field: STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODEGroupConnection_sumArgs = {
+  field: STRAPI_JOB_DESCRIPTION_TEXTNODEFieldSelector;
+};
+
+type STRAPI_JOB_DESCRIPTION_TEXTNODESortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly description: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+};
+
 type STRAPI_LIGHT = Node & {
   readonly alias: Maybe<Scalars['String']>;
   readonly byline: Maybe<Scalars['String']>;
@@ -5497,7 +5834,6 @@ type STRAPI_PROJECT = Node & {
   readonly slug: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly teams: Maybe<ReadonlyArray<Maybe<STRAPI_TEAM>>>;
-  readonly testimonial: Maybe<STRAPI_TESTIMONIAL>;
   readonly title: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly vendors: Maybe<ReadonlyArray<Maybe<STRAPI_VENDOR>>>;
@@ -5616,7 +5952,6 @@ type STRAPI_PROJECTFieldSelector = {
   readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly teams: InputMaybe<STRAPI_TEAMFieldSelector>;
-  readonly testimonial: InputMaybe<STRAPI_TESTIMONIALFieldSelector>;
   readonly title: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORFieldSelector>;
@@ -5645,7 +5980,6 @@ type STRAPI_PROJECTFilterInput = {
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly teams: InputMaybe<STRAPI_TEAMFilterListInput>;
-  readonly testimonial: InputMaybe<STRAPI_TESTIMONIALFilterInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
@@ -5719,7 +6053,6 @@ type STRAPI_PROJECTSortInput = {
   readonly slug: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly teams: InputMaybe<STRAPI_TEAMSortInput>;
-  readonly testimonial: InputMaybe<STRAPI_TESTIMONIALSortInput>;
   readonly title: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORSortInput>;
@@ -7616,7 +7949,6 @@ type STRAPI_TESTIMONIAL = Node & {
   readonly parent: Maybe<Node>;
   readonly platform: Maybe<Scalars['String']>;
   readonly position: Maybe<Scalars['String']>;
-  readonly project: Maybe<STRAPI_PROJECT>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly review: Maybe<Scalars['String']>;
   readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
@@ -7716,7 +8048,6 @@ type STRAPI_TESTIMONIALFieldSelector = {
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly platform: InputMaybe<FieldSelectorEnum>;
   readonly position: InputMaybe<FieldSelectorEnum>;
-  readonly project: InputMaybe<STRAPI_PROJECTFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly review: InputMaybe<FieldSelectorEnum>;
   readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
@@ -7742,7 +8073,6 @@ type STRAPI_TESTIMONIALFilterInput = {
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly platform: InputMaybe<StringQueryOperatorInput>;
   readonly position: InputMaybe<StringQueryOperatorInput>;
-  readonly project: InputMaybe<STRAPI_PROJECTFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly review: InputMaybe<StringQueryOperatorInput>;
   readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
@@ -7813,7 +8143,6 @@ type STRAPI_TESTIMONIALSortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
   readonly platform: InputMaybe<SortOrderEnum>;
   readonly position: InputMaybe<SortOrderEnum>;
-  readonly project: InputMaybe<STRAPI_PROJECTSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly review: InputMaybe<SortOrderEnum>;
   readonly services: InputMaybe<STRAPI_SERVICESortInput>;
@@ -9813,7 +10142,7 @@ type homeGalleryFragmentFragment = { readonly id: string, readonly name: string 
 type IndexQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type IndexQueryQuery = { readonly strapiAbout: { readonly slogan: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiTestimonial: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly customer: string | null, readonly platform: string | null, readonly excerpt: string | null, readonly createdAt: string | null, readonly stars: number | null, readonly title: string | null, readonly position: string | null, readonly project: { readonly slug: string | null, readonly title: string | null } | null }> }, readonly allStrapiQuality: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly eyebrow: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null }> } };
+type IndexQueryQuery = { readonly strapiAbout: { readonly slogan: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiTestimonial: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly customer: string | null, readonly platform: string | null, readonly excerpt: string | null, readonly createdAt: string | null, readonly stars: number | null, readonly title: string | null, readonly position: string | null }> }, readonly allStrapiQuality: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly eyebrow: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null }> } };
 
 type lightCardFragment = { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null };
 
@@ -9867,7 +10196,7 @@ type ProjectQueryQueryVariables = Exact<{
 }>;
 
 
-type ProjectQueryQuery = { readonly strapiProject: { readonly id: string, readonly title: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly ogimage: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly gallery: ReadonlyArray<{ readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null> | null, readonly lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly state: string | null, readonly slug: string | null } | null> | null, readonly teams: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null } | null> | null, readonly vendors: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly service: string | null } | null> | null, readonly venue: { readonly name: string | null, readonly slug: string | null } | null, readonly services: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null } | null> | null, readonly testimonial: { readonly id: string, readonly customer: string | null, readonly position: string | null, readonly review: string | null, readonly vendor: { readonly name: string | null, readonly slug: string | null } | null } | null } | null, readonly triptych: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly additional: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null }> }, readonly allStrapiProject: { readonly nodes: ReadonlyArray<{ readonly title: string | null, readonly id: string, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
+type ProjectQueryQuery = { readonly strapiProject: { readonly id: string, readonly title: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly ogimage: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly gallery: ReadonlyArray<{ readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null> | null, readonly lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly state: string | null, readonly slug: string | null } | null> | null, readonly teams: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null } | null> | null, readonly vendors: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly service: string | null } | null> | null, readonly venue: { readonly name: string | null, readonly slug: string | null } | null, readonly services: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null } | null> | null } | null, readonly triptych: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly additional: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null }> }, readonly allStrapiProject: { readonly nodes: ReadonlyArray<{ readonly title: string | null, readonly id: string, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
 
 type ProjectsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -9934,7 +10263,7 @@ type TestimonialQueryQuery = { readonly strapiTestimonial: { readonly id: string
 type TestimonialsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TestimonialsQueryQuery = { readonly allStrapiTestimonial: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly customer: string | null, readonly stars: number | null, readonly review: string | null, readonly title: string | null, readonly createdAt: string | null, readonly slug: string | null, readonly link: string | null, readonly position: string | null, readonly platform: string | null, readonly vendor: { readonly name: string | null, readonly slug: string | null } | null }> } };
+type TestimonialsQueryQuery = { readonly allStrapiTestimonial: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly customer: string | null, readonly stars: number | null, readonly review: string | null, readonly title: string | null, readonly slug: string | null, readonly link: string | null, readonly position: string | null, readonly platform: string | null, readonly vendor: { readonly name: string | null, readonly slug: string | null } | null }> } };
 
 type TopBarQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

@@ -42,12 +42,10 @@ export const TeamHeads = ({
         </h4>
 
         <div className="team-heads spin">
-          <a href="#">
+          <a href="/team/">
             {/* // TODO images are a pian so I havent done this yet */}
             {/* <img src={team.image} alt="adam" /> */}
-            <p itemScope itemProp="Person" itemType="https://schema.org/Person">
-              <span itemProp="name">adam</span>
-            </p>
+            <p>adam</p>
           </a>
         </div>
       </div>

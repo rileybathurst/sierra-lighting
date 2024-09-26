@@ -8,7 +8,18 @@ import Footer from "../components/footer";
 
 import TestimonialRanking from "../components/testimonial-ranking";
 
-function TestimonialLink(props: { aref: string, customer: string, vendor: { name: string, slug: string }, position: string, platform: string }) {
+// TODO: remove the props from the component
+type TestimonialLinkTypes = {
+  aref: string;
+  customer: string;
+  vendor: {
+    name: string;
+    slug: string;
+  };
+  position: string;
+  platform: string;
+}
+function TestimonialLink(props: TestimonialLinkTypes) {
   if (props.vendor && props.position) {
     // TODO the hypen needs to be on an if
     // TODO if no vendor then maybe it has a platform
@@ -17,7 +28,7 @@ function TestimonialLink(props: { aref: string, customer: string, vendor: { name
         <p className='crest'><Link to={`/vendor/${props.vendor.slug}`}>
           {props.vendor.name}
         </Link> - {props?.position}</p>
-        <h4 className='range' itemProp="name">{props.customer}</h4>
+        <h4 className='range' >{props.customer}</h4>
       </>
     )
   }
@@ -25,7 +36,7 @@ function TestimonialLink(props: { aref: string, customer: string, vendor: { name
   if (props.platform && props.position) {
     return (
       <>
-        <h4 className='range' itemProp="name">
+        <h4 className='range' >
           {props.customer} <span>- {props?.platform}</span>
         </h4>
       </>
@@ -34,7 +45,7 @@ function TestimonialLink(props: { aref: string, customer: string, vendor: { name
 
   if (props.platform) {
     return (
-      <h4 className='range' itemProp="name">{props.customer}</h4>
+      <h4 className='range' >{props.customer}</h4>
     );
   }
 
@@ -53,7 +64,6 @@ const TestimonialsPage = () => {
           stars
           review
           title
-          createdAt
           slug
           link
           position
@@ -68,6 +78,22 @@ const TestimonialsPage = () => {
     }
   `)
 
+  type TestimonialTypes = {
+    id: string;
+    customer: string;
+    stars: number;
+    review: string;
+    title: string;
+    slug: string;
+    link: string;
+    position: string;
+    platform: string;
+    vendor: {
+      name: string;
+      slug: string;
+    };
+  }
+
   return (
     <>
       <Header />
@@ -79,10 +105,10 @@ const TestimonialsPage = () => {
 
         <p>Welcome to our testimonials page, where our satisfied customers speak for us! At Sierra Lighting, we pride ourselves on providing exceptional products/services and ensuring that our clients' experiences exceed expectations, year after year! Don't just take our word for it, hear directly from those who have experienced the quality, reliability, and excellence we deliver firsthand. Dive into the testimonials below to discover why our customers choose us and why you should too!</p>
 
-        <ul itemProp="review" className="testimonials">
+        <ul className="testimonials">
 
           {/* // TODO: make this a component for the page and the index */}
-          {allStrapiTestimonial.nodes.map(testimonial => (
+          {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
             <li key={testimonial.id} className='testimonial'>
               <figure>
                 <blockquote>
@@ -90,11 +116,12 @@ const TestimonialsPage = () => {
 
                   <TestimonialRanking stars={testimonial.stars} />
                   <p className='testimonial--quote_mark range'>&ldquo;</p>
-                  <p itemProp="reviewBody">{testimonial.review}</p>
+                  <p>{testimonial.review}</p>
 
 
                   <figcaption>
-                    <span itemProp="author" itemScope itemType="https://schema.org/Person">
+                    {/* // ? is the span needed anymore */}
+                    <span>
 
                       <TestimonialLink
                         aref={testimonial.link}
@@ -105,16 +132,7 @@ const TestimonialsPage = () => {
                       />
 
                     </span>
-                    <p className="sr-only" itemProp="datePublished">{testimonial.createdAt}</p>
                   </figcaption>
-                  {testimonial.stars ? <div className="sr-only">
-                    <p>
-                      <span itemProp="worstRating">1</span>
-                      <span itemProp="ratingValue">{testimonial.stars}</span><span>/</span>
-                      <span itemProp="bestRating">5</span>stars
-                    </p>
-                  </div>
-                    : null}
                 </blockquote>
               </figure>
             </li>
@@ -126,6 +144,7 @@ const TestimonialsPage = () => {
           Help us you buy submitting your own review
         </h3>
 
+        {/* // TODO: variables */}
         <p>
           <a href="https://g.page/r/CXdQyNRhzs8YEBA"
             target="_blank"
