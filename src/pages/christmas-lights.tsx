@@ -90,7 +90,7 @@ const lightsPage = () => {
               >
                 <hr />
                 <h3>
-                  <Link to={`/light-group/${light.slug}`}>
+                  <Link to={`/light-group/${light.light_groups[0].slug}`}>
                     {light.light_groups[0].name}
                   </Link>
                 </h3>
@@ -131,19 +131,3 @@ export const Head = () => {
     />
   )
 }
-
-
-
-{/* <ul>
-            {lightGroupArray.map((service) => (
-              allStrapiLight.nodes
-                .filter((light) => light.light_groups.map((group) => group.slug).includes(service))
-                .map((light) => (
-                  <li key={light.id}>
-                    <Link to={`/light/${light.slug}`}>
-                      {light.name}
-                    </Link>
-                  </li>
-                ))
-            ))}
-          </ul> */}
