@@ -24,10 +24,7 @@ export const query = graphql`
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData(
-              breakpoints: [960, 1840]
-                width: 960
-            )
+            gatsbyImageData
           }
           url
         }
@@ -61,14 +58,23 @@ export const query = graphql`
       }
 
       vendors {
+        id
         name
         slug
         service
       }
       
       venue {
+        id
         name
-        slug
+        slug 
+        
+        area {
+          id
+          name
+          state
+          slug
+        }
       }
 
       services {

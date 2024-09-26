@@ -12,6 +12,7 @@ interface HeroType {
 }
 function Hero({ localFile, alternativeText }: HeroType) {
 
+  // console.log(localFile.childImageSharp.gatsbyImageData.width);
   // console.log(alternativeText);
 
   process.env.NODE_ENV === "development" ?
@@ -25,7 +26,7 @@ function Hero({ localFile, alternativeText }: HeroType) {
     : null
 
   return (
-    <div className={`hero-image poster ${localFile.childImageSharp.gatsbyImageData.width <= 960 ? 'hero-condor' : null}`}>
+    <div className={`hero-image poster ${localFile.childImageSharp.gatsbyImageData.width <= 960 ? 'hero-stork' : null}`}>
       <GatsbyImage
         image={localFile.childImageSharp.gatsbyImageData}
         alt={alternativeText || "Hero Image"}

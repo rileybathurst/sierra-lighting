@@ -18,6 +18,9 @@ export const useStrapiJob = () => {
 
       strapiAbout {
         businessName
+        addressLocality
+        addressRegion
+        postalCode
       }
 
     }

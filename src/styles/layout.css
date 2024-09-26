@@ -216,11 +216,11 @@ header {
   display: flex;
   justify-content: center;
 
-  max-width: var(--stork);
+  max-width: var(--condor);
 }
 
-.hero-pelican {
-  max-width: var(--pelican);
+.hero-stork {
+  max-width: var(--stork);
 }
 
 /*------------------*/

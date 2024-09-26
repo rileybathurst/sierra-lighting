@@ -1944,6 +1944,8 @@ type Query_sitePluginArgs = {
 
 
 type Query_strapiAboutArgs = {
+  addressLocality: InputMaybe<StringQueryOperatorInput>;
+  addressRegion: InputMaybe<StringQueryOperatorInput>;
   alternateName: InputMaybe<StringQueryOperatorInput>;
   businessName: InputMaybe<StringQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
@@ -1961,6 +1963,7 @@ type Query_strapiAboutArgs = {
   openingHours: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   paymentAccepted: InputMaybe<StringQueryOperatorInput>;
+  postalCode: InputMaybe<StringQueryOperatorInput>;
   priceRange: InputMaybe<StringQueryOperatorInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   slogan: InputMaybe<StringQueryOperatorInput>;
@@ -2565,6 +2568,8 @@ type Query_strapiVenueAddressTextnodeArgs = {
 };
 
 type STRAPI_ABOUT = Node & {
+  readonly addressLocality: Maybe<Scalars['String']>;
+  readonly addressRegion: Maybe<Scalars['String']>;
   readonly alternateName: Maybe<Scalars['String']>;
   readonly businessName: Maybe<Scalars['String']>;
   readonly children: ReadonlyArray<Node>;
@@ -2582,6 +2587,7 @@ type STRAPI_ABOUT = Node & {
   readonly openingHours: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly paymentAccepted: Maybe<Scalars['String']>;
+  readonly postalCode: Maybe<Scalars['String']>;
   readonly priceRange: Maybe<Scalars['String']>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly slogan: Maybe<Scalars['String']>;
@@ -2677,6 +2683,8 @@ type STRAPI_ABOUTEdge = {
 };
 
 type STRAPI_ABOUTFieldSelector = {
+  readonly addressLocality: InputMaybe<FieldSelectorEnum>;
+  readonly addressRegion: InputMaybe<FieldSelectorEnum>;
   readonly alternateName: InputMaybe<FieldSelectorEnum>;
   readonly businessName: InputMaybe<FieldSelectorEnum>;
   readonly children: InputMaybe<NodeFieldSelector>;
@@ -2694,6 +2702,7 @@ type STRAPI_ABOUTFieldSelector = {
   readonly openingHours: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly paymentAccepted: InputMaybe<FieldSelectorEnum>;
+  readonly postalCode: InputMaybe<FieldSelectorEnum>;
   readonly priceRange: InputMaybe<FieldSelectorEnum>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly slogan: InputMaybe<FieldSelectorEnum>;
@@ -2704,6 +2713,8 @@ type STRAPI_ABOUTFieldSelector = {
 };
 
 type STRAPI_ABOUTFilterInput = {
+  readonly addressLocality: InputMaybe<StringQueryOperatorInput>;
+  readonly addressRegion: InputMaybe<StringQueryOperatorInput>;
   readonly alternateName: InputMaybe<StringQueryOperatorInput>;
   readonly businessName: InputMaybe<StringQueryOperatorInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
@@ -2721,6 +2732,7 @@ type STRAPI_ABOUTFilterInput = {
   readonly openingHours: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly paymentAccepted: InputMaybe<StringQueryOperatorInput>;
+  readonly postalCode: InputMaybe<StringQueryOperatorInput>;
   readonly priceRange: InputMaybe<StringQueryOperatorInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly slogan: InputMaybe<StringQueryOperatorInput>;
@@ -2772,6 +2784,8 @@ type STRAPI_ABOUTGroupConnection_sumArgs = {
 };
 
 type STRAPI_ABOUTSortInput = {
+  readonly addressLocality: InputMaybe<SortOrderEnum>;
+  readonly addressRegion: InputMaybe<SortOrderEnum>;
   readonly alternateName: InputMaybe<SortOrderEnum>;
   readonly businessName: InputMaybe<SortOrderEnum>;
   readonly children: InputMaybe<NodeSortInput>;
@@ -2789,6 +2803,7 @@ type STRAPI_ABOUTSortInput = {
   readonly openingHours: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly paymentAccepted: InputMaybe<SortOrderEnum>;
+  readonly postalCode: InputMaybe<SortOrderEnum>;
   readonly priceRange: InputMaybe<SortOrderEnum>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly slogan: InputMaybe<SortOrderEnum>;
@@ -10196,7 +10211,7 @@ type ProjectQueryQueryVariables = Exact<{
 }>;
 
 
-type ProjectQueryQuery = { readonly strapiProject: { readonly id: string, readonly title: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly ogimage: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly gallery: ReadonlyArray<{ readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null> | null, readonly lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly state: string | null, readonly slug: string | null } | null> | null, readonly teams: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null } | null> | null, readonly vendors: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly service: string | null } | null> | null, readonly venue: { readonly name: string | null, readonly slug: string | null } | null, readonly services: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null } | null> | null } | null, readonly triptych: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly additional: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null }> }, readonly allStrapiProject: { readonly nodes: ReadonlyArray<{ readonly title: string | null, readonly id: string, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
+type ProjectQueryQuery = { readonly strapiProject: { readonly id: string, readonly title: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly ogimage: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly gallery: ReadonlyArray<{ readonly alternativeText: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null> | null, readonly lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly areas: ReadonlyArray<{ readonly name: string | null, readonly state: string | null, readonly slug: string | null } | null> | null, readonly teams: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null } | null> | null, readonly vendors: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly service: string | null } | null> | null, readonly venue: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly area: { readonly id: string, readonly name: string | null, readonly state: string | null, readonly slug: string | null } | null } | null, readonly services: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null } | null> | null } | null, readonly triptych: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly additional: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null }> }, readonly allStrapiProject: { readonly nodes: ReadonlyArray<{ readonly title: string | null, readonly id: string, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
 
 type ProjectsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -10211,7 +10226,7 @@ type SearchQueryQuery = { readonly allStrapiLight: { readonly nodes: ReadonlyArr
 type SEOQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SEOQueryQuery = { readonly strapiAbout: { readonly businessName: string | null, readonly url: string | null, readonly slogan: string | null, readonly defaultImage: string | null, readonly defaultImageAlt: string | null, readonly openingHours: string | null, readonly telephone: string | null, readonly email: string | null, readonly paymentAccepted: string | null, readonly alternateName: string | null, readonly geoLatitude: number | null, readonly geoLongitude: number | null, readonly geoRadius: number | null } | null, readonly strapiTopbar: { readonly title: string | null, readonly link: string | null } | null };
+type SEOQueryQuery = { readonly strapiAbout: { readonly businessName: string | null, readonly url: string | null, readonly slogan: string | null, readonly defaultImage: string | null, readonly defaultImageAlt: string | null, readonly openingHours: string | null, readonly telephone: string | null, readonly email: string | null, readonly paymentAccepted: string | null, readonly alternateName: string | null, readonly geoLatitude: number | null, readonly geoLongitude: number | null, readonly geoRadius: number | null, readonly addressLocality: string | null, readonly addressRegion: string | null, readonly postalCode: string | null } | null, readonly strapiTopbar: { readonly title: string | null, readonly link: string | null } | null };
 
 type ServiceLightsTemplateQueryVariables = Exact<{
   slug: Scalars['String'];

@@ -11,7 +11,7 @@ import Card from "../components/card";
 import Start from "../components/start";
 import Hero from "../components/hero";
 import type { CardType } from "../types/card-type";
-import Testimonial from "../components/testimonial";
+// import Testimonial from "../components/testimonial";
 
 interface ProjectViewTypes {
   project: {
@@ -67,7 +67,7 @@ interface ProjectViewTypes {
         name: string;
         slug: string;
         state: string;
-      }[];
+      };
     };
     services: {
       name: string;
@@ -91,7 +91,7 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
       <Header />
 
       {project.image ?
-        <Hero {...project?.image} />
+        <Hero {...project.image} />
         : null}
 
       <main className="stork">
@@ -113,7 +113,7 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
         <section className="deck">
           {project.gallery.map((image) => (
             <div
-              key={image?.localFile?.url}
+              key={image.localFile.url}
               className="poster"
             >
               {/* // TODO: these could be expandable in some way or another */}
@@ -129,7 +129,7 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
         : null}
 
 
-      {/* // ! testing removed
+      {/* // * no testimonials currently link to projects so this breaks
       
       {project.testimonial ?
         <>
@@ -140,6 +140,7 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
         </>
         : null} */}
 
+      {/* // ! in here is a list key issue */}
       {project.venue || project.areas || project.vendors || project.team ?
         <>
           <hr className="pelican" />
@@ -154,15 +155,14 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
                   </Link>
                 </h4>
 
-                {project.venue.area ?
-                  project.venue.area.map(area => (
-                    <p key={area.id}>
-                      <Link to={`/areas/${area.slug}`} className="link--subtle">
-                        {area.name}, <StateAbbreviation state={area.state} />
-                      </Link>
-                    </p>
-                  ))
+                {project.venue?.area ?
+                  <p>
+                    <Link to={`/areas/${project.venue.area.slug}`} className="link--subtle">
+                      {project.venue.area.name}, <StateAbbreviation state={project.venue.area.state} />
+                    </Link>
+                  </p>
                   : null}
+
               </section>
               : null}
 
@@ -192,7 +192,10 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
                 <h3 className="crest">Team</h3>
                 <div className="">
                   {project.team.map(team => (
-                    <h4 className="range last-ampersand inline" key={team.slug}>
+                    <h4
+                      key={team.slug}
+                      className="range last-ampersand inline"
+                    >
                       <Link to={`/team/${team.slug}`} className="link--subtle">
                         {team.name}
                       </Link>
@@ -247,7 +250,7 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
             <ul>
               {additional.map((light) => (
                 <li
-                  key={light?.id}
+                  key={light.id}
                   className="range denali"
                 >
                   <Link to={`/light/${light.slug}`}>

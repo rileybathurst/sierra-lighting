@@ -42,6 +42,10 @@ export const SEO = (SE0: SEO) => {
         geoLatitude
         geoLongitude
         geoRadius
+
+        addressLocality
+        addressRegion
+        postalCode
       }
 
       strapiTopbar {
@@ -132,6 +136,12 @@ export const SEO = (SE0: SEO) => {
                 "longitude": "${data.strapiAbout.geLongitude}"
               },
               "geoRadius": "${data.strapiAbout.geoRadius}"
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "${data.strapiAbout.addressLocality}",
+              "addressRegion": "${data.strapiAbout.addressRegion}",
+              "postalCode": "${data.strapiAbout.postalCode}"
             }
           }
         `}
