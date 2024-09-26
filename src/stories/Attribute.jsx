@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Star from "../images/star.tsx";
+import { faker } from "@faker-js/faker";
 
 export const Attribute = ({
   primary,
@@ -14,31 +14,22 @@ export const Attribute = ({
     ? "storybook-Attribute--primary"
     : "storybook-Attribute--secondary";
   return (
-    <main className="stork">
-      Attribute
-      <ul className="attributes">
-        <li className="attribute">
-          <p className="crest">Attribute by</p>
-          <h3 className="range">
-            <a href="#" className="link--subtle">
-              Name
-            </a>
-          </h3>
-        </li>
-        <li className="attribute">
-          <p className="crest">Attribute by</p>
-          <h3 className="range">
-            <a href="#" className="link--subtle">
-              Name
-            </a>
-            {/* <span className='behind-multiple-flag'>,&nbsp;</span> */}
-            <a href="#" className="link--subtle">
-              Other Name
-            </a>
-          </h3>
-        </li>
-      </ul>
-    </main>
+    <div className="attributes">
+      {Array.from({ length: faker.number.int({ min: 0, max: 4 }) }).map((_) => (
+        <section key={faker.number.int()} className="attribute">
+          <p className="crest">{faker.music.genre()}</p>
+          {Array.from({ length: faker.number.int({ min: 1, max: 2 }) }).map(
+            (_) => (
+              <h3 key={faker.number.int()} className="range">
+                <a href={faker.music.artist()} className="link--subtle">
+                  {faker.music.artist()}
+                </a>
+              </h3>
+            )
+          )}
+        </section>
+      ))}
+    </div>
   );
 };
 

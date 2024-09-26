@@ -100,7 +100,8 @@ export const Head = () => {
                   "@type": "PostalAddress",
                   "addressLocality": "${useStrapiJob().strapiAbout.addressLocality}",
                   "addressRegion": "${useStrapiJob().strapiAbout.addressRegion}",
-                  "postalCode": "${useStrapiJob().strapiAbout.postalCode}"
+                  "postalCode": "${useStrapiJob().strapiAbout.postalCode}",
+                  "addressCountry": "USA"
                 }
               },
             "hiringOrganization": {

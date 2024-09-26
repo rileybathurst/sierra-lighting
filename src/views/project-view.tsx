@@ -140,8 +140,8 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
         </>
         : null} */}
 
-      {/* // ! in here is a list key issue */}
-      {project.venue || project.areas || project.vendors || project.team ?
+      {/* // TODO: use media queries to deal with a single vendor looking really weird */}
+      {project.venue || project.areas.length > 0 || project.vendors.length > 0 || project.team ?
         <>
           <hr className="pelican" />
           <div className="attributes">
@@ -162,6 +162,25 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
                     </Link>
                   </p>
                   : null}
+
+              </section>
+              : null}
+
+            {project.areas.length > 0 ?
+              <section className="attribute">
+                <h3 className="crest">Area</h3>
+                <h4 className="range">
+                  {project.areas.map((area) => (
+                    <Link
+                      key={area.slug}
+                      to={`/areas/${area.slug}`}
+                      className="link--subtle"
+                    >
+                      {area.name}, <StateAbbreviation state={area.state} />
+                    </Link>
+                  ))
+                  }
+                </h4>
 
               </section>
               : null}

@@ -62,6 +62,7 @@ h3,
 .denali {
   font-size: var(--denali); /* 32px */
   line-height: var(--aconcagua); /* 40px */
+  /* TODO: variable */
   margin-block-end: 1.875rem; /* 30px */
 }
 
@@ -322,5 +323,15 @@ var(--kilimanjaro) = 24px
 /*------------------------------------*/
 
 .react-markdown {
-  white-space: pre-wrap;
+  white-space: pre-wrap; /* * this does some weird stuff with hidden margins */
+
+  h2 {
+    font-size: var(--denali);
+    margin-block-end: var(--elbrus);
+  }
+
+  h3 {
+    font-size: var(--kilimanjaro);
+    margin-block-end: var(--vinson);
+  }
 }

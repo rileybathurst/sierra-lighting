@@ -141,8 +141,9 @@ export const SEO = (SE0: SEO) => {
               "@type": "PostalAddress",
               "addressLocality": "${data.strapiAbout.addressLocality}",
               "addressRegion": "${data.strapiAbout.addressRegion}",
-              "postalCode": "${data.strapiAbout.postalCode}"
-            }
+              "postalCode": "${data.strapiAbout.postalCode}",
+              "addressCountry": "USA"
+              }
           }
         `}
       </Script>
