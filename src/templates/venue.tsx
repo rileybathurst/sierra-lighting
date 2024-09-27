@@ -27,7 +27,7 @@ type VenueViewTypes = {
       phone: number;
       area: {
         name: string;
-        state: string;
+        state: 'california' | 'nevada';
         slug: string;
         featured: boolean;
         region: {

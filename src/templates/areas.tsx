@@ -84,7 +84,7 @@ type AreasTemplateTypes = {
           description: string;
         };
       };
-      state: string;
+      state: 'california' | 'nevada';
       slug: string;
       image: {
         localFile: {

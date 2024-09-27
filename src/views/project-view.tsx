@@ -46,7 +46,7 @@ interface ProjectViewTypes {
     lights: CardType[];
     areas: {
       name: string;
-      state: string;
+      state: 'california' | 'nevada';
       slug: string;
     }[];
     team: {
@@ -66,7 +66,7 @@ interface ProjectViewTypes {
         id: React.Key;
         name: string;
         slug: string;
-        state: string;
+        state: 'california' | 'nevada';
       };
     };
     services: {

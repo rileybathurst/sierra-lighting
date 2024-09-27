@@ -174,7 +174,7 @@ type ProjectPageTypes = {
 
       areas: {
         name: string;
-        state: string;
+        state: 'california' | 'nevada';
         slug: string;
       }[];
 
