@@ -81,7 +81,8 @@ const IndexPage = () => {
   `)
 
   /* 
-  // ! testing removed project but also make this a fragment
+  // ! TODO removed project but also make this a fragment
+  // * none of the current testimonials have a project
   allStrapiTestimonial(sort: {position: ASC}) {
     nodes {
       id
@@ -257,8 +258,12 @@ const IndexPage = () => {
             </Link>
           ))}
         </div>
-
       </main >
+
+      <div className="stork">
+        <p>&nbsp;</p>
+        <Start />
+      </div>
 
       <hr className="albatross " />
 

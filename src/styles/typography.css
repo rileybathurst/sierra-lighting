@@ -107,6 +107,16 @@ small,
   margin-block-end: 0.875rem; /* 14px */
 }
 
+/*------------------------------------*/
+
+hgroup {
+  margin-block-end: var(--denali);
+
+  h1 {
+    margin-block-end: var(--vinson);
+  }
+}
+
 .baseline-drop {
   margin-block-end: var(--elbrus);
 }

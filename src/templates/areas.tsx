@@ -13,6 +13,7 @@ import Markdown from "react-markdown";
 import Card from '../components/card';
 import type { CardType } from '../types/card-type';
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import Start from '../components/start';
 
 
 // this is no longer right as there might only be sub venues
@@ -125,7 +126,9 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
           >
             {data.strapiArea?.description?.data?.description}
           </Markdown>
+
         </article >
+
       </main >
 
       {data.strapiArea.areas.length > 0 ?
@@ -134,7 +137,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
           className="stork"
         >
           <hr />
-          <p className='elbrus'>Regions in {data.strapiArea.name}</p>
+          <p className='elbrus'>Regions we light in {data.strapiArea.name}</p>
           <ul className='list-style-none'>
             {data.strapiArea.areas.map((area) => (
               <li
@@ -148,6 +151,12 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         </div>
         : null
       }
+
+      <div className='stork'>
+        <hr />
+        <p>&nbsp;</p>
+        <Start className='button--left-align' />
+      </div>
 
       <Venues
         name={data.strapiArea.name}

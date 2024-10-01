@@ -37,10 +37,37 @@ const ProcessPage = () => {
     }
   `)
 
+  // console.log(data);
+
   const holidayProcesses = data.holiday.nodes;
   const weddingProcesses = data.wedding.nodes;
 
-  function ProcessList({ processes }) {
+  type processTypes = {
+    id: string;
+    name: string;
+    markdown: {
+      data: {
+        markdown: string;
+      }
+    }
+  }
+
+  function ProcessLoop({ id, name, markdown }: processTypes) {
+
+    return (
+      <li key={id}>
+        <h3>{name}</h3>
+        <ReactMarkdown className='react-markdown'>
+          {markdown.data.markdown}
+        </ReactMarkdown>
+      </li>
+    )
+  }
+
+  // TODO: needs the adjective component
+  // const ready = 'Ready to bring your vision to life ? Get started with a free estimate today and let us illuminate your wedding or event with an unforgettable lighting display!';
+
+  function ProcessList({ processes }: { processes: string }) {
 
     if (processes === 'weddingProcesses') {
       return (
@@ -48,46 +75,39 @@ const ProcessPage = () => {
           <p>Ready to bring your vision to life ? Get started with a free estimate today and let us illuminate your wedding or event with an unforgettable lighting display!</p>
           <hr />
           <ol>
-            {weddingProcesses.map(process => (
-              <li key={process.id}>
-                <h3>{process.name}</h3>
-                <ReactMarkdown
-                  children={process.markdown.data.markdown}
-                  remarkPlugins={[remarkGfm]}
-                />
-              </li>
+            {weddingProcesses.map((process: processTypes) => (
+              <ProcessLoop
+                key={process.id}
+                {...process}
+              />
             ))}
           </ol>
         </>
       )
     }
 
-    if (processes === 'holidayProcesses') {
-      return (
-        <>
-          <p>Ready to bring your vision to life ? Get started with a free estimate today and let us illuminate your home or business with an unforgettable lighting display!</p>
-          <hr />
-          <ol>
-            {holidayProcesses.map(process => (
-              <li key={process.id}>
-                <h3>{process.name}</h3>
-                <ReactMarkdown className='react-markdown'>
-                  {process.markdown.data.markdown}
-                </ReactMarkdown>
-              </li>
-            ))}
-          </ol>
-        </>
-      )
-    }
-    return null;
+    return (
+      <>
+        <p>Ready to bring your vision to life ? Get started with a free estimate today and let us illuminate your home or business with an unforgettable lighting display!</p>
+        <hr />
+        <ol>
+          {holidayProcesses.map((process: processTypes) => (
+            <ProcessLoop
+              key={process.id}
+              {...process}
+            />
+          ))}
+        </ol >
+      </>
+    )
+
   }
   const [seasonRadio, setSeasonRadio] = useState(Season());
   const [seasonProcesses, setSeasonProcesses] = useState(`${Season()}Processes`);
 
   function seasonSwitcher(e) {
     setSeasonRadio(e.target.value);
-    setSeasonProcesses(e.target.value + 'Processes');
+    setSeasonProcesses(`${e.target.value}Processes`);
     return null;
   }
 
@@ -118,33 +138,30 @@ const ProcessPage = () => {
       )
     }
 
-    if (checker === 'holiday') {
-      return (
-        <>
-          <label>
-            <input
-              type="radio"
-              name="season"
-              value="wedding"
-              onChange={seasonSwitcher}
-            />
-            <div>Wedding / <span>Commercial or Social Event</span></div>
-          </label>
-          <label className="current">
-            <input
-              type="radio"
-              name="season"
-              value="holiday"
-              onChange={seasonSwitcher}
-              checked
-            />
-            Holiday
-          </label>
-        </>
-      )
-    }
+    return (
+      <>
+        <label>
+          <input
+            type="radio"
+            name="season"
+            value="wedding"
+            onChange={seasonSwitcher}
+          />
+          <div>Wedding / <span>Commercial or Social Event</span></div>
+        </label>
+        <label className="current">
+          <input
+            type="radio"
+            name="season"
+            value="holiday"
+            onChange={seasonSwitcher}
+            checked
+          />
+          Holiday
+        </label>
+      </>
+    )
 
-    return null;
   }
 
   return (
@@ -174,7 +191,7 @@ export const Head = () => {
     <SEO
       title='Process'
       // TODO: needs a new description now
-      description="A professional lighting design package will highlight your decor and bring out the beauty of your venue. Learn about the many design options Sierra Lighting can use to make your Reno Tahoe wedding really shine."
+      description="Learn how Sierra Lighting can help you create memorable lighting with our design process."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
     />
   )

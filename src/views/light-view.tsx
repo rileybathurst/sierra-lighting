@@ -36,7 +36,13 @@ function Aliases({ alias }: AliasTypes) {
   );
 }
 
-const LightView = ({ light, other }) => {
+type LightViewTypes = {
+  light: CardType;
+  other: {
+    nodes: CardType[];
+  };
+}
+const LightView = ({ light, other }: LightViewTypes) => {
 
   interface ServiceTypes {
     id: React.Key;
@@ -116,28 +122,13 @@ const LightView = ({ light, other }) => {
               </li>
             )
           })}
+          {/* <li><hr /></li> */}
+          <li className="kilimanjaro capitalize">Learn more about our <Link to="/process">process</Link></li>
+          <li className="kilimanjaro capitalize"><Link to="/faqs">Frequently Asked Questions</Link></li>
         </ul>
       </section>
 
-      {light.projects.length > 0 ?
-        <>
-          <div className="stork">
-            <hr />
-            <h3>Projects Using {light.name}</h3>
-          </div>
 
-
-          <div className="deck">
-            {light.projects.map((project: CardType) => (
-              <Card
-                key={project.id}
-                {...project}
-                breadcrumb="project"
-              />
-            ))}
-          </div>
-        </>
-        : null}
 
       {light.light_groups.length > 0 ?
         <div>
@@ -182,6 +173,26 @@ const LightView = ({ light, other }) => {
           </div>
         </>
       }
+
+      {light.projects.length > 0 ?
+        <>
+          <div className="stork">
+            <hr />
+            <h3>Projects Using {light.name}</h3>
+          </div>
+
+
+          <div className="deck">
+            {light.projects.map((project: CardType) => (
+              <Card
+                key={project.id}
+                {...project}
+                breadcrumb="project"
+              />
+            ))}
+          </div>
+        </>
+        : null}
 
       <hr className="stork" />
 

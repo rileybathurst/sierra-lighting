@@ -1,0 +1,18 @@
+/*------------------------------------*/
+/* #BUTTONS */
+/*------------------------------------*/
+
+.button-hero {
+  font-size: var(--kilimanjaro);
+  line-height: var(--denali);
+  text-transform: uppercase;
+  /* background-color: var(--honey-500) !important; */
+}
+
+/* .button-hero:hover {
+  background-color: var(--honey-600) !important;
+}
+
+.button-hero:active {
+  background-color: var(--honey-700) !important;
+} */

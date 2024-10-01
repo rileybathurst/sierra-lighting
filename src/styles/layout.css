@@ -92,6 +92,14 @@ main {
   margin-block-end: 0 !important; /* overwrites deck */
 }
 
+.margin-block-end-vinson {
+  margin-block-end: var(--vinson) !important; /* overwrites deck */
+}
+
+.margin-block-end-kilimanjaro {
+  margin-block-end: var(--kilimanjaro) !important; /* overwrites deck */
+}
+
 /*------------------------------------*/
 /* HEADER */
 /*------------------------------------*/
@@ -730,6 +738,8 @@ footer {
   }
 
   .detail {
+    margin-block-end: calc(0rem - var(--denali));
+
     max-width: 30%;
     max-height: 50%;
     border: 1px solid var(--brilliance);
@@ -1065,6 +1075,14 @@ footer {
         border-color: var(--denim-500);
         color: var(--denim-200);
       }
+    }
+
+    p {
+      margin-block-end: var(--elbrus);
+    }
+
+    a {
+      margin-block-end: var(--vinson);
     }
   }
 }

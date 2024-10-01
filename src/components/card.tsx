@@ -57,14 +57,17 @@ const Card = ({ id, image, venueImage, profile, title, name, slug, excerpt, area
       {areas ?
         areas?.length > 0 ?
           <div className="subarea">
-            <p>Including:</p>
-            <ul>
-              {areas.map(area => (
-                <li key={area.name}>
-                  {area.name}
-                </li>
-              ))}
-            </ul>
+            <p>{excerpt}</p>
+            <div >
+              <p>Including:</p>
+              <ul>
+                {areas.map(area => (
+                  <li key={area.name}>
+                    {area.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           :
           <p>{excerpt}</p>

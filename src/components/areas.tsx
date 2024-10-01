@@ -53,8 +53,12 @@ const Areas = () => {
 
   return (
     <main className="albatross">
-      <h1 className="stork">Service Areas</h1>
-      <p className="stork">Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
+      <div className="stork">
+        <hgroup>
+          <h1>Service Areas</h1>
+          <p className="margin-block-end-kilimanjaro">Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
+        </hgroup>
+      </div>
       <div className="areas__page">
         <section className="deck">
           {allStrapiArea.nodes
