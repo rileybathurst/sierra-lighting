@@ -248,7 +248,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
           <h3 className="crest">Bringing the shine</h3>
           <h2 className="ridge">
             <Link to={`/${data.strapiService.slug}/lights`}>
-              Lighting Styles
+              All {data.strapiService.name} Lighting Styles
             </Link>
           </h2>
         </div>

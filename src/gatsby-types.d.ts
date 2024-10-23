@@ -2245,6 +2245,8 @@ type Query_strapiPlanArgs = {
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   svg: InputMaybe<StringQueryOperatorInput>;
   takedownFlexOrder: InputMaybe<IntQueryOperatorInput>;
+  timerFallback: InputMaybe<StringQueryOperatorInput>;
+  timerHours: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   zip: InputMaybe<IntQueryOperatorInput>;
 };
@@ -5325,6 +5327,8 @@ type STRAPI_PLAN = Node & {
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly svg: Maybe<Scalars['String']>;
   readonly takedownFlexOrder: Maybe<Scalars['Int']>;
+  readonly timerFallback: Maybe<Scalars['String']>;
+  readonly timerHours: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly zip: Maybe<Scalars['Int']>;
 };
@@ -5414,6 +5418,8 @@ type STRAPI_PLANFieldSelector = {
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly svg: InputMaybe<FieldSelectorEnum>;
   readonly takedownFlexOrder: InputMaybe<FieldSelectorEnum>;
+  readonly timerFallback: InputMaybe<FieldSelectorEnum>;
+  readonly timerHours: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly zip: InputMaybe<FieldSelectorEnum>;
 };
@@ -5434,6 +5440,8 @@ type STRAPI_PLANFilterInput = {
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly svg: InputMaybe<StringQueryOperatorInput>;
   readonly takedownFlexOrder: InputMaybe<IntQueryOperatorInput>;
+  readonly timerFallback: InputMaybe<StringQueryOperatorInput>;
+  readonly timerHours: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly zip: InputMaybe<IntQueryOperatorInput>;
 };
@@ -5515,6 +5523,8 @@ type STRAPI_PLANSortInput = {
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly svg: InputMaybe<SortOrderEnum>;
   readonly takedownFlexOrder: InputMaybe<SortOrderEnum>;
+  readonly timerFallback: InputMaybe<SortOrderEnum>;
+  readonly timerHours: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly zip: InputMaybe<SortOrderEnum>;
 };

@@ -145,7 +145,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
               <Card
                 key={card.id}
                 {...card}
-                breadcrumb='venue'
+                breadcrumb='project'
               />
             ))}
           </div>

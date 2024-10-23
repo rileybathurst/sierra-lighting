@@ -48,6 +48,8 @@ const ProjectsPage = () => {
     projects: CardType[];
   }
 
+  console.log(allStrapiService);
+
   return (
     <>
       <Header />
