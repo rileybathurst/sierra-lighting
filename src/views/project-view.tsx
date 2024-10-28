@@ -88,7 +88,8 @@ interface ProjectViewTypes {
 
 const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes) => {
 
-  const combinedGallery = project.image ? [project.image, ...project.gallery] : project.gallery;
+  let combinedGallery = [];
+  project?.gallery?.length > 1 ? combinedGallery = [project.image, ...project.gallery] : combinedGallery = [project.image];
 
   return (
     <>
@@ -98,10 +99,13 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
         <Hero {...project.image} />
         : null} */}
 
-      <Slider
-        gallery={combinedGallery}
-        badge={false}
-      />
+      {combinedGallery.length > 1 ?
+        <Slider
+          gallery={combinedGallery}
+          badge={false}
+        />
+        : <Hero {...project.image} />
+      }
 
       <main className="stork">
         <article className="single">
