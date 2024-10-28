@@ -8,6 +8,49 @@ import Footer from "../components/footer";
 import Card from "../components/card";
 import Start from "../components/start";
 import type { CardType } from "../types/card-type";
+import Slider from "../components/slider";
+
+type HeroGalleryType = {
+  image: any;
+  detail: any;
+  altGallery: any;
+  name: string;
+}
+function HeroGallery({ image, name, detail, altGallery }: HeroGalleryType) {
+
+  const combinedGallery = altGallery ? [...altGallery, image] : null;
+
+  if (altGallery && altGallery.length > 0) {
+    return (
+      <Slider
+        gallery={combinedGallery}
+        badge={true}
+      />
+    );
+  }
+
+  return (
+    image ?
+      <div className="light-hero poster">
+        <GatsbyImage
+          image={
+            image?.localFile?.childImageSharp
+              ?.gatsbyImageData
+          }
+          alt={image?.alternativeText ? image?.alternativeText : name}
+        />
+        {detail ?
+          <GatsbyImage
+            image={detail?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={detail?.alternativeText ? detail?.alternativeText : name}
+            className="detail"
+          />
+          : null
+        }
+      </div>
+      : null
+  )
+}
 
 interface AliasTypes {
   alias: string;
@@ -72,27 +115,14 @@ const LightView = ({ light, other }: LightViewTypes) => {
     <>
       <Header />
 
-      <main>
-        {light.image ?
-          <div className="light-hero poster">
-            <GatsbyImage
-              image={
-                light?.image?.localFile?.childImageSharp
-                  ?.gatsbyImageData
-              }
-              alt={light.image?.alternativeText ? light.image?.alternativeText : light.name}
-            />
-            {light?.detail ?
-              <GatsbyImage
-                image={light.detail?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={light.detail?.alternativeText ? light.detail?.alternativeText : light.name}
-                className="detail"
-              />
-              : null
-            }
-          </div>
-          : null}
+      <HeroGallery
+        image={light.image}
+        name={light.name}
+        detail={light.detail}
+        altGallery={light.altGallery}
+      />
 
+      <main>
         <article className="stork">
           {/* // TODO: this could be using a js length test for the lower clamp */}
           <h1 className="clamp-denali_everest">{light.name}</h1>

@@ -379,3 +379,54 @@ header svg:active {
     margin-inline: auto;
   }
 }
+
+/*------------------------------------*/
+/* #GALLERY */
+/*------------------------------------*/
+
+.gallery {
+  width: 100%;
+  max-width: var(--pelican);
+  margin-inline: auto;
+  display: grid;
+
+  .images {
+    grid-row: 1;
+    grid-column: 1;
+    display: grid;
+    gap: var(--vinson);
+    width: calc(100% - var(--denali));
+    margin-inline: auto;
+
+    overflow-x: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    > * {
+      grid-row: 1;
+      scroll-snap-align: center;
+    }
+  }
+
+  button {
+    z-index: var(--canopy);
+    grid-row: 1;
+    grid-column: 1;
+    margin-block-end: var(--vinson);
+    align-self: center;
+  }
+
+  .prev {
+    justify-self: start;
+  }
+
+  .next {
+    justify-self: end;
+  }
+
+  .poster {
+    width: min(calc(var(--pelican) - 10rem), 100vw);
+    height: auto;
+  }
+}

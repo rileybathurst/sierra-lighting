@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import ReactMarkdown from "react-markdown";
 
@@ -11,7 +11,8 @@ import Card from "../components/card";
 import Start from "../components/start";
 import Hero from "../components/hero";
 import type { CardType } from "../types/card-type";
-// import Testimonial from "../components/testimonial";
+import Slider from "../components/slider";
+
 
 interface ProjectViewTypes {
   project: {
@@ -84,15 +85,23 @@ interface ProjectViewTypes {
     nodes: CardType[];
   };
 }
+
 const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes) => {
+
+  const combinedGallery = project.image ? [project.image, ...project.gallery] : project.gallery;
 
   return (
     <>
       <Header />
 
-      {project.image ?
+      {/* {project.image ?
         <Hero {...project.image} />
-        : null}
+        : null} */}
+
+      <Slider
+        gallery={combinedGallery}
+        badge={false}
+      />
 
       <main className="stork">
         <article className="single">
@@ -109,28 +118,7 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
         <Start />
       </main>
 
-      {project.gallery ?
-        <section className="deck">
-          {project.gallery.map((image) => (
-            <div
-              key={image.localFile.url}
-              className="poster"
-            >
-              {/* // TODO: these could be expandable in some way or another */}
-              <GatsbyImage
-                image={
-                  image?.localFile?.childImageSharp?.gatsbyImageData
-                }
-                alt={image.alternativeText || "Gallery Image"}
-              />
-            </div>
-          ))}
-        </section>
-        : null}
-
-
       {/* // * no testimonials currently link to projects so this breaks
-      
       {project.testimonial ?
         <>
           <hr className="pelican" />

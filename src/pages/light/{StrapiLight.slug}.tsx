@@ -61,6 +61,19 @@ export const query = graphql`
       projects {
         ...projectCard
       }
+
+      altGallery {
+        localFile {
+          url
+          childImageSharp {
+            gatsbyImageData(
+              breakpoints: [960, 1920]
+              width: 960
+            )
+          }
+        }
+        alternativeText
+      }
     }
 
     allStrapiLight(limit: 3, filter: {slug: {nin: [$slug] }}) {
@@ -124,6 +137,15 @@ interface LightPageTypes {
         alternativeText: string;
       };
       projects: CardType[];
+      altGallery: {
+        localFile: {
+          url: string;
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+        };
+        alternativeText: string;
+      };
     };
     allStrapiLight: {
       nodes: CardType[];
