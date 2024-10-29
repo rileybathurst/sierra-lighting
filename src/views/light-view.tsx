@@ -8,12 +8,13 @@ import Footer from "../components/footer";
 import Card from "../components/card";
 import Start from "../components/start";
 import type { CardType } from "../types/card-type";
-import Slider from "../components/slider";
+import Hero from "../components/hero";
+import type { ImageType } from "../types/image-type";
 
-type HeroGalleryType = {
-  image: any;
-  detail: any;
-  altGallery: any;
+/* type HeroGalleryType = {
+  image: ImageType;
+  detail: ImageType;
+  altGallery: ImageType[];
   name: string;
 }
 function HeroGallery({ image, name, detail, altGallery }: HeroGalleryType) {
@@ -50,7 +51,7 @@ function HeroGallery({ image, name, detail, altGallery }: HeroGalleryType) {
       </div>
       : null
   )
-}
+} */
 
 interface AliasTypes {
   alias: string;
@@ -80,7 +81,26 @@ function Aliases({ alias }: AliasTypes) {
 }
 
 type LightViewTypes = {
-  light: CardType;
+  light: {
+    id: React.Key;
+    name: string;
+    alias: string;
+    description: string;
+    image: ImageType;
+    altGallery: ImageType[];
+    detail: ImageType;
+    services: {
+      id: React.Key;
+      name: string;
+      slug: string;
+    }[];
+    light_groups: {
+      id: React.Key;
+      name: string;
+      lights: CardType[];
+    }[];
+    projects: CardType[];
+  }
   other: {
     nodes: CardType[];
   };
@@ -115,11 +135,12 @@ const LightView = ({ light, other }: LightViewTypes) => {
     <>
       <Header />
 
-      <HeroGallery
+      <Hero
         image={light.image}
         name={light.name}
         detail={light.detail}
-        altGallery={light.altGallery}
+        gallery={light.altGallery}
+        badge={true}
       />
 
       <main>

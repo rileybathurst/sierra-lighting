@@ -111,7 +111,9 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
       <Header />
 
       {data.strapiArea.image ?
-        <Hero {...data.strapiArea.image} />
+        <Hero
+          image={data.strapiArea.image}
+        />
         : null}
       <main>
 

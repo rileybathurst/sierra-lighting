@@ -221,10 +221,34 @@ header {
 }
 
 .hero-image {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  max-width: var(--pelican);
+  margin-inline: auto;
 
-  max-width: var(--condor);
+  > * {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .poster {
+    margin-block-end: var(--denali);
+  }
+
+  .detail {
+    margin-block-end: calc(0rem - var(--denali));
+
+    max-width: 30%;
+    max-height: 50%;
+    border: 1px solid var(--brilliance);
+    box-shadow: var(--troposphere);
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin-inline-end: var(--denali);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--denim-600);
+    }
+  }
 }
 
 .hero-stork {
@@ -723,9 +747,9 @@ footer {
 
 /*------------------*/
 
-.light-hero {
+/* .light-hero {
   display: grid;
-  max-width: 60rem;
+  max-width: var(--pelican);
   margin-inline: auto;
 
   > * {
@@ -752,7 +776,7 @@ footer {
       border-color: var(--denim-600);
     }
   }
-}
+} */
 
 /*------------------------------------*/
 

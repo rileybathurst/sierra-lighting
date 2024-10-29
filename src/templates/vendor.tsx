@@ -62,7 +62,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
       <Header />
 
       {data.strapiVendor.profile ?
-        <Hero {...data.strapiVendor.profile} />
+        <Hero image={data.strapiVendor.profile} />
         : null}
 
       <main className="stork">

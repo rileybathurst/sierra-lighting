@@ -76,7 +76,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
       <Header />
 
       {data.strapiVenue.venueImage ?
-        <Hero {...data.strapiVenue.venueImage} />
+        <Hero image={data.strapiVenue.venueImage} />
         : null}
 
       <main className="stork venue">

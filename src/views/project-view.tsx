@@ -11,7 +11,6 @@ import Card from "../components/card";
 import Start from "../components/start";
 import Hero from "../components/hero";
 import type { CardType } from "../types/card-type";
-import Slider from "../components/slider";
 
 
 interface ProjectViewTypes {
@@ -26,7 +25,7 @@ interface ProjectViewTypes {
     excerpt?: string;
     slug: string;
     ogImage?: string;
-    image?: {
+    image: {
       localFile: {
         childImageSharp: {
           gatsbyImageData: IGatsbyImageData;
@@ -88,24 +87,15 @@ interface ProjectViewTypes {
 
 const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes) => {
 
-  let combinedGallery = [];
-  project?.gallery?.length > 1 ? combinedGallery = [project.image, ...project.gallery] : combinedGallery = [project.image];
-
   return (
     <>
       <Header />
 
-      {/* {project.image ?
-        <Hero {...project.image} />
-        : null} */}
-
-      {combinedGallery.length > 1 ?
-        <Slider
-          gallery={combinedGallery}
-          badge={false}
-        />
-        : <Hero {...project.image} />
-      }
+      <Hero
+        image={project.image}
+        gallery={project.gallery}
+        badge={false}
+      />
 
       <main className="stork">
         <article className="single">
