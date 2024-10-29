@@ -60,7 +60,7 @@ function Slider({ gallery, badge }: GalleryType) {
               }
               alt={image.alternativeText || "Gallery Image"}
             />
-            {badge && image.caption ? <p>{image.caption}</p> : null}
+            {badge && image.caption ? <p className="capitalize">{image.caption}</p> : null}
           </div>
         ))}
       </div>
@@ -84,6 +84,8 @@ type HeroType = {
 }
 function Hero({ image, gallery, badge, name, detail }: HeroType) {
 
+  console.log(image.localFile.childImageSharp.gatsbyImageData.width)
+
   process.env.NODE_ENV === "development" ?
     image.localFile.childImageSharp.gatsbyImageData.width <= 959
       ? console.warn('Hero Image is too small')
@@ -103,29 +105,40 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
 
   if (combinedGallery.length > 0) {
     return (
-      <Slider
-        gallery={combinedGallery}
-        badge={badge}
-      />
+      <div className="hero-image">
+        <Slider
+          gallery={combinedGallery}
+          badge={badge}
+        />
+        {detail ?
+          <GatsbyImage
+            image={detail?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={detail?.alternativeText ? detail?.alternativeText : name}
+            className="detail poster"
+          />
+          : null
+        }
+      </div>
     )
   }
 
   return (
     <>
-      <div className={`hero-image poster ${image.localFile.childImageSharp.gatsbyImageData.width <= 960 ? 'hero-stork' : null}`}>
+      <div className={`hero-image  ${image.localFile.childImageSharp.gatsbyImageData.width <= 959 ? 'hero-stork' : null}`}>
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText || "Hero Image"}
+          className="poster"
         />
+        {detail ?
+          <GatsbyImage
+            image={detail?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={detail.alternativeText ? detail?.alternativeText : name}
+            className="detail poster"
+          />
+          : null
+        }
       </div>
-      {detail ?
-        <GatsbyImage
-          image={detail?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={detail?.alternativeText ? detail?.alternativeText : name}
-          className="detail"
-        />
-        : null
-      }
     </>
   )
 }

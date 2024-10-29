@@ -41,6 +41,7 @@ interface ServiceTypes {
     };
     allStrapiVenue: { nodes: CardType[] };
     allStrapiVendor: { nodes: CardType[] };
+    allStrapiLookbook: { nodes: { id: string }[] };
   }
 }
 
@@ -264,7 +265,9 @@ const ServiceView = ({ data }: ServiceTypes) => {
           ))}
         </div>
 
-        <Lookbook slug={data.strapiService.slug} />
+        {data.allStrapiLookbook?.length > 0 ?
+          <Lookbook slug={data.strapiService.slug} />
+          : null}
       </section >
 
       <section id="process" className='stork backed bb'>
@@ -382,6 +385,12 @@ export const query = graphql`
     allStrapiVendor(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
       nodes {
         ...vendorCard
+      }
+    }
+
+    allStrapiLookbook(filter: {services: {elemMatch: {slug: {eq: $slug}}}}) {
+      nodes {
+        id
       }
     }
 

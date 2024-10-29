@@ -98,7 +98,7 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
       />
 
       <main className="stork">
-        <article className="single">
+        <article >
           <h1>{project.title}</h1>
           {project.description ?
             <ReactMarkdown className='react-markdown'>

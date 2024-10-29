@@ -147,4 +147,47 @@ exports.createPages = async ({ actions, graphql }) => {
       },
     })
   }
+
+  const getLookBooks = await graphql(`
+    query {
+      allStrapiService {
+        edges {
+          node {
+            slug
+            lookbook {
+              id
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  // console.log('🦄');
+  // console.log(getLookBooks);
+  // console.log(getLookBooks.data.allStrapiService.edges);
+
+  // this isnt looped
+  // console.log(getLookBooks.data.allStrapiService.edges.node?.lookbook);
+
+  for (const { node } of getLookBooks.data.allStrapiService.edges) {
+
+    console.log('🦄');
+    console.log(node);
+    console.log(node?.lookbook);
+
+    if (node?.lookbook) {
+
+      console.log('🦖');
+      console.log(`/${node.slug}/lookbook/`);
+
+      createPage({
+        path: `/${node.slug}/2/lookbook/`,
+        component: path.resolve("src/templates/lookbook.tsx"),
+        context: {
+          slug: node.slug,
+        },
+      })
+    }
+  }
 }
