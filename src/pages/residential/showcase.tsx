@@ -88,6 +88,12 @@ function ResidentialShowcase() {
   }
   const lightGroupArray = Array.from(lightGroupSet);
 
+  // console.log(data.allStrapiLight.nodes.map((light) => light));
+  // console.log(data.allStrapiLight.nodes.map((light) => light.light_groups));
+  // console.log(lightGroupArray);
+
+  // TODO: This page breaks if a light doesnt have a group do a better of console logging that
+
   return (
     <>
       <Header />

@@ -84,17 +84,19 @@ type HeroType = {
 }
 function Hero({ image, gallery, badge, name, detail }: HeroType) {
 
-  console.log(image.localFile.childImageSharp.gatsbyImageData.width)
+  // console.log(image?.localFile.childImageSharp.gatsbyImageData.width)
 
-  process.env.NODE_ENV === "development" ?
-    image.localFile.childImageSharp.gatsbyImageData.width <= 959
-      ? console.warn('Hero Image is too small')
+  if (image) {
+    process.env.NODE_ENV === "development" ?
+      image.localFile.childImageSharp.gatsbyImageData?.width <= 959
+        ? console.warn('Hero Image is too small')
+        : null
       : null
-    : null
 
-  process.env.NODE_ENV === "development" ?
-    image.alternativeText ? null : console.warn('hero has no alt text')
-    : null
+    process.env.NODE_ENV === "development" ?
+      image.alternativeText ? null : console.warn('hero has no alt text')
+      : null
+  }
 
   let combinedGallery: ImageType[] = [];
   if (gallery) {
@@ -120,6 +122,10 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
         }
       </div>
     )
+  }
+
+  if (!image) {
+    return null;
   }
 
   return (

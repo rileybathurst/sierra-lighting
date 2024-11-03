@@ -172,14 +172,14 @@ exports.createPages = async ({ actions, graphql }) => {
 
   for (const { node } of getLookBooks.data.allStrapiService.edges) {
 
-    console.log('🦄');
-    console.log(node);
-    console.log(node?.lookbook);
+    // console.log('🦄');
+    // console.log(node);
+    // console.log(node?.lookbook);
 
     if (node?.lookbook) {
 
-      console.log('🦖');
-      console.log(`/${node.slug}/lookbook/`);
+      // console.log('🦖');
+      // console.log(`/${node.slug}/lookbook/`);
 
       createPage({
         path: `/${node.slug}/2/lookbook/`,

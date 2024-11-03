@@ -139,7 +139,7 @@ const LightView = ({ light, other }: LightViewTypes) => {
         image={light.image}
         name={light.name}
         detail={light.detail}
-        gallery={light.altGallery}
+        gallery={light?.altGallery}
         badge={true}
       />
 
