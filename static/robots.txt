@@ -3,5 +3,6 @@ User-agent: *
 Allow: /
 
 Disallow: /residential/showcase
+Disallow: /ideas
 
 Sitemap: https://sierra.lighting/sitemap-0.xml

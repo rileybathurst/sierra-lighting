@@ -1,4 +1,4 @@
-// * specifically removed from the SEO on Rom's request
+// * specifically removed from the SEO on Rom's request in /static/robots.txt
 // TODO: create these progamatically for all services if they have tiers but thats just another level
 
 import * as React from "react"
