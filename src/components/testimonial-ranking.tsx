@@ -22,9 +22,8 @@ function TestimonialRanking(props) {
           </li>)}
       </ul>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 export default TestimonialRanking
