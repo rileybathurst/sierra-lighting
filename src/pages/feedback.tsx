@@ -232,6 +232,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
             stars={stars}
             name={jobberName}
             email={jobberEmail}
+            title={false}
           />
         </>
         }

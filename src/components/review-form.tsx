@@ -4,8 +4,15 @@ interface ReviewFormTypes {
   stars: number;
   name: string;
   email: string;
+  title: boolean;
 }
-function ReviewForm({ stars, name, email }: ReviewFormTypes) {
+function ReviewForm({ stars, name, email, title }: ReviewFormTypes) {
+
+  let showTitle = true;
+  if (title === false) {
+    showTitle = false;
+  }
+
   return (
     <form
       className="stork"
@@ -33,19 +40,21 @@ function ReviewForm({ stars, name, email }: ReviewFormTypes) {
           defaultValue={name}
         />
       </label>
-      <label className="sr-only">Stars (out of five)
-        <input type="number" min="0" max="5" name="stars" value={stars} />
-      </label>
-      <label>Title
-        <input type="text" name="title" />
-      </label>
-      <label>Review
-        <textarea name="review" />
-      </label>
       <label>Email
         <input type="email" name="email"
           defaultValue={email}
         />
+      </label>
+      <label className="sr-only">Stars (out of five)
+        <input type="number" min="0" max="5" name="stars" value={stars} />
+      </label>
+      {showTitle &&
+        <label>Title
+          <input type="text" name="title" />
+        </label>
+      }
+      <label>Review
+        <textarea name="review" />
       </label>
       <button type="submit">Send</button>
     </form>
