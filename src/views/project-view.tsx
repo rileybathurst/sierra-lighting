@@ -11,6 +11,8 @@ import Card from "../components/card";
 import Start from "../components/start";
 import Hero from "../components/hero";
 import type { CardType } from "../types/card-type";
+import Attribute from "../components/attribute";
+import { A } from "storybook/internal/components";
 
 
 interface ProjectViewTypes {
@@ -129,47 +131,66 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
           <div className="attributes">
 
             {project.venue ?
-              <section className="attribute">
-                <h3 className="crest">Venue</h3>
-                <h4 className="range">
-                  <Link to={`/venue/${project.venue.slug}`} className="link--subtle">
-                    {project.venue.name}
-                  </Link>
-                </h4>
+              <>
 
-                {project.venue?.area ?
-                  <p>
-                    <Link to={`/areas/${project.venue.area.slug}`} className="link--subtle">
-                      {project.venue.area.name}, <StateAbbreviation state={project.venue.area.state} />
+                {/* <Attribute
+                  category="venue"
+                  slug={project.venue.slug}
+                  name={project.venue.name}
+                /> */}
+
+                <section className="attribute">
+                  <h3 className="crest">Venue</h3>
+                  <h4 className="range">
+                    <Link to={`/venue/${project.venue.slug}`} className="link--subtle">
+                      {project.venue.name}
                     </Link>
-                  </p>
-                  : null}
+                  </h4>
 
-              </section>
+                  {project.venue?.area ?
+                    <p>
+                      <Link to={`/areas/${project.venue.area.slug}`} className="link--subtle">
+                        {project.venue.area.name}, <StateAbbreviation state={project.venue.area.state} />
+                      </Link>
+                    </p>
+                    : null}
+
+                </section>
+              </>
               : null}
 
             {project.areas.length > 0 ?
-              <section className="attribute">
-                <h3 className="crest">Area</h3>
-                <h4 className="range">
-                  {project.areas.map((area) => (
-                    <Link
-                      key={area.slug}
-                      to={`/areas/${area.slug}`}
-                      className="link--subtle"
-                    >
-                      {area.name}, <StateAbbreviation state={area.state} />
-                    </Link>
-                  ))
-                  }
-                </h4>
 
-              </section>
-              : null}
+              <>
+
+                {/* <Attribute
+                  category="area"
+                  slug={project.areas[0].slug}
+                  name={`${project.areas[0].name}, ${project.areas[0].state}`}
+                /> */}
+
+                <section className="attribute">
+                  <h3 className="crest">Area</h3>
+                  <h4 className="range">
+                    {project.areas.map((area) => (
+                      <Link
+                        key={area.slug}
+                        to={`/areas/${area.slug}`}
+                        className="link--subtle"
+                      >
+                        {area.name}, <StateAbbreviation state={area.state} />
+                      </Link>
+                    ))
+                    }
+                  </h4>
+
+                </section>
+              </> : null}
 
             {project.vendors.length > 0 ?
               <section className="attribute">
-                <h3 className="crest">Vendor{project.vendors.length > 1 ? 's' : null}</h3>
+                {/* // ? I dont think this needs to be titled anymore */}
+                {/* <h3 className="crest">Vendor{project.vendors.length > 1 ? 's' : null}</h3> */}
                 {project.vendors.map(vendor => (
                   <div key={vendor.id}>
                     <h4 className="range">
@@ -189,22 +210,29 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
               : null}
 
             {project.team ?
-              <section className="attribute">
-                <h3 className="crest">Team</h3>
-                <div className="">
-                  {project.team.map(team => (
-                    <h4
-                      key={team.slug}
-                      className="range last-ampersand inline"
-                    >
-                      <Link to={`/team/${team.slug}`} className="link--subtle">
-                        {team.name}
-                      </Link>
-                    </h4>
-                  ))}
-                </div>
-              </section>
-              : null}
+              <>
+                {/* <Attribute
+                  category="team"
+                  slug={project.areas[0].slug}
+                  name={`${project.areas[0].name}, ${project.areas[0].state}`}
+                /> */}
+
+                <section className="attribute">
+                  <h3 className="crest">Team</h3>
+                  <div className="">
+                    {project.team.map(team => (
+                      <h4
+                        key={team.slug}
+                        className="range last-ampersand inline"
+                      >
+                        <Link to={`/team/${team.slug}`} className="link--subtle">
+                          {team.name}
+                        </Link>
+                      </h4>
+                    ))}
+                  </div>
+                </section>
+              </> : null}
 
           </div>
         </>

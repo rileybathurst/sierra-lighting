@@ -671,7 +671,14 @@ footer {
   margin-inline: auto;
   padding-inline: var(--vinson);
   /* border-inline-end: 1px solid var(--honey-400); */
+
   .attribute {
+    /* * maybe start */
+    /* display: flex; */
+    /* flex-flow: row wrap; */
+    /* gap: var(--vinson); */
+    /* * maybe end */
+
     /*  border-inline-end: 1px solid var(--honey-400); */
     padding-inline-end: var(--vinson);
 
