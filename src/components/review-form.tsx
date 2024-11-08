@@ -34,7 +34,7 @@ function ReviewForm({ stars, name, email }: ReviewFormTypes) {
         />
       </label>
       <label className="sr-only">Stars (out of five)
-        <input type="number" min="0" max="5" name="stars" />
+        <input type="number" min="0" max="5" name="stars" value={stars} />
       </label>
       <label>Title
         <input type="text" name="title" />

@@ -8,7 +8,13 @@ import Footer from "../components/footer";
 import Star from "../images/star";
 import ReviewForm from "../components/review-form";
 
-const ReviewsPage = () => {
+type LocationTypes = {
+  location: {
+    pathname: string;
+    search: string;
+  }
+}
+const FeedbackPage = ({ location }: LocationTypes) => {
 
   const jobberParams = new URLSearchParams(location.search);
 
@@ -238,7 +244,7 @@ const ReviewsPage = () => {
   )
 }
 
-export default ReviewsPage
+export default FeedbackPage
 
 export const Head = () => {
   return (
