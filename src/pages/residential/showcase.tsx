@@ -3,7 +3,7 @@
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import ReactMarkdown from "react-markdown";
@@ -11,6 +11,8 @@ import Start from "../../components/start";
 import Card from "../../components/card";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import type { CardType } from "../../types/card-type";
+import type CardAndGroupType from "../../types/card-and-group-type";
 
 type AttributeTypes = {
   price: string;
@@ -80,19 +82,58 @@ function ResidentialShowcase() {
   }
   const showcaseArray = Array.from(showcaseSet);
 
-  const lightGroupSet = new Set();
-  for (const light of data.allStrapiLight.nodes) {
-    light.light_groups.map((group) => {
-      lightGroupSet.add(group.slug)
-    })
+  type slugAndOrderType = {
+    slug: string,
+    xmasOrder: number
   }
-  const lightGroupArray = Array.from(lightGroupSet);
+  const lightGroupSet: slugAndOrderType[] = [];
+  const seenSlugs = new Set();
 
-  // console.log(data.allStrapiLight.nodes.map((light) => light));
-  // console.log(data.allStrapiLight.nodes.map((light) => light.light_groups));
-  // console.log(lightGroupArray);
+  for (const light of data.allStrapiLight.nodes) {
+    light.light_groups.map((group: slugAndOrderType) => {
+      if (!seenSlugs.has(group.slug)) {
+        lightGroupSet.push({ slug: group.slug, xmasOrder: group.xmasOrder });
+        seenSlugs.add(group.slug);
+      }
+    });
+  }
+
+  const lightGroupArray = lightGroupSet.sort((a, b) => a.xmasOrder - b.xmasOrder);
 
   // TODO: This page breaks if a light doesnt have a group do a better of console logging that
+
+  type ShowcaseType = {
+    id: string;
+    tier: string;
+    description: {
+      data: {
+        description: string;
+      };
+    };
+    price: string;
+    roofline: string;
+    tree: string;
+    project: {
+      slug: string;
+      title: string;
+      image: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+        };
+      };
+      description: {
+        data: {
+          description: string;
+        };
+      };
+      price: string;
+      roofline: string;
+      tree: string;
+    }
+  }
+
 
   return (
     <>
@@ -110,9 +151,9 @@ function ResidentialShowcase() {
 
         {showcaseArray.map((tier) => (
           data.allStrapiShowcase.nodes
-            .filter((showcase) => showcase.tier === tier)
-            .map((showcase) => (
-              <div key={tier.id} className="pelican">
+            .filter((showcase: ShowcaseType) => showcase.tier === tier)
+            .map((showcase: ShowcaseType) => (
+              <div key={showcase.id} className="pelican">
                 <Link to={`/project/${showcase.project.slug}`}>
                   <GatsbyImage
                     image={showcase.project.image?.localFile?.childImageSharp?.gatsbyImageData}
@@ -145,9 +186,9 @@ function ResidentialShowcase() {
 
         {lightGroupArray.map((group) => (
           data.allStrapiLight.nodes
-            .filter((light) => light.light_groups[0].slug === (group))
+            .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))
             .slice(0, 1)
-            .map((light) => (
+            .map((light: CardAndGroupType) => (
               <>
                 <section
                   key={light.id}
@@ -167,8 +208,8 @@ function ResidentialShowcase() {
                   key={light.id}
                   className="deck">
                   {data.allStrapiLight.nodes
-                    .filter((light) => light.light_groups[0].slug === (group))
-                    .map((light) => (
+                    .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))
+                    .map((light: CardType) => (
                       <Card
                         key={light.id}
                         {...light}

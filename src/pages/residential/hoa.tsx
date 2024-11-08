@@ -50,7 +50,6 @@ function HoaPage() {
   }
 
   const lightGroupArray = lightGroupSet.sort((a, b) => a.xmasOrder - b.xmasOrder);
-  console.log(lightGroupArray);
 
   return (
     <>
