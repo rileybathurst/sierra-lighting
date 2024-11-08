@@ -74,6 +74,7 @@ const IdeasPage = ({ location }: LocationTypes) => {
             >
               <Card
                 {...light}
+                breadcrumb="light"
               />
               <p>
                 <Link to={`/ideas/?${nextSearchParams.toString()}`} onClick={(e) => {

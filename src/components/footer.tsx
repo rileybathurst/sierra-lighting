@@ -8,9 +8,13 @@ import SocialIcons from "../components/social-icons";
 import Season from './season';
 import { Phone } from './phone';
 
-const Footer = () => {
+const Footer = ({ quote }: { quote?: boolean }) => {
 
-  // ? this seems a weird way to do this as it could just be hard coded
+  let showQuote = true;
+  if (quote === false) {
+    showQuote = false;
+  }
+
   const [email, setEmail] = useState('');
 
   interface SubjectType {
@@ -74,62 +78,67 @@ const Footer = () => {
     <footer>
       <hr className="stork" />
 
-      <h3 className="stork">Start With A Free Quote</h3>
+      {showQuote ? (
+        <>
+          <h3 className="stork">Start With A Free Quote</h3>
 
-      <form
-        name="contact"
-        data-netlify="true"
-        className="stork"
-        netlify-honeypot="bot-field"
-        method="POST"
-        action="/form-success"
-      >
+          <form
+            name="contact"
+            data-netlify="true"
+            className="stork"
+            netlify-honeypot="bot-field"
+            method="POST"
+            action="/form-success"
+          >
 
-        <input type="hidden" name="form-name" value="contact" />
+            <input type="hidden" name="form-name" value="contact" />
 
-        <input type="hidden" name="subject"
-          value={`Contact Form from sierra.lighting ${email}`} />
+            <input type="hidden" name="subject"
+              value={`Contact Form from sierra.lighting ${email}`} />
 
-        <label>Name
-          <input type="text" name="name" />
-        </label>
-        <label>Email
-          <input type="email" name="email" onChange={subject} />
-        </label>
-        <label>Phone
-          <input type="tel" name="tel" />
-        </label>
-        <div className='address-together'>
-          <label className='address'>Address
-            <input type="text" name="address" />
-          </label>
-          <label className='zip'>City or Zip
-            <input type="text" name="zip" />
-          </label>
-        </div>
-        <label>Message
-          <textarea name="message" />
-        </label>
-        <label>How did you hear about us?
-          <input type="text" name="referral" />
-        </label>
+            <label>Name
+              <input type="text" name="name" />
+            </label>
+            <label>Email
+              <input type="email" name="email" onChange={subject} />
+            </label>
+            <label>Phone
+              <input type="tel" name="tel" />
+            </label>
+            <div className='address-together'>
+              <label className='address'>Address
+                <input type="text" name="address" />
+              </label>
+              <label className='zip'>City or Zip
+                <input type="text" name="zip" />
+              </label>
+            </div>
+            <label>Message
+              <textarea name="message" />
+            </label>
+            <label>How did you hear about us?
+              <input type="text" name="referral" />
+            </label>
 
-        {/* // TODO: this might be a query in the future if I keep changing it */}
-        <label className='checkbox'>
-          I understand there is a minimum of $700 for holiday lights and $1,000 for new wedding or event lighting clients
-          <input type="checkbox" name="minimum" />
-        </label>
-        <p className="sr-only">
-          <label>
-            Don&#39;t fill this out if you&#39;re human:
-            <input name="bot-field" />
-          </label>
-        </p>
-        <button type="submit">Send</button>
-      </form>
+            {/* // TODO: this might be a query in the future if I keep changing it */}
+            <label className='checkbox'>
+              I understand there is a minimum of $700 for holiday lights and $1,000 for new wedding or event lighting clients
+              <input type="checkbox" name="minimum" />
+            </label>
+            <p className="sr-only">
+              <label>
+                Don&#39;t fill this out if you&#39;re human:
+                <input name="bot-field" />
+              </label>
+            </p>
+            <button type="submit">Send</button>
+          </form>
 
 
-      <hr className='pelican' />
+          <hr className='pelican' />
+        </>
+      ) : null
+      }
       <div className="footer-container">
 
         <section id="contact" className="contact">

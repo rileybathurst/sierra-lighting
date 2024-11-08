@@ -16,3 +16,27 @@
 .button-hero:active {
   background-color: var(--honey-700) !important;
 } */
+
+/*------------------------------------*/
+
+.review-stars button {
+  margin-inline: 0;
+}
+
+.review-star {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.review-star.active svg {
+  fill: var(--honey-300);
+}
+
+.review-star.hover {
+  background-color: var(--honey-100);
+
+  svg {
+    fill: var(--honey-500);
+  }
+}
