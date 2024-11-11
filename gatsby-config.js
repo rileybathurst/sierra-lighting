@@ -50,7 +50,7 @@ module.exports = {
 
   // * gatsby-plugin-sitemap needs this
   siteMetadata: {
-    siteUrl: 'https://www.sierralighting.com',
+    siteUrl: 'https://sierra.lighting',
   },
   plugins: [
     {
