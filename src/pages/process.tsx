@@ -8,7 +8,6 @@ import Season from '../components/season';
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm' // TODO: I dont think I need this
 
 // TODO: I had problems making this work I need to fix it
 // import Adjective from '../components/adjective';

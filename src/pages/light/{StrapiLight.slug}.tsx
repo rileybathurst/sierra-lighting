@@ -82,6 +82,35 @@ export const query = graphql`
         ...lightCard
       }
     }
+
+    holiday: allStrapiProcess(
+        filter: {services: {elemMatch: {slug: {eq: "residential"}}}},
+        sort: {order: ASC}
+        ) {
+        nodes {
+          name
+        }
+    }
+    
+    wedding: allStrapiProcess(
+      filter: {services: {elemMatch: {slug: {eq: "wedding"}}}},
+      sort: {order: ASC}
+      ) {
+      nodes {
+        name
+      }
+    }
+
+    allStrapiProject(
+      filter: {lights: {elemMatch: {slug: {in: [$slug]}}}},
+      # sort: {fields: date, order: DESC}
+      limit: 3
+    ) {
+      nodes {
+        ...projectCard
+      }
+    }
+
   }
 `
 
@@ -137,7 +166,7 @@ interface LightPageTypes {
         };
         alternativeText: string;
       };
-      projects: CardType[];
+
       altGallery: {
         localFile: {
           url: string;
@@ -151,14 +180,31 @@ interface LightPageTypes {
     allStrapiLight: {
       nodes: CardType[];
     };
+
+    allStrapiProcess: {
+      nodes: {
+        name: string;
+      }
+    }
+
+    allStrapiProject: CardType[];
+
   };
 }
 
+// allStrapiProcess: {
+
 const LightPage = ({ data }: LightPageTypes) => {
+
+
+
   return (
     <LightView
       light={data.strapiLight}
       other={data.allStrapiLight}
+      weddingProcess={data.wedding.nodes}
+      holidayProcess={data.holiday.nodes}
+      projects={data.allStrapiProject}
     />
   );
 };
@@ -167,11 +213,34 @@ export default LightPage;
 
 // TODO: might need a image default variable here
 
+
+
 export const Head = ({ data }: LightPageTypes) => {
+
+  let aliasString = '';
+
+  if (data.strapiLight.alias) {
+    console.log(data.strapiLight.alias)
+    const alias = data.strapiLight.alias
+    aliasString = alias.split('\n')
+      .map(item => item.trim().replace(/^- /, ''))
+      .map(item => item.charAt(0).toUpperCase() + item.slice(1))
+      .join(' | ');
+    // console.log(aliasString);
+  }
+
   return (
     <>
       <SEO
-        title={`${data.strapiLight.name}`}
+        title={`
+          ${data.strapiLight.name}
+          ${data.strapiLight.alias ? ` | ${aliasString}` : ''}
+          ${data.strapiLight.services.every(service => service.slug === 'residential' || service.slug === 'commercial') ? (
+            'for christmas lights'
+          ) : (
+            'for weddings'
+          )}
+        `}
         // TODO: needs the aliases in the SEO
         description={data.strapiLight?.excerpt}
         image={data.strapiLight?.image?.localFile?.url}

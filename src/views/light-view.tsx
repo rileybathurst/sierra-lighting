@@ -104,8 +104,17 @@ type LightViewTypes = {
   other: {
     nodes: CardType[];
   };
+  weddingProcess: {
+    id: React.Key;
+    name: string;
+  };
+  holidayProcess: {
+    id: React.Key;
+    name: string;
+  };
+  projects: CardType[];
 }
-const LightView = ({ light, other }: LightViewTypes) => {
+const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: LightViewTypes) => {
 
   interface ServiceTypes {
     id: React.Key;
@@ -131,6 +140,15 @@ const LightView = ({ light, other }: LightViewTypes) => {
       : console.warn(`${light.name} image has no alt`)
     : null;
 
+
+  // console.log(light.services);
+  type processTypes = {
+    id: React.Key;
+    name: string;
+  };
+
+  // console.log(projects);
+
   return (
     <>
       <Header />
@@ -145,8 +163,15 @@ const LightView = ({ light, other }: LightViewTypes) => {
 
       <main>
         <article className="stork">
-          {/* // TODO: this could be using a js length test for the lower clamp */}
-          <h1 className="clamp-denali_everest">{light.name}</h1>
+          <h1 className="denali">
+            {light.name}
+            {light.services.every(service => service.slug === 'residential' || service.slug === 'commercial') ? (
+              <span className="capitalize"> for christmas lighting</span>
+            ) : (
+              <span className="capitalize"> for wedding lighting</span>
+            )}
+
+          </h1>
 
           {light.alias ? <Aliases alias={light.alias} /> : null}
 
@@ -174,12 +199,39 @@ const LightView = ({ light, other }: LightViewTypes) => {
             )
           })}
           {/* <li><hr /></li> */}
-          <li className="kilimanjaro capitalize">Learn more about our <Link to="/process">process</Link></li>
+          {/* <li className="kilimanjaro capitalize">Learn more about our <Link to="/process">process</Link></li> */}
           <li className="kilimanjaro capitalize"><Link to="/faqs">Frequently Asked Questions</Link></li>
         </ul>
       </section>
 
+      <section className="stork">
+        <hr />
+        <h3><Link to="/process">Learn more about our process</Link></h3>
+        <ol>
+          {light.services.every(service => service.slug === 'residential' || service.slug === 'commercial') ? (
+            holidayProcess.map((process: processTypes) => {
+              return (
+                <li
+                  key={process.id}
+                >
+                  {process.name}
+                </li>
+              )
+            })
 
+          ) : weddingProcess.map((process: processTypes) => {
+            return (
+              <li
+                key={process.id}
+              >
+                {process.name}
+              </li>
+            )
+          })
+
+          }
+        </ol>
+      </section>
 
       {light.light_groups.length > 0 ?
         <div>
@@ -225,7 +277,8 @@ const LightView = ({ light, other }: LightViewTypes) => {
         </>
       }
 
-      {light.projects.length > 0 ?
+      {/* // TODO: if more than 3 */}
+      {projects.nodes.length > 0 ?
         <>
           <div className="stork">
             <hr />
@@ -234,7 +287,7 @@ const LightView = ({ light, other }: LightViewTypes) => {
 
 
           <div className="deck">
-            {light.projects.map((project: CardType) => (
+            {projects.nodes.map((project: { nodes: CardType }) => (
               <Card
                 key={project.id}
                 {...project}
