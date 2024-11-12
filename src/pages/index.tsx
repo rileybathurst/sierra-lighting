@@ -101,7 +101,7 @@ const IndexPage = () => {
     } */
 
   interface QualityTypes {
-    id: string;
+    id: React.Key;
     name: string;
     eyebrow: string;
     description: {
@@ -112,7 +112,7 @@ const IndexPage = () => {
   }
 
   interface TestimonialTypes {
-    id: string;
+    id: React.Key;
     customer: string;
     platform: string;
     excerpt: string;
@@ -128,7 +128,7 @@ const IndexPage = () => {
   }
 
   interface ServiceTypes {
-    id: string;
+    id: React.Key;
     name: string;
     slug: string;
     hero_light: {

@@ -18,7 +18,7 @@ import { Phone } from '../components/phone';
 type VenueViewTypes = {
   data: {
     strapiVenue: {
-      id: string;
+      id: React.Key;
       name: string;
       description: string;
       slug: string;
@@ -50,7 +50,7 @@ type VenueViewTypes = {
         alternativeText: string;
       }
       testimonials: {
-        id: string;
+        id: React.Key;
         title: string;
         review: string;
         stars: number;

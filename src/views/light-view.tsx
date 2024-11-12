@@ -1,57 +1,14 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image"
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 import Start from "../components/start";
-import type { CardType } from "../types/card-type";
 import Hero from "../components/hero";
-import type { ImageType } from "../types/image-type";
-
-/* type HeroGalleryType = {
-  image: ImageType;
-  detail: ImageType;
-  altGallery: ImageType[];
-  name: string;
-}
-function HeroGallery({ image, name, detail, altGallery }: HeroGalleryType) {
-
-  const combinedGallery = altGallery ? [...altGallery, image] : null;
-
-  if (altGallery && altGallery.length > 0) {
-    return (
-      <Slider
-        gallery={combinedGallery}
-        badge={true}
-      />
-    );
-  }
-
-  return (
-    image ?
-      <div className="light-hero poster">
-        <GatsbyImage
-          image={
-            image?.localFile?.childImageSharp
-              ?.gatsbyImageData
-          }
-          alt={image?.alternativeText ? image?.alternativeText : name}
-        />
-        {detail ?
-          <GatsbyImage
-            image={detail?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={detail?.alternativeText ? detail?.alternativeText : name}
-            className="detail"
-          />
-          : null
-        }
-      </div>
-      : null
-  )
-} */
+import type { CardType } from "../types/card-type";
+import type { GatsbyImageType } from "../types/gatsby-image";
 
 interface AliasTypes {
   alias: string;
@@ -84,37 +41,46 @@ type LightViewTypes = {
   light: {
     id: React.Key;
     name: string;
-    alias: string;
+    slug: string;
+    excerpt: string;
     description: string;
-    image: ImageType;
-    altGallery: ImageType[];
-    detail: ImageType;
+
     services: {
       id: React.Key;
       name: string;
       slug: string;
     }[];
+
     light_groups: {
       id: React.Key;
       name: string;
+      slug: string;
       lights: CardType[];
     }[];
-    projects: CardType[];
-  }
+    alias: string;
+    image: GatsbyImageType;
+    detail: GatsbyImageType;
+
+    altGallery: GatsbyImageType[];
+  };
   other: {
     nodes: CardType[];
   };
   weddingProcess: {
     id: React.Key;
     name: string;
-  };
+  }[];
   holidayProcess: {
     id: React.Key;
     name: string;
+  }[];
+  projects: {
+    nodes: CardType[];
   };
-  projects: CardType[];
 }
 const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: LightViewTypes) => {
+
+  console.log(holidayProcess);
 
   interface ServiceTypes {
     id: React.Key;
@@ -209,7 +175,7 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
         <h3><Link to="/process">Learn more about our process</Link></h3>
         <ol>
           {light.services.every(service => service.slug === 'residential' || service.slug === 'commercial') ? (
-            holidayProcess.map((process: processTypes) => {
+            holidayProcess.nodes.map((process: processTypes) => {
               return (
                 <li
                   key={process.id}
@@ -219,7 +185,7 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
               )
             })
 
-          ) : weddingProcess.map((process: processTypes) => {
+          ) : weddingProcess.nodes.map((process: processTypes) => {
             return (
               <li
                 key={process.id}

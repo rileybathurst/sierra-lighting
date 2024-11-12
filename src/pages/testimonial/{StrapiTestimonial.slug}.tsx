@@ -26,7 +26,7 @@ export const data = graphql`
 type TestimonialPageTypes = {
   data: {
     strapiTestimonial: {
-      id: string;
+      id: React.Key;
       customer: string;
       slug: string;
       stars: number;

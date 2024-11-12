@@ -77,7 +77,7 @@ function Venues({ name, venues, areas }: VenuesProps) {
 type AreasTemplateTypes = {
   data: {
     strapiArea: {
-      id: string;
+      id: React.Key;
       name: string;
       tagline: string;
       description: {

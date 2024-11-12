@@ -37,7 +37,7 @@ const ProjectsPage = () => {
   `);
 
   interface ServiceType {
-    id: string;
+    id: React.Key;
     name: string;
     slug: string;
     description: {

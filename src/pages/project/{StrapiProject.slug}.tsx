@@ -141,7 +141,7 @@ testimonial {
 type ProjectPageTypes = {
   data: {
     strapiProject: {
-      id: string;
+      id: React.Key;
       title: string;
       description: {
         data: {
@@ -179,7 +179,7 @@ type ProjectPageTypes = {
       }[];
 
       teams: {
-        id: string;
+        id: React.Key;
         name: string;
         slug: string;
       }[];

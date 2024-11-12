@@ -79,7 +79,7 @@ const TestimonialsPage = () => {
   `)
 
   type TestimonialTypes = {
-    id: string;
+    id: React.Key;
     customer: string;
     stars: number;
     review: string;

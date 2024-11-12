@@ -17,7 +17,7 @@ import type { IGatsbyImageData } from 'gatsby-plugin-image';
 interface VendorTemplateViewTypes {
   data: {
     strapiVendor: {
-      id: string;
+      id: React.Key;
       name: string;
       description: string;
       slug: string;
@@ -39,7 +39,7 @@ interface VendorTemplateViewTypes {
       };
 
       testimonials: {
-        id: string;
+        id: React.Key;
         title: string;
         review: string;
         stars: number;

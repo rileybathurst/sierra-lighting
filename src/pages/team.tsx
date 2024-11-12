@@ -20,7 +20,7 @@ const TeamPage = () => {
   `)
 
   type TeamTypes = {
-    id: string;
+    id: React.Key;
     name: string;
     slug: string;
     bio: {

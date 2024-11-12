@@ -103,7 +103,7 @@ function ResidentialShowcase() {
   // TODO: This page breaks if a light doesnt have a group do a better of console logging that
 
   type ShowcaseType = {
-    id: string;
+    id: React.Key;
     tier: string;
     description: {
       data: {

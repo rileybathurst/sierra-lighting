@@ -33,7 +33,7 @@ const TestimonialsPage = () => {
   `)
 
   type AffiliationTypes = {
-    id: string;
+    id: React.Key;
     name: string;
     excerpt: string;
     link: string;

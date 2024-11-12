@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql, Script } from "gatsby"
 import LightView from "../../views/light-view"
 import SEO from "../../components/seo"
-import type { IGatsbyImageData } from "gatsby-plugin-image"
+import type { GatsbyImageType } from "../../types/gatsby-image"
 import type { CardType } from "../../types/card-type"
 
 export const query = graphql`
@@ -88,6 +88,7 @@ export const query = graphql`
         sort: {order: ASC}
         ) {
         nodes {
+          id
           name
         }
     }
@@ -97,6 +98,7 @@ export const query = graphql`
       sort: {order: ASC}
       ) {
       nodes {
+        id
         name
       }
     }
@@ -111,99 +113,90 @@ export const query = graphql`
       }
     }
 
+    strapiAbout {
+      url
+    }
+
   }
 `
-
-interface LightPageTypes {
+type LightPageTypes = {
   data: {
     strapiLight: {
-      id: string;
+      id: React.Key;
       name: string;
       slug: string;
       excerpt: string;
       description: string;
+
       services: {
-        id: string;
+        id: React.Key;
         name: string;
         slug: string;
       }[];
+
       light_groups: {
-        id: string;
+        id: React.Key;
         name: string;
         slug: string;
-        lights: {
-          id: string;
-          name: string;
-          slug: string;
-          excerpt: string;
-          image: {
-            localFile: {
-              url: string;
-              childImageSharp: {
-                gatsbyImageData: IGatsbyImageData;
-              };
-            };
-            alternativeText: string;
-          };
-        }[];
+
+        lights: CardType[];
       }[];
       alias: string;
-      image: {
-        localFile: {
-          url: string;
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-        alternativeText: string;
-      };
-      detail: {
-        localFile: {
-          url: string;
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-        alternativeText: string;
-      };
+      image: GatsbyImageType;
+      detail: GatsbyImageType;
 
-      altGallery: {
-        localFile: {
-          url: string;
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-        alternativeText: string;
-      };
+      altGallery: GatsbyImageType[];
     };
     allStrapiLight: {
       nodes: CardType[];
     };
-
-    allStrapiProcess: {
+    allStrapiProject: {
+      nodes: CardType[];
+    };
+    weddingProcess: {
       nodes: {
+        id: React.Key;
         name: string;
-      }
+      }[];
+    };
+    holidayProcess: {
+      holiday: {
+        nodes: {
+          id: React.Key;
+          name: string;
+        }[];
+      }[];
     }
+    projects: {
+      nodes: CardType[];
+    };
+    strapiAbout: {
+      url: string;
+    };
 
-    allStrapiProject: CardType[];
+    holiday: {
+      nodes: {
+        id: React.Key;
+        name: string;
+      }[];
+    };
 
-  };
+    wedding: {
+      nodes: {
+        id: React.Key;
+        name: string;
+      }[];
+    };
+  }
 }
-
-// allStrapiProcess: {
-
 const LightPage = ({ data }: LightPageTypes) => {
-
-
 
   return (
     <LightView
       light={data.strapiLight}
       other={data.allStrapiLight}
-      weddingProcess={data.wedding.nodes}
-      holidayProcess={data.holiday.nodes}
+      weddingProcess={data.wedding}
+      holidayProcess={data.holiday}
       projects={data.allStrapiProject}
     />
   );
@@ -213,14 +206,12 @@ export default LightPage;
 
 // TODO: might need a image default variable here
 
-
-
 export const Head = ({ data }: LightPageTypes) => {
 
   let aliasString = '';
 
   if (data.strapiLight.alias) {
-    console.log(data.strapiLight.alias)
+    // console.log(data.strapiLight.alias)
     const alias = data.strapiLight.alias
     aliasString = alias.split('\n')
       .map(item => item.trim().replace(/^- /, ''))
@@ -228,6 +219,21 @@ export const Head = ({ data }: LightPageTypes) => {
       .join(' | ');
     // console.log(aliasString);
   }
+
+  let processString = '';
+  // console.log(data.wedding.nodes);
+
+  if (data.strapiLight.services.every(service => service.slug === 'residential' || service.slug === 'commercial')) {
+    for (const process of data.holiday.nodes) {
+      processString += ` | ${process.name}`;
+    }
+  } else {
+    for (const process of data.wedding.nodes) {
+      processString += ` | ${process.name}`;
+    }
+  }
+
+  // console.log(processString);
 
   return (
     <>
@@ -261,10 +267,10 @@ export const Head = ({ data }: LightPageTypes) => {
           {
             "@context": "https://schema.org/",
             "@type": "Offer",
-            "name": "${data.strapiLight.name}",
-            "description": "${data.strapiLight.excerpt}",
+            "name": "${data.strapiLight.name} ${data.strapiLight.alias ? ` | ${aliasString}` : ''} ${data.strapiLight.services.every(service => service.slug === 'residential' || service.slug === 'commercial') ? ('for christmas lights') : ('for weddings')}",
+            "description": "${data.strapiLight.excerpt} ${processString}",
             "image": "${data.strapiLight?.image?.localFile?.url}",
-            "url": "light/${data.strapiLight.slug}"
+            "url": "${data.strapiAbout.url}/light/${data.strapiLight.slug}"
           }
         `}
       </Script>

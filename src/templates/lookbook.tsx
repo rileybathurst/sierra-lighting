@@ -4,10 +4,10 @@ import { graphql } from 'gatsby'
 type LookbookTemplateTypes = {
   data: {
     allStrapiLookbook: {
-      id: string;
+      id: React.Key;
     }[];
     strapiService: {
-      id: string;
+      id: React.Key;
       name: string;
     };
   };

@@ -14,7 +14,7 @@ import type { CardType } from "../types/card-type";
 
 interface TeamTypes {
   team: {
-    id: string;
+    id: React.Key;
     name: string;
     bio: {
       data: {

@@ -61,7 +61,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
   `)
 
   interface TeamType {
-    id: string;
+    id: React.Key;
     name: string;
     slug: string;
     avatar: {

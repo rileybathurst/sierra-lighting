@@ -42,7 +42,7 @@ const ProcessPage = () => {
   const weddingProcesses = data.wedding.nodes;
 
   type processTypes = {
-    id: string;
+    id: React.Key;
     name: string;
     markdown: {
       data: {

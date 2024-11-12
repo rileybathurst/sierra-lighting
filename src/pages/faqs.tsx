@@ -11,7 +11,7 @@ import { useStrapiFaq } from "../hooks/use-strapi-faq";
 const FaqsPage = () => {
 
   type faqTypes = {
-    id: string;
+    id: React.Key;
     question: string;
     answer: string;
   }

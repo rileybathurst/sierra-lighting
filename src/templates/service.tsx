@@ -26,7 +26,7 @@ interface ServiceTypes {
       description: { data: { description: string } };
       after_the_triptych: { data: { after_the_triptych: string } };
       projects: CardType[];
-      triptych: { id: string; localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } } }[];
+      triptych: { id: React.Key; localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } } }[];
       featured_lights: CardType[];
       videoMux: string;
       venues: CardType[];
@@ -34,7 +34,7 @@ interface ServiceTypes {
     }
     allStrapiProcess: {
       nodes: {
-        id: string;
+        id: React.Key;
         name: string;
         markdown: { data: { markdown: string } };
       }[]
