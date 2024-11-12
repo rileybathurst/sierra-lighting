@@ -133,7 +133,7 @@ export const SEO = (SE0: SEO) => {
               "geoMidpoint": {
                 "@type": "GeoCoordinates",
                 "latitude": "${data.strapiAbout.geoLatitude}",
-                "longitude": "${data.strapiAbout.geLongitude}"
+                "longitude": "${data.strapiAbout.geoLongitude}"
               },
               "geoRadius": "${data.strapiAbout.geoRadius}"
             },
@@ -142,7 +142,7 @@ export const SEO = (SE0: SEO) => {
               "addressLocality": "${data.strapiAbout.addressLocality}",
               "addressRegion": "${data.strapiAbout.addressRegion}",
               "postalCode": "${data.strapiAbout.postalCode}",
-              "addressCountry": "USA"
+              "addressCountry": "US"
               }
           }
         `}

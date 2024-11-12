@@ -72,6 +72,8 @@ export const Head = ({ data }: TeamPageHeadTypes) => {
         url={`/team/${data.strapiTeam.slug}`}
       />
 
+      {/* // TODO: breadcrumbs */}
+
       {/* // TODO: jobTitle */}
       {/* // TODO: move the organization to seo file */}
       {/* works for has to be an org but that needs an address so normally use local bus */}
@@ -90,7 +92,6 @@ export const Head = ({ data }: TeamPageHeadTypes) => {
               "name": "${data.strapiAbout.businessName}",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "12831 Dulzura Street"
                 "addressLocality": "Truckee",
                 "addressRegion": "CA",
                 "postalCode": "96161",

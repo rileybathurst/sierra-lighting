@@ -417,11 +417,15 @@ export const query = graphql`
 // Footer
 
 export const Head = ({ data }: ServiceTypes) => {
+
+  const sanitazeDescription = data.strapiService.description.data.description.replace(/"/g, " inches");
+  // console.log(sanitazeDescription);
+
   return (
     <>
       <SEO
         title={`${data.strapiService.name} Lighting`}
-        description={data.strapiService.excerpt}
+        description={sanitazeDescription}
         image={data.strapiService?.ogImage}
         url={`${data.strapiService.slug}`}
       />
@@ -431,7 +435,7 @@ export const Head = ({ data }: ServiceTypes) => {
             "@context": "https://schema.org",
             "@type": "OfferCatalog",
             "name": "${data.strapiService.name}",
-            "description": "${data.strapiService.excerpt}",
+            "description": "${sanitazeDescription}",
             "url": "/${data.strapiService.slug}"
           }
         `}

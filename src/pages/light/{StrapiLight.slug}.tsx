@@ -248,13 +248,13 @@ export const Head = ({ data }: LightPageTypes) => {
           )}
         `}
         // TODO: needs the aliases in the SEO
-        description={data.strapiLight?.excerpt}
+        description={`${data.strapiLight?.excerpt} ${processString}`}
         image={data.strapiLight?.image?.localFile?.url}
         url={`light/${data.strapiLight.slug}`}
         breadcrumbs={[
           {
             name: "Light",
-            item: "light"
+            item: "lights"
           },
           {
             name: data.strapiLight.name,
@@ -262,7 +262,7 @@ export const Head = ({ data }: LightPageTypes) => {
           }
         ]}
       />
-      <Script type="application/ld+json">
+      {/*       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org/",
@@ -273,7 +273,7 @@ export const Head = ({ data }: LightPageTypes) => {
             "url": "${data.strapiAbout.url}/light/${data.strapiLight.slug}"
           }
         `}
-      </Script>
+      </Script> */}
     </>
   )
 }
