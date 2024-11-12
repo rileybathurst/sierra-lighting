@@ -292,24 +292,6 @@ export const Head = ({ data }) => {
           }
         `}
       </Script>
-
-      {/* TODO: these are the sub areas */}
-      {/*       {data.strapiArea.areas.map((area) => (
-        <Script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "${data.strapiAbout.businessName}",
-              "areaServed": {
-                "@type": "Place",
-                "name": "${area.name}"
-              }
-            }
-          `}
-        </Script>
-      ))} */}
-
     </SEO >
   )
 }

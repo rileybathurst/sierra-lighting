@@ -154,7 +154,7 @@ exports.createPages = async ({ actions, graphql }) => {
         edges {
           node {
             slug
-            lookbook {
+            lookbooks {
               id
             }
           }
@@ -174,14 +174,16 @@ exports.createPages = async ({ actions, graphql }) => {
 
     // console.log('🦄');
     // console.log(node);
-    // console.log(node?.lookbook);
+    // console.log(node?.lookbooks);
+    // console.log(node?.lookbooks.length);
 
-    if (node?.lookbook) {
+    if (node?.lookbooks.length > 0) {
 
       // console.log('🦖');
       // console.log(`/${node.slug}/lookbook/`);
 
       createPage({
+        // ! /2/ is testing
         path: `/${node.slug}/2/lookbook/`,
         component: path.resolve("src/templates/lookbook.tsx"),
         context: {

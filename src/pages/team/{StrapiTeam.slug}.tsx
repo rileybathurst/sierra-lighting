@@ -63,16 +63,23 @@ type TeamPageHeadTypes = {
 };
 export const Head = ({ data }: TeamPageHeadTypes) => {
   return (
-    <>
-      <SEO
-        title={`${data.strapiTeam.name}`}
-        // TODO image
-        description={data.strapiTeam?.excerpt}
-        image={data.strapiTeam?.avatar?.localFile?.url}
-        url={`/team/${data.strapiTeam.slug}`}
-      />
-
-      {/* // TODO: breadcrumbs */}
+    <SEO
+      title={`${data.strapiTeam.name}`}
+      // TODO image
+      description={data.strapiTeam?.excerpt}
+      image={data.strapiTeam?.avatar?.localFile?.url}
+      url={`/team/${data.strapiTeam.slug}`}
+      breadcrumbs={[
+        {
+          name: "Team",
+          url: "/team",
+        },
+        {
+          name: data.strapiTeam.name,
+          url: `/team/${data.strapiTeam.slug}`,
+        },
+      ]}
+    >
 
       {/* // TODO: jobTitle */}
       {/* // TODO: move the organization to seo file */}
@@ -101,6 +108,6 @@ export const Head = ({ data }: TeamPageHeadTypes) => {
           }
         `}
       </Script>
-    </>
+    </SEO>
   )
 }

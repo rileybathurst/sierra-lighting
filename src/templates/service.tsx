@@ -16,6 +16,8 @@ import type { CardType } from '../types/card-type';
 import Start from '../components/start';
 import Lookbook from '../components/lookbook';
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import type { GatsbyImageType } from '../types/gatsby-image';
 
 interface ServiceTypes {
   data: {
@@ -29,6 +31,7 @@ interface ServiceTypes {
       triptych: { id: React.Key; localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } } }[];
       featured_lights: CardType[];
       videoMux: string;
+      lookbookCover: GatsbyImageType;
       venues: CardType[];
       vendors: CardType[];
     }
@@ -206,6 +209,9 @@ const ServiceView = ({ data }: ServiceTypes) => {
   };
   const adjective = adj[data.strapiService.slug];
 
+  console.log(data.allStrapiLookbook);
+  console.log(data.allStrapiLookbook.nodes.length);
+
   return (
     <>
       <Header />
@@ -264,8 +270,18 @@ const ServiceView = ({ data }: ServiceTypes) => {
           ))}
         </div>
 
-        {data.allStrapiLookbook?.length > 0 ?
-          <Lookbook slug={data.strapiService.slug} />
+        {data.allStrapiLookbook?.nodes.length > 0 ?
+          <>
+            <hr className='pelican' />
+            <Link to={`/${data.strapiService.slug}/lookbook`} className='poster ratio-16-9'>
+              <GatsbyImage
+                image={data.strapiService.lookbookCover?.localFile.childImageSharp.gatsbyImageData}
+                alt={data.strapiService.lookbookCover?.alternativeText || `${data.strapiService.slug} Lookbook`}
+                objectPosition="center"
+              />
+              <h3>Browse our 2024 {data.strapiService.name} Lookbook</h3>
+            </Link>
+          </>
           : null}
       </section >
 
@@ -367,6 +383,15 @@ export const query = graphql`
       }
 
       videoMux
+
+      lookbookCover {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
     }
 
     allStrapiProcess(filter: {services: {elemMatch: {slug: {eq: $slug}}}}) {
@@ -387,7 +412,7 @@ export const query = graphql`
       }
     }
 
-    allStrapiLookbook(filter: {services: {elemMatch: {slug: {eq: $slug}}}}) {
+    allStrapiLookbook(filter: {service: {slug: {eq: $slug}}}) {
       nodes {
         id
       }
