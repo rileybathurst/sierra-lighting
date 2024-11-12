@@ -1,4 +1,5 @@
-import * as React from "react";
+// import * as React from "react";
+import React from 'react';
 import { Link } from "gatsby";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
@@ -175,7 +176,7 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
         <h3><Link to="/process">Learn more about our process</Link></h3>
         <ol>
           {light.services.every(service => service.slug === 'residential' || service.slug === 'commercial') ? (
-            holidayProcess.nodes.map((process: processTypes) => {
+            holidayProcess.map((process: processTypes) => {
               return (
                 <li
                   key={process.id}
@@ -185,7 +186,7 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
               )
             })
 
-          ) : weddingProcess.nodes.map((process: processTypes) => {
+          ) : weddingProcess.map((process: processTypes) => {
             return (
               <li
                 key={process.id}

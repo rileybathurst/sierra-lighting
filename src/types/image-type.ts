@@ -7,7 +7,6 @@ type ImageType = {
     };
   };
   alternativeText: string;
-  caption: string;
 };
 
 export type { ImageType };

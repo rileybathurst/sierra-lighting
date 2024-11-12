@@ -195,8 +195,8 @@ const LightPage = ({ data }: LightPageTypes) => {
     <LightView
       light={data.strapiLight}
       other={data.allStrapiLight}
-      weddingProcess={data.wedding}
-      holidayProcess={data.holiday}
+      weddingProcess={data.wedding.nodes}
+      holidayProcess={data.holiday.nodes}
       projects={data.allStrapiProject}
     />
   );

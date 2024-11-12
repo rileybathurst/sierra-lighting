@@ -1,6 +1,7 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef } from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 import type { ImageType } from "../types/image-type"
+import type { IGatsbyImageData } from "gatsby-plugin-image"
 
 type GalleryType = {
   gallery: ImageType[];
@@ -76,7 +77,15 @@ function Slider({ gallery, badge }: GalleryType) {
 }
 
 type HeroType = {
-  image: ImageType;
+  image: {
+    localFile: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData;
+      };
+    };
+    alternativeText: string;
+    caption?: string
+  };
   gallery?: ImageType[];
   badge?: boolean;
   name?: string;
