@@ -461,9 +461,9 @@ export const Head = ({ data }: ServiceTypes) => {
         description={sanitazeDescription}
         image={data.strapiService?.ogImage ? data.strapiService.ogImage.url : null}
         url={`${data.strapiService.slug}`}
-      />
-      <Script type="application/ld+json">
-        {`
+      >
+        <Script type="application/ld+json">
+          {`
           {
             "@context": "https://schema.org",
             "@type": "OfferCatalog",
@@ -472,11 +472,11 @@ export const Head = ({ data }: ServiceTypes) => {
             "url": "${data.strapiAbout.url}/${data.strapiService.slug}"
           }
         `}
-      </Script>
+        </Script>
 
-      {data.strapiService?.videoMux ? (
-        <Script>
-          {`
+        {data.strapiService?.videoMux ? (
+          <Script>
+            {`
               {
                 "@context": "https://schema.org",
                 "@type": "VideoObject",
@@ -484,9 +484,10 @@ export const Head = ({ data }: ServiceTypes) => {
                 "description": "${data.strapiService.name} lighting video for ${data.strapiAbout.businessName}",
                 "embedUrl": "${data.strapiService.slug}",
             `}
-        </Script>
-      ) : null
-      }
+          </Script>
+        ) : null
+        }
+      </SEO>
     </>
   )
 }
