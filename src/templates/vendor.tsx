@@ -9,6 +9,7 @@ import Hero from "../components/hero";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import TestimonialRanking from "../components/testimonial-ranking";
 import Card from '../components/card';
+import SocialIcons from '../components/social-icons';
 
 // types
 import type { CardType } from '../types/card-type';
@@ -57,6 +58,9 @@ interface VendorTemplateViewTypes {
 }
 
 const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
+
+  console.log(data.strapiVendor.instagram)
+
   return (
     <>
       <Header />
@@ -118,6 +122,20 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
             </a>
           }
         </p>
+
+        {data.strapiVendor.instagram || data.strapiVendor.pinterest || data.strapiVendor.facebook ?
+          <>
+            <hr />
+            <SocialIcons
+              businessName={data.strapiVendor.name}
+              instagram={data.strapiVendor.instagram}
+              facebook={data.strapiVendor.facebook}
+              pinterest={data.strapiVendor.pinterest}
+            />
+          </>
+          : null
+        }
+
       </main>
 
       {data.strapiVendor.projects.length > 0 ?

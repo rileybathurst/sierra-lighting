@@ -6,15 +6,20 @@ import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Card from "../components/card";
 
 const TeamPage = () => {
 
-  const { allStrapiTeam } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query TeamPageQuery {
       allStrapiTeam {
         nodes {
           ...teamFragment
         }
+      }
+
+      strapiAbout {
+        businessName
       }
     }
   `)
@@ -43,43 +48,32 @@ const TeamPage = () => {
       <Header />
       <main>
 
-        <div className="stork">
-          <h3>The Sierra Lighting Team</h3>
 
-          <ul className="team_deck">
-            {allStrapiTeam.nodes.map((team: TeamTypes) => (
-              <li key={team.id} className="team_card">
-                <article className="single">
-                  <div className="poster">
-                    <GatsbyImage
-                      image={team.avatar?.localFile?.childImageSharp?.gatsbyImageData}
-                      alt={team.avatar?.alternativeText}
-                    />
-                  </div>
-                  <h1>
-                    <Link to={team.slug}>
-                      {team.name}
-                    </Link>
-                  </h1>
-                  {team.bio ?
-                    <Markdown>
-                      {team.bio.data.bio}
-                    </Markdown>
-                    : null
-                  }
-                </article>
-              </li>
-            ))
-            }
-          </ul>
-        </div >
+        <h3 className="stork">The {data.strapiAbout.businessName} Team</h3>
       </main >
+
+      <section
+        className="deck"
+      >
+        {data.allStrapiTeam.nodes.map((team: TeamTypes) => (
+          <Card
+            key={team.id}
+            title={team.name}
+            slug={team.slug}
+            image={team.avatar}
+            alt={team.avatar?.alternativeText}
+            breadcrumb="team"
+            excerpt={team.bio.data.bio}
+          />
+        ))
+        }
+      </section>
 
       <section className="stork">
         <hr />
         <h3>
           <Link to="/work">
-            Work with us
+            Apply now to work with us
           </Link>
         </h3>
       </section>
@@ -95,7 +89,8 @@ export const Head = () => {
   return (
     <SEO
       title='Team'
-      description="A Those of us who work with Sierra Lighting"
+      // TODO: add the query to the description
+      description="The team who work for Sierra Lighting"
       image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
       url="team"
     />

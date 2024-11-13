@@ -2,7 +2,6 @@ import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import { SEO } from "../components/seo";
-
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
@@ -20,11 +19,12 @@ const VendorsPage = () => {
     }
   `)
 
-  const vendorSet = new Set();
+  const vendorSet = new Set<string>();
   for (const vendorService of allStrapiVendor.nodes) {
     vendorSet.add(vendorService.service)
   }
-  const vendorArray = Array.from(vendorSet);
+  const vendorArray: string[] = Array.from(vendorSet);
+  // console.log(vendorArray)
 
   return (
     <>
@@ -47,7 +47,7 @@ const VendorsPage = () => {
 
           <div className="deck">
             {allStrapiVendor.nodes
-              .filter((vendor) => vendor.service === service)
+              .filter((vendor: { service: string; }) => vendor.service === service)
               .map((vendor: CardType) => (
                 <Card
                   key={vendor.id}

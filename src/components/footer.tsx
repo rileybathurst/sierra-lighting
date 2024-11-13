@@ -55,6 +55,15 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         businessName
         email
         telephone
+
+        yelp
+        facebook
+        instagram
+        nextdoor
+        pinterest
+        tiktok
+        linkedin
+        google
       }
     
     }
@@ -266,7 +275,17 @@ const Footer = ({ quote }: { quote?: boolean }) => {
       </div>
 
       <hr className="albatross" />
-      <SocialIcons />
+      <SocialIcons
+        businessName={data.strapiAbout.businessName}
+        yelp={data.strapiAbout.yelp}
+        facebook={data.strapiAbout.facebook}
+        instagram={data.strapiAbout.instagram}
+        nextdoor={data.strapiAbout.nextdoor}
+        pinterest={data.strapiAbout.pinterest}
+        tiktok={data.strapiAbout.tiktok}
+        linkedin={data.strapiAbout.linkedin}
+        google={data.strapiAbout.google}
+      />
 
       <hr className="condor" />
 

@@ -44,6 +44,7 @@ interface ServiceTypes {
     allStrapiLookbook: { nodes: { id: string }[] };
 
     strapiAbout: {
+      businessName: string;
       url: string;
     }
   }
@@ -253,7 +254,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
       <section id="lights">
         <div className="stork">
           <hr />
-          <h2 className="denali">
+          <h2 className="kilimanjaro">
             <Link to={`/${data.strapiService.slug}/lights`}>
               Browse All Our {data.strapiService.name} Lighting Styles
             </Link>
@@ -452,15 +453,19 @@ export const Head = ({ data }: ServiceTypes) => {
   const sanitazeDescription = data.strapiService.description.data.description.replace(/"/g, " inches");
   // console.log(sanitazeDescription);
 
-  console.log(data.strapiService.videoMux);
+  // console.log(data.strapiService.videoMux);
 
   return (
     <>
       <SEO
         title={`${data.strapiService.name} Lighting`}
         description={sanitazeDescription}
-        image={data.strapiService?.ogImage ? data.strapiService.ogImage.url : null}
         url={`${data.strapiService.slug}`}
+        video={{
+          mux: `${data.strapiService?.videoMux}`,
+          description: `${data.strapiService.name} lighting video`,
+          pageUrl: data.strapiService.slug
+        }}
       >
         <Script type="application/ld+json">
           {`
@@ -473,20 +478,6 @@ export const Head = ({ data }: ServiceTypes) => {
           }
         `}
         </Script>
-
-        {data.strapiService?.videoMux ? (
-          <Script>
-            {`
-              {
-                "@context": "https://schema.org",
-                "@type": "VideoObject",
-                "contentURL": "https://stream.mux.com/${data.strapiService.slug}.m3u8",
-                "description": "${data.strapiService.name} lighting video for ${data.strapiAbout.businessName}",
-                "embedUrl": "${data.strapiService.slug}",
-            `}
-          </Script>
-        ) : null
-        }
       </SEO>
     </>
   )

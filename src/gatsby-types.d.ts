@@ -1964,23 +1964,31 @@ type Query_strapiAboutArgs = {
   defaultImageAlt: InputMaybe<StringQueryOperatorInput>;
   description: InputMaybe<STRAPI_ABOUTDescriptionFilterInput>;
   email: InputMaybe<StringQueryOperatorInput>;
+  facebook: InputMaybe<StringQueryOperatorInput>;
   geoLatitude: InputMaybe<FloatQueryOperatorInput>;
   geoLongitude: InputMaybe<FloatQueryOperatorInput>;
   geoRadius: InputMaybe<IntQueryOperatorInput>;
+  google: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
+  instagram: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   itemType: InputMaybe<StringQueryOperatorInput>;
+  linkedin: InputMaybe<StringQueryOperatorInput>;
+  nextdoor: InputMaybe<StringQueryOperatorInput>;
   openingHours: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   paymentAccepted: InputMaybe<StringQueryOperatorInput>;
+  pinterest: InputMaybe<StringQueryOperatorInput>;
   postalCode: InputMaybe<StringQueryOperatorInput>;
   priceRange: InputMaybe<StringQueryOperatorInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   slogan: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   telephone: InputMaybe<StringQueryOperatorInput>;
+  tiktok: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   url: InputMaybe<StringQueryOperatorInput>;
+  yelp: InputMaybe<StringQueryOperatorInput>;
 };
 
 
@@ -2609,23 +2617,31 @@ type STRAPI_ABOUT = Node & {
   readonly defaultImageAlt: Maybe<Scalars['String']>;
   readonly description: Maybe<STRAPI_ABOUTDescription>;
   readonly email: Maybe<Scalars['String']>;
+  readonly facebook: Maybe<Scalars['String']>;
   readonly geoLatitude: Maybe<Scalars['Float']>;
   readonly geoLongitude: Maybe<Scalars['Float']>;
   readonly geoRadius: Maybe<Scalars['Int']>;
+  readonly google: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
+  readonly instagram: Maybe<Scalars['String']>;
   readonly internal: Internal;
   readonly itemType: Maybe<Scalars['String']>;
+  readonly linkedin: Maybe<Scalars['String']>;
+  readonly nextdoor: Maybe<Scalars['String']>;
   readonly openingHours: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly paymentAccepted: Maybe<Scalars['String']>;
+  readonly pinterest: Maybe<Scalars['String']>;
   readonly postalCode: Maybe<Scalars['String']>;
   readonly priceRange: Maybe<Scalars['String']>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly slogan: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly telephone: Maybe<Scalars['String']>;
+  readonly tiktok: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly url: Maybe<Scalars['String']>;
+  readonly yelp: Maybe<Scalars['String']>;
 };
 
 
@@ -2724,23 +2740,31 @@ type STRAPI_ABOUTFieldSelector = {
   readonly defaultImageAlt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_ABOUTDescriptionFieldSelector>;
   readonly email: InputMaybe<FieldSelectorEnum>;
+  readonly facebook: InputMaybe<FieldSelectorEnum>;
   readonly geoLatitude: InputMaybe<FieldSelectorEnum>;
   readonly geoLongitude: InputMaybe<FieldSelectorEnum>;
   readonly geoRadius: InputMaybe<FieldSelectorEnum>;
+  readonly google: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly instagram: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly itemType: InputMaybe<FieldSelectorEnum>;
+  readonly linkedin: InputMaybe<FieldSelectorEnum>;
+  readonly nextdoor: InputMaybe<FieldSelectorEnum>;
   readonly openingHours: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly paymentAccepted: InputMaybe<FieldSelectorEnum>;
+  readonly pinterest: InputMaybe<FieldSelectorEnum>;
   readonly postalCode: InputMaybe<FieldSelectorEnum>;
   readonly priceRange: InputMaybe<FieldSelectorEnum>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly slogan: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly telephone: InputMaybe<FieldSelectorEnum>;
+  readonly tiktok: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly url: InputMaybe<FieldSelectorEnum>;
+  readonly yelp: InputMaybe<FieldSelectorEnum>;
 };
 
 type STRAPI_ABOUTFilterInput = {
@@ -2754,23 +2778,31 @@ type STRAPI_ABOUTFilterInput = {
   readonly defaultImageAlt: InputMaybe<StringQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_ABOUTDescriptionFilterInput>;
   readonly email: InputMaybe<StringQueryOperatorInput>;
+  readonly facebook: InputMaybe<StringQueryOperatorInput>;
   readonly geoLatitude: InputMaybe<FloatQueryOperatorInput>;
   readonly geoLongitude: InputMaybe<FloatQueryOperatorInput>;
   readonly geoRadius: InputMaybe<IntQueryOperatorInput>;
+  readonly google: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly instagram: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly itemType: InputMaybe<StringQueryOperatorInput>;
+  readonly linkedin: InputMaybe<StringQueryOperatorInput>;
+  readonly nextdoor: InputMaybe<StringQueryOperatorInput>;
   readonly openingHours: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly paymentAccepted: InputMaybe<StringQueryOperatorInput>;
+  readonly pinterest: InputMaybe<StringQueryOperatorInput>;
   readonly postalCode: InputMaybe<StringQueryOperatorInput>;
   readonly priceRange: InputMaybe<StringQueryOperatorInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly slogan: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly telephone: InputMaybe<StringQueryOperatorInput>;
+  readonly tiktok: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly url: InputMaybe<StringQueryOperatorInput>;
+  readonly yelp: InputMaybe<StringQueryOperatorInput>;
 };
 
 type STRAPI_ABOUTGroupConnection = {
@@ -2825,23 +2857,31 @@ type STRAPI_ABOUTSortInput = {
   readonly defaultImageAlt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_ABOUTDescriptionSortInput>;
   readonly email: InputMaybe<SortOrderEnum>;
+  readonly facebook: InputMaybe<SortOrderEnum>;
   readonly geoLatitude: InputMaybe<SortOrderEnum>;
   readonly geoLongitude: InputMaybe<SortOrderEnum>;
   readonly geoRadius: InputMaybe<SortOrderEnum>;
+  readonly google: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
+  readonly instagram: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly itemType: InputMaybe<SortOrderEnum>;
+  readonly linkedin: InputMaybe<SortOrderEnum>;
+  readonly nextdoor: InputMaybe<SortOrderEnum>;
   readonly openingHours: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly paymentAccepted: InputMaybe<SortOrderEnum>;
+  readonly pinterest: InputMaybe<SortOrderEnum>;
   readonly postalCode: InputMaybe<SortOrderEnum>;
   readonly priceRange: InputMaybe<SortOrderEnum>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly slogan: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly telephone: InputMaybe<SortOrderEnum>;
+  readonly tiktok: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly url: InputMaybe<SortOrderEnum>;
+  readonly yelp: InputMaybe<SortOrderEnum>;
 };
 
 type STRAPI_ABOUT_DESCRIPTION_TEXTNODE = Node & {
@@ -10353,7 +10393,7 @@ type ChristmasLightsQueryQuery = { readonly allStrapiLight: { readonly nodes: Re
 type FooterQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type FooterQueryQuery = { readonly allStrapiTeam: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly avatar: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly strapiAbout: { readonly businessName: string | null, readonly email: string | null, readonly telephone: string | null } | null };
+type FooterQueryQuery = { readonly allStrapiTeam: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly avatar: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly strapiAbout: { readonly businessName: string | null, readonly email: string | null, readonly telephone: string | null, readonly yelp: string | null, readonly facebook: string | null, readonly instagram: string | null, readonly nextdoor: string | null, readonly pinterest: string | null, readonly tiktok: string | null, readonly linkedin: string | null, readonly google: string | null } | null };
 
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
@@ -10505,7 +10545,7 @@ type teamFragmentFragment = { readonly id: string, readonly name: string | null,
 type TeamPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TeamPageQueryQuery = { readonly allStrapiTeam: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly bio: { readonly data: { readonly bio: string | null } | null } | null, readonly avatar: { readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
+type TeamPageQueryQuery = { readonly allStrapiTeam: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly bio: { readonly data: { readonly bio: string | null } | null } | null, readonly avatar: { readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly strapiAbout: { readonly businessName: string | null } | null };
 
 type TeamQueryQueryVariables = Exact<{
   slug: Scalars['String'];

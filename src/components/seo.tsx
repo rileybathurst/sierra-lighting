@@ -18,11 +18,18 @@ interface SEO {
   imageAlt?: string;
   children?: React.ReactNode;
   breadcrumbs?: BreadcrumbsTypes;
+  video?: {
+    mux: string;
+    description: string;
+    pageUrl: string;
+  };
 }
 
 // this has a 0 thats kinda confusing
 // can we remove that
 export const SEO = (SE0: SEO) => {
+
+  // console.log(SE0);
 
   const data = useStaticQuery(graphql`
     query SEOQuery {
@@ -82,6 +89,30 @@ export const SEO = (SE0: SEO) => {
                   }`
         })}
             ]
+          }
+        `}
+      </Script>
+    );
+  }
+
+  type VideoMuxTypes = {
+    mux?: string;
+    description?: string;
+    pageUrl?: string;
+  }
+  function VideoMux(video: VideoMuxTypes) {
+
+    if (!video.mux) return null;
+
+    return (
+      <Script type="application/ld+json">
+        {`
+          {
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "contentURL": "https://stream.mux.com/${video.mux}.m3u8",
+            "description": "${video.description} for ${data.strapiAbout.businessName}",
+            "embedUrl": "${data.strapiAbout.url}/${video.pageUrl}"
           }
         `}
       </Script>
@@ -150,6 +181,10 @@ export const SEO = (SE0: SEO) => {
 
       <Breadcrumbs
         {...SE0.breadcrumbs}
+      />
+
+      <VideoMux
+        {...SE0?.video}
       />
 
       {SE0.children}
