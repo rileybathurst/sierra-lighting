@@ -8,6 +8,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 import type { CardType } from "../types/card-type";
+import { SEO } from "../components/seo";
 
 type LocationTypes = {
   location: {
@@ -112,3 +113,11 @@ const IdeasPage = ({ location }: LocationTypes) => {
 }
 
 export default IdeasPage
+
+export const Head = () => {
+  return (
+    <SEO
+      title='Ideas'
+    />
+  )
+}

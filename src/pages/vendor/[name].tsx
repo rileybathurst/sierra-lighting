@@ -6,8 +6,10 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Card from "../../components/card";
 import type { CardType } from "../../types/card-type";
+import { SEO } from "../../components/seo";
+import type { CatchAllTypes } from "../../types/catch-all-types";
 
-function VendorCatchAll({ params }: { params: { name: string } }) {
+function VendorCatchAll({ params }: CatchAllTypes) {
 
   const { allStrapiVendor } = useStaticQuery(graphql`
     query VendorCatchAllQuery {
@@ -61,3 +63,11 @@ function VendorCatchAll({ params }: { params: { name: string } }) {
 }
 
 export default VendorCatchAll
+
+export const Head = ({ params }: CatchAllTypes) => {
+  return (
+    <SEO
+      title={`404 - Vendor / ${params.name}`}
+    />
+  )
+}

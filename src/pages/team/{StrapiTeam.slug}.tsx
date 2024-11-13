@@ -15,6 +15,7 @@ export const query = graphql`
     }
 
     strapiAbout {
+      url
       businessName
     }
   }
@@ -90,7 +91,7 @@ export const Head = ({ data }: TeamPageHeadTypes) => {
             "@context": "https://schema.org/",
             "@type": "Person",
             "name": "${data.strapiTeam.name}",
-            "url": "/team/${data.strapiTeam.slug}",
+            "url": "${data.strapiAbout.url}/team/${data.strapiTeam.slug}",
             "image": "${data.strapiTeam.avatar?.localFile?.url}",
             "description": "${data.strapiTeam?.excerpt}",
             "jobTitle": "Team Member",

@@ -5,6 +5,8 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Start from '../components/start'
+import { SEO } from '../components/seo'
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
 
 type LinkedLookImageTypes = {
   localFile: {
@@ -69,6 +71,7 @@ type LookbookTemplateTypes = {
     strapiService: {
       id: React.Key;
       name: string;
+      slug: string;
       lookbooks: {
         id: string
         spread: boolean
@@ -120,6 +123,15 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
           </Masonry>
         </ResponsiveMasonry>
       </section>
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name}</Link></Breadcrumb>
+        <Breadcrumb>Lookbook</Breadcrumb>
+      </Breadcrumbs>
+
+
       <Footer />
     </>
   );
@@ -127,12 +139,31 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
 
 export default LookbookTemplate;
 
+export const Head = ({ data }: LookbookTemplateTypes) => {
+  return (
+    <SEO
+      title={`${data.strapiService.name} Lookbook`}
+      // description={data.strapiArea.excerpt}
+      breadcrumbs={[
+        {
+          name: data.strapiService.name,
+          item: data.strapiService.slug
+        }, {
+          name: 'Lookbook',
+          item: 'lookbook'
+        }
+      ]}
+    />
+  )
+}
+
 export const query = graphql`
   query LookbookTemplateQuery($slug: String!) {
 
     strapiService(slug: {eq: $slug}) {
       id
       name
+      slug
       lookbooks {
         id
         lights {

@@ -52,7 +52,7 @@ const WorkPage = () => {
 
       <main className="stork">
 
-        <h2 className="crest">Hiring Now</h2>
+        <h2 className="crest">{useStrapiJob().strapiAbout.businessName} is Hiring Now</h2>
         <h1 className="range">Jobs</h1>
         <hr />
 
@@ -83,13 +83,25 @@ export default WorkPage
 
 // TODO: https://schema.org/JobPosting
 export const Head = () => {
+
+  // this is super rough as its only job[0]
+  const validThroughDate = new Date(useStrapiJob().allStrapiJob.nodes[0].validThrough).toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  })
+
+  // how can it be linked to the job?
+
+
+
   return (
     <SEO
-      title='Work'
+      title={`Work for ${useStrapiJob().strapiAbout.businessName}`}
       // TODO description and info
       // TODO I have a new image for this
       image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
-      url="work"
     >
       <Script type="application/ld+json">
         {`
@@ -100,6 +112,15 @@ export const Head = () => {
               "title": "${job.title}",
               "datePosted": "${job.updatedAt}",
               "description": "${job.description.data.description.split('\n').join(' ')}"
+
+              employmentType: "${job.employmentType}",
+              validThrough: "${new Date(useStrapiJob().allStrapiJob.nodes[0].validThrough).toLocaleDateString('en-US', {
+          // timeZone: 'UTC',
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}",
           `)).join(',')},
               "jobLocation": {
                 "@type": "Place",

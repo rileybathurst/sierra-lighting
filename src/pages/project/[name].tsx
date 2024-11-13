@@ -9,6 +9,7 @@ import Card from "../../components/card";
 // types
 import type { CatchAllTypes } from "../../types/catch-all-types";
 import type { CardType } from "../../types/card-type";
+import SEO from "../../components/seo";
 
 function ProjectCatchAll({ params }: CatchAllTypes) {
 
@@ -58,4 +59,10 @@ function ProjectCatchAll({ params }: CatchAllTypes) {
 
 export default ProjectCatchAll
 
-// TODO: needs SEO for the title
+export const Head = ({ params }: CatchAllTypes) => {
+  return (
+    <SEO
+      title={`404 - project / ${params.name}`}
+    />
+  )
+}

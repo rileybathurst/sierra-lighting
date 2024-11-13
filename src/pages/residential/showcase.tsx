@@ -236,4 +236,10 @@ function ResidentialShowcase() {
 
 export default ResidentialShowcase
 
-// TODO: needs SEO for the title
+export const Head = () => {
+  return (
+    <SEO
+      title='Residential Christmas Light Showcase'
+    />
+  )
+}

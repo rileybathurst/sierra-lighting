@@ -13,6 +13,8 @@ export const useStrapiJob = () => {
               description
             }
           }
+          employmentType
+          validThrough
         }
       }
 

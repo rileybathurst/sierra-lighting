@@ -11,6 +11,7 @@ import Card from "../../components/card";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import type { CardType } from "../../types/card-type";
+import { SEO } from "../../components/seo";
 
 function HoaPage() {
 
@@ -125,4 +126,11 @@ function HoaPage() {
 
 export default HoaPage
 
-// TODO: needs SEO for the title
+
+export const Head = () => {
+  return (
+    <SEO
+      title='Residential Home Owners Associations Christmas Lights'
+    />
+  )
+}

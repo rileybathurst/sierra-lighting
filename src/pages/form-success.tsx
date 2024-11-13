@@ -28,7 +28,7 @@ export default FormSucessPage
 export const Head = () => {
   return (
     <SEO
-      title={`Form Success`}
+      title='Form Success'
       description="Thanks for getting in touch we will get back to you ASAP. Head to our home page."
       url="form-success"
     />

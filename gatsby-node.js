@@ -163,28 +163,10 @@ exports.createPages = async ({ actions, graphql }) => {
     }
   `)
 
-  // console.log('🦄');
-  // console.log(getLookBooks);
-  // console.log(getLookBooks.data.allStrapiService.edges);
-
-  // this isnt looped
-  // console.log(getLookBooks.data.allStrapiService.edges.node?.lookbook);
-
   for (const { node } of getLookBooks.data.allStrapiService.edges) {
-
-    // console.log('🦄');
-    // console.log(node);
-    // console.log(node?.lookbooks);
-    // console.log(node?.lookbooks.length);
-
     if (node?.lookbooks.length > 0) {
-
-      // console.log('🦖');
-      // console.log(`/${node.slug}/lookbook/`);
-
       createPage({
-        // ! /2/ is testing
-        path: `/${node.slug}/2/lookbook/`,
+        path: `/${node.slug}/lookbook/`,
         component: path.resolve("src/templates/lookbook.tsx"),
         context: {
           slug: node.slug,

@@ -4,6 +4,7 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import { SEO } from "../../components/seo";
 
 // types
 import type { CatchAllTypes } from "../../types/catch-all-types";
@@ -35,4 +36,10 @@ function TeamCatchAll({ params }: CatchAllTypes) {
 
 export default TeamCatchAll
 
-// TODO: needs SEO for the title
+export const Head = ({ params }: CatchAllTypes) => {
+  return (
+    <SEO
+      title={`404 - team / ${params.name}`}
+    />
+  )
+}

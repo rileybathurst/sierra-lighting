@@ -45,6 +45,10 @@ interface ServiceTypes {
     allStrapiVenue: { nodes: CardType[] };
     allStrapiVendor: { nodes: CardType[] };
     allStrapiLookbook: { nodes: { id: string }[] };
+
+    strapiAbout: {
+      url: string;
+    }
   }
 }
 
@@ -418,6 +422,10 @@ export const query = graphql`
       }
     }
 
+    strapiAbout {
+      url
+    }
+
   }
 `
 
@@ -459,9 +467,9 @@ export const Head = ({ data }: ServiceTypes) => {
           {
             "@context": "https://schema.org",
             "@type": "OfferCatalog",
-            "name": "${data.strapiService.name}",
+            "name": "${data.strapiService.name} lighting",
             "description": "${sanitazeDescription}",
-            "url": "/${data.strapiService.slug}"
+            "url": "${data.strapiAbout.url}/${data.strapiService.slug}"
           }
         `}
       </Script>

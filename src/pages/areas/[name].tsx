@@ -5,8 +5,9 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { SEO } from "../../components/seo";
+import type { CatchAllTypes } from "../../types/catch-all-types";
 
-function AreaCatchAll({ params }) {
+function AreaCatchAll({ params }: CatchAllTypes) {
 
   const { allStrapiArea } = useStaticQuery(graphql`
     query AreaCatchAllQuery {
@@ -63,7 +64,7 @@ function AreaCatchAll({ params }) {
 
 export default AreaCatchAll
 
-export const Head = ({ params }) => {
+export const Head = ({ params }: CatchAllTypes) => {
   return (
     <SEO
       title={`404 - area / ${params.name}`}

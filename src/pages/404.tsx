@@ -6,12 +6,12 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-type LocationTypes = {
+type NotFoundPageTypes = {
   location: {
     pathname: string;
   }
 }
-const NotFoundPage = ({ location }: LocationTypes) => {
+const NotFoundPage = ({ location }: NotFoundPageTypes) => {
   return (
     <>
       <Header />
@@ -31,7 +31,7 @@ const NotFoundPage = ({ location }: LocationTypes) => {
 
 export default NotFoundPage
 
-export const Head = ({ location }: LocationTypes) => {
+export const Head = ({ location }: NotFoundPageTypes) => {
   return (
     <SEO
       title={`404 - ${location.pathname}`}

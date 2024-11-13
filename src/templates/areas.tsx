@@ -266,7 +266,7 @@ export const query = graphql`
 export const Head = ({ data }) => {
   return (
     <SEO
-      title={`${data.strapiArea.name}`}
+      title={data.strapiArea.name}
       description={data.strapiArea.excerpt}
       image={data.strapiArea?.image?.localFile?.url}
       breadcrumbs={[

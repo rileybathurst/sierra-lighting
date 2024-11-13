@@ -2102,6 +2102,7 @@ type Query_strapiJobArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<STRAPI_JOBDescriptionFilterInput>;
+  employmentType: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
@@ -2109,6 +2110,7 @@ type Query_strapiJobArgs = {
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   title: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
+  validThrough: InputMaybe<DateQueryOperatorInput>;
 };
 
 
@@ -4122,6 +4124,7 @@ type STRAPI_JOB = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<STRAPI_JOBDescription>;
+  readonly employmentType: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
@@ -4129,6 +4132,7 @@ type STRAPI_JOB = Node & {
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly title: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
+  readonly validThrough: Maybe<Scalars['Date']>;
 };
 
 
@@ -4149,6 +4153,14 @@ type STRAPI_JOB_publishedAtArgs = {
 
 
 type STRAPI_JOB_updatedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_JOB_validThroughArgs = {
   difference: InputMaybe<Scalars['String']>;
   formatString: InputMaybe<Scalars['String']>;
   fromNow: InputMaybe<Scalars['Boolean']>;
@@ -4220,6 +4232,7 @@ type STRAPI_JOBFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_JOBDescriptionFieldSelector>;
+  readonly employmentType: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
@@ -4227,12 +4240,14 @@ type STRAPI_JOBFieldSelector = {
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly title: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
+  readonly validThrough: InputMaybe<FieldSelectorEnum>;
 };
 
 type STRAPI_JOBFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_JOBDescriptionFilterInput>;
+  readonly employmentType: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
@@ -4240,6 +4255,7 @@ type STRAPI_JOBFilterInput = {
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly validThrough: InputMaybe<DateQueryOperatorInput>;
 };
 
 type STRAPI_JOBGroupConnection = {
@@ -4287,6 +4303,7 @@ type STRAPI_JOBSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_JOBDescriptionSortInput>;
+  readonly employmentType: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
@@ -4294,6 +4311,7 @@ type STRAPI_JOBSortInput = {
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
+  readonly validThrough: InputMaybe<SortOrderEnum>;
 };
 
 type STRAPI_JOB_DESCRIPTION_TEXTNODE = Node & {
@@ -10413,17 +10431,12 @@ type LookbookPosterQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type LookbookPosterQueryQuery = { readonly strapiLookbook: { readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null };
 
-type LookbookQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type LookbookQueryQuery = { readonly allStrapiLookbook: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly spread: number | null, readonly order: number | null, readonly flex: number | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null }> } };
-
 type LookbookTemplateQueryQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-type LookbookTemplateQueryQuery = { readonly strapiService: { readonly id: string, readonly name: string | null, readonly lookbooks: ReadonlyArray<{ readonly id: string, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null };
+type LookbookTemplateQueryQuery = { readonly strapiService: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly lookbooks: ReadonlyArray<{ readonly id: string, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null };
 
 type processFragment = { readonly id: string, readonly name: string | null, readonly markdown: { readonly data: { readonly markdown: string | null } | null } | null };
 
@@ -10473,7 +10486,7 @@ type ServiceTemplateQueryVariables = Exact<{
 }>;
 
 
-type ServiceTemplateQuery = { readonly strapiService: { readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly videoMux: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly after_the_triptych: { readonly data: { readonly after_the_triptych: string | null } | null } | null, readonly projects: ReadonlyArray<{ readonly updatedAt: string | null, readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly triptych: ReadonlyArray<{ readonly id: string, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null> | null, readonly featured_lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly lookbookCover: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly allStrapiProcess: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly markdown: { readonly data: { readonly markdown: string | null } | null } | null }> }, readonly allStrapiVenue: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly venueImage: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiVendor: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly service: string | null, readonly profile: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiLookbook: { readonly nodes: ReadonlyArray<{ readonly id: string }> } };
+type ServiceTemplateQuery = { readonly strapiService: { readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly videoMux: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly after_the_triptych: { readonly data: { readonly after_the_triptych: string | null } | null } | null, readonly projects: ReadonlyArray<{ readonly updatedAt: string | null, readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly triptych: ReadonlyArray<{ readonly id: string, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null> | null, readonly featured_lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly lookbookCover: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly allStrapiProcess: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly markdown: { readonly data: { readonly markdown: string | null } | null } | null }> }, readonly allStrapiVenue: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly venueImage: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiVendor: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly service: string | null, readonly profile: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiLookbook: { readonly nodes: ReadonlyArray<{ readonly id: string }> }, readonly strapiAbout: { readonly url: string | null } | null };
 
 type showcaseFragment = { readonly id: string, readonly roofline: string | null, readonly price: string | null, readonly tree: string | null, readonly tier: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly project: { readonly id: string, readonly slug: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null };
 
@@ -10499,7 +10512,7 @@ type TeamQueryQueryVariables = Exact<{
 }>;
 
 
-type TeamQueryQuery = { readonly strapiTeam: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly projects: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly bio: { readonly data: { readonly bio: string | null } | null } | null, readonly avatar: { readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly strapiAbout: { readonly businessName: string | null } | null };
+type TeamQueryQuery = { readonly strapiTeam: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly projects: ReadonlyArray<{ readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly bio: { readonly data: { readonly bio: string | null } | null } | null, readonly avatar: { readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly strapiAbout: { readonly url: string | null, readonly businessName: string | null } | null };
 
 type TestimonialQueryQueryVariables = Exact<{
   slug: Scalars['String'];

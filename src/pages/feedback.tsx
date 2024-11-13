@@ -250,7 +250,7 @@ export default FeedbackPage
 export const Head = () => {
   return (
     <SEO
-      title='Reviews'
+      title='Feedback'
       description="We value your feedback and would love to hear your thoughts about your experience."
     // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
     />
