@@ -8,13 +8,10 @@ import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-
 import Markdown from "react-markdown";
-
 import Card from '../components/card';
 import type { CardType } from '../types/card-type';
 import Start from '../components/start';
-import Lookbook from '../components/lookbook';
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import type { GatsbyImageType } from '../types/gatsby-image';
@@ -213,8 +210,8 @@ const ServiceView = ({ data }: ServiceTypes) => {
   };
   const adjective = adj[data.strapiService.slug];
 
-  console.log(data.allStrapiLookbook);
-  console.log(data.allStrapiLookbook.nodes.length);
+  // console.log(data.allStrapiLookbook);
+  // console.log(data.allStrapiLookbook.nodes.length);
 
   return (
     <>
@@ -424,6 +421,7 @@ export const query = graphql`
 
     strapiAbout {
       url
+      businessName
     }
 
   }
@@ -454,12 +452,14 @@ export const Head = ({ data }: ServiceTypes) => {
   const sanitazeDescription = data.strapiService.description.data.description.replace(/"/g, " inches");
   // console.log(sanitazeDescription);
 
+  console.log(data.strapiService.videoMux);
+
   return (
     <>
       <SEO
         title={`${data.strapiService.name} Lighting`}
         description={sanitazeDescription}
-        image={data.strapiService?.ogImage}
+        image={data.strapiService?.ogImage ? data.strapiService.ogImage.url : null}
         url={`${data.strapiService.slug}`}
       />
       <Script type="application/ld+json">
@@ -473,6 +473,20 @@ export const Head = ({ data }: ServiceTypes) => {
           }
         `}
       </Script>
+
+      {data.strapiService?.videoMux ? (
+        <Script>
+          {`
+              {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "contentURL": "https://stream.mux.com/${data.strapiService.slug}.m3u8",
+                "description": "${data.strapiService.name} lighting video for ${data.strapiAbout.businessName}",
+                "embedUrl": "${data.strapiService.slug}",
+            `}
+        </Script>
+      ) : null
+      }
     </>
   )
 }

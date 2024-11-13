@@ -13,6 +13,7 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import type { CardType } from "../../types/card-type";
 import type CardAndGroupType from "../../types/card-and-group-type";
+import { SEO } from "../../components/seo";
 
 type AttributeTypes = {
   price: string;
