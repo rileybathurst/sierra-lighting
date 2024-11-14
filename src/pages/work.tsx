@@ -19,6 +19,12 @@ type JobTypes = {
       description: string
     }
   }
+  areas: {
+    name: string
+    slug: string
+    state: string
+    postalCode: string
+  }[]
 }
 
 const WorkPage = () => {
@@ -86,6 +92,12 @@ export default WorkPage
 // TODO: https://schema.org/JobPosting
 export const Head = () => {
 
+  useStrapiJob().allStrapiJob.nodes.map((job: JobTypes) => (
+    job.areas.map((area) => (
+      console.log(area.name)
+    )
+    )))
+
   // how can it be linked to the job?
 
   // TODO: add areas maybe in a map but maps are hard to debug
@@ -97,33 +109,45 @@ export const Head = () => {
       // TODO I have a new image for this
       image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
     >
-      <Script type="application/ld+json">
-        {`
+
+      {useStrapiJob().allStrapiJob.nodes.map((job: JobTypes) => (
+        <Script type="application/ld+json"
+          key={job.id}
+        >
+          {`
           {
             "@context": "https://schema.org",
             "@type": "JobPosting",
-            "title": "${useStrapiJob().allStrapiJob.nodes[0].title}",
-            "datePosted": "${useStrapiJob().allStrapiJob.nodes[0].updatedAt}",
-            "employmentType": "${useStrapiJob().allStrapiJob.nodes[0].employmentType}",
-            "description": "${useStrapiJob().allStrapiJob.nodes[0].description.data.description.split('\n').join(' ')}",
-            "validThrough": "${new Date(useStrapiJob().allStrapiJob.nodes[0].validThrough).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', })}",
-            "jobLocation": {
-              "@type": "Place",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "${useStrapiJob().strapiAbout.addressLocality}",
-                "addressRegion": "${useStrapiJob().strapiAbout.addressRegion}",
-                "postalCode": "${useStrapiJob().strapiAbout.postalCode}",
-                "addressCountry": "USA"
+            "title": "${job.title}",
+            "datePosted": "${job.updatedAt}",
+            "employmentType": "${job.employmentType}",
+            "description": "${job.description.data.description.split('\n').join(' ')}",
+            "validThrough": "${new Date(job.validThrough).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', })}",
+            "jobLocation": [
+            
+            ${job.areas.map((area) => `
+              {
+                "@type": "Place",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "${area.name}",
+                  "addressRegion": "${area.state}",
+                  "postalCode": "${area.postalCode}",
+                  "addressCountry": "USA"
+                }
               }
-            },
+            `).join(',')}
+            ],
+            
             "hiringOrganization": {
               "@type": "Organization",
               "name": "${useStrapiJob().strapiAbout.businessName}"
             }
           }
         `}
-      </Script>
+        </Script>
+      ))}
+
     </SEO>
   )
 }

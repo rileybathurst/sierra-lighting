@@ -2038,9 +2038,11 @@ type Query_strapiAreaArgs = {
   id: InputMaybe<StringQueryOperatorInput>;
   image: InputMaybe<STRAPI__MEDIAFilterInput>;
   internal: InputMaybe<InternalFilterInput>;
+  jobs: InputMaybe<STRAPI_JOBFilterListInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   plans: InputMaybe<STRAPI_PLANFilterListInput>;
+  postalCode: InputMaybe<IntQueryOperatorInput>;
   project: InputMaybe<STRAPI_PROJECTFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   region: InputMaybe<STRAPI_AREAFilterInput>;
@@ -3215,9 +3217,11 @@ type STRAPI_AREA = Node & {
   readonly id: Scalars['ID'];
   readonly image: Maybe<STRAPI__MEDIA>;
   readonly internal: Internal;
+  readonly jobs: Maybe<ReadonlyArray<Maybe<STRAPI_JOB>>>;
   readonly name: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly plans: Maybe<ReadonlyArray<Maybe<STRAPI_PLAN>>>;
+  readonly postalCode: Maybe<Scalars['Int']>;
   readonly project: Maybe<STRAPI_PROJECT>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly region: Maybe<STRAPI_AREA>;
@@ -3324,9 +3328,11 @@ type STRAPI_AREAFieldSelector = {
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly image: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly jobs: InputMaybe<STRAPI_JOBFieldSelector>;
   readonly name: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly plans: InputMaybe<STRAPI_PLANFieldSelector>;
+  readonly postalCode: InputMaybe<FieldSelectorEnum>;
   readonly project: InputMaybe<STRAPI_PROJECTFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly region: InputMaybe<STRAPI_AREAFieldSelector>;
@@ -3348,9 +3354,11 @@ type STRAPI_AREAFilterInput = {
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly image: InputMaybe<STRAPI__MEDIAFilterInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
+  readonly jobs: InputMaybe<STRAPI_JOBFilterListInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly plans: InputMaybe<STRAPI_PLANFilterListInput>;
+  readonly postalCode: InputMaybe<IntQueryOperatorInput>;
   readonly project: InputMaybe<STRAPI_PROJECTFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly region: InputMaybe<STRAPI_AREAFilterInput>;
@@ -3417,9 +3425,11 @@ type STRAPI_AREASortInput = {
   readonly id: InputMaybe<SortOrderEnum>;
   readonly image: InputMaybe<STRAPI__MEDIASortInput>;
   readonly internal: InputMaybe<InternalSortInput>;
+  readonly jobs: InputMaybe<STRAPI_JOBSortInput>;
   readonly name: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly plans: InputMaybe<STRAPI_PLANSortInput>;
+  readonly postalCode: InputMaybe<SortOrderEnum>;
   readonly project: InputMaybe<STRAPI_PROJECTSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly region: InputMaybe<STRAPI_AREASortInput>;
@@ -4328,6 +4338,10 @@ type STRAPI_JOBFilterInput = {
   readonly title: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly validThrough: InputMaybe<DateQueryOperatorInput>;
+};
+
+type STRAPI_JOBFilterListInput = {
+  readonly elemMatch: InputMaybe<STRAPI_JOBFilterInput>;
 };
 
 type STRAPI_JOBGroupConnection = {

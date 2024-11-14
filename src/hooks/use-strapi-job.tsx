@@ -19,6 +19,8 @@ export const useStrapiJob = () => {
           areas {
             name
             slug
+            state
+            postalCode
           }
         }
       }
