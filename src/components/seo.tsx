@@ -25,7 +25,7 @@ interface SEO {
       pageUrl: string;
     }[];
     pageUrl: string;
-  };
+  } | null;
 }
 
 // this has a 0 thats kinda confusing
@@ -103,33 +103,32 @@ export const SEO = (SE0: SEO) => {
       mux: string;
       description: string;
       pageUrl: string;
+      publishedAt: string;
     }[];
     pageUrl: string;
   }
-  function VideoMux(videos: VideoMuxTypes) {
-    console.log(videos.strapiData.length);
+  const VideoMux: React.FC<VideoMuxTypes> = ({ strapiData, pageUrl }) => {
 
-    // if (videos.strapiData.length === 0) return null;
-
-    // console.log(videos);
-    // console.log(videos.pageUrl);
-
-    // return null;
+    if (strapiData.length === 0) return null;
 
     return (
-      videos.strapiData.map((video) => {
-        <Script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "VideoObject",
-              "contentURL": "https://stream.mux.com/${video.mux}.m3u8",
-              "description": "${video.description} for ${data.strapiAbout.businessName}",
-              "embedUrl": "${data.strapiAbout.url}/${video.pageUrl}"
-            }
-          `}
-        </Script>
-      })
+      <>
+        {strapiData.map((video) => (
+          <Script type="application/ld+json" key={video.mux}>
+            {`
+              {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "contentURL": "https://stream.mux.com/${video.mux}.m3u8",
+                "description": "${video.description} for ${data.strapiAbout.businessName}",
+                "embedUrl": "${data.strapiAbout.url}/${pageUrl}"
+                "publishedAt": "${new Date(video.publishedAt).toISOString()}"
+                thumbnailUrl: "https://image.mux.com/${video.mux}/thumbnail.png?width=428&height=242&time=${video.thumbnailTime}",
+                }
+            `}
+          </Script>
+        ))}
+      </>
     );
   }
 
@@ -197,9 +196,13 @@ export const SEO = (SE0: SEO) => {
         {...SE0.breadcrumbs}
       />
 
-      <VideoMux
-        {...SE0?.videos}
-      />
+      {SE0.videos && (
+        <VideoMux
+          strapiData={SE0.videos.strapiData}
+          pageUrl={SE0.videos.pageUrl}
+        />
+      )}
+
 
       {SE0.children}
     </>
