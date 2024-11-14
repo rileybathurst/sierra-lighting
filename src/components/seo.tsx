@@ -121,9 +121,9 @@ export const SEO = (SE0: SEO) => {
                 "@type": "VideoObject",
                 "contentURL": "https://stream.mux.com/${video.mux}.m3u8",
                 "description": "${video.description} for ${data.strapiAbout.businessName}",
-                "embedUrl": "${data.strapiAbout.url}/${pageUrl}"
-                "publishedAt": "${new Date(video.publishedAt).toISOString()}"
-                thumbnailUrl: "https://image.mux.com/${video.mux}/thumbnail.png?width=428&height=242&time=${video.thumbnailTime}",
+                "embedUrl": "${data.strapiAbout.url}/${pageUrl}",
+                "uploadDate": "${new Date(video.publishedAt).toISOString()}",
+                "thumbnailUrl": "https://image.mux.com/${video.mux}/thumbnail.png?width=428&height=242&time=${video.thumbnailTime}"
                 }
             `}
           </Script>
