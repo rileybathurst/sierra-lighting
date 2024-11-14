@@ -934,6 +934,41 @@ footer {
   }
 }
 
+.away-services {
+  display: flex;
+  flex-flow: row wrap;
+  gap: clamp(var(--vinson), 3vw, var(--aconcagua));
+  list-style: none;
+  padding-inline-start: 0;
+  margin-block: 0;
+  margin-inline-start: var(--everest); /* ? */
+  max-width: var(--albatross);
+  margin-inline: auto;
+
+  > * {
+    flex: 1 1 var(--swan);
+    margin-block-end: 0; /* use the grid gap */
+  }
+}
+
+.away-services.xmas {
+  .residential {
+    order: 1;
+  }
+
+  .commercial {
+    order: 2;
+  }
+
+  .wedding {
+    order: 3;
+  }
+
+  > a {
+    order: 4;
+  }
+}
+
 /*------------------------------------*/
 
 .footer_list {

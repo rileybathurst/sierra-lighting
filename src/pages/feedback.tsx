@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
 import { SEO } from "../components/seo";
@@ -152,13 +152,22 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setFiveHover(true);
   }
 
+  useEffect(() => {
+    if (fiveStar) {
+      const timer = setTimeout(() => {
+        window.location.href = "https://g.page/r/CXdQyNRhzs8YEAI/review";
+      }, 7000);
+      return () => clearTimeout(timer);
+    }
+  }, [fiveStar]);
+
   return (
     <>
       <Header />
 
       <main className="stork">
 
-        <h1>Reviews</h1>
+        <h1>Feedback</h1>
         <p>{strapiReview.starting}</p>
 
         <div className="review-stars">

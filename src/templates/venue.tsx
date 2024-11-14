@@ -125,7 +125,6 @@ const VenueView = ({ data }: VenueViewTypes) => {
           }
         </p>
 
-
       </main>
       {/* 
       <Region
@@ -133,6 +132,26 @@ const VenueView = ({ data }: VenueViewTypes) => {
         area={data.strapiVenue.area}
         areas={data.strapiVenue.area.areas}
       /> */}
+
+      {/* // TODO: what can we create here */}
+      <section className='stork'>
+        <hr />
+        <h3>Explore the lighting styles we can create at {data.strapiVenue.name}</h3>
+      </section>
+
+      <div className='deck'>
+        {data.strapiService.featured_lights.map((light: CardType) => (
+          <Card
+            key={light.id}
+            {...light}
+            breadcrumb='light'
+          />
+        ))}
+      </div>
+
+      <h4 className='stork'>
+        <Link to='/wedding/lights'>Browse all our wedding lighting styles</Link>
+      </h4>
 
       {data.strapiVenue.projects.length > 0 ?
         <>
@@ -298,13 +317,21 @@ export const query = graphql`
           }
         }
       }
+
+      strapiService(slug: {eq: "wedding"}) {
+        featured_lights {
+          ...lightCard
+        }
+      }
   }
 `
 
 export const Head = ({ data }: VenueViewTypes) => {
   return (
     <SEO
-      title={`${data.strapiVenue.name}`}
+      title={`${data.strapiVenue.name} Wedding Venue`}
+
+      // TODO: Sierra lighting can create lighting at
       description={data.strapiVenue.excerpt}
       image={data.strapiVenue?.venueImage?.localFile?.url}
       // url={`venue/${data.strapiVenue.slug}`}

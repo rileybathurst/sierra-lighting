@@ -1,3 +1,5 @@
+// TODO: holiday vs wedding flip here
+
 import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
@@ -14,6 +16,8 @@ import Card from '../components/card';
 import type { CardType } from '../types/card-type';
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import Start from '../components/start';
+import Season from '../components/season';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 
 // this is no longer right as there might only be sub venues
@@ -123,6 +127,9 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
             {data.strapiArea.name},&nbsp;
             <StateAbbreviation state={data.strapiArea.state} />
           </h1>
+          <hr />
+          <h3 className='kilimanjaro'>Ready to work with us</h3>
+          <Start className='button--left-align' />
           <Markdown
             className="react-markdown"
           >
@@ -131,32 +138,53 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
         </article >
 
+        {/* // TODO: make this a second column on a larger screen */}
+        {data.strapiArea.areas.length > 0 ?
+          <div
+            key={data.strapiArea.name}
+            className="stork"
+          >
+            <hr />
+            <p className='elbrus'>Regions we light in {data.strapiArea.name}</p>
+            <ul className='subareas'>
+              {data.strapiArea.areas.map((area) => (
+                <li
+                  key={area.name}
+                >
+                  <h2 className='elbrus'>{area.name}</h2>
+                  {/* <p>{area.excerpt}</p> */}
+
+                </li>
+              ))}
+            </ul>
+          </div>
+          : null
+        }
+        <hr />
+        <h3 >Lighting services we provide in {data.strapiArea.name}</h3>
       </main >
 
-      {data.strapiArea.areas.length > 0 ?
-        <div
-          key={data.strapiArea.name}
-          className="stork"
-        >
-          <hr />
-          <p className='elbrus'>Regions we light in {data.strapiArea.name}</p>
-          <ul className='list-style-none'>
-            {data.strapiArea.areas.map((area) => (
-              <li
-                key={area.name}
-                className='kilimanjaro'
-              >
-                {area.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-        : null
-      }
+      <div className={`away-services ${Season()}`}>
+        {data.allStrapiService.nodes.map((service: ServiceTypes) => (
+          <Link
+            key={service.id}
+            to={`/${service.slug}`}
+            className={`poster ${service.slug}`}
+          >
+            {service.hero_light ?
+              <>
+                <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
+                  alt={service.hero_light.alternativeText || service.name}
+                />
+                <span>{service.name}</span>
+              </>
+              : null}
+          </Link>
+        ))}
+      </div>
 
       <div className='stork'>
         <hr />
-        <p>&nbsp;</p>
         <Start className='button--left-align' />
       </div>
 
@@ -190,6 +218,7 @@ export const query = graphql`
       id
       name
       tagline
+      excerpt
 
       description {
         data {
@@ -216,6 +245,7 @@ export const query = graphql`
       areas {
         name
         slug
+        excerpt
 
         venues {
           id
@@ -260,14 +290,47 @@ export const query = graphql`
     strapiAbout {
       businessName
     }
+
+    allStrapiService {
+      nodes {
+        id
+        name
+        slug
+        hero_light {
+          alternativeText
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+
+        hero_dark {
+          alternativeText
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+    }
+
+    
   }
 `
 
 export const Head = ({ data }) => {
+
+  const servicesString = data.allStrapiService.nodes.map((service: ServiceTypes) => (
+    `${service.name} lighting'`
+  )).join(', ');
+  // console.log(servicesString);
+
   return (
     <SEO
-      title={data.strapiArea.name}
-      description={data.strapiArea.excerpt}
+      title={`${data.strapiArea.name} professional Christmas, Wedding and event lighting installation`}
+      description={`${data.strapiArea.excerpt} ${data.strapiAbout.businessName} create professional ${servicesString} installations in ${data.strapiArea.name}.`}
       image={data.strapiArea?.image?.localFile?.url}
       breadcrumbs={[
         {

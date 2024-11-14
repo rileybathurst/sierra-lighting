@@ -89,7 +89,7 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
 
       <main>
         <section className='stork'>
-          <h1 className='mixta aconcagua'>{data.strapiService.name} Lighting</h1>
+          <h1 className='mixta aconcagua'>Lighting types for {data.strapiService.name}</h1>
           <ReactMarkdown
             className='react-markdown'>
             {data.strapiService.description.data.description}
@@ -247,7 +247,7 @@ export const query = graphql`
 export const Head = ({ data }: ServiceLightViewTypes) => {
   return (
     <SEO
-      title={`${data.strapiService.name} Lights`}
+      title={`Lighting types for ${data.strapiService.name}`}
       description={data.strapiService.excerpt}
       url={`${data.strapiService.slug}/lights`}
       breadcrumbs={[

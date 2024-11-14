@@ -1,5 +1,8 @@
 import * as React from "react"
 
+// ! TODO: after a ~7 seconds on 5 star automaticailly redirect to google review
+// Change to the nevada google business
+
 interface ReviewFormTypes {
   stars: number;
   name: string;
@@ -53,8 +56,8 @@ function ReviewForm({ stars, name, email, title }: ReviewFormTypes) {
           <input type="text" name="title" />
         </label>
       }
-      <label>Review
-        <textarea name="review" />
+      <label>Feedback
+        <textarea name="feedback" />
       </label>
       <button type="submit">Send</button>
     </form>
