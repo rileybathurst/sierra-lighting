@@ -386,6 +386,14 @@ export const query = graphql`
 
       videoMux
 
+      videos {
+        name
+        mux
+        description
+        publishedAt
+        thumbnailTime
+      }
+
       lookbookCover {
         localFile {
           childImageSharp {
@@ -452,8 +460,8 @@ export const Head = ({ data }: ServiceTypes) => {
 
   const sanitazeDescription = data.strapiService.description.data.description.replace(/"/g, " inches");
   // console.log(sanitazeDescription);
-
   // console.log(data.strapiService.videoMux);
+  // console.log(data.strapiService.videos);
 
   return (
     <>
@@ -461,10 +469,10 @@ export const Head = ({ data }: ServiceTypes) => {
         title={`${data.strapiService.name} Lighting`}
         description={sanitazeDescription}
         url={`${data.strapiService.slug}`}
-        video={{
-          mux: `${data.strapiService?.videoMux}`,
-          description: `${data.strapiService.name} lighting video`,
-          pageUrl: data.strapiService.slug
+
+        videos={{
+          strapiData: data.strapiService.videos,
+          pageUrl: data.strapiService.slug,
         }}
       >
         <Script type="application/ld+json">

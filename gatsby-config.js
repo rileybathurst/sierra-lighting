@@ -25,6 +25,7 @@ const strapiConfig = {
     'showcase',
     'quality',
     'lookbook',
+    'video'
   ],
   singleTypes: [
     'topbar',

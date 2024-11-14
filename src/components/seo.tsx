@@ -18,9 +18,12 @@ interface SEO {
   imageAlt?: string;
   children?: React.ReactNode;
   breadcrumbs?: BreadcrumbsTypes;
-  video?: {
-    mux: string;
-    description: string;
+  videos?: {
+    strapiData: {
+      mux: string;
+      description: string;
+      pageUrl: string;
+    }[];
     pageUrl: string;
   };
 }
@@ -96,26 +99,37 @@ export const SEO = (SE0: SEO) => {
   }
 
   type VideoMuxTypes = {
-    mux?: string;
-    description?: string;
-    pageUrl?: string;
+    strapiData: {
+      mux: string;
+      description: string;
+      pageUrl: string;
+    }[];
+    pageUrl: string;
   }
-  function VideoMux(video: VideoMuxTypes) {
+  function VideoMux(videos: VideoMuxTypes) {
+    console.log(videos.strapiData.length);
 
-    if (!video.mux) return null;
+    // if (videos.strapiData.length === 0) return null;
+
+    // console.log(videos);
+    // console.log(videos.pageUrl);
+
+    // return null;
 
     return (
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "VideoObject",
-            "contentURL": "https://stream.mux.com/${video.mux}.m3u8",
-            "description": "${video.description} for ${data.strapiAbout.businessName}",
-            "embedUrl": "${data.strapiAbout.url}/${video.pageUrl}"
-          }
-        `}
-      </Script>
+      videos.strapiData.map((video) => {
+        <Script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "VideoObject",
+              "contentURL": "https://stream.mux.com/${video.mux}.m3u8",
+              "description": "${video.description} for ${data.strapiAbout.businessName}",
+              "embedUrl": "${data.strapiAbout.url}/${video.pageUrl}"
+            }
+          `}
+        </Script>
+      })
     );
   }
 
@@ -184,7 +198,7 @@ export const SEO = (SE0: SEO) => {
       />
 
       <VideoMux
-        {...SE0?.video}
+        {...SE0?.videos}
       />
 
       {SE0.children}

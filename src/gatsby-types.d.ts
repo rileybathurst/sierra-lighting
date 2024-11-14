@@ -1357,6 +1357,7 @@ type Query = {
   readonly allStrapiVendor: STRAPI_VENDORConnection;
   readonly allStrapiVenue: STRAPI_VENUEConnection;
   readonly allStrapiVenueAddressTextnode: STRAPI_VENUE_ADDRESS_TEXTNODEConnection;
+  readonly allStrapiVideo: STRAPI_VIDEOConnection;
   readonly directory: Maybe<Directory>;
   readonly file: Maybe<File>;
   readonly imageSharp: Maybe<ImageSharp>;
@@ -1404,6 +1405,7 @@ type Query = {
   readonly strapiVendor: Maybe<STRAPI_VENDOR>;
   readonly strapiVenue: Maybe<STRAPI_VENUE>;
   readonly strapiVenueAddressTextnode: Maybe<STRAPI_VENUE_ADDRESS_TEXTNODE>;
+  readonly strapiVideo: Maybe<STRAPI_VIDEO>;
 };
 
 
@@ -1780,6 +1782,14 @@ type Query_allStrapiVenueAddressTextnodeArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_VENUE_ADDRESS_TEXTNODESortInput>>>;
+};
+
+
+type Query_allStrapiVideoArgs = {
+  filter: InputMaybe<STRAPI_VIDEOFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_VIDEOSortInput>>>;
 };
 
 
@@ -2421,6 +2431,7 @@ type Query_strapiServiceArgs = {
   vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
   venues: InputMaybe<STRAPI_VENUEFilterListInput>;
   videoMux: InputMaybe<StringQueryOperatorInput>;
+  videos: InputMaybe<STRAPI_VIDEOFilterListInput>;
 };
 
 
@@ -2604,6 +2615,23 @@ type Query_strapiVenueAddressTextnodeArgs = {
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
+};
+
+
+type Query_strapiVideoArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  createdAt: InputMaybe<DateQueryOperatorInput>;
+  description: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  mux: InputMaybe<StringQueryOperatorInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  publishedAt: InputMaybe<DateQueryOperatorInput>;
+  service: InputMaybe<STRAPI_SERVICEFilterInput>;
+  strapi_id: InputMaybe<IntQueryOperatorInput>;
+  thumbnailTime: InputMaybe<IntQueryOperatorInput>;
+  updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
 
 type STRAPI_ABOUT = Node & {
@@ -6951,6 +6979,7 @@ type STRAPI_SERVICE = Node & {
   readonly vendors: Maybe<ReadonlyArray<Maybe<STRAPI_VENDOR>>>;
   readonly venues: Maybe<ReadonlyArray<Maybe<STRAPI_VENUE>>>;
   readonly videoMux: Maybe<Scalars['String']>;
+  readonly videos: Maybe<ReadonlyArray<Maybe<STRAPI_VIDEO>>>;
 };
 
 
@@ -7086,6 +7115,7 @@ type STRAPI_SERVICEFieldSelector = {
   readonly vendors: InputMaybe<STRAPI_VENDORFieldSelector>;
   readonly venues: InputMaybe<STRAPI_VENUEFieldSelector>;
   readonly videoMux: InputMaybe<FieldSelectorEnum>;
+  readonly videos: InputMaybe<STRAPI_VIDEOFieldSelector>;
 };
 
 type STRAPI_SERVICEFilterInput = {
@@ -7120,6 +7150,7 @@ type STRAPI_SERVICEFilterInput = {
   readonly vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
   readonly venues: InputMaybe<STRAPI_VENUEFilterListInput>;
   readonly videoMux: InputMaybe<StringQueryOperatorInput>;
+  readonly videos: InputMaybe<STRAPI_VIDEOFilterListInput>;
 };
 
 type STRAPI_SERVICEFilterListInput = {
@@ -7215,6 +7246,7 @@ type STRAPI_SERVICESortInput = {
   readonly vendors: InputMaybe<STRAPI_VENDORSortInput>;
   readonly venues: InputMaybe<STRAPI_VENUESortInput>;
   readonly videoMux: InputMaybe<SortOrderEnum>;
+  readonly videos: InputMaybe<STRAPI_VIDEOSortInput>;
 };
 
 type STRAPI_SERVICE_AFTER_THE_TRIPTYCH_TEXTNODE = Node & {
@@ -9155,6 +9187,184 @@ type STRAPI_VENUE_ADDRESS_TEXTNODESortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
 };
 
+type STRAPI_VIDEO = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly mux: Maybe<Scalars['String']>;
+  readonly name: Maybe<Scalars['String']>;
+  readonly parent: Maybe<Node>;
+  readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly service: Maybe<STRAPI_SERVICE>;
+  readonly strapi_id: Maybe<Scalars['Int']>;
+  readonly thumbnailTime: Maybe<Scalars['Int']>;
+  readonly updatedAt: Maybe<Scalars['Date']>;
+};
+
+
+type STRAPI_VIDEO_createdAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_VIDEO_publishedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_VIDEO_updatedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type STRAPI_VIDEOConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_VIDEOEdge>;
+  readonly group: ReadonlyArray<STRAPI_VIDEOGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_VIDEO>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_VIDEOConnection_distinctArgs = {
+  field: STRAPI_VIDEOFieldSelector;
+};
+
+
+type STRAPI_VIDEOConnection_groupArgs = {
+  field: STRAPI_VIDEOFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_VIDEOConnection_maxArgs = {
+  field: STRAPI_VIDEOFieldSelector;
+};
+
+
+type STRAPI_VIDEOConnection_minArgs = {
+  field: STRAPI_VIDEOFieldSelector;
+};
+
+
+type STRAPI_VIDEOConnection_sumArgs = {
+  field: STRAPI_VIDEOFieldSelector;
+};
+
+type STRAPI_VIDEOEdge = {
+  readonly next: Maybe<STRAPI_VIDEO>;
+  readonly node: STRAPI_VIDEO;
+  readonly previous: Maybe<STRAPI_VIDEO>;
+};
+
+type STRAPI_VIDEOFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly mux: InputMaybe<FieldSelectorEnum>;
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly service: InputMaybe<STRAPI_SERVICEFieldSelector>;
+  readonly strapi_id: InputMaybe<FieldSelectorEnum>;
+  readonly thumbnailTime: InputMaybe<FieldSelectorEnum>;
+  readonly updatedAt: InputMaybe<FieldSelectorEnum>;
+};
+
+type STRAPI_VIDEOFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly mux: InputMaybe<StringQueryOperatorInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly service: InputMaybe<STRAPI_SERVICEFilterInput>;
+  readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
+  readonly thumbnailTime: InputMaybe<IntQueryOperatorInput>;
+  readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+type STRAPI_VIDEOFilterListInput = {
+  readonly elemMatch: InputMaybe<STRAPI_VIDEOFilterInput>;
+};
+
+type STRAPI_VIDEOGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_VIDEOEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<STRAPI_VIDEOGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_VIDEO>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_VIDEOGroupConnection_distinctArgs = {
+  field: STRAPI_VIDEOFieldSelector;
+};
+
+
+type STRAPI_VIDEOGroupConnection_groupArgs = {
+  field: STRAPI_VIDEOFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_VIDEOGroupConnection_maxArgs = {
+  field: STRAPI_VIDEOFieldSelector;
+};
+
+
+type STRAPI_VIDEOGroupConnection_minArgs = {
+  field: STRAPI_VIDEOFieldSelector;
+};
+
+
+type STRAPI_VIDEOGroupConnection_sumArgs = {
+  field: STRAPI_VIDEOFieldSelector;
+};
+
+type STRAPI_VIDEOSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly description: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly mux: InputMaybe<SortOrderEnum>;
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly service: InputMaybe<STRAPI_SERVICESortInput>;
+  readonly strapi_id: InputMaybe<SortOrderEnum>;
+  readonly thumbnailTime: InputMaybe<SortOrderEnum>;
+  readonly updatedAt: InputMaybe<SortOrderEnum>;
+};
+
 type STRAPI__MEDIA = Node & {
   readonly alternativeText: Maybe<Scalars['String']>;
   readonly caption: Maybe<Scalars['String']>;
@@ -10526,7 +10736,7 @@ type ServiceTemplateQueryVariables = Exact<{
 }>;
 
 
-type ServiceTemplateQuery = { readonly strapiService: { readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly videoMux: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly after_the_triptych: { readonly data: { readonly after_the_triptych: string | null } | null } | null, readonly projects: ReadonlyArray<{ readonly updatedAt: string | null, readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly triptych: ReadonlyArray<{ readonly id: string, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null> | null, readonly featured_lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly lookbookCover: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly allStrapiProcess: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly markdown: { readonly data: { readonly markdown: string | null } | null } | null }> }, readonly allStrapiVenue: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly venueImage: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiVendor: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly service: string | null, readonly profile: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiLookbook: { readonly nodes: ReadonlyArray<{ readonly id: string }> }, readonly strapiAbout: { readonly url: string | null, readonly businessName: string | null } | null };
+type ServiceTemplateQuery = { readonly strapiService: { readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly videoMux: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly after_the_triptych: { readonly data: { readonly after_the_triptych: string | null } | null } | null, readonly projects: ReadonlyArray<{ readonly updatedAt: string | null, readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly triptych: ReadonlyArray<{ readonly id: string, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null> | null, readonly featured_lights: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null, readonly videos: ReadonlyArray<{ readonly name: string | null, readonly mux: string | null, readonly description: string | null, readonly publishedAt: string | null, readonly thumbnailTime: number | null } | null> | null, readonly lookbookCover: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null, readonly allStrapiProcess: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly markdown: { readonly data: { readonly markdown: string | null } | null } | null }> }, readonly allStrapiVenue: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly venueImage: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiVendor: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly service: string | null, readonly profile: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiLookbook: { readonly nodes: ReadonlyArray<{ readonly id: string }> }, readonly strapiAbout: { readonly url: string | null, readonly businessName: string | null } | null };
 
 type showcaseFragment = { readonly id: string, readonly roofline: string | null, readonly price: string | null, readonly tree: string | null, readonly tier: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly project: { readonly id: string, readonly slug: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null };
 
