@@ -100,6 +100,7 @@ export const SEO = (SE0: SEO) => {
 
   type VideoMuxTypes = {
     strapiData: {
+      name: string;
       mux: string;
       description: string;
       pageUrl: string;
@@ -119,6 +120,7 @@ export const SEO = (SE0: SEO) => {
               {
                 "@context": "https://schema.org",
                 "@type": "VideoObject",
+                "name:": "${video.name}",
                 "contentURL": "https://stream.mux.com/${video.mux}.m3u8",
                 "description": "${video.description} for ${data.strapiAbout.businessName}",
                 "embedUrl": "${data.strapiAbout.url}/${pageUrl}",
