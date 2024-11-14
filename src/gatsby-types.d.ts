@@ -2117,6 +2117,7 @@ type Query_strapiImageGrabArgs = {
 
 
 type Query_strapiJobArgs = {
+  areas: InputMaybe<STRAPI_AREAFilterListInput>;
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<STRAPI_JOBDescriptionFilterInput>;
@@ -4189,6 +4190,7 @@ type STRAPI_IMAGE_GRABSortInput = {
 };
 
 type STRAPI_JOB = Node & {
+  readonly areas: Maybe<ReadonlyArray<Maybe<STRAPI_AREA>>>;
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<STRAPI_JOBDescription>;
@@ -4297,6 +4299,7 @@ type STRAPI_JOBEdge = {
 };
 
 type STRAPI_JOBFieldSelector = {
+  readonly areas: InputMaybe<STRAPI_AREAFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_JOBDescriptionFieldSelector>;
@@ -4312,6 +4315,7 @@ type STRAPI_JOBFieldSelector = {
 };
 
 type STRAPI_JOBFilterInput = {
+  readonly areas: InputMaybe<STRAPI_AREAFilterListInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_JOBDescriptionFilterInput>;
@@ -4368,6 +4372,7 @@ type STRAPI_JOBGroupConnection_sumArgs = {
 };
 
 type STRAPI_JOBSortInput = {
+  readonly areas: InputMaybe<STRAPI_AREASortInput>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_JOBDescriptionSortInput>;

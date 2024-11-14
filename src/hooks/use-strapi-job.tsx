@@ -15,6 +15,11 @@ export const useStrapiJob = () => {
           }
           employmentType
           validThrough
+          
+          areas {
+            name
+            slug
+          }
         }
       }
 

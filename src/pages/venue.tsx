@@ -1,7 +1,6 @@
 // heavyhanded way of not grabbing blue venue
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import type { IGatsbyImageData } from "gatsby-plugin-image"
 
 import { SEO } from "../components/seo";
 
@@ -9,6 +8,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 import StateAbbreviation from "../components/state-abbreviation";
+import type { CardType } from "../types/card-type";
 
 const VenuePage = () => {
 
@@ -91,7 +91,7 @@ export default VenuePage
 export const Head = () => {
   return (
     <SEO
-      title='Venues'
+      title='Wedding venues we create lighting at'
       description="The natural beauty of the Lake Tahoe area makes the perfect backdrop for a wedding. Check out these Tahoe wedding venues that range from rustic to glamorous."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
       url="venue"

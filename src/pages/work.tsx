@@ -12,6 +12,8 @@ type JobTypes = {
   id: string
   title: string
   updatedAt: string
+  validThrough: string
+  employmentType: string
   description: {
     data: {
       description: string
@@ -84,17 +86,9 @@ export default WorkPage
 // TODO: https://schema.org/JobPosting
 export const Head = () => {
 
-  // this is super rough as its only job[0]
-  const validThroughDate = new Date(useStrapiJob().allStrapiJob.nodes[0].validThrough).toLocaleDateString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  })
-
   // how can it be linked to the job?
 
-
+  // TODO: add areas maybe in a map but maps are hard to debug
 
   return (
     <SEO
@@ -106,32 +100,22 @@ export const Head = () => {
       <Script type="application/ld+json">
         {`
           {
-            ${useStrapiJob().allStrapiJob.nodes.map((job: JobTypes) => (`
             "@context": "https://schema.org",
             "@type": "JobPosting",
-              "title": "${job.title}",
-              "datePosted": "${job.updatedAt}",
-              "description": "${job.description.data.description.split('\n').join(' ')}"
-
-              employmentType: "${job.employmentType}",
-              validThrough: "${new Date(useStrapiJob().allStrapiJob.nodes[0].validThrough).toLocaleDateString('en-US', {
-          // timeZone: 'UTC',
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        })}",
-          `)).join(',')},
-              "jobLocation": {
-                "@type": "Place",
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "${useStrapiJob().strapiAbout.addressLocality}",
-                  "addressRegion": "${useStrapiJob().strapiAbout.addressRegion}",
-                  "postalCode": "${useStrapiJob().strapiAbout.postalCode}",
-                  "addressCountry": "USA"
-                }
-              },
+            "title": "${useStrapiJob().allStrapiJob.nodes[0].title}",
+            "datePosted": "${useStrapiJob().allStrapiJob.nodes[0].updatedAt}",
+            "employmentType": "${useStrapiJob().allStrapiJob.nodes[0].employmentType}",
+            "validThrough": "${new Date(useStrapiJob().allStrapiJob.nodes[0].validThrough).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', })}",
+            "jobLocation": {
+              "@type": "Place",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "${useStrapiJob().strapiAbout.addressLocality}",
+                "addressRegion": "${useStrapiJob().strapiAbout.addressRegion}",
+                "postalCode": "${useStrapiJob().strapiAbout.postalCode}",
+                "addressCountry": "USA"
+              }
+            },
             "hiringOrganization": {
               "@type": "Organization",
               "name": "${useStrapiJob().strapiAbout.businessName}"
@@ -142,6 +126,8 @@ export const Head = () => {
     </SEO>
   )
 }
+
+//             "description": "${useStrapiJob().allStrapiJob.nodes[0].description.data.description.split('\n').join(' ')}",
 
 /* // TODO: schema.org/JobPosting
                 "baseSalary": "9000",
