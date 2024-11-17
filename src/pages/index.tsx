@@ -182,7 +182,10 @@ const IndexPage = () => {
               </Markdown>
               : null
             }
-            <Start className="button--left-align" />
+            <Start
+              className="button--left-align"
+              path="hero"
+            />
 
           </section >
           <div className="hero-2-svg">{/* stay gold */}</div>
@@ -262,7 +265,7 @@ const IndexPage = () => {
 
       <div className="stork">
         <p>&nbsp;</p>
-        <Start />
+        <Start path="index-services" />
       </div>
 
       <hr className="albatross " />

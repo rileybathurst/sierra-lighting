@@ -16,7 +16,7 @@ const MenuList = () => (
       <Link to="/commercial">Commercial Christmas Lights</Link>
     </li>
     <li key="start" className="c">
-      <Link to="/contact">
+      <Link to="/contact?small-menu">
         Start With A Free Quote
       </Link>
     </li>

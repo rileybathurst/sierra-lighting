@@ -263,7 +263,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             <ul>
               {/* // TODO: contact also needs the subtle link */}
               <li key="contact" className="">
-                <Link to="/contact"><strong>Contact</strong></Link>
+                <Link to="/contact?=footer"><strong>Contact</strong></Link>
               </li>
               {/* <li key="work"><Link to="/work">Work with us</Link></li> */}
               <li key="faqs"><Link to="/faqs">FAQs</Link></li>

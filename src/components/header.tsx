@@ -1,3 +1,5 @@
+// TODO: add the active class styles and fix the menu I think astro has a versiopn thats way better
+
 import * as React from "react"
 import { Link } from "gatsby"
 
@@ -39,7 +41,7 @@ const Header = ({ largeLogo }: HeaderTyes) => {
               <Link to="/wedding">Wedding</Link>
             </li>
             <li key="start" className="c">
-              <Link to="/contact">
+              <Link to="/contact/?big-menu">
                 Start With A<br />
                 Free Quote
               </Link>

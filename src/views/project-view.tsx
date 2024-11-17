@@ -111,7 +111,9 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
 
         <hr />
         <h3>Interested in a project like this</h3>
-        <Start />
+        <Start
+          path={`project ${project.slug}`}
+        />
       </main>
 
       {/* // * no testimonials currently link to projects so this breaks

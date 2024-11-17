@@ -129,7 +129,10 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
           </h1>
           <hr />
           <h3 className='kilimanjaro'>Ready to work with us</h3>
-          <Start className='button--left-align' />
+          <Start
+            className='button--left-align'
+            path={`areas-${data.strapiArea.slug}`}
+          />
           <Markdown
             className="react-markdown"
           >
@@ -185,7 +188,10 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
       <div className='stork'>
         <hr />
-        <Start className='button--left-align' />
+        <Start
+          className='button--left-align'
+          path={`areas-services-${data.strapiArea.slug}`}
+        />
       </div>
 
       <Venues

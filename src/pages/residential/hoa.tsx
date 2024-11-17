@@ -63,7 +63,7 @@ function HoaPage() {
             {/* // TODO: move to strapi if we use this */}
             Sierra Lighting specializes in creating stunning holiday lighting displays for Homeowner Associations (HOAs). Our expert team transforms neighborhoods into festive wonderlands, illuminating trees, entrances, and common areas with beautiful, custom-designed lighting. We bring holiday cheer to subdivisions, enhancing the community spirit and making the darker months brighter and more joyful. With a focus on quality and creativity, Sierra Lighting ensures that every display is both magical and memorable, providing a warm and welcoming atmosphere for residents and visitors alike.
           </ReactMarkdown>
-          <Start />
+          <Start path='hoa' />
         </div>
 
         < hr className="stork" />

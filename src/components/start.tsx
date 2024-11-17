@@ -1,11 +1,15 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-const Start = ({ className }: { className?: string }) => {
+type startTypes = {
+  className?: string
+  path?: string
+}
+const Start = ({ className, path }: startTypes) => {
 
   return (
     <Link
-      to="/contact"
+      to={`/contact?=start-${path}`}
       className={`button button-hero ${className}`}
     >
       Start with a free quote

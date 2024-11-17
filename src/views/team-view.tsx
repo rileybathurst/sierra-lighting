@@ -16,6 +16,7 @@ interface TeamTypes {
   team: {
     id: React.Key;
     name: string;
+    slug: string;
     bio: {
       data: {
         bio: string;
@@ -57,7 +58,9 @@ const TeamView = ({ team }: TeamTypes) => {
         <hr />
 
         <h3>Would you like to work with {team.name}</h3>
-        <Start />
+        <Start
+          path={team.slug}
+        />
       </main>
 
       {team.projects ?

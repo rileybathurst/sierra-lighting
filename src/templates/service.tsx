@@ -236,7 +236,10 @@ const ServiceView = ({ data }: ServiceTypes) => {
           <Markdown className='react-markdown'>
             {data.strapiService.description.data.description}
           </Markdown>
-          <Start className="button--left-align" />
+          <Start
+            className="button--left-align"
+            path={data.strapiService.slug}
+          />
         </section>
 
         {/*         <section className="triple">

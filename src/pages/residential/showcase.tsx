@@ -174,7 +174,7 @@ function ResidentialShowcase() {
                   roofline={showcase.roofline}
                   trees={showcase.tree}
                 />
-                <Start />
+                <Start path="showcase" />
               </div>
             ))
         ))}

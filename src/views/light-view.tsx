@@ -144,7 +144,9 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
 
           <p>{light.description}</p>
           <hr />
-          <Start />
+          <Start
+            path={light.slug}
+          />
         </article>
       </main >
 
