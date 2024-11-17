@@ -48,7 +48,7 @@ const ProjectsPage = () => {
     projects: CardType[];
   }
 
-  console.log(allStrapiService);
+  // console.log(allStrapiService);
 
   return (
     <>
