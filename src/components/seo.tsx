@@ -32,11 +32,9 @@ interface SEO {
 // can we remove that
 export const SEO = (SE0: SEO) => {
 
-  console.log(SE0);
-  console.log(SE0.title);
-
-  // ! ???????
-  console.log(SE0.description);
+  // console.log(SE0);
+  // console.log(SE0.title);
+  // console.log(SE0.description);
 
   const data = useStaticQuery(graphql`
     query SEOQuery {

@@ -110,6 +110,9 @@ const ProcessPage = () => {
     return null;
   }
 
+  const xmas = 'Christmas or Holiday lights installation';
+  const wedding = 'Wedding, Commercial or Social Event lights installation';
+
   function FirstCheck({ checker }) {
     if (checker === 'wedding') {
       return (
@@ -122,7 +125,7 @@ const ProcessPage = () => {
               onChange={seasonSwitcher}
               checked
             />
-            <div>Wedding / <span>Social Event</span></div>
+            {wedding}
           </label>
           <label>
             <input
@@ -131,7 +134,7 @@ const ProcessPage = () => {
               value="holiday"
               onChange={seasonSwitcher}
             />
-            Holiday
+            {xmas}
           </label>
         </>
       )
@@ -146,7 +149,7 @@ const ProcessPage = () => {
             value="wedding"
             onChange={seasonSwitcher}
           />
-          <div>Wedding / <span>Commercial or Social Event</span></div>
+          {wedding}
         </label>
         <label className="current">
           <input
@@ -156,7 +159,7 @@ const ProcessPage = () => {
             onChange={seasonSwitcher}
             checked
           />
-          Holiday
+          {xmas}
         </label>
       </>
     )
@@ -168,7 +171,7 @@ const ProcessPage = () => {
       <Header />
 
       <main className="stork">
-        <h2>Our Process</h2>
+        <h1 className='denali'>Our Process for professional lighting installation</h1>
 
         <form className='process-switch'>
           <FirstCheck checker={seasonRadio} />
@@ -186,9 +189,10 @@ const ProcessPage = () => {
 export default ProcessPage
 
 export const Head = () => {
+
   return (
     <SEO
-      title='Process'
+      title='Our process for professional wedding or christmas lights installation'
       // TODO: needs a new description now
       description="Learn how Sierra Lighting can help you create memorable lighting with our design process."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"

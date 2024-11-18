@@ -22,7 +22,8 @@ export const Head = () => {
   return (
     <SEO
       title='Contact'
-      description="Contact Sierra Lighting for a free estimate. We offer full service holiday, wedding, and event lighting packages to meet any budget."
+      // TODO: strapi query
+      description="Contact Sierra Lighting for a free estimate. We offer full service christmas, wedding, and event lighting packages to meet any budget."
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/contact-og-sierra_lighting.jpg"
       url="contact"
     />

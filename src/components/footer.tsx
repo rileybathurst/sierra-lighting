@@ -131,7 +131,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
             {/* // TODO: this might be a query in the future if I keep changing it */}
             <label className='checkbox'>
-              I understand there is a minimum of $700 for holiday lights and $1,000 for new wedding or event lighting clients
+              I understand there is a minimum of $700 for christmas or holiday lights and $1,000 for new wedding or event lighting clients
               <input type="checkbox" name="minimum" />
             </label>
             <p className="sr-only">

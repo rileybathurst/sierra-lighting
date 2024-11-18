@@ -1,4 +1,5 @@
 // TODO: needs testimonials per service
+// TODO: add top level areas
 // Couple biome errors that im not sure how to get rid of yet
 
 import React from 'react';
@@ -230,7 +231,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
         <section className="stork">
           <h1 className='mixta'>
             {/* // TODO: needs a clamp on the size */}
-            {data.strapiService.name} Lighting
+            {data.strapiService.name} Lighting Installation
           </h1>
 
           <Markdown className='react-markdown'>
@@ -469,7 +470,8 @@ export const Head = ({ data }: ServiceTypes) => {
   return (
     <>
       <SEO
-        title={`${data.strapiService.name} Lighting`}
+        title={`${data.strapiService.name} Lighting Installation`}
+        // TODO: in the top level areas
         description={sanitazeDescription}
         url={`${data.strapiService.slug}`}
 
