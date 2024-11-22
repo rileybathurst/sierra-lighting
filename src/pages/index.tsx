@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
@@ -9,9 +9,8 @@ import Areas from '../components/areas';
 import Start from "../components/start";
 import Markdown from "react-markdown";
 import Header from "../components/header";
-import HeroTreeScreen from "../images/hero-tree-screen";
-import HeroTreeSolid from "../images/hero-tree-solid";
 import Season from "../components/season";
+import BackImage from "../images/BackImage";
 
 const IndexPage = () => {
 
@@ -76,6 +75,18 @@ const IndexPage = () => {
           }
         }
       }
+
+      strapiHero {
+        front {
+          alternativeText
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+      }
+
 
     }
   `)
@@ -153,29 +164,35 @@ const IndexPage = () => {
     <>
       <Header largeLogo={false} />
 
-      <main className="albatross">
+      <main className="albatross margin-0">
         {/* // TODO: tidy up these classes */}
-        <div className="margin-0 hero-2">
-          <div className="h2-container">
-            <div className="large logo">
-              <Logo />
-            </div>
-            <div className="hero-tree">
-              <HeroTreeScreen />
-              <HeroTreeSolid />
-            </div>
-            <h2>
-              {data.strapiAbout.slogan.split(" ").map((word: string) => (
-                <React.Fragment key={word}>
-                  {word}
-                  <br className="medium-up" />
-                </React.Fragment>
-              ))}
-            </h2>
-
+        <div className="hero-3">
+          <div className="large logo">
+            <Logo />
           </div>
 
-          <section className="h2-text">
+          <h2>
+            {data.strapiAbout.slogan.split(" ").map((word: string) => (
+              <React.Fragment key={word}>
+                {word}
+                <br className="medium-up" />
+              </React.Fragment>
+            ))}
+          </h2>
+
+          <div className="images">
+
+
+            <BackImage />
+            <GatsbyImage image={data.strapiHero.front.localFile.childImageSharp.gatsbyImageData}
+              alt={data.strapiHero.front.alternativeText}
+              className="front"
+              backgroundColor="transparent"
+            />
+          </div>
+
+          <section className="text">
+            <div className="background">{/* stay gold */}</div>
             {data.strapiAbout ?
               <Markdown className='react-markdown'>
                 {data.strapiAbout.description.data.description}
@@ -183,12 +200,10 @@ const IndexPage = () => {
               : null
             }
             <Start
-              className="button--left-align"
               path="hero"
             />
-
           </section >
-          <div className="hero-2-svg">{/* stay gold */}</div>
+
         </div>
 
         <section id="qualities" className="qualities albatross">

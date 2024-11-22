@@ -3,7 +3,10 @@
 /*------------------------------------*/
 
 .button-hero {
-  font-size: var(--kilimanjaro);
+  font-size: var(--elbrus);
+  @media (min-width: 30rem) {
+    font-size: var(--kilimanjaro);
+  }
   line-height: var(--denali);
   text-transform: uppercase;
   /* background-color: var(--honey-500) !important; */
