@@ -185,7 +185,7 @@ const IndexPage = () => {
 
             <BackImage />
             <GatsbyImage image={data.strapiHero.front.localFile.childImageSharp.gatsbyImageData}
-              alt={data.strapiHero.front.alternativeText}
+              alt={data.strapiHero.front.alternativeText || "hero image"}
               className="front"
               backgroundColor="transparent"
             />

@@ -87,7 +87,7 @@ function BackImage() {
     >{/* needs this to load quick enough */}
       <GatsbyImage
         image={strapiHero.back.localFile.childImageSharp.gatsbyImageData}
-        alt={strapiHero.back.alternativeText}
+        alt={strapiHero.back.alternativeText || "bacground image"}
         className="back"
         objectPosition="bottom"
         style={backStyle}
