@@ -48,6 +48,9 @@ interface ServiceTypes {
       businessName: string;
       url: string;
     }
+
+
+
   }
 }
 
@@ -327,6 +330,22 @@ const ServiceView = ({ data }: ServiceTypes) => {
         : null
       }
 
+      {/* 
+      // ! finish this
+      <section className='stork'>
+        <hr />
+        <h3>Some of the areas we work lighting in</h3>
+        <ul>
+          {data.allStrapiArea.nodes.map((area) => (
+            <li key={area.id}>
+              <Link to={`/areas/${area.slug}`}>
+                {area.name} {data.strapiService.name} Lighting Installation
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section> */}
+
       {
         data.strapiService.projects || data.strapiService.venues || data.strapiService.vendors ?
           <>
@@ -437,6 +456,14 @@ export const query = graphql`
       businessName
     }
 
+    allStrapiArea(filter: {featured: {eq: true}}) {
+      nodes {
+        id
+        name
+        slug
+      }
+    }
+
   }
 `
 
@@ -467,12 +494,19 @@ export const Head = ({ data }: ServiceTypes) => {
   // console.log(data.strapiService.videoMux);
   // console.log(data.strapiService.videos);
 
+  // console.log(data.strapiService.excerpt);
+
+  // console.log(data.strapiService.featured_lights.map((light: CardType) => light.name).join(', '));
+
+  const descriptionKeyWords = `Creating professional ${data.strapiService.name} lighting installations including ${data.strapiService.featured_lights.map((light: CardType) => light.name).join(', ')} in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}`;
+  // console.log(descriptionKeyWords);
+
   return (
     <>
       <SEO
         title={`${data.strapiService.name} Lighting Installation`}
         // TODO: in the top level areas
-        description={sanitazeDescription}
+        description={descriptionKeyWords}
         url={`${data.strapiService.slug}`}
 
         videos={{
@@ -485,7 +519,7 @@ export const Head = ({ data }: ServiceTypes) => {
           {
             "@context": "https://schema.org",
             "@type": "OfferCatalog",
-            "name": "${data.strapiService.name} lighting",
+            "name": "${data.strapiService.name} lighting installation",
             "description": "${sanitazeDescription}",
             "url": "${data.strapiAbout.url}/${data.strapiService.slug}"
           }

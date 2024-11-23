@@ -64,6 +64,22 @@ export const SEO = (SE0: SEO) => {
         title
         link
       }
+
+      allStrapiService {
+        nodes {
+          name
+        }
+      }
+
+      allStrapiArea(filter: {featured: {eq: true}}) {
+        nodes {
+          name
+          areas {
+            name
+          }
+        }
+      }
+
     }
   `);
 
@@ -136,6 +152,9 @@ export const SEO = (SE0: SEO) => {
     );
   }
 
+  // console.log(data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, '));
+  console.log(data.allStrapiArea.nodes.map((area) => area.name).join(', '));
+
   return (
     <>
       <title>{SE0.title ? `${SE0.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${data.strapiTopbar.title}`}</title>
@@ -157,13 +176,16 @@ export const SEO = (SE0: SEO) => {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={SE0.image} />
 
+      {/* "about": "Creating ${data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}", */}
+
       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org/",
             "@type": "LocalBusiness",
             "name": "${data.strapiAbout.businessName}",
-            "description": "${data.strapiAbout.slogan}",
+            "about": "Creating professional ${data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}",
+            "slogan": "${data.strapiAbout.slogan}",
             "url": "${data.strapiAbout.url}",
             "alternateName": "${data.strapiAbout.alternateName}",
             "image": "${data.strapiAbout.defaultImage}",
