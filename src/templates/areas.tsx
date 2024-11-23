@@ -179,7 +179,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
                 <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
                   alt={service.hero_light.alternativeText || service.name}
                 />
-                <span>{service.name} Lightinging</span>
+                <span>{service.name} Lighting</span>
               </>
               : null}
           </Link>
