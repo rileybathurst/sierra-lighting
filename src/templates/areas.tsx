@@ -164,7 +164,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
           : null
         }
         <hr />
-        <h3 >Lighting services we provide in {data.strapiArea.name}</h3>
+        <h3 >Lighting installation services we provide in {data.strapiArea.name}</h3>
       </main >
 
       <div className={`away-services ${Season()}`}>
@@ -179,7 +179,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
                 <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
                   alt={service.hero_light.alternativeText || service.name}
                 />
-                <span>{service.name}</span>
+                <span>{service.name} Lightinging</span>
               </>
               : null}
           </Link>
@@ -271,6 +271,10 @@ export const query = graphql`
             alternativeText
           }
         }
+
+        project {
+          ...projectCard
+        }
       }
 
       venues {
@@ -290,6 +294,10 @@ export const query = graphql`
           }
           alternativeText
         }
+      }
+
+      project {
+        ...projectCard
       }
     }
 
@@ -322,7 +330,6 @@ export const query = graphql`
       }
     }
 
-    
   }
 `
 
@@ -332,6 +339,10 @@ export const Head = ({ data }) => {
     `${service.name} lighting'`
   )).join(', ');
   // console.log(servicesString);
+
+  // console.log(data.strapiArea.project); // ! is this a single needs to be updated
+  // console.log(data.strapiArea.areas.map((area) => area.project));
+
 
   return (
     <SEO

@@ -391,3 +391,12 @@ ul.subareas {
     line-height: var(--kilimanjaro);
   }
 }
+
+.sub-area-ul {
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--vinson);
+  padding-inline-start: 0;
+  margin-block-start: var(--vinson);
+}

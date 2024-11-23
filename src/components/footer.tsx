@@ -152,6 +152,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
         <section id="contact" className="contact">
 
+          {/* // TODO: remove the double titles */}
           <h3 className="crest">Contact</h3>
           <h4 className="range">Say Hello</h4>
 
@@ -167,6 +168,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             <p>
               {/* // TODO: fix the styling */}
               Call or Text: <Phone phone={data.strapiAbout.telephone} />
+              <small>This inbox is monitored between the hours of 8am-4pm PST Monday-Friday</small>
             </p>
           </div>
         </section>
@@ -207,7 +209,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
           <li className="christmas">
             <ul>
               <li key="christmas" className="footer_list--no_link">
-                <strong>Christmas</strong>
+                <strong>Christmas Lighting Installation</strong>
               </li>
 
               <li key="residential"><Link to="/residential">Residential</Link></li>
@@ -225,7 +227,8 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             <ul>
               {/* // TODO: make the top link a little more subtle */}
               <li key="wedding" className="link--subtle">
-                <Link to="/wedding"><strong>Wedding</strong></Link>
+                {/* // TODO: tidy up the long titles */}
+                <Link to="/wedding"><strong>Wedding Lighting Installation</strong></Link>
               </li>
               <li key="wedding lights">
                 <Link to="/wedding/lights">Wedding Lights</Link>
@@ -238,12 +241,12 @@ const Footer = ({ quote }: { quote?: boolean }) => {
           <li className="additional-services">
             <ul>
               <li key="services" className="footer_list--no_link">
-                <strong>Services</strong>
+                <strong>Additional Lighting Services</strong>
               </li>
-              <li key="permanent"><Link to="/patio">Patio Lighting</Link></li>
-              <li key="events"><Link to="/social-events">Social Events</Link></li>
+              <li key="permanent"><Link to="/patio">Patio Lighting {/* <span className='sr-only'>Lighting Installation</span> */}</Link></li>
+              <li key="events"><Link to="/social-events">Social Events {/* <span className='sr-only'>Lighting Installation</span> */}</Link></li>
               <li key="commercial-events">
-                <Link to="/commercial-events">Commercial Events</Link>
+                <Link to="/commercial-events">Commercial Events {/* <span className='sr-only'>Lighting Installation</span> */}</Link>
               </li>
             </ul>
           </li>

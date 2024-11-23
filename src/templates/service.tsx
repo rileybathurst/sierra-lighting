@@ -330,21 +330,34 @@ const ServiceView = ({ data }: ServiceTypes) => {
         : null
       }
 
-      {/* 
-      // ! finish this
+      {/* // ! needs an order */}
       <section className='stork'>
         <hr />
-        <h3>Some of the areas we work lighting in</h3>
+        <h3 className='elbrus'>We install {data.strapiService.name} lighting in and around</h3>
         <ul>
-          {data.allStrapiArea.nodes.map((area) => (
-            <li key={area.id}>
-              <Link to={`/areas/${area.slug}`}>
-                {area.name} {data.strapiService.name} Lighting Installation
-              </Link>
-            </li>
-          ))}
+          {data.allStrapiArea.nodes
+            .sort((a: SortTypes['a'], b: SortTypes['b']) => b.areas.length - a.areas.length) // Sort by the number of area.areas
+            .map((area) => (
+              <li key={area.id}>
+                <Link to={`/areas/${area.slug}`}>
+                  {area.name}, <span className='capitalize'>{area.state}</span>
+                  <span className='sr-only'>{data.strapiService.name} Lighting Installation</span>
+                </Link>
+                {area.areas.length > 0 ?
+                  <ul
+                    className='sub-area-ul'
+                  >
+                    {area.areas.map((subArea) => (
+                      <li key={subArea.id}>
+                        {subArea.name} <span className='sr-only'>{data.strapiService.name} Lighting Installation</span>
+                      </li>
+                    ))}
+                  </ul>
+                  : null}
+              </li>
+            ))}
         </ul>
-      </section> */}
+      </section>
 
       {
         data.strapiService.projects || data.strapiService.venues || data.strapiService.vendors ?
@@ -460,7 +473,12 @@ export const query = graphql`
       nodes {
         id
         name
+        state
         slug
+        areas {
+          id
+          name
+        }
       }
     }
 
