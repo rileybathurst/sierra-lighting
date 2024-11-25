@@ -12,7 +12,6 @@ import Start from "../components/start";
 import Hero from "../components/hero";
 import type { CardType } from "../types/card-type";
 import Attribute from "../components/attribute";
-import { A } from "storybook/internal/components";
 
 
 interface ProjectViewTypes {
@@ -46,7 +45,7 @@ interface ProjectViewTypes {
       alternativeText: string;
     }[];
     lights: CardType[];
-    areas: {
+    area: {
       name: string;
       state: 'california' | 'nevada';
       slug: string;
@@ -89,6 +88,8 @@ interface ProjectViewTypes {
 
 const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes) => {
 
+  console.log(project.area);
+
   return (
     <>
       <Header />
@@ -127,7 +128,7 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
         : null} */}
 
       {/* // TODO: use media queries to deal with a single vendor looking really weird */}
-      {project.venue || project.areas.length > 0 || project.vendors.length > 0 || project.team ?
+      {project.venue || project.area || project.vendors.length > 0 || project.team ?
         <>
           <hr className="pelican" />
           <div className="attributes">
@@ -161,29 +162,26 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
               </>
               : null}
 
-            {project.areas.length > 0 ?
+            {project.area ?
 
               <>
 
                 {/* <Attribute
                   category="area"
-                  slug={project.areas[0].slug}
-                  name={`${project.areas[0].name}, ${project.areas[0].state}`}
+                  slug={project.area[0].slug}
+                  name={`${project.area[0].name}, ${project.area[0].state}`}
                 /> */}
 
                 <section className="attribute">
                   <h3 className="crest">Area</h3>
                   <h4 className="range">
-                    {project.areas.map((area) => (
-                      <Link
-                        key={area.slug}
-                        to={`/areas/${area.slug}`}
-                        className="link--subtle"
-                      >
-                        {area.name}, <StateAbbreviation state={area.state} />
-                      </Link>
-                    ))
-                    }
+                    <Link
+                      key={project.area.slug}
+                      to={`/areas/${project.area.slug}`}
+                      className="link--subtle"
+                    >
+                      {project.area.name}, <StateAbbreviation state={project.area.state} />
+                    </Link>
                   </h4>
 
                 </section>
@@ -215,8 +213,8 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
               <>
                 {/* <Attribute
                   category="team"
-                  slug={project.areas[0].slug}
-                  name={`${project.areas[0].name}, ${project.areas[0].state}`}
+                  slug={project.area[0].slug}
+                  name={`${project.area[0].name}, ${project.area[0].state}`}
                 /> */}
 
                 <section className="attribute">

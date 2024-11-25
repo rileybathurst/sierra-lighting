@@ -48,9 +48,6 @@ interface ServiceTypes {
       businessName: string;
       url: string;
     }
-
-
-
   }
 }
 
@@ -218,6 +215,8 @@ const ServiceView = ({ data }: ServiceTypes) => {
   // console.log(data.allStrapiLookbook);
   // console.log(data.allStrapiLookbook.nodes.length);
 
+  // console.log(data.strapiService.lights.length);
+
   return (
     <>
       <Header />
@@ -263,7 +262,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
           <hr />
           <h2 className="kilimanjaro">
             <Link to={`/${data.strapiService.slug}/lights`}>
-              Browse All Our {data.strapiService.name} Lighting Styles
+              {data.strapiService.lights.length} {data.strapiService.name} lighting styles explore them here
             </Link>
           </h2>
         </div>
@@ -418,6 +417,10 @@ export const query = graphql`
 
       featured_lights {
         ...lightCard
+      }
+
+      lights {
+        id
       }
 
       videoMux

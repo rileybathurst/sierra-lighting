@@ -81,7 +81,7 @@ type LightViewTypes = {
 }
 const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: LightViewTypes) => {
 
-  console.log(holidayProcess);
+  // console.log(holidayProcess);
 
   interface ServiceTypes {
     id: React.Key;

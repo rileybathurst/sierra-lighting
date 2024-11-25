@@ -242,9 +242,9 @@ export const Head = ({ data }: LightPageTypes) => {
           ${data.strapiLight.name}
           ${data.strapiLight.alias ? ` | ${aliasString}` : ''}
           ${data.strapiLight.services.every(service => service.slug === 'residential' || service.slug === 'commercial') ? (
-            'for christmas lights'
+            'christmas light installation'
           ) : (
-            'for weddings'
+            'weddings light instalation'
           )}
         `}
         // TODO: needs the aliases in the SEO

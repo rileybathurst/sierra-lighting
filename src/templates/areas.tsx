@@ -1,4 +1,5 @@
 // TODO: holiday vs wedding flip here
+// TODO: add a gallery of images from the area
 
 import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
@@ -110,6 +111,55 @@ type AreasTemplateTypes = {
 };
 const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
+  // console.log(data.strapiArea.projects);
+  // data.strapiArea.projects ? console.log(data.strapiArea.projects.map((project) => project.image)) : null;
+
+  let areaProjectHeros = [];
+  if (data.strapiArea.projects) {
+    areaProjectHeros = data.strapiArea.projects.map((project) => project.image);
+    // console.log(areaProjectHeros);
+
+    // ! subareas are not being added in here
+    if (data.strapiArea.areas.length > 0) {
+      data.strapiArea.areas.map((area) => {
+        if (area.projects.length > 0) {
+          area.projects.map((project) =>
+            // console.log(project.image)
+            areaProjectHeros.push(project.image)
+          );
+        }
+      });
+    }
+  }
+
+  // console.log(data.strapiArea.areas.map((area) => area.projects));
+
+  // areas and sub area projects
+  const areaSubAreaProjects = new Set();
+
+  if (data.strapiArea.projects) {
+    data.strapiArea.projects.map((project) =>
+      areaSubAreaProjects.add(project)
+    );
+
+    if (data.strapiArea.areas.length > 0) {
+      data.strapiArea.areas.map((area) => {
+
+        if (area.projects.length > 0) {
+          area.projects.map((project) =>
+            areaSubAreaProjects.add(project)
+          );
+        }
+
+      });
+    }
+
+  }
+
+  // console.log(areaSubAreaProjects);
+  const areaSubAreaProjectsArray = Array.from(areaSubAreaProjects);
+  // console.log(areaSubAreaProjectsArray);
+
   return (
     <>
       <Header />
@@ -117,6 +167,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
       {data.strapiArea.image ?
         <Hero
           image={data.strapiArea.image}
+          gallery={areaProjectHeros}
         />
         : null}
       <main>
@@ -185,6 +236,24 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
           </Link>
         ))}
       </div>
+
+      {areaSubAreaProjectsArray.length > 0 ?
+        <section>
+          <div className='stork'>
+            <hr />
+            <h3 >Lighting projects in we have installed in {data.strapiArea.name}</h3>
+          </div>
+          <div className="deck">
+            {areaSubAreaProjectsArray.map((project: CardType) => (
+              <Card
+                key={project.id}
+                {...project}
+                breadcrumb='project'
+              />
+            ))}
+          </div>
+        </section>
+        : null}
 
       <div className='stork'>
         <hr />
@@ -272,8 +341,20 @@ export const query = graphql`
           }
         }
 
-        project {
-          ...projectCard
+        projects {
+          id
+          title
+          slug
+          excerpt
+
+          image {
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+            alternativeText
+          }
         }
       }
 
@@ -296,8 +377,20 @@ export const query = graphql`
         }
       }
 
-      project {
-        ...projectCard
+      projects {
+        id
+        title
+        slug
+        excerpt
+
+        image {
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+          alternativeText
+        }
       }
     }
 
@@ -333,20 +426,38 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }) => {
+type AreasTemplateSEOTypes = {
+  data: {
+    strapiArea: {
+      name: string;
+      excerpt: string;
+      slug: string;
+      image: {
+        localFile: {
+          url: string;
+        };
+      };
+    };
+    allStrapiService: {
+      nodes: {
+        name: string;
+      }[];
+    };
+    strapiAbout: {
+      businessName: string;
+    };
+  };
+}
+export const Head = ({ data }: AreasTemplateSEOTypes) => {
 
-  const servicesString = data.allStrapiService.nodes.map((service: ServiceTypes) => (
+  const servicesString = data.allStrapiService.nodes.map((service) => (
     `${service.name} lighting'`
   )).join(', ');
   // console.log(servicesString);
 
-  // console.log(data.strapiArea.project); // ! is this a single needs to be updated
-  // console.log(data.strapiArea.areas.map((area) => area.project));
-
-
   return (
     <SEO
-      title={`${data.strapiArea.name} professional Christmas, Wedding and event lighting installation`}
+      title={`${data.strapiArea.name} professional Christmas, Wedding and event light installation`}
       description={`${data.strapiArea.excerpt} ${data.strapiAbout.businessName} create professional ${servicesString} installations in ${data.strapiArea.name}.`}
       image={data.strapiArea?.image?.localFile?.url}
       breadcrumbs={[

@@ -45,7 +45,7 @@ export const query = graphql`
         ...lightCard
       }
 
-      areas {
+      area {
         name
         state
         slug

@@ -153,7 +153,7 @@ export const SEO = (SE0: SEO) => {
   }
 
   // console.log(data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, '));
-  console.log(data.allStrapiArea.nodes.map((area) => area.name).join(', '));
+  // console.log(data.allStrapiArea.nodes.map((area) => area.name).join(', '));
 
   return (
     <>
