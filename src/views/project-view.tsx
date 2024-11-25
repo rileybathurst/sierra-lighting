@@ -94,6 +94,7 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
     <>
       <Header />
 
+      {/* // TODO: the hero gallery need specific lights like the lookbook */}
       <Hero
         image={project.image}
         gallery={project.gallery}

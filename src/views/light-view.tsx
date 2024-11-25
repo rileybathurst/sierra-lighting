@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from "gatsby";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import Markdown from 'react-markdown';
 
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -50,6 +51,7 @@ type LightViewTypes = {
       id: React.Key;
       name: string;
       slug: string;
+      excerpt: string;
     }[];
 
     light_groups: {
@@ -116,6 +118,20 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
 
   // console.log(projects);
 
+  let holidayLight = false;
+  let weddingLight = false;
+
+  if (light.services.every(service => service.slug === 'residential' || service.slug === 'commercial')) {
+    console.log('this is a holiday light');
+    holidayLight = true;
+  } else {
+    console.log('this is a wedding light');
+    weddingLight = true;
+  }
+
+  console.log(light.services.map((service) => (service.name)));
+  console.log(light.services.map((service) => (service.description.data.description)));
+
   return (
     <>
       <Header />
@@ -132,11 +148,12 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
         <article className="stork">
           <h1 className="denali">
             {light.name}
-            {light.services.every(service => service.slug === 'residential' || service.slug === 'commercial') ? (
+            {holidayLight ?
               <span className="capitalize"> for christmas lighting</span>
-            ) : (
+              : null}
+            {weddingLight ?
               <span className="capitalize"> for wedding lighting</span>
-            )}
+              : null}
 
           </h1>
 
@@ -152,6 +169,7 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
 
       <hr className="stork" />
 
+      {/* // TODO: this isnt a card but its a little something closer to the idea */}
       <section className="attribute stork">
         <h3 className="crest">We use {light.name} for</h3>
         <ul className="">
@@ -159,18 +177,20 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
             return (
               <li
                 key={service.id}
-                className="kilimanjaro capitalize"
               >
-                <Link to={`/${service.slug}`}>
-                  {service.name} lighting
-                </Link>
+                <h3 className='kilimanjaro capitalize'>
+                  <Link to={`/${service.slug}`}>
+                    {service.name} lighting
+                  </Link>
+                </h3>
+                <Markdown className='react-markdown'>
+                  {service.description.data.description}
+                </Markdown>
               </li>
             )
           })}
-          {/* <li><hr /></li> */}
-          {/* <li className="kilimanjaro capitalize">Learn more about our <Link to="/process">process</Link></li> */}
-          <li className="kilimanjaro capitalize"><Link to="/faqs">Frequently Asked Questions</Link></li>
         </ul>
+        <h3 className="kilimanjaro capitalize"><Link to="/faqs">Frequently Asked Questions</Link></h3>
       </section>
 
       <section className="stork">

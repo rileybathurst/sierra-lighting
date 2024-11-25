@@ -1,15 +1,36 @@
 // TODO: I can query the og image by season
 import * as React from "react"
-
+import { useStaticQuery, graphql } from "gatsby";
+import Markdown from "react-markdown";
 import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 
 const ContactPage = () => {
+
+  const { strapiAbout } = useStaticQuery(graphql`
+    query ContactQuery {
+      strapiAbout {
+        description {
+          data {
+            description
+          }
+        }
+      }
+    }
+  `)
+
   return (
     <>
       <Header />
+      <main>
+        <Markdown
+          className='react-markdown'
+        >
+          {strapiAbout.description.data.description}
+        </Markdown>
+      </main>
       <Footer />
     </>
   )

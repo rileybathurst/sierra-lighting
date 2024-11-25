@@ -209,7 +209,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
           <li className="christmas">
             <ul>
               <li key="christmas" className="footer_list--no_link">
-                <strong>Christmas Lighting Installation</strong>
+                <strong>Christmas Light Installation</strong>
               </li>
 
               <li key="residential"><Link to="/residential">Residential</Link></li>
@@ -228,7 +228,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
               {/* // TODO: make the top link a little more subtle */}
               <li key="wedding" className="link--subtle">
                 {/* // TODO: tidy up the long titles */}
-                <Link to="/wedding"><strong>Wedding Lighting Installation</strong></Link>
+                <Link to="/wedding"><strong>Wedding Light Installation</strong></Link>
               </li>
               <li key="wedding lights">
                 <Link to="/wedding/lights">Wedding Lights</Link>

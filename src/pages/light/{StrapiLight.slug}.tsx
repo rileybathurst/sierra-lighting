@@ -18,6 +18,11 @@ export const query = graphql`
         id
         name
         slug
+        description {
+          data {
+            description
+          }
+        }
       }
 
       light_groups {

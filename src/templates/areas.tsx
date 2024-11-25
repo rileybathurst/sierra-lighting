@@ -451,14 +451,22 @@ type AreasTemplateSEOTypes = {
 export const Head = ({ data }: AreasTemplateSEOTypes) => {
 
   const servicesString = data.allStrapiService.nodes.map((service) => (
-    `${service.name} lighting'`
+    `${service.name} light installs`
   )).join(', ');
   // console.log(servicesString);
+
+  let subAreasString = '';
+  if (data.strapiArea.areas.length > 0) {
+    // console.log(data.strapiArea.areas)
+    subAreasString = data.strapiArea.areas.map((area) => area.name).join(', ');
+  }
+
+  console.log(subAreasString)
 
   return (
     <SEO
       title={`${data.strapiArea.name} professional Christmas, Wedding and event light installation`}
-      description={`${data.strapiArea.excerpt} ${data.strapiAbout.businessName} create professional ${servicesString} installations in ${data.strapiArea.name}.`}
+      description={`Professional ${servicesString} installations in ${data.strapiArea.name}${subAreasString ? `, ${subAreasString}` : null}.`}
       image={data.strapiArea?.image?.localFile?.url}
       breadcrumbs={[
         {
