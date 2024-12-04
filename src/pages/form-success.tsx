@@ -18,7 +18,9 @@ const FormSucessPage = () => {
           <Link to="/">Head to our home page.</Link>
         </p>
       </main>
-      <Footer />
+      <Footer
+        quote={false}
+      />
     </>
   )
 }

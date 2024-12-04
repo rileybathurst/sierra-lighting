@@ -1,8 +1,8 @@
 // TODO: check this on the xmas season
 // TODO: storybook and fragment more of this if not componentize it
+// TODO: why do we have 3 queries for all wedding and xmas lights? they are grabbing the same thing
+// ! use an object for the groups so we can sort them and read whats going on
 
-// this doesnt find lights that arent in a group?
-// chandeliers were missing and that didnt get caught
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
@@ -13,7 +13,6 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 import LightSearch from "../components/light-search";
-import type { CardType } from "../types/card-type";
 
 const lightsPage = () => {
 
@@ -104,7 +103,7 @@ const lightsPage = () => {
   const lightGroupSet = new Set();
   for (const light of dataSeason.nodes) {
     light.light_groups.map((group: { slug: string }) => {
-      lightGroupSet.add(group.slug)
+      lightGroupSet.add(group.slug,)
     })
   }
   // ? what if I go to an object so I can deal with the order
@@ -122,6 +121,9 @@ const lightsPage = () => {
       ))
   })
 
+  console.log(lightGroupArray);
+
+  // console.log(data.strapiSeason.wedding);
   if (data.strapiSeason.wedding) {
     lightGroupArrayOrder.sort((a, b) => {
       if (a[1] === null && b[1] === null) {

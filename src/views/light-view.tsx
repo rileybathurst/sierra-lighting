@@ -122,15 +122,15 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
   let weddingLight = false;
 
   if (light.services.every(service => service.slug === 'residential' || service.slug === 'commercial')) {
-    console.log('this is a holiday light');
+    // console.log('this is a holiday light');
     holidayLight = true;
   } else {
-    console.log('this is a wedding light');
+    // console.log('this is a wedding light');
     weddingLight = true;
   }
 
-  console.log(light.services.map((service) => (service.name)));
-  console.log(light.services.map((service) => (service.description.data.description)));
+  // console.log(light.services.map((service) => (service.name)));
+  // console.log(light.services.map((service) => (service.description.data.description)));
 
   return (
     <>

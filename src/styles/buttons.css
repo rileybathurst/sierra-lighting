@@ -30,6 +30,12 @@
   background-color: var(--brilliance);
   border: 1px solid var(--honey-100);
   box-shadow: none;
+  /* padding-block: clamp(0.5rem, 1vw, 1rem); */
+
+  svg {
+    min-width: clamp(2rem, 5vw, 5rem);
+    max-width: clamp(2rem, 5vw, 5rem);
+  }
 }
 
 .review-star.active svg {

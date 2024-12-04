@@ -15,6 +15,7 @@ import type { CardType } from "../../types/card-type";
 import type CardAndGroupType from "../../types/card-and-group-type";
 import { SEO } from "../../components/seo";
 
+// TODO: this should be a component
 type AttributeTypes = {
   price: string;
   roofline: string;
@@ -100,6 +101,15 @@ function ResidentialShowcase() {
   }
 
   const lightGroupArray = lightGroupSet.sort((a, b) => a.xmasOrder - b.xmasOrder);
+
+  lightGroupArray.map((group) => (
+    data.allStrapiLight.nodes
+      .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))
+      .slice(0, 1)
+      .map((light: CardAndGroupType) => (
+        console.log(light.light_groups)
+      ))
+  ));
 
   // TODO: This page breaks if a light doesnt have a group do a better of console logging that
 

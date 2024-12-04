@@ -16,6 +16,14 @@ type LocationTypes = {
 }
 const FeedbackPage = ({ location }: LocationTypes) => {
 
+  const { strapiAbout } = useStaticQuery(graphql`
+    query FeedbackQuery {
+      strapiAbout {
+        googleReviews
+      }
+    }
+  `);
+
   const jobberParams = new URLSearchParams(location.search);
 
   let jobberName = '';
@@ -223,7 +231,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
             <button
               className="button"
               type="button"
-              onClick={() => window.open("https://g.page/r/CXdQyNRhzs8YEAI/review", "_blank", "noopener,noreferrer")}
+              onClick={() => window.open(strapiAbout.googleReviews, "_blank", "noopener,noreferrer")}
             >
               Please Leave Us A Review
             </button>
