@@ -1979,6 +1979,7 @@ type Query_strapiAboutArgs = {
   geoLongitude: InputMaybe<FloatQueryOperatorInput>;
   geoRadius: InputMaybe<IntQueryOperatorInput>;
   google: InputMaybe<StringQueryOperatorInput>;
+  googleReviews: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   instagram: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
@@ -2658,6 +2659,7 @@ type STRAPI_ABOUT = Node & {
   readonly geoLongitude: Maybe<Scalars['Float']>;
   readonly geoRadius: Maybe<Scalars['Int']>;
   readonly google: Maybe<Scalars['String']>;
+  readonly googleReviews: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly instagram: Maybe<Scalars['String']>;
   readonly internal: Internal;
@@ -2781,6 +2783,7 @@ type STRAPI_ABOUTFieldSelector = {
   readonly geoLongitude: InputMaybe<FieldSelectorEnum>;
   readonly geoRadius: InputMaybe<FieldSelectorEnum>;
   readonly google: InputMaybe<FieldSelectorEnum>;
+  readonly googleReviews: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly instagram: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
@@ -2819,6 +2822,7 @@ type STRAPI_ABOUTFilterInput = {
   readonly geoLongitude: InputMaybe<FloatQueryOperatorInput>;
   readonly geoRadius: InputMaybe<IntQueryOperatorInput>;
   readonly google: InputMaybe<StringQueryOperatorInput>;
+  readonly googleReviews: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly instagram: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
@@ -2898,6 +2902,7 @@ type STRAPI_ABOUTSortInput = {
   readonly geoLongitude: InputMaybe<SortOrderEnum>;
   readonly geoRadius: InputMaybe<SortOrderEnum>;
   readonly google: InputMaybe<SortOrderEnum>;
+  readonly googleReviews: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly instagram: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
@@ -10654,6 +10659,11 @@ type ContactQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type ContactQueryQuery = { readonly strapiAbout: { readonly description: { readonly data: { readonly description: string | null } | null } | null } | null };
 
+type FeedbackQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type FeedbackQueryQuery = { readonly strapiReview: { readonly starting: string | null, readonly positive: string | null, readonly negative: string | null } | null, readonly strapiAbout: { readonly googleReviews: string | null } | null };
+
 type FooterQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -10762,11 +10772,6 @@ type ProjectsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type ProjectsQueryQuery = { readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null, readonly projects: ReadonlyArray<{ readonly updatedAt: string | null, readonly id: string, readonly title: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null }> } };
-
-type ReviewsQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type ReviewsQueryQuery = { readonly strapiReview: { readonly starting: string | null, readonly positive: string | null, readonly negative: string | null } | null };
 
 type SearchQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

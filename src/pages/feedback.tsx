@@ -16,14 +16,6 @@ type LocationTypes = {
 }
 const FeedbackPage = ({ location }: LocationTypes) => {
 
-  const { strapiAbout } = useStaticQuery(graphql`
-    query FeedbackQuery {
-      strapiAbout {
-        googleReviews
-      }
-    }
-  `);
-
   const jobberParams = new URLSearchParams(location.search);
 
   let jobberName = '';
@@ -37,12 +29,16 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     }
   }
 
-  const { strapiReview } = useStaticQuery(graphql`
-    query ReviewsQuery {
+  const data = useStaticQuery(graphql`
+    query FeedbackQuery {
       strapiReview {
         starting
         positive
         negative
+      }
+
+      strapiAbout {
+        googleReviews
       }
     }
   `);
@@ -176,7 +172,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
       <main className="stork">
 
         <h1>Feedback</h1>
-        <p>{strapiReview.starting}</p>
+        <p>{data.strapiReview.starting}</p>
 
         <div className="review-stars">
           <button type="button" title="1 Star Button"
@@ -227,11 +223,11 @@ const FeedbackPage = ({ location }: LocationTypes) => {
 
         {positive &&
           <>
-            <p>{strapiReview.positive}</p>
+            <p>{data.strapiReview.positive}</p>
             <button
               className="button"
               type="button"
-              onClick={() => window.open(strapiAbout.googleReviews, "_blank", "noopener,noreferrer")}
+              onClick={() => window.open(data.strapiAbout.googleReviews, "_blank", "noopener,noreferrer")}
             >
               Please Leave Us A Review
             </button>
@@ -239,7 +235,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
 
         }
         {negative && <>
-          <p>{strapiReview.negative}</p>
+          <p>{data.strapiReview.negative}</p>
           <h3
           >
             Please Let Us Know How We Can Improve
