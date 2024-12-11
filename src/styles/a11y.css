@@ -8,6 +8,7 @@
   height: 0;
   line-height: 0;
   overflow: hidden;
+  margin: 0;
 
   * {
     width: 0;
@@ -16,6 +17,9 @@
   }
 }
 
-button .sr-only {
+button .sr-only,
+button.sr-only {
   display: inline-block;
+  padding: 0;
+  border: none;
 }

@@ -94,10 +94,10 @@ const Footer = ({ quote }: { quote?: boolean }) => {
           <form
             name="contact"
             data-netlify="true"
-            className="stork"
             netlify-honeypot="bot-field"
             method="POST"
             action="/form-success"
+            className="stork"
           >
 
             <input type="hidden" name="form-name" value="contact" />

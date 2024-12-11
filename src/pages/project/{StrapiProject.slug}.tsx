@@ -1,4 +1,5 @@
 // TODO: run this through gatsby-node to get the service in the url
+// TODO: This query took more than 15s to run — which might indicate you're querying too much or have some unoptimized code:
 
 import * as React from "react"
 import { graphql } from "gatsby"

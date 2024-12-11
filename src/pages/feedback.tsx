@@ -1,3 +1,5 @@
+// ! the file doesnt show the form straight away so netlify cant detect the form
+
 import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -6,7 +8,6 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Star from "../images/star";
-import FeedbackForm from "../components/feedback-form";
 
 type LocationTypes = {
   location: {
@@ -156,8 +157,6 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setFiveHover(true);
   }
 
-
-
   useEffect(() => {
     if (fiveStar) {
       const timer = setTimeout(() => {
@@ -176,51 +175,8 @@ const FeedbackPage = ({ location }: LocationTypes) => {
         <h1>Feedback</h1>
         <p>{data.strapiFeedback.starting}</p>
 
-        <div className="feedback-stars">
-          <button type="button" title="1 Star Button"
-            className={`feedback-star ${oneStar ? 'active' : ''} ${oneHover ? 'hover' : ''}`}
-            onClick={One}
-            onMouseOver={OneHover}
-            onFocus={OneHover}
-          >
-            <Star />
-          </button>
-          <button type="button" title="2 Star Button"
-            onClick={Two}
-            onMouseOver={TwoHover}
-            onFocus={TwoHover}
-            className={`feedback-star ${twoStar ? 'active' : ''} ${twoHover ? 'hover' : ''}`}
-          >
-            <Star />
-          </button>
-          <button type="button" title="3 Star Button"
-            onClick={Three}
-            onMouseOver={ThreeHover}
-            onFocus={ThreeHover}
-            className={`feedback-star ${threeStar ? 'active' : ''} ${threeHover ? 'hover' : ''}`}
-          >
-            <Star />
-          </button>
-          <button type="button" title="4 Star Button"
-            onClick={Four}
-            onMouseOver={FourHover}
-            onFocus={FourHover}
-            className={`feedback-star ${fourStar ? 'active' : ''} ${fourHover ? 'hover' : ''}`}
-          >
-            <Star />
-          </button>
-          <button type="button" title="5 Star Button"
-            onClick={Five}
-            onMouseOver={FiveHover}
-            onFocus={FiveHover}
-            className={`feedback-star ${fiveStar ? 'active' : ''} ${fiveHover ? 'hover' : ''}`}
-          >
-            <Star />
-          </button>
-        </div>
-
         {stars > 0 &&
-          <h3>{stars} Star</h3>
+          <h3>{stars} Star{stars > 1 && 's'}</h3>
         }
 
         {positive &&
@@ -236,21 +192,127 @@ const FeedbackPage = ({ location }: LocationTypes) => {
           </>
 
         }
-        {negative && <>
-          <p>{data.strapiFeedback.negative}</p>
-          <h3
-          >
-            Please Let Us Know How We Can Improve
-          </h3>
-
-          <FeedbackForm
-            stars={stars}
-            name={jobberName}
-            email={jobberEmail}
-            title={false}
-          />
-        </>
+        {negative &&
+          <>
+            <p>{data.strapiFeedback.negative}</p>
+            <h3
+            >
+              Please Let Us Know How We Can Improve
+            </h3>
+          </>
         }
+
+        <form
+          name="feedback"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          method="POST"
+          action="/form-success"
+          className="stork"
+        >
+
+          <input
+            type="hidden"
+            name="form-name"
+            value="feedback"
+          />
+
+          <input
+            type="hidden"
+            name="subject"
+            value="Feedback Form from Sierra Lighting" />
+
+          <p className="sr-only">
+            <label>
+              Don&#39;t fill this out if you&#39;re human:
+              <input name="bot-field" />
+            </label>
+          </p>
+
+          <label
+            className={negative ? "" : "sr-only"}
+          >
+            Name
+            <input
+              type={negative ? "text" : "hidden"}
+              name="name"
+
+            />
+          </label>
+          <label
+            className={negative ? "" : "sr-only"}
+          >Email
+            <input
+              type={negative ? "email" : "hidden"}
+              name="email"
+            />
+          </label>
+          <label className="sr-only">Stars (out of five)
+            <input
+              type="number"
+              min="0"
+              max="5"
+              name="stars"
+              value={stars}
+            />
+          </label>
+
+          <label
+            className={negative ? "" : "sr-only"}
+          >Feedback
+            <textarea name="feedback" />
+          </label>
+
+
+          <div className="feedback-stars">
+            <button type="button" title="1 Star Button"
+              className={`feedback-star ${oneStar ? 'active' : ''} ${oneHover ? 'hover' : ''}`}
+              onClick={One}
+              onMouseOver={OneHover}
+              onFocus={OneHover}
+            >
+              <Star />
+            </button>
+            <button type="button" title="2 Star Button"
+              onClick={Two}
+              onMouseOver={TwoHover}
+              onFocus={TwoHover}
+              className={`feedback-star ${twoStar ? 'active' : ''} ${twoHover ? 'hover' : ''}`}
+            >
+              <Star />
+            </button>
+            <button type="button" title="3 Star Button"
+              onClick={Three}
+              onMouseOver={ThreeHover}
+              onFocus={ThreeHover}
+              className={`feedback-star ${threeStar ? 'active' : ''} ${threeHover ? 'hover' : ''}`}
+            >
+              <Star />
+            </button>
+            <button type="button" title="4 Star Button"
+              onClick={Four}
+              onMouseOver={FourHover}
+              onFocus={FourHover}
+              className={`feedback-star ${fourStar ? 'active' : ''} ${fourHover ? 'hover' : ''}`}
+            >
+              <Star />
+            </button>
+            <button type="button" title="5 Star Button"
+              onClick={Five}
+              onMouseOver={FiveHover}
+              onFocus={FiveHover}
+              className={`feedback-star ${fiveStar ? 'active' : ''} ${fiveHover ? 'hover' : ''}`}
+            >
+              <Star />
+            </button>
+          </div>
+
+          <button
+            className={negative ? "button" : "sr-only"}
+            type="submit"
+          >Send</button>
+
+        </form>
 
       </main >
 

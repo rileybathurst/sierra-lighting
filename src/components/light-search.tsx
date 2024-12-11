@@ -1,3 +1,5 @@
+// TODO: This query took more than 15s to run — which might indicate you're querying too much or have some unoptimized code:
+
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import * as JsSearch from "js-search"
