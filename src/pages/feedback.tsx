@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Star from "../images/star";
-import ReviewForm from "../components/review-form";
+import FeedbackForm from "../components/feedback-form";
 
 type LocationTypes = {
   location: {
@@ -31,7 +31,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
 
   const data = useStaticQuery(graphql`
     query FeedbackQuery {
-      strapiReview {
+      strapiFeedback {
         starting
         positive
         negative
@@ -156,14 +156,16 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setFiveHover(true);
   }
 
+
+
   useEffect(() => {
     if (fiveStar) {
       const timer = setTimeout(() => {
-        window.location.href = "https://g.page/r/CXdQyNRhzs8YEAI/review";
+        window.location.href = data.strapiAbout.googleReviews;
       }, 7000);
       return () => clearTimeout(timer);
     }
-  }, [fiveStar]);
+  }, [fiveStar, data.strapiAbout.googleReviews]);
 
   return (
     <>
@@ -172,11 +174,11 @@ const FeedbackPage = ({ location }: LocationTypes) => {
       <main className="stork">
 
         <h1>Feedback</h1>
-        <p>{data.strapiReview.starting}</p>
+        <p>{data.strapiFeedback.starting}</p>
 
-        <div className="review-stars">
+        <div className="feedback-stars">
           <button type="button" title="1 Star Button"
-            className={`review-star ${oneStar ? 'active' : ''} ${oneHover ? 'hover' : ''}`}
+            className={`feedback-star ${oneStar ? 'active' : ''} ${oneHover ? 'hover' : ''}`}
             onClick={One}
             onMouseOver={OneHover}
             onFocus={OneHover}
@@ -187,7 +189,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
             onClick={Two}
             onMouseOver={TwoHover}
             onFocus={TwoHover}
-            className={`review-star ${twoStar ? 'active' : ''} ${twoHover ? 'hover' : ''}`}
+            className={`feedback-star ${twoStar ? 'active' : ''} ${twoHover ? 'hover' : ''}`}
           >
             <Star />
           </button>
@@ -195,7 +197,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
             onClick={Three}
             onMouseOver={ThreeHover}
             onFocus={ThreeHover}
-            className={`review-star ${threeStar ? 'active' : ''} ${threeHover ? 'hover' : ''}`}
+            className={`feedback-star ${threeStar ? 'active' : ''} ${threeHover ? 'hover' : ''}`}
           >
             <Star />
           </button>
@@ -203,7 +205,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
             onClick={Four}
             onMouseOver={FourHover}
             onFocus={FourHover}
-            className={`review-star ${fourStar ? 'active' : ''} ${fourHover ? 'hover' : ''}`}
+            className={`feedback-star ${fourStar ? 'active' : ''} ${fourHover ? 'hover' : ''}`}
           >
             <Star />
           </button>
@@ -211,7 +213,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
             onClick={Five}
             onMouseOver={FiveHover}
             onFocus={FiveHover}
-            className={`review-star ${fiveStar ? 'active' : ''} ${fiveHover ? 'hover' : ''}`}
+            className={`feedback-star ${fiveStar ? 'active' : ''} ${fiveHover ? 'hover' : ''}`}
           >
             <Star />
           </button>
@@ -223,7 +225,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
 
         {positive &&
           <>
-            <p>{data.strapiReview.positive}</p>
+            <p>{data.strapiFeedback.positive}</p>
             <button
               className="button"
               type="button"
@@ -235,13 +237,13 @@ const FeedbackPage = ({ location }: LocationTypes) => {
 
         }
         {negative && <>
-          <p>{data.strapiReview.negative}</p>
+          <p>{data.strapiFeedback.negative}</p>
           <h3
           >
             Please Let Us Know How We Can Improve
           </h3>
 
-          <ReviewForm
+          <FeedbackForm
             stars={stars}
             name={jobberName}
             email={jobberEmail}
@@ -265,7 +267,6 @@ export const Head = () => {
     <SEO
       title='Feedback'
       description="We value your feedback and would love to hear your thoughts about your experience."
-    // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
     />
   )
 }

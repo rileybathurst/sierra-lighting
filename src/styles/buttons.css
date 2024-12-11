@@ -22,11 +22,11 @@
 
 /*------------------------------------*/
 
-.review-stars button {
+.feedback-stars button {
   margin-inline: 0;
 }
 
-.review-star {
+.feedback-star {
   background-color: var(--brilliance);
   border: 1px solid var(--honey-100);
   box-shadow: none;
@@ -38,7 +38,7 @@
   }
 }
 
-.review-star.active svg {
+.feedback-star.active svg {
   fill: var(--honey-300);
 
   @media (prefers-color-scheme: dark) {
@@ -46,7 +46,7 @@
   }
 }
 
-.review-star.hover {
+.feedback-star.hover {
   background-color: var(--honey-100);
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-100);

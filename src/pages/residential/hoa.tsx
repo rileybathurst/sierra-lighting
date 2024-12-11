@@ -1,4 +1,5 @@
 // * removed from /static/robots.txt
+// ? whats the type for strapi?
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"

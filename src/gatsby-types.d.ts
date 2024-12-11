@@ -1325,6 +1325,7 @@ type Query = {
   readonly allStrapiAreaDescriptionTextnode: STRAPI_AREA_DESCRIPTION_TEXTNODEConnection;
   readonly allStrapiAreaExploratrion: STRAPI_AREA_EXPLORATRIONConnection;
   readonly allStrapiFar: STRAPI_FARConnection;
+  readonly allStrapiFeedback: STRAPI_FEEDBACKConnection;
   readonly allStrapiHero: STRAPI_HEROConnection;
   readonly allStrapiImageGrab: STRAPI_IMAGE_GRABConnection;
   readonly allStrapiJob: STRAPI_JOBConnection;
@@ -1342,7 +1343,6 @@ type Query = {
   readonly allStrapiProjectDescriptionTextnode: STRAPI_PROJECT_DESCRIPTION_TEXTNODEConnection;
   readonly allStrapiQuality: STRAPI_QUALITYConnection;
   readonly allStrapiQualityDescriptionTextnode: STRAPI_QUALITY_DESCRIPTION_TEXTNODEConnection;
-  readonly allStrapiReview: STRAPI_REVIEWConnection;
   readonly allStrapiSeason: STRAPI_SEASONConnection;
   readonly allStrapiService: STRAPI_SERVICEConnection;
   readonly allStrapiServiceAfterTheTriptychTextnode: STRAPI_SERVICE_AFTER_THE_TRIPTYCH_TEXTNODEConnection;
@@ -1373,6 +1373,7 @@ type Query = {
   readonly strapiAreaDescriptionTextnode: Maybe<STRAPI_AREA_DESCRIPTION_TEXTNODE>;
   readonly strapiAreaExploratrion: Maybe<STRAPI_AREA_EXPLORATRION>;
   readonly strapiFar: Maybe<STRAPI_FAR>;
+  readonly strapiFeedback: Maybe<STRAPI_FEEDBACK>;
   readonly strapiHero: Maybe<STRAPI_HERO>;
   readonly strapiImageGrab: Maybe<STRAPI_IMAGE_GRAB>;
   readonly strapiJob: Maybe<STRAPI_JOB>;
@@ -1390,7 +1391,6 @@ type Query = {
   readonly strapiProjectDescriptionTextnode: Maybe<STRAPI_PROJECT_DESCRIPTION_TEXTNODE>;
   readonly strapiQuality: Maybe<STRAPI_QUALITY>;
   readonly strapiQualityDescriptionTextnode: Maybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODE>;
-  readonly strapiReview: Maybe<STRAPI_REVIEW>;
   readonly strapiSeason: Maybe<STRAPI_SEASON>;
   readonly strapiService: Maybe<STRAPI_SERVICE>;
   readonly strapiServiceAfterTheTriptychTextnode: Maybe<STRAPI_SERVICE_AFTER_THE_TRIPTYCH_TEXTNODE>;
@@ -1529,6 +1529,14 @@ type Query_allStrapiFarArgs = {
 };
 
 
+type Query_allStrapiFeedbackArgs = {
+  filter: InputMaybe<STRAPI_FEEDBACKFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_FEEDBACKSortInput>>>;
+};
+
+
 type Query_allStrapiHeroArgs = {
   filter: InputMaybe<STRAPI_HEROFilterInput>;
   limit: InputMaybe<Scalars['Int']>;
@@ -1662,14 +1670,6 @@ type Query_allStrapiQualityDescriptionTextnodeArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_QUALITY_DESCRIPTION_TEXTNODESortInput>>>;
-};
-
-
-type Query_allStrapiReviewArgs = {
-  filter: InputMaybe<STRAPI_REVIEWFilterInput>;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_REVIEWSortInput>>>;
 };
 
 
@@ -2092,6 +2092,20 @@ type Query_strapiFarArgs = {
 };
 
 
+type Query_strapiFeedbackArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  createdAt: InputMaybe<DateQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  negative: InputMaybe<StringQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  positive: InputMaybe<StringQueryOperatorInput>;
+  starting: InputMaybe<StringQueryOperatorInput>;
+  strapi_id: InputMaybe<IntQueryOperatorInput>;
+  updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+
 type Query_strapiHeroArgs = {
   back: InputMaybe<STRAPI__MEDIAFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
@@ -2373,21 +2387,6 @@ type Query_strapiQualityDescriptionTextnodeArgs = {
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
-};
-
-
-type Query_strapiReviewArgs = {
-  children: InputMaybe<NodeFilterListInput>;
-  createdAt: InputMaybe<DateQueryOperatorInput>;
-  id: InputMaybe<StringQueryOperatorInput>;
-  internal: InputMaybe<InternalFilterInput>;
-  negative: InputMaybe<StringQueryOperatorInput>;
-  parent: InputMaybe<NodeFilterInput>;
-  positive: InputMaybe<StringQueryOperatorInput>;
-  publishedAt: InputMaybe<DateQueryOperatorInput>;
-  starting: InputMaybe<StringQueryOperatorInput>;
-  strapi_id: InputMaybe<IntQueryOperatorInput>;
-  updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
 
 
@@ -3885,6 +3884,160 @@ type STRAPI_FARSortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly question: InputMaybe<SortOrderEnum>;
+  readonly strapi_id: InputMaybe<SortOrderEnum>;
+  readonly updatedAt: InputMaybe<SortOrderEnum>;
+};
+
+type STRAPI_FEEDBACK = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly negative: Maybe<Scalars['String']>;
+  readonly parent: Maybe<Node>;
+  readonly positive: Maybe<Scalars['String']>;
+  readonly starting: Maybe<Scalars['String']>;
+  readonly strapi_id: Maybe<Scalars['Int']>;
+  readonly updatedAt: Maybe<Scalars['Date']>;
+};
+
+
+type STRAPI_FEEDBACK_createdAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_FEEDBACK_updatedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type STRAPI_FEEDBACKConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_FEEDBACKEdge>;
+  readonly group: ReadonlyArray<STRAPI_FEEDBACKGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_FEEDBACK>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_FEEDBACKConnection_distinctArgs = {
+  field: STRAPI_FEEDBACKFieldSelector;
+};
+
+
+type STRAPI_FEEDBACKConnection_groupArgs = {
+  field: STRAPI_FEEDBACKFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_FEEDBACKConnection_maxArgs = {
+  field: STRAPI_FEEDBACKFieldSelector;
+};
+
+
+type STRAPI_FEEDBACKConnection_minArgs = {
+  field: STRAPI_FEEDBACKFieldSelector;
+};
+
+
+type STRAPI_FEEDBACKConnection_sumArgs = {
+  field: STRAPI_FEEDBACKFieldSelector;
+};
+
+type STRAPI_FEEDBACKEdge = {
+  readonly next: Maybe<STRAPI_FEEDBACK>;
+  readonly node: STRAPI_FEEDBACK;
+  readonly previous: Maybe<STRAPI_FEEDBACK>;
+};
+
+type STRAPI_FEEDBACKFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly negative: InputMaybe<FieldSelectorEnum>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly positive: InputMaybe<FieldSelectorEnum>;
+  readonly starting: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_id: InputMaybe<FieldSelectorEnum>;
+  readonly updatedAt: InputMaybe<FieldSelectorEnum>;
+};
+
+type STRAPI_FEEDBACKFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly negative: InputMaybe<StringQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly positive: InputMaybe<StringQueryOperatorInput>;
+  readonly starting: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
+  readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+type STRAPI_FEEDBACKGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_FEEDBACKEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<STRAPI_FEEDBACKGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_FEEDBACK>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_FEEDBACKGroupConnection_distinctArgs = {
+  field: STRAPI_FEEDBACKFieldSelector;
+};
+
+
+type STRAPI_FEEDBACKGroupConnection_groupArgs = {
+  field: STRAPI_FEEDBACKFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_FEEDBACKGroupConnection_maxArgs = {
+  field: STRAPI_FEEDBACKFieldSelector;
+};
+
+
+type STRAPI_FEEDBACKGroupConnection_minArgs = {
+  field: STRAPI_FEEDBACKFieldSelector;
+};
+
+
+type STRAPI_FEEDBACKGroupConnection_sumArgs = {
+  field: STRAPI_FEEDBACKFieldSelector;
+};
+
+type STRAPI_FEEDBACKSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly negative: InputMaybe<SortOrderEnum>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly positive: InputMaybe<SortOrderEnum>;
+  readonly starting: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -6654,172 +6807,6 @@ type STRAPI_QUALITY_DESCRIPTION_TEXTNODESortInput = {
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
-};
-
-type STRAPI_REVIEW = Node & {
-  readonly children: ReadonlyArray<Node>;
-  readonly createdAt: Maybe<Scalars['Date']>;
-  readonly id: Scalars['ID'];
-  readonly internal: Internal;
-  readonly negative: Maybe<Scalars['String']>;
-  readonly parent: Maybe<Node>;
-  readonly positive: Maybe<Scalars['String']>;
-  readonly publishedAt: Maybe<Scalars['Date']>;
-  readonly starting: Maybe<Scalars['String']>;
-  readonly strapi_id: Maybe<Scalars['Int']>;
-  readonly updatedAt: Maybe<Scalars['Date']>;
-};
-
-
-type STRAPI_REVIEW_createdAtArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-
-type STRAPI_REVIEW_publishedAtArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-
-type STRAPI_REVIEW_updatedAtArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-type STRAPI_REVIEWConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<STRAPI_REVIEWEdge>;
-  readonly group: ReadonlyArray<STRAPI_REVIEWGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<STRAPI_REVIEW>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type STRAPI_REVIEWConnection_distinctArgs = {
-  field: STRAPI_REVIEWFieldSelector;
-};
-
-
-type STRAPI_REVIEWConnection_groupArgs = {
-  field: STRAPI_REVIEWFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type STRAPI_REVIEWConnection_maxArgs = {
-  field: STRAPI_REVIEWFieldSelector;
-};
-
-
-type STRAPI_REVIEWConnection_minArgs = {
-  field: STRAPI_REVIEWFieldSelector;
-};
-
-
-type STRAPI_REVIEWConnection_sumArgs = {
-  field: STRAPI_REVIEWFieldSelector;
-};
-
-type STRAPI_REVIEWEdge = {
-  readonly next: Maybe<STRAPI_REVIEW>;
-  readonly node: STRAPI_REVIEW;
-  readonly previous: Maybe<STRAPI_REVIEW>;
-};
-
-type STRAPI_REVIEWFieldSelector = {
-  readonly children: InputMaybe<NodeFieldSelector>;
-  readonly createdAt: InputMaybe<FieldSelectorEnum>;
-  readonly id: InputMaybe<FieldSelectorEnum>;
-  readonly internal: InputMaybe<InternalFieldSelector>;
-  readonly negative: InputMaybe<FieldSelectorEnum>;
-  readonly parent: InputMaybe<NodeFieldSelector>;
-  readonly positive: InputMaybe<FieldSelectorEnum>;
-  readonly publishedAt: InputMaybe<FieldSelectorEnum>;
-  readonly starting: InputMaybe<FieldSelectorEnum>;
-  readonly strapi_id: InputMaybe<FieldSelectorEnum>;
-  readonly updatedAt: InputMaybe<FieldSelectorEnum>;
-};
-
-type STRAPI_REVIEWFilterInput = {
-  readonly children: InputMaybe<NodeFilterListInput>;
-  readonly createdAt: InputMaybe<DateQueryOperatorInput>;
-  readonly id: InputMaybe<StringQueryOperatorInput>;
-  readonly internal: InputMaybe<InternalFilterInput>;
-  readonly negative: InputMaybe<StringQueryOperatorInput>;
-  readonly parent: InputMaybe<NodeFilterInput>;
-  readonly positive: InputMaybe<StringQueryOperatorInput>;
-  readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
-  readonly starting: InputMaybe<StringQueryOperatorInput>;
-  readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
-  readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
-};
-
-type STRAPI_REVIEWGroupConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<STRAPI_REVIEWEdge>;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-  readonly group: ReadonlyArray<STRAPI_REVIEWGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<STRAPI_REVIEW>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type STRAPI_REVIEWGroupConnection_distinctArgs = {
-  field: STRAPI_REVIEWFieldSelector;
-};
-
-
-type STRAPI_REVIEWGroupConnection_groupArgs = {
-  field: STRAPI_REVIEWFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type STRAPI_REVIEWGroupConnection_maxArgs = {
-  field: STRAPI_REVIEWFieldSelector;
-};
-
-
-type STRAPI_REVIEWGroupConnection_minArgs = {
-  field: STRAPI_REVIEWFieldSelector;
-};
-
-
-type STRAPI_REVIEWGroupConnection_sumArgs = {
-  field: STRAPI_REVIEWFieldSelector;
-};
-
-type STRAPI_REVIEWSortInput = {
-  readonly children: InputMaybe<NodeSortInput>;
-  readonly createdAt: InputMaybe<SortOrderEnum>;
-  readonly id: InputMaybe<SortOrderEnum>;
-  readonly internal: InputMaybe<InternalSortInput>;
-  readonly negative: InputMaybe<SortOrderEnum>;
-  readonly parent: InputMaybe<NodeSortInput>;
-  readonly positive: InputMaybe<SortOrderEnum>;
-  readonly publishedAt: InputMaybe<SortOrderEnum>;
-  readonly starting: InputMaybe<SortOrderEnum>;
-  readonly strapi_id: InputMaybe<SortOrderEnum>;
-  readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
 
 type STRAPI_SEASON = Node & {
@@ -10662,7 +10649,7 @@ type ContactQueryQuery = { readonly strapiAbout: { readonly description: { reado
 type FeedbackQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type FeedbackQueryQuery = { readonly strapiReview: { readonly starting: string | null, readonly positive: string | null, readonly negative: string | null } | null, readonly strapiAbout: { readonly googleReviews: string | null } | null };
+type FeedbackQueryQuery = { readonly strapiFeedback: { readonly starting: string | null, readonly positive: string | null, readonly negative: string | null } | null, readonly strapiAbout: { readonly googleReviews: string | null } | null };
 
 type FooterQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

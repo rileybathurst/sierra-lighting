@@ -34,7 +34,7 @@ const strapiConfig = {
     'hero',
     'area-exploratrion',
     'minimum',
-    'review'
+    'feedback'
   ],
   remoteFileHeaders: {
     Referer: process.env.STRAPI_API_URL,
