@@ -3,6 +3,7 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 
 const TopBar = () => {
 
+  // TODO: this should have the season quote to default
   const { strapiTopbar } = useStaticQuery(graphql`
   query TopBarQuery {
     strapiTopbar {
