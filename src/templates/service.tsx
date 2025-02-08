@@ -258,15 +258,8 @@ const ServiceView = ({ data }: ServiceTypes) => {
       </main >
 
       <section id="lights">
-        <div className="stork">
-          <hr />
-          <h2 className="kilimanjaro">
-            <Link to={`/${data.strapiService.slug}/lights`}>
-              {data.strapiService.lights.length} {data.strapiService.name} lighting styles explore them here
-            </Link>
-          </h2>
-        </div>
 
+        <hr className='stork' />
 
         <div className='deck'>
           {data.strapiService.featured_lights.map((light: CardType) => (
@@ -278,6 +271,15 @@ const ServiceView = ({ data }: ServiceTypes) => {
           ))}
         </div>
 
+        <div className="stork">
+          <h2 className="kilimanjaro">
+            <Link to={`/${data.strapiService.slug}/lights`}>
+              {data.strapiService.lights.length} {data.strapiService.name} lighting styles explore them here
+            </Link>
+          </h2>
+
+        </div>
+
         {data.allStrapiLookbook?.nodes.length > 0 ?
           <>
             <hr className='pelican' />
@@ -287,7 +289,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
                 alt={data.strapiService.lookbookCover?.alternativeText || `${data.strapiService.slug} Lookbook`}
                 objectPosition="center"
               />
-              <h3>Browse our 2024 {data.strapiService.name} Lookbook</h3>
+              <h3>Browse our {new Date().getFullYear()} {data.strapiService.name} Lookbook</h3>
             </Link>
           </>
           : null}

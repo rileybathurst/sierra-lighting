@@ -103,7 +103,7 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
       <main className="stork">
         {/* // TODO wedding needs to become a variable */}
         <h2 className="crest">{data.strapiService.name}</h2>
-        <h1 className="range">2024 Lookbook</h1>
+        <h1 className="range">{new Date().getFullYear()} Lookbook</h1>
         <Start
           className="button--left-align"
           path={`lookbook-${data.strapiService.slug}`}

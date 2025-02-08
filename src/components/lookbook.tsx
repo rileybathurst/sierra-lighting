@@ -31,7 +31,7 @@ const Lookbook = ({ slug }: LookbookTypes) => {
           alt={strapiLookbook.image.alternativeText || `${slug} Lookbook`}
           objectPosition="center"
         />
-        <h3>Browse our 2024 {slug} Lookbook</h3>
+        <h3>Browse our {new Date().getFullYear()} {slug} Lookbook</h3>
       </Link>
     </>
   )
