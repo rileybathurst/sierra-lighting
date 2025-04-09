@@ -2,9 +2,13 @@
 import React from 'react';
 import Star from "../images/star";
 
-function TestimonialRanking(props) {
-  const count = [];
-  const stars = props.stars;
+interface TestimonialRankingProps {
+  stars: number;
+}
+
+function TestimonialRanking(props: TestimonialRankingProps): JSX.Element | null {
+  const count: number[] = [];
+  const stars: number = props.stars;
 
   if (stars > 1) {
     let i = 0;

@@ -11,6 +11,7 @@ import Markdown from "react-markdown";
 import Header from "../components/header";
 import Season from "../components/season";
 import BackImage from "../images/BackImage";
+import HeroWeadingBackImage from "../images/HeroWeddingBackImage";
 
 const IndexPage = () => {
 
@@ -78,6 +79,14 @@ const IndexPage = () => {
 
       strapiHero {
         front {
+          alternativeText
+          localFile {
+            childImageSharp {
+              gatsbyImageData
+            }
+          }
+        }
+        wedding_front {
           alternativeText
           localFile {
             childImageSharp {
@@ -164,7 +173,7 @@ const IndexPage = () => {
     <>
       <Header largeLogo={false} />
 
-      <main className="albatross marginBS-0">
+      <main className="albatross margin-block-start-0">
         {/* // TODO: tidy up these classes */}
         <div className="hero-3">
           <div className="large logo">
@@ -180,15 +189,22 @@ const IndexPage = () => {
             ))}
           </h2>
 
+          {/* TODO: Hero needs renaming now that I'm more happy with it */}
           <div className="images">
-
-
-            <BackImage />
-            <GatsbyImage image={data.strapiHero.front.localFile.childImageSharp.gatsbyImageData}
-              alt={data.strapiHero.front.alternativeText || "hero image"}
-              className="front"
-              backgroundColor="transparent"
-            />
+            {Season() ? <HeroWeadingBackImage /> : <BackImage />}
+            {Season() ?
+              <GatsbyImage image={data.strapiHero.wedding_front.localFile.childImageSharp.gatsbyImageData}
+                alt={data.strapiHero.wedding_front.alternativeText || "hero image"}
+                className="front"
+                backgroundColor="transparent"
+              />
+              :
+              <GatsbyImage image={data.strapiHero.front.localFile.childImageSharp.gatsbyImageData}
+                alt={data.strapiHero.front.alternativeText || "hero image"}
+                className="front"
+                backgroundColor="transparent"
+              />
+            }
           </div>
 
           <section className="text">

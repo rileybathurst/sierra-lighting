@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 
-function BackImage() {
+function HeroWeddingBackImage() {
 
   const { strapiHero } = useStaticQuery(graphql`
-    query BackImageQuery {
+    query HeroWeddingBackImageQuery {
       strapiHero {
-        back {
+        wedding_back {
           alternativeText
           localFile {
             childImageSharp {
@@ -61,12 +61,12 @@ function BackImage() {
     function handleIntersect(entries: IntersectionObserverEntry[]) {
       for (const entry of entries) {
         if (entry.intersectionRatio > prevRatio) {
-          setRatio(entry.intersectionRatio + 8);
+          setRatio(entry.intersectionRatio + 6);
         } else {
-          setRatio(entry.intersectionRatio + 8);
+          setRatio(entry.intersectionRatio + 6);
         }
 
-        prevRatio = entry.intersectionRatio + 8;
+        prevRatio = entry.intersectionRatio + 6;
       }
     }
   });
@@ -86,8 +86,8 @@ function BackImage() {
       ref={image}
     >{/* needs this to load quick enough */}
       <GatsbyImage
-        image={strapiHero.back.localFile.childImageSharp.gatsbyImageData}
-        alt={strapiHero.back.alternativeText || "background image"}
+        image={strapiHero.wedding_back.localFile.childImageSharp.gatsbyImageData}
+        alt={strapiHero.wedding_back.alternativeText || "background image"}
         className="back"
         objectPosition="bottom"
         style={backStyle}
@@ -96,4 +96,4 @@ function BackImage() {
   );
 }
 
-export default BackImage;
+export default HeroWeddingBackImage;

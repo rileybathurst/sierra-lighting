@@ -2117,6 +2117,8 @@ type Query_strapiHeroArgs = {
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
+  wedding_back: InputMaybe<STRAPI__MEDIAFilterInput>;
+  wedding_front: InputMaybe<STRAPI__MEDIAFilterInput>;
 };
 
 
@@ -2230,6 +2232,7 @@ type Query_strapiLookbookArgs = {
   spread: InputMaybe<IntQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
+  vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
   venue: InputMaybe<STRAPI_VENUEFilterInput>;
 };
 
@@ -2576,6 +2579,7 @@ type Query_strapiVendorArgs = {
   id: InputMaybe<StringQueryOperatorInput>;
   instagram: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
+  lookbook: InputMaybe<STRAPI_LOOKBOOKFilterInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   pinterest: InputMaybe<StringQueryOperatorInput>;
@@ -4053,6 +4057,8 @@ type STRAPI_HERO = Node & {
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
+  readonly wedding_back: Maybe<STRAPI__MEDIA>;
+  readonly wedding_front: Maybe<STRAPI__MEDIA>;
 };
 
 
@@ -4135,6 +4141,8 @@ type STRAPI_HEROFieldSelector = {
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
+  readonly wedding_back: InputMaybe<STRAPI__MEDIAFieldSelector>;
+  readonly wedding_front: InputMaybe<STRAPI__MEDIAFieldSelector>;
 };
 
 type STRAPI_HEROFilterInput = {
@@ -4148,6 +4156,8 @@ type STRAPI_HEROFilterInput = {
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly wedding_back: InputMaybe<STRAPI__MEDIAFilterInput>;
+  readonly wedding_front: InputMaybe<STRAPI__MEDIAFilterInput>;
 };
 
 type STRAPI_HEROGroupConnection = {
@@ -4202,6 +4212,8 @@ type STRAPI_HEROSortInput = {
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
+  readonly wedding_back: InputMaybe<STRAPI__MEDIASortInput>;
+  readonly wedding_front: InputMaybe<STRAPI__MEDIASortInput>;
 };
 
 type STRAPI_IMAGE_GRAB = Node & {
@@ -5145,6 +5157,7 @@ type STRAPI_LOOKBOOK = Node & {
   readonly spread: Maybe<Scalars['Int']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
+  readonly vendors: Maybe<ReadonlyArray<Maybe<STRAPI_VENDOR>>>;
   readonly venue: Maybe<STRAPI_VENUE>;
 };
 
@@ -5250,6 +5263,7 @@ type STRAPI_LOOKBOOKFieldSelector = {
   readonly spread: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
+  readonly vendors: InputMaybe<STRAPI_VENDORFieldSelector>;
   readonly venue: InputMaybe<STRAPI_VENUEFieldSelector>;
 };
 
@@ -5270,6 +5284,7 @@ type STRAPI_LOOKBOOKFilterInput = {
   readonly spread: InputMaybe<IntQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
   readonly venue: InputMaybe<STRAPI_VENUEFilterInput>;
 };
 
@@ -5335,6 +5350,7 @@ type STRAPI_LOOKBOOKSortInput = {
   readonly spread: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
+  readonly vendors: InputMaybe<STRAPI_VENDORSortInput>;
   readonly venue: InputMaybe<STRAPI_VENUESortInput>;
 };
 
@@ -8678,6 +8694,7 @@ type STRAPI_VENDOR = Node & {
   readonly id: Scalars['ID'];
   readonly instagram: Maybe<Scalars['String']>;
   readonly internal: Internal;
+  readonly lookbook: Maybe<STRAPI_LOOKBOOK>;
   readonly name: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly pinterest: Maybe<Scalars['String']>;
@@ -8771,6 +8788,7 @@ type STRAPI_VENDORFieldSelector = {
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly instagram: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly lookbook: InputMaybe<STRAPI_LOOKBOOKFieldSelector>;
   readonly name: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly pinterest: InputMaybe<FieldSelectorEnum>;
@@ -8795,6 +8813,7 @@ type STRAPI_VENDORFilterInput = {
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly instagram: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
+  readonly lookbook: InputMaybe<STRAPI_LOOKBOOKFilterInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly pinterest: InputMaybe<StringQueryOperatorInput>;
@@ -8864,6 +8883,7 @@ type STRAPI_VENDORSortInput = {
   readonly id: InputMaybe<SortOrderEnum>;
   readonly instagram: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
+  readonly lookbook: InputMaybe<STRAPI_LOOKBOOKSortInput>;
   readonly name: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly pinterest: InputMaybe<SortOrderEnum>;
@@ -10682,6 +10702,11 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: st
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
+type HeroWeddingBackImageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type HeroWeddingBackImageQueryQuery = { readonly strapiHero: { readonly wedding_back: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null };
+
 type HoaQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -10697,7 +10722,7 @@ type IdeasQueryQuery = { readonly allStrapiLight: { readonly nodes: ReadonlyArra
 type IndexQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type IndexQueryQuery = { readonly strapiAbout: { readonly slogan: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiTestimonial: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly customer: string | null, readonly platform: string | null, readonly excerpt: string | null, readonly createdAt: string | null, readonly stars: number | null, readonly title: string | null, readonly position: string | null }> }, readonly allStrapiQuality: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly eyebrow: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null }> }, readonly strapiHero: { readonly front: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null };
+type IndexQueryQuery = { readonly strapiAbout: { readonly slogan: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly hero_light: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly hero_dark: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly allStrapiTestimonial: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly customer: string | null, readonly platform: string | null, readonly excerpt: string | null, readonly createdAt: string | null, readonly stars: number | null, readonly title: string | null, readonly position: string | null }> }, readonly allStrapiQuality: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly eyebrow: string | null, readonly description: { readonly data: { readonly description: string | null } | null } | null }> }, readonly strapiHero: { readonly front: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null, readonly wedding_front: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null };
 
 type lightCardFragment = { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null };
 
