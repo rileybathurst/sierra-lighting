@@ -9,9 +9,10 @@ function Season() {
     }
   `)
 
+  console.log('strapiSeason', strapiSeason)
+
   if (strapiSeason.wedding) {
     return 'wedding'
-
   }
   return 'xmas'
 }

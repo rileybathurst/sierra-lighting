@@ -1299,3 +1299,7 @@ footer {
     }
   }
 }
+
+.hero-3.wedding {
+  grid-template-columns: 20rem 1fr 20rem;
+}

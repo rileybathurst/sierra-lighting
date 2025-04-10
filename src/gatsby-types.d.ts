@@ -2284,6 +2284,7 @@ type Query_strapiMinimumArgs = {
 
 type Query_strapiPlanArgs = {
   address: InputMaybe<StringQueryOperatorInput>;
+  basicNotes: InputMaybe<StringQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
@@ -5632,6 +5633,7 @@ type STRAPI_MINIMUMSortInput = {
 
 type STRAPI_PLAN = Node & {
   readonly address: Maybe<Scalars['String']>;
+  readonly basicNotes: Maybe<Scalars['String']>;
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly id: Scalars['ID'];
@@ -5723,6 +5725,7 @@ type STRAPI_PLANEdge = {
 
 type STRAPI_PLANFieldSelector = {
   readonly address: InputMaybe<FieldSelectorEnum>;
+  readonly basicNotes: InputMaybe<FieldSelectorEnum>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
@@ -5745,6 +5748,7 @@ type STRAPI_PLANFieldSelector = {
 
 type STRAPI_PLANFilterInput = {
   readonly address: InputMaybe<StringQueryOperatorInput>;
+  readonly basicNotes: InputMaybe<StringQueryOperatorInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
@@ -5828,6 +5832,7 @@ type STRAPI_PLANNotesSortInput = {
 
 type STRAPI_PLANSortInput = {
   readonly address: InputMaybe<SortOrderEnum>;
+  readonly basicNotes: InputMaybe<SortOrderEnum>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
