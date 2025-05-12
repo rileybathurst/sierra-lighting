@@ -34,7 +34,8 @@ const strapiConfig = {
     'hero',
     'area-exploratrion',
     'minimum',
-    'feedback'
+    'feedback',
+    'lookbook-description'
   ],
   remoteFileHeaders: {
     Referer: process.env.STRAPI_API_URL,

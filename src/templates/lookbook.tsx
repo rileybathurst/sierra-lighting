@@ -81,6 +81,9 @@ type LookbookTemplateTypes = {
         lights: LinkedLooklightsTypes[]
       }[]
     };
+    strapiLookbookDescription: {
+      excerpt: string
+    }
   };
 }
 const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
@@ -94,16 +97,14 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
     lights: LinkedLooklightsTypes[]
   }
 
-  // console.log(data.strapiService.lookbooks);
-
   return (
     <>
       <Header largeLogo={true} />
 
       <main className="stork">
-        {/* // TODO wedding needs to become a variable */}
-        <h2 className="crest">{data.strapiService.name}</h2>
-        <h1 className="range">{new Date().getFullYear()} Lookbook</h1>
+
+        <h1>{new Date().getFullYear()} {data.strapiService.name} Lookbook</h1>
+        <p>{data.strapiLookbookDescription.excerpt}</p>
         <Start
           className="button--left-align"
           path={`lookbook-${data.strapiService.slug}`}
@@ -134,7 +135,6 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
         <Breadcrumb>Lookbook</Breadcrumb>
       </Breadcrumbs>
 
-
       <Footer />
     </>
   );
@@ -146,7 +146,7 @@ export const Head = ({ data }: LookbookTemplateTypes) => {
   return (
     <SEO
       title={`${data.strapiService.name} Lookbook`}
-      // description={data.strapiArea.excerpt}
+      description={data.strapiLookbookDescription.excerpt}
       breadcrumbs={[
         {
           name: data.strapiService.name,
@@ -182,6 +182,10 @@ export const query = graphql`
           alternativeText
         }
       }
+    }
+
+    strapiLookbookDescription {
+      excerpt
     }
   }
 `;

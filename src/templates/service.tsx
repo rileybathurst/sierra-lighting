@@ -29,6 +29,7 @@ interface ServiceTypes {
       triptych: { id: React.Key; localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } } }[];
       featured_lights: CardType[];
       videoMux: string;
+      lights: { id: string }[]; // Add the lights property
       lookbookCover: GatsbyImageType;
       venues: CardType[];
       vendors: CardType[];
@@ -297,7 +298,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
 
       <section id="process" className='stork backed bb'>
         <hr />
-        <h2>Our Process</h2>
+        <h2>Our {data.strapiService.name} lighting Process</h2>
         <p>
           Ready to bring your vision to life? Get started with a free estimate today and let us illuminate your {adjective} with an unforgettable lighting display!
         </p>

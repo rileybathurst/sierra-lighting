@@ -1333,6 +1333,7 @@ type Query = {
   readonly allStrapiLight: STRAPI_LIGHTConnection;
   readonly allStrapiLightGroup: STRAPI_LIGHT_GROUPConnection;
   readonly allStrapiLookbook: STRAPI_LOOKBOOKConnection;
+  readonly allStrapiLookbookDescription: STRAPI_LOOKBOOK_DESCRIPTIONConnection;
   readonly allStrapiLookbookDescriptionTextnode: STRAPI_LOOKBOOK_DESCRIPTION_TEXTNODEConnection;
   readonly allStrapiMedia: STRAPI__MEDIAConnection;
   readonly allStrapiMinimum: STRAPI_MINIMUMConnection;
@@ -1381,6 +1382,7 @@ type Query = {
   readonly strapiLight: Maybe<STRAPI_LIGHT>;
   readonly strapiLightGroup: Maybe<STRAPI_LIGHT_GROUP>;
   readonly strapiLookbook: Maybe<STRAPI_LOOKBOOK>;
+  readonly strapiLookbookDescription: Maybe<STRAPI_LOOKBOOK_DESCRIPTION>;
   readonly strapiLookbookDescriptionTextnode: Maybe<STRAPI_LOOKBOOK_DESCRIPTION_TEXTNODE>;
   readonly strapiMedia: Maybe<STRAPI__MEDIA>;
   readonly strapiMinimum: Maybe<STRAPI_MINIMUM>;
@@ -1590,6 +1592,14 @@ type Query_allStrapiLookbookArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_LOOKBOOKSortInput>>>;
+};
+
+
+type Query_allStrapiLookbookDescriptionArgs = {
+  filter: InputMaybe<STRAPI_LOOKBOOK_DESCRIPTIONFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_LOOKBOOK_DESCRIPTIONSortInput>>>;
 };
 
 
@@ -2234,6 +2244,19 @@ type Query_strapiLookbookArgs = {
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
   venue: InputMaybe<STRAPI_VENUEFilterInput>;
+};
+
+
+type Query_strapiLookbookDescriptionArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  createdAt: InputMaybe<DateQueryOperatorInput>;
+  excerpt: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_id: InputMaybe<IntQueryOperatorInput>;
+  updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
 
 
@@ -5353,6 +5376,164 @@ type STRAPI_LOOKBOOKSortInput = {
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORSortInput>;
   readonly venue: InputMaybe<STRAPI_VENUESortInput>;
+};
+
+type STRAPI_LOOKBOOK_DESCRIPTION = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly excerpt: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+  readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_id: Maybe<Scalars['Int']>;
+  readonly updatedAt: Maybe<Scalars['Date']>;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTION_createdAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTION_publishedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTION_updatedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type STRAPI_LOOKBOOK_DESCRIPTIONConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_LOOKBOOK_DESCRIPTIONEdge>;
+  readonly group: ReadonlyArray<STRAPI_LOOKBOOK_DESCRIPTIONGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_LOOKBOOK_DESCRIPTION>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTIONConnection_distinctArgs = {
+  field: STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTIONConnection_groupArgs = {
+  field: STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTIONConnection_maxArgs = {
+  field: STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTIONConnection_minArgs = {
+  field: STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTIONConnection_sumArgs = {
+  field: STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector;
+};
+
+type STRAPI_LOOKBOOK_DESCRIPTIONEdge = {
+  readonly next: Maybe<STRAPI_LOOKBOOK_DESCRIPTION>;
+  readonly node: STRAPI_LOOKBOOK_DESCRIPTION;
+  readonly previous: Maybe<STRAPI_LOOKBOOK_DESCRIPTION>;
+};
+
+type STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly excerpt: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_id: InputMaybe<FieldSelectorEnum>;
+  readonly updatedAt: InputMaybe<FieldSelectorEnum>;
+};
+
+type STRAPI_LOOKBOOK_DESCRIPTIONFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly excerpt: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
+  readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+type STRAPI_LOOKBOOK_DESCRIPTIONGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_LOOKBOOK_DESCRIPTIONEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<STRAPI_LOOKBOOK_DESCRIPTIONGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_LOOKBOOK_DESCRIPTION>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTIONGroupConnection_distinctArgs = {
+  field: STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTIONGroupConnection_groupArgs = {
+  field: STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTIONGroupConnection_maxArgs = {
+  field: STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTIONGroupConnection_minArgs = {
+  field: STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector;
+};
+
+
+type STRAPI_LOOKBOOK_DESCRIPTIONGroupConnection_sumArgs = {
+  field: STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector;
+};
+
+type STRAPI_LOOKBOOK_DESCRIPTIONSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly excerpt: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_id: InputMaybe<SortOrderEnum>;
+  readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
 
 type STRAPI_LOOKBOOK_DESCRIPTION_TEXTNODE = Node & {
@@ -10767,7 +10948,7 @@ type LookbookTemplateQueryQueryVariables = Exact<{
 }>;
 
 
-type LookbookTemplateQueryQuery = { readonly strapiService: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly lookbooks: ReadonlyArray<{ readonly id: string, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null };
+type LookbookTemplateQueryQuery = { readonly strapiService: { readonly id: string, readonly name: string | null, readonly slug: string | null, readonly lookbooks: ReadonlyArray<{ readonly id: string, readonly lights: ReadonlyArray<{ readonly slug: string | null, readonly name: string | null } | null> | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null } | null> | null } | null, readonly strapiLookbookDescription: { readonly excerpt: string | null } | null };
 
 type processFragment = { readonly id: string, readonly name: string | null, readonly markdown: { readonly data: { readonly markdown: string | null } | null } | null };
 
