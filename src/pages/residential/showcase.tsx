@@ -46,9 +46,7 @@ function ResidentialShowcase() {
 
   const data = useStaticQuery(graphql`
     query ShowcaseQuery {
-      allStrapiShowcase(
-        filter: {service: {slug: {eq: "residential"}}}
-      ) {
+      allStrapiShowcase {
         nodes {
           ...showcase
         }
@@ -156,8 +154,8 @@ function ResidentialShowcase() {
           <ReactMarkdown className='react-markdown'>
             {data.strapiService.showcaseDescription.data.showcaseDescription}
           </ReactMarkdown>
-          {/* // TODO: start */}
-          <h4><Link to="#contact">Enquire Now</Link></h4>
+          <hr />
+          <Start path="residential-showcase" />
         </div>
 
         {showcaseArray.map((tier) => (

@@ -10,6 +10,7 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import TestimonialRanking from "../components/testimonial-ranking";
 import Card from '../components/card';
 import SocialIcons from '../components/social-icons';
+import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
 // types
 import type { CardType } from '../types/card-type';
@@ -26,7 +27,6 @@ interface VendorTemplateViewTypes {
       facebook: string;
       website: string;
       pinterest: string;
-      service: string;
       excerpt: string;
 
       profile: {
@@ -37,6 +37,12 @@ interface VendorTemplateViewTypes {
           url: string;
         };
         alternativeText: string;
+      };
+
+      collaborator: {
+        industry: string;
+        slug: string;
+        description: BlocksContent;
       };
 
       testimonials: {
@@ -59,7 +65,7 @@ interface VendorTemplateViewTypes {
 
 const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
-  console.log(data.strapiVendor.instagram)
+  // console.log(data.strapiVendor.instagram)
 
   return (
     <>
@@ -136,7 +142,11 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
           : null
         }
 
+        <hr />
+        <BlocksRenderer content={data.strapiVendor.collaborator.description} />
       </main>
+
+
 
       {data.strapiVendor.projects.length > 0 ?
         <>
@@ -161,8 +171,8 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         <>
           <div className="stork">
             <hr />
-            <Link to={`/vendor/${data.strapiVendor.service}`}>
-              <h4>Other <span className='capitalize'>{data.strapiVendor.service}</span> Vendors</h4>
+            <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
+              <h4>Other <span className='capitalize'>{data.strapiVendor.collaborator.industry}</span> Vendors</h4>
             </Link>
           </div>
 
@@ -209,7 +219,7 @@ export default VendorTemplateView;
 export const query = graphql`
   query VendorTemplate(
     $slug: String!,
-    $service: String!,
+    $collaborator: String!,
     ) {
       strapiVendor(slug: {eq: $slug}) {
         id
@@ -220,8 +230,18 @@ export const query = graphql`
         facebook
         website
         pinterest
-        service
         excerpt
+        collaborator {
+          industry
+          slug
+          description {
+            children {
+              text
+              type
+            }
+            type
+          }
+        }
 
         profile {
           localFile {
@@ -267,7 +287,7 @@ export const query = graphql`
 
       allStrapiVendor(
         limit: 3,
-        filter: {service: {eq: $service}, slug: {ne: $slug}}
+        filter: {collaborator: {slug: {eq: $collaborator}}, slug: {ne: $slug}}
       ) {
         nodes {
           name

@@ -178,6 +178,18 @@ export const SEO = (SE0: SEO) => {
 
       {/* "about": "Creating ${data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}", */}
 
+      {/* // ! https://schema.org/keywords */}
+      {/* // TODO: about seems like the place to add diversity / LGBTQ+ information */}
+
+      {/* // TODO: 
+      https://schema.org/ContactPoint
+      https://schema.org/skills
+      https://schema.org/knowsAbout
+      https://schema.org/foundingDate
+      https://schema.org/foundingLocation
+      https://schema.org/Service
+      // */}
+
       <Script type="application/ld+json">
         {`
           {

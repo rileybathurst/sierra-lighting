@@ -83,7 +83,7 @@ type HeroType = {
         gatsbyImageData: IGatsbyImageData;
       };
     };
-    alternativeText: string;
+    alternativeText?: string;
     caption?: string
   };
   gallery?: ImageType[];

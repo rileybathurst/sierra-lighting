@@ -1,12 +1,12 @@
 import * as React from "react";
 
-const LinkedinIcon = () => {
+const LinkedinIcon = ({ businessName }: { businessName: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 127.6 127.9"
     >
-      <title>linkedin</title>
+      <title>{businessName} linkedin</title>
       <path d="M63.6,0c18.2,0,36.3,0.1,54.5,0c4.8,0,8.8,3.4,9.4,7.7c0.1,0.5,0.1,0.9,0.1,1.4c0,36.6,0,73.1,0,109.7
 c0,4.9-3.9,8.9-8.7,9.1c-0.3,0-0.6,0-1,0c-36.3,0-72.5,0-108.8,0c-4.6,0-8-2.4-9.2-6.6c-0.3-0.9-0.4-1.8-0.4-2.7
 c0-36.5,0-72.9,0-109.4c0-5.2,3.9-9.2,9.1-9.3c4.4-0.1,8.8,0,13.2,0C35.8,0,49.7,0,63.6,0z M67.9,55.8c0-2.2-0.1-4.4,0-6.6

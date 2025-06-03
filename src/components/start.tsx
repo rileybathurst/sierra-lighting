@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 
 type startTypes = {
-  className?: string
+  className?: string // I dont think this is used, but it is in the codebase
   path?: string
 }
 const Start = ({ className, path }: startTypes) => {

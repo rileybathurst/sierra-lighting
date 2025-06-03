@@ -3,15 +3,17 @@ import { graphql } from "gatsby"
 export const query = graphql`
   fragment showcase on STRAPI_SHOWCASE {
     id
+    
+    roofline
+    price
+    tree
+    tier
+
     description {
       data {
         description
       }
     }
-    roofline
-    price
-    tree
-    tier
     
     project {
       id

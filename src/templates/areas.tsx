@@ -119,7 +119,6 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
     areaProjectHeros = data.strapiArea.projects.map((project) => project.image);
     // console.log(areaProjectHeros);
 
-    // ! subareas are not being added in here
     if (data.strapiArea.areas.length > 0) {
       data.strapiArea.areas.map((area) => {
         if (area.projects.length > 0) {

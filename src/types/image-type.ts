@@ -5,6 +5,7 @@ type ImageType = {
     childImageSharp: {
       gatsbyImageData: IGatsbyImageData;
     };
+    url?: string;
   };
   alternativeText: string;
 };

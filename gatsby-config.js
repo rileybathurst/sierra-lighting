@@ -5,41 +5,43 @@ require('dotenv').config({
 const adapter = require("gatsby-adapter-netlify")
 
 const strapiConfig = {
-  apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
+  apiURL: process.env.STRAPI_API_URL,
   collectionTypes: [
+    'affiliation',
     'area',
+    'collaborator',
+    'far',
+    'image-grab',
+    'job',
+    'light',
+    'light-group',
+    'lookbook',
+    'process',
+    'project',
+    'quality',
+    'service',
+    'showcase',
+    'team',
     'testimonial',
     'vendor',
     'venue',
-    'light',
-    'far',
-    'job',
-    'project',
-    'team',
-    'affiliation',
-    'image-grab',
-    'light-group',
-    'service',
-    'process',
-    'showcase',
-    'quality',
-    'lookbook',
     'video'
-  ],
-  singleTypes: [
-    'topbar',
-    'season',
-    'about',
-    'hero',
-    'area-exploratrion',
-    'minimum',
-    'feedback',
-    'lookbook-description'
   ],
   remoteFileHeaders: {
     Referer: process.env.STRAPI_API_URL,
   },
+  singleTypes: [
+    'about',
+    'area-exploratrion',
+    'feedback',
+    'hero',
+    'lookbook-description',
+    'minimum',
+    'season',
+    'topbar',
+    'vendor-description',
+  ],
 };
 
 module.exports = {

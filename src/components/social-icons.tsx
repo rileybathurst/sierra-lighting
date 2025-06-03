@@ -1,3 +1,4 @@
+// ! these are all broken
 // TODO: do some work on the real colors
 // TODO: if a profile string or the full url
 
@@ -39,6 +40,7 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (yelp.includes('/')) {
       yelpFormatted = yelpFormatted.split('/')[0];
     }
+    yelpFormatted ? yelpFormatted = yelpFormatted : yelpFormatted = yelp;
   }
 
   let facebookFormatted = '';
@@ -49,6 +51,7 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (facebook.includes('/')) {
       facebookFormatted = facebookFormatted.split('/')[0];
     }
+    facebookFormatted ? facebookFormatted = facebookFormatted : facebookFormatted = facebook;
   }
 
   let instagramFormatted = '';
@@ -60,8 +63,8 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (instagram.includes('/')) {
       instagramFormatted = instagramFormatted.split('/')[0];
     }
+    instagramFormatted ? instagramFormatted = instagramFormatted : instagramFormatted = instagram;
   }
-  // console.log(instagramFormatted)
 
   let nextdoorFormatted = '';
   if (nextdoor) {
@@ -71,6 +74,7 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (nextdoor.includes('/')) {
       nextdoorFormatted = nextdoorFormatted.split('/')[0];
     }
+    nextdoorFormatted ? nextdoorFormatted = nextdoorFormatted : nextdoorFormatted = nextdoor;
   }
 
   let pinterestFormatted = '';
@@ -81,6 +85,7 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (pinterest.includes('/')) {
       pinterestFormatted = pinterestFormatted.split('/')[0];
     }
+    pinterestFormatted ? pinterestFormatted = pinterestFormatted : pinterestFormatted = pinterest;
   }
 
   let tiktokFormatted = '';
@@ -91,6 +96,7 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (tiktok.includes('/')) {
       tiktokFormatted = tiktokFormatted.split('/')[0];
     }
+    tiktokFormatted ? tiktokFormatted = tiktokFormatted : tiktokFormatted = tiktok;
   }
 
   let linkedinFormatted = '';
@@ -101,6 +107,7 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (linkedin.includes('/')) {
       linkedinFormatted = linkedinFormatted.split('/')[0];
     }
+    linkedinFormatted ? linkedinFormatted = linkedinFormatted : linkedinFormatted = linkedin;
   }
 
   const socialIcons = [
@@ -108,24 +115,24 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     yelp ? (
       {
         name: "yelp",
-        url: `https://www.yelp.com/biz/${yelpFormatted}/`,
-        icon: <YelpIcon />
+        url: `https://www.yelp.com/biz/${yelpFormatted}`,
+        icon: <YelpIcon businessName={businessName} />
       }
     ) : null
     ,
     facebook ? (
       {
         name: "facebook",
-        url: `https://www.facebook.com/${facebookFormatted}/`,
-        icon: <FacebookIcon />
+        url: `https://www.facebook.com/${facebookFormatted}`,
+        icon: <FacebookIcon businessName={businessName} />
       }
     ) : null
     ,
     instagram ? (
       {
         name: "instagram",
-        url: `https://www.instagram.com/${instagramFormatted}/`,
-        icon: <InstagramIcon />
+        url: `https://www.instagram.com/${instagramFormatted}`,
+        icon: <InstagramIcon businessName={businessName} />
       }
     ) : null
     ,
@@ -133,31 +140,31 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
       {
         name: "nextdoor",
         url: `https://nextdoor.com/pages/${nextdoorFormatted}/recommend/`,
-        icon: <NextdoorIcon />
+        icon: <NextdoorIcon businessName={businessName} />
       }
     ) : null
     ,
     pinterest ? (
       {
         name: "pinterest",
-        url: `https://www.pinterest.com/${pinterestFormatted}/`,
-        icon: <PinterestIcon />
+        url: `https://www.pinterest.com/${pinterestFormatted}`,
+        icon: <PinterestIcon businessName={businessName} />
       }
     ) : null
     ,
     tiktok ? (
       {
         name: "tiktok",
-        url: `https://www.tiktok.com/@${tiktokFormatted}/`,
-        icon: <TikTokIcon />
+        url: `https://www.tiktok.com/@${tiktokFormatted}`,
+        icon: <TikTokIcon businessName={businessName} />
       }
     ) : null
     ,
     linkedin ? (
       {
         name: "linkedin",
-        url: `https://www.linkedin.com/company/${linkedinFormatted}/`,
-        icon: <LinkedinIcon />
+        url: `https://www.linkedin.com/company/${linkedinFormatted}`,
+        icon: <LinkedinIcon businessName={businessName} />
       }
     ) : null
     ,
@@ -170,13 +177,16 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     ) : null
   ].filter(Boolean) as SocialTypes[];
 
+  // console.log(socialIcons.map((icon) => icon.name));
+  console.log(businessName)
+
   return (
     <ul id="footer-social" className="footer-social">
       {socialIcons.map((socialIcon: SocialTypes) => (
         <li key={socialIcon.name}>
           <a
             href={socialIcon.url}
-            title={`${businessName} ${socialIcon.name}`}
+            title={`${businessName} ${socialIcon.name.charAt(0).toUpperCase() + socialIcon.name.slice(1)}`}
             target="_blank"
             rel="noreferrer"
           >

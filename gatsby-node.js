@@ -78,29 +78,6 @@ exports.createPages = async ({ actions, graphql }) => {
     })
   }
 
-  // * /vendor/photography/
-  const getVendorServices = await graphql(`
-    query {
-      allStrapiVendor {
-        edges {
-          node {
-            service
-          }
-        }
-      }
-    }
-  `)
-
-  for (const { node } of getVendorServices.data.allStrapiVendor.edges) {
-    createPage({
-      path: `/vendor/${node.service}`,
-      component: path.resolve("src/templates/vendorservice.tsx"),
-      context: {
-        service: node.service,
-      },
-    })
-  }
-
   // * /vendor/envyeventmanagement/
   const getVendors = await graphql(`
     query {
@@ -108,7 +85,9 @@ exports.createPages = async ({ actions, graphql }) => {
         edges {
           node {
             slug
-            service
+            collaborator {
+              slug
+            }
           }
         }
       }
@@ -121,7 +100,7 @@ exports.createPages = async ({ actions, graphql }) => {
       component: path.resolve("src/templates/vendor.tsx"),
       context: {
         slug: node.slug,
-        service: node.service,
+        collaborator: node.collaborator.slug,
       },
     })
   }

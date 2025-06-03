@@ -1,12 +1,13 @@
 import * as React from "react";
 
-const YelpIcon = () => {
+
+const YelpIcon = ({ businessName }: { businessName: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 40 53.69"
     >
-      <title>yelp</title>
+      <title>{businessName} yelp</title>
       <path
         className="cls-1"
         d="M29.4,43.35l10.45,5.1a2.4,2.4,0,0,1-.47,4.48L28.1,55.74a2.39,2.39,0,0,1-3-2.06,20.48,20.48,0,0,1,.94-8.94A2.4,2.4,0,0,1,29.4,43.35Z"
