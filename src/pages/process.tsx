@@ -56,9 +56,11 @@ const ProcessPage = () => {
     return (
       <li key={id}>
         <h3>{name}</h3>
-        <ReactMarkdown className='react-markdown'>
-          {markdown.data.markdown}
-        </ReactMarkdown>
+        <div className='react-markdown'>
+          <ReactMarkdown>
+            {markdown.data.markdown}
+          </ReactMarkdown>
+        </div>
       </li>
     )
   }

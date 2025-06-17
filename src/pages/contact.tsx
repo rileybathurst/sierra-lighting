@@ -25,11 +25,11 @@ const ContactPage = () => {
     <>
       <Header />
       <main>
-        <Markdown
-          className='react-markdown'
-        >
-          {strapiAbout.description.data.description}
-        </Markdown>
+        <div className="react-markdown">
+          <Markdown>
+            {strapiAbout.description.data.description}
+          </Markdown>
+        </div>
       </main>
       <Footer />
     </>

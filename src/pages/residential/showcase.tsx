@@ -151,9 +151,11 @@ function ResidentialShowcase() {
       <main>
         <div className="stork">
           <h1 className="mixta">Residential Showcase</h1>
-          <ReactMarkdown className='react-markdown'>
-            {data.strapiService.showcaseDescription.data.showcaseDescription}
-          </ReactMarkdown>
+          <div className='react-markdown'>
+            <ReactMarkdown>
+              {data.strapiService.showcaseDescription.data.showcaseDescription}
+            </ReactMarkdown>
+          </div>
           <hr />
           <Start path="residential-showcase" />
         </div>
@@ -172,9 +174,11 @@ function ResidentialShowcase() {
 
                 <div className="stork">
                   <h3 className="capitalize">{showcase.tier} Showcase</h3>
-                  <ReactMarkdown className='react-markdown'>
-                    {showcase.description.data.description}
-                  </ReactMarkdown>
+                  <div className='react-markdown'>
+                    <ReactMarkdown>
+                      {showcase.description.data.description}
+                    </ReactMarkdown>
+                  </div>
                 </div>
 
                 <Attributes

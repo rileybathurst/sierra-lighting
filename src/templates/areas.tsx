@@ -183,11 +183,14 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
             className='button--left-align'
             path={`areas-${data.strapiArea.slug}`}
           />
-          <Markdown
+          <div
             className="react-markdown"
           >
-            {data.strapiArea?.description?.data?.description}
-          </Markdown>
+            <Markdown
+            >
+              {data.strapiArea?.description?.data?.description}
+            </Markdown>
+          </div>
 
         </article >
 

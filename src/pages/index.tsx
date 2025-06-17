@@ -210,7 +210,12 @@ const IndexPage = () => {
           <section className="text">
             <div className="background">{/* stay gold */}</div>
             {data.strapiAbout ?
-              <Markdown className='react-markdown'>
+              <Markdown components={{
+                p: ({ node, ...props }) => (
+                  <div className="react-markdown" {...props} />
+                )
+              }}
+              >
                 {data.strapiAbout.description.data.description}
               </Markdown>
               : null

@@ -237,9 +237,11 @@ const ServiceView = ({ data }: ServiceTypes) => {
             {data.strapiService.name} Lighting Installation
           </h1>
 
-          <Markdown className='react-markdown'>
-            {data.strapiService.description.data.description}
-          </Markdown>
+          <div className='react-markdown'>
+            <Markdown>
+              {data.strapiService.description.data.description}
+            </Markdown>
+          </div>
           <Start
             className="button--left-align"
             path={data.strapiService.slug}
@@ -307,9 +309,11 @@ const ServiceView = ({ data }: ServiceTypes) => {
           {data.allStrapiProcess.nodes.map((process) => (
             <li key={process.id}>
               <span className="ol-title">{process.name}</span>
-              <Markdown className='react-markdown'>
-                {process.markdown.data.markdown}
-              </Markdown>
+              <div className='react-markdown'>
+                <Markdown>
+                  {process.markdown.data.markdown}
+                </Markdown>
+              </div>
             </li>
           ))}
         </ol>
@@ -325,9 +329,11 @@ const ServiceView = ({ data }: ServiceTypes) => {
         <div id="consultant" className='stork'>
           <h3 className='kilimanjaro'>Have you ever noticed how much lighting can affect the feeling of space?</h3>
 
-          <Markdown className='react-markdown'>
-            {data.strapiService.after_the_triptych.data.after_the_triptych}
-          </Markdown>
+          <div className='react-markdown'>
+            <Markdown>
+              {data.strapiService.after_the_triptych.data.after_the_triptych}
+            </Markdown>
+          </div>
         </div>
         : null
       }

@@ -69,9 +69,11 @@ const ProjectsPage = () => {
                 <h2 className="baseline-drop">{service.name} Projects</h2>
                 {service.description ?
                   <section>
-                    <ReactMarkdown className='react-markdown double-baseline-drop'>
-                      {service.description.data.description}
-                    </ReactMarkdown>
+                    <div className='react-markdown double-baseline-drop'>
+                      <ReactMarkdown>
+                        {service.description.data.description}
+                      </ReactMarkdown>
+                    </div>
                   </section>
                   : null}
               </div>

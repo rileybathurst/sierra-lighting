@@ -96,9 +96,11 @@ const VenueView = ({ data }: VenueViewTypes) => {
         {/* // TODO this could probably be more structured with seo */}
         {data.strapiVenue.address ?
           <address>
-            <Markdown className='react-markdown'>
-              {data.strapiVenue.address.data.address}
-            </Markdown>
+            <div className='react-markdown'>
+              <Markdown>
+                {data.strapiVenue.address.data.address}
+              </Markdown>
+            </div>
           </address>
           : null}
 

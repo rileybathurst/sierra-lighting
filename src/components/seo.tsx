@@ -180,6 +180,7 @@ export const SEO = (SE0: SEO) => {
 
       {/* // ! https://schema.org/keywords */}
       {/* // TODO: about seems like the place to add diversity / LGBTQ+ information */}
+      {/* additional info about smart home / timers etc */}
 
       {/* // TODO: 
       https://schema.org/ContactPoint

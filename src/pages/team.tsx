@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
-import Markdown from "react-markdown";
+import { type IGatsbyImageData } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
 
 import Header from "../components/header";
@@ -47,8 +46,6 @@ const TeamPage = () => {
     <>
       <Header />
       <main>
-
-
         <h3 className="stork">The {data.strapiAbout.businessName} Team</h3>
       </main >
 

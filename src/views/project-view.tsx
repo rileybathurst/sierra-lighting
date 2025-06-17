@@ -105,9 +105,11 @@ const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes)
         <article >
           <h1>{project.title}</h1>
           {project.description ?
-            <ReactMarkdown className='react-markdown'>
-              {project.description.data.description}
-            </ReactMarkdown>
+            <div className='react-markdown'>
+              <ReactMarkdown>
+                {project.description.data.description}
+              </ReactMarkdown>
+            </div>
             : <p>{project.excerpt}</p>}
         </article>
 

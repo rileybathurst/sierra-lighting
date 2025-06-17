@@ -183,9 +183,11 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
                     {service.name} lighting
                   </Link>
                 </h3>
-                <Markdown className='react-markdown'>
-                  {service.description.data.description}
-                </Markdown>
+                <div className='react-markdown'>
+                  <Markdown>
+                    {service.description.data.description}
+                  </Markdown>
+                </div>
               </li>
             )
           })}

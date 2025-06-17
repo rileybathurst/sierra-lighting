@@ -90,10 +90,12 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
       <main>
         <section className='stork'>
           <h1 className='mixta aconcagua'>Lighting types for {data.strapiService.name}</h1>
-          <ReactMarkdown
+          <div
             className='react-markdown'>
-            {data.strapiService.description.data.description}
-          </ReactMarkdown>
+            <ReactMarkdown>
+              {data.strapiService.description.data.description}
+            </ReactMarkdown>
+          </div>
           <p>
             <Link to={`/${data.strapiService.slug}`}>
               Learn more about how we can light up your {data.strapiService.name}

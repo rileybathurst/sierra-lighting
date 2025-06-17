@@ -49,9 +49,11 @@ const TeamView = ({ team }: TeamTypes) => {
         <h1>{team.name}</h1>
 
         {team.bio ?
-          <Markdown className="react-markdown">
-            {team.bio.data.bio}
-          </Markdown>
+          <div className="react-markdown">
+            <Markdown>
+              {team.bio.data.bio}
+            </Markdown>
+          </div>
           : null
         }
 
