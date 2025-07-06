@@ -2003,6 +2003,7 @@ type Query_strapiAboutArgs = {
   defaultImage: InputMaybe<StringQueryOperatorInput>;
   defaultImageAlt: InputMaybe<StringQueryOperatorInput>;
   description: InputMaybe<STRAPI_ABOUTDescriptionFilterInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   email: InputMaybe<StringQueryOperatorInput>;
   facebook: InputMaybe<StringQueryOperatorInput>;
   geoLatitude: InputMaybe<FloatQueryOperatorInput>;
@@ -2024,6 +2025,7 @@ type Query_strapiAboutArgs = {
   priceRange: InputMaybe<StringQueryOperatorInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   slogan: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   telephone: InputMaybe<StringQueryOperatorInput>;
   tiktok: InputMaybe<StringQueryOperatorInput>;
@@ -2045,6 +2047,7 @@ type Query_strapiAboutDescriptionTextnodeArgs = {
 type Query_strapiAffiliationArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
@@ -2054,6 +2057,7 @@ type Query_strapiAffiliationArgs = {
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2064,6 +2068,7 @@ type Query_strapiAreaArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<STRAPI_AREADescriptionFilterInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   featured: InputMaybe<BooleanQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
@@ -2079,6 +2084,7 @@ type Query_strapiAreaArgs = {
   region: InputMaybe<STRAPI_AREAFilterInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
   state: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   tagline: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -2099,10 +2105,12 @@ type Query_strapiAreaExploratrionArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<StringQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2112,6 +2120,7 @@ type Query_strapiCollaboratorArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<STRAPI_COLLABORATORDescriptionFilterListInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   hero: InputMaybe<STRAPI__MEDIAFilterInput>;
@@ -2122,6 +2131,7 @@ type Query_strapiCollaboratorArgs = {
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
@@ -2132,11 +2142,13 @@ type Query_strapiFarArgs = {
   answer: InputMaybe<StringQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   question: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2145,12 +2157,15 @@ type Query_strapiFarArgs = {
 type Query_strapiFeedbackArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   negative: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   positive: InputMaybe<StringQueryOperatorInput>;
+  publishedAt: InputMaybe<DateQueryOperatorInput>;
   starting: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2160,11 +2175,13 @@ type Query_strapiHeroArgs = {
   back: InputMaybe<STRAPI__MEDIAFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   front: InputMaybe<STRAPI__MEDIAFilterInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   wedding_back: InputMaybe<STRAPI__MEDIAFilterInput>;
@@ -2175,11 +2192,13 @@ type Query_strapiHeroArgs = {
 type Query_strapiImageGrabArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   image: InputMaybe<STRAPI__MEDIAFilterInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   title: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -2191,11 +2210,13 @@ type Query_strapiJobArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<STRAPI_JOBDescriptionFilterInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   employmentType: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   title: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -2220,6 +2241,7 @@ type Query_strapiLightArgs = {
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<StringQueryOperatorInput>;
   detail: InputMaybe<STRAPI__MEDIAFilterInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   featured_service: InputMaybe<STRAPI_SERVICEFilterListInput>;
   gatsbyPath: InputMaybe<StringQueryOperatorInput>;
@@ -2237,6 +2259,7 @@ type Query_strapiLightArgs = {
   related: InputMaybe<STRAPI_LIGHTFilterInput>;
   services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   weddingOrder: InputMaybe<IntQueryOperatorInput>;
@@ -2247,6 +2270,7 @@ type Query_strapiLightArgs = {
 type Query_strapiLightGroupArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
@@ -2258,6 +2282,7 @@ type Query_strapiLightGroupArgs = {
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   weddingOrder: InputMaybe<IntQueryOperatorInput>;
@@ -2269,6 +2294,7 @@ type Query_strapiLookbookArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<STRAPI_LOOKBOOKDescriptionFilterInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   flex: InputMaybe<IntQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   image: InputMaybe<STRAPI__MEDIAFilterInput>;
@@ -2280,6 +2306,7 @@ type Query_strapiLookbookArgs = {
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   service: InputMaybe<STRAPI_SERVICEFilterInput>;
   spread: InputMaybe<IntQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
@@ -2290,11 +2317,13 @@ type Query_strapiLookbookArgs = {
 type Query_strapiLookbookDescriptionArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2314,6 +2343,7 @@ type Query_strapiMediaArgs = {
   caption: InputMaybe<StringQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   ext: InputMaybe<StringQueryOperatorInput>;
   formats: InputMaybe<STRAPI__MEDIAFormatsFilterInput>;
   hash: InputMaybe<StringQueryOperatorInput>;
@@ -2324,7 +2354,9 @@ type Query_strapiMediaArgs = {
   mime: InputMaybe<StringQueryOperatorInput>;
   name: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
+  publishedAt: InputMaybe<DateQueryOperatorInput>;
   size: InputMaybe<FloatQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<IntQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   url: InputMaybe<StringQueryOperatorInput>;
@@ -2335,11 +2367,13 @@ type Query_strapiMediaArgs = {
 type Query_strapiMinimumArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   dollars: InputMaybe<IntQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2350,6 +2384,7 @@ type Query_strapiPlanArgs = {
   basicNotes: InputMaybe<StringQueryOperatorInput>;
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   jobber: InputMaybe<IntQueryOperatorInput>;
@@ -2359,6 +2394,7 @@ type Query_strapiPlanArgs = {
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   svg: InputMaybe<StringQueryOperatorInput>;
   takedownFlexOrder: InputMaybe<IntQueryOperatorInput>;
@@ -2372,6 +2408,7 @@ type Query_strapiPlanArgs = {
 type Query_strapiProcessArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   markdown: InputMaybe<STRAPI_PROCESSMarkdownFilterInput>;
@@ -2380,6 +2417,7 @@ type Query_strapiProcessArgs = {
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   services: InputMaybe<STRAPI_SERVICEFilterListInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2400,6 +2438,7 @@ type Query_strapiProjectArgs = {
   createdAt: InputMaybe<DateQueryOperatorInput>;
   darkImage: InputMaybe<STRAPI__MEDIAFilterInput>;
   description: InputMaybe<STRAPI_PROJECTDescriptionFilterInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   gallery: InputMaybe<STRAPI__MEDIAFilterListInput>;
   gatsbyPath: InputMaybe<StringQueryOperatorInput>;
@@ -2414,6 +2453,7 @@ type Query_strapiProjectArgs = {
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   teams: InputMaybe<STRAPI_TEAMFilterListInput>;
   testimonial: InputMaybe<STRAPI_TESTIMONIALFilterInput>;
@@ -2437,6 +2477,7 @@ type Query_strapiQualityArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<STRAPI_QUALITYDescriptionFilterInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   eyebrow: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
@@ -2444,6 +2485,7 @@ type Query_strapiQualityArgs = {
   order: InputMaybe<IntQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2461,10 +2503,12 @@ type Query_strapiQualityDescriptionTextnodeArgs = {
 type Query_strapiSeasonArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   wedding: InputMaybe<BooleanQueryOperatorInput>;
@@ -2478,6 +2522,7 @@ type Query_strapiServiceArgs = {
   collaborators: InputMaybe<STRAPI_COLLABORATORFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<STRAPI_SERVICEDescriptionFilterInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   featured_lights: InputMaybe<STRAPI_LIGHTFilterListInput>;
   hero_dark: InputMaybe<STRAPI__MEDIAFilterInput>;
@@ -2496,6 +2541,7 @@ type Query_strapiServiceArgs = {
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   showcaseDescription: InputMaybe<STRAPI_SERVICEShowcaseDescriptionFilterInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   testimonials: InputMaybe<STRAPI_TESTIMONIALFilterListInput>;
   triptych: InputMaybe<STRAPI__MEDIAFilterListInput>;
@@ -2538,6 +2584,7 @@ type Query_strapiShowcaseArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<STRAPI_SHOWCASEDescriptionFilterInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
@@ -2546,6 +2593,7 @@ type Query_strapiShowcaseArgs = {
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   roofline: InputMaybe<StringQueryOperatorInput>;
   service: InputMaybe<STRAPI_SERVICEFilterInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   tier: InputMaybe<StringQueryOperatorInput>;
   tree: InputMaybe<StringQueryOperatorInput>;
@@ -2567,6 +2615,7 @@ type Query_strapiTeamArgs = {
   bio: InputMaybe<STRAPI_TEAMBioFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
@@ -2577,6 +2626,7 @@ type Query_strapiTeamArgs = {
   projects: InputMaybe<STRAPI_PROJECTFilterListInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2595,6 +2645,7 @@ type Query_strapiTestimonialArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   customer: InputMaybe<StringQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
@@ -2610,6 +2661,7 @@ type Query_strapiTestimonialArgs = {
   services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
   stars: InputMaybe<IntQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   title: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -2625,11 +2677,13 @@ type Query_strapiTopbarArgs = {
   defaultHolidayLink: InputMaybe<StringQueryOperatorInput>;
   defaultWedding: InputMaybe<StringQueryOperatorInput>;
   defaultWeddingLink: InputMaybe<StringQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   link: InputMaybe<StringQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   title: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -2641,6 +2695,7 @@ type Query_strapiVendorArgs = {
   collaborator: InputMaybe<STRAPI_COLLABORATORFilterInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<StringQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   facebook: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
@@ -2656,6 +2711,7 @@ type Query_strapiVendorArgs = {
   service: InputMaybe<StringQueryOperatorInput>;
   services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   testimonials: InputMaybe<STRAPI_TESTIMONIALFilterListInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -2666,11 +2722,13 @@ type Query_strapiVendorArgs = {
 type Query_strapiVendorDescriptionArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -2682,6 +2740,7 @@ type Query_strapiVenueArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<StringQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   excerpt: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
@@ -2692,6 +2751,7 @@ type Query_strapiVenueArgs = {
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   slug: InputMaybe<StringQueryOperatorInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   testimonials: InputMaybe<STRAPI_TESTIMONIALFilterListInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -2714,6 +2774,7 @@ type Query_strapiVideoArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
   description: InputMaybe<StringQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
   mux: InputMaybe<StringQueryOperatorInput>;
@@ -2721,6 +2782,7 @@ type Query_strapiVideoArgs = {
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
   service: InputMaybe<STRAPI_SERVICEFilterInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   thumbnailTime: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -2736,6 +2798,7 @@ type STRAPI_ABOUT = Node & {
   readonly defaultImage: Maybe<Scalars['String']>;
   readonly defaultImageAlt: Maybe<Scalars['String']>;
   readonly description: Maybe<STRAPI_ABOUTDescription>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly email: Maybe<Scalars['String']>;
   readonly facebook: Maybe<Scalars['String']>;
   readonly geoLatitude: Maybe<Scalars['Float']>;
@@ -2757,6 +2820,7 @@ type STRAPI_ABOUT = Node & {
   readonly priceRange: Maybe<Scalars['String']>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly slogan: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly telephone: Maybe<Scalars['String']>;
   readonly tiktok: Maybe<Scalars['String']>;
@@ -2860,6 +2924,7 @@ type STRAPI_ABOUTFieldSelector = {
   readonly defaultImage: InputMaybe<FieldSelectorEnum>;
   readonly defaultImageAlt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_ABOUTDescriptionFieldSelector>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly email: InputMaybe<FieldSelectorEnum>;
   readonly facebook: InputMaybe<FieldSelectorEnum>;
   readonly geoLatitude: InputMaybe<FieldSelectorEnum>;
@@ -2881,6 +2946,7 @@ type STRAPI_ABOUTFieldSelector = {
   readonly priceRange: InputMaybe<FieldSelectorEnum>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly slogan: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly telephone: InputMaybe<FieldSelectorEnum>;
   readonly tiktok: InputMaybe<FieldSelectorEnum>;
@@ -2899,6 +2965,7 @@ type STRAPI_ABOUTFilterInput = {
   readonly defaultImage: InputMaybe<StringQueryOperatorInput>;
   readonly defaultImageAlt: InputMaybe<StringQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_ABOUTDescriptionFilterInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly email: InputMaybe<StringQueryOperatorInput>;
   readonly facebook: InputMaybe<StringQueryOperatorInput>;
   readonly geoLatitude: InputMaybe<FloatQueryOperatorInput>;
@@ -2920,6 +2987,7 @@ type STRAPI_ABOUTFilterInput = {
   readonly priceRange: InputMaybe<StringQueryOperatorInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly slogan: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly telephone: InputMaybe<StringQueryOperatorInput>;
   readonly tiktok: InputMaybe<StringQueryOperatorInput>;
@@ -2979,6 +3047,7 @@ type STRAPI_ABOUTSortInput = {
   readonly defaultImage: InputMaybe<SortOrderEnum>;
   readonly defaultImageAlt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_ABOUTDescriptionSortInput>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly email: InputMaybe<SortOrderEnum>;
   readonly facebook: InputMaybe<SortOrderEnum>;
   readonly geoLatitude: InputMaybe<SortOrderEnum>;
@@ -3000,6 +3069,7 @@ type STRAPI_ABOUTSortInput = {
   readonly priceRange: InputMaybe<SortOrderEnum>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly slogan: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly telephone: InputMaybe<SortOrderEnum>;
   readonly tiktok: InputMaybe<SortOrderEnum>;
@@ -3129,6 +3199,7 @@ type STRAPI_ABOUT_DESCRIPTION_TEXTNODESortInput = {
 type STRAPI_AFFILIATION = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
@@ -3138,6 +3209,7 @@ type STRAPI_AFFILIATION = Node & {
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -3214,6 +3286,7 @@ type STRAPI_AFFILIATIONEdge = {
 type STRAPI_AFFILIATIONFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
@@ -3223,6 +3296,7 @@ type STRAPI_AFFILIATIONFieldSelector = {
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -3230,6 +3304,7 @@ type STRAPI_AFFILIATIONFieldSelector = {
 type STRAPI_AFFILIATIONFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
@@ -3239,6 +3314,7 @@ type STRAPI_AFFILIATIONFilterInput = {
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -3287,6 +3363,7 @@ type STRAPI_AFFILIATIONGroupConnection_sumArgs = {
 type STRAPI_AFFILIATIONSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
@@ -3296,6 +3373,7 @@ type STRAPI_AFFILIATIONSortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly slug: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -3305,6 +3383,7 @@ type STRAPI_AREA = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<STRAPI_AREADescription>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly featured: Maybe<Scalars['Boolean']>;
   readonly id: Scalars['ID'];
@@ -3320,6 +3399,7 @@ type STRAPI_AREA = Node & {
   readonly region: Maybe<STRAPI_AREA>;
   readonly slug: Maybe<Scalars['String']>;
   readonly state: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly tagline: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -3416,6 +3496,7 @@ type STRAPI_AREAFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_AREADescriptionFieldSelector>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly featured: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
@@ -3431,6 +3512,7 @@ type STRAPI_AREAFieldSelector = {
   readonly region: InputMaybe<STRAPI_AREAFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly state: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly tagline: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
@@ -3442,6 +3524,7 @@ type STRAPI_AREAFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_AREADescriptionFilterInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly featured: InputMaybe<BooleanQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
@@ -3457,6 +3540,7 @@ type STRAPI_AREAFilterInput = {
   readonly region: InputMaybe<STRAPI_AREAFilterInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly state: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly tagline: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -3513,6 +3597,7 @@ type STRAPI_AREASortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_AREADescriptionSortInput>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly featured: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
@@ -3528,6 +3613,7 @@ type STRAPI_AREASortInput = {
   readonly region: InputMaybe<STRAPI_AREASortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
   readonly state: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly tagline: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
@@ -3656,10 +3742,12 @@ type STRAPI_AREA_EXPLORATRION = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -3737,10 +3825,12 @@ type STRAPI_AREA_EXPLORATRIONFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -3749,10 +3839,12 @@ type STRAPI_AREA_EXPLORATRIONFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -3802,10 +3894,12 @@ type STRAPI_AREA_EXPLORATRIONSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -3814,6 +3908,7 @@ type STRAPI_COLLABORATOR = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<ReadonlyArray<Maybe<STRAPI_COLLABORATORDescription>>>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly hero: Maybe<STRAPI__MEDIA>;
@@ -3824,6 +3919,7 @@ type STRAPI_COLLABORATOR = Node & {
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly vendors: Maybe<ReadonlyArray<Maybe<STRAPI_VENDOR>>>;
@@ -3955,6 +4051,7 @@ type STRAPI_COLLABORATORFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_COLLABORATORDescriptionFieldSelector>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly gatsbyPath: InputMaybe<FieldSelectorEnum>;
   readonly hero: InputMaybe<STRAPI__MEDIAFieldSelector>;
@@ -3965,6 +4062,7 @@ type STRAPI_COLLABORATORFieldSelector = {
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORFieldSelector>;
@@ -3974,6 +4072,7 @@ type STRAPI_COLLABORATORFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_COLLABORATORDescriptionFilterListInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   readonly hero: InputMaybe<STRAPI__MEDIAFilterInput>;
@@ -3984,6 +4083,7 @@ type STRAPI_COLLABORATORFilterInput = {
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
@@ -4038,6 +4138,7 @@ type STRAPI_COLLABORATORSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_COLLABORATORDescriptionSortInput>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly gatsbyPath: InputMaybe<SortOrderEnum>;
   readonly hero: InputMaybe<STRAPI__MEDIASortInput>;
@@ -4048,6 +4149,7 @@ type STRAPI_COLLABORATORSortInput = {
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly services: InputMaybe<STRAPI_SERVICESortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORSortInput>;
@@ -4057,11 +4159,13 @@ type STRAPI_FAR = Node & {
   readonly answer: Maybe<Scalars['String']>;
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly question: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -4139,11 +4243,13 @@ type STRAPI_FARFieldSelector = {
   readonly answer: InputMaybe<FieldSelectorEnum>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly question: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -4152,11 +4258,13 @@ type STRAPI_FARFilterInput = {
   readonly answer: InputMaybe<StringQueryOperatorInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly question: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -4206,11 +4314,13 @@ type STRAPI_FARSortInput = {
   readonly answer: InputMaybe<SortOrderEnum>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly question: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -4218,18 +4328,29 @@ type STRAPI_FARSortInput = {
 type STRAPI_FEEDBACK = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly negative: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly positive: Maybe<Scalars['String']>;
+  readonly publishedAt: Maybe<Scalars['Date']>;
   readonly starting: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
 
 
 type STRAPI_FEEDBACK_createdAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_FEEDBACK_publishedAtArgs = {
   difference: InputMaybe<Scalars['String']>;
   formatString: InputMaybe<Scalars['String']>;
   fromNow: InputMaybe<Scalars['Boolean']>;
@@ -4292,12 +4413,15 @@ type STRAPI_FEEDBACKEdge = {
 type STRAPI_FEEDBACKFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly negative: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly positive: InputMaybe<FieldSelectorEnum>;
+  readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly starting: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -4305,12 +4429,15 @@ type STRAPI_FEEDBACKFieldSelector = {
 type STRAPI_FEEDBACKFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly negative: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly positive: InputMaybe<StringQueryOperatorInput>;
+  readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly starting: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -4359,12 +4486,15 @@ type STRAPI_FEEDBACKGroupConnection_sumArgs = {
 type STRAPI_FEEDBACKSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly negative: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly positive: InputMaybe<SortOrderEnum>;
+  readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly starting: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -4373,11 +4503,13 @@ type STRAPI_HERO = Node & {
   readonly back: Maybe<STRAPI__MEDIA>;
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly front: Maybe<STRAPI__MEDIA>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly wedding_back: Maybe<STRAPI__MEDIA>;
@@ -4457,11 +4589,13 @@ type STRAPI_HEROFieldSelector = {
   readonly back: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly front: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly wedding_back: InputMaybe<STRAPI__MEDIAFieldSelector>;
@@ -4472,11 +4606,13 @@ type STRAPI_HEROFilterInput = {
   readonly back: InputMaybe<STRAPI__MEDIAFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly front: InputMaybe<STRAPI__MEDIAFilterInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly wedding_back: InputMaybe<STRAPI__MEDIAFilterInput>;
@@ -4528,11 +4664,13 @@ type STRAPI_HEROSortInput = {
   readonly back: InputMaybe<STRAPI__MEDIASortInput>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly front: InputMaybe<STRAPI__MEDIASortInput>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly wedding_back: InputMaybe<STRAPI__MEDIASortInput>;
@@ -4542,11 +4680,13 @@ type STRAPI_HEROSortInput = {
 type STRAPI_IMAGE_GRAB = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly image: Maybe<STRAPI__MEDIA>;
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly title: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -4624,11 +4764,13 @@ type STRAPI_IMAGE_GRABEdge = {
 type STRAPI_IMAGE_GRABFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly image: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly title: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
@@ -4637,11 +4779,13 @@ type STRAPI_IMAGE_GRABFieldSelector = {
 type STRAPI_IMAGE_GRABFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly image: InputMaybe<STRAPI__MEDIAFilterInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -4691,11 +4835,13 @@ type STRAPI_IMAGE_GRABGroupConnection_sumArgs = {
 type STRAPI_IMAGE_GRABSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly image: InputMaybe<STRAPI__MEDIASortInput>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
@@ -4706,11 +4852,13 @@ type STRAPI_JOB = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<STRAPI_JOBDescription>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly employmentType: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly title: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -4815,11 +4963,13 @@ type STRAPI_JOBFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_JOBDescriptionFieldSelector>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly employmentType: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly title: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
@@ -4831,11 +4981,13 @@ type STRAPI_JOBFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_JOBDescriptionFilterInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly employmentType: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -4892,11 +5044,13 @@ type STRAPI_JOBSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_JOBDescriptionSortInput>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly employmentType: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
@@ -5029,6 +5183,7 @@ type STRAPI_LIGHT = Node & {
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
   readonly detail: Maybe<STRAPI__MEDIA>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly featured_service: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly gatsbyPath: Maybe<Scalars['String']>;
@@ -5046,6 +5201,7 @@ type STRAPI_LIGHT = Node & {
   readonly related: Maybe<STRAPI_LIGHT>;
   readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly weddingOrder: Maybe<Scalars['Int']>;
@@ -5134,6 +5290,7 @@ type STRAPI_LIGHTFieldSelector = {
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
   readonly detail: InputMaybe<STRAPI__MEDIAFieldSelector>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly featured_service: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly gatsbyPath: InputMaybe<FieldSelectorEnum>;
@@ -5151,6 +5308,7 @@ type STRAPI_LIGHTFieldSelector = {
   readonly related: InputMaybe<STRAPI_LIGHTFieldSelector>;
   readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly weddingOrder: InputMaybe<FieldSelectorEnum>;
@@ -5165,6 +5323,7 @@ type STRAPI_LIGHTFilterInput = {
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
   readonly detail: InputMaybe<STRAPI__MEDIAFilterInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly featured_service: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly gatsbyPath: InputMaybe<StringQueryOperatorInput>;
@@ -5182,6 +5341,7 @@ type STRAPI_LIGHTFilterInput = {
   readonly related: InputMaybe<STRAPI_LIGHTFilterInput>;
   readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly weddingOrder: InputMaybe<IntQueryOperatorInput>;
@@ -5241,6 +5401,7 @@ type STRAPI_LIGHTSortInput = {
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
   readonly detail: InputMaybe<STRAPI__MEDIASortInput>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly featured_service: InputMaybe<STRAPI_SERVICESortInput>;
   readonly gatsbyPath: InputMaybe<SortOrderEnum>;
@@ -5258,6 +5419,7 @@ type STRAPI_LIGHTSortInput = {
   readonly related: InputMaybe<STRAPI_LIGHTSortInput>;
   readonly services: InputMaybe<STRAPI_SERVICESortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly weddingOrder: InputMaybe<SortOrderEnum>;
@@ -5267,6 +5429,7 @@ type STRAPI_LIGHTSortInput = {
 type STRAPI_LIGHT_GROUP = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -5278,6 +5441,7 @@ type STRAPI_LIGHT_GROUP = Node & {
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly weddingOrder: Maybe<Scalars['Int']>;
@@ -5361,6 +5525,7 @@ type STRAPI_LIGHT_GROUPEdge = {
 type STRAPI_LIGHT_GROUPFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly gatsbyPath: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
@@ -5372,6 +5537,7 @@ type STRAPI_LIGHT_GROUPFieldSelector = {
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly weddingOrder: InputMaybe<FieldSelectorEnum>;
@@ -5381,6 +5547,7 @@ type STRAPI_LIGHT_GROUPFieldSelector = {
 type STRAPI_LIGHT_GROUPFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
@@ -5392,6 +5559,7 @@ type STRAPI_LIGHT_GROUPFilterInput = {
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly weddingOrder: InputMaybe<IntQueryOperatorInput>;
@@ -5446,6 +5614,7 @@ type STRAPI_LIGHT_GROUPGroupConnection_sumArgs = {
 type STRAPI_LIGHT_GROUPSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly gatsbyPath: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
@@ -5457,6 +5626,7 @@ type STRAPI_LIGHT_GROUPSortInput = {
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly services: InputMaybe<STRAPI_SERVICESortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly weddingOrder: InputMaybe<SortOrderEnum>;
@@ -5467,6 +5637,7 @@ type STRAPI_LOOKBOOK = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<STRAPI_LOOKBOOKDescription>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly flex: Maybe<Scalars['Int']>;
   readonly id: Scalars['ID'];
   readonly image: Maybe<STRAPI__MEDIA>;
@@ -5478,6 +5649,7 @@ type STRAPI_LOOKBOOK = Node & {
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly service: Maybe<STRAPI_SERVICE>;
   readonly spread: Maybe<Scalars['Int']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly vendors: Maybe<ReadonlyArray<Maybe<STRAPI_VENDOR>>>;
@@ -5573,6 +5745,7 @@ type STRAPI_LOOKBOOKFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_LOOKBOOKDescriptionFieldSelector>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly flex: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly image: InputMaybe<STRAPI__MEDIAFieldSelector>;
@@ -5584,6 +5757,7 @@ type STRAPI_LOOKBOOKFieldSelector = {
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly service: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly spread: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORFieldSelector>;
@@ -5594,6 +5768,7 @@ type STRAPI_LOOKBOOKFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_LOOKBOOKDescriptionFilterInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly flex: InputMaybe<IntQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly image: InputMaybe<STRAPI__MEDIAFilterInput>;
@@ -5605,6 +5780,7 @@ type STRAPI_LOOKBOOKFilterInput = {
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly service: InputMaybe<STRAPI_SERVICEFilterInput>;
   readonly spread: InputMaybe<IntQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
@@ -5660,6 +5836,7 @@ type STRAPI_LOOKBOOKSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_LOOKBOOKDescriptionSortInput>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly flex: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly image: InputMaybe<STRAPI__MEDIASortInput>;
@@ -5671,6 +5848,7 @@ type STRAPI_LOOKBOOKSortInput = {
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly service: InputMaybe<STRAPI_SERVICESortInput>;
   readonly spread: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORSortInput>;
@@ -5680,11 +5858,13 @@ type STRAPI_LOOKBOOKSortInput = {
 type STRAPI_LOOKBOOK_DESCRIPTION = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -5761,11 +5941,13 @@ type STRAPI_LOOKBOOK_DESCRIPTIONEdge = {
 type STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -5773,11 +5955,13 @@ type STRAPI_LOOKBOOK_DESCRIPTIONFieldSelector = {
 type STRAPI_LOOKBOOK_DESCRIPTIONFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -5826,11 +6010,13 @@ type STRAPI_LOOKBOOK_DESCRIPTIONGroupConnection_sumArgs = {
 type STRAPI_LOOKBOOK_DESCRIPTIONSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -5956,11 +6142,13 @@ type STRAPI_LOOKBOOK_DESCRIPTION_TEXTNODESortInput = {
 type STRAPI_MINIMUM = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly dollars: Maybe<Scalars['Int']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -6037,11 +6225,13 @@ type STRAPI_MINIMUMEdge = {
 type STRAPI_MINIMUMFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly dollars: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -6049,11 +6239,13 @@ type STRAPI_MINIMUMFieldSelector = {
 type STRAPI_MINIMUMFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly dollars: InputMaybe<IntQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -6102,11 +6294,13 @@ type STRAPI_MINIMUMGroupConnection_sumArgs = {
 type STRAPI_MINIMUMSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly dollars: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -6116,6 +6310,7 @@ type STRAPI_PLAN = Node & {
   readonly basicNotes: Maybe<Scalars['String']>;
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly jobber: Maybe<Scalars['Int']>;
@@ -6125,6 +6320,7 @@ type STRAPI_PLAN = Node & {
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly svg: Maybe<Scalars['String']>;
   readonly takedownFlexOrder: Maybe<Scalars['Int']>;
@@ -6208,6 +6404,7 @@ type STRAPI_PLANFieldSelector = {
   readonly basicNotes: InputMaybe<FieldSelectorEnum>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly jobber: InputMaybe<FieldSelectorEnum>;
@@ -6217,6 +6414,7 @@ type STRAPI_PLANFieldSelector = {
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly svg: InputMaybe<FieldSelectorEnum>;
   readonly takedownFlexOrder: InputMaybe<FieldSelectorEnum>;
@@ -6231,6 +6429,7 @@ type STRAPI_PLANFilterInput = {
   readonly basicNotes: InputMaybe<StringQueryOperatorInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly jobber: InputMaybe<IntQueryOperatorInput>;
@@ -6240,6 +6439,7 @@ type STRAPI_PLANFilterInput = {
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly svg: InputMaybe<StringQueryOperatorInput>;
   readonly takedownFlexOrder: InputMaybe<IntQueryOperatorInput>;
@@ -6315,6 +6515,7 @@ type STRAPI_PLANSortInput = {
   readonly basicNotes: InputMaybe<SortOrderEnum>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly jobber: InputMaybe<SortOrderEnum>;
@@ -6324,6 +6525,7 @@ type STRAPI_PLANSortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly slug: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly svg: InputMaybe<SortOrderEnum>;
   readonly takedownFlexOrder: InputMaybe<SortOrderEnum>;
@@ -6336,6 +6538,7 @@ type STRAPI_PLANSortInput = {
 type STRAPI_PROCESS = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly markdown: Maybe<STRAPI_PROCESSMarkdown>;
@@ -6344,6 +6547,7 @@ type STRAPI_PROCESS = Node & {
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -6420,6 +6624,7 @@ type STRAPI_PROCESSEdge = {
 type STRAPI_PROCESSFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly markdown: InputMaybe<STRAPI_PROCESSMarkdownFieldSelector>;
@@ -6428,6 +6633,7 @@ type STRAPI_PROCESSFieldSelector = {
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -6435,6 +6641,7 @@ type STRAPI_PROCESSFieldSelector = {
 type STRAPI_PROCESSFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly markdown: InputMaybe<STRAPI_PROCESSMarkdownFilterInput>;
@@ -6443,6 +6650,7 @@ type STRAPI_PROCESSFilterInput = {
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -6511,6 +6719,7 @@ type STRAPI_PROCESSMarkdownSortInput = {
 type STRAPI_PROCESSSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly markdown: InputMaybe<STRAPI_PROCESSMarkdownSortInput>;
@@ -6519,6 +6728,7 @@ type STRAPI_PROCESSSortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly services: InputMaybe<STRAPI_SERVICESortInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -6647,6 +6857,7 @@ type STRAPI_PROJECT = Node & {
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly darkImage: Maybe<STRAPI__MEDIA>;
   readonly description: Maybe<STRAPI_PROJECTDescription>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly gallery: Maybe<ReadonlyArray<Maybe<STRAPI__MEDIA>>>;
   readonly gatsbyPath: Maybe<Scalars['String']>;
@@ -6661,6 +6872,7 @@ type STRAPI_PROJECT = Node & {
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly teams: Maybe<ReadonlyArray<Maybe<STRAPI_TEAM>>>;
   readonly testimonial: Maybe<STRAPI_TESTIMONIAL>;
@@ -6766,6 +6978,7 @@ type STRAPI_PROJECTFieldSelector = {
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly darkImage: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly description: InputMaybe<STRAPI_PROJECTDescriptionFieldSelector>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly gallery: InputMaybe<STRAPI__MEDIAFieldSelector>;
   readonly gatsbyPath: InputMaybe<FieldSelectorEnum>;
@@ -6780,6 +6993,7 @@ type STRAPI_PROJECTFieldSelector = {
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly teams: InputMaybe<STRAPI_TEAMFieldSelector>;
   readonly testimonial: InputMaybe<STRAPI_TESTIMONIALFieldSelector>;
@@ -6795,6 +7009,7 @@ type STRAPI_PROJECTFilterInput = {
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly darkImage: InputMaybe<STRAPI__MEDIAFilterInput>;
   readonly description: InputMaybe<STRAPI_PROJECTDescriptionFilterInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly gallery: InputMaybe<STRAPI__MEDIAFilterListInput>;
   readonly gatsbyPath: InputMaybe<StringQueryOperatorInput>;
@@ -6809,6 +7024,7 @@ type STRAPI_PROJECTFilterInput = {
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly teams: InputMaybe<STRAPI_TEAMFilterListInput>;
   readonly testimonial: InputMaybe<STRAPI_TESTIMONIALFilterInput>;
@@ -6869,6 +7085,7 @@ type STRAPI_PROJECTSortInput = {
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly darkImage: InputMaybe<STRAPI__MEDIASortInput>;
   readonly description: InputMaybe<STRAPI_PROJECTDescriptionSortInput>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly gallery: InputMaybe<STRAPI__MEDIASortInput>;
   readonly gatsbyPath: InputMaybe<SortOrderEnum>;
@@ -6883,6 +7100,7 @@ type STRAPI_PROJECTSortInput = {
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly services: InputMaybe<STRAPI_SERVICESortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly teams: InputMaybe<STRAPI_TEAMSortInput>;
   readonly testimonial: InputMaybe<STRAPI_TESTIMONIALSortInput>;
@@ -7014,6 +7232,7 @@ type STRAPI_QUALITY = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<STRAPI_QUALITYDescription>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly eyebrow: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
@@ -7021,6 +7240,7 @@ type STRAPI_QUALITY = Node & {
   readonly order: Maybe<Scalars['Int']>;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -7114,6 +7334,7 @@ type STRAPI_QUALITYFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_QUALITYDescriptionFieldSelector>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly eyebrow: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
@@ -7121,6 +7342,7 @@ type STRAPI_QUALITYFieldSelector = {
   readonly order: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -7129,6 +7351,7 @@ type STRAPI_QUALITYFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_QUALITYDescriptionFilterInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly eyebrow: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
@@ -7136,6 +7359,7 @@ type STRAPI_QUALITYFilterInput = {
   readonly order: InputMaybe<IntQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -7185,6 +7409,7 @@ type STRAPI_QUALITYSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_QUALITYDescriptionSortInput>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly eyebrow: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
@@ -7192,6 +7417,7 @@ type STRAPI_QUALITYSortInput = {
   readonly order: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -7317,10 +7543,12 @@ type STRAPI_QUALITY_DESCRIPTION_TEXTNODESortInput = {
 type STRAPI_SEASON = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly wedding: Maybe<Scalars['Boolean']>;
@@ -7398,10 +7626,12 @@ type STRAPI_SEASONEdge = {
 type STRAPI_SEASONFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly wedding: InputMaybe<FieldSelectorEnum>;
@@ -7410,10 +7640,12 @@ type STRAPI_SEASONFieldSelector = {
 type STRAPI_SEASONFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly wedding: InputMaybe<BooleanQueryOperatorInput>;
@@ -7463,10 +7695,12 @@ type STRAPI_SEASONGroupConnection_sumArgs = {
 type STRAPI_SEASONSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly wedding: InputMaybe<SortOrderEnum>;
@@ -7479,6 +7713,7 @@ type STRAPI_SERVICE = Node & {
   readonly collaborators: Maybe<ReadonlyArray<Maybe<STRAPI_COLLABORATOR>>>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<STRAPI_SERVICEDescription>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly featured_lights: Maybe<ReadonlyArray<Maybe<STRAPI_LIGHT>>>;
   readonly hero_dark: Maybe<STRAPI__MEDIA>;
@@ -7497,6 +7732,7 @@ type STRAPI_SERVICE = Node & {
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly showcaseDescription: Maybe<STRAPI_SERVICEShowcaseDescription>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly testimonials: Maybe<ReadonlyArray<Maybe<STRAPI_TESTIMONIAL>>>;
   readonly triptych: Maybe<ReadonlyArray<Maybe<STRAPI__MEDIA>>>;
@@ -7615,6 +7851,7 @@ type STRAPI_SERVICEFieldSelector = {
   readonly collaborators: InputMaybe<STRAPI_COLLABORATORFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_SERVICEDescriptionFieldSelector>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly featured_lights: InputMaybe<STRAPI_LIGHTFieldSelector>;
   readonly hero_dark: InputMaybe<STRAPI__MEDIAFieldSelector>;
@@ -7633,6 +7870,7 @@ type STRAPI_SERVICEFieldSelector = {
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly showcaseDescription: InputMaybe<STRAPI_SERVICEShowcaseDescriptionFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALFieldSelector>;
   readonly triptych: InputMaybe<STRAPI__MEDIAFieldSelector>;
@@ -7650,6 +7888,7 @@ type STRAPI_SERVICEFilterInput = {
   readonly collaborators: InputMaybe<STRAPI_COLLABORATORFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_SERVICEDescriptionFilterInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly featured_lights: InputMaybe<STRAPI_LIGHTFilterListInput>;
   readonly hero_dark: InputMaybe<STRAPI__MEDIAFilterInput>;
@@ -7668,6 +7907,7 @@ type STRAPI_SERVICEFilterInput = {
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly showcaseDescription: InputMaybe<STRAPI_SERVICEShowcaseDescriptionFilterInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALFilterListInput>;
   readonly triptych: InputMaybe<STRAPI__MEDIAFilterListInput>;
@@ -7746,6 +7986,7 @@ type STRAPI_SERVICESortInput = {
   readonly collaborators: InputMaybe<STRAPI_COLLABORATORSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_SERVICEDescriptionSortInput>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly featured_lights: InputMaybe<STRAPI_LIGHTSortInput>;
   readonly hero_dark: InputMaybe<STRAPI__MEDIASortInput>;
@@ -7764,6 +8005,7 @@ type STRAPI_SERVICESortInput = {
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly showcaseDescription: InputMaybe<STRAPI_SERVICEShowcaseDescriptionSortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALSortInput>;
   readonly triptych: InputMaybe<STRAPI__MEDIASortInput>;
@@ -8132,6 +8374,7 @@ type STRAPI_SHOWCASE = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<STRAPI_SHOWCASEDescription>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
@@ -8140,6 +8383,7 @@ type STRAPI_SHOWCASE = Node & {
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly roofline: Maybe<Scalars['String']>;
   readonly service: Maybe<STRAPI_SERVICE>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly tier: Maybe<Scalars['String']>;
   readonly tree: Maybe<Scalars['String']>;
@@ -8235,6 +8479,7 @@ type STRAPI_SHOWCASEFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<STRAPI_SHOWCASEDescriptionFieldSelector>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
@@ -8243,6 +8488,7 @@ type STRAPI_SHOWCASEFieldSelector = {
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly roofline: InputMaybe<FieldSelectorEnum>;
   readonly service: InputMaybe<STRAPI_SERVICEFieldSelector>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly tier: InputMaybe<FieldSelectorEnum>;
   readonly tree: InputMaybe<FieldSelectorEnum>;
@@ -8253,6 +8499,7 @@ type STRAPI_SHOWCASEFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<STRAPI_SHOWCASEDescriptionFilterInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
@@ -8261,6 +8508,7 @@ type STRAPI_SHOWCASEFilterInput = {
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly roofline: InputMaybe<StringQueryOperatorInput>;
   readonly service: InputMaybe<STRAPI_SERVICEFilterInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly tier: InputMaybe<StringQueryOperatorInput>;
   readonly tree: InputMaybe<StringQueryOperatorInput>;
@@ -8312,6 +8560,7 @@ type STRAPI_SHOWCASESortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<STRAPI_SHOWCASEDescriptionSortInput>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
@@ -8320,6 +8569,7 @@ type STRAPI_SHOWCASESortInput = {
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly roofline: InputMaybe<SortOrderEnum>;
   readonly service: InputMaybe<STRAPI_SERVICESortInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly tier: InputMaybe<SortOrderEnum>;
   readonly tree: InputMaybe<SortOrderEnum>;
@@ -8449,6 +8699,7 @@ type STRAPI_TEAM = Node & {
   readonly bio: Maybe<STRAPI_TEAMBio>;
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -8459,6 +8710,7 @@ type STRAPI_TEAM = Node & {
   readonly projects: Maybe<ReadonlyArray<Maybe<STRAPI_PROJECT>>>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -8558,6 +8810,7 @@ type STRAPI_TEAMFieldSelector = {
   readonly bio: InputMaybe<STRAPI_TEAMBioFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly gatsbyPath: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
@@ -8568,6 +8821,7 @@ type STRAPI_TEAMFieldSelector = {
   readonly projects: InputMaybe<STRAPI_PROJECTFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -8577,6 +8831,7 @@ type STRAPI_TEAMFilterInput = {
   readonly bio: InputMaybe<STRAPI_TEAMBioFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
@@ -8587,6 +8842,7 @@ type STRAPI_TEAMFilterInput = {
   readonly projects: InputMaybe<STRAPI_PROJECTFilterListInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -8641,6 +8897,7 @@ type STRAPI_TEAMSortInput = {
   readonly bio: InputMaybe<STRAPI_TEAMBioSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly gatsbyPath: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
@@ -8651,6 +8908,7 @@ type STRAPI_TEAMSortInput = {
   readonly projects: InputMaybe<STRAPI_PROJECTSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly slug: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -8777,6 +9035,7 @@ type STRAPI_TESTIMONIAL = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly customer: Maybe<Scalars['String']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly gatsbyPath: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -8792,6 +9051,7 @@ type STRAPI_TESTIMONIAL = Node & {
   readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly slug: Maybe<Scalars['String']>;
   readonly stars: Maybe<Scalars['Int']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly title: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -8877,6 +9137,7 @@ type STRAPI_TESTIMONIALFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly customer: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly gatsbyPath: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
@@ -8892,6 +9153,7 @@ type STRAPI_TESTIMONIALFieldSelector = {
   readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly stars: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly title: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
@@ -8903,6 +9165,7 @@ type STRAPI_TESTIMONIALFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly customer: InputMaybe<StringQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly gatsbyPath: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
@@ -8918,6 +9181,7 @@ type STRAPI_TESTIMONIALFilterInput = {
   readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly stars: InputMaybe<IntQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -8974,6 +9238,7 @@ type STRAPI_TESTIMONIALSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly customer: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly gatsbyPath: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
@@ -8989,6 +9254,7 @@ type STRAPI_TESTIMONIALSortInput = {
   readonly services: InputMaybe<STRAPI_SERVICESortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
   readonly stars: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
@@ -9003,11 +9269,13 @@ type STRAPI_TOPBAR = Node & {
   readonly defaultHolidayLink: Maybe<Scalars['String']>;
   readonly defaultWedding: Maybe<Scalars['String']>;
   readonly defaultWeddingLink: Maybe<Scalars['String']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly link: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly title: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -9089,11 +9357,13 @@ type STRAPI_TOPBARFieldSelector = {
   readonly defaultHolidayLink: InputMaybe<FieldSelectorEnum>;
   readonly defaultWedding: InputMaybe<FieldSelectorEnum>;
   readonly defaultWeddingLink: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly link: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly title: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
@@ -9106,11 +9376,13 @@ type STRAPI_TOPBARFilterInput = {
   readonly defaultHolidayLink: InputMaybe<StringQueryOperatorInput>;
   readonly defaultWedding: InputMaybe<StringQueryOperatorInput>;
   readonly defaultWeddingLink: InputMaybe<StringQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly link: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -9164,11 +9436,13 @@ type STRAPI_TOPBARSortInput = {
   readonly defaultHolidayLink: InputMaybe<SortOrderEnum>;
   readonly defaultWedding: InputMaybe<SortOrderEnum>;
   readonly defaultWeddingLink: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly link: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
@@ -9179,6 +9453,7 @@ type STRAPI_VENDOR = Node & {
   readonly collaborator: Maybe<STRAPI_COLLABORATOR>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly facebook: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
@@ -9194,6 +9469,7 @@ type STRAPI_VENDOR = Node & {
   readonly service: Maybe<Scalars['String']>;
   readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly testimonials: Maybe<ReadonlyArray<Maybe<STRAPI_TESTIMONIAL>>>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -9274,6 +9550,7 @@ type STRAPI_VENDORFieldSelector = {
   readonly collaborator: InputMaybe<STRAPI_COLLABORATORFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly facebook: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
@@ -9289,6 +9566,7 @@ type STRAPI_VENDORFieldSelector = {
   readonly service: InputMaybe<FieldSelectorEnum>;
   readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALFieldSelector>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
@@ -9300,6 +9578,7 @@ type STRAPI_VENDORFilterInput = {
   readonly collaborator: InputMaybe<STRAPI_COLLABORATORFilterInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly facebook: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
@@ -9315,6 +9594,7 @@ type STRAPI_VENDORFilterInput = {
   readonly service: InputMaybe<StringQueryOperatorInput>;
   readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALFilterListInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -9371,6 +9651,7 @@ type STRAPI_VENDORSortInput = {
   readonly collaborator: InputMaybe<STRAPI_COLLABORATORSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly facebook: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
@@ -9386,6 +9667,7 @@ type STRAPI_VENDORSortInput = {
   readonly service: InputMaybe<SortOrderEnum>;
   readonly services: InputMaybe<STRAPI_SERVICESortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALSortInput>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
@@ -9395,11 +9677,13 @@ type STRAPI_VENDORSortInput = {
 type STRAPI_VENDOR_DESCRIPTION = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
 };
@@ -9476,11 +9760,13 @@ type STRAPI_VENDOR_DESCRIPTIONEdge = {
 type STRAPI_VENDOR_DESCRIPTIONFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
 };
@@ -9488,11 +9774,13 @@ type STRAPI_VENDOR_DESCRIPTIONFieldSelector = {
 type STRAPI_VENDOR_DESCRIPTIONFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
@@ -9541,11 +9829,13 @@ type STRAPI_VENDOR_DESCRIPTIONGroupConnection_sumArgs = {
 type STRAPI_VENDOR_DESCRIPTIONSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
@@ -9556,6 +9846,7 @@ type STRAPI_VENUE = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly excerpt: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
@@ -9566,6 +9857,7 @@ type STRAPI_VENUE = Node & {
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly services: Maybe<ReadonlyArray<Maybe<STRAPI_SERVICE>>>;
   readonly slug: Maybe<Scalars['String']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly testimonials: Maybe<ReadonlyArray<Maybe<STRAPI_TESTIMONIAL>>>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -9665,6 +9957,7 @@ type STRAPI_VENUEFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly excerpt: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
@@ -9675,6 +9968,7 @@ type STRAPI_VENUEFieldSelector = {
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly services: InputMaybe<STRAPI_SERVICEFieldSelector>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALFieldSelector>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
@@ -9689,6 +9983,7 @@ type STRAPI_VENUEFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly excerpt: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
@@ -9699,6 +9994,7 @@ type STRAPI_VENUEFilterInput = {
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly services: InputMaybe<STRAPI_SERVICEFilterListInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALFilterListInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -9758,6 +10054,7 @@ type STRAPI_VENUESortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly excerpt: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
@@ -9768,6 +10065,7 @@ type STRAPI_VENUESortInput = {
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly services: InputMaybe<STRAPI_SERVICESortInput>;
   readonly slug: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly testimonials: InputMaybe<STRAPI_TESTIMONIALSortInput>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
@@ -9898,6 +10196,7 @@ type STRAPI_VIDEO = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
   readonly mux: Maybe<Scalars['String']>;
@@ -9905,6 +10204,7 @@ type STRAPI_VIDEO = Node & {
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
   readonly service: Maybe<STRAPI_SERVICE>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly thumbnailTime: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -9983,6 +10283,7 @@ type STRAPI_VIDEOFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
   readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly mux: InputMaybe<FieldSelectorEnum>;
@@ -9990,6 +10291,7 @@ type STRAPI_VIDEOFieldSelector = {
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly service: InputMaybe<STRAPI_SERVICEFieldSelector>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly thumbnailTime: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
@@ -9999,6 +10301,7 @@ type STRAPI_VIDEOFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
   readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly mux: InputMaybe<StringQueryOperatorInput>;
@@ -10006,6 +10309,7 @@ type STRAPI_VIDEOFilterInput = {
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly service: InputMaybe<STRAPI_SERVICEFilterInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly thumbnailTime: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -10060,6 +10364,7 @@ type STRAPI_VIDEOSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
   readonly description: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
   readonly mux: InputMaybe<SortOrderEnum>;
@@ -10067,6 +10372,7 @@ type STRAPI_VIDEOSortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly service: InputMaybe<STRAPI_SERVICESortInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly thumbnailTime: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
@@ -10077,6 +10383,7 @@ type STRAPI__MEDIA = Node & {
   readonly caption: Maybe<Scalars['String']>;
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
   readonly ext: Maybe<Scalars['String']>;
   readonly formats: Maybe<STRAPI__MEDIAFormats>;
   readonly hash: Maybe<Scalars['String']>;
@@ -10087,7 +10394,9 @@ type STRAPI__MEDIA = Node & {
   readonly mime: Maybe<Scalars['String']>;
   readonly name: Maybe<Scalars['String']>;
   readonly parent: Maybe<Node>;
+  readonly publishedAt: Maybe<Scalars['Date']>;
   readonly size: Maybe<Scalars['Float']>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['Int']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly url: Maybe<Scalars['String']>;
@@ -10096,6 +10405,14 @@ type STRAPI__MEDIA = Node & {
 
 
 type STRAPI__MEDIA_createdAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI__MEDIA_publishedAtArgs = {
   difference: InputMaybe<Scalars['String']>;
   formatString: InputMaybe<Scalars['String']>;
   fromNow: InputMaybe<Scalars['Boolean']>;
@@ -10160,6 +10477,7 @@ type STRAPI__MEDIAFieldSelector = {
   readonly caption: InputMaybe<FieldSelectorEnum>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly ext: InputMaybe<FieldSelectorEnum>;
   readonly formats: InputMaybe<STRAPI__MEDIAFormatsFieldSelector>;
   readonly hash: InputMaybe<FieldSelectorEnum>;
@@ -10170,7 +10488,9 @@ type STRAPI__MEDIAFieldSelector = {
   readonly mime: InputMaybe<FieldSelectorEnum>;
   readonly name: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly publishedAt: InputMaybe<FieldSelectorEnum>;
   readonly size: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly url: InputMaybe<FieldSelectorEnum>;
@@ -10182,6 +10502,7 @@ type STRAPI__MEDIAFilterInput = {
   readonly caption: InputMaybe<StringQueryOperatorInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly ext: InputMaybe<StringQueryOperatorInput>;
   readonly formats: InputMaybe<STRAPI__MEDIAFormatsFilterInput>;
   readonly hash: InputMaybe<StringQueryOperatorInput>;
@@ -10192,7 +10513,9 @@ type STRAPI__MEDIAFilterInput = {
   readonly mime: InputMaybe<StringQueryOperatorInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
+  readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
   readonly size: InputMaybe<FloatQueryOperatorInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<IntQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly url: InputMaybe<StringQueryOperatorInput>;
@@ -10469,6 +10792,7 @@ type STRAPI__MEDIASortInput = {
   readonly caption: InputMaybe<SortOrderEnum>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
   readonly ext: InputMaybe<SortOrderEnum>;
   readonly formats: InputMaybe<STRAPI__MEDIAFormatsSortInput>;
   readonly hash: InputMaybe<SortOrderEnum>;
@@ -10479,7 +10803,9 @@ type STRAPI__MEDIASortInput = {
   readonly mime: InputMaybe<SortOrderEnum>;
   readonly name: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
+  readonly publishedAt: InputMaybe<SortOrderEnum>;
   readonly size: InputMaybe<SortOrderEnum>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly url: InputMaybe<SortOrderEnum>;
