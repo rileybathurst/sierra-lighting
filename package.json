@@ -1,6 +1,6 @@
 {
   "name": "sierra-lighting",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "description": "sierra lighting gatsby website built with strapi as the cms",
   "author": {
