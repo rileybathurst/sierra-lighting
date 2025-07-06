@@ -1,6 +1,6 @@
 // TODO: This query took more than 15s to run — which might indicate you're querying too much or have some unoptimized code:
 
-import React, { useState } from "react"
+import React, { useState, useId } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import * as JsSearch from "js-search"
 
@@ -11,7 +11,8 @@ interface ResultListTypes {
   searchQuery: string;
   results: CardType[];
 }
-function ResultList({ searchQuery, results }: ResultListTypes) {
+
+const ResultList: React.FC<ResultListTypes> = ({ searchQuery, results }) => {
   if (results.length) {
     return (
       <>
@@ -36,9 +37,12 @@ function ResultList({ searchQuery, results }: ResultListTypes) {
   return (
     <h3 className="stork">Nothing found in the search</h3>
   )
-}
+};
 
-function LightSearch() {
+const LightSearch = () => {
+  const inputId = useId();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<CardType[]>([] as CardType[]);
 
   const { allStrapiLight } = useStaticQuery(graphql`
     query SearchQuery {
@@ -48,30 +52,26 @@ function LightSearch() {
         }
       }
     }
-  `)
+  `);
 
-  const search = new JsSearch.Search('id');
-
-  allStrapiLight.nodes.map((cards: CardType[]) => {
-    search.addDocuments(cards);
-  })
-
-  search.addIndex('name');
-  search.addIndex('slug');
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<CardType[]>([] as CardType[]);
-
-  function SearchData(e: React.ChangeEvent<HTMLInputElement>) {
-    setSearchQuery(e.target.value);
-    setSearchResults(search.search(searchQuery));
-
-    // console.log(search.search(searchQuery));
-  }
+  // Initialize search instance and add documents/indexes
+  const search = React.useMemo(() => {
+    const s = new JsSearch.Search('id');
+    s.addIndex('name');
+    s.addIndex('slug');
+    s.addDocuments(allStrapiLight.nodes);
+    return s;
+  }, [allStrapiLight.nodes]);
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-  }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    setSearchResults(value ? (search.search(value) as CardType[]) : []);
+  };
 
   return (
     <>
@@ -79,17 +79,15 @@ function LightSearch() {
         onSubmit={handleSubmit}
         className="stork"
       >
-        <div>
-          <label htmlFor="Search">
-            Or enter your search here
-          </label>
-          <input
-            id="Search"
-            value={searchQuery}
-            onChange={SearchData}
-            placeholder="Enter your search here"
-          />
-        </div>
+        <label htmlFor={inputId}>
+          Or enter your search here
+        </label>
+        <input
+          id={inputId}
+          value={searchQuery}
+          onChange={handleInputChange}
+          placeholder="Enter your search here"
+        />
       </form>
       <ResultList
         searchQuery={searchQuery}

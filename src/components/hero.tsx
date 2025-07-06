@@ -110,7 +110,12 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
   let combinedGallery: ImageType[] = [];
   if (gallery) {
     if (gallery?.length > 0) {
-      combinedGallery = [image, ...gallery];
+      const imageWithAlt: ImageType = {
+        ...image,
+        alternativeText: image.alternativeText ?? "",
+        caption: image.caption ?? "",
+      };
+      combinedGallery = [imageWithAlt, ...gallery];
     }
   }
 
@@ -124,7 +129,7 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
         {detail ?
           <GatsbyImage
             image={detail?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={detail?.alternativeText ? detail?.alternativeText : name}
+            alt={detail?.alternativeText ? detail?.alternativeText : name || "Hero Detail Image"}
             className="detail poster"
           />
           : null
@@ -148,7 +153,7 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
         {detail ?
           <GatsbyImage
             image={detail?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={detail.alternativeText ? detail?.alternativeText : name}
+            alt={detail.alternativeText ? detail?.alternativeText : name || "Hero Detail Image"}
             className="detail poster"
           />
           : null

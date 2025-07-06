@@ -2,13 +2,12 @@
 import React from 'react';
 import Star from "../images/star";
 
-interface TestimonialRankingProps {
+type TestimonialRankingTypes = {
   stars: number;
-}
+};
 
-function TestimonialRanking(props: TestimonialRankingProps): JSX.Element | null {
+const TestimonialRanking = ({ stars }: TestimonialRankingTypes): JSX.Element | null => {
   const count: number[] = [];
-  const stars: number = props.stars;
 
   if (stars > 1) {
     let i = 0;

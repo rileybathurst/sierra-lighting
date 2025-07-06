@@ -2,15 +2,75 @@
 
 import React from "react";
 import { Script, useStaticQuery, graphql } from "gatsby";
+import type VideoTypes from "../types/video-types";
 
-interface BreadcrumbsTypes {
-  [key: number]: {
+type BreadcrumbsTypes = {
+  url: string;
+  breadcrumbs: {
     name: string;
     item: string;
-  };
-}[]
+  }[];
+}
+const Breadcrumbs: React.FC<BreadcrumbsTypes> = ({ url, breadcrumbs }) => {
 
-interface SEO {
+  if (!Object.entries(breadcrumbs).length) return null;
+
+  // auto format is weird on here dont manually fix it
+  // (key) + 1 js counts from 0 breadcrumbs count from 1
+  return (
+    <Script type="application/ld+json">
+      {`
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            ${Object.entries(breadcrumbs).map(([key, breadcrumb]) => {
+        return `{
+                "@type": "ListItem",
+                "position": ${Number.parseInt(key) + 1},
+                "name": "${breadcrumb.name}",
+                "item": "${url}/${breadcrumb.item}"
+              }`
+      }).join(',\n')}
+            ]
+          }
+        `}
+    </Script>
+  );
+}
+
+type VideoMuxTypes = {
+  videos: VideoTypes[];
+  pageUrl: string;
+  url: string;
+  businessName: string;
+}
+const VideoMux: React.FC<VideoMuxTypes> = ({ videos, pageUrl, url, businessName }) => {
+  if (videos.length === 0) return null;
+
+  return (
+    <>
+      {videos.map((video) => (
+        <Script type="application/ld+json" key={video.mux}>
+          {`
+              {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "name": "${video.name}",
+                "contentURL": "https://stream.mux.com/${video.mux}.m3u8",
+                "description": "${video.description} for ${businessName}",
+                "embedUrl": "${url}/${pageUrl}",
+                "uploadDate": "${new Date(video.publishedAt).toISOString()}",
+                "thumbnailUrl": "https://image.mux.com/${video.mux}/thumbnail.png?width=428&height=242&time=${video.thumbnailTime}"
+                }
+            `}
+        </Script>
+      ))}
+    </>
+  );
+}
+
+type SEOtypes = {
   title?: string;
   description?: string;
   url?: string;
@@ -18,23 +78,9 @@ interface SEO {
   imageAlt?: string;
   children?: React.ReactNode;
   breadcrumbs?: BreadcrumbsTypes;
-  videos?: {
-    strapiData: {
-      mux: string;
-      description: string;
-      pageUrl: string;
-    }[];
-    pageUrl: string;
-  } | null;
+  videos?: VideoTypes[] | null;
 }
-
-// this has a 0 thats kinda confusing
-// can we remove that
-export const SEO = (SE0: SEO) => {
-
-  // console.log(SE0);
-  // console.log(SE0.title);
-  // console.log(SE0.description);
+export const SEO = (SEO: SEOtypes) => {
 
   const data = useStaticQuery(graphql`
     query SEOQuery {
@@ -83,98 +129,29 @@ export const SEO = (SE0: SEO) => {
     }
   `);
 
-  // I could probably pass it two arguments instead but for now
-  function Breadcrumbs(breadcrumbs: BreadcrumbsTypes) {
-
-    // console.log(breadcrumbs);
-    // console.log(Object.entries(breadcrumbs).length);
-    if (!Object.entries(breadcrumbs).length) return null;
-
-    // console.log(rest);
-
-    // auto format is weird on here dont manually fix it
-    // (key) + 1 js counts from 0 breadcrumbs count from 1
-    return (
-      <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              ${Object.entries(breadcrumbs).map(([key, breadcrumb]) => {
-          return `{
-                    "@type": "ListItem",
-                    "position": ${Number.parseInt(key) + 1},
-                    "name": "${breadcrumb.name}",
-                    "item": "${data.strapiAbout.url}/${breadcrumb.item}"
-                  }`
-        })}
-            ]
-          }
-        `}
-      </Script>
-    );
-  }
-
-  type VideoMuxTypes = {
-    strapiData: {
-      name: string;
-      mux: string;
-      description: string;
-      pageUrl: string;
-      publishedAt: string;
-    }[];
-    pageUrl: string;
-  }
-  const VideoMux: React.FC<VideoMuxTypes> = ({ strapiData, pageUrl }) => {
-
-    if (strapiData.length === 0) return null;
-
-    return (
-      <>
-        {strapiData.map((video) => (
-          <Script type="application/ld+json" key={video.mux}>
-            {`
-              {
-                "@context": "https://schema.org",
-                "@type": "VideoObject",
-                "name:": "${video.name}",
-                "contentURL": "https://stream.mux.com/${video.mux}.m3u8",
-                "description": "${video.description} for ${data.strapiAbout.businessName}",
-                "embedUrl": "${data.strapiAbout.url}/${pageUrl}",
-                "uploadDate": "${new Date(video.publishedAt).toISOString()}",
-                "thumbnailUrl": "https://image.mux.com/${video.mux}/thumbnail.png?width=428&height=242&time=${video.thumbnailTime}"
-                }
-            `}
-          </Script>
-        ))}
-      </>
-    );
-  }
-
   // console.log(data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, '));
   // console.log(data.allStrapiArea.nodes.map((area) => area.name).join(', '));
 
   return (
     <>
-      <title>{SE0.title ? `${SE0.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${data.strapiTopbar.title}`}</title>
-      <meta name="description" content={SE0.description ? SE0.description : data.strapiAbout.slogan} />
-      <meta name="image" itemProp="image" content={SE0.image} />
+      <title>{SEO.title ? `${SEO.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${data.strapiTopbar.title}`}</title>
+      <meta name="description" content={SEO.description ? SEO.description : data.strapiAbout.slogan} />
+      <meta name="image" itemProp="image" content={SEO.image} />
 
       {/* OG */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" itemProp="URL" content={SE0.url} />
-      <meta property="og:title" content={SE0.title} />
-      <meta property="og:description" content={SE0.description} />
-      <meta property="og:image" itemProp="image" content={SE0.image} />
+      <meta property="og:url" itemProp="URL" content={SEO.url} />
+      <meta property="og:title" content={SEO.title} />
+      <meta property="og:description" content={SEO.description} />
+      <meta property="og:image" itemProp="image" content={SEO.image} />
 
       {/* Twitter */}
       {/* is this twitter I really cant see anyone caring about this for sierra */}
       {/* TODO: do research into who uses other than og: */}
-      <meta name="twitter:title" content={SE0.title} />
-      <meta name="twitter:description" content={SE0.description} />
+      <meta name="twitter:title" content={SEO.title} />
+      <meta name="twitter:description" content={SEO.description} />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content={SE0.image} />
+      <meta name="twitter:image" content={SEO.image} />
 
       {/* "about": "Creating ${data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}", */}
 
@@ -232,18 +209,20 @@ export const SEO = (SE0: SEO) => {
       </Script>
 
       <Breadcrumbs
-        {...SE0.breadcrumbs}
+        url={data.strapiAbout.url}
+        breadcrumbs={SEO.breadcrumbs ?? []}
       />
 
-      {SE0.videos && (
+      {SEO.videos && (
         <VideoMux
-          strapiData={SE0.videos.strapiData}
-          pageUrl={SE0.videos.pageUrl}
+          videos={SEO.videos}
+          pageUrl={SEO.url}
+          url={data.strapiAbout.url}
+          businessName={data.strapiAbout.businessName}
         />
       )}
 
-
-      {SE0.children}
+      {SEO.children}
     </>
   );
 };

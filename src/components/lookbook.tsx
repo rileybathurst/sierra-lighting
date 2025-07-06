@@ -2,10 +2,7 @@ import React from 'react';
 import { graphql, Link, useStaticQuery } from 'gatsby'
 import { GatsbyImage } from 'gatsby-plugin-image';
 
-interface LookbookTypes {
-  slug: string;
-}
-const Lookbook = ({ slug }: LookbookTypes) => {
+const Lookbook = ({ slug }: { slug: string }) => {
 
   const { strapiLookbook } = useStaticQuery(graphql`
     query LookbookPosterQuery {

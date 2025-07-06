@@ -16,6 +16,7 @@ import Start from '../components/start';
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import type { GatsbyImageType } from '../types/gatsby-image';
+import type VideoTypes from '../types/video-types';
 
 interface ServiceTypes {
   data: {
@@ -33,6 +34,7 @@ interface ServiceTypes {
       lookbookCover: GatsbyImageType;
       venues: CardType[];
       vendors: CardType[];
+      videos: VideoTypes[];
     }
     allStrapiProcess: {
       nodes: {
@@ -63,12 +65,12 @@ function Base({ projects, venues, vendors }: BaseTypes) {
 
   // order the projects by updatedAt
   projects.sort((a, b) => {
-    const dateA = new Date(a.updatedAt);
-    const dateB = new Date(b.updatedAt);
+    const dateA = new Date(a.updatedAt ?? 0);
+    const dateB = new Date(b.updatedAt ?? 0);
     return dateB.getTime() - dateA.getTime();
   });
 
-  const emptyCard = {
+  /* const emptyCard = {
     id: '',
     slug: '',
     excerpt: '',
@@ -89,9 +91,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       },
       alternativeText: ''
     }
-  };
-
-
+  }; */
 
   // empty card slots
   const base: { card: CardType, title: boolean, breadcrumb: string, order: number, id: React.Key }[] = [
@@ -520,16 +520,8 @@ export const query = graphql`
 export const Head = ({ data }: ServiceTypes) => {
 
   const sanitazeDescription = data.strapiService.description.data.description.replace(/"/g, " inches");
-  // console.log(sanitazeDescription);
-  // console.log(data.strapiService.videoMux);
-  // console.log(data.strapiService.videos);
-
-  // console.log(data.strapiService.excerpt);
-
-  // console.log(data.strapiService.featured_lights.map((light: CardType) => light.name).join(', '));
 
   const descriptionKeyWords = `Creating professional ${data.strapiService.name} lighting installations including ${data.strapiService.featured_lights.map((light: CardType) => light.name).join(', ')} in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}`;
-  // console.log(descriptionKeyWords);
 
   return (
     <>
@@ -537,12 +529,8 @@ export const Head = ({ data }: ServiceTypes) => {
         title={`${data.strapiService.name} Lighting Installation`}
         // TODO: in the top level areas
         description={descriptionKeyWords}
-        url={`${data.strapiService.slug}`}
-
-        videos={{
-          strapiData: data.strapiService.videos,
-          pageUrl: data.strapiService.slug,
-        }}
+        url={data.strapiService.slug}
+        videos={data.strapiService.videos}
       >
         <Script type="application/ld+json">
           {`

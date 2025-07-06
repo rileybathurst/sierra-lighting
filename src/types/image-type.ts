@@ -8,6 +8,7 @@ type ImageType = {
     url?: string;
   };
   alternativeText: string;
+  caption?: string;
 };
 
 export type { ImageType };
