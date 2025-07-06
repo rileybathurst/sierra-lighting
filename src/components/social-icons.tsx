@@ -40,7 +40,9 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (yelp.includes('/')) {
       yelpFormatted = yelpFormatted.split('/')[0];
     }
-    yelpFormatted ? yelpFormatted = yelpFormatted : yelpFormatted = yelp;
+    if (!yelpFormatted) {
+      yelpFormatted = yelp;
+    }
   }
 
   let facebookFormatted = '';
@@ -51,7 +53,9 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (facebook.includes('/')) {
       facebookFormatted = facebookFormatted.split('/')[0];
     }
-    facebookFormatted ? facebookFormatted = facebookFormatted : facebookFormatted = facebook;
+    if (!facebookFormatted) {
+      facebookFormatted = facebook;
+    }
   }
 
   let instagramFormatted = '';
@@ -63,7 +67,9 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (instagram.includes('/')) {
       instagramFormatted = instagramFormatted.split('/')[0];
     }
-    instagramFormatted ? instagramFormatted = instagramFormatted : instagramFormatted = instagram;
+    if (!instagramFormatted) {
+      instagramFormatted = instagram;
+    }
   }
 
   let nextdoorFormatted = '';
@@ -74,7 +80,9 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (nextdoor.includes('/')) {
       nextdoorFormatted = nextdoorFormatted.split('/')[0];
     }
-    nextdoorFormatted ? nextdoorFormatted = nextdoorFormatted : nextdoorFormatted = nextdoor;
+    if (!nextdoorFormatted) {
+      nextdoorFormatted = nextdoor;
+    }
   }
 
   let pinterestFormatted = '';
@@ -85,7 +93,9 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (pinterest.includes('/')) {
       pinterestFormatted = pinterestFormatted.split('/')[0];
     }
-    pinterestFormatted ? pinterestFormatted = pinterestFormatted : pinterestFormatted = pinterest;
+    if (!pinterestFormatted) {
+      pinterestFormatted = pinterest;
+    }
   }
 
   let tiktokFormatted = '';
@@ -96,7 +106,9 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (tiktok.includes('/')) {
       tiktokFormatted = tiktokFormatted.split('/')[0];
     }
-    tiktokFormatted ? tiktokFormatted = tiktokFormatted : tiktokFormatted = tiktok;
+    if (!tiktokFormatted) {
+      tiktokFormatted = tiktok;
+    }
   }
 
   let linkedinFormatted = '';
@@ -107,7 +119,9 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     if (linkedin.includes('/')) {
       linkedinFormatted = linkedinFormatted.split('/')[0];
     }
-    linkedinFormatted ? linkedinFormatted = linkedinFormatted : linkedinFormatted = linkedin;
+    if (!linkedinFormatted) {
+      linkedinFormatted = linkedin;
+    }
   }
 
   const socialIcons = [
