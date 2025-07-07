@@ -64,6 +64,7 @@
     "@chromatic-com/storybook": "^4.0.1",
     "@faker-js/faker": "^9.9.0",
     "@mdx-js/react": "^3.1.0",
+    "@storybook/addon-docs": "^9.0.15",
     "@storybook/addon-links": "^9.0.15",
     "@storybook/addon-webpack5-compiler-swc": "^3.0.0",
     "@storybook/react-webpack5": "^9.0.15",
@@ -74,17 +75,12 @@
     "color-convert": "^3.1.0",
     "css-loader": "^7.1.2",
     "gatsby-plugin-postcss": "^6.14.0",
-    "husky": "^9.1.7",
     "postcss": "^8.5.6",
     "postcss-import": "^16.1.1",
     "postcss-nested": "^6.2.0",
     "prop-types": "^15.8.1",
     "storybook": "^9.0.15",
     "style-loader": "^4.0.0",
-    "tsconfig-paths-webpack-plugin": "^4.2.0",
-    "@storybook/addon-docs": "^9.0.15"
-  },
-  "optionalDependencies": {
-    "@parcel/watcher-linux-x64-glibc": "^2.5.1"
+    "tsconfig-paths-webpack-plugin": "^4.2.0"
   }
 }

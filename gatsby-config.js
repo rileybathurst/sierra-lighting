@@ -2,7 +2,7 @@ require('dotenv').config({
   path: '.env',
 });
 
-const adapter = require("gatsby-adapter-netlify")
+// const adapter = require("gatsby-adapter-netlify")
 
 const strapiConfig = {
   accessToken: process.env.STRAPI_TOKEN,
@@ -15,6 +15,7 @@ const strapiConfig = {
     'image-grab',
     'job',
     'light',
+    'light-connection',
     'light-group',
     'lookbook',
     'process',

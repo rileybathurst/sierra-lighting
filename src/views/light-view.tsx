@@ -224,6 +224,8 @@ const LightView = ({ light, other, weddingProcess, holidayProcess, projects }: L
         </ol>
       </section>
 
+      {/* // TODO: light connection will be added to this section */}
+
       {light.light_groups.length > 0 ?
         <div>
           {light.light_groups.map((group: GroupTypes) => {

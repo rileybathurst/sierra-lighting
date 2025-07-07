@@ -1332,6 +1332,7 @@ type Query = {
   readonly allStrapiJob: STRAPI_JOBConnection;
   readonly allStrapiJobDescriptionTextnode: STRAPI_JOB_DESCRIPTION_TEXTNODEConnection;
   readonly allStrapiLight: STRAPI_LIGHTConnection;
+  readonly allStrapiLightConnection: STRAPI_LIGHT_CONNECTIONConnection;
   readonly allStrapiLightGroup: STRAPI_LIGHT_GROUPConnection;
   readonly allStrapiLookbook: STRAPI_LOOKBOOKConnection;
   readonly allStrapiLookbookDescription: STRAPI_LOOKBOOK_DESCRIPTIONConnection;
@@ -1383,6 +1384,7 @@ type Query = {
   readonly strapiJob: Maybe<STRAPI_JOB>;
   readonly strapiJobDescriptionTextnode: Maybe<STRAPI_JOB_DESCRIPTION_TEXTNODE>;
   readonly strapiLight: Maybe<STRAPI_LIGHT>;
+  readonly strapiLightConnection: Maybe<STRAPI_LIGHT_CONNECTION>;
   readonly strapiLightGroup: Maybe<STRAPI_LIGHT_GROUP>;
   readonly strapiLookbook: Maybe<STRAPI_LOOKBOOK>;
   readonly strapiLookbookDescription: Maybe<STRAPI_LOOKBOOK_DESCRIPTION>;
@@ -1588,6 +1590,14 @@ type Query_allStrapiLightArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_LIGHTSortInput>>>;
+};
+
+
+type Query_allStrapiLightConnectionArgs = {
+  filter: InputMaybe<STRAPI_LIGHT_CONNECTIONFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<STRAPI_LIGHT_CONNECTIONSortInput>>>;
 };
 
 
@@ -2264,6 +2274,24 @@ type Query_strapiLightArgs = {
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   weddingOrder: InputMaybe<IntQueryOperatorInput>;
   xmasOrder: InputMaybe<IntQueryOperatorInput>;
+};
+
+
+type Query_strapiLightConnectionArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  createdAt: InputMaybe<DateQueryOperatorInput>;
+  documentId: InputMaybe<StringQueryOperatorInput>;
+  ending_light: InputMaybe<STRAPI_LIGHTFilterInput>;
+  excerpt: InputMaybe<StringQueryOperatorInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  name: InputMaybe<StringQueryOperatorInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  publishedAt: InputMaybe<DateQueryOperatorInput>;
+  starting_light: InputMaybe<STRAPI_LIGHTFilterInput>;
+  strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
+  strapi_id: InputMaybe<IntQueryOperatorInput>;
+  updatedAt: InputMaybe<DateQueryOperatorInput>;
 };
 
 
@@ -5424,6 +5452,184 @@ type STRAPI_LIGHTSortInput = {
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly weddingOrder: InputMaybe<SortOrderEnum>;
   readonly xmasOrder: InputMaybe<SortOrderEnum>;
+};
+
+type STRAPI_LIGHT_CONNECTION = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly createdAt: Maybe<Scalars['Date']>;
+  readonly documentId: Maybe<Scalars['String']>;
+  readonly ending_light: Maybe<STRAPI_LIGHT>;
+  readonly excerpt: Maybe<Scalars['String']>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly name: Maybe<Scalars['String']>;
+  readonly parent: Maybe<Node>;
+  readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly starting_light: Maybe<STRAPI_LIGHT>;
+  readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
+  readonly strapi_id: Maybe<Scalars['Int']>;
+  readonly updatedAt: Maybe<Scalars['Date']>;
+};
+
+
+type STRAPI_LIGHT_CONNECTION_createdAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_LIGHT_CONNECTION_publishedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_LIGHT_CONNECTION_updatedAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type STRAPI_LIGHT_CONNECTIONConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_LIGHT_CONNECTIONEdge>;
+  readonly group: ReadonlyArray<STRAPI_LIGHT_CONNECTIONGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_LIGHT_CONNECTION>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_LIGHT_CONNECTIONConnection_distinctArgs = {
+  field: STRAPI_LIGHT_CONNECTIONFieldSelector;
+};
+
+
+type STRAPI_LIGHT_CONNECTIONConnection_groupArgs = {
+  field: STRAPI_LIGHT_CONNECTIONFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_LIGHT_CONNECTIONConnection_maxArgs = {
+  field: STRAPI_LIGHT_CONNECTIONFieldSelector;
+};
+
+
+type STRAPI_LIGHT_CONNECTIONConnection_minArgs = {
+  field: STRAPI_LIGHT_CONNECTIONFieldSelector;
+};
+
+
+type STRAPI_LIGHT_CONNECTIONConnection_sumArgs = {
+  field: STRAPI_LIGHT_CONNECTIONFieldSelector;
+};
+
+type STRAPI_LIGHT_CONNECTIONEdge = {
+  readonly next: Maybe<STRAPI_LIGHT_CONNECTION>;
+  readonly node: STRAPI_LIGHT_CONNECTION;
+  readonly previous: Maybe<STRAPI_LIGHT_CONNECTION>;
+};
+
+type STRAPI_LIGHT_CONNECTIONFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly createdAt: InputMaybe<FieldSelectorEnum>;
+  readonly documentId: InputMaybe<FieldSelectorEnum>;
+  readonly ending_light: InputMaybe<STRAPI_LIGHTFieldSelector>;
+  readonly excerpt: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly name: InputMaybe<FieldSelectorEnum>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly starting_light: InputMaybe<STRAPI_LIGHTFieldSelector>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
+  readonly strapi_id: InputMaybe<FieldSelectorEnum>;
+  readonly updatedAt: InputMaybe<FieldSelectorEnum>;
+};
+
+type STRAPI_LIGHT_CONNECTIONFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly createdAt: InputMaybe<DateQueryOperatorInput>;
+  readonly documentId: InputMaybe<StringQueryOperatorInput>;
+  readonly ending_light: InputMaybe<STRAPI_LIGHTFilterInput>;
+  readonly excerpt: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly starting_light: InputMaybe<STRAPI_LIGHTFilterInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
+  readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
+  readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
+};
+
+type STRAPI_LIGHT_CONNECTIONGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<STRAPI_LIGHT_CONNECTIONEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<STRAPI_LIGHT_CONNECTIONGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<STRAPI_LIGHT_CONNECTION>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type STRAPI_LIGHT_CONNECTIONGroupConnection_distinctArgs = {
+  field: STRAPI_LIGHT_CONNECTIONFieldSelector;
+};
+
+
+type STRAPI_LIGHT_CONNECTIONGroupConnection_groupArgs = {
+  field: STRAPI_LIGHT_CONNECTIONFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type STRAPI_LIGHT_CONNECTIONGroupConnection_maxArgs = {
+  field: STRAPI_LIGHT_CONNECTIONFieldSelector;
+};
+
+
+type STRAPI_LIGHT_CONNECTIONGroupConnection_minArgs = {
+  field: STRAPI_LIGHT_CONNECTIONFieldSelector;
+};
+
+
+type STRAPI_LIGHT_CONNECTIONGroupConnection_sumArgs = {
+  field: STRAPI_LIGHT_CONNECTIONFieldSelector;
+};
+
+type STRAPI_LIGHT_CONNECTIONSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly createdAt: InputMaybe<SortOrderEnum>;
+  readonly documentId: InputMaybe<SortOrderEnum>;
+  readonly ending_light: InputMaybe<STRAPI_LIGHTSortInput>;
+  readonly excerpt: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly name: InputMaybe<SortOrderEnum>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly starting_light: InputMaybe<STRAPI_LIGHTSortInput>;
+  readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
+  readonly strapi_id: InputMaybe<SortOrderEnum>;
+  readonly updatedAt: InputMaybe<SortOrderEnum>;
 };
 
 type STRAPI_LIGHT_GROUP = Node & {

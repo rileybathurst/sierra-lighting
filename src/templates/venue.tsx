@@ -24,7 +24,7 @@ type VenueViewTypes = {
       slug: string;
       excerpt: string;
       website: string;
-      phone: number;
+      phone?: number;
       area: {
         name: string;
         state: 'california' | 'nevada';
@@ -104,7 +104,10 @@ const VenueView = ({ data }: VenueViewTypes) => {
           </address>
           : null}
 
-        <p>Phone: <Phone phone={data.strapiVenue.phone} /></p>
+        {data.strapiVenue.phone ?
+          <p>Phone: <Phone phone={data.strapiVenue.phone} /></p>
+          : null
+        }
 
         <p>
           Website&nbsp;
