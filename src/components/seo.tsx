@@ -3,6 +3,7 @@
 import React from "react";
 import { Script, useStaticQuery, graphql } from "gatsby";
 import type VideoTypes from "../types/video-types";
+import Season from "./season";
 
 type BreadcrumbsTypes = {
   url: string;
@@ -109,6 +110,11 @@ export const SEO = (SEO: SEOtypes) => {
       strapiTopbar {
         title
         link
+
+        defaultXmas
+        defaultXmasLink
+        defaultWedding
+        defaultWeddingLink
       }
 
       allStrapiService {
@@ -131,10 +137,23 @@ export const SEO = (SEO: SEOtypes) => {
 
   // console.log(data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, '));
   // console.log(data.allStrapiArea.nodes.map((area) => area.name).join(', '));
+  
+  const SeasonalTopbar = (() => {
+    if (data.strapiTopbar.title && data.strapiTopbar.default) {
+      return data.strapiTopbar.title;
+    } else if (Season() === 'xmas') {
+      return data.strapiTopbar.defaultXmas;
+    } else if (Season() === 'wedding') {
+      return data.strapiTopbar.defaultWedding;
+    } else {
+      console.error('No topbar title set in Strapi');
+      return '';
+    }
+  })();
 
   return (
     <>
-      <title>{SEO.title ? `${SEO.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${data.strapiTopbar.title}`}</title>
+      <title>{SEO.title ? `${SEO.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${SeasonalTopbar}`}</title>
       <meta name="description" content={SEO.description ? SEO.description : data.strapiAbout.slogan} />
       <meta name="image" itemProp="image" content={SEO.image} />
 

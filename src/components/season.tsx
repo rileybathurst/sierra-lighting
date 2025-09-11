@@ -1,20 +1,20 @@
+// https://ntietz.com/blog/that-boolean-should-probably-be-something-else/
+// Changing this to be more clear to anyone later
+
 import { graphql, useStaticQuery } from "gatsby"
 
 function Season() {
   const { strapiSeason } = useStaticQuery(graphql`
     query {
       strapiSeason {
-        wedding
+        season
       }
     }
   `)
 
-  // console.log('strapiSeason', strapiSeason)
+  console.log('strapiSeason', strapiSeason.season)
 
-  if (strapiSeason.wedding) {
-    return 'wedding'
-  }
-  return 'xmas'
+  return strapiSeason.season
 }
 
 export default Season

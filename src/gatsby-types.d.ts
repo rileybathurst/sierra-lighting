@@ -2336,6 +2336,7 @@ type Query_strapiLookbookArgs = {
   spread: InputMaybe<IntQueryOperatorInput>;
   strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
+  title: InputMaybe<StringQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
   vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
   venue: InputMaybe<STRAPI_VENUEFilterInput>;
@@ -2536,6 +2537,7 @@ type Query_strapiSeasonArgs = {
   internal: InputMaybe<InternalFilterInput>;
   parent: InputMaybe<NodeFilterInput>;
   publishedAt: InputMaybe<DateQueryOperatorInput>;
+  season: InputMaybe<StringQueryOperatorInput>;
   strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   strapi_id: InputMaybe<IntQueryOperatorInput>;
   updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -2701,10 +2703,11 @@ type Query_strapiTestimonialArgs = {
 type Query_strapiTopbarArgs = {
   children: InputMaybe<NodeFilterListInput>;
   createdAt: InputMaybe<DateQueryOperatorInput>;
-  defaultHoliday: InputMaybe<StringQueryOperatorInput>;
-  defaultHolidayLink: InputMaybe<StringQueryOperatorInput>;
+  default: InputMaybe<BooleanQueryOperatorInput>;
   defaultWedding: InputMaybe<StringQueryOperatorInput>;
   defaultWeddingLink: InputMaybe<StringQueryOperatorInput>;
+  defaultXmas: InputMaybe<StringQueryOperatorInput>;
+  defaultXmasLink: InputMaybe<StringQueryOperatorInput>;
   documentId: InputMaybe<StringQueryOperatorInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
@@ -5857,6 +5860,7 @@ type STRAPI_LOOKBOOK = Node & {
   readonly spread: Maybe<Scalars['Int']>;
   readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
+  readonly title: Maybe<Scalars['String']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
   readonly vendors: Maybe<ReadonlyArray<Maybe<STRAPI_VENDOR>>>;
   readonly venue: Maybe<STRAPI_VENUE>;
@@ -5965,6 +5969,7 @@ type STRAPI_LOOKBOOKFieldSelector = {
   readonly spread: InputMaybe<FieldSelectorEnum>;
   readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
+  readonly title: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORFieldSelector>;
   readonly venue: InputMaybe<STRAPI_VENUEFieldSelector>;
@@ -5988,6 +5993,7 @@ type STRAPI_LOOKBOOKFilterInput = {
   readonly spread: InputMaybe<IntQueryOperatorInput>;
   readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
+  readonly title: InputMaybe<StringQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
   readonly vendors: InputMaybe<STRAPI_VENDORFilterListInput>;
   readonly venue: InputMaybe<STRAPI_VENUEFilterInput>;
@@ -6056,6 +6062,7 @@ type STRAPI_LOOKBOOKSortInput = {
   readonly spread: InputMaybe<SortOrderEnum>;
   readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
+  readonly title: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
   readonly vendors: InputMaybe<STRAPI_VENDORSortInput>;
   readonly venue: InputMaybe<STRAPI_VENUESortInput>;
@@ -7754,6 +7761,7 @@ type STRAPI_SEASON = Node & {
   readonly internal: Internal;
   readonly parent: Maybe<Node>;
   readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly season: Maybe<Scalars['String']>;
   readonly strapi_document_id_or_regular_id: Maybe<Scalars['String']>;
   readonly strapi_id: Maybe<Scalars['Int']>;
   readonly updatedAt: Maybe<Scalars['Date']>;
@@ -7837,6 +7845,7 @@ type STRAPI_SEASONFieldSelector = {
   readonly internal: InputMaybe<InternalFieldSelector>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly publishedAt: InputMaybe<FieldSelectorEnum>;
+  readonly season: InputMaybe<FieldSelectorEnum>;
   readonly strapi_document_id_or_regular_id: InputMaybe<FieldSelectorEnum>;
   readonly strapi_id: InputMaybe<FieldSelectorEnum>;
   readonly updatedAt: InputMaybe<FieldSelectorEnum>;
@@ -7851,6 +7860,7 @@ type STRAPI_SEASONFilterInput = {
   readonly internal: InputMaybe<InternalFilterInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly publishedAt: InputMaybe<DateQueryOperatorInput>;
+  readonly season: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_document_id_or_regular_id: InputMaybe<StringQueryOperatorInput>;
   readonly strapi_id: InputMaybe<IntQueryOperatorInput>;
   readonly updatedAt: InputMaybe<DateQueryOperatorInput>;
@@ -7906,6 +7916,7 @@ type STRAPI_SEASONSortInput = {
   readonly internal: InputMaybe<InternalSortInput>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly publishedAt: InputMaybe<SortOrderEnum>;
+  readonly season: InputMaybe<SortOrderEnum>;
   readonly strapi_document_id_or_regular_id: InputMaybe<SortOrderEnum>;
   readonly strapi_id: InputMaybe<SortOrderEnum>;
   readonly updatedAt: InputMaybe<SortOrderEnum>;
@@ -9471,10 +9482,11 @@ type STRAPI_TESTIMONIALSortInput = {
 type STRAPI_TOPBAR = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly createdAt: Maybe<Scalars['Date']>;
-  readonly defaultHoliday: Maybe<Scalars['String']>;
-  readonly defaultHolidayLink: Maybe<Scalars['String']>;
+  readonly default: Maybe<Scalars['Boolean']>;
   readonly defaultWedding: Maybe<Scalars['String']>;
   readonly defaultWeddingLink: Maybe<Scalars['String']>;
+  readonly defaultXmas: Maybe<Scalars['String']>;
+  readonly defaultXmasLink: Maybe<Scalars['String']>;
   readonly documentId: Maybe<Scalars['String']>;
   readonly id: Scalars['ID'];
   readonly internal: Internal;
@@ -9559,10 +9571,11 @@ type STRAPI_TOPBAREdge = {
 type STRAPI_TOPBARFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly createdAt: InputMaybe<FieldSelectorEnum>;
-  readonly defaultHoliday: InputMaybe<FieldSelectorEnum>;
-  readonly defaultHolidayLink: InputMaybe<FieldSelectorEnum>;
+  readonly default: InputMaybe<FieldSelectorEnum>;
   readonly defaultWedding: InputMaybe<FieldSelectorEnum>;
   readonly defaultWeddingLink: InputMaybe<FieldSelectorEnum>;
+  readonly defaultXmas: InputMaybe<FieldSelectorEnum>;
+  readonly defaultXmasLink: InputMaybe<FieldSelectorEnum>;
   readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly internal: InputMaybe<InternalFieldSelector>;
@@ -9578,10 +9591,11 @@ type STRAPI_TOPBARFieldSelector = {
 type STRAPI_TOPBARFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly createdAt: InputMaybe<DateQueryOperatorInput>;
-  readonly defaultHoliday: InputMaybe<StringQueryOperatorInput>;
-  readonly defaultHolidayLink: InputMaybe<StringQueryOperatorInput>;
+  readonly default: InputMaybe<BooleanQueryOperatorInput>;
   readonly defaultWedding: InputMaybe<StringQueryOperatorInput>;
   readonly defaultWeddingLink: InputMaybe<StringQueryOperatorInput>;
+  readonly defaultXmas: InputMaybe<StringQueryOperatorInput>;
+  readonly defaultXmasLink: InputMaybe<StringQueryOperatorInput>;
   readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly internal: InputMaybe<InternalFilterInput>;
@@ -9638,10 +9652,11 @@ type STRAPI_TOPBARGroupConnection_sumArgs = {
 type STRAPI_TOPBARSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly createdAt: InputMaybe<SortOrderEnum>;
-  readonly defaultHoliday: InputMaybe<SortOrderEnum>;
-  readonly defaultHolidayLink: InputMaybe<SortOrderEnum>;
+  readonly default: InputMaybe<SortOrderEnum>;
   readonly defaultWedding: InputMaybe<SortOrderEnum>;
   readonly defaultWeddingLink: InputMaybe<SortOrderEnum>;
+  readonly defaultXmas: InputMaybe<SortOrderEnum>;
+  readonly defaultXmasLink: InputMaybe<SortOrderEnum>;
   readonly documentId: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly internal: InputMaybe<InternalSortInput>;
@@ -11940,7 +11955,7 @@ type LightQueryQuery = { readonly strapiLight: { readonly id: string, readonly n
 type LightsQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type LightsQueryQuery = { readonly wedding: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly light_groups: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly weddingOrder: number | null, readonly xmasOrder: number | null } | null> | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly xmas: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly light_groups: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly weddingOrder: number | null, readonly xmasOrder: number | null } | null> | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly all: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly services: ReadonlyArray<{ readonly slug: string | null } | null> | null, readonly light_groups: ReadonlyArray<{ readonly slug: string | null } | null> | null }> }, readonly strapiSeason: { readonly wedding: boolean | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null }> } };
+type LightsQueryQuery = { readonly wedding: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly light_groups: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly weddingOrder: number | null, readonly xmasOrder: number | null } | null> | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly xmas: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly byline: string | null, readonly light_groups: ReadonlyArray<{ readonly name: string | null, readonly slug: string | null, readonly excerpt: string | null, readonly weddingOrder: number | null, readonly xmasOrder: number | null } | null> | null, readonly image: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> }, readonly all: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly services: ReadonlyArray<{ readonly slug: string | null } | null> | null, readonly light_groups: ReadonlyArray<{ readonly slug: string | null } | null> | null }> }, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly name: string | null, readonly slug: string | null }> } };
 
 type LookbookPosterQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -11983,7 +11998,7 @@ type SearchQueryQuery = { readonly allStrapiLight: { readonly nodes: ReadonlyArr
 type SEOQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SEOQueryQuery = { readonly strapiAbout: { readonly businessName: string | null, readonly url: string | null, readonly slogan: string | null, readonly defaultImage: string | null, readonly defaultImageAlt: string | null, readonly openingHours: string | null, readonly telephone: string | null, readonly email: string | null, readonly paymentAccepted: string | null, readonly alternateName: string | null, readonly geoLatitude: number | null, readonly geoLongitude: number | null, readonly geoRadius: number | null, readonly addressLocality: string | null, readonly addressRegion: string | null, readonly postalCode: string | null } | null, readonly strapiTopbar: { readonly title: string | null, readonly link: string | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly name: string | null }> }, readonly allStrapiArea: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly areas: ReadonlyArray<{ readonly name: string | null } | null> | null }> } };
+type SEOQueryQuery = { readonly strapiAbout: { readonly businessName: string | null, readonly url: string | null, readonly slogan: string | null, readonly defaultImage: string | null, readonly defaultImageAlt: string | null, readonly openingHours: string | null, readonly telephone: string | null, readonly email: string | null, readonly paymentAccepted: string | null, readonly alternateName: string | null, readonly geoLatitude: number | null, readonly geoLongitude: number | null, readonly geoRadius: number | null, readonly addressLocality: string | null, readonly addressRegion: string | null, readonly postalCode: string | null } | null, readonly strapiTopbar: { readonly title: string | null, readonly link: string | null, readonly defaultXmas: string | null, readonly defaultXmasLink: string | null, readonly defaultWedding: string | null, readonly defaultWeddingLink: string | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly name: string | null }> }, readonly allStrapiArea: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly areas: ReadonlyArray<{ readonly name: string | null } | null> | null }> } };
 
 type ServiceLightsTemplateQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -12040,7 +12055,7 @@ type TestimonialsQueryQuery = { readonly allStrapiTestimonial: { readonly nodes:
 type TopBarQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type TopBarQueryQuery = { readonly strapiTopbar: { readonly title: string | null, readonly link: string | null } | null };
+type TopBarQueryQuery = { readonly strapiTopbar: { readonly title: string | null, readonly link: string | null, readonly default: boolean | null, readonly defaultXmas: string | null, readonly defaultXmasLink: string | null, readonly defaultWedding: string | null, readonly defaultWeddingLink: string | null } | null };
 
 type vendorCardFragment = { readonly id: string, readonly name: string | null, readonly excerpt: string | null, readonly slug: string | null, readonly service: string | null, readonly profile: { readonly alternativeText: string | null, readonly localFile: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null };
 

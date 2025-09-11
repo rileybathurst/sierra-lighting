@@ -1,8 +1,8 @@
 // TODO: check this on the xmas season
 // TODO: storybook and fragment more of this if not componentize it
-// TODO: why do we have 3 queries for all wedding and xmas lights? they are grabbing the same thing
+// ! We have 3 queries for all wedding and xmas lights? they are grabbing the same thing
 // ! use an object for the groups so we can sort them and read whats going on
-
+// this whole page needs to be cleaned up
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
@@ -13,6 +13,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
 import LightSearch from "../components/light-search";
+import Season from "../components/season";
 
 const lightsPage = () => {
 
@@ -57,10 +58,6 @@ const lightsPage = () => {
         }
       }
 
-      strapiSeason {
-        wedding
-      }
-
       allStrapiService {
         nodes {
           id
@@ -83,7 +80,6 @@ const lightsPage = () => {
   }
 
   if (process.env.NODE_ENV === "development") {
-
     const noService = data.all.nodes.filter((light: FilterLightType) => !light.services.length);
     noService.map((light: { name: string; }) => {
       console.warn(`${light.name} does not have a service`);
@@ -93,19 +89,18 @@ const lightsPage = () => {
     noGroup.map((light: { name: string; }) => {
       console.warn(`${light.name} is not in a group`);
     });
-
   }
 
   // TODO: allStrapiService should probably be sorted
-
-  const dataSeason = data.strapiSeason.wedding ? data.wedding : data.xmas;
-
+  // ! check if this works with new string
   const lightGroupSet = new Set();
-  for (const light of dataSeason.nodes) {
+  for (const light of Season().nodes) {
     light.light_groups.map((group: { slug: string }) => {
       lightGroupSet.add(group.slug,)
     })
   }
+  // console.log(lightGroupSet);
+
   // ? what if I go to an object so I can deal with the order
   const lightGroupArray = Array.from(lightGroupSet);
 
@@ -121,10 +116,9 @@ const lightsPage = () => {
       ))
   })
 
-  console.log(lightGroupArray);
+  // console.log(lightGroupArray);
 
-  // console.log(data.strapiSeason.wedding);
-  if (data.strapiSeason.wedding) {
+  if (Season() === 'wedding') {
     lightGroupArrayOrder.sort((a, b) => {
       if (a[1] === null && b[1] === null) {
         return 0;

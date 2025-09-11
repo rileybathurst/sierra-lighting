@@ -191,14 +191,15 @@ const IndexPage = () => {
 
           {/* TODO: Hero needs renaming now that I'm more happy with it */}
           <div className="images">
-            {Season() ? <HeroWeadingBackImage /> : <BackImage />}
-            {Season() ?
+            {/* // ! needs refactoring with the string */}
+            {Season() === 'wedding' ? <HeroWeadingBackImage /> : <BackImage />}
+            {Season() === 'wedding' ? (
               <GatsbyImage image={data.strapiHero.wedding_front.localFile.childImageSharp.gatsbyImageData}
                 alt={data.strapiHero.wedding_front.alternativeText || "hero image"}
                 className="front"
                 backgroundColor="transparent"
               />
-              :
+                ) :
               <GatsbyImage image={data.strapiHero.front.localFile.childImageSharp.gatsbyImageData}
                 alt={data.strapiHero.front.alternativeText || "hero image"}
                 className="front"
