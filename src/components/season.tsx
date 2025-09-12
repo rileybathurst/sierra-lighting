@@ -12,7 +12,7 @@ function Season() {
     }
   `)
 
-  console.log('strapiSeason', strapiSeason.season)
+  // console.log('strapiSeason', strapiSeason.season)
 
   return strapiSeason.season
 }

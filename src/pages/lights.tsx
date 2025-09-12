@@ -1,8 +1,5 @@
-// TODO: check this on the xmas season
 // TODO: storybook and fragment more of this if not componentize it
-// ! We have 3 queries for all wedding and xmas lights? they are grabbing the same thing
-// ! use an object for the groups so we can sort them and read whats going on
-// this whole page needs to be cleaned up
+// TODO: move the check for lights having a service on the page of that light
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
@@ -14,46 +11,28 @@ import Footer from "../components/footer";
 import Card from "../components/card";
 import LightSearch from "../components/light-search";
 import Season from "../components/season";
+import type { CardType } from "../types/card-type";
 
 const lightsPage = () => {
 
   const data = useStaticQuery(graphql`
     query LightsQuery {
 
-      wedding: allStrapiLight(sort: {weddingOrder: ASC}) {
-        nodes {
-          light_groups {
-            name
-            slug
-            excerpt
-            weddingOrder
-            xmasOrder
-          }
-          ...lightCard
-        }
-      }
-
-      xmas: allStrapiLight(sort: {xmasOrder: ASC}) {
-        nodes {
-          light_groups {
-            name
-            slug
-            excerpt
-            weddingOrder
-            xmasOrder
-          }
-          ...lightCard
-        }
-      }
-
-      all: allStrapiLight {
+      allStrapiLightGroup {
         nodes {
           name
-          services {
-            slug
-          }
-          light_groups {
-            slug
+          slug
+          excerpt
+          weddingOrder
+          xmasOrder
+
+          lights {
+            services {
+              slug
+            }
+            weddingOrder
+            xmasOrder
+            ...lightCard
           }
         }
       }
@@ -69,85 +48,85 @@ const lightsPage = () => {
     }
   `)
 
-  type FilterLightType = {
+  type ServiceTypes = {
+    id: string
     name: string
-    services: {
-      slug: string
-    }[]
-    light_groups: {
-      slug: string
-    }[]
+    slug: string
   }
 
+  type LightGroupTypes = {
+    name: string
+    slug: string
+    excerpt: string
+    weddingOrder: number | null
+    xmasOrder: number | null
+    lights: CardType[];
+  }
+
+  type ExtendedCardType = CardType & {
+    weddingOrder: number | null;
+    xmasOrder: number | null;
+  };
+
+  // * check that each light group has lights
   if (process.env.NODE_ENV === "development") {
-    const noService = data.all.nodes.filter((light: FilterLightType) => !light.services.length);
-    noService.map((light: { name: string; }) => {
-      console.warn(`${light.name} does not have a service`);
-    });
+    data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => {
+      // console.log(group.name);
 
-    const noGroup = data.all.nodes.filter((light: FilterLightType) => !light.light_groups.length);
-    noGroup.map((light: { name: string; }) => {
-      console.warn(`${light.name} is not in a group`);
+      if (group.lights.length === 0) {
+        console.warn(`Light group ${group.name} does not have any lights`);
+      }
+
+      return null;
     });
   }
 
-  // TODO: allStrapiService should probably be sorted
-  // ! check if this works with new string
-  const lightGroupSet = new Set();
-  for (const light of Season().nodes) {
-    light.light_groups.map((group: { slug: string }) => {
-      lightGroupSet.add(group.slug,)
-    })
-  }
-  // console.log(lightGroupSet);
-
-  // ? what if I go to an object so I can deal with the order
-  const lightGroupArray = Array.from(lightGroupSet);
-
-  const lightGroupArrayOrder: [string, number | null, number | null][] = [];
-
-  lightGroupArray.map((group) => {
-    dataSeason.nodes
-      .filter((light) => light.light_groups.map((group) => group.slug).includes(group))
-      .slice(0, 1)
-      .map((light) => (
-        // console.log(light.light_groups[0].weddingOrder)
-        lightGroupArrayOrder.push([group, light.light_groups[0].weddingOrder, light.light_groups[0].xmasOrder])
-      ))
-  })
-
-  // console.log(lightGroupArray);
+  // * Order the groups by season
+  console.log(Season());
 
   if (Season() === 'wedding') {
-    lightGroupArrayOrder.sort((a, b) => {
-      if (a[1] === null && b[1] === null) {
-        return 0;
-      }
-      if (a[1] === null) {
-        return 1;
-      }
-      if (b[1].weddingOrder === null) {
-        return -1;
-      }
+    data.allStrapiLightGroup.nodes.sort((a: LightGroupTypes, b: LightGroupTypes) => {
+      if (a.weddingOrder === null && b.weddingOrder === null) return 0;
+      if (a.weddingOrder === null) return 1;
+      if (b.weddingOrder === null) return -1;
+      return a.weddingOrder - b.weddingOrder;
 
-      return a[1] - b[1];
     });
-  } else {
-    lightGroupArray.sort((a, b) => {
-      if (a[2] === null && b[2] === null) {
-        return 0;
-      }
-      if (a[2] === null) {
-        return 1;
-      }
-      if (b[2] === null) {
-        return -1;
-      }
-      return a[2] - b[2];
+  } else if (Season() === 'xmas') {
+    data.allStrapiLightGroup.nodes.sort((a: LightGroupTypes, b: LightGroupTypes) => {
+      if (a.xmasOrder === null && b.xmasOrder === null) return 0;
+      if (a.xmasOrder === null) return 1;
+      if (b.xmasOrder === null) return -1;
+      return a.xmasOrder - b.xmasOrder;
     });
   }
+  // console.log(data.allStrapiLightGroup.nodes);
+  // * This is functional
 
-  // console.log(lightGroupArrayOrder);
+  // order the lights by season in each group
+  data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => {
+    if (Season() === 'wedding') {
+      group.lights.sort((a: CardType, b: CardType) => {
+        const aWeddingOrder = (a as ExtendedCardType).weddingOrder;
+        const bWeddingOrder = (b as ExtendedCardType).weddingOrder;
+        if (aWeddingOrder === null && bWeddingOrder === null) return 0;
+        if (aWeddingOrder === null) return 1;
+        if (bWeddingOrder === null) return -1;
+        return aWeddingOrder - bWeddingOrder;
+      });
+    } else if (Season() === 'xmas') {
+      group.lights.sort((a: CardType, b: CardType) => {
+        const aXmasOrder = (a as ExtendedCardType).xmasOrder;
+        const bXmasOrder = (b as ExtendedCardType).xmasOrder;
+        if (aXmasOrder === null && bXmasOrder === null) return 0;
+        if (aXmasOrder === null) return 1;
+        if (bXmasOrder === null) return -1;
+        return aXmasOrder - bXmasOrder;
+      });
+    }
+
+    return null;
+  });
 
   return (
     <>
@@ -156,12 +135,11 @@ const lightsPage = () => {
         <h1 className="mixta">Lights</h1>
       </main >
 
-      {/* // TODO: this probably shouldnt be a deck we can split in better ways */}
       <section className="stork wrap">
         <div>
           Filter by use:
           <ul>
-            {data.allStrapiService.nodes.map((service) => (
+            {data.allStrapiService.nodes.map((service: ServiceTypes) => (
               <li key={service.id}>
                 <Link to={`/${service.slug}/lights`}>
                   {service.name}
@@ -173,18 +151,12 @@ const lightsPage = () => {
         <div>
           <p>or by type:</p>
           <ul>
-            {lightGroupArrayOrder.map((group) => (
-              dataSeason.nodes
-                .filter((light) => light.light_groups.map((group) => group.slug).includes(group[0]))
-                .slice(0, 1)
-                .map((light) => (
-                  <li key={light.id}>
-                    {/* // TODO: slide */}
-                    <Link to={`#${light.light_groups[0].slug}`}>
-                      {light.light_groups[0].name}
-                    </Link>
-                  </li>
-                ))
+            {data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
+              <li key={group.slug}>
+                <Link to={`/light-group/${group.slug}`}>
+                  {group.name}
+                </Link>
+              </li>
             ))}
           </ul>
         </div >
@@ -198,44 +170,36 @@ const lightsPage = () => {
       </div>
       <LightSearch />
 
-      {lightGroupArrayOrder.map((group) => (
-        <div
-          key={group}
-          id={group[0]}
-        >
-          <div className="stork">
-            <hr />
+      {data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
+        <React.Fragment key={group.slug}>
+          <section className="stork">
+            <h2 className="mixta">
+              <Link to={`/light-group/${group.slug}`}>
+                {group.name}
+              </Link>
+            </h2>
+            {group.excerpt ? <p>{group.excerpt}</p> : null}
+          </section>
 
-            {dataSeason.nodes
-              .filter((light) => light.light_groups.map((group) => group.slug).includes(group[0]))
-              .slice(0, 1)
-              .map((light) => (
-                <React.Fragment key={light.id}>
-                  <h3>
-                    <Link to={`/light-group/${light.light_groups[0].slug}`}>{light.light_groups[0].name}</Link>
-                  </h3>
-                  <p>{light.light_groups[0].excerpt}</p>
-                </React.Fragment>
-              ))
-            }
-
-          </div>
-          <div className="deck">
-            {dataSeason.nodes
-              .filter((light) => light.light_groups.map((group) => group.slug).includes(group[0]))
-              .map((light) => (
-                <Card key={light.id}
+          {group.lights.length > 0 ? (
+            <div className="deck">
+              {group.lights.map((light: CardType) => (
+                <Card 
+                  key={light.slug}
                   {...light}
                   breadcrumb="light"
                 />
-              ))
-            }
-          </div>
-        </div>
-      ))
-      }
+              ))}
+            </div>
 
-      < Footer />
+          ) : null}
+
+          <hr className="stork" />
+
+          </React.Fragment>
+      ))}
+
+      <Footer />
 
     </>
   )
