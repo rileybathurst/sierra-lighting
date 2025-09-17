@@ -17,7 +17,8 @@
 
 ## moved to programatically created services
 
-/permanent /patio
+/permanent /
+/patio /
 /events /social-events
 
 ## dont try to format it will pull back

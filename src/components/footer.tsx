@@ -243,7 +243,8 @@ const Footer = ({ quote }: { quote?: boolean }) => {
               <li key="services" className="footer_list--no_link">
                 <strong>Additional Lighting Services</strong>
               </li>
-              <li key="patio"><Link to="/patio">Patio Lighting {/* <span className='sr-only'>Lighting Installation</span> */}</Link></li>
+              {/* <li key="patio"><Link to="/patio">Patio Lighting <span className='sr-only'>Lighting Installation</span></Link></li> */}
+              {/* // ? why have i removed the sr */}
               <li key="events"><Link to="/social-events">Social Events {/* <span className='sr-only'>Lighting Installation</span> */}</Link></li>
               <li key="commercial-events">
                 <Link to="/commercial-events">Commercial Events {/* <span className='sr-only'>Lighting Installation</span> */}</Link>

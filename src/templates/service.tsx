@@ -209,8 +209,8 @@ const ServiceView = ({ data }: ServiceTypes) => {
     commercial: 'business',
     'commercial-events': 'business',
     'social_events': 'event',
-    patio: 'patio'
   };
+  // patio: 'patio'
   const adjective = adj[data.strapiService.slug];
 
   // console.log(data.allStrapiLookbook);
