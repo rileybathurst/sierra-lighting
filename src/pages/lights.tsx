@@ -82,8 +82,7 @@ const lightsPage = () => {
   }
 
   // * Order the groups by season
-  console.log(Season());
-
+  // console.log(Season());
   if (Season() === 'wedding') {
     data.allStrapiLightGroup.nodes.sort((a: LightGroupTypes, b: LightGroupTypes) => {
       if (a.weddingOrder === null && b.weddingOrder === null) return 0;

@@ -1,4 +1,4 @@
-// TODO: I over simplified this query to holiday wedding /there isnt a specific for permanent and social event isnt labeled add a secondary for them
+// TODO: I over simplified this query to holiday wedding /there isnt a specific for patio and social event isnt labeled add a secondary for them
 // TODO: I can variable more of this
 
 import React, { useState } from 'react';
