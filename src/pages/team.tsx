@@ -55,10 +55,10 @@ const TeamPage = () => {
         {data.allStrapiTeam.nodes.map((team: TeamTypes) => (
           <Card
             key={team.id}
+            id={team.id}
             title={team.name}
             slug={team.slug}
             image={team.avatar}
-            alt={team.avatar?.alternativeText}
             breadcrumb="team"
             excerpt={team.bio.data.bio}
           />

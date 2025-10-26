@@ -3,7 +3,6 @@
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
-// import { GatsbyImage } from "gatsby-plugin-image"
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import ReactMarkdown from "react-markdown";
@@ -13,6 +12,17 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import type { CardType } from "../../types/card-type";
 import { SEO } from "../../components/seo";
+import type { LightGroupType } from "../../types/light-group-type";
+
+type HoaPageQueryData = {
+  allStrapiLight: {
+    nodes: Array<CardType & { light_groups: LightGroupType[] }>;
+  };
+};
+
+type CardTypesWithLightGroups = CardType & {
+  light_groups: LightGroupType[];
+};
 
 function HoaPage() {
 
@@ -43,7 +53,12 @@ function HoaPage() {
   const seenSlugs = new Set();
 
   for (const light of data.allStrapiLight.nodes) {
-    light.light_groups.map((group) => {
+    interface LightGroupType {
+      slug: string;
+      xmasOrder: number;
+    }
+
+    light.light_groups.forEach((group: LightGroupType) => {
       if (!seenSlugs.has(group.slug)) {
         lightGroupSet.push({ slug: group.slug, xmasOrder: group.xmasOrder });
         seenSlugs.add(group.slug);
@@ -73,35 +88,37 @@ function HoaPage() {
       </main >
 
       <section>
+        {/* // ? why is this here its just repeating whats above */}
         <h4 className="stork">Lighting types used on Residential HOA displays</h4>
 
+        {/* // * map the array but then pull the data from the first (key)light and use that to fill in the info  */}
         {lightGroupArray
           .map((group) => (
-            // TODO: cardType + lightGroupType
+
             data.allStrapiLight.nodes
-              .filter((light: CardType) => light.light_groups[0].slug === (group.slug))
+              .filter((keyLight: CardTypesWithLightGroups) => keyLight.light_groups[0].slug === (group.slug))
               .slice(0, 1)
-              .map((light: CardType) => (
+              .map((keyLight: CardTypesWithLightGroups) => (
                 <>
                   <section
-                    key={light.id}
-                    id={light.light_groups[0].slug}
+                    key={keyLight.id}
+                    id={keyLight.light_groups[0].slug}
                     className="stork"
                   >
                     <hr />
                     <h3>
-                      <Link to={`/lights#${light.light_groups[0].slug}`}>
-                        {light.light_groups[0].name}
+                      <Link to={`/lights#${keyLight.light_groups[0].slug}`}>
+                        {keyLight.light_groups[0].name}
                       </Link>
                     </h3>
-                    <p key={light.id}>{light.light_groups[0].excerpt}</p>
+                    <p key={keyLight.id}>{keyLight.light_groups[0].excerpt}</p>
                   </section>
 
                   <section
-                    key={light.id}
+                    key={keyLight.id}
                     className="deck">
                     {data.allStrapiLight.nodes
-                      .filter((light) => light.light_groups[0].slug === (group.slug))
+                      .filter((light: CardTypesWithLightGroups) => light.light_groups[0].slug === (group.slug))
                       .map((light: CardType) => (
                         <Card
                           key={light.id}
@@ -119,7 +136,7 @@ function HoaPage() {
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/residential/">Residential</Link></Breadcrumb>
-        <Breadcrumb>Showcase</Breadcrumb>
+        <Breadcrumb>Homne Owners Associations</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
