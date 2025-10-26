@@ -78,7 +78,10 @@ type SEOtypes = {
   image?: string;
   imageAlt?: string;
   children?: React.ReactNode;
-  breadcrumbs?: BreadcrumbsTypes;
+  breadcrumbs?: {
+    name: string;
+    item: string;
+  }[];
   videos?: VideoTypes[] | null;
 }
 export const SEO = (SEO: SEOtypes) => {
@@ -132,11 +135,14 @@ export const SEO = (SEO: SEOtypes) => {
         }
       }
 
+      allStrapiKeyword {
+        nodes {
+          keyword
+        }
+      }
+
     }
   `);
-
-  // console.log(data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, '));
-  // console.log(data.allStrapiArea.nodes.map((area) => area.name).join(', '));
   
   const SeasonalTopbar = (() => {
     if (data.strapiTopbar.title && data.strapiTopbar.default) {
@@ -174,10 +180,6 @@ export const SEO = (SEO: SEOtypes) => {
 
       {/* "about": "Creating ${data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}", */}
 
-      {/* // ! https://schema.org/keywords */}
-      {/* // TODO: about seems like the place to add diversity / LGBTQ+ information */}
-      {/* additional info about smart home / timers etc */}
-
       {/* // TODO: 
       https://schema.org/ContactPoint
       https://schema.org/skills
@@ -193,7 +195,7 @@ export const SEO = (SEO: SEOtypes) => {
             "@context": "https://schema.org/",
             "@type": "LocalBusiness",
             "name": "${data.strapiAbout.businessName}",
-            "about": "Creating professional ${data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}",
+            "about": "Creating professional ${data.allStrapiService.nodes.map((service: { name: string; }) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area: { name: string; }) => area.name).join(', ')}",
             "slogan": "${data.strapiAbout.slogan}",
             "url": "${data.strapiAbout.url}",
             "alternateName": "${data.strapiAbout.alternateName}",
@@ -210,9 +212,9 @@ export const SEO = (SEO: SEOtypes) => {
             "areaServed": {
               "@type": "GeoCircle",
               "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": "${data.strapiAbout.geoLatitude}",
-                "longitude": "${data.strapiAbout.geoLongitude}"
+          "@type": "GeoCoordinates",
+          "latitude": "${data.strapiAbout.geoLatitude}",
+          "longitude": "${data.strapiAbout.geoLongitude}"
               },
               "geoRadius": "${data.strapiAbout.geoRadius}"
             },
@@ -222,7 +224,8 @@ export const SEO = (SEO: SEOtypes) => {
               "addressRegion": "${data.strapiAbout.addressRegion}",
               "postalCode": "${data.strapiAbout.postalCode}",
               "addressCountry": "US"
-              }
+            },
+            "keywords": "${data.allStrapiService.nodes.map((service: { name: string; }) => service.name).concat(data.allStrapiKeyword.nodes.map((k: { keyword: string; }) => k.keyword)).join(', ')}"
           }
         `}
       </Script>
@@ -235,7 +238,7 @@ export const SEO = (SEO: SEOtypes) => {
       {SEO.videos && (
         <VideoMux
           videos={SEO.videos}
-          pageUrl={SEO.url}
+          pageUrl={SEO.url ?? ""}
           url={data.strapiAbout.url}
           businessName={data.strapiAbout.businessName}
         />

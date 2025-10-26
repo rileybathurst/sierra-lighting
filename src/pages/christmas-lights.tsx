@@ -1,4 +1,6 @@
 // * this is a weird extra page as it has to query both sets
+// ! reorder this properly I have the ability to do it and its always xmas order
+// TODO: fix the cards in /templates/service-lights.tsx first then move it across
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
@@ -9,6 +11,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import LightSearch from "../components/light-search";
 import Card from "../components/card";
+import type { LightCardType } from "../types/light-card-type";
 
 const lightsPage = () => {
 
@@ -30,9 +33,30 @@ const lightsPage = () => {
     }
   `)
 
+  type LightGroupType = {
+    id: React.Key;
+    name: string;
+    slug: string;
+    excerpt: string;
+  }
+
+  type LightType = {
+    id: React.Key;
+    name: string;
+    slug: string;
+    excerpt?: string;
+    description: {
+      data: {
+        description: string;
+      }
+    }
+    light_groups: LightGroupType[];
+    // other fields...
+  }
+
   const lightGroupSet = new Set();
   for (const light of allStrapiLight.nodes) {
-    light.light_groups.map((group) => {
+    light.light_groups.forEach((group: LightGroupType) => {
       lightGroupSet.add(group.slug)
     })
   }
@@ -54,9 +78,9 @@ const lightsPage = () => {
           <ul>
             {lightGroupArray.map((group) => (
               allStrapiLight.nodes
-                .filter((light) => light.light_groups[0].slug === (group))
+                .filter((light: LightType) => light.light_groups[0].slug === (group))
                 .slice(0, 1)
-                .map((light) => (
+                .map((light: LightType) => (
                   <li key={light.id}>
                     <Link to={`#${light.light_groups[0].slug}`}>
                       {light.light_groups[0].name}
@@ -79,9 +103,9 @@ const lightsPage = () => {
 
       {lightGroupArray.map((group) => (
         allStrapiLight.nodes
-          .filter((light) => light.light_groups[0].slug === (group))
+          .filter((light: LightType) => light.light_groups[0].slug === (group))
           .slice(0, 1)
-          .map((light) => (
+          .map((light: LightType) => (
             <>
               <section
                 key={light.id}
@@ -101,11 +125,12 @@ const lightsPage = () => {
                 key={light.id}
                 className="deck">
                 {allStrapiLight.nodes
-                  .filter((light) => light.light_groups[0].slug === (group))
-                  .map((light) => (
+                  .filter((light: LightType) => light.light_groups[0].slug === (group))
+                  .map((light: LightType) => (
                     <Card
                       key={light.id}
-                      {...light}
+                      {...(light as unknown as LightCardType)}
+                      excerpt={light.excerpt ?? ''}
                       breadcrumb='light'
                     />
                   ))}
@@ -125,7 +150,7 @@ export const Head = () => {
   return (
     <SEO
       title='Christmas Lights'
-      // TODO: this is a bad description
+      // TODO: this is a bad description bring it from strapi
       // description="When you're looking for custom, elegant, one of a kind ambiance for you wedding, look no further than Sierra Lighting. Creating beautiful displays is all we do! We also offer landscape lighting services to make your outdoor space shine all summer long with cafe lights, uplighting, and more."
       url="christmas-lights"
     />

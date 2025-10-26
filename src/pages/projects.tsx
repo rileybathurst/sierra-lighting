@@ -57,6 +57,7 @@ const ProjectsPage = () => {
       <main className="stork">
         <h1>Projects</h1>
         {/* // TODO link these from a featured query */}
+        {/* // ! strapi this */}
         <p>A gallery of some of our past work. Photos of residential and commercial displays in Reno, Tahoe, Truckee, Martis Camp, Lahontan, Grays Crossing, Old Greenwood, Somersett, Caughlin Ranch, Verdi, Damonte Ranch, Galena, Montreux, Incline Village, and more!</p>
       </main>
 

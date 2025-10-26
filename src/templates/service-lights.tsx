@@ -9,6 +9,7 @@ import Footer from '../components/footer';
 import ReactMarkdown from 'react-markdown';
 import SEO from '../components/seo';
 import Card from '../components/card';
+import type { LightCardType } from '../types/light-card-type';
 
 interface ServiceLightViewTypes {
   data: {
@@ -30,12 +31,9 @@ interface ServiceLightViewTypes {
         slug: string,
       }[]
     },
+
     allStrapiLight: {
-      nodes: {
-        id: string,
-        name: string,
-        slug: string,
-        excerpt: string,
+      nodes: (LightCardType & {
         light_groups: {
           name: string,
           slug: string,
@@ -43,7 +41,7 @@ interface ServiceLightViewTypes {
           weddingOrder: number,
           xmasOrder: number,
         }[]
-      }[]
+      })[]
     },
     allStrapiLightGroup: {
       nodes: {
@@ -75,13 +73,13 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
     data.allStrapiLightGroup.nodes.sort((a, b) => a.xmasOrder - b.xmasOrder);
   }
 
-  const lightGroupSet = new Set();
+  const lightGroupSet = new Set<string>();
   for (const light of data.allStrapiLight.nodes) {
-    light.light_groups.map((group) => {
-      lightGroupSet.add(group.slug);
+    light.light_groups.forEach((g) => {
+      lightGroupSet.add(g.slug);
     });
   }
-  const lightGroupArray = Array.from(lightGroupSet);
+  const lightGroupArray = Array.from(lightGroupSet) as string[];
 
   return (
     <>
@@ -134,7 +132,7 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
       <section>
         {lightGroupArray.map((group) => (
           data.allStrapiLight.nodes
-            .filter((light) => light.light_groups.map((group) => group.slug).includes(group))
+            .filter((light) => light.light_groups.map((g) => g.slug).includes(group))
             .slice(0, 1)
             .map((light) => (
               <React.Fragment key={group}>
@@ -153,11 +151,12 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
                   className='deck'
                 >
                   {data.allStrapiLight.nodes
-                    .filter((light) => light.light_groups.map((group) => group.slug).includes(group))
+                    .filter((light) => light.light_groups.map((g) => g.slug).includes(group))
                     .map((light) => (
                       <Card
                         key={light.id}
                         {...light}
+                        excerpt={light.excerpt ?? ''}
                         breadcrumb='light'
                       />
                     ))}

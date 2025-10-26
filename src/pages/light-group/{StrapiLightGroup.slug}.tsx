@@ -2,7 +2,16 @@ import * as React from "react"
 import { graphql } from "gatsby"
 import LightGroupView from "../../views/lightgroup-view"
 import SEO from "../../components/seo"
+import type { LightGroupType } from "../../types/light-group-type"
 
+type LightGroupPageType = {
+  data: {
+    strapiLightGroup: LightGroupType;
+    allStrapiLightGroup: {
+      nodes: LightGroupType[];
+    };
+  };
+};
 
 export const query = graphql`
   query LightGroupQuery($slug: String!) {
@@ -25,7 +34,7 @@ export const query = graphql`
   }
 `
 
-const LightPage = ({ data }) => {
+const LightPage = ({ data }: LightGroupPageType) => {
   return (
     <LightGroupView
       lightgroup={data.strapiLightGroup}
@@ -36,7 +45,7 @@ const LightPage = ({ data }) => {
 
 export default LightPage;
 
-export const Head = ({ data }) => {
+export const Head = ({ data }: LightGroupPageType) => {
   return (
     <SEO
       title={`${data.strapiLightGroup.name}`}

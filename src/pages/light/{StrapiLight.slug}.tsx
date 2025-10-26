@@ -1,9 +1,9 @@
-import * as React from "react"
-import { graphql, Script } from "gatsby"
-import LightView from "../../views/light-view"
-import SEO from "../../components/seo"
-import type { GatsbyImageType } from "../../types/gatsby-image"
-import type { CardType } from "../../types/card-type"
+import * as React from "react";
+import { graphql } from "gatsby";
+import LightView from "../../views/light-view";
+import SEO from "../../components/seo";
+import type { GatsbyImageType } from "../../types/gatsby-image";
+import type { CardType } from "../../types/card-type";
 
 export const query = graphql`
   query LightQuery($slug: String!) {
@@ -18,6 +18,7 @@ export const query = graphql`
         id
         name
         slug
+        excerpt
         description {
           data {
             description
@@ -123,82 +124,83 @@ export const query = graphql`
     }
 
   }
-`
+`;
 type LightPageTypes = {
-  data: {
-    strapiLight: {
-      id: React.Key;
-      name: string;
-      slug: string;
-      excerpt: string;
-      description: string;
-
-      services: {
-        id: React.Key;
-        name: string;
-        slug: string;
-      }[];
-
-      light_groups: {
-        id: React.Key;
-        name: string;
-        slug: string;
-
-        lights: CardType[];
-      }[];
-      alias: string;
-      image: GatsbyImageType;
-      detail: GatsbyImageType;
-
-      altGallery: GatsbyImageType[];
-    };
-    allStrapiLight: {
-      nodes: CardType[];
-    };
-    allStrapiProject: {
-      nodes: CardType[];
-    };
-    weddingProcess: {
-      nodes: {
-        id: React.Key;
-        name: string;
-      }[];
-    };
-    holidayProcess: {
-      holiday: {
-        nodes: {
-          id: React.Key;
-          name: string;
-        }[];
-      }[];
-    }
-    projects: {
-      nodes: CardType[];
-    };
-    strapiAbout: {
-      url: string;
-    };
-
-    holiday: {
-      nodes: {
-        id: React.Key;
-        name: string;
-      }[];
-    };
-
-    wedding: {
-      nodes: {
-        id: React.Key;
-        name: string;
-      }[];
-    };
-  }
-}
+	data: {
+		strapiLight: {
+			id: React.Key;
+			name: string;
+			slug: string;
+			excerpt?: string | null;
+			description?: string | null;
+			services: {
+				id: React.Key;
+				name: string;
+				slug: string;
+				excerpt?: string | null;
+				description?: {
+					data?: {
+						description?: string | null;
+					} | null;
+				} | null;
+			}[];
+			light_groups?: {
+				id: React.Key;
+				name: string;
+				slug: string;
+				lights: CardType[];
+			}[];
+			alias?: string | null;
+			image?: GatsbyImageType | null;
+			detail?: GatsbyImageType | null;
+			altGallery?: GatsbyImageType[] | null;
+			projects?: CardType[] | null;
+		};
+		allStrapiLight: {
+			nodes: CardType[];
+		};
+		allStrapiProject: {
+			nodes: CardType[];
+		};
+		wedding: {
+			nodes: {
+				id: React.Key;
+				name: string;
+			}[];
+		};
+		holiday: {
+			nodes: {
+				id: React.Key;
+				name: string;
+			}[];
+		};
+		strapiAbout: {
+			url: string;
+		};
+	};
+};
 const LightPage = ({ data }: LightPageTypes) => {
+  const normalizedLight: NonNullable<LightPageTypes['data']['strapiLight']> = {
+      ...data.strapiLight,
+      excerpt: data.strapiLight.excerpt ?? "",
+      description: data.strapiLight.description ?? "",
+      alias: data.strapiLight.alias ?? "",
+      services: data.strapiLight.services.map((s) => ({
+        ...s,
+        excerpt: s.excerpt ?? "",
+        description: s.description ?? undefined,
+      })),
+      light_groups: data.strapiLight.light_groups ?? [],
+      image: data.strapiLight.image ?? null,
+      detail: data.strapiLight.detail ?? null,
+      altGallery: data.strapiLight.altGallery ?? [],
+      projects: data.strapiLight.projects ?? [],
+    };
 
   return (
     <LightView
-      light={data.strapiLight}
+      // TODO: copilot cant make this work properly I might need to manually rewrite it later
+      light={normalizedLight as NonNullable<LightPageTypes['data']['strapiLight']>}
       other={data.allStrapiLight}
       weddingProcess={data.wedding.nodes}
       holidayProcess={data.holiday.nodes}
@@ -212,62 +214,63 @@ export default LightPage;
 // TODO: might need a image default variable here
 
 export const Head = ({ data }: LightPageTypes) => {
+	let aliasString = "";
 
-  let aliasString = '';
+	if (data.strapiLight.alias) {
+		// console.log(data.strapiLight.alias)
+		const alias = data.strapiLight.alias;
+		aliasString = alias
+			.split("\n")
+			.map((item) => item.trim().replace(/^- /, ""))
+			.map((item) => item.charAt(0).toUpperCase() + item.slice(1))
+			.join(" | ");
+		// console.log(aliasString);
+	}
 
-  if (data.strapiLight.alias) {
-    // console.log(data.strapiLight.alias)
-    const alias = data.strapiLight.alias
-    aliasString = alias.split('\n')
-      .map(item => item.trim().replace(/^- /, ''))
-      .map(item => item.charAt(0).toUpperCase() + item.slice(1))
-      .join(' | ');
-    // console.log(aliasString);
-  }
+	let processString = "";
+	// console.log(data.wedding.nodes);
 
-  let processString = '';
-  // console.log(data.wedding.nodes);
+	if (
+		data.strapiLight.services.every(
+			(service) =>
+				service.slug === "residential" || service.slug === "commercial",
+		)
+	) {
+		for (const process of data.holiday.nodes) {
+			processString += ` | ${process.name}`;
+		}
+	} else {
+		for (const process of data.wedding.nodes) {
+			processString += ` | ${process.name}`;
+		}
+	}
 
-  if (data.strapiLight.services.every(service => service.slug === 'residential' || service.slug === 'commercial')) {
-    for (const process of data.holiday.nodes) {
-      processString += ` | ${process.name}`;
-    }
-  } else {
-    for (const process of data.wedding.nodes) {
-      processString += ` | ${process.name}`;
-    }
-  }
+	// console.log(processString);
 
-  // console.log(processString);
-
-  return (
-    <>
-      <SEO
-        title={`
+	return (
+		<>
+			<SEO
+				title={`
           ${data.strapiLight.name}
-          ${data.strapiLight.alias ? ` | ${aliasString}` : ''}
-          ${data.strapiLight.services.every(service => service.slug === 'residential' || service.slug === 'commercial') ? (
-            'christmas light installation'
-          ) : (
-            'weddings light instalation'
-          )}
+          ${data.strapiLight.alias ? ` | ${aliasString}` : ""}
+          ${data.strapiLight.services.every((service) => service.slug === "residential" || service.slug === "commercial") ? "christmas light installation" : "weddings light instalation"}
         `}
-        // TODO: needs the aliases in the SEO
-        description={`${data.strapiLight?.excerpt} ${processString}`} // TODO: add some info about styles i.e. 'modern, rustic, etc.' they might be just a number of tags
-        image={data.strapiLight?.image?.localFile?.url}
-        url={`light/${data.strapiLight.slug}`}
-        breadcrumbs={[
-          {
-            name: "Light",
-            item: "lights"
-          },
-          {
-            name: data.strapiLight.name,
-            item: `light/${data.strapiLight.slug}`
-          }
-        ]}
-      />
-      {/*       <Script type="application/ld+json">
+				// TODO: needs the aliases in the SEO
+				description={`${data.strapiLight?.excerpt} ${processString}`} // TODO: add some info about styles i.e. 'modern, rustic, etc.' they might be just a number of tags
+				image={data.strapiLight?.image?.localFile?.url}
+				url={`light/${data.strapiLight.slug}`}
+				breadcrumbs={[
+					{
+						name: "Light",
+						item: "lights",
+					},
+					{
+						name: data.strapiLight.name,
+						item: `light/${data.strapiLight.slug}`,
+					},
+				]}
+			/>
+			{/*       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org/",
@@ -279,6 +282,6 @@ export const Head = ({ data }: LightPageTypes) => {
           }
         `}
       </Script> */}
-    </>
-  )
-}
+		</>
+	);
+};

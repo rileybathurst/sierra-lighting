@@ -192,7 +192,7 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
   ].filter(Boolean) as SocialTypes[];
 
   // console.log(socialIcons.map((icon) => icon.name));
-  console.log(businessName)
+  // console.log(businessName)
 
   return (
     <ul id="footer-social" className="footer-social">

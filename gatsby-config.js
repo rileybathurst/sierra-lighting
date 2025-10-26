@@ -14,6 +14,7 @@ const strapiConfig = {
     'far',
     'image-grab',
     'job',
+    'keyword',
     'light',
     'light-connection',
     'light-group',

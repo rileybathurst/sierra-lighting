@@ -56,7 +56,6 @@ body {
     background-color: var(--denim-600);
 
     a {
-      color: var(--denim-300);
       color: var(--brilliance);
     }
   }

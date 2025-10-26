@@ -2,7 +2,7 @@
   margin-block-end: var(--kilimanjaro);
 }
 
-#slider {
+.slider {
   margin-inline: auto;
   max-width: var(--stork);
   white-space: nowrap;
@@ -29,11 +29,11 @@
       max-width: var(--vulture);
     }
 
-    > li:hover {
-      /* animation-play-state: paused; */
-      /* TODO this needs to control the whole series not just one before I can use it */
-      /* so would possibly need to be on the ul instead? */
-    }
+    /* TODO this needs to control the whole series not just one before I can use it */
+    /* so would possibly need to be on the ul instead? */
+    /* > li:hover {
+      animation-play-state: paused;
+    } */
   }
 }
 

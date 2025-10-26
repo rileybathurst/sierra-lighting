@@ -92,11 +92,12 @@ export default WorkPage
 // TODO: https://schema.org/JobPosting
 export const Head = () => {
 
+  // ? what am I doing here or is it just checking?
   useStrapiJob().allStrapiJob.nodes.map((job: JobTypes) => (
     job.areas.map((area) => (
       console.log(area.name)
     )
-    )))
+  )))
 
   // how can it be linked to the job?
 

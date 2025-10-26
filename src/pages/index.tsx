@@ -11,7 +11,7 @@ import Markdown from "react-markdown";
 import Header from "../components/header";
 import Season from "../components/season";
 import BackImage from "../images/BackImage";
-import HeroWeadingBackImage from "../images/HeroWeddingBackImage";
+import HeroWeddingBackImage from "../images/HeroWeddingBackImage";
 
 const IndexPage = () => {
 
@@ -100,26 +100,6 @@ const IndexPage = () => {
     }
   `)
 
-  /* 
-  // ! TODO removed project but also make this a fragment
-  // * none of the current testimonials have a project
-  allStrapiTestimonial(sort: {position: ASC}) {
-    nodes {
-      id
-      customer
-      platform
-      excerpt
-      createdAt
-      stars
-      title
-      position
-  
-      project {
-        slug
-        title
-      }
-    } */
-
   interface QualityTypes {
     id: React.Key;
     name: string;
@@ -169,6 +149,8 @@ const IndexPage = () => {
     }
   }
 
+  console.log(Season());
+
   return (
     <>
       <Header largeLogo={false} />
@@ -189,10 +171,9 @@ const IndexPage = () => {
             ))}
           </h2>
 
-          {/* TODO: Hero needs renaming now that I'm more happy with it */}
+          {/* // TODO: Hero needs renaming now that I'm more happy with it */}
           <div className="images">
-            {/* // ! needs refactoring with the string */}
-            {Season() === 'wedding' ? <HeroWeadingBackImage /> : <BackImage />}
+            {Season() === 'wedding' ? <HeroWeddingBackImage /> : <BackImage />}
             {Season() === 'wedding' ? (
               <GatsbyImage image={data.strapiHero.wedding_front.localFile.childImageSharp.gatsbyImageData}
                 alt={data.strapiHero.wedding_front.alternativeText || "hero image"}
@@ -228,7 +209,7 @@ const IndexPage = () => {
 
         </div>
 
-        <section id="qualities" className="qualities albatross">
+        <section className="qualities albatross">
           {data.allStrapiQuality.nodes.map((quality: QualityTypes) => (
             <section key={quality.id}>
               <div className='brow'>
@@ -243,16 +224,15 @@ const IndexPage = () => {
         </section>
 
         <div className="slider-container">
-          <section id="slider" className="testimonials">
+          <section className="slider testimonials">
             <h4>Thanks From Our Customers</h4>
 
             <ul>
               {/* // TODO: make this a component */}
               {data.allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
                 <li key={testimonial.id} className="slider">
-                  {/* 
-                  // ! testing removed
-                  {testimonial.project ?
+                  {/* // TODO: once testimonial projects are in place, re-add this */}
+                  {/* {testimonial.project ?
                     <h4>
                       <Link to={`/project/${testimonial.project.slug}`}>
                         {testimonial.project.title}

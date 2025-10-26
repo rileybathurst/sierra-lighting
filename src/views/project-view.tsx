@@ -88,7 +88,7 @@ interface ProjectViewTypes {
 
 const ProjectView = ({ project, triptych, additional, other }: ProjectViewTypes) => {
 
-  console.log(project.area);
+  // console.log(project.area);
 
   return (
     <>

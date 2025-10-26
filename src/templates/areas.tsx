@@ -463,7 +463,7 @@ export const Head = ({ data }: AreasTemplateSEOTypes) => {
     subAreasString = data.strapiArea.areas.map((area) => area.name).join(', ');
   }
 
-  console.log(subAreasString)
+  // console.log(subAreasString)
 
   return (
     <SEO
