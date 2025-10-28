@@ -137,7 +137,7 @@ type LightPageTypes = {
 				id: React.Key;
 				name: string;
 				slug: string;
-				excerpt?: string | null;
+					excerpt: string;
 				description?: {
 					data?: {
 						description?: string | null;

@@ -30,28 +30,29 @@ type VenueNode = {
 
 const VenuePage = () => {
 	const { allStrapiVenue } = useStaticQuery(graphql`
-    fragment venueAreaInfo on STRAPI_VENUE {
-      area {
-        id
-        name
-        slug
-        state
-        tagline
-        featured
-      }
-    }
+		fragment venueAreaInfo on STRAPI_VENUE {
+			area {
+				id
+				name
+				slug
+				state
+				tagline
+				featured
+			}
+		}
 
-    query VenuesQuery {
-      allStrapiVenue(
-      filter: {slug: {ne: "blue"}})
-      {
-        nodes {
-          ...venueCard
-          ...venueAreaInfo
-        }
-      }
-    }
-  `);
+		query VenuesQuery {
+			allStrapiVenue(
+				filter: {slug: {ne: "blue"}}
+			)
+			{
+				nodes {
+				...venueCard
+				...venueAreaInfo
+				}
+			}
+		}
+	`);
 
 	const venueSet = new Set<string>();
 	for (const venue of allStrapiVenue.nodes) {
@@ -103,6 +104,7 @@ const VenuePage = () => {
 
 export default VenuePage;
 
+// TODO: strapi data
 export const Head = () => {
 	return (
 		<SEO

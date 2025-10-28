@@ -1,14 +1,21 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import LightGroupView from "../../views/lightgroup-view"
 import SEO from "../../components/seo"
 import type { LightGroupType } from "../../types/light-group-type"
+
+import { Link } from "gatsby";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import Card from "../../components/card";
+import type { CardType } from "../../types/card-type";
 
 type LightGroupPageType = {
   data: {
     strapiLightGroup: LightGroupType;
     allStrapiLightGroup: {
-      nodes: LightGroupType[];
+      nodes: CardType[];
     };
   };
 };
@@ -35,11 +42,49 @@ export const query = graphql`
 `
 
 const LightPage = ({ data }: LightGroupPageType) => {
+
   return (
-    <LightGroupView
-      lightgroup={data.strapiLightGroup}
-      other={data.allStrapiLightGroup}
-    />
+    <>
+      <Header />
+
+      <main className="stork">
+        <h1>{data.strapiLightGroup.name}</h1>
+        <p>{data.strapiLightGroup.excerpt}</p>
+      </main>
+
+      <section className="deck">
+        {data.allStrapiLightGroup.nodes.map((light: CardType) => (
+          <Card
+            key={light.id}
+            {...light}
+            breadcrumb="light"
+          />
+        ))}
+      </section> 
+
+      <section className="stork">
+        <hr />
+        <h2>Other Light Groups</h2>
+        <ul>
+          {data.allStrapiLightGroup.nodes.map((lightgroup) => (
+            <li key={lightgroup.id}>
+              <Link to={`/light-group/${lightgroup.slug}`}>
+                {lightgroup.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/lights/">Light Group</Link></Breadcrumb>
+        <Breadcrumb>{data.strapiLightGroup.name}</Breadcrumb>
+      </Breadcrumbs>
+
+      <Footer />
+    </>
   );
 };
 

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, graphql } from 'gatsby'
 import { GatsbyImage, type IGatsbyImageData } from 'gatsby-plugin-image'
+
+// https://www.npmjs.com/package/react-responsive-masonry
+// https://www.npmjs.com/package/@types/react-responsive-masonry
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -43,9 +46,9 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
         />
-        <ul className='lookbook-list'>
-          {lights.map((light, i) => (
-            <li key={i}>
+          <ul className='lookbook-list'>
+          {lights.map((light) => (
+            <li key={light.slug}>
               <Link to={`/light/${light.slug}`} >
                 <span>{light.name}</span>
               </Link>

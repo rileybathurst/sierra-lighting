@@ -2,8 +2,6 @@
 // TODO: add a gallery of images from the area
 // TODO: showing more 18 projects like north lake is way over the top - split them by service or just pull a couple
 
-// Im guess a lot of this is pulling cards and repeated things so we can pull them
-
 import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
@@ -34,11 +32,11 @@ interface VenuesProps {
     slug: string;
     excerpt: string;
     venues: CardType[];
+    projects: CardType[];
   }[];
 }
 
 function Venues({ name, venues, areas }: VenuesProps) {
-
   const subVenues = [];
   areas.forEach((area) => {
     if (area.venues.length > 0) {
@@ -47,7 +45,7 @@ function Venues({ name, venues, areas }: VenuesProps) {
   });
 
   // console.log(subVenues);
-  if (venues.length || subVenues.length > 0) {
+  if (subVenues.length > 0) {
     return (
       <>
         <div className="stork">
@@ -86,7 +84,6 @@ function Venues({ name, venues, areas }: VenuesProps) {
   }
   return null
 }
-
 type AreasTemplateTypes = {
   data: {
     strapiArea: {
@@ -114,53 +111,79 @@ type AreasTemplateTypes = {
         slug: string;
         excerpt: string;
         venues: CardType[];
+        projects: CardType[];
       }[];
       venues: CardType[];
+      projects: CardType[];
     };
     strapiAbout: {
       businessName: string;
+    };
+    allStrapiService: {
+      nodes: {
+        id: React.Key;
+        name: string;
+        slug: string;
+        hero_light: {
+          alternativeText: string;
+          localFile: {
+            childImageSharp: {
+              gatsbyImageData: IGatsbyImageData;
+            };
+          };
+        };
+        hero_dark: {
+          alternativeText: string;
+          localFile: {
+            childImageSharp: {
+              gatsbyImageData: IGatsbyImageData;
+            };
+          };
+        };
+      }[];
     };
   };
 };
 const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
-  // console.log(data.strapiArea.projects);
-  // data.strapiArea.projects ? console.log(data.strapiArea.projects.map((project) => project.image)) : null;
-
-  let areaProjectHeros = [];
-  if (data.strapiArea.projects) {
-    areaProjectHeros = data.strapiArea.projects.map((project) => project.image);
-    // console.log(areaProjectHeros);
-
-    if (data.strapiArea.areas.length > 0) {
-      data.strapiArea.areas.map((area) => {
-        if (area.projects.length > 0) {
-          area.projects.map((project) =>
-            // console.log(project.image)
-            areaProjectHeros.push(project.image)
-          );
-        }
-      });
+  // Using Project Heros is interesting but I'm not sure if it's right I was just trying to get something more
+    type AreaImage = NonNullable<CardType['image']>;
+    let areaProjectHeros: AreaImage[] = [];
+    if (data.strapiArea.projects) {
+      areaProjectHeros = data.strapiArea.projects
+        .map((project) => project.image)
+        .filter((img): img is AreaImage => !!img);
+      // console.log(areaProjectHeros);
+  
+      if (data.strapiArea.areas.length > 0) {
+        data.strapiArea.areas.forEach((area) => {
+          if (area.projects.length > 0) {
+            area.projects.forEach((project) => {
+              // console.log(project.image)
+              if (project.image) areaProjectHeros.push(project.image);
+            });
+          }
+        });
+      }
     }
-  }
 
   // console.log(data.strapiArea.areas.map((area) => area.projects));
 
   // areas and sub area projects
-  const areaSubAreaProjects = new Set();
+  const areaSubAreaProjects = new Set<CardType>();
 
   if (data.strapiArea.projects) {
-    data.strapiArea.projects.map((project) =>
-      areaSubAreaProjects.add(project)
-    );
+    data.strapiArea.projects.forEach((project) => {
+      areaSubAreaProjects.add(project);
+    });
 
     if (data.strapiArea.areas.length > 0) {
-      data.strapiArea.areas.map((area) => {
+      data.strapiArea.areas.forEach((area) => {
 
         if (area.projects.length > 0) {
-          area.projects.map((project) =>
-            areaSubAreaProjects.add(project)
-          );
+          area.projects.forEach((project) => {
+            areaSubAreaProjects.add(project);
+          });
         }
 
       });
@@ -233,6 +256,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         <h3 >Lighting installation services we provide in {data.strapiArea.name}</h3>
       </main >
 
+      {/* // TODO: this is reused from home page make it a component, fragment, types all the things */}
       <div className={`away-services ${Season()}`}>
         {data.allStrapiService.nodes.map((service ) => (
           <Link
@@ -338,73 +362,11 @@ export const query = graphql`
         excerpt
 
         venues {
-          id
-          name
-          slug
-          excerpt
-
-          venueImage {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...venueCard
         }
 
         projects {
-          id
-          title
-          slug
-          excerpt
-
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-            alternativeText
-          }
-        }
-      }
-
-      venues {
-        id
-        name
-        slug
-        excerpt
-
-        venueImage {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                breakpoints: [111, 165, 222, 444, 880]
-                width: 222
-              )
-            }
-          }
-          alternativeText
-        }
-      }
-
-      projects {
-        id
-        title
-        slug
-        excerpt
-
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
+          ...projectCard
         }
       }
     }
@@ -441,29 +403,7 @@ export const query = graphql`
   }
 `
 
-type AreasTemplateSEOTypes = {
-  data: {
-    strapiArea: {
-      name: string;
-      excerpt: string;
-      slug: string;
-      image: {
-        localFile: {
-          url: string;
-        };
-      };
-    };
-    allStrapiService: {
-      nodes: {
-        name: string;
-      }[];
-    };
-    strapiAbout: {
-      businessName: string;
-    };
-  };
-}
-export const Head = ({ data }: AreasTemplateSEOTypes) => {
+export const Head = ({ data }: AreasTemplateTypes) => {
 
   const servicesString = data.allStrapiService.nodes.map((service) => (
     `${service.name} light installs`

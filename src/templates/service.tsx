@@ -51,8 +51,35 @@ interface ServiceTypes {
       businessName: string;
       url: string;
     }
+    allStrapiArea: {
+      nodes: {
+        id: React.Key;
+        name: string;
+        state: string;
+        slug: string;
+        areas: {
+          id: React.Key;
+          name: string;
+        }[]
+      }[]
+    }
   }
 }
+
+type SortTypes = {
+  a: {
+    areas: {
+      id: React.Key;
+      name: string;
+    }[]
+  },
+  b: {
+    areas: {
+      id: React.Key;
+      name: string;
+    }[]
+  }
+};
 
 interface BaseTypes {
   projects: CardType[];
@@ -94,6 +121,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
   }; */
 
   // empty card slots
+  // * I know this has type issues
   const base: { card: CardType, title: boolean, breadcrumb: string, order: number, id: React.Key }[] = [
     { card: {}, title: false, breadcrumb: '', order: 0, id: '' },
     { card: {}, title: false, breadcrumb: '', order: 1, id: '' },
@@ -260,7 +288,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
         </section> */}
       </main >
 
-      <section id="lights">
+      <section className="lights">
 
         <hr className='stork' />
 
@@ -298,7 +326,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
           : null}
       </section >
 
-      <section id="process" className='stork backed bb'>
+      <section className='process stork backed bb'>
         <hr />
         <h2>Our {data.strapiService.name} lighting Process</h2>
         <p>
@@ -326,7 +354,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
       </section>
 
       {data.strapiService.after_the_triptych.data.after_the_triptych !== '' ?
-        <div id="consultant" className='stork'>
+        <div className='consultant stork'>
           <h3 className='kilimanjaro'>Have you ever noticed how much lighting can affect the feeling of space?</h3>
 
           <div className='react-markdown'>
