@@ -36,7 +36,7 @@ interface VenuesProps {
   }[];
 }
 
-function Venues({ name, venues, areas }: VenuesProps) {
+function Venues({ name, areas }: VenuesProps) {
   const subVenues = [];
   areas.forEach((area) => {
     if (area.venues.length > 0) {
@@ -44,7 +44,6 @@ function Venues({ name, venues, areas }: VenuesProps) {
     }
   });
 
-  // console.log(subVenues);
   if (subVenues.length > 0) {
     return (
       <>
@@ -55,14 +54,6 @@ function Venues({ name, venues, areas }: VenuesProps) {
         </div>
 
         <div className="deck">
-          {venues.map((venue: CardType) => (
-            <Card
-              key={venue.id}
-              {...venue}
-              breadcrumb='venue'
-            />
-          ))}
-
           {subVenues.length > 0 ?
             areas.map((area) => (
               area.venues.length >= 1 ?
