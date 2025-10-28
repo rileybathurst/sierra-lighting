@@ -1,21 +1,9 @@
-// this is the Name.jsx file
+// this page is at most a half built loop?
+
 import React from "react";
 import PropTypes from "prop-types";
 
-function List() {
-  return (
-    <ul>
-      <li className="affiliation">one</li>
-      <li>two</li>
-      <li>three</li>
-    </ul>
-  );
-}
-
-export const Affiliations = ({ primary }) => {
-  const mode = primary
-    ? "storybook-Affiliations--primary"
-    : "storybook-Affiliations--secondary";
+export const Affiliations = () => {
 
   return (
     <ul className="affiliations">

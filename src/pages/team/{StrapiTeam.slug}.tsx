@@ -1,8 +1,20 @@
 import * as React from "react"
 import { graphql, Script } from "gatsby"
-import TeamView from "../../views/team-view"
 import SEO from "../../components/seo"
 
+import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image"
+import type { IGatsbyImageData } from "gatsby-plugin-image";
+import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+
+import Markdown from "react-markdown";
+
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import Card from "../../components/card";
+import Start from "../../components/start";
+
+import type { CardType } from "../../types/card-type";
 
 export const query = graphql`
   query TeamQuery($slug: String!) {
@@ -21,48 +33,102 @@ export const query = graphql`
   }
 `
 
-type TeamPageTypes = {
+type TeamTypes = {
   data: {
     strapiTeam: {
+      id: React.Key;
       name: string;
+      slug: string;
+      excerpt: string;
+      bio: {
+        data: {
+          bio: string;
+        };
+      };
       avatar: {
+        alternativeText: string;
         localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
           url: string;
         };
       };
-      excerpt: string;
-      slug: string;
+      projects: CardType[];
+    };
+    strapiAbout: {
+      url: string;
+      businessName: string;
     };
   };
 };
-const TeamPage = ({ data }: TeamPageTypes) => {
+const TeamPage = ({ data }: TeamTypes) => {
   return (
-    <TeamView
-      team={data.strapiTeam}
-    />
+    <>
+      <Header />
+
+      <main className="stork team-page">
+        <div className="avatar-wrapper">
+          <GatsbyImage
+            image={data.strapiTeam?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={data.strapiTeam?.avatar?.alternativeText || data.strapiTeam.name}
+            className='avatar'
+          />
+        </div>
+        <h1>{data.strapiTeam.name}</h1>
+
+        {data.strapiTeam.bio ?
+          <div className="react-markdown">
+            <Markdown>
+              {data.strapiTeam.bio.data.bio}
+            </Markdown>
+          </div>
+          : null
+        }
+
+        <hr />
+
+        <h3>Would you like to work with {data.strapiTeam.name}</h3>
+        <Start
+          path={data.strapiTeam.slug}
+        />
+      </main>
+
+      {data.strapiTeam.projects ?
+        <>
+          <div className="stork">
+            <hr />
+            <h3>Projects {data.strapiTeam.name} has worked on</h3>
+          </div>
+          <div className="deck">
+            {data.strapiTeam.projects.map((project: CardType) => (
+              <Card
+                key={project.id}
+                {...project}
+                breadcrumb="project"
+              />
+            ))}
+          </div>
+        </>
+        : null
+      }
+
+      <hr className="stork" />
+
+      <Breadcrumbs>
+        <Breadcrumb><Link to="/team">Team</Link></Breadcrumb>
+        <Breadcrumb>{data.strapiTeam.name}</Breadcrumb>
+      </Breadcrumbs>
+
+      <Footer />
+    </>
   );
 };
 
 export default TeamPage;
 
-type TeamPageHeadTypes = {
-  data: {
-    strapiTeam: {
-      name: string;
-      avatar: {
-        localFile: {
-          url: string;
-        };
-      };
-      excerpt: string;
-      slug: string;
-    };
-    strapiAbout: {
-      businessName: string;
-    };
-  };
-};
-export const Head = ({ data }: TeamPageHeadTypes) => {
+
+export const Head = ({ data }: TeamTypes) => {
   return (
     <SEO
       title={`${data.strapiTeam.name}`}
@@ -73,17 +139,18 @@ export const Head = ({ data }: TeamPageHeadTypes) => {
       breadcrumbs={[
         {
           name: "Team",
-          url: "/team",
+          item: "/team",
         },
         {
           name: data.strapiTeam.name,
-          url: `/team/${data.strapiTeam.slug}`,
+          item: `/team/${data.strapiTeam.slug}`,
         },
       ]}
     >
 
       {/* // TODO: jobTitle */}
       {/* // TODO: move the organization to seo file */}
+      {/* // TODO: locality is there */}
       {/* works for has to be an org but that needs an address so normally use local bus */}
       <Script type="application/ld+json">
         {`

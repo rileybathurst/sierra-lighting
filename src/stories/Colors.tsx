@@ -17,11 +17,7 @@ function TypeTest({ one }: ColorProps) {
   );
 }
 
-type ColorsTypes = {
-  primary?: boolean;
-};
-export const Colors = ({ primary }: ColorsTypes) => {
-  const mode = primary ? 'storybook-Colors--primary' : 'storybook-Colors--secondary';
+export const Colors = () => {
   return (
     <main className='color-deck'>
       <h1>Color</h1>

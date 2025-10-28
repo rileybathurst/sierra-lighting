@@ -7,10 +7,6 @@ export default {
   component: Affiliations,
 };
 
-const Template = (args) => <Affiliations {...args} />;
+const Template = () => <Affiliations />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Affiliations",
-};

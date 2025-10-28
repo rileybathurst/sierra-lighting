@@ -7,10 +7,7 @@ export default {
   component: Index,
 };
 
-const Template = (args) => <Index {...args} />;
+const Template = () => <Index />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Index",
-};
+

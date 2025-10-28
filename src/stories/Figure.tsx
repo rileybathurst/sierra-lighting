@@ -1,34 +1,36 @@
 import React, { useState } from 'react';
-// import '../../styles/global.css';
-// import './figure.css';
 
-/* type FigureImage = {
-  src: string;
+type ImageProps = {
+  src?: string;
+  width?: number | string;
+  height?: number | string;
   alt?: string;
-  width?: number;
-  height?: number;
-}; */
+};
 
-/* interface FigureProps {
-  // image?: FigureImage;
-  caption?: string;
+type FigureProps = {
+  image?: ImageProps | null;
+  caption?: React.ReactNode;
   focused?: boolean;
-} */
+};
 
-export const Figure = ({
+export const Figure: React.FC<FigureProps> = ({
   image,
-  caption = `Photo by <a href="https://unsplash.com/@sorasagano?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sora Sagano</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`,
+  caption = (
+    <>
+      Photo by <a href="https://unsplash.com/@sorasagano?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sora Sagano</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+    </>
+  ),
   focused = false,
 }) => {
-  const [isfocused, toggleIsFocused] = useState<Boolean>(focused);
+  const [isfocused, toggleIsFocused] = useState<boolean>(focused);
 
   return (
     <>
       test test 123
       <figure className={'figure'} data-focused={isfocused}>
-        <div
+        <button
+          type="button"
           className={'figure__button'}
-          role='button'
           data-focused={isfocused}
           onClick={() => toggleIsFocused(!isfocused)}
         >
@@ -40,11 +42,10 @@ export const Figure = ({
             height={image?.height}
             alt={`${image?.alt ? image.alt : '#'}`}
           />
-        </div>
-        <figcaption
-          className={'figure__caption'}
-          dangerouslySetInnerHTML={{ __html: caption }}
-        ></figcaption>
+        </button>
+        <figcaption className={'figure__caption'}>
+          {caption}
+        </figcaption>
       </figure>
     </>
   );

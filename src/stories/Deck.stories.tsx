@@ -6,10 +6,6 @@ export default {
   component: Deck,
 };
 
-const Template = (args) => <Deck {...args} />;
+const Template = () => <Deck />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Deck",
-};

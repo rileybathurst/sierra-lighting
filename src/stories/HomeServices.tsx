@@ -1,6 +1,8 @@
 // this is the Name.tsx file
 import React from 'react';
 import { faker } from '@faker-js/faker';
+
+// ? I dont understand why it cant find this file when its in the same folder
 import { Poster } from './Poster';
 
 interface HomeServicesProps {

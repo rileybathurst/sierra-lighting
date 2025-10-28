@@ -7,10 +7,7 @@ export default {
   component: Logo,
 };
 
-const Template = (args) => <Logo {...args} />;
+const Template = () => <Logo />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Logo",
-};
+

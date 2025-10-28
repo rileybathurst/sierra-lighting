@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Logo } from './Logo';
 
-export const Menu = ({ primary }) => {
-  const mode = primary ? 'storybook-Menu--primary' : 'storybook-Menu--secondary';
+export const Menu = () => {
   return (
     <header >
       <div className="header-container">
@@ -17,6 +16,8 @@ export const Menu = ({ primary }) => {
         </div>
         <button
           className="button-spinner"
+          aria-label="Open Menu"
+          type='button'
         >
           <span className='sr-only'>open menu</span>
           <div className="hamburger">
@@ -33,16 +34,16 @@ export const Menu = ({ primary }) => {
           <menu>
             <ul className="wedding">
               <li key="residential" className="xmas_r">
-                <a href="#">Residential Christmas Lights</a>
+                <a href="/residential">Residential Christmas Lights</a>
               </li>
               <li key="commercial" className="xmas_c">
-                <a href="#">Commercial Christmas Lights</a>
+                <a href="/commercial">Commercial Christmas Lights</a>
               </li>
               <li key="wedding" className="wedding">
-                <a href="#">Wedding</a>
+                <a href="/wedding">Wedding</a>
               </li>
               <li key="start" className="c">
-                <a href="#">
+                <a href="/quote">
                   Start With A Free Quote
                 </a>
               </li>
@@ -53,21 +54,21 @@ export const Menu = ({ primary }) => {
         <div className='bigboy'>
           <ul className="wedding">
             <li key="logo" className="logo">
-              <a href="#" className="header__logo">
+              <a href="/" className="header__logo">
                 <Logo />
               </a>
             </li>
             <li key="residential" className="xmas_r">
-              <a href="#">Residential<br />Christmas Lights</a>
+              <a href="/residential">Residential<br />Christmas Lights</a>
             </li>
             <li key="commercial" className="xmas_c">
-              <a href="#">Commercial<br />Christmas Lights</a>
+              <a href="/commercial">Commercial<br />Christmas Lights</a>
             </li>
             <li key="wedding" className="wedding">
-              <a href="#">Wedding</a>
+              <a href="/wedding">Wedding</a>
             </li>
             <li key="start" className="c">
-              <a href="#">
+              <a href="/quote">
                 Start With A<br />
                 Free Quote
               </a>

@@ -7,10 +7,6 @@ export default {
   component: Image,
 };
 
-const Template = (args) => <Image {...args} />;
+const Template = () => <Image />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Image",
-};

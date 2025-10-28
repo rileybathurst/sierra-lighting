@@ -14,7 +14,7 @@ import Start from "../../components/start";
 import Hero from "../../components/hero";
 import ReactMarkdown from "react-markdown";
 import { Link } from "gatsby";
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 
 type ProjectPageTypes = {
 	data: {
@@ -63,7 +63,7 @@ type ProjectPageTypes = {
 			}[];
 
 			vendors: {
-        id: React.Key;
+				id: React.Key;
 				name: string;
 				slug: string;
 				service: string;
@@ -72,14 +72,14 @@ type ProjectPageTypes = {
 			venue: {
 				name: string;
 				slug: string;
-        id: React.Key;
-        
-        area: {
-          id: React.Key;
-          name: string;
-          state: "california" | "nevada";
-          slug: string;
-        } | null;
+				id: React.Key;
+
+				area: {
+					id: React.Key;
+					name: string;
+					state: "california" | "nevada";
+					slug: string;
+				} | null;
 			};
 
 			services: {
@@ -238,7 +238,11 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 			<Header />
 
 			{/* // TODO: the hero gallery need specific lights like the lookbook */}
-			<Hero image={data.strapiProject.image} gallery={data.strapiProject.gallery} badge={false} />
+			<Hero
+				image={data.strapiProject.image}
+				gallery={data.strapiProject.gallery}
+				badge={false}
+			/>
 
 			<main className="stork">
 				<article>
@@ -303,7 +307,9 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 												className="link--subtle"
 											>
 												{data.strapiProject.venue.area.name},{" "}
-												<StateAbbreviation state={data.strapiProject.venue.area.state} />
+												<StateAbbreviation
+													state={data.strapiProject.venue.area.state}
+												/>
 											</Link>
 										</p>
 									) : null}
@@ -328,7 +334,9 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 											className="link--subtle"
 										>
 											{data.strapiProject.area.name},{" "}
-											<StateAbbreviation state={data.strapiProject.area.state} />
+											<StateAbbreviation
+												state={data.strapiProject.area.state}
+											/>
 										</Link>
 									</h4>
 								</section>

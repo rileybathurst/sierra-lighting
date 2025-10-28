@@ -7,10 +7,6 @@ export default {
   component: Colors,
 };
 
-const Template = (args) => <Colors {...args} />;
+const Template = () => <Colors />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Colors",
-};

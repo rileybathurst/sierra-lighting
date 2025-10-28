@@ -2,8 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Logo = ({ primary }) => {
-  const mode = primary ? 'storybook-Logo--primary' : 'storybook-Logo--secondary';
+export const Logo = () => {
   return (
     <svg className="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1104.1 592" >
       <title>Sierra Lighting Logo</title>

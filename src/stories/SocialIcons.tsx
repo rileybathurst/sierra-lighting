@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { faker } from '@faker-js/faker';
 
+// I think this is the old deal and theres a way quicker way to do this with map
 function Deal() {
 
   const hand = faker.number.int(10);
@@ -41,10 +42,12 @@ function Deal() {
   return (<>{content}</>);
 }
 
-export const SocialIcons = ({ primary }) => {
-  const mode = primary ? 'storybook-SocialIcons--primary' : 'storybook-SocialIcons--secondary';
+export const SocialIcons = () => {
   return (
-    <section id="footer-social" className="footer-social footer-social--self">
+    <section 
+      // id="footer-social" // * biome says dont use IDs
+      className="footer-social footer-social--self"
+    >
       <ul className="stork">
         <Deal />
       </ul>

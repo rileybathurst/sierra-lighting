@@ -7,10 +7,6 @@ export default {
   component: Topbar,
 };
 
-const Template = (args) => <Topbar {...args} />;
+const Template = () => <Topbar />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Topbar",
-};

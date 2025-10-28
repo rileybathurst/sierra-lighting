@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 
 import ImageFile from './assets/accessibility.png';
 
-export const Image = ({ primary }) => {
-  const mode = primary ? 'storybook-Image--primary' : 'storybook-Image--secondary';
+export const Image = () => {
   return (
-    <img src={ImageFile} />
+    <img
+      src={ImageFile}
+      alt="Accessibility"
+    />
   );
 };
 

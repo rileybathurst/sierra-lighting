@@ -11,11 +11,7 @@ export const Testimonial = ({
   backgroundColor,
   size,
   label,
-  ...props
 }) => {
-  const mode = primary
-    ? "storybook-Testimonial--primary"
-    : "storybook-Testimonial--secondary";
   return (
     <li className="testimonial">
       <figure>
@@ -33,7 +29,7 @@ export const Testimonial = ({
             </ul>
           ) : (
             <h3>
-              <a href="#">project name</a>
+              <a href={faker.internet.url()}>project name</a>
             </h3>
           )}
           <p className="testimonial--quote_mark range">&quot;</p>

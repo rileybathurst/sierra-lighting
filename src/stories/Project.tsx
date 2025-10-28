@@ -3,8 +3,6 @@ import React from 'react';
 import { Header } from './Header';
 import { Attribute } from './Attribute';
 import { Footer } from './Footer';
-// import { Hero } from './Hero';
-// import { Start } from './Start';
 import { faker } from "@faker-js/faker";
 
 interface ProjectProps {

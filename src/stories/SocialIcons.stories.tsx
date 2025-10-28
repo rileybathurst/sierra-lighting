@@ -7,10 +7,6 @@ export default {
   component: SocialIcons,
 };
 
-const Template = (args) => <SocialIcons {...args} />;
+const Template = () => <SocialIcons />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "SocialIcons",
-};

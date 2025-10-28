@@ -7,10 +7,6 @@ export default {
   component: Poster,
 };
 
-const Template = (args) => <Poster {...args} />;
+const Template = () => <Poster />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Poster",
-};

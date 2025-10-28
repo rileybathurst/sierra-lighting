@@ -1,5 +1,8 @@
 // TODO: holiday vs wedding flip here
 // TODO: add a gallery of images from the area
+// TODO: showing more 18 projects like north lake is way over the top - split them by service or just pull a couple
+
+// Im guess a lot of this is pulling cards and repeated things so we can pull them
 
 import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
@@ -26,13 +29,18 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 interface VenuesProps {
   name: string;
   venues: CardType[];
-  areas: SubAreasType[];
+  areas: {
+    name: string;
+    slug: string;
+    excerpt: string;
+    venues: CardType[];
+  }[];
 }
 
 function Venues({ name, venues, areas }: VenuesProps) {
 
   const subVenues = [];
-  areas.map((area) => {
+  areas.forEach((area) => {
     if (area.venues.length > 0) {
       subVenues.push(area.venues);
     }
@@ -101,7 +109,12 @@ type AreasTemplateTypes = {
         };
         alternativeText: string;
       };
-      areas: SubAreasType[];
+      areas: {
+        name: string;
+        slug: string;
+        excerpt: string;
+        venues: CardType[];
+      }[];
       venues: CardType[];
     };
     strapiAbout: {
@@ -221,7 +234,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
       </main >
 
       <div className={`away-services ${Season()}`}>
-        {data.allStrapiService.nodes.map((service: ServiceTypes) => (
+        {data.allStrapiService.nodes.map((service ) => (
           <Link
             key={service.id}
             to={`/${service.slug}`}

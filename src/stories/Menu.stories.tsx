@@ -7,10 +7,6 @@ export default {
   component: Menu,
 };
 
-const Template = (args) => <Menu {...args} />;
+const Template = () => <Menu />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Menu",
-};
