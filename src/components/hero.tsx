@@ -77,7 +77,7 @@ function Slider({ gallery, badge }: GalleryType) {
 }
 
 type HeroType = {
-  image: {
+  image?: {
     localFile: {
       childImageSharp: {
         gatsbyImageData: IGatsbyImageData;
@@ -108,14 +108,19 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
   }
 
   let combinedGallery: ImageType[] = [];
-  if (gallery) {
-    if (gallery?.length > 0) {
+  if (gallery && gallery.length > 0) {
+    if (image) {
       const imageWithAlt: ImageType = {
-        ...image,
+        localFile: {
+          ...image.localFile,
+          url: undefined,
+        },
         alternativeText: image.alternativeText ?? "",
         caption: image.caption ?? "",
       };
       combinedGallery = [imageWithAlt, ...gallery];
+    } else {
+      combinedGallery = [...gallery];
     }
   }
 
@@ -143,23 +148,21 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
   }
 
   return (
-    <>
-      <div className={`hero-image  ${image.localFile.childImageSharp.gatsbyImageData.width <= 959 ? 'hero-stork' : null}`}>
+    <div className={`hero-image  ${image.localFile.childImageSharp.gatsbyImageData.width <= 959 ? 'hero-stork' : null}`}>
+      <GatsbyImage
+        image={image.localFile.childImageSharp.gatsbyImageData}
+        alt={image.alternativeText || "Hero Image"}
+        className="poster"
+      />
+      {detail ?
         <GatsbyImage
-          image={image.localFile.childImageSharp.gatsbyImageData}
-          alt={image.alternativeText || "Hero Image"}
-          className="poster"
+          image={detail?.localFile?.childImageSharp?.gatsbyImageData}
+          alt={detail.alternativeText ? detail?.alternativeText : name || "Hero Detail Image"}
+          className="detail poster"
         />
-        {detail ?
-          <GatsbyImage
-            image={detail?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={detail.alternativeText ? detail?.alternativeText : name || "Hero Detail Image"}
-            className="detail poster"
-          />
-          : null
-        }
-      </div>
-    </>
+        : null
+      }
+    </div>
   )
 }
 

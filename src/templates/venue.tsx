@@ -58,6 +58,7 @@ type VenueViewTypes = {
         position: string;
         vendor: {
           name: string;
+          slug: string;
         }
       }[]
 
@@ -66,6 +67,9 @@ type VenueViewTypes = {
     }
     allStrapiVenue: {
       nodes: CardType[]
+    }
+    strapiService: {
+      featured_lights: CardType[]
     }
   }
 }
@@ -276,7 +280,6 @@ export const query = graphql`
         projects {
           ...projectCard
         }
-
         testimonials {
           id
           title
@@ -286,6 +289,7 @@ export const query = graphql`
           position
           vendor {
             name
+            slug
           }
         }
       }

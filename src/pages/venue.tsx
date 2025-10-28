@@ -22,12 +22,6 @@ type VenueNode = {
 	};
 } & CardType;
 
-/* type VenuePageType = {
-	allStrapiVenue: {
-		nodes: VenueNode[];
-	};
-}; */
-
 const VenuePage = () => {
 	const { allStrapiVenue } = useStaticQuery(graphql`
 		fragment venueAreaInfo on STRAPI_VENUE {

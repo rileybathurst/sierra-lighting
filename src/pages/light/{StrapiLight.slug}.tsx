@@ -1,9 +1,43 @@
 import * as React from "react";
-import { graphql } from "gatsby";
-import LightView from "../../views/light-view";
+import { Link, graphql } from "gatsby";
 import SEO from "../../components/seo";
 import type { GatsbyImageType } from "../../types/gatsby-image";
 import type { CardType } from "../../types/card-type";
+
+import { Breadcrumbs, Breadcrumb } from "react-aria-components";
+import Markdown from "react-markdown";
+
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import Card from "../../components/card";
+import Start from "../../components/start";
+import Hero from "../../components/hero";
+
+interface AliasTypes {
+	alias: string;
+}
+function Aliases({ alias }: AliasTypes) {
+	// this combines with a specific regex in strapi
+	// testing with market lights
+	// console.log(light.alias);
+	const split = alias.split("\n").map((line: string) => line.replace("- ", ""));
+
+	return (
+		<>
+			<h3 className="kilimanjaro">Also known as:</h3>
+			<ul>
+				{split.map((aka: string) => {
+					return (
+						<li key={aka} className="capitalize">
+							{aka}
+						</li>
+					);
+				})}
+			</ul>
+			<hr />
+		</>
+	);
+}
 
 export const query = graphql`
   query LightQuery($slug: String!) {
@@ -137,7 +171,7 @@ type LightPageTypes = {
 				id: React.Key;
 				name: string;
 				slug: string;
-					excerpt: string;
+				excerpt: string;
 				description?: {
 					data?: {
 						description?: string | null;
@@ -180,33 +214,183 @@ type LightPageTypes = {
 	};
 };
 const LightPage = ({ data }: LightPageTypes) => {
-  const normalizedLight: NonNullable<LightPageTypes['data']['strapiLight']> = {
-      ...data.strapiLight,
-      excerpt: data.strapiLight.excerpt ?? "",
-      description: data.strapiLight.description ?? "",
-      alias: data.strapiLight.alias ?? "",
-      services: data.strapiLight.services.map((s) => ({
-        ...s,
-        excerpt: s.excerpt ?? "",
-        description: s.description ?? undefined,
-      })),
-      light_groups: data.strapiLight.light_groups ?? [],
-      image: data.strapiLight.image ?? null,
-      detail: data.strapiLight.detail ?? null,
-      altGallery: data.strapiLight.altGallery ?? [],
-      projects: data.strapiLight.projects ?? [],
-    };
+	// TODO: testing off
+	/* process.env.NODE_ENV === "development"
+	  ? data.strapiLight.image
+		? null
+		: console.warn(`${data.strapiLight.name} image is missing`)
+	  : null; */
 
-  return (
-    <LightView
-      // TODO: copilot cant make this work properly I might need to manually rewrite it later
-      light={normalizedLight as NonNullable<LightPageTypes['data']['strapiLight']>}
-      other={data.allStrapiLight}
-      weddingProcess={data.wedding.nodes}
-      holidayProcess={data.holiday.nodes}
-      projects={data.allStrapiProject}
-    />
-  );
+	// TODO: testing off
+	/* process.env.NODE_ENV === "development"
+	  ? data.strapiLight.image?.alternativeText
+		? null
+		: console.warn(`${data.strapiLight.name} image has no alt`)
+	  : null; */
+
+	// console.log(projects);
+
+	let holidayLight = false;
+	let weddingLight = false;
+
+	if (
+		data.strapiLight.services.every(
+			(service) =>
+				service.slug === "residential" || service.slug === "commercial",
+		)
+	) {
+		// console.log('this is a holiday light');
+		holidayLight = true;
+	} else {
+		// console.log('this is a wedding light');
+		weddingLight = true;
+	}
+
+	// console.log(light.services.map((service) => (service.name)));
+	// console.log(light.services.map((service) => (service.description.data.description)));
+
+	return (
+		<>
+			<Header />
+
+			<Hero
+				image={data.strapiLight.image ? data.strapiLight.image : undefined}
+				name={data.strapiLight.name}
+				detail={data.strapiLight.detail ? data.strapiLight.detail : undefined}
+				gallery={data.strapiLight?.altGallery ? data.strapiLight?.altGallery : undefined}
+				badge={true}
+			/>
+
+			<main>
+				<article className="stork">
+					<h1 className="denali">
+						{data.strapiLight.name}
+						{holidayLight ? (
+							<span className="capitalize"> for christmas lighting</span>
+						) : null}
+						{weddingLight ? (
+							<span className="capitalize"> for wedding lighting</span>
+						) : null}
+					</h1>
+
+					{data.strapiLight.alias ? (
+						<Aliases alias={data.strapiLight.alias} />
+					) : null}
+
+					<p>{data.strapiLight.description}</p>
+					<hr />
+					<Start path={data.strapiLight.slug} />
+				</article>
+			</main>
+
+			<hr className="stork" />
+
+			{/* // TODO: this isnt a card but its a little something closer to the idea */}
+			<section className="attribute stork">
+				<h3 className="crest">We use {data.strapiLight.name} for</h3>
+				<ul className="">
+					{data.strapiLight.services.map((service) => {
+						return (
+							<li key={service.id}>
+								<h3 className="kilimanjaro capitalize">
+									<Link to={`/${service.slug}`}>{service.name} lighting</Link>
+								</h3>
+                {service.description ?
+								<div className="react-markdown">
+									<Markdown>{service?.description?.data?.description}</Markdown>
+								</div>
+                : null}
+							</li>
+						);
+					})}
+				</ul>
+				<h3 className="kilimanjaro capitalize">
+					<Link to="/faqs">Frequently Asked Questions</Link>
+				</h3>
+			</section>
+
+			<section className="stork">
+				<hr />
+				<h3>
+					<Link to="/process">Learn more about our process</Link>
+				</h3>
+				<ol>
+					{data.strapiLight.services.every(
+						(service) =>
+							service.slug === "residential" || service.slug === "commercial",
+					)
+						? data.holiday.nodes.map((process) => {
+								return <li key={process.id}>{process.name}</li>;
+							})
+						: data.wedding.nodes.map((process) => {
+								return <li key={process.id}>{process.name}</li>;
+							})}
+				</ol>
+			</section>
+
+			{/* // TODO: light connection will be added to this section */}
+
+			{data.strapiLight.light_groups ? (
+					<div>
+						{data.strapiLight.light_groups.map((group) => {
+							return (
+								<div key={group.id}>
+									<hr className="stork" />
+									<h3 className="stork">Other Lights in {group.name}</h3>
+
+									<div className="deck">
+										{group.lights
+											.filter(
+												(lightSlug) => lightSlug.slug !== data.strapiLight.slug,
+											)
+											.map((light: CardType) => (
+												<Card key={light.id} {...light} breadcrumb="light" />
+											))}
+									</div>
+								</div>
+							);
+						})}
+					</div>
+				) : (
+					<>
+						<hr className="stork" />
+						<h3 className="stork">Other Lights</h3>
+						<div className="deck">
+							{data.allStrapiLight.nodes.map((light: CardType) => (
+								<Card key={light.id} {...light} breadcrumb="light" />
+							))}
+						</div>
+					</>
+				)}
+
+			{/* // TODO: if more than 3 */}
+			{data.allStrapiProject.nodes.length > 0 ? (
+				<>
+					<div className="stork">
+						<hr />
+						<h3>Projects Using {data.strapiLight.name}</h3>
+					</div>
+
+					<div className="deck">
+						{data.allStrapiProject.nodes.map((project: CardType) => (
+							<Card key={project.id} {...project} breadcrumb="project" />
+						))}
+					</div>
+				</>
+			) : null}
+
+			<hr className="stork" />
+
+			<Breadcrumbs>
+				<Breadcrumb>
+					<Link to="/lights/">Lights</Link>
+				</Breadcrumb>
+				<Breadcrumb>{data.strapiLight.name}</Breadcrumb>
+			</Breadcrumbs>
+
+			<Footer />
+		</>
+	);
 };
 
 export default LightPage;
