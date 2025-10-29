@@ -2,12 +2,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ImageFile from './assets/accessibility.png';
+// import { ImageFile } from './assets/accessibility.png';
 
 export const Image = () => {
   return (
     <img
-      src={ImageFile}
+      // src={ImageFile}
       alt="Accessibility"
     />
   );

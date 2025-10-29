@@ -4,16 +4,7 @@ import PropTypes from "prop-types";
 import "./story.css";
 // import './typography.css';
 
-export const Typography = ({
-  primary,
-  backgroundColor,
-  size,
-  label,
-  ...props
-}) => {
-  const mode = primary
-    ? "storybook-Typography--primary"
-    : "storybook-Typography--secondary";
+export const Typography = () => {
   return (
     <section className="stork">
       <h1>h1 - everest</h1>
@@ -44,12 +35,4 @@ export const Typography = ({
       </p>
     </section>
   );
-};
-
-Typography.propTypes = {
-  primary: PropTypes.bool,
-};
-
-Typography.defaultProps = {
-  primary: false,
 };

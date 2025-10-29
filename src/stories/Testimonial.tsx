@@ -1,24 +1,11 @@
 // TODO: loop this properly
 
 import React from "react";
-import PropTypes from "prop-types";
 import { faker } from "@faker-js/faker";
 
 import Star from "../images/star";
 
-interface TestimonialProps {
-  primary?: boolean;
-  backgroundColor?: string;
-  size?: string;
-  label?: string;
-}
-
-export const Testimonial = ({
-  primary,
-  backgroundColor,
-  size,
-  label,
-}: TestimonialProps = {}) => {
+export const Testimonial = () => {
   return (
     <li className="testimonial">
       <figure>

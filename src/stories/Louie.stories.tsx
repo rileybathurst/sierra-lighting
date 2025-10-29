@@ -8,15 +8,6 @@ export default {
   component: Louie,
 };
 
-const Template = (args) => <Louie {...args} />;
+const Template = () => <Louie />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Louie",
-};
-
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: "Louie",
-};

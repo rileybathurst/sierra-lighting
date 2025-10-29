@@ -3,7 +3,6 @@ import React from "react";
 import { faker } from "@faker-js/faker";
 
 export const Lists = () => {
-
   return (
     <div className="">
       Lists

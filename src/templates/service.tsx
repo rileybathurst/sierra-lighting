@@ -217,7 +217,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
               >
                 <Card
                   key={`${item.id}-card`}
-                  {...item.card}
+                  {...(item.card as CardType)}
                   breadcrumb={item.breadcrumb}
                 />
               </div>

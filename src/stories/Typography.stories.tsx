@@ -6,16 +6,16 @@ export default {
   component: Typography,
 };
 
-const Template = (args) => <Typography {...args} />;
+const Template = (args: any) => <Typography {...args} />;
 
 export const Light = Template.bind({});
-Light.args = {
+(Light as any).args = {
   primary: true,
   label: "Typography",
 };
 
 export const Dark = Template.bind({});
-Dark.args = {
+(Dark as any).args = {
   primary: true,
   label: "Typography",
 };

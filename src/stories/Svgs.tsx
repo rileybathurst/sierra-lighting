@@ -3,11 +3,7 @@ import PropTypes from "prop-types";
 import { faker } from "@faker-js/faker";
 // import { Buffer } from "buffer"; // ? maybe
 
-export const Svgs = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary
-    ? "storybook-Svgs--primary"
-    : "storybook-Svgs--secondary";
-
+export const Svgs = () => {
   // https://next.fakerjs.dev/api/image#datauri
 
   // console.log(faker.image.dataUri());

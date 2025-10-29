@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 import './story.css';
 
-export const Shadows = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary ? 'storybook-Shadows--primary' : 'storybook-Shadows--secondary';
+export const Shadows = () => {
   return (
     <>
     <section className='colorblock__section'>
@@ -13,8 +12,8 @@ export const Shadows = ({ primary, backgroundColor, size, label, ...props }) => 
         <article>
           <div
             className='colorblock'
-            type="Shadows"
-            {...props}
+            // type="Shadows"
+            // {...props}
             style={{
               boxShadow: `var(--troposphere)`
             }}
@@ -25,8 +24,8 @@ export const Shadows = ({ primary, backgroundColor, size, label, ...props }) => 
         <article>
           <div
             className='colorblock'
-            type="Shadows"
-            {...props}
+            // type="Shadows"
+            // {...props}
             style={{boxShadow: `var(--stratosphere)` }}
           >
           </div>
@@ -35,8 +34,8 @@ export const Shadows = ({ primary, backgroundColor, size, label, ...props }) => 
         <article>
           <div
             className='colorblock'
-            type="Shadows"
-            {...props}
+            // type="Shadows"
+            // {...props}
             style={{boxShadow: `var(--mesosphere)` }}
           >
           </div>
