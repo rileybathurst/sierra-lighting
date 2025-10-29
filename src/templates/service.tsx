@@ -122,10 +122,10 @@ function Base({ projects, venues, vendors }: BaseTypes) {
 
   // empty card slots
   // * I know this has type issues
-  const base: { card: CardType, title: boolean, breadcrumb: string, order: number, id: React.Key }[] = [
-    { card: {}, title: false, breadcrumb: '', order: 0, id: '' },
-    { card: {}, title: false, breadcrumb: '', order: 1, id: '' },
-    { card: {}, title: false, breadcrumb: '', order: 2, id: '' },
+  const base: { card: CardType | Record<string, never>, title: boolean, breadcrumb: string, order: number, id: React.Key }[] = [
+    { card: {} as CardType, title: false, breadcrumb: '', order: 0, id: '' },
+    { card: {} as CardType, title: false, breadcrumb: '', order: 1, id: '' },
+    { card: {} as CardType, title: false, breadcrumb: '', order: 2, id: '' },
   ];
 
   // console.log(base);

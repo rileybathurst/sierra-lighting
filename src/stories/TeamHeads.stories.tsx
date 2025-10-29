@@ -9,10 +9,4 @@ export default {
   component: TeamHeads,
 };
 
-// const Template = (args) => <TeamHeads {...args} />;
-
-/* export const Primary = Template.bind({});
-Primary.args = {
-primary: true,
-label: 'TeamHeads',
-}; */
+const Template = () => <TeamHeads />;

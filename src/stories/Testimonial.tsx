@@ -4,14 +4,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import { faker } from "@faker-js/faker";
 
-import Star from "../images/star.tsx";
+import Star from "../images/star";
+
+interface TestimonialProps {
+  primary?: boolean;
+  backgroundColor?: string;
+  size?: string;
+  label?: string;
+}
 
 export const Testimonial = ({
   primary,
   backgroundColor,
   size,
   label,
-}) => {
+}: TestimonialProps = {}) => {
   return (
     <li className="testimonial">
       <figure>
@@ -53,10 +60,3 @@ export const Testimonial = ({
   );
 };
 
-Testimonial.propTypes = {
-  primary: PropTypes.bool,
-};
-
-Testimonial.defaultProps = {
-  primary: false,
-};

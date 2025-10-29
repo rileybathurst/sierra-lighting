@@ -6,10 +6,6 @@ export default {
   component: Card,
 };
 
-const Template = (args) => <Card {...args} />;
+const Template = () => <Card />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Card",
-};

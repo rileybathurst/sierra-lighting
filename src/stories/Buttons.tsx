@@ -17,9 +17,9 @@ export const Buttons = ({
     >
       {primary ? 'primary' : 'secondary'}
       <h2>Buttons</h2>
-      <button>Load More</button>
-      <button className="button--hover">Hovered state</button>
-      <button className="button--focus">Focused state</button>
+      <button type='button'>Load More</button>
+      <button type='button' className="button--hover">Hovered state</button>
+      <button type='button' className="button--focus">Focused state</button>
       <hr />
     </main>
   );

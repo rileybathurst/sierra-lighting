@@ -1,11 +1,9 @@
 // this is the Name.jsx file
 import React from "react";
-import PropTypes from "prop-types";
+import { faker } from "@faker-js/faker";
 
-export const Lists = ({ primary }) => {
-  const mode = primary
-    ? "storybook-Lists--primary"
-    : "storybook-Lists--secondary";
+export const Lists = () => {
+
   return (
     <div className="">
       Lists
@@ -41,10 +39,10 @@ export const Lists = ({ primary }) => {
           <h3 className="crest">Useage</h3>
           <ul>
             <li className="range ">
-              <a href="#">Wedding</a>
+              <a href={faker.internet.url()}>Wedding</a>
             </li>
             <li className="range attribute">
-              <a href="#">Social Events</a>
+              <a href={faker.internet.url()}>Social Events</a>
             </li>
           </ul>
         </section>
@@ -52,12 +50,4 @@ export const Lists = ({ primary }) => {
       <hr className="stork" />
     </div>
   );
-};
-
-Lists.propTypes = {
-  primary: PropTypes.bool,
-};
-
-Lists.defaultProps = {
-  primary: false,
 };

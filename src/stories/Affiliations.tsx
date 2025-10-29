@@ -1,7 +1,6 @@
 // this page is at most a half built loop?
 
 import React from "react";
-import PropTypes from "prop-types";
 
 export const Affiliations = () => {
 
@@ -31,10 +30,3 @@ export const Affiliations = () => {
   );
 };
 
-Affiliations.propTypes = {
-  primary: PropTypes.bool,
-};
-
-Affiliations.defaultProps = {
-  primary: false,
-};

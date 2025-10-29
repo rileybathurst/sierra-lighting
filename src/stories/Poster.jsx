@@ -7,7 +7,11 @@ import { faker } from "@faker-js/faker";
 
 import ImageFile from "./assets/assets.png";
 
-export const Poster = ({ primary }) => {
+interface PosterProps {
+  primary?: boolean;
+}
+
+export const Poster = ({ primary }: PosterProps = { primary: false }) => {
   const mode = primary
     ? "storybook-Poster--primary"
     : "storybook-Poster--secondary";
@@ -25,10 +29,3 @@ export const Poster = ({ primary }) => {
   );
 };
 
-Poster.propTypes = {
-  primary: PropTypes.bool,
-};
-
-Poster.defaultProps = {
-  primary: false,
-};

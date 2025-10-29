@@ -6,10 +6,6 @@ export default {
   component: Links,
 };
 
-const Template = (args) => <Links {...args} />;
+const Template = () => <Links />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Links",
-};

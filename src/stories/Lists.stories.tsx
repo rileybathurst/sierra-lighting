@@ -7,10 +7,7 @@ export default {
   component: Lists,
 };
 
-const Template = (args) => <Lists {...args} />;
+const Template = () => <Lists />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Lists",
-};
+

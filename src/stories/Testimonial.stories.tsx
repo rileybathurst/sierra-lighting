@@ -6,10 +6,6 @@ export default {
   component: Testimonial,
 };
 
-const Template = (args) => <Testimonial {...args} />;
+const Template = () => <Testimonial />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: "Testimonial",
-};

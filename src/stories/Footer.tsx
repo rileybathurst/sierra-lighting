@@ -73,7 +73,7 @@ export const Footer = ({
       <hr className='pelican' />
       <div className="footer-container">
 
-        <section id="contact" className="contact">
+        <section className="contact">
 
           <h3 className="crest">Contact</h3>
           <h4 className="range">Say Hello</h4>
@@ -93,7 +93,7 @@ export const Footer = ({
           </div>
         </section>
 
-        <div id="team" className="team">
+        <div className="team">
           <h3 className="crest">Who We Are</h3>
           <h4 className="range">
             <a href="/team" className="link--subtle">Meet Our Team</a>
@@ -170,7 +170,7 @@ export const Footer = ({
             </ul>
           </li>
 
-          <li id="work">
+          <li className="work">
             <ul>
               <li key="work" className="footer_list--no_link">
                 <strong>Our Work</strong>
@@ -181,7 +181,7 @@ export const Footer = ({
             </ul>
           </li>
 
-          <li id="contacts">
+          <li className="contacts">
             <ul>
               {/* // TODO: contact also needs the subtle link */}
               <li key="contact" className="">

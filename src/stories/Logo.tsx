@@ -1,6 +1,5 @@
 // this is the Name.tsx file
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export const Logo = () => {
   return (
@@ -64,12 +63,4 @@ export const Logo = () => {
       </g>
     </svg>
   );
-};
-
-Logo.propTypes = {
-  primary: PropTypes.bool,
-};
-
-Logo.defaultProps = {
-  primary: false,
 };

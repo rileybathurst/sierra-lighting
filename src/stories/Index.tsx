@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import { Topbar } from './Topbar';
 import { Menu } from './Menu';
 
-export const Index = ({ primary }) => {
+interface IndexProps {
+  primary?: boolean;
+}
+
+export const Index = ({ primary }: IndexProps = { primary: false }) => {
   const mode = primary ? 'storybook-Index--primary' : 'storybook-Index--secondary';
   return (
     <>

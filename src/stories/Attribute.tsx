@@ -1,18 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import { faker } from "@faker-js/faker";
 
-export const Attribute = ({
-  primary,
-  backgroundColor,
-  size,
-  label,
-  ...props
-}) => {
-  const mode = primary
-    ? "storybook-Attribute--primary"
-    : "storybook-Attribute--secondary";
+export const Attribute = () => {
   return (
     <div className="attributes">
       {Array.from({ length: faker.number.int({ min: 0, max: 4 }) }).map((_) => (
@@ -33,10 +23,3 @@ export const Attribute = ({
   );
 };
 
-Attribute.propTypes = {
-  primary: PropTypes.bool,
-};
-
-Attribute.defaultProps = {
-  primary: false,
-};
