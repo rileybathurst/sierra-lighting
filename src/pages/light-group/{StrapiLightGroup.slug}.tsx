@@ -43,6 +43,8 @@ export const query = graphql`
 
 const LightPage = ({ data }: LightGroupPageType) => {
 
+  console.log(data);
+
   return (
     <>
       <Header />
@@ -53,7 +55,7 @@ const LightPage = ({ data }: LightGroupPageType) => {
       </main>
 
       <section className="deck">
-        {data.allStrapiLightGroup.nodes.map((light: CardType) => (
+        {data.strapiLightGroup.lights.map((light: CardType) => (
           <Card
             key={light.id}
             {...light}

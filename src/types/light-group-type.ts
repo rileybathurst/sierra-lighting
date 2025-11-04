@@ -1,3 +1,5 @@
+import type { CardType } from "./card-type";
+
 export type LightGroupType = {
 	id: string;
 	name: string;
@@ -10,4 +12,5 @@ export type LightGroupType = {
 	}[];
 	weddingOrder: number;
 	xmasOrder: number;
+	lights: CardType[];
 };

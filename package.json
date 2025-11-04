@@ -17,13 +17,14 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
-    "build": "gatsby build",
+    "build": "tsc --noEmit && gatsby build",
     "clean-build": "gatsby clean && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org riley-bathurst-design --project javascript-gatsby ./public && sentry-cli sourcemaps upload --org riley-bathurst-design --project javascript-gatsby ./public"
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org riley-bathurst-design --project javascript-gatsby ./public && sentry-cli sourcemaps upload --org riley-bathurst-design --project javascript-gatsby ./public",
+    "stay-gold": "stay-gold"
   },
   "dependencies": {
     "@fontsource-variable/josefin-sans": "^5.2.6",
@@ -57,7 +58,8 @@
     "react-markdown": "^10.1.0",
     "react-responsive-masonry": "^2.7.1",
     "remark-gfm": "^4.0.1",
-    "sharp": "^0.34.3"
+    "sharp": "^0.34.3",
+    "stay-gold": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",
