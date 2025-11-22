@@ -108,8 +108,7 @@ const lightsPage = () => {
           .map((light: LightType) => (
             <>
               <section
-                key={light.id}
-                id={light.light_groups[0].slug}
+                key={light.light_groups[0].slug}
                 className="stork"
               >
                 <hr />

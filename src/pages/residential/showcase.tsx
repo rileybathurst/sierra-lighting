@@ -90,7 +90,7 @@ function ResidentialShowcase() {
   const seenSlugs = new Set();
 
   for (const light of data.allStrapiLight.nodes) {
-    light.light_groups.map((group: slugAndOrderType) => {
+    light.light_groups.forEach((group: slugAndOrderType) => {
       if (!seenSlugs.has(group.slug)) {
         lightGroupSet.push({ slug: group.slug, xmasOrder: group.xmasOrder });
         seenSlugs.add(group.slug);
@@ -205,8 +205,7 @@ function ResidentialShowcase() {
             .map((light: CardAndGroupType) => (
               <>
                 <section
-                  key={light.id}
-                  id={light.light_groups[0].slug}
+                  key={light.light_groups[0].id}
                   className="stork"
                 >
                   <hr />

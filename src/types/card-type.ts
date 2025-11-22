@@ -1,7 +1,8 @@
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 interface BaseCardTypes {
-  id: React.Key;
+  id?: React.Key;
+  key?: React.Key;
   slug: string; // ? can this be set to a few specifics like 'venue', 'vendor', 'service'?
   excerpt: string;
   areas?: {

@@ -24,7 +24,8 @@ const TeamPage = () => {
   `)
 
   type TeamTypes = {
-    id: React.Key;
+    id?: React.Key;
+    key?: React.Key;
     name: string;
     slug: string;
     bio: {
@@ -55,7 +56,6 @@ const TeamPage = () => {
         {data.allStrapiTeam.nodes.map((team: TeamTypes) => (
           <Card
             key={team.id}
-            id={team.id}
             title={team.name}
             slug={team.slug}
             image={team.avatar}

@@ -182,17 +182,17 @@ const lightsPage = () => {
 
           {group.lights.length > 0 ? (
             <div className="deck">
-              {group.lights.map((light: CardType) => (
+              {group.lights.map((light) => (
                 <Card 
-                  key={light.slug}
                   {...light}
+                  key={light.id}
                   breadcrumb="light"
                 />
               ))}
             </div>
 
           ) : null}
-
+1
           <hr className="stork" />
 
           </React.Fragment>

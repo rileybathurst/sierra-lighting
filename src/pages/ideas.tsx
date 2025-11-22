@@ -70,9 +70,7 @@ const IdeasPage = ({ location }: LocationTypes) => {
         {data.allStrapiLight.nodes
           .filter((light: CardType) => IdeasSearch.includes(light.slug))
           .map((light: CardType) => (
-            <div
-              key={light.id}
-            >
+            <div key={light.id}>
               <Card
                 {...light}
                 breadcrumb="light"

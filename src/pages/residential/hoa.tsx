@@ -101,8 +101,7 @@ function HoaPage() {
               .map((keyLight: CardTypesWithLightGroups) => (
                 <>
                   <section
-                    key={keyLight.id}
-                    id={keyLight.light_groups[0].slug}
+                    key={keyLight.light_groups[0].id}
                     className="stork"
                   >
                     <hr />
