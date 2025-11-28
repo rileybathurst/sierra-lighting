@@ -1,6 +1,7 @@
 // TODO: needs testimonials per service
 // TODO: add top level areas
 // Couple biome errors that im not sure how to get rid of yet
+// * vendors are hard coded to only show on wedding service page for now
 
 import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
@@ -231,6 +232,8 @@ function Base({ projects, venues, vendors }: BaseTypes) {
 
 const ServiceView = ({ data }: ServiceTypes) => {
 
+  console.log(data.allStrapiVendor);
+
   const adj: { [key: string]: string } = {
     wedding: 'special day',
     residential: 'home',
@@ -402,7 +405,8 @@ const ServiceView = ({ data }: ServiceTypes) => {
             <Base
               projects={data.strapiService?.projects}
               venues={data.allStrapiVenue?.nodes}
-              vendors={data.allStrapiVendor?.nodes}
+
+              vendors={data.strapiService.slug === 'wedding' ? data.allStrapiVendor?.nodes : data.strapiService?.vendors}
             />
           </>
           : null
@@ -492,7 +496,7 @@ export const query = graphql`
       }
     }
 
-    allStrapiVendor(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
+    allStrapiVendor(limit: 1) {
       nodes {
         ...vendorCard
       }
@@ -552,26 +556,24 @@ export const Head = ({ data }: ServiceTypes) => {
   const descriptionKeyWords = `Creating professional ${data.strapiService.name} lighting installations including ${data.strapiService.featured_lights.map((light: CardType) => light.name).join(', ')} in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}`;
 
   return (
-    <>
-      <SEO
-        title={`${data.strapiService.name} Lighting Installation`}
-        // TODO: in the top level areas
-        description={descriptionKeyWords}
-        url={data.strapiService.slug}
-        videos={data.strapiService.videos}
-      >
-        <Script type="application/ld+json">
-          {`
-          {
-            "@context": "https://schema.org",
-            "@type": "OfferCatalog",
-            "name": "${data.strapiService.name} lighting installation",
-            "description": "${sanitazeDescription}",
-            "url": "${data.strapiAbout.url}/${data.strapiService.slug}"
-          }
-        `}
-        </Script>
-      </SEO>
-    </>
+    <SEO
+      title={`${data.strapiService.name} Lighting Installation`}
+      // TODO: in the top level areas
+      description={descriptionKeyWords}
+      url={data.strapiService.slug}
+      videos={data.strapiService.videos}
+    >
+      <Script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "OfferCatalog",
+          "name": "${data.strapiService.name} lighting installation",
+          "description": "${sanitazeDescription}",
+          "url": "${data.strapiAbout.url}/${data.strapiService.slug}"
+        }
+      `}
+      </Script>
+    </SEO>
   )
 }

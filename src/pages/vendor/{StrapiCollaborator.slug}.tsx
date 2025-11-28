@@ -33,11 +33,6 @@ export const query = graphql`
         }
         alternativeText
       }
-      
-      services {
-        name
-        slug
-      }
 
       excerpt
 
