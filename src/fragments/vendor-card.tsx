@@ -6,7 +6,6 @@ export const query = graphql`
     name
     excerpt
     slug
-    service
 
     profile {
       localFile {

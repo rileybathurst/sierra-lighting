@@ -66,7 +66,10 @@ type ProjectPageTypes = {
 				id: React.Key;
 				name: string;
 				slug: string;
-				service: string;
+        collaborator: {
+          industry: string;
+          slug: string;
+        };
 			}[];
 
 			venue: {
@@ -158,7 +161,10 @@ export const query = graphql`
         id
         name
         slug
-        service
+        collaborator {
+          industry
+          slug
+        }
       }
       
       venue {
@@ -363,7 +369,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 												to={`/vendor/${vendor.slug}`}
 												className="link--subtle"
 											>
-												<span className="capitalize">{vendor.service}</span>
+												<span className="capitalize">{vendor.collaborator.industry}</span>
 												<br />
 											</Link>
 										</p>
