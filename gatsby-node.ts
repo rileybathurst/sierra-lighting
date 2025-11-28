@@ -1,13 +1,17 @@
-const path = require('node:path');
+const path = require(`path`);
 
-exports.onPostBuild = ({ reporter }) => {
+import type { GatsbyNode } from 'gatsby';
+
+exports.onPostBuild = (({ reporter }) => {
   reporter.info('Your Gatsby site has been built!')
-}
+}) as GatsbyNode['onPostBuild'];
 
-exports.createPages = async ({ actions, graphql }) => {
-  const { createPage } = actions
+exports.createPages = (async ({ actions, graphql, reporter }) => {
+  const { createPage } = actions;
 
-  const getServices = await graphql(`
+  const getServices = await graphql<{
+    allStrapiService: { edges: { node: { slug: string } }[] }
+  }>(`
     query {
       allStrapiService {
         edges {
@@ -17,7 +21,12 @@ exports.createPages = async ({ actions, graphql }) => {
         }
       }
     }
-  `)
+  `);
+
+  if (!getServices.data) {
+    reporter.panicOnBuild(`GraphQL query for services failed: ${JSON.stringify(getServices.errors)}`);
+    return;
+  }
 
   for (const { node } of getServices.data.allStrapiService.edges) {
     createPage({
@@ -26,11 +35,13 @@ exports.createPages = async ({ actions, graphql }) => {
       context: {
         slug: node.slug,
       },
-    })
+    });
   }
 
   // * Im also using /christmas-lights/ which might be replaced with a node query before here
-  const getServiceLights = await graphql(`
+  const getServiceLights = await graphql<{
+    allStrapiService: { edges: { node: { slug: string } }[] }
+  }>(`
     query {
       allStrapiService {
         edges {
@@ -40,7 +51,12 @@ exports.createPages = async ({ actions, graphql }) => {
         }
       }
     }
-  `)
+  `);
+
+  if (!getServiceLights.data) {
+    reporter.panicOnBuild(`GraphQL query for service lights failed: ${JSON.stringify(getServiceLights.errors)}`);
+    return;
+  }
 
   for (const { node } of getServiceLights.data.allStrapiService.edges) {
     createPage({
@@ -49,10 +65,12 @@ exports.createPages = async ({ actions, graphql }) => {
       context: {
         slug: node.slug,
       },
-    })
+    });
   }
 
-  const getVenues = await graphql(`
+  const getVenues = await graphql<{
+    allStrapiVenue: { edges: { node: { slug: string; area: { slug: string } } }[] }
+  }>(`
     query {
       allStrapiVenue {
         edges {
@@ -65,7 +83,12 @@ exports.createPages = async ({ actions, graphql }) => {
         }
       }
     }
-  `)
+  `);
+
+  if (!getVenues.data) {
+    reporter.panicOnBuild(`GraphQL query for venues failed: ${JSON.stringify(getVenues.errors)}`);
+    return;
+  }
 
   for (const { node } of getVenues.data.allStrapiVenue.edges) {
     createPage({
@@ -75,11 +98,13 @@ exports.createPages = async ({ actions, graphql }) => {
         slug: node.slug,
         area: node.area.slug,
       },
-    })
+    });
   }
 
   // * /vendor/envyeventmanagement/
-  const getVendors = await graphql(`
+  const getVendors = await graphql<{
+    allStrapiVendor: { edges: { node: { slug: string; collaborator: { slug: string } } }[] }
+  }>(`
     query {
       allStrapiVendor {
         edges {
@@ -92,7 +117,12 @@ exports.createPages = async ({ actions, graphql }) => {
         }
       }
     }
-  `)
+  `);
+
+  if (!getVendors.data) {
+    reporter.panicOnBuild(`GraphQL query for vendors failed: ${JSON.stringify(getVendors.errors)}`);
+    return;
+  }
 
   for (const { node } of getVendors.data.allStrapiVendor.edges) {
     createPage({
@@ -102,10 +132,12 @@ exports.createPages = async ({ actions, graphql }) => {
         slug: node.slug,
         collaborator: node.collaborator.slug,
       },
-    })
+    });
   }
 
-  const getAreas = await graphql(`
+  const getAreas = await graphql<{
+    allStrapiArea: { edges: { node: { slug: string } }[] }
+  }>(`
     query {
       allStrapiArea(filter: {featured: {eq: true}}) {
         edges {
@@ -115,7 +147,12 @@ exports.createPages = async ({ actions, graphql }) => {
         }
       }
     }
-  `)
+  `);
+
+  if (!getAreas.data) {
+    reporter.panicOnBuild(`GraphQL query for areas failed: ${JSON.stringify(getAreas.errors)}`);
+    return;
+  }
 
   for (const { node } of getAreas.data.allStrapiArea.edges) {
     createPage({
@@ -124,10 +161,12 @@ exports.createPages = async ({ actions, graphql }) => {
       context: {
         slug: node.slug,
       },
-    })
+    });
   }
-
-  const getLookBooks = await graphql(`
+  
+  const getLookBooks = await graphql<{
+    allStrapiService: { edges: { node: { slug: string; lookbooks?: { id: string }[] } }[] }
+  }>(`
     query {
       allStrapiService {
         edges {
@@ -140,17 +179,22 @@ exports.createPages = async ({ actions, graphql }) => {
         }
       }
     }
-  `)
+  `);
+
+  if (!getLookBooks.data) {
+    reporter.panicOnBuild(`GraphQL query for lookbooks failed: ${JSON.stringify(getLookBooks.errors)}`);
+    return;
+  }
 
   for (const { node } of getLookBooks.data.allStrapiService.edges) {
-    if (node?.lookbooks.length > 0) {
+    if (node?.lookbooks && node.lookbooks.length > 0) {
       createPage({
         path: `/${node.slug}/lookbook/`,
         component: path.resolve("src/templates/lookbook.tsx"),
         context: {
           slug: node.slug,
         },
-      })
+      });
     }
   }
-}
+}) as GatsbyNode['createPages'];
