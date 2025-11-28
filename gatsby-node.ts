@@ -29,6 +29,11 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getServices.data.allStrapiService.edges) {
+    if (!node || !node.slug) {
+      reporter.warn(`Skipping service page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      continue;
+    }
+
     createPage({
       path: `/${node.slug}`,
       component: path.resolve("src/templates/service.tsx"),
@@ -59,6 +64,11 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getServiceLights.data.allStrapiService.edges) {
+    if (!node || !node.slug) {
+      reporter.warn(`Skipping service-lights page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      continue;
+    }
+
     createPage({
       path: `/${node.slug}/lights/`,
       component: path.resolve("src/templates/service-lights.tsx"),
@@ -91,12 +101,17 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getVenues.data.allStrapiVenue.edges) {
+    if (!node || !node.slug) {
+      reporter.warn(`Skipping venue page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      continue;
+    }
+
     createPage({
       path: `/venue/${node.slug}`,
       component: path.resolve("src/templates/venue.tsx"),
       context: {
         slug: node.slug,
-        area: node.area.slug,
+        area: node.area ? node.area.slug : undefined,
       },
     });
   }
@@ -125,12 +140,17 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getVendors.data.allStrapiVendor.edges) {
+    if (!node || !node.slug) {
+      reporter.warn(`Skipping vendor page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      continue;
+    }
+
     createPage({
       path: `/vendor/${node.slug}`,
       component: path.resolve("src/templates/vendor.tsx"),
       context: {
         slug: node.slug,
-        collaborator: node.collaborator.slug,
+        collaborator: node.collaborator ? node.collaborator.slug : undefined,
       },
     });
   }
@@ -155,6 +175,12 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getAreas.data.allStrapiArea.edges) {
+
+    if (!node || !node.slug) {
+      reporter.warn(`Skipping area page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      continue;
+    }
+
     createPage({
       path: `/areas/${node.slug}`,
       component: path.resolve("src/templates/areas.tsx"),
@@ -187,7 +213,12 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getLookBooks.data.allStrapiService.edges) {
-    if (node?.lookbooks && node.lookbooks.length > 0) {
+    if (!node || !node.slug) {
+      reporter.warn(`Skipping lookbook page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      continue;
+    }
+
+    if (node.lookbooks && node.lookbooks.length > 0) {
       createPage({
         path: `/${node.slug}/lookbook/`,
         component: path.resolve("src/templates/lookbook.tsx"),

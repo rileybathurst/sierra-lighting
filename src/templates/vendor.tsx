@@ -189,17 +189,15 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         : null}
 
       {data.strapiVendor.projects.length === 0 && data.allStrapiVendor.nodes.length === 0 ?
-        <>
-          <div className="stork">
-            <h3 className="crest">Looking for something else?</h3>
-            <h2 className="range">
-              <Link to='/vendor'>
-                Other Wedding Vendors
-              </Link>
-            </h2>
-          </div>
-        </>
-        : null}
+        <div className="stork">
+          <h3 className="crest">Looking for something else?</h3>
+          <h2 className="range">
+            <Link to='/vendor'>
+              Other Wedding Vendors
+            </Link>
+          </h2>
+        </div>
+      : null}
 
       <hr className='stork' />
 
