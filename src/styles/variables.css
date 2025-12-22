@@ -105,12 +105,6 @@
     0 18px 32px hsla(35, 50%, 50%, 0.16) /* Direct light shadow */;
 
   /*------------------*/
-  /* WIDTHS */
-  /*------------------*/
-  --pad: 30rem;
-  --book: 60rem;
-
-  /*------------------*/
   /* EXTRAS */
   /*------------------*/
   /*  TODO: needs a better metaphor */

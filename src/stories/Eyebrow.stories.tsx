@@ -1,12 +1,11 @@
 // this is the Name.stories.tsx file
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { fn } from 'storybook/test';
 import { Eyebrow } from './Eyebrow';
 
 const meta = {
   component: Eyebrow,
   title: 'Molecules/Eyebrow',
-  args: { onClick: fn() },
+  args: { onClick: () => {} },
 } satisfies Meta<typeof Eyebrow>;
 
 export default meta;

@@ -1,12 +1,11 @@
 // this is the Name.stories.tsx file
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { fn } from 'storybook/test';
 import { Showcase } from './Showcase';
 
 const meta = {
   component: Showcase,
   title: 'Pages/Showcase',
-  args: { onClick: fn() },
+  args: { onClick: () => {} },
 } satisfies Meta<typeof Showcase>;
 
 export default meta;

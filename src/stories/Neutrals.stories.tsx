@@ -1,12 +1,11 @@
 // this is the Name.stories.tsx file
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { fn } from 'storybook/test';
 import { Neutrals } from './Neutrals';
 
 const meta = {
   component: Neutrals,
-  title: 'Uncategorized/Neutrals',
-  args: { onClick: fn() },
+  title: 'Atoms/Neutrals',
+  args: { onClick: () => {} },
 } satisfies Meta<typeof Neutrals>;
 
 export default meta;

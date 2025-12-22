@@ -1,12 +1,11 @@
 // this is the Name.stories.tsx file
 import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { fn } from 'storybook/test';
 import { CatchAll } from './CatchAll';
 
 const meta = {
   component: CatchAll,
   title: 'Pages/CatchAll',
-  args: { onClick: fn() },
+  args: { onClick: () => {} },
 } satisfies Meta<typeof CatchAll>;
 
 export default meta;
