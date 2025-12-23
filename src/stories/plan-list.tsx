@@ -5,7 +5,13 @@ export const PlanList = () => {
 
 return (
 <>
-PlanList
+Logo<br />
+<button type="button">Guides</button>
+<button type="button">Search</button>
+<br />
+<hr />
+<br />
+Stack of Sheets
 </>
 );
 };
