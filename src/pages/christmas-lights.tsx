@@ -1,4 +1,4 @@
-// * this is a weird extra page as it has to query both sets
+// * this is an extra page as it has to query both sets
 // ! reorder this properly I have the ability to do it and its always xmas order
 // TODO: fix the cards in /templates/service-lights.tsx first then move it across
 

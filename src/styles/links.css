@@ -13,8 +13,8 @@ a {
 
 a:hover,
 .a-hover {
-  text-decoration: none; /*  TODO: add somenice animation to this */
-  color: var(--honey-700);
+  text-decoration: none;
+  color: var(--honey-400);
 
   @media (prefers-color-scheme: dark) {
     color: var(--denim-400);
@@ -23,7 +23,7 @@ a:hover,
 
 a:focus,
 .a-focus {
-  color: var(--honey-700);
+  color: var(--honey-200);
   text-decoration: none;
   @media (prefers-color-scheme: dark) {
     color: var(--denim-500);
@@ -149,7 +149,7 @@ button:hover,
   /*  theres no color indicated here it all comes from the <a> so it doesnt need a dark */
 }
 
-/*  * make this reusable */
+/*  TODO: make this reusable */
 .footer_list a:hover,
 .footer_list a:focus .bigboy a:hover,
 .bigboy a:focus,
@@ -167,9 +167,18 @@ button:hover,
   }
 }
 
+.hover-back__hover {
+  margin-inline: auto;
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  max-width: max-content;
+  line-height: 1.6rem;
+}
+
 .hover-back--inline {
   display: inline;
 }
+
 
 /*------------------*/
 /* FOOTER */

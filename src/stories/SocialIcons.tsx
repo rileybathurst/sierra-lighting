@@ -44,14 +44,12 @@ function Deal() {
 
 export const SocialIcons = () => {
   return (
-    <section 
+    <ul 
       // id="footer-social" // * biome says dont use IDs
-      className="footer-social footer-social--self"
+      className="stork footer-social footer-social--self"
     >
-      <ul className="stork">
-        <Deal />
-      </ul>
-    </section>
+      <Deal />
+    </ul>
   );
 };
 

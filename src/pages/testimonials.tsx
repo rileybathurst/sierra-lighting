@@ -1,59 +1,17 @@
 import * as React from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 
 import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import TestimonialRanking from "../components/testimonial-ranking";
-
-// TODO: remove the props from the component
-type TestimonialLinkTypes = {
-  aref: string;
-  customer: string;
-  vendor: {
-    name: string;
-    slug: string;
-  };
-  position: string;
-  platform: string;
-}
-function TestimonialLink(props: TestimonialLinkTypes) {
-  if (props.vendor && props.position) {
-    // TODO the hypen needs to be on an if
-    // TODO if no vendor then maybe it has a platform
-    return (
-      <>
-        <p className='crest'><Link to={`/vendor/${props.vendor.slug}`}>
-          {props.vendor.name}
-        </Link> - {props?.position}</p>
-        <h4 className='range' >{props.customer}</h4>
-      </>
-    )
-  }
-
-  if (props.platform && props.position) {
-    return (
-      <>
-        <h4 className='range' >
-          {props.customer} <span>- {props?.platform}</span>
-        </h4>
-      </>
-    );
-  }
-
-  if (props.platform) {
-    return (
-      <h4 className='range' >{props.customer}</h4>
-    );
-  }
-
-}
+import Testimonial from "../components/testimonial";
+import type TestimonialTypes from "../types/testimonial-types";
 
 const TestimonialsPage = () => {
 
-  const { allStrapiTestimonial } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query TestimonialsQuery {
       allStrapiTestimonial(
         sort: {order: ASC}
@@ -73,26 +31,25 @@ const TestimonialsPage = () => {
             name
             slug
           }
+
+          project {
+            title
+            slug
+          }
         }
       }
-    }
-  `)
 
-  type TestimonialTypes = {
-    id: React.Key;
-    customer: string;
-    stars: number;
-    review: string;
-    title: string;
-    slug: string;
-    link: string;
-    position: string;
-    platform: string;
-    vendor: {
-      name: string;
-      slug: string;
-    };
-  }
+      strapiAbout {
+        google
+        yelp
+        nextdoor
+      }
+
+      strapiFeedback {
+        about
+      }
+    }
+  `);
 
   return (
     <>
@@ -103,39 +60,22 @@ const TestimonialsPage = () => {
         <h1 className="crest">Reviews</h1>
         <h2 className="ridge">Testimonials</h2>
 
-        <p>Welcome to our testimonials page, where our satisfied customers speak for us! At Sierra Lighting, we pride ourselves on providing exceptional products/services and ensuring that our clients' experiences exceed expectations, year after year! Don't just take our word for it, hear directly from those who have experienced the quality, reliability, and excellence we deliver firsthand. Dive into the testimonials below to discover why our customers choose us and why you should too!</p>
+        <p>{data.strapiFeedback.about}</p>
 
         <ul className="testimonials">
-
-          {/* // TODO: make this a component for the page and the index */}
-          {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
-            <li key={testimonial.id} className='testimonial'>
-              <figure>
-                <blockquote>
-                  <h2 className="sr-only">{testimonial.title}</h2>
-
-                  <TestimonialRanking stars={testimonial.stars} />
-                  <p className='testimonial--quote_mark range'>&ldquo;</p>
-                  <p>{testimonial.review}</p>
-
-
-                  <figcaption>
-                    {/* // ? is the span needed anymore */}
-                    <span>
-
-                      <TestimonialLink
-                        aref={testimonial.link}
-                        customer={testimonial.customer}
-                        vendor={testimonial?.vendor}
-                        position={testimonial?.position}
-                        platform={testimonial?.platform}
-                      />
-
-                    </span>
-                  </figcaption>
-                </blockquote>
-              </figure>
-            </li>
+          {data.allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
+            <Testimonial
+              // biome is mad about the ! but typescript accepts it
+              // biome ignore lint/suspicious/noUnsafeNullableKey: The GraphQL query guarantees an `id` for each testimonial node, so this assertion is safe.
+              key={testimonial.id!}
+              customer={testimonial.customer}
+              stars={testimonial.stars}
+              review={testimonial.review}
+              title={testimonial.title}
+              slug={testimonial.slug}
+              link={testimonial.link}
+              project={testimonial.project}
+            />
           ))}
         </ul>
 
@@ -144,32 +84,26 @@ const TestimonialsPage = () => {
           Help us you buy submitting your own review
         </h3>
 
-        {/* // TODO: variables */}
-        <p>
-          <a href="https://g.page/r/CXdQyNRhzs8YEBA"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover-back hover-back--inline">
-            Google Review
-          </a><em>- preferred</em>
-        </p>
-        <p>
-          <a href="https://www.yelp.com/biz/sierra-lighting-calpine"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover-back">
-            Yelp
-          </a>
-        </p>
-        <p><a
-          href="https://nextdoor.com/login/?next=/pages/sierra-lighting-truckee-ca/recommend/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover-back">
-          NextDoor
-        </a>
-        </p>
+        {/* // ? these are not using the hover_back?  */}
+        {[
+          { url: data.strapiAbout.google, label: 'Google Review', preferred: true },
+          { url: data.strapiAbout.yelp, label: 'Yelp', preferred: false },
+          { url: data.strapiAbout.nextdoor, label: 'NextDoor', preferred: false }
+        ].map((platform) => (
+          <p key={platform.label}>
+            <a
+              href={platform.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover-back hover-back--inline"
+            >
+              {platform.label}
+            </a>
+            {platform.preferred && <em>- preferred</em>}
+          </p>
+        ))}
 
+        {/* // TODO: move this to a separate component, possibly in the same file */}
         <form
           className="stork"
           name="testimonial"
@@ -178,7 +112,6 @@ const TestimonialsPage = () => {
           netlify-honeypot="bot-field"
           action="/form-success"
         >
-
           <input type="hidden" name="form-name" value="testimonial" />
 
           <input type="hidden" name="subject"
@@ -226,6 +159,7 @@ export const Head = () => {
     <SEO
       title='Testimonials'
       description="Thanks From Our Customers"
+      // ? is there a reason for this specific image?
       image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
       url="testimonials"
     />

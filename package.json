@@ -16,7 +16,8 @@
   ],
   "scripts": {
     "develop": "gatsby develop",
-    "start": "gatsby develop",
+    "start": "tsc --noEmit && gatsby develop",
+    "dirty": "gatsby develop",
     "build": "tsc --noEmit && gatsby build",
     "clean-build": "gatsby clean && gatsby build",
     "serve": "gatsby serve",
@@ -79,6 +80,7 @@
     "@vitest/mocker": "^3.2.4",
     "autoprefixer": "^10.4.21",
     "babel-loader": "^10.0.0",
+    "baseline-browser-mapping": "^2.9.11",
     "color-convert": "^3.1.0",
     "css-loader": "^7.1.2",
     "gatsby-plugin-postcss": "^6.14.0",

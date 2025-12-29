@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Topbar } from './Topbar';
 import { Menu } from './Menu';
+import { Footer } from './Footer';
 
 interface IndexProps {
   primary?: boolean;
@@ -18,6 +19,7 @@ export const Index = ({ primary }: IndexProps = { primary: false }) => {
       <main>
         test
       </main>
+      <Footer />
     </>
   );
 };

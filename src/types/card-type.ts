@@ -1,5 +1,15 @@
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
+type IdOnly = {
+  id: React.Key;
+  key?: undefined;
+};
+
+type KeyOnly = {
+  id?: undefined;
+  key: React.Key;
+};
+
 interface BaseCardTypes {
   id?: React.Key;
   key?: React.Key;

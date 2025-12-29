@@ -160,15 +160,13 @@ header {
 
 .testimonial {
   background-color: var(--brilliance);
+  
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-750);
   }
+
   svg {
     fill: var(--honey-400);
-    outline: 1px solid var(--honey-50);
-
-    @media (prefers-color-scheme: dark) {
-      outline: none;
-    }
   }
+  
 }

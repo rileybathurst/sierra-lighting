@@ -420,8 +420,6 @@ header {
       max-width: var(--vinson);
       max-height: var(--vinson);
 
-      fill: var(--honey-300);
-
       /* TODO: variable */
       @media (prefers-color-scheme: dark) {
         fill: var(--denim-500);
@@ -533,6 +531,13 @@ footer {
   .testimonial--stars {
     list-style: none;
     display: flex;
+    justify-self: center;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-block-end: 0;
+    }
   }
 }
 

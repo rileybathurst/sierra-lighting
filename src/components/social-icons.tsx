@@ -1,8 +1,7 @@
-// ! these are all broken
 // TODO: do some work on the real colors
 // TODO: if a profile string or the full url
 
-import React from "react";
+import React, { useId } from "react";
 
 import FacebookIcon from "../images/facebook-icon";
 import InstagramIcon from "../images/instagram-icon";
@@ -31,6 +30,7 @@ type SocialIconsTypes = {
   google?: string;
 }
 function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinterest, tiktok, linkedin, google }: SocialIconsTypes) {
+  const footerSocialId = useId();
 
   let yelpFormatted = '';
   if (yelp) {
@@ -191,11 +191,8 @@ function SocialIcons({ businessName, yelp, facebook, instagram, nextdoor, pinter
     ) : null
   ].filter(Boolean) as SocialTypes[];
 
-  // console.log(socialIcons.map((icon) => icon.name));
-  // console.log(businessName)
-
   return (
-    <ul id="footer-social" className="footer-social">
+    <ul id={footerSocialId} className="footer-social">
       {socialIcons.map((socialIcon: SocialTypes) => (
         <li key={socialIcon.name}>
           <a
