@@ -228,7 +228,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
     )
   }
 
-  if (projects && venues) {
+  if (projects && venues.length > 0) {
 
     return (
       <div className='pelican service-deck'>
@@ -473,18 +473,16 @@ const ServiceView = ({ data }: ServiceTypes) => {
         </ul>
       </section>
 
-      {
-        data.strapiService.projects || data.strapiService.venues || data.strapiService.vendors ?
-          <>
-            <hr className='pelican' />
-            <Base
-              projects={data.strapiService?.projects}
-              venues={data.allStrapiVenue?.nodes}
-              vendors={data.strapiService.slug === 'wedding' ? data.allStrapiVendor?.nodes : data.strapiService?.vendors}
-            />
-          </>
-          : null
-      }
+      {data.strapiService.projects || data.strapiService.venues || data.strapiService.vendors ?
+        <React.Fragment>
+          <hr className='pelican' />
+          <Base
+            projects={data.strapiService?.projects}
+            venues={data.allStrapiVenue?.nodes}
+            vendors={data.strapiService.slug === 'wedding' ? data.allStrapiVendor?.nodes : data.strapiService?.vendors}
+          />
+        </React.Fragment>
+        : null}
 
       < Footer />
 

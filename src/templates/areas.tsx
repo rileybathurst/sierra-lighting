@@ -247,30 +247,8 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         <hr />
         <h3 >Lighting installation services we provide in {data.strapiArea.name}</h3>
       </main >
-
-      {/* // TODO: this is reused from home page make it a component, fragment, types all the things */}
-      <div className={`collage ${Season()}`}>
-        {data.allStrapiService.nodes.map((service ) => (
-          <Link
-            key={service.id}
-            to={`/${service.slug}`}
-            className={`poster ${service.slug}`}
-          >
-            {service.hero_light ?
-              <>
-                <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
-                  alt={service.hero_light.alternativeText || service.name}
-                />
-                <span>{service.name} Lighting</span>
-              </>
-              : null}
-          </Link>
-        ))}
-      </div>
-      {/* // * finish this and move it across the site */}
-      {/* <Collage
-        services={data.allStrapiService.nodes}
-      /> */}
+      
+      <Collage services={data.allStrapiService.nodes}/>
 
       {areaSubAreaProjectsArray.length > 0 ?
         <section>
@@ -373,26 +351,7 @@ export const query = graphql`
 
     allStrapiService {
       nodes {
-        id
-        name
-        slug
-        hero_light {
-          alternativeText
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-
-        hero_dark {
-          alternativeText
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
+        ...collageFragment
       }
     }
 
@@ -401,7 +360,7 @@ export const query = graphql`
 
 export const Head = ({ data }: AreasTemplateTypes) => {
 
-  const servicesString = data.allStrapiService.nodes.map((service) => (
+const servicesString = data.allStrapiService.nodes.map((service) => (
     `${service.name} light installs`
   )).join(', ');
   // console.log(servicesString);

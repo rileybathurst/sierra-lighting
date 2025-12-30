@@ -5,13 +5,15 @@ import type { GatsbyImageType } from "../../types/gatsby-image";
 import type { CardType } from "../../types/card-type";
 
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
-import Markdown from "react-markdown";
+// import Markdown from "react-markdown";
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Card from "../../components/card";
 import Start from "../../components/start";
 import Hero from "../../components/hero";
+import Collage from "../../components/collage";
+import type { CollageType } from "../../types/collage-type";
 
 interface AliasTypes {
 	alias: string;
@@ -49,15 +51,7 @@ export const query = graphql`
 		description
 
 		services {
-			id
-			name
-			slug
-			excerpt
-			description {
-			data {
-				description
-			}
-			}
+			...collageFragment
 		}
 
 		light_groups {
@@ -167,17 +161,7 @@ type LightPageTypes = {
 			slug: string;
 			excerpt?: string | null;
 			description?: string | null;
-			services: {
-				id: React.Key;
-				name: string;
-				slug: string;
-				excerpt: string;
-				description?: {
-					data?: {
-						description?: string | null;
-					} | null;
-				} | null;
-			}[];
+			services: CollageType["services"];
 			light_groups?: {
 				id: React.Key;
 				name: string;
@@ -246,6 +230,8 @@ const LightPage = ({ data }: LightPageTypes) => {
 	// console.log(light.services.map((service) => (service.name)));
 	// console.log(light.services.map((service) => (service.description.data.description)));
 
+	console.log(data.strapiLight.services);
+
 	return (
 		<>
 			<Header />
@@ -285,23 +271,8 @@ const LightPage = ({ data }: LightPageTypes) => {
 			{/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device */}
 			<section className="stork">
 				<h3 className="crest">We use {data.strapiLight.name} for</h3>
-				<ul className="list-style-none">
-					{data.strapiLight.services.map((service) => {
-						return (
-							<li key={service.id}>
-								<h3 className="kilimanjaro capitalize">
-									<Link to={`/${service.slug}`}>{service.name} lighting</Link>
-								</h3>
-								{/* // TODO: throw a build kill instead if we dont have a description for a light */}
-								{service.description ?
-									<div className="react-markdown">
-										<Markdown>{service?.description?.data?.description}</Markdown>
-									</div>
-									: null}
-							</li>
-						);
-					})}
-				</ul>
+				
+				<Collage services={data.strapiLight.services} />
 
 				{/* // TODO: design this in storybook  */}
 				<h3 className="kilimanjaro capitalize">

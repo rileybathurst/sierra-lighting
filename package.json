@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "develop": "gatsby develop",
-    "start": "tsc --noEmit && gatsby develop",
+    "start": "tsc --noEmit && stay-gold && gatsby develop",
     "dirty": "gatsby develop",
     "build": "tsc --noEmit && stay-gold && gatsby build",
     "clean-build": "gatsby clean && gatsby build",

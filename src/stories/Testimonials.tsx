@@ -11,6 +11,7 @@ export const Testimonials = () => {
       <h1 className="crest">Reviews</h1>
       <h2 className="ridge">Testimonials</h2>
 
+      {/* // TODO: strapi this */}
       <p>Welcome to our testimonials page, where our satisfied customers speak for us! At Sierra Lighting, we pride ourselves on providing exceptional products/services and ensuring that our clients' experiences exceed expectations, year after year! Don't just take our word for it, hear directly from those who have experienced the quality, reliability, and excellence we deliver firsthand. Dive into the testimonials below to discover why our customers choose us and why you should too!</p>
 
       <ul className='testimonials'>

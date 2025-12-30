@@ -12,6 +12,7 @@ import Header from "../components/header";
 import Season from "../components/season";
 import BackImage from "../images/BackImage";
 import HeroWeddingBackImage from "../images/HeroWeddingBackImage";
+import Collage from '../components/collage';
 
 const IndexPage = () => {
 
@@ -28,26 +29,7 @@ const IndexPage = () => {
 
       allStrapiService {
         nodes {
-          id
-          name
-          slug
-          hero_light {
-            alternativeText
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-          }
-
-          hero_dark {
-            alternativeText
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-          }
+          ...collageFragment
         }
       }
 
@@ -127,29 +109,7 @@ const IndexPage = () => {
     }
   }
 
-  interface ServiceTypes {
-    id: React.Key;
-    name: string;
-    slug: string;
-    hero_light: {
-      alternativeText: string;
-      localFile: {
-        childImageSharp: {
-          gatsbyImageData: IGatsbyImageData;
-        }
-      }
-    }
-    hero_dark: {
-      alternativeText: string;
-      localFile: {
-        childImageSharp: {
-          gatsbyImageData: IGatsbyImageData;
-        }
-      }
-    }
-  }
-
-  console.log(Season());
+  // console.log(Season());
 
   return (
     <>
@@ -260,24 +220,7 @@ const IndexPage = () => {
         </div>
 
 
-        <div className={`home-services ${Season()}`}>
-          {data.allStrapiService.nodes.map((service: ServiceTypes) => (
-            <Link
-              key={service.id}
-              to={`/${service.slug}`}
-              className={`poster ${service.slug}`}
-            >
-              {service.hero_light ?
-                <>
-                  <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
-                    alt={service.hero_light.alternativeText || service.name}
-                  />
-                  <span>{service.name}</span>
-                </>
-                : null}
-            </Link>
-          ))}
-        </div>
+        <Collage services={data.allStrapiService.nodes} />
       </main >
 
       <div className="stork">
