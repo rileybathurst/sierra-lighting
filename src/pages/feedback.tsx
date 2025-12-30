@@ -1,4 +1,4 @@
-// ! the file doesnt show the form straight away so netlify cant detect the form
+// TODO: biome doesnt like this page but its not top priority
 
 import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from 'gatsby';

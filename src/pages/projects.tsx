@@ -12,7 +12,7 @@ import ReactMarkdown from "react-markdown";
 
 const ProjectsPage = () => {
 
-  const { allStrapiService } = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query ProjectsQuery {
       allStrapiService {
         nodes {
@@ -33,6 +33,12 @@ const ProjectsPage = () => {
         }
       }
 
+      allStrapiArea(filter: {featured: {eq: true}}) {
+        nodes {
+          name
+        }
+      }
+
     }
   `);
 
@@ -48,21 +54,17 @@ const ProjectsPage = () => {
     projects: CardType[];
   }
 
-  // console.log(allStrapiService);
-
   return (
     <>
       <Header />
 
       <main className="stork">
         <h1>Projects</h1>
-        {/* // TODO link these from a featured query */}
-        {/* // ! strapi this */}
-        <p>A gallery of some of our past work. Photos of residential and commercial displays in Reno, Tahoe, Truckee, Martis Camp, Lahontan, Grays Crossing, Old Greenwood, Somersett, Caughlin Ranch, Verdi, Damonte Ranch, Galena, Montreux, Incline Village, and more!</p>
+        <p>A gallery of some of our past work. Photos of residential and commercial displays in {data.allStrapiArea.nodes.map((area: { name: string }) => area.name).join(", ")}</p>
       </main>
 
       <div className={`projects ${Season()}`}>
-        {allStrapiService.nodes.map((service: ServiceType) => (
+        {data.allStrapiService.nodes.map((service: ServiceType) => (
           service.projects.length > 0 ?
             <div key={service.id} className={service.slug}>
               <div className="stork">
