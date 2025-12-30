@@ -171,6 +171,9 @@ const lightsPage = () => {
 
       {data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
         <React.Fragment key={group.slug}>
+
+          <hr className="stork" />
+
           <section className="stork">
             <h2 className="mixta">
               <Link to={`/light-group/${group.slug}`}>
@@ -192,8 +195,8 @@ const lightsPage = () => {
             </div>
 
           ) : null}
-1
-          <hr className="stork" />
+
+
 
           </React.Fragment>
       ))}

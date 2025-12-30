@@ -1,10 +1,3 @@
-// * this is an extra page as it has to query both sets
-// ! reorder this properly I have the ability to do it and its always xmas order
-// TODO: fix the cards in /templates/service-lights.tsx first then move it across
-
-// ? would this be significantly easier if I am just grabbing the light groups?
-// * the problem might be the filtering to only residential and commercial lights
-
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
@@ -36,33 +29,24 @@ const lightsPage = () => {
     }
   `)
 
-  type LightType = {
+  // ? this seems overkill its here isnt it an already defined type?
+  type ChristmasLightType = {
     id: React.Key;
     name: string;
     slug: string;
-    excerpt?: string;
-    description: {
-      data: {
-        description: string;
-      }
-    }
+    excerpt: string;
+    xmasOrder?: number;
     light_groups: LightGroupType[];
-    // other fields...
   }
 
-  // ? what if instead of set we do xmas order and then match that?
   const lightGroupSet = new Set();
   for (const light of allStrapiLight.nodes) {
     light.light_groups.forEach((group: LightGroupType) => {
-      lightGroupSet.add(group.slug)
+      lightGroupSet.add(group.xmasOrder)
     })
   }
 
-  console.log(lightGroupSet)
-
   const lightGroupArray = Array.from(lightGroupSet);
-  
-  // console.log(lightGroupArray)
 
   return (
     <>
@@ -79,11 +63,11 @@ const lightsPage = () => {
           <ul>
             {lightGroupArray.map((group) => (
               allStrapiLight.nodes
-                .filter((light: LightType) => light.light_groups[0].slug === (group))
+                .filter((light: ChristmasLightType) => light.light_groups[0].xmasOrder === (group))
                 .slice(0, 1)
-                .map((light: LightType) => (
+                .map((light: ChristmasLightType) => (
                   <li key={light.id}>
-                    <Link to={`#${light.light_groups[0].slug}`}>
+                    <Link to={`/light-group/${light.light_groups[0].slug}`}>
                       {light.light_groups[0].name}
                     </Link>
                   </li>
@@ -103,12 +87,12 @@ const lightsPage = () => {
 
       {lightGroupArray.map((group) => (
         allStrapiLight.nodes
-          .filter((light: LightType) => light.light_groups[0].slug === (group))
+          .filter((light: ChristmasLightType) => light.light_groups[0].xmasOrder === (group))
           .slice(0, 1)
-          .map((light: LightType) => (
-            <React.Fragment key={light.light_groups[0].id}>
+          .map((light: ChristmasLightType) => (
+            <React.Fragment key={light.light_groups[0].xmasOrder}>
               <section
-                key={light.light_groups[0].slug}
+                // key={light.light_groups[0].slug}
                 className="stork"
               >
                 <hr />
@@ -124,13 +108,11 @@ const lightsPage = () => {
                 key={light.id}
                 className="deck">
                 {allStrapiLight.nodes
-                  .filter((light: LightType) => light.light_groups[0].slug === (group))
-                  .map((light: LightType) => (
+                  .filter((light: ChristmasLightType) => light.light_groups[0].xmasOrder === (group))
+                  .map((light: LightCardType) => (
                     <Card
-                      // ! why as unknown as ?
                       key={light.id}
-                      {...(light as unknown as LightCardType)}
-                      excerpt={light.excerpt ?? ''}
+                      {...light}
                       breadcrumb='light'
                     />
                   ))}

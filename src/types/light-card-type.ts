@@ -5,7 +5,7 @@ type LightCardType = {
 	id: React.Key;
 	name: string;
 	slug: string;
-	excerpt?: string;
+	excerpt: string;
 
 	image: {
         localFile: {
