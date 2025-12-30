@@ -5,7 +5,7 @@ import { Link } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import type { CardType } from "../types/card-type";
 
-const Card = ({ key, image, venueImage, profile, title, name, slug, excerpt, areas, breadcrumb }: CardType) => {
+const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, breadcrumb }: CardType) => {
 
   if (!areas && !excerpt) {
     process.env.NODE_ENV === "development" ?
@@ -29,7 +29,7 @@ const Card = ({ key, image, venueImage, profile, title, name, slug, excerpt, are
 
   return (
     <section
-      key={key}
+      // key={key}
       className="card"
     >
       <Link
@@ -63,7 +63,9 @@ const Card = ({ key, image, venueImage, profile, title, name, slug, excerpt, are
               <p>Including:</p>
               <ul>
                 {areas.map(area => (
-                  <li key={area.name}>
+                  <li
+                    key={area.name}
+                  >
                     {area.name}
                   </li>
                 ))}

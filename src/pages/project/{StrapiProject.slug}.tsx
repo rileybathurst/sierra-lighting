@@ -15,6 +15,8 @@ import Hero from "../../components/hero";
 import ReactMarkdown from "react-markdown";
 import { Link } from "gatsby";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
+import Testimonial from "../../components/testimonial";
+import type TestimonialTypes from "../../types/testimonial-types";
 
 type ProjectPageTypes = {
 	data: {
@@ -66,10 +68,10 @@ type ProjectPageTypes = {
 				id: React.Key;
 				name: string;
 				slug: string;
-        collaborator: {
-          industry: string;
-          slug: string;
-        };
+				collaborator: {
+					industry: string;
+					slug: string;
+				};
 			}[];
 
 			venue: {
@@ -89,6 +91,8 @@ type ProjectPageTypes = {
 				name: string;
 				slug: string;
 			}[];
+
+			testimonial: TestimonialTypes | null;
 		};
 
 		triptych: {
@@ -108,135 +112,131 @@ type ProjectPageTypes = {
 };
 
 export const query = graphql`
-  query ProjectQuery($slug: String!) {
-    strapiProject(slug: { eq: $slug }) {
-      id
-      title
-      description {
-        data {
-          description
-        }
-      }
-      excerpt
-      slug
-      ogimage
+    query ProjectQuery($slug: String!) {
+		strapiProject(slug: { eq: $slug }) {
+		id
+		title
+		description {
+			data {
+			description
+			}
+		}
+		excerpt
+		slug
+		ogimage
 
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-          url
-        }
-        alternativeText
-      }
+		image {
+			localFile {
+				childImageSharp {
+					gatsbyImageData
+				}
+				url
+				}
+			alternativeText
+		}
 
-      gallery {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-          url
-        }
-        alternativeText
-      }
+		gallery {
+			localFile {
+				childImageSharp {
+					gatsbyImageData
+				}
+				url
+			}
+			alternativeText
+		}
 
-      lights {
-        ...lightCard
-      }
+		lights {
+			...lightCard
+		}
 
-      area {
-        name
-        state
-        slug
-      }
+		area {
+			name
+			state
+			slug
+		}
 
-      teams {
-        id
-        name
-        slug
-      }
+		teams {
+			id
+			name
+			slug
+		}
 
-      vendors {
-        id
-        name
-        slug
-        collaborator {
-          industry
-          slug
-        }
-      }
-      
-      venue {
-        id
-        name
-        slug 
-        
-        area {
-          id
-          name
-          state
-          slug
-        }
-      }
+		vendors {
+			id
+			name
+			slug
+			collaborator {
+			industry
+			slug
+			}
+		}
 
-      services {
-        name
-        slug
-      }
+		venue {
+			id
+			name
+			slug 
+			
+			area {
+				id
+				name
+				state
+				slug
+			}
+		}
+
+		services {
+			name
+			slug
+		}
+
+		testimonial {
+			id
+			customer
+			position
+			review
+			vendor {
+				name
+				slug
+			}
+		}
     }
 
     triptych: allStrapiLight(limit: 3, filter: {projects: {elemMatch: {slug: {eq: $slug}}}}) {
-      nodes {
-        ...lightCard
-      }
+		nodes {
+			...lightCard
+		}
     }
 
     additional: allStrapiLight(skip: 3, filter: {projects: {elemMatch: {slug: {eq: $slug}}}}) {
-      nodes {
-        id
-        name
-        slug
-      }
+		nodes {
+			id
+			name
+			slug
+		}
     }
 
     allStrapiProject(filter: {slug: {nin: [$slug] }}) {
-      nodes {
-        title
-        id
-        slug
-        excerpt
+		nodes {
+			title
+			id
+			slug
+			excerpt
 
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                breakpoints: [111, 165, 222, 444, 880]
-                width: 222
-              )
-            }
-          }
-          alternativeText
-        }
-      }
+			image {
+				localFile {
+					childImageSharp {
+						gatsbyImageData(
+							breakpoints: [111, 165, 222, 444, 880]
+							width: 222
+						)
+					}
+				}
+				alternativeText
+			}
+		}
     }
-
-  }
+}
 `;
-
-/* // TODO: testing removed
-testimonial {
-  id
-  customer
-  position
-  review
-  vendor {
-    name
-    slug
-  }
-} */
-
-// console.log(data)
 
 const ProjectPage = ({ data }: ProjectPageTypes) => {
 	return (
@@ -269,21 +269,21 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 				<Start path={`project ${data.strapiProject.slug}`} />
 			</main>
 
-			{/* // * no testimonials currently link to projects so this breaks
-      {data.strapiProject.testimonial ?
-        <>
-          <hr className="pelican" />
-          <div className="stork">
-            <Testimonial {...project.testimonial} />
-          </div>
-        </>
-        : null} */}
+
+			{data.strapiProject.testimonial ?
+				<React.Fragment>
+					<hr className="pelican" />
+					<div className="stork">
+						<Testimonial {...data.strapiProject.testimonial} />
+					</div>
+				</React.Fragment>
+			: null}
 
 			{/* // TODO: use media queries to deal with a single vendor looking really weird */}
 			{data.strapiProject.venue ||
-			data.strapiProject.area ||
-			data.strapiProject.vendors.length > 0 ||
-			data.strapiProject.team ? (
+				data.strapiProject.area ||
+				data.strapiProject.vendors.length > 0 ||
+				data.strapiProject.team ? (
 				<>
 					<hr className="pelican" />
 					<div className="attributes">

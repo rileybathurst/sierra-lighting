@@ -142,8 +142,6 @@ const TestimonialsPage = () => {
           <button type="submit">Send</button>
         </form>
 
-        <hr />
-
       </main >
 
       <Footer />

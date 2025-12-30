@@ -71,6 +71,7 @@ const IdeasPage = ({ location }: LocationTypes) => {
           .filter((light: CardType) => IdeasSearch.includes(light.slug))
           .map((light: CardType) => (
             <div key={light.id}>
+              {/* // ? should this be a React.fragment wrapping */}
               <Card
                 {...light}
                 breadcrumb="light"

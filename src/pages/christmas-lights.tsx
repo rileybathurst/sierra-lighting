@@ -2,6 +2,9 @@
 // ! reorder this properly I have the ability to do it and its always xmas order
 // TODO: fix the cards in /templates/service-lights.tsx first then move it across
 
+// ? would this be significantly easier if I am just grabbing the light groups?
+// * the problem might be the filtering to only residential and commercial lights
+
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from 'gatsby';
 
@@ -12,6 +15,7 @@ import Footer from "../components/footer";
 import LightSearch from "../components/light-search";
 import Card from "../components/card";
 import type { LightCardType } from "../types/light-card-type";
+import type { LightGroupType } from "../types/light-group-type";
 
 const lightsPage = () => {
 
@@ -19,7 +23,6 @@ const lightsPage = () => {
     query ChristmasLightsQuery {
 
       allStrapiLight(
-        sort: {xmasOrder: ASC},
         filter: {
           services: {elemMatch: {slug: {in: ["residential", "commercial"]}}}
         }) {
@@ -32,13 +35,6 @@ const lightsPage = () => {
         }
     }
   `)
-
-  type LightGroupType = {
-    id: React.Key;
-    name: string;
-    slug: string;
-    excerpt: string;
-  }
 
   type LightType = {
     id: React.Key;
@@ -54,13 +50,18 @@ const lightsPage = () => {
     // other fields...
   }
 
+  // ? what if instead of set we do xmas order and then match that?
   const lightGroupSet = new Set();
   for (const light of allStrapiLight.nodes) {
     light.light_groups.forEach((group: LightGroupType) => {
       lightGroupSet.add(group.slug)
     })
   }
+
+  console.log(lightGroupSet)
+
   const lightGroupArray = Array.from(lightGroupSet);
+  
   // console.log(lightGroupArray)
 
   return (
@@ -100,13 +101,12 @@ const lightsPage = () => {
         <LightSearch />
       </div>
 
-
       {lightGroupArray.map((group) => (
         allStrapiLight.nodes
           .filter((light: LightType) => light.light_groups[0].slug === (group))
           .slice(0, 1)
           .map((light: LightType) => (
-            <>
+            <React.Fragment key={light.light_groups[0].id}>
               <section
                 key={light.light_groups[0].slug}
                 className="stork"
@@ -127,6 +127,7 @@ const lightsPage = () => {
                   .filter((light: LightType) => light.light_groups[0].slug === (group))
                   .map((light: LightType) => (
                     <Card
+                      // ! why as unknown as ?
                       key={light.id}
                       {...(light as unknown as LightCardType)}
                       excerpt={light.excerpt ?? ''}
@@ -134,7 +135,7 @@ const lightsPage = () => {
                     />
                   ))}
               </section>
-            </>
+            </React.Fragment>
           ))
       ))}
       <Footer />
