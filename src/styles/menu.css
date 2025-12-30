@@ -5,13 +5,12 @@
 /*  TODO this is getting past inception of 3 deep */
 .menu__small {
   grid-row: 3;
-  grid-column: 1;
-  padding-inline-start: var(--cadence);
+  grid-column: 1/3;
+  padding-inline-start: var(--vinson);
   z-index: var(--understory);
   /*  this has a little problem with the header image being infront of the menu */
   /*  as its in a different parent element */
   height: auto;
-  grid-column: 1/3;
 
   menu {
     padding-inline-start: 0; /*  reset; */

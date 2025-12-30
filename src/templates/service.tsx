@@ -90,8 +90,6 @@ interface BaseTypes {
 }
 function Base({ projects, venues, vendors }: BaseTypes) {
 
-  // console.log(projects, venues, vendors);
-
   // order the projects by updatedAt
   projects.sort((a, b) => {
     const dateA = new Date(a.updatedAt ?? 0);
@@ -166,7 +164,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       // base[2].id = self.crypto.randomUUID();
     }
 
-    // if has projects and vendors
+    // * if has projects and vendors
     if (vendors.length > 0 && venues.length > 0) {
 
       // put the vendor in the second spot
@@ -229,6 +227,89 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       </div>
     )
   }
+
+  if (projects && venues) {
+
+    return (
+      <div className='pelican service-deck'>
+        {projects.slice(0, 2).map((project, index) => (
+          <React.Fragment key={project.id}>
+            <div
+              className='service-card'
+            >
+              {index === 0 ? (
+                <h4
+                  className='capitalize project-title project-title'
+                >
+                  <Link to="/projects">
+                    Projects
+                  </Link>
+                </h4>
+              ) : null}
+            </div>
+            <Card
+              key={project.id}
+              {...project}
+              breadcrumb='project'
+            />
+          </React.Fragment>
+        ))}
+
+        {venues.slice(0, 1).map((venue) => (
+          <React.Fragment key={venue.id}>
+            <div
+              className='service-card'
+            >
+              <h4
+                className='capitalize venue-title venue-title'
+              >
+                <Link to="/venues">
+                  Venues
+                </Link>
+              </h4>
+            </div>
+            <Card
+              key={venue.id}
+              {...venue}
+              breadcrumb='venue'
+            />
+          </React.Fragment>
+        ))}
+      </div>
+    )
+  }
+
+  if (projects && !venues?.length && !vendors) {
+
+    return (
+      <div className='pelican service-deck'>
+        {projects.slice(0, 3).map((project, index) => (
+          <React.Fragment key={project.id}>
+          <div
+            className='service-card'
+          >
+            {index === 0 ? (
+              <h4
+                className='capitalize project-title project-title'
+              >
+                <Link to="/projects">
+                  Projects
+                </Link>
+              </h4>
+            ) : null}
+            </div>
+            <Card
+              key={project.id}
+              {...project}
+              breadcrumb='project'
+            />
+          </React.Fragment>
+        ))}
+      </div>
+    )
+  }
+
+  return null;
 }
 
 const ServiceView = ({ data }: ServiceTypes) => {
@@ -242,11 +323,6 @@ const ServiceView = ({ data }: ServiceTypes) => {
   };
   // patio: 'patio'
   const adjective = adj[data.strapiService.slug];
-
-  // console.log(data.allStrapiLookbook);
-  // console.log(data.allStrapiLookbook.nodes.length);
-
-  // console.log(data.strapiService.lights.length);
 
   return (
     <>
@@ -368,7 +444,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
         : null
       }
 
-      {/* // ! needs an order */}
+      {/* // TODO: this needs a design maybe from the home page but thats pretty large and heavy */}
       <section className='stork'>
         <hr />
         <h3 className='elbrus'>We install {data.strapiService.name} lighting in and around</h3>
@@ -404,7 +480,6 @@ const ServiceView = ({ data }: ServiceTypes) => {
             <Base
               projects={data.strapiService?.projects}
               venues={data.allStrapiVenue?.nodes}
-
               vendors={data.strapiService.slug === 'wedding' ? data.allStrapiVendor?.nodes : data.strapiService?.vendors}
             />
           </>

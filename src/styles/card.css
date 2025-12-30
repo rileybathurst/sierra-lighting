@@ -189,12 +189,12 @@
 }
 
 .sheet {
-  font-family: var(--sans-serif);
+  font-family: var(--font-sans);
   background-color: hsl(var(--honey), 75%, 87%);
   border: 2px solid whitesmoke;
   border-radius: 0.5rem;
   padding: 1rem;
-  margin-block-end: var(--baseline);
+  margin-block-end: var(--vinson);
 
   .sheet__jobs {
     display: grid;
@@ -218,7 +218,7 @@
   grid-template-columns: 1.67fr 1fr;
   margin-block-end: 1.5rem;
   row-gap: 1.5rem;
-  box-shadow: var(--penumbra);
+  box-shadow: var(--mesosphere);
 
   text-decoration: none; /* * clears links text */
 
@@ -261,7 +261,7 @@
 
 .stack:where(:hover, :focus) {
   background-color: white;
-  box-shadow: var(--antumbra);
+  box-shadow: var(--stratosphere);
 
   h3,
   h4 {

@@ -18,7 +18,7 @@
     "develop": "gatsby develop",
     "start": "tsc --noEmit && gatsby develop",
     "dirty": "gatsby develop",
-    "build": "tsc --noEmit && gatsby build",
+    "build": "tsc --noEmit && stay-gold && gatsby build",
     "clean-build": "gatsby clean && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
@@ -60,7 +60,7 @@
     "react-responsive-masonry": "^2.7.1",
     "remark-gfm": "^4.0.1",
     "sharp": "^0.34.3",
-    "stay-gold": "^1.1.5"
+    "stay-gold": "^1.1.7"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",

@@ -1,5 +1,3 @@
-// ! fix the edgewood image
-
 import React from 'react';
 import { graphql, Link } from 'gatsby'
 import Markdown from "react-markdown";
