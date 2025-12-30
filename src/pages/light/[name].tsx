@@ -43,7 +43,7 @@ function LightCatchAll({ params }: LightCatchAllType) {
       <hr className="stork" />
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/light/">Light</Link></Breadcrumb>
+        <Breadcrumb><Link to="/lights/">Light</Link></Breadcrumb>
         {/* ? should this be a different and broken breadcrumb? */}
         <Breadcrumb>{params.name}</Breadcrumb>
       </Breadcrumbs>

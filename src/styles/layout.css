@@ -915,9 +915,8 @@ footer {
   list-style: none;
   padding-inline-start: 0;
   margin-block: 0;
-  margin-inline-start: var(--everest); /* ? */
-  max-width: var(--albatross);
   margin-inline: auto;
+  max-width: var(--albatross);
 
   > * {
     flex: 1 1 var(--vulture);
@@ -950,7 +949,6 @@ footer {
   list-style: none;
   padding-inline-start: 0;
   margin-block: 0;
-  margin-inline-start: var(--everest); /* ? */
   max-width: var(--albatross);
   margin-inline: auto;
 
@@ -977,6 +975,46 @@ footer {
     order: 4;
   }
 }
+
+/*------------------------------------*/
+/* #COLLAGE */
+/*------------------------------------*/
+/* posters are not always used in collages */
+
+.collage {
+  display: flex;
+  flex-flow: row wrap;
+  gap: clamp(var(--vinson), 3vw, var(--aconcagua));
+  list-style: none;
+  padding-inline-start: 0;
+  margin-block: 0;
+  margin-inline: auto;
+  max-width: var(--albatross);
+
+  > * {
+    flex: 1 1 var(--vulture);
+    margin-block-end: 0; /* use the grid gap */
+  }
+}
+
+.collage.xmas {
+  .residential {
+    order: 1;
+  }
+
+  .commercial {
+    order: 2;
+  }
+
+  .wedding {
+    order: 3;
+  }
+
+  > a {
+    order: 4;
+  }
+}
+
 
 /*------------------------------------*/
 

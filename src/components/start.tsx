@@ -7,6 +7,7 @@ type startTypes = {
 }
 const Start = ({ className, path }: startTypes) => {
 
+  // ? how often and why are the path and className props used?
   return (
     <Link
       to={`/contact?=start-${path}`}

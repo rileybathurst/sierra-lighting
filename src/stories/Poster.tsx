@@ -10,9 +10,9 @@ export const Poster = () => {
   return (
       <a href={faker.location.city()} className="poster">
         <img
-        src={ImageFile} 
-        alt={faker.location.city()}
-        className="gatsby-image-wrapper"
+          src={ImageFile} 
+          alt={faker.location.city()}
+          className="gatsby-image-wrapper"
         />
         <p className="">
           {faker.location.city()}

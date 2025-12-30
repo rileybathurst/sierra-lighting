@@ -20,6 +20,7 @@ import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import Start from '../components/start';
 import Season from '../components/season';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import Collage from '../components/collage';
 
 
 // this is no longer right as there might only be sub venues
@@ -248,7 +249,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
       </main >
 
       {/* // TODO: this is reused from home page make it a component, fragment, types all the things */}
-      <div className={`away-services ${Season()}`}>
+      <div className={`collage ${Season()}`}>
         {data.allStrapiService.nodes.map((service ) => (
           <Link
             key={service.id}
@@ -266,6 +267,10 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
           </Link>
         ))}
       </div>
+      {/* // * finish this and move it across the site */}
+      {/* <Collage
+        services={data.allStrapiService.nodes}
+      /> */}
 
       {areaSubAreaProjectsArray.length > 0 ?
         <section>
