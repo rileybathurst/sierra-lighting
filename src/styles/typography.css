@@ -162,7 +162,7 @@ hr.stork {
 }
 
 .hr-grey {
-  border-top-color: grey;
+  border-top-color: var(--grey);
 }
 
 .hr-tin-soldier {

@@ -249,7 +249,7 @@
   }
 
   .supra {
-    color: gray;
+    color: var(--grey);
     margin-block-end: 0.5rem;
   }
 
@@ -259,6 +259,7 @@
   }
 }
 
+/* * plans have stack not in this folder but will be moved to story at some point */
 .stack:where(:hover, :focus) {
   background-color: white;
   box-shadow: var(--stratosphere);

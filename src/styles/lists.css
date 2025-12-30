@@ -373,9 +373,6 @@ ul {
 
   @container (min-width: 35rem) {
     grid-row: 1;
-    /* span {
-      color: hotpink; ! testing
-    } */
   }
 }
 
