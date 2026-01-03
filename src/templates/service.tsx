@@ -19,6 +19,8 @@ import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import type { GatsbyImageType } from '../types/gatsby-image';
 import type VideoTypes from '../types/video-types';
+import ImageCheck from '../components/image-check';
+import type { LightCardType } from '../types/light-card-type';
 
 interface ServiceTypes {
   data: {
@@ -30,7 +32,24 @@ interface ServiceTypes {
       after_the_triptych: { data: { after_the_triptych: string } };
       projects: (CardType & { updatedAt: string })[];
       triptych: { id: React.Key; localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } } }[];
-      featured_lights: CardType[];
+      featured_lights: (LightCardType & {
+        residentialHero?: {
+          localFile: {
+            childImageSharp: {
+              gatsbyImageData: IGatsbyImageData;
+            }
+          },
+          alternativeText: string
+        },
+        commercialHero?: {
+          localFile: {
+            childImageSharp: {
+              gatsbyImageData: IGatsbyImageData
+            }
+          },
+          alternativeText: string
+        };
+      })[];
       videoMux: string;
       lights: { id: string }[]; // Add the lights property
       lookbookCover: GatsbyImageType;
@@ -364,11 +383,19 @@ const ServiceView = ({ data }: ServiceTypes) => {
         <hr className='stork' />
 
         <div className='deck'>
-          {data.strapiService.featured_lights.map((light: CardType) => (
-            <Card
+          {data.strapiService.featured_lights.map((light) => (
+            <ImageCheck
               key={light.id}
-              {...light}
+              name={light.name}
+              slug={light.slug}
+              excerpt={light.excerpt ?? ''}
               breadcrumb='light'
+              
+              image={light.image}
+              commercialHero={light.commercialHero}
+              residentialHero={light.residentialHero}
+
+              query={data.strapiService.slug}
             />
           ))}
         </div>
@@ -524,6 +551,29 @@ export const query = graphql`
 
       featured_lights {
         ...lightCard
+        residentialHero {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                breakpoints: [111, 165, 222, 444, 880]
+                width: 222
+              )
+            }
+          }
+          alternativeText
+        }
+        
+        commercialHero {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                breakpoints: [111, 165, 222, 444, 880]
+                width: 222
+              )
+            }
+          }
+          alternativeText
+        }
       }
 
       lights {
@@ -615,7 +665,7 @@ export const Head = ({ data }: ServiceTypes) => {
 
   const sanitazeDescription = data.strapiService.description.data.description.replace(/"/g, " inches");
 
-  const descriptionKeyWords = `Creating professional ${data.strapiService.name} lighting installations including ${data.strapiService.featured_lights.map((light: CardType) => light.name).join(', ')} in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}`;
+  const descriptionKeyWords = `Creating professional ${data.strapiService.name} lighting installations including ${data.strapiService.featured_lights.map((light: LightCardType) => light.name).join(', ')} in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}`;
 
   return (
     <SEO

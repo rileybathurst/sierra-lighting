@@ -8,64 +8,10 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import ReactMarkdown from 'react-markdown';
 import SEO from '../components/seo';
-import Card from '../components/card';
+import ImageCheck from '../components/image-check';
+
 import type { LightCardType } from '../types/light-card-type';
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
-
-type ImageCheckTypes = {
-  excerpt: string,
-  breadcrumb: string,
-  query: string,
-  name: string,
-  slug: string,
-
-  image: {
-    localFile: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData;
-      }
-    },
-    alternativeText: string
-  },
-
-  residentialHero?: {
-    localFile: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData;
-      }
-    },
-    alternativeText: string
-  } | undefined,
-  commercialHero?: {
-    localFile: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData;
-      }
-    },
-    alternativeText: string
-  } | undefined,
-}
-const ImageCheck = ({ breadcrumb, excerpt, query, image, name, slug, residentialHero, commercialHero }: ImageCheckTypes) => {
-
-  let CardImage = image;
-  if (query === 'residential' && residentialHero) {
-    CardImage = residentialHero;
-  } else if (query === 'commercial' && commercialHero) {
-    CardImage = commercialHero;
-  }
-
-  return (
-    <Card
-      name={name}
-      slug={slug}
-      excerpt={excerpt ?? ''}
-      breadcrumb={breadcrumb}
-      query={query}
-
-      image={CardImage}
-    />
-  )
-}
 
 interface ServiceLightViewTypes {
   data: {
@@ -104,7 +50,7 @@ interface ServiceLightViewTypes {
             }
           },
           alternativeText: string
-        } | undefined,
+        },
         commercialHero?: {
           localFile: {
             childImageSharp: {
@@ -112,7 +58,7 @@ interface ServiceLightViewTypes {
             }
           },
           alternativeText: string
-        } | undefined,
+        },
       })[]
     },
     allStrapiLightGroup: {
