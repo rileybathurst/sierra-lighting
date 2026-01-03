@@ -1,4 +1,4 @@
-// nice start but now organize by light group
+// TODO: organize by light group order especially wedding is wrong
 
 import React from 'react';
 import { Link, graphql } from "gatsby";
@@ -10,6 +10,62 @@ import ReactMarkdown from 'react-markdown';
 import SEO from '../components/seo';
 import Card from '../components/card';
 import type { LightCardType } from '../types/light-card-type';
+import type { IGatsbyImageData } from 'gatsby-plugin-image';
+
+type ImageCheckTypes = {
+  excerpt: string,
+  breadcrumb: string,
+  query: string,
+  name: string,
+  slug: string,
+
+  image: {
+    localFile: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData;
+      }
+    },
+    alternativeText: string
+  },
+
+  residentialHero?: {
+    localFile: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData;
+      }
+    },
+    alternativeText: string
+  } | undefined,
+  commercialHero?: {
+    localFile: {
+      childImageSharp: {
+        gatsbyImageData: IGatsbyImageData;
+      }
+    },
+    alternativeText: string
+  } | undefined,
+}
+const ImageCheck = ({ breadcrumb, excerpt, query, image, name, slug, residentialHero, commercialHero }: ImageCheckTypes) => {
+
+  let CardImage = image;
+  if (query === 'residential' && residentialHero) {
+    CardImage = residentialHero;
+  } else if (query === 'commercial' && commercialHero) {
+    CardImage = commercialHero;
+  }
+
+  return (
+    <Card
+      name={name}
+      slug={slug}
+      excerpt={excerpt ?? ''}
+      breadcrumb={breadcrumb}
+      query={query}
+
+      image={CardImage}
+    />
+  )
+}
 
 interface ServiceLightViewTypes {
   data: {
@@ -40,7 +96,23 @@ interface ServiceLightViewTypes {
           excerpt: string,
           weddingOrder: number,
           xmasOrder: number,
-        }[]
+        }[];
+        residentialHero?: {
+          localFile: {
+            childImageSharp: {
+              gatsbyImageData: IGatsbyImageData;
+            }
+          },
+          alternativeText: string
+        } | undefined,
+        commercialHero?: {
+          localFile: {
+            childImageSharp: {
+              gatsbyImageData: IGatsbyImageData
+            }
+          },
+          alternativeText: string
+        } | undefined,
       })[]
     },
     allStrapiLightGroup: {
@@ -153,11 +225,18 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
                   {data.allStrapiLight.nodes
                     .filter((light) => light.light_groups.map((g) => g.slug).includes(group))
                     .map((light) => (
-                      <Card
+                      <ImageCheck
                         key={light.id}
-                        {...light}
+                        name={light.name}
+                        slug={light.slug}
                         excerpt={light.excerpt ?? ''}
                         breadcrumb='light'
+                        
+                        image={light.image}
+                        commercialHero={light.commercialHero}
+                        residentialHero={light.residentialHero}
+
+                        query={data.strapiService.slug}
                       />
                     ))}
                 </div>
@@ -228,6 +307,30 @@ export const query = graphql`
           excerpt
           weddingOrder
           xmasOrder
+        }
+
+        residentialHero {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                breakpoints: [111, 165, 222, 444, 880]
+                width: 222
+              )
+            }
+          }
+          alternativeText
+        }
+        
+        commercialHero {
+          localFile {
+            childImageSharp {
+              gatsbyImageData(
+                breakpoints: [111, 165, 222, 444, 880]
+                width: 222
+              )
+            }
+          }
+          alternativeText
         }
       }
     }

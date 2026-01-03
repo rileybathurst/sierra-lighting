@@ -5,7 +5,7 @@ import { Link } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import type { CardType } from "../types/card-type";
 
-const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, breadcrumb }: CardType) => {
+const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, breadcrumb, query }: CardType) => {
 
   if (!areas && !excerpt) {
     process.env.NODE_ENV === "development" ?
@@ -33,7 +33,7 @@ const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, b
       className="card"
     >
       <Link
-        to={`/${breadcrumb}/${slug}`}
+        to={`/${breadcrumb}/${slug}?=${query ?? ''}`}
         className="image"
       >
         {CardImage ?

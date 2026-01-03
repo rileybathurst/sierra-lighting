@@ -21,6 +21,7 @@ interface BaseCardTypes {
   }[];
   subAreas?: string;
   breadcrumb: string;
+  query?: string;
 
   updatedAt?: string | number | undefined;
 }

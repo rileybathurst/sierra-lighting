@@ -79,6 +79,30 @@ export const query = graphql`
 				alternativeText
 				caption
 			}
+			residentialHero {
+				localFile {
+					url
+					childImageSharp {
+						gatsbyImageData(
+						breakpoints: [960, 1920]
+						width: 960
+						)
+					}
+				}
+				alternativeText
+			}
+			commercialHero {
+				localFile {
+					url
+					childImageSharp {
+						gatsbyImageData(
+						breakpoints: [960, 1920]
+						width: 960
+						)
+					}
+				}
+				alternativeText
+			}
 
 			detail {
 				localFile {
@@ -206,10 +230,12 @@ type LightPageTypes = {
 				lights: CardType[];
 			}[];
 			alias?: string | null;
-			image?: GatsbyImageType | null;
+			image: GatsbyImageType;
 			detail?: GatsbyImageType | null;
 			altGallery?: GatsbyImageType[] | null;
 			projects?: CardType[] | null;
+			residentialHero?: GatsbyImageType | null;
+			commercialHero?: GatsbyImageType | null;
 		};
 		allStrapiLight: {
 			nodes: CardType[];
@@ -234,14 +260,15 @@ type LightPageTypes = {
 		};
 
 		inConnection: {
-			nodes: ConnectionType[];
+			nodes?: ConnectionType[];
 		};
 		outConnection: {
-			nodes: ConnectionType[];
+			nodes?: ConnectionType[];
 		};
 	};
+	location: { search?: string;}
 };
-const LightPage = ({ data }: LightPageTypes) => {
+const LightPage = ({ data, location }: LightPageTypes) => {
 	process.env.NODE_ENV === "development"
 		? data.strapiLight.image
 			? null
@@ -272,16 +299,36 @@ const LightPage = ({ data }: LightPageTypes) => {
 	}
 
 	const lightConnections = [
-		...data.inConnection.nodes,
-		...data.outConnection.nodes,
+		...(data.inConnection?.nodes ?? []),
+		...(data.outConnection?.nodes ?? []),
 	];
+
+	// TODO: build the hero image switcher here
+	console.log(data.strapiLight.residentialHero);
+
+	let heroImage = data.strapiLight.image;	
+	
+	const searchParams = new URLSearchParams(location.search);
+	if (searchParams.toString().includes("residential")) {
+		// console.log("has residential");
+		if (data.strapiLight.residentialHero) {
+			// console.log("has residential hero");
+			heroImage = data.strapiLight.residentialHero;
+		}
+	}
+	if (searchParams.toString().includes("commercial")) {
+		// console.log("has commercial");
+		if (data.strapiLight.commercialHero) {
+			heroImage = data.strapiLight.commercialHero;
+		}
+	}
 
 	return (
 		<>
 			<Header />
 
 			<Hero
-				image={data.strapiLight.image ? data.strapiLight.image : undefined}
+				image={heroImage}
 				name={data.strapiLight.name}
 				detail={data.strapiLight.detail ? data.strapiLight.detail : undefined}
 				gallery={data.strapiLight?.altGallery ? data.strapiLight?.altGallery : undefined}

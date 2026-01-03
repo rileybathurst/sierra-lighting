@@ -77,7 +77,7 @@ function Slider({ gallery, badge }: GalleryType) {
 }
 
 type HeroType = {
-  image?: {
+  image: {
     localFile: {
       childImageSharp: {
         gatsbyImageData: IGatsbyImageData;
