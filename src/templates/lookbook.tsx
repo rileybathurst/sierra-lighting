@@ -120,7 +120,9 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
           columnsCountBreakPoints={{ 320: 1, 740: 2, 960: 3 }}
         >
           <Masonry className="test">
-            {data.strapiService.lookbooks.map((lookbook: LookbookTypes) => (
+            {data.strapiService.lookbooks
+            .toReversed()
+            .map((lookbook: LookbookTypes) => (
               <LinkedLook
                 key={lookbook.id}
                 image={lookbook.image}
