@@ -44,71 +44,100 @@ function Aliases({ alias }: AliasTypes) {
 export const query = graphql`
 	query LightQuery($slug: String!) {
 		strapiLight(slug: { eq: $slug }) {
-		id
-		name
-		slug
-		excerpt
-		description
-
-		services {
-			...collageFragment
-		}
-
-		light_groups {
 			id
 			name
 			slug
+			excerpt
+			description
 
-			lights {
-			...lightCard
+			services {
+				...collageFragment
+			}
+
+			light_groups {
+				id
+				name
+				slug
+
+				lights {
+				...lightCard
+				}
+			}
+
+			alias
+
+			image {
+				localFile {
+					url
+					childImageSharp {
+						gatsbyImageData(
+						breakpoints: [960, 1920]
+						width: 960
+						)
+					}
+				}
+				alternativeText
+				caption
+			}
+
+			detail {
+				localFile {
+					url
+					childImageSharp {
+						gatsbyImageData(
+						breakpoints: [960, 1920]
+						width: 960
+						)
+					}
+				}
+				alternativeText
+			}
+
+			projects {
+				...projectCard
+			}
+
+			altGallery {
+				localFile {
+					url
+					childImageSharp {
+						gatsbyImageData(
+						breakpoints: [960, 1920]
+						width: 960
+						)
+					}
+				}
+				alternativeText
 			}
 		}
 
-		alias
 
-		image {
-			localFile {
-			url
-			childImageSharp {
-				gatsbyImageData(
-				breakpoints: [960, 1920]
-				width: 960
-				)
+		inConnection: allStrapiLightConnection(
+			filter: {
+				starting_light: {slug: {eq: $slug}}
 			}
+		) {
+			nodes {
+				name
+				excerpt
+				ending_light {
+					...lightCard
+				}
 			}
-			alternativeText
-			caption
 		}
-
-		detail {
-			localFile {
-			url
-			childImageSharp {
-				gatsbyImageData(
-				breakpoints: [960, 1920]
-				width: 960
-				)
+		
+		outConnection: allStrapiLightConnection(
+			filter: {
+				ending_light: {slug: {eq: $slug}}
 			}
+		) {
+			nodes {
+				name
+				excerpt
+				starting_light {
+					...lightCard
+				}
 			}
-			alternativeText
-		}
-
-		projects {
-			...projectCard
-		}
-
-		altGallery {
-			localFile {
-			url
-			childImageSharp {
-				gatsbyImageData(
-				breakpoints: [960, 1920]
-				width: 960
-				)
-			}
-			}
-			alternativeText
-		}
 		}
 
 		allStrapiLight(limit: 3, filter: {slug: {nin: [$slug] }}) {
@@ -139,7 +168,7 @@ export const query = graphql`
 
 		allStrapiProject(
 			filter: {lights: {elemMatch: {slug: {in: [$slug]}}}},
-			# sort: {fields: date, order: DESC}
+			sort: {updatedAt: DESC},
 			limit: 3
 			) {
 			nodes {
@@ -153,6 +182,14 @@ export const query = graphql`
 
 	}
 `;
+
+type ConnectionType = {
+	name: string;
+	excerpt: string;
+	starting_light?: CardType;
+	ending_light?: CardType;
+};
+
 type LightPageTypes = {
 	data: {
 		strapiLight: {
@@ -195,20 +232,27 @@ type LightPageTypes = {
 		strapiAbout: {
 			url: string;
 		};
+
+		inConnection: {
+			nodes: ConnectionType[];
+		};
+		outConnection: {
+			nodes: ConnectionType[];
+		};
 	};
 };
 const LightPage = ({ data }: LightPageTypes) => {
 	process.env.NODE_ENV === "development"
-	? data.strapiLight.image
-		? null
-		: console.warn(`${data.strapiLight.name} image is missing`)
-	: null;
+		? data.strapiLight.image
+			? null
+			: console.warn(`${data.strapiLight.name} image is missing`)
+		: null;
 
 	process.env.NODE_ENV === "development"
-	? data.strapiLight.image?.alternativeText
-		? null
-		: console.warn(`${data.strapiLight.name} image has no alt`)
-	: null; 
+		? data.strapiLight.image?.alternativeText
+			? null
+			: console.warn(`${data.strapiLight.name} image has no alt`)
+		: null;
 	// console.log(projects);
 
 	let holidayLight = false;
@@ -227,10 +271,10 @@ const LightPage = ({ data }: LightPageTypes) => {
 		weddingLight = true;
 	}
 
-	// console.log(light.services.map((service) => (service.name)));
-	// console.log(light.services.map((service) => (service.description.data.description)));
-
-	console.log(data.strapiLight.services);
+	const lightConnections = [
+		...data.inConnection.nodes,
+		...data.outConnection.nodes,
+	];
 
 	return (
 		<>
@@ -266,12 +310,33 @@ const LightPage = ({ data }: LightPageTypes) => {
 				</article>
 			</main>
 
-			<hr className="stork" />
+			{lightConnections.length > 0 ? (
+				<section>
+					<hr className="stork" />
+					<h3 className="stork">Ways to make your {data.strapiLight.name} shine</h3>
+					<div className="deck">
+						{lightConnections.map((connection) => {
+							const light = connection.starting_light || connection.ending_light;
+							return (
+								light && (
+									<Card
+										key={connection.name}
+										{...light}
+										excerpt={connection.excerpt}
+										breadcrumb="light"
+									/>
+								)
+							);
+						})}
+					</div>
+				</section>
+			) : null}
 
 			{/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device */}
+			<hr className="stork" />
 			<section className="">
 				<h3 className="stork crest">We use {data.strapiLight.name} for</h3>
-				
+
 				<Collage services={data.strapiLight.services} />
 			</section>
 
@@ -293,13 +358,11 @@ const LightPage = ({ data }: LightPageTypes) => {
 						})}
 				</ol>
 
-								{/* // TODO: design this in storybook  */}
+				{/* // TODO: design this in storybook  */}
 				<h3 className="stork kilimanjaro capitalize">
 					<Link to="/faqs">Frequently Asked Questions</Link>
 				</h3>
 			</section>
-
-			{/* // TODO: light connection will be added to this section */}
 
 			{/* // TODO: atleast one of these divs is just a react fragment but dont break the css by just removing stuff */}
 			{data.strapiLight.light_groups ? (
@@ -407,10 +470,10 @@ export const Head = ({ data }: LightPageTypes) => {
 		<>
 			<SEO
 				title={`
-          ${data.strapiLight.name}
-          ${data.strapiLight.alias ? ` | ${aliasString}` : ""}
-          ${data.strapiLight.services.every((service) => service.slug === "residential" || service.slug === "commercial") ? "christmas light installation" : "weddings light instalation"}
-        `}
+				${data.strapiLight.name}
+				${data.strapiLight.alias ? ` | ${aliasString}` : ""}
+				${data.strapiLight.services.every((service) => service.slug === "residential" || service.slug === "commercial") ? "christmas light installation" : "weddings light instalation"}
+       	 `}
 				// TODO: needs the aliases in the SEO
 				description={`${data.strapiLight?.excerpt} ${processString}`} // TODO: add some info about styles i.e. 'modern, rustic, etc.' they might be just a number of tags
 				image={data.strapiLight?.image?.localFile?.url}

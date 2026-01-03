@@ -6,7 +6,7 @@ import type { CollageType } from "../types/collage-type";
 
 const Collage = ({ services }: CollageType) => {
 
-    console.log(services);
+    // console.log(services);
 
     return (
         <div className={`collage ${Season()}`}>
