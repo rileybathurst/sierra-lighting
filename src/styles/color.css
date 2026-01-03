@@ -150,7 +150,8 @@ header {
 }
 
 .slider-container {
-  display: flex; /*  keeps the margins in */
+  display: flex;
+  /*  keeps the margins in */
   background-color: var(--honey-50);
 
   @media (prefers-color-scheme: dark) {
@@ -160,7 +161,7 @@ header {
 
 .testimonial {
   background-color: var(--brilliance);
-  
+
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-750);
   }
@@ -168,5 +169,19 @@ header {
   svg {
     fill: var(--honey-400);
   }
-  
+}
+
+/*------------------------------------*/
+/* #PLANS */
+/*------------------------------------*/
+
+/* img, leaving this on will for sure break things */
+.storybook-image {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: var(--penumbra);
+}
+
+.error {
+  color: red;
 }

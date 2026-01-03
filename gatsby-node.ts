@@ -78,6 +78,40 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
     });
   }
 
+  const getServiceProjects = await graphql<{
+    allStrapiService: { edges: { node: { slug: string } }[] }
+  }>(`
+    query {
+      allStrapiService {
+        edges {
+          node {
+            slug
+          }
+        }
+      }
+    }
+  `);
+
+  if (!getServiceProjects.data) {
+    reporter.panicOnBuild(`GraphQL query for service projects failed: ${JSON.stringify(getServiceProjects.errors)}`);
+    return;
+  }
+
+  for (const { node } of getServiceProjects.data.allStrapiService.edges) {
+    if (!node || !node.slug) {
+      reporter.warn(`Skipping service-lights page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      continue;
+    }
+
+    createPage({
+      path: `/${node.slug}/projects/`,
+      component: path.resolve("src/templates/service-projects.tsx"),
+      context: {
+        slug: node.slug,
+      },
+    });
+  }
+
   const getVenues = await graphql<{
     allStrapiVenue: { edges: { node: { slug: string; area: { slug: string } } }[] }
   }>(`

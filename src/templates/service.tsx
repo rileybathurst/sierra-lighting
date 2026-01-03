@@ -28,7 +28,7 @@ interface ServiceTypes {
       slug: string;
       description: { data: { description: string } };
       after_the_triptych: { data: { after_the_triptych: string } };
-      projects: CardType[];
+      projects: (CardType & { updatedAt: string })[];
       triptych: { id: React.Key; localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } } }[];
       featured_lights: CardType[];
       videoMux: string;
@@ -45,8 +45,8 @@ interface ServiceTypes {
         markdown: { data: { markdown: string } };
       }[]
     };
-    allStrapiVenue: { nodes: CardType[] };
-    allStrapiVendor: { nodes: CardType[] };
+    strapiVenue: CardType;
+    strapiVendor: CardType;
     allStrapiLookbook: { nodes: { id: string }[] };
 
     strapiAbout: {
@@ -85,17 +85,15 @@ type SortTypes = {
 
 interface BaseTypes {
   projects: CardType[];
-  venues: CardType[];
-  vendors: CardType[];
+  venue: CardType;
+  vendor: CardType;
+  serviceSlug: string;
 }
-function Base({ projects, venues, vendors }: BaseTypes) {
+function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
 
-  // order the projects by updatedAt
-  projects.sort((a, b) => {
-    const dateA = new Date(a.updatedAt ?? 0);
-    const dateB = new Date(b.updatedAt ?? 0);
-    return dateB.getTime() - dateA.getTime();
-  });
+  const [reversedProjects] = React.useState(projects?.slice().reverse() ?? []);
+  projects = reversedProjects;
+
 
   /* const emptyCard = {
     id: '',
@@ -131,7 +129,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
   // console.log(base);
 
   // wrap everything as they are always passed but often have no length
-  if (projects && venues && vendors) {
+  if (projects && venue && vendor) {
 
     // * the heirarchy is projects, vendors, venues
 
@@ -141,7 +139,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
       base[0].card = projects[0];
       base[0].title = true;
       // TODO: this has an ugly hard code to fix the link
-      base[0].breadcrumb = 'project';
+      base[0].breadcrumb = `${serviceSlug}/projects`;
       base[0].order = 0;
       // this doesnt work on gatsby build
       // base[0].id = self.crypto.randomUUID();
@@ -151,7 +149,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
     // if projects has atleast 2 the second one has a project breadcrumb
     if (projects.length > 1) {
       base[1].card = projects[1];
-      base[1].breadcrumb = 'project';
+      base[1].breadcrumb = `${serviceSlug}/projects`;
       base[1].order = 1;
       // base[1].id = self.crypto.randomUUID();
     }
@@ -159,38 +157,38 @@ function Base({ projects, venues, vendors }: BaseTypes) {
     // if projects has atleast 3 the third one has a project breadcrumb
     if (projects.length > 2) {
       base[2].card = projects[2];
-      base[2].breadcrumb = 'project';
+      base[2].breadcrumb = `${serviceSlug}/projects`;
       base[2].order = 2;
       // base[2].id = self.crypto.randomUUID();
     }
 
     // * if has projects and vendors
-    if (vendors.length > 0 && venues.length > 0) {
+    if (vendor && venue) {
 
       // put the vendor in the second spot
-      base[1].card = vendors[0];
+      base[1].card = vendor;
       base[1].title = true;
       base[1].breadcrumb = 'vendor';
       // base[1].id = self.crypto.randomUUID();
 
       // put the venue in the third spot
-      base[2].card = venues[0];
+      base[2].card = venue;
       base[2].title = true;
       base[2].breadcrumb = 'venue';
       // base[2].id = self.crypto.randomUUID();
 
       // if has projects and vendors but no venues
       // put the vendor in the third spot
-    } else if (vendors.length > 0) {
-      base[2].card = vendors[0];
+    } else if (vendor) {
+      base[2].card = vendor;
       base[2].title = true;
       base[2].breadcrumb = 'vendor';
       // base[2].id = self.crypto.randomUUID();
 
-    } else if (venues.length > 0) {
+    } else if (venue) {
       // if has projects and venues but no vendors
       // put the venue in the second spot
-      base[1].card = venues[0];
+      base[1].card = venue;
       base[1].title = true;
       base[1].breadcrumb = 'venue';
       // base[1].id = self.crypto.randomUUID();
@@ -201,12 +199,9 @@ function Base({ projects, venues, vendors }: BaseTypes) {
         {base.map((item) => (
           <React.Fragment key={item.order}>
             {item.title ? (
-              <h4
-                key={`${item.id}-title`}
-                className={`capitalize project-title ${item.breadcrumb}-title`}
-              >
-                <Link to={`/${item.breadcrumb}${item.breadcrumb === 'project' ? 's' : ''}`}>
-                  {item.breadcrumb}{item.breadcrumb === 'project' ? 's' : ''}
+              <h4 className={`capitalize project-title ${item.breadcrumb}-title`}>
+                <Link to={`/${item.breadcrumb}${item.breadcrumb === `${serviceSlug}/project` ? 's' : ''}`}>
+                  {item.breadcrumb.includes('project') ? 'Projects' : item.breadcrumb.charAt(0).toUpperCase() + item.breadcrumb.slice(1)}
                 </Link>
               </h4>
             ) : null}
@@ -228,7 +223,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
     )
   }
 
-  if (projects && venues.length > 0) {
+  if (projects && venue) {
 
     return (
       <div className='pelican service-deck'>
@@ -241,7 +236,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
                 <h4
                   className='capitalize project-title project-title'
                 >
-                  <Link to="/projects">
+                  <Link to={`/${serviceSlug}/projects`}>
                     Projects
                   </Link>
                 </h4>
@@ -250,12 +245,11 @@ function Base({ projects, venues, vendors }: BaseTypes) {
             <Card
               key={project.id}
               {...project}
-              breadcrumb='project'
+              breadcrumb={`${serviceSlug}/projects`}
             />
           </React.Fragment>
         ))}
 
-        {venues.slice(0, 1).map((venue) => (
           <React.Fragment key={venue.id}>
             <div
               className='service-card'
@@ -274,13 +268,11 @@ function Base({ projects, venues, vendors }: BaseTypes) {
               breadcrumb='venue'
             />
           </React.Fragment>
-        ))}
       </div>
     )
   }
 
-  if (projects && !venues?.length && !vendors) {
-
+  if (projects && !venue && !vendor) {
     return (
       <div className='pelican service-deck'>
         {projects.slice(0, 3).map((project, index) => (
@@ -292,7 +284,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
               <h4
                 className='capitalize project-title project-title'
               >
-                <Link to="/projects">
+                <Link to={`/${serviceSlug}/projects`}>
                   Projects
                 </Link>
               </h4>
@@ -301,7 +293,7 @@ function Base({ projects, venues, vendors }: BaseTypes) {
             <Card
               key={project.id}
               {...project}
-              breadcrumb='project'
+              breadcrumb={`${serviceSlug}/projects`}
             />
           </React.Fragment>
         ))}
@@ -354,7 +346,8 @@ const ServiceView = ({ data }: ServiceTypes) => {
           />
         </section>
 
-        {/*         <section className="triple">
+        {/* // TODO: working section */}
+        {/* <section className="triple">
           {data.strapiService?.triptych?.map((image) => (
             <div key={image.id}>
               <GatsbyImage image={image?.localFile?.childImageSharp?.gatsbyImageData}
@@ -473,13 +466,14 @@ const ServiceView = ({ data }: ServiceTypes) => {
         </ul>
       </section>
 
-      {data.strapiService.projects || data.strapiService.venues || data.strapiService.vendors ?
+      {data.strapiService.projects || data.strapiVenue || data.strapiVendor ?
         <React.Fragment>
           <hr className='pelican' />
           <Base
             projects={data.strapiService?.projects}
-            venues={data.allStrapiVenue?.nodes}
-            vendors={data.strapiService.slug === 'wedding' ? data.allStrapiVendor?.nodes : data.strapiService?.vendors}
+            venue={data.strapiVenue}
+            vendor={data.strapiService.slug === 'wedding' ? data.strapiVendor : data.strapiService?.vendors?.[0]}
+            serviceSlug={data.strapiService.slug}
           />
         </React.Fragment>
         : null}
@@ -562,16 +556,12 @@ export const query = graphql`
       }
     }
 
-    allStrapiVenue(filter: {services: {elemMatch: {slug: {eq: $slug}}}}, limit: 1) {
-      nodes {
+    strapiVenue(services: {elemMatch: {slug: {eq: $slug}}}) {
         ...venueCard
-      }
     }
 
-    allStrapiVendor(limit: 1) {
-      nodes {
+    strapiVendor {
         ...vendorCard
-      }
     }
 
     allStrapiLookbook(filter: {service: {slug: {eq: $slug}}}) {

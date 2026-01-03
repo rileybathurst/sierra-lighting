@@ -182,7 +182,7 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
 
       <Breadcrumbs>
         <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name} Lighting</Link></Breadcrumb>
-        <Breadcrumb>Lights</Breadcrumb>
+        <Breadcrumb>Projects</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />

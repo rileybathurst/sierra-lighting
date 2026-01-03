@@ -82,11 +82,7 @@ const ProjectsPage = () => {
               </div>
               <div className="deck">
                 {service.projects
-                  .sort((a, b) => {
-                    const dateA = a.updatedAt ? new Date(a.updatedAt).getTime() : 0;
-                    const dateB = b.updatedAt ? new Date(b.updatedAt).getTime() : 0;
-                    return dateB - dateA;
-                  })
+                  .slice(-3)
                   .map((project: CardType) => (
                     <Card
                       key={project.id}
@@ -95,6 +91,17 @@ const ProjectsPage = () => {
                     />
                   ))}
               </div>
+
+              <section className="stork">
+                {service.projects.length > 3 ?
+                  <h3 className="elbrus">
+                    <Link to={`/${service.slug}`} className="link_subtle">
+                      View all {service.projects.length} {service.name} projects
+                    </Link>
+                  </h3 >
+                  : null}
+              </section>
+
               <div className="stork">
                 {/* // TODO: make a big link style here */}
                 <h3 className="elbrus">

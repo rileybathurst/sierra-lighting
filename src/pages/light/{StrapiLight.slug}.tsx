@@ -269,15 +269,10 @@ const LightPage = ({ data }: LightPageTypes) => {
 			<hr className="stork" />
 
 			{/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device */}
-			<section className="stork">
-				<h3 className="crest">We use {data.strapiLight.name} for</h3>
+			<section className="">
+				<h3 className="stork crest">We use {data.strapiLight.name} for</h3>
 				
 				<Collage services={data.strapiLight.services} />
-
-				{/* // TODO: design this in storybook  */}
-				<h3 className="kilimanjaro capitalize">
-					<Link to="/faqs">Frequently Asked Questions</Link>
-				</h3>
 			</section>
 
 			<section className="stork">
@@ -297,6 +292,11 @@ const LightPage = ({ data }: LightPageTypes) => {
 							return <li key={process.id}>{process.name}</li>;
 						})}
 				</ol>
+
+								{/* // TODO: design this in storybook  */}
+				<h3 className="stork kilimanjaro capitalize">
+					<Link to="/faqs">Frequently Asked Questions</Link>
+				</h3>
 			</section>
 
 			{/* // TODO: light connection will be added to this section */}

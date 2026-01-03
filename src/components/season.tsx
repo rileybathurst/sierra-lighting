@@ -1,6 +1,4 @@
 // https://ntietz.com/blog/that-boolean-should-probably-be-something-else/
-// Changing this to be more clear to anyone later
-
 import { graphql, useStaticQuery } from "gatsby"
 
 function Season() {
