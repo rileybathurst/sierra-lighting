@@ -3,6 +3,7 @@
 // Couple biome errors that im not sure how to get rid of yet
 // * vendors are hard coded to only show on wedding service page for now 
 // which is kinda messy as its always queried so reducing that work might be nice
+// TODO: vendor and venue should be last edited
 
 import React from 'react';
 import { graphql, Link, Script } from 'gatsby'
@@ -303,7 +304,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
               <h4
                 className='capitalize project-title project-title'
               >
-                <Link to={`/${serviceSlug}/projects`}>
+                <Link to='/project'>
                   Projects
                 </Link>
               </h4>
