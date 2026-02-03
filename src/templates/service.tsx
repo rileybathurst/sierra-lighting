@@ -140,10 +140,10 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
 
   // empty card slots
   // * I know this has type issues
-  const base: { card: CardType | Record<string, never>, title: boolean, breadcrumb: string, order: number, id: React.Key }[] = [
-    { card: {} as CardType, title: false, breadcrumb: '', order: 0, id: '' },
-    { card: {} as CardType, title: false, breadcrumb: '', order: 1, id: '' },
-    { card: {} as CardType, title: false, breadcrumb: '', order: 2, id: '' },
+  const base: { card: CardType | Record<string, never>, title: boolean, breadcrumb: string, cardBreadcrumb: string, order: number, id: React.Key }[] = [
+    { card: {} as CardType, title: false, breadcrumb: '', cardBreadcrumb: '', order: 0, id: '' },
+    { card: {} as CardType, title: false, breadcrumb: '', cardBreadcrumb: '', order: 1, id: '' },
+    { card: {} as CardType, title: false, breadcrumb: '', cardBreadcrumb: '', order: 2, id: '' },
   ];
 
   // console.log(base);
@@ -160,16 +160,17 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
       base[0].title = true;
       // TODO: this has an ugly hard code to fix the link
       base[0].breadcrumb = `${serviceSlug}/projects`;
+      base[0].cardBreadcrumb = 'project';
       base[0].order = 0;
       // this doesnt work on gatsby build
       // base[0].id = self.crypto.randomUUID();
-
     }
 
     // if projects has atleast 2 the second one has a project breadcrumb
     if (projects.length > 1) {
       base[1].card = projects[1];
       base[1].breadcrumb = `${serviceSlug}/projects`;
+      base[1].cardBreadcrumb = 'project';
       base[1].order = 1;
       // base[1].id = self.crypto.randomUUID();
     }
@@ -178,6 +179,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
     if (projects.length > 2) {
       base[2].card = projects[2];
       base[2].breadcrumb = `${serviceSlug}/projects`;
+      base[2].cardBreadcrumb = 'project';
       base[2].order = 2;
       // base[2].id = self.crypto.randomUUID();
     }
@@ -189,12 +191,14 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
       base[1].card = vendor;
       base[1].title = true;
       base[1].breadcrumb = 'vendor';
+      base[1].cardBreadcrumb = 'vendor';
       // base[1].id = self.crypto.randomUUID();
 
       // put the venue in the third spot
       base[2].card = venue;
       base[2].title = true;
       base[2].breadcrumb = 'venue';
+      base[2].cardBreadcrumb = 'venue';
       // base[2].id = self.crypto.randomUUID();
 
       // if has projects and vendors but no venues
@@ -203,6 +207,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
       base[2].card = vendor;
       base[2].title = true;
       base[2].breadcrumb = 'vendor';
+      base[2].cardBreadcrumb = 'vendor';
       // base[2].id = self.crypto.randomUUID();
 
     } else if (venue) {
@@ -211,6 +216,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
       base[1].card = venue;
       base[1].title = true;
       base[1].breadcrumb = 'venue';
+      base[1].cardBreadcrumb = 'venue';
       // base[1].id = self.crypto.randomUUID();
     }
 
@@ -233,7 +239,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
                 <Card
                   key={`${item.id}-card`}
                   {...(item.card as CardType)}
-                  breadcrumb={item.breadcrumb}
+                  breadcrumb={item.cardBreadcrumb}
                 />
               </div>
             ) : null}
@@ -265,7 +271,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
             <Card
               key={project.id}
               {...project}
-              breadcrumb={`${serviceSlug}/projects`}
+              breadcrumb='project'
             />
           </React.Fragment>
         ))}
@@ -277,7 +283,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
               <h4
                 className='capitalize venue-title venue-title'
               >
-                <Link to="/venues">
+                <Link to="/venue">
                   Venues
                 </Link>
               </h4>
@@ -304,7 +310,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
               <h4
                 className='capitalize project-title project-title'
               >
-                <Link to='/project'>
+                <Link to='/projects'>
                   Projects
                 </Link>
               </h4>
@@ -313,7 +319,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
             <Card
               key={project.id}
               {...project}
-              breadcrumb={`${serviceSlug}/projects`}
+              breadcrumb='project'
             />
           </React.Fragment>
         ))}
