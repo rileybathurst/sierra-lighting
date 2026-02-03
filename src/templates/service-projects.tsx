@@ -45,7 +45,7 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
                     <Card
                         key={project.id}
                         {...project}
-                        breadcrumb='projects'
+                        breadcrumb='project'
                     />
                 ))}
             </section>
