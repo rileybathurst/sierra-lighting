@@ -58,7 +58,6 @@
     .gatsby-image-wrapper {
       aspect-ratio: 3/2;
       width: 100%;
-      border-radius: var(--card-radius);
       box-shadow: var(--stratosphere);
       border-radius: var(--card-radius);
       transition: transform 0.5s ease;
@@ -91,7 +90,7 @@
     font-size: clamp(var(--kilimanjaro), 1.5vw, var(--aconcagua));
     line-height: clamp(var(--denali), 1.5vw, var(--everest));
     margin-block-end: 0;
-    font-family: var(--font-sans);
+    /* font-family: var(--font-sans); */
     font-weight: 400;
   }
 
@@ -99,6 +98,10 @@
   .subarea {
     grid-row: 4;
     margin-block-end: var(--kilimanjaro);
+    color: var(--neutral-600);
+    @media (prefers-color-scheme: dark) {
+      color: var(--neutral-300);
+    }
   }
 }
 

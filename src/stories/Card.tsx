@@ -14,7 +14,7 @@ export const Card = () => {
 
       <div className="paper">{/* stay gold */}</div>
 
-      <h2 className="mixta">
+      <h2>
         <a href={faker.animal.bird()}>{faker.animal.bird()}</a>
       </h2>
       <p className="description">{faker.lorem.sentences(2)}</p>

@@ -22,14 +22,6 @@ button,
     border-color: var(--denim-600);
     color: var(--denim-200);
   }
-
-  a {
-    color: hsl(
-      var(--honey),
-      100%,
-      25%
-    ) !important; /* ! fix this but keep a11y color contrast */
-  }
 }
 
 button {
@@ -69,25 +61,13 @@ button:hover,
 
 .button-hero {
   place-self: start;
-}
-
-.button-hero {
   font-size: var(--elbrus);
   @media (min-width: 30rem) {
     font-size: var(--kilimanjaro);
   }
   line-height: var(--denali);
   text-transform: uppercase;
-  /* background-color: var(--honey-500) !important; */
 }
-
-/* .button-hero:hover {
-  background-color: var(--honey-600) !important;
-}
-
-.button-hero:active {
-  background-color: var(--honey-700) !important;
-} */
 
 /*------------------------------------*/
 

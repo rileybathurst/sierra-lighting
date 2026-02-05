@@ -54,6 +54,15 @@
   --kingly-cloud: hsl(0, 0%, 87.5%);
   --brilliance: hsl(0, 0%, 97.5%);
 
+  --neutral-100: hsl(0, 0%, 97.5%);
+  --neutral-200: hsl(0, 0%, 95%);
+  --neutral-300: hsl(0, 0%, 75%);
+  --neutral-400: hsl(0, 0%, 62.5%);
+  --neutral-500: hsl(0, 0%, 50%);
+  --neutral-600: hsl(0, 0%, 37.5%);
+  --neutral-700: hsl(0, 0%, 25%);
+  --neutral-800: hsl(0, 0%, 12.5%);
+
   /*------------------*/
   /* TYPOGRAPHY */
   /*------------------*/

@@ -343,11 +343,6 @@ header svg:active {
     }
   }
 
-  /* ! testing */
-  /*   .look:has(p) .gatsby-image-wrapper {
-    opacity: 0.5;
-  } */
-
   .look:not(:has(ul, p)) .gatsby-image-wrapper {
     margin-block: 0.5rem;
   }

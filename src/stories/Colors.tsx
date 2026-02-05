@@ -7,24 +7,14 @@ import PropTypes from 'prop-types';
 import { ColorCards } from './ColorCards';
 import './story.css';
 
-type ColorProps = {
-  one: string;
-};
-function TypeTest({ one }: ColorProps) {
-  return (
-    <div>
-      <h1>{one}</h1>
-    </div>
-  );
-}
-
 export const Colors = () => {
   return (
     <main className='color-deck'>
       <h1>Color</h1>
-      {/* // ! these are a mess, what am I using what are the contrast how am i dealing with this */}
+      {/* // TODO: these are a mess, what am I using what are the contrast how am i dealing with this */}
       <ColorCards color="honey" variables={['50', '100', '200', '300', '400', '500', '600', '700']} />
       <ColorCards color="denim" variables={['100', '200', '300', '400', '500', '600', '700', '750']} />
+      <ColorCards color="neutral" variables={['100', '200', '300', '400', '500', '600', '700', '800']} />
     </main>
   );
 };

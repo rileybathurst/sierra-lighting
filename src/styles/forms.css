@@ -50,6 +50,7 @@ form {
 
   input:checked {
     border-color: var(--honey-700) !important;
+    /* TODO: document why this needs important */
   }
 
   .checkbox {
