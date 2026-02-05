@@ -24,6 +24,7 @@ button,
   }
 }
 
+/* TODO: notes on why these 2 are split out */
 button {
   padding-block-start: var(--kosciuszko);
   padding-block-end: 0.5rem;
@@ -35,10 +36,25 @@ button {
   padding-block: var(--kosciuszko);
 }
 
-/*  TODO active and focus */
 button:hover,
-.button:hover {
+.button:hover,
+.button-hover-storybook {
   color: var(--honey-700);
+  box-shadow: var(--stratosphere);
+  background-color: var(--honey-300);
+  border-color: var(--honey-400);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--denim-600);
+    border-color: var(--denim-500);
+    color: var(--denim-100);
+  }
+}
+
+button:focus,
+.button:focus,
+.button-focus-storybook {
+  color: var(--honey-800);
   box-shadow: var(--stratosphere);
   background-color: var(--honey-300);
   border-color: var(--honey-400);
@@ -49,11 +65,6 @@ button:hover,
     color: var(--denim-100);
   }
 }
-
-/*  TODO: */
-/* button:focus,
-.button:focus {
-} */
 
 .button--left-align {
   margin-inline-start: 0;

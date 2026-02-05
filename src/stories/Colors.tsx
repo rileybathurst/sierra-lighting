@@ -15,6 +15,7 @@ export const Colors = () => {
       <ColorCards color="honey" variables={['50', '100', '200', '300', '400', '500', '600', '700']} />
       <ColorCards color="denim" variables={['100', '200', '300', '400', '500', '600', '700', '750']} />
       <ColorCards color="neutral" variables={['100', '200', '300', '400', '500', '600', '700', '800']} />
+      <ColorCards color="error" />
     </main>
   );
 };

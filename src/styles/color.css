@@ -190,5 +190,5 @@ header {
 }
 
 .error {
-  color: red;
+  color: var(--error);
 }
