@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // This isnt working from the npm import I dont really understand it if I can do it locally
 // I can go to storybook vite I know that works or maybe I have to write storybook components
 import { ColorCards } from './ColorCards';
+import './story.css';
 
 type ColorProps = {
   one: string;
@@ -21,9 +22,7 @@ export const Colors = () => {
   return (
     <main className='color-deck'>
       <h1>Color</h1>
-
-      <TypeTest one='hello' />
-
+      {/* // ! these are a mess, what am I using what are the contrast how am i dealing with this */}
       <ColorCards color="honey" variables={['50', '100', '200', '300', '400', '500', '600', '700']} />
       <ColorCards color="denim" variables={['100', '200', '300', '400', '500', '600', '700', '750']} />
     </main>

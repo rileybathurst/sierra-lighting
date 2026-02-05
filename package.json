@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "develop": "gatsby develop",
-    "start": "tsc --noEmit && stay-gold && gatsby develop",
+    "start": "blc http://sierra.lighting --exclude '*yelp*' --exclude '*tiktok*' && pa11y http://sierra.lighting &&  tsc --noEmit && stay-gold && gatsby develop",
     "dirty": "gatsby develop",
     "build": "tsc --noEmit && stay-gold && gatsby build",
     "clean-build": "gatsby clean && gatsby build",
@@ -37,7 +37,6 @@
     "@strapi/blocks-react-renderer": "^1.0.2",
     "@types/react-responsive-masonry": "^2.6.0",
     "axios": "^1.10.0",
-    "color-cards": "^1.0.18",
     "gatsby": "^5.14.5",
     "gatsby-adapter-netlify": "^1.2.1",
     "gatsby-plugin-csp": "^1.1.4",
@@ -60,7 +59,7 @@
     "react-responsive-masonry": "^2.7.1",
     "remark-gfm": "^4.0.1",
     "sharp": "^0.34.5",
-    "stay-gold": "^1.1.7"
+    "stay-gold": "^1.1.8"
   },
   "devDependencies": {
     "@babel/core": "^7.28.0",

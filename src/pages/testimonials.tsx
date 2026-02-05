@@ -95,11 +95,11 @@ const TestimonialsPage = () => {
               href={platform.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover-back hover-back--inline"
+              className="button"
             >
               {platform.label}
             </a>
-            {platform.preferred && <em>- preferred</em>}
+            {platform.preferred && <em>&nbsp;- preferred</em>}
           </p>
         ))}
 

@@ -15,8 +15,9 @@ export const ColorCards = ({ color, variables }: ColorCardTypes) => (
           className={`color-card ${color}${variable ? '-' : null}${variable}`}
         >
           {color} - {variable}
+          {/* // TODO: we use color-card inside color card that can't be right */}
           <div
-            className="color-card"
+            className="color"
             style={{
               backgroundColor: `var(--${color}-${variable})`,
             }}

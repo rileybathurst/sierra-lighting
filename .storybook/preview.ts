@@ -13,4 +13,5 @@ import "../src/styles/app.css";
 // Supports weights 100-700
 import "@fontsource-variable/josefin-sans";
 
-import "color-cards/src/styles/app.css";
+//  I vaugley tried to do something and didn't really get there so pulled this out
+// import "color-cards/src/styles/app.css";

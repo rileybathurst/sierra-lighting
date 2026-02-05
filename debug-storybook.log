@@ -1,26 +1,27 @@
-[15:21:33.740] [INFO] storybook v10.1.10
-[15:21:33.872] [DEBUG] Getting package.json info for /Users/riley/Sites/sierra-lighting/package.json...
-[15:21:34.327] [DEBUG] Serving static files from [36mnode_modules/@chromatic-com/storybook/assets[39m at [36m/addon-visual-tests-assets[39m
-[15:21:34.331] [INFO] Starting...
-[15:21:34.346] [WARN] unable to find package.json for @mux/mux-player-react
-[15:21:34.496] [DEBUG] Starting preview..
-[15:21:34.504] [INFO] Addon-docs: using MDX3
-[15:21:34.517] [INFO] Using implicit CSS loaders
-[15:21:34.607] [INFO] Using default Webpack5 setup
-[15:21:34.867] [DEBUG] Using tsconfig paths for react-docgen
-[15:21:37.037] [ERROR] Failed to build the preview
-[15:21:37.042] [WARN] Force closed preview build
-[15:21:37.043] [ERROR] [38;2;241;97;97mSB_BUILDER-WEBPACK5_0003 (WebpackCompilationError): There were problems when compiling your code with Webpack.
+[16:45:17.096] [INFO] storybook v10.2.4
+[16:45:17.233] [DEBUG] Getting package.json info for /Users/riley/Sites/sierra-lighting/package.json...
+[16:45:17.755] [DEBUG] Serving static files from [36mnode_modules/@chromatic-com/storybook/assets[39m at [36m/addon-visual-tests-assets[39m
+[16:45:17.758] [INFO] Starting...
+[16:45:17.773] [WARN] unable to find package.json for @mux/mux-player-react
+[16:45:17.922] [DEBUG] Starting preview..
+[16:45:17.928] [INFO] Addon-docs: using MDX3
+[16:45:17.941] [INFO] Using implicit CSS loaders
+[16:45:18.036] [INFO] Using default Webpack5 setup
+[16:45:18.302] [DEBUG] Using tsconfig paths for react-docgen
+[16:45:20.611] [ERROR] Failed to build the preview
+[16:45:20.617] [WARN] Force closed preview build
+[16:45:20.618] [ERROR] [38;2;241;97;97mSB_BUILDER-WEBPACK5_0003 (WebpackCompilationError): There were problems when compiling your code with Webpack.
 Run Storybook with --debug-webpack for more information.[39m
     at starter (file://./node_modules/@storybook/builder-webpack5/dist/index.js:799:11)
     at starter.next (<anonymous>)
     at Module.start (file://./node_modules/@storybook/builder-webpack5/dist/index.js:857:34)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async storybookDevServer (file://./node_modules/storybook/dist/core-server/index.js:6806:82)
-    at async buildOrThrow (file://./node_modules/storybook/dist/core-server/index.js:5555:12)
-    at async buildDevStandalone (file://./node_modules/storybook/dist/core-server/index.js:7208:66)
-    at async withTelemetry (file://./node_modules/storybook/dist/_node-chunks/chunk-PGCRO4IZ.js:209:12)
+    at async storybookDevServer (file://./node_modules/storybook/dist/core-server/index.js:7207:83)
+    at async buildOrThrow (file://./node_modules/storybook/dist/core-server/index.js:4504:12)
+    at async buildDevStandalone (file://./node_modules/storybook/dist/core-server/index.js:7577:66)
+    at async withTelemetry (file://./node_modules/storybook/dist/_node-chunks/chunk-BIHXZHDE.js:218:12)
     at async dev (file://./node_modules/storybook/dist/bin/core.js:2734:3)
     at async _Command.<anonymous> (file://./node_modules/storybook/dist/bin/core.js:2801:92)
-[15:21:37.044] [WARN] Broken build, fix the error above.
+[16:45:20.621] [WARN] Broken build, fix the error above.
 You may need to refresh the browser.
+[16:46:31.454] [PROMPT] Would you like to send anonymous crash reports to improve Storybook and fix bugs faster? {"choice":false}
