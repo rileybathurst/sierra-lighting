@@ -50,7 +50,7 @@ const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, b
         }
       </Link>
       <div className="paper">{/* stay gold */}</div>
-      <h2 className="mixta">
+      <h2>
         <Link to={`/${breadcrumb}/${slug}`}>
           {name ?? title}
         </Link>

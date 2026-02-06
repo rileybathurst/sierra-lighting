@@ -90,7 +90,7 @@
     font-size: clamp(var(--kilimanjaro), 1.5vw, var(--aconcagua));
     line-height: clamp(var(--denali), 1.5vw, var(--everest));
     margin-block-end: 0;
-    /* font-family: var(--font-sans); */
+    font-family: var(--font-sans);
     font-weight: 400;
   }
 

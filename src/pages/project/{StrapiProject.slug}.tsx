@@ -84,8 +84,9 @@ type ProjectPageTypes = {
 			project_single_use_links: {
 				id: React.Key;
 				name: string;
-				link: string;
+				link?: string;
 				service: string;
+        service_link?: string;
 			}[];
 
 			venue: {
@@ -214,6 +215,12 @@ export const query = graphql`
 					name
 					state
 					slug
+
+          region {
+            id
+            name
+            slug
+          }
 				}
 			}
 
@@ -344,7 +351,10 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 												to={`/areas/${data.strapiProject.venue.area.region.slug}`}
 												className="link--subtle"
 											>
-												{data.strapiProject.venue.area.region.name}
+												{data.strapiProject.venue.area.name},{" "}
+                        <StateAbbreviation
+                          state={data.strapiProject.venue.area.state}
+                        />
 											</Link>
 											<br />
 										</p>
@@ -368,10 +378,10 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 						{data.strapiProject.area ? (
 							<React.Fragment>
 								{/* <Attribute
-                  category="area"
-                  slug={data.strapiProject.area[0].slug}
-                  name={`${data.strapiProject.area[0].name}, ${data.strapiProject.area[0].state}`}
-                /> */}
+									category="area"
+									slug={data.strapiProject.area[0].slug}
+									name={`${data.strapiProject.area[0].name}, ${data.strapiProject.area[0].state}`}
+								/> */}
 
 								<section className="attribute">
 									<h3 className="crest">Area</h3>
@@ -444,21 +454,51 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 										<div key={link.id}>
 										<h4 className="range">
 										{/* // TODO these could kinda be attached so the hover state is nicer */}
-										<Link
-											to={`/vendor/${link.link}`}
-											className="link--subtle"
-										>
+                    {link.link ? (
+                      link.link.startsWith("http") ? (
+                        <a
+                          href={link.link}
+                          className="link--subtle"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {link.name}
+                        </a>
+                      ) : (
+                      <Link
+                        to={`/vendor/${link.link}`}
+                        className="link--subtle"
+                      >
 											{link.name}
 										</Link>
+                      )
+                    ) : (
+                      link.name
+                    )}
 									</h4>
 									<p>
-										<Link
-							to={`/vendor/${link.link}`}
-											className="link--subtle"
-										>
-											<span className="capitalize">{link.service}</span>
-											<br />
-										</Link>
+                    {link.service_link ? (
+                      link.service_link.startsWith("http") ? (
+                        <a
+                          href={link.service_link}
+                          className="link--subtle"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span className="capitalize">{link.service}</span>
+                        </a>
+                      ) : (
+                        <Link
+                          to={`/vendor/${link.link}`}
+                          className="link--subtle"
+                        >
+                          <span className="capitalize">{link.service}</span>
+                          <br />
+                        </Link>
+                      )
+                    ) : (
+                      <span className="capitalize">{link.service}</span>
+                    )}
 									</p>
 									</div>
 									))}
@@ -513,7 +553,8 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 					</section>
 				</>
 			) : (
-				<>
+				<React.Fragment>
+          {/* // TODO: there essentially cant be no lights we would just  */}
 					<div className="stork">
 						<hr />
 						<h4>Other Projects</h4>
@@ -524,7 +565,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 							<Card key={project.id} {...project} breadcrumb="project" />
 						))}
 					</div>
-				</>
+				</React.Fragment>
 			)}
 
 			{/* // TODO: this design need love */}
