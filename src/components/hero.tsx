@@ -1,3 +1,6 @@
+// TODO: deal with tall images
+// TODO: images of different heights currently look like a mess
+
 import React, { useRef } from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 import type { ImageType } from "../types/image-type"

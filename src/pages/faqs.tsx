@@ -7,7 +7,6 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import { useStrapiFaq } from "../hooks/use-strapi-faq";
 
-
 const FaqsPage = () => {
 
   type faqTypes = {

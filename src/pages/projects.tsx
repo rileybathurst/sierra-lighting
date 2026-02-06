@@ -95,7 +95,7 @@ const ProjectsPage = () => {
               <section className="stork">
                 {service.projects.length > 3 ?
                   <h3 className="elbrus">
-                    <Link to={`/${service.slug}`} className="link_subtle">
+                    <Link to={`/${service.slug}/projects/`} className="link_subtle">
                       View all {service.projects.length} {service.name} projects
                     </Link>
                   </h3 >

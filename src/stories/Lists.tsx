@@ -1,3 +1,5 @@
+// TODO: look at safety page the vertical rythm is a mess
+
 // this is the Name.jsx file
 import React from "react";
 import { faker } from "@faker-js/faker";

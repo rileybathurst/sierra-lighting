@@ -23,6 +23,7 @@ type ProjectPageTypes = {
 		strapiProject: {
 			id: React.Key;
 			title: string;
+			couple?: string;
 			description: {
 				data: {
 					description: string;
@@ -56,7 +57,13 @@ type ProjectPageTypes = {
 				name: string;
 				state: "california" | "nevada";
 				slug: string;
-			} | null;
+
+				region?: {
+					name: string;
+					slug: string;
+					id: React.Key;
+				};
+			};
 
 			team: {
 				id: React.Key;
@@ -74,6 +81,13 @@ type ProjectPageTypes = {
 				};
 			}[];
 
+			project_single_use_links: {
+				id: React.Key;
+				name: string;
+				link: string;
+				service: string;
+			}[];
+
 			venue: {
 				name: string;
 				slug: string;
@@ -84,7 +98,13 @@ type ProjectPageTypes = {
 					name: string;
 					state: "california" | "nevada";
 					slug: string;
-				} | null;
+
+					region?: {
+						name: string;
+						slug: string;
+						id: React.Key;
+					};
+				};
 			};
 
 			services: {
@@ -114,131 +134,145 @@ type ProjectPageTypes = {
 export const query = graphql`
     query ProjectQuery($slug: String!) {
 		strapiProject(slug: { eq: $slug }) {
-		id
-		title
-		description {
-			data {
-			description
-			}
-		}
-		excerpt
-		slug
-		ogimage
-
-		image {
-			localFile {
-				childImageSharp {
-					gatsbyImageData
-				}
-				url
-				}
-			alternativeText
-		}
-
-		gallery {
-			localFile {
-				childImageSharp {
-					gatsbyImageData
-				}
-				url
-			}
-			alternativeText
-		}
-
-		lights {
-			...lightCard
-		}
-
-		area {
-			name
-			state
-			slug
-		}
-
-		teams {
 			id
-			name
-			slug
-		}
-
-		vendors {
-			id
-			name
-			slug
-			collaborator {
-			industry
-			slug
-			}
-		}
-
-		venue {
-			id
-			name
-			slug 
-			
-			area {
-				id
-				name
-				state
-				slug
-			}
-		}
-
-		services {
-			name
-			slug
-		}
-
-		testimonial {
-			id
-			customer
-			position
-			review
-			vendor {
-				name
-				slug
-			}
-		}
-    }
-
-    triptych: allStrapiLight(limit: 3, filter: {projects: {elemMatch: {slug: {eq: $slug}}}}) {
-		nodes {
-			...lightCard
-		}
-    }
-
-    additional: allStrapiLight(skip: 3, filter: {projects: {elemMatch: {slug: {eq: $slug}}}}) {
-		nodes {
-			id
-			name
-			slug
-		}
-    }
-
-    allStrapiProject(filter: {slug: {nin: [$slug] }}) {
-		nodes {
 			title
-			id
-			slug
+			couple
+			description {
+				data {
+					description
+				}
+			}
 			excerpt
+			slug
+			ogimage
 
 			image {
 				localFile {
 					childImageSharp {
-						gatsbyImageData(
-							breakpoints: [111, 165, 222, 444, 880]
-							width: 222
-						)
+						gatsbyImageData
 					}
+					url
+					}
+				alternativeText
+			}
+
+			gallery {
+				localFile {
+					childImageSharp {
+						gatsbyImageData
+					}
+					url
 				}
 				alternativeText
 			}
+
+			lights {
+				...lightCard
+			}
+
+			area {
+				name
+				state
+				slug
+
+				region {
+					id
+					name
+					slug
+				}
+			}
+
+			teams {
+				id
+				name
+				slug
+			}
+
+			vendors {
+				id
+				name
+				slug
+				collaborator {
+				industry
+				slug
+				}
+			}
+
+			project_single_use_links {
+				name
+				link
+				service
+			}
+
+			venue {
+				id
+				name
+				slug 
+				
+				area {
+					id
+					name
+					state
+					slug
+				}
+			}
+
+			services {
+				name
+				slug
+			}
+
+			testimonial {
+				id
+				customer
+				position
+				review
+				vendor {
+					name
+					slug
+				}
+			}
 		}
-    }
-}
+
+		triptych: allStrapiLight(limit: 3, filter: {projects: {elemMatch: {slug: {eq: $slug}}}}) {
+			nodes {
+				...lightCard
+			}
+		}
+
+		additional: allStrapiLight(skip: 3, filter: {projects: {elemMatch: {slug: {eq: $slug}}}}) {
+			nodes {
+				id
+				name
+				slug
+			}
+		}
+
+		allStrapiProject(filter: {slug: {nin: [$slug] }}) {
+			nodes {
+				title
+				id
+				slug
+				excerpt
+
+				image {
+					localFile {
+						childImageSharp {
+							gatsbyImageData(
+								breakpoints: [111, 165, 222, 444, 880]
+								width: 222
+							)
+						}
+					}
+					alternativeText
+				}
+			}
+		}
+	}
 `;
 
 const ProjectPage = ({ data }: ProjectPageTypes) => {
+
 	return (
 		<>
 			<Header />
@@ -253,6 +287,9 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 			<main className="stork">
 				<article>
 					<h1>{data.strapiProject.title}</h1>
+					{data.strapiProject.couple ? (
+						<h2 className="font-serif">{data.strapiProject.couple}</h2>
+					) : null}
 					{data.strapiProject.description ? (
 						<div className="react-markdown">
 							<ReactMarkdown>
@@ -283,48 +320,53 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 			{data.strapiProject.venue ||
 				data.strapiProject.area ||
 				data.strapiProject.vendors.length > 0 ||
-				data.strapiProject.team ? (
-				<>
+				data.strapiProject.team ||
+				data.strapiProject.project_single_use_links ? (
+				<React.Fragment>
 					<hr className="pelican" />
 					<div className="attributes">
 						{data.strapiProject.venue ? (
-							<>
-								{/* <Attribute
-                  category="venue"
-                  slug={data.strapiProject.venue.slug}
-                  name={data.strapiProject.venue.name}
-                /> */}
+							<section className="attribute">
+								<h3 className="crest">Venue</h3>
+								<h4 className="range">
+									<Link
+										to={`/venue/${data.strapiProject.venue.slug}`}
+										className="link--subtle"
+									>
+										{data.strapiProject.venue.name}
+									</Link>
+								</h4>
 
-								<section className="attribute">
-									<h3 className="crest">Venue</h3>
-									<h4 className="range">
-										<Link
-											to={`/venue/${data.strapiProject.venue.slug}`}
-											className="link--subtle"
-										>
-											{data.strapiProject.venue.name}
-										</Link>
-									</h4>
-
-									{data.strapiProject.venue?.area ? (
+								{data.strapiProject.venue?.area ? (
+									data.strapiProject.venue.area?.region ? (
 										<p>
 											<Link
-												to={`/areas/${data.strapiProject.venue.area.slug}`}
+												to={`/areas/${data.strapiProject.venue.area.region.slug}`}
 												className="link--subtle"
 											>
-												{data.strapiProject.venue.area.name},{" "}
-												<StateAbbreviation
-													state={data.strapiProject.venue.area.state}
-												/>
+												{data.strapiProject.venue.area.region.name}
 											</Link>
+											<br />
 										</p>
-									) : null}
-								</section>
-							</>
+									) : (
+									<p>
+										<Link
+											to={`/areas/${data.strapiProject.venue.area.slug}`}
+											className="link--subtle"
+										>
+											{data.strapiProject.venue.area.name},{" "}
+											<StateAbbreviation
+												state={data.strapiProject.venue.area.state}
+											/>
+										</Link>
+									</p>
+									)
+								) : null}
+							</section>
 						) : null}
 
 						{data.strapiProject.area ? (
-							<>
+							<React.Fragment>
 								{/* <Attribute
                   category="area"
                   slug={data.strapiProject.area[0].slug}
@@ -334,6 +376,19 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 								<section className="attribute">
 									<h3 className="crest">Area</h3>
 									<h4 className="range">
+
+										{data.strapiProject.area.region ? (
+											<React.Fragment>
+												<Link
+													key={data.strapiProject.area.region.slug}
+													to={`/areas/${data.strapiProject.area.region.slug}`}
+													className="link--subtle"
+												>
+													{data.strapiProject.area.region.name}
+												</Link>
+												<br />
+											</React.Fragment>
+										) : (
 										<Link
 											key={data.strapiProject.area.slug}
 											to={`/areas/${data.strapiProject.area.slug}`}
@@ -344,15 +399,18 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 												state={data.strapiProject.area.state}
 											/>
 										</Link>
+										)}
 									</h4>
 								</section>
-							</>
+							</React.Fragment>
 						) : null}
 
+{/* // TODO: project/waterside-wedding/?= having multiple needs a better way of holding the service to the name and more space from the other  */}
+{/* // TODO: sometimes vendors have a different role project/waterside-wedding/?= louise and third did the planning not the floral this is a big deal to them */}
+{/* // TODO: florists shouldnt be plural im not sure which others are like this */}
 						{data.strapiProject.vendors.length > 0 ? (
 							<section className="attribute">
-								{/* // ? I dont think this needs to be titled anymore */}
-								{/* <h3 className="crest">Vendor{data.strapiProject.vendors.length > 1 ? 's' : null}</h3> */}
+								<h3 className="crest">Vendor{data.strapiProject.vendors.length > 1 ? 's' : null}</h3>
 								{data.strapiProject.vendors.map((vendor) => (
 									<div key={vendor.id}>
 										<h4 className="range">
@@ -378,13 +436,44 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 							</section>
 						) : null}
 
+						{data.strapiProject.project_single_use_links ? (
+							<section className="attribute">
+								{/* // ? by definition this cant have a title <h3 className="crest"></h3> */}
+								<div className="">
+									{data.strapiProject.project_single_use_links.map((link) => (
+										<div key={link.id}>
+										<h4 className="range">
+										{/* // TODO these could kinda be attached so the hover state is nicer */}
+										<Link
+											to={`/vendor/${link.link}`}
+											className="link--subtle"
+										>
+											{link.name}
+										</Link>
+									</h4>
+									<p>
+										<Link
+							to={`/vendor/${link.link}`}
+											className="link--subtle"
+										>
+											<span className="capitalize">{link.service}</span>
+											<br />
+										</Link>
+									</p>
+									</div>
+									))}
+								</div>
+							</section>
+						) : null}
+
 						{data.strapiProject.team ? (
-							<>
+							<React.Fragment>
+								{/* I removed team we haven't really used it in this way but keep it incase we bring it back */}
 								{/* <Attribute
-                  category="team"
-                  slug={data.strapiProject.area[0].slug}
-                  name={`${data.strapiProject.area[0].name}, ${data.strapiProject.area[0].state}`}
-                /> */}
+									category="team"
+									slug={data.strapiProject.area[0].slug}
+									name={`${data.strapiProject.area[0].name}, ${data.strapiProject.area[0].state}`}
+								/> */}
 
 								<section className="attribute">
 									<h3 className="crest">Team</h3>
@@ -404,21 +493,21 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 										))}
 									</div>
 								</section>
-							</>
+							</React.Fragment>
 						) : null}
 					</div>
-				</>
+				</React.Fragment>
 			) : null}
 
-			{/* 3 featured lights or other projects */}
-			{data.triptych.nodes ? (
+			{/* // TODO: when more than 3 this can get messy */}
+			{data.strapiProject.lights ? (
 				<>
 					<div className="stork">
 						<hr />
 						<h3>{data.strapiProject.title} uses these lights</h3>
 					</div>
 					<section className="deck">
-						{data.triptych.nodes.map((light) => (
+						{data.strapiProject.lights.map((light) => (
 							<Card key={light.id} {...light} breadcrumb="light" />
 						))}
 					</section>
@@ -455,6 +544,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 
 			<hr className="stork" />
 
+{/* // ? can a project have multiple services? I kinda doubt it and should be in the breadcrumb */}
 			<Breadcrumbs>
 				<Breadcrumb>
 					<Link to="/projects/">Project</Link>

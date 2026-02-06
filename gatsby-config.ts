@@ -40,6 +40,7 @@ const strapiConfig = {
     'hero',
     'lookbook-description',
     'minimum',
+    'safety',
     'season',
     'topbar',
     'vendor-description',

@@ -156,6 +156,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
           <h3 className="crest">Contact</h3>
           <h4 className="range">Say Hello</h4>
 
+{/* // TODO: this changes twice on hover and reverts back its just a mess of overlapping styles */}
           <div className="contact-info">
             <p>
               <a
@@ -249,6 +250,9 @@ const Footer = ({ quote }: { quote?: boolean }) => {
               <li key="commercial-events">
                 <Link to="/commercial-events">Commercial Events {/* <span className='sr-only'>Lighting Installation</span> */}</Link>
               </li>
+
+              {/* // TODO: this shouldnt be here its just as the list is currently shorter and needs to be redesigned */}
+              <li key="safety"><Link to="/safety">Safety Practices</Link></li>
             </ul>
           </li>
 
