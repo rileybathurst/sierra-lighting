@@ -434,7 +434,8 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 										</h4>
 										<p>
 											<Link
-												to={`/vendor/${vendor.slug}`}
+												// TODO: this isnt the right link it should be to the service not the vendor
+                        to={`/vendor/${vendor.collaborator.slug}`}
 												className="link--subtle"
 											>
 												<span className="capitalize">{vendor.collaborator.industry}</span>
