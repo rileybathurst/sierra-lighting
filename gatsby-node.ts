@@ -150,15 +150,6 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
     });
   }
 
-
-
-
-
-
-
-
-
-
   // * /vendor/envyeventmanagement/
   // TODO: add collab slug to path if it exists, e.g. /vendor/collaborator-slug/vendor-slug
   // TODO: or collaboratorAncillary
@@ -194,8 +185,8 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
     let vendorPath: string;
     if (node.collaborator && node.collaborator.slug) {
       vendorPath = `/vendor/${node.collaborator.slug}/${node.slug}`;
-    } else if (node.collaboratorAncillary) {
-      vendorPath = `/vendor/${node.collaboratorAncillary}/${node.slug}`;
+    /* } else if (node.collaboratorAncillary) {
+      vendorPath = `/vendor/${node.collaboratorAncillary}/${node.slug}`; */
     } else {
       vendorPath = `/vendor/${node.slug}`;
     }
@@ -209,17 +200,6 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
       },
     });
   }
-
-
-
-
-
-
-
-
-
-
-
 
   const getAreas = await graphql<{
     allStrapiArea: { edges: { node: { slug: string } }[] }

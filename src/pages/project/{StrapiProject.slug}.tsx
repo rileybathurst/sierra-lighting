@@ -76,8 +76,8 @@ type ProjectPageTypes = {
 				id: React.Key;
 				name: string;
 				slug: string;
+				collaboratorAncillary?: string;
 				collaborator: {
-					collaboratorAncillary?: string;
 					industry: string;
 					slug: string;
 				};

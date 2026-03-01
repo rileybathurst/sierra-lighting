@@ -28,6 +28,7 @@ interface VendorTemplateViewTypes {
       website: string;
       pinterest: string;
       excerpt: string;
+      collaboratorAncillary?: string;
 
       profile: {
         localFile: {
@@ -65,8 +66,6 @@ interface VendorTemplateViewTypes {
 
 const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
-  // console.log(data.strapiVendor.instagram)
-
   return (
     <>
       <Header />
@@ -77,6 +76,9 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
       <main className="stork">
         <h1 className="range">{data.strapiVendor.name}</h1>
+        {data.strapiVendor.collaboratorAncillary ?
+          <h2>{data.strapiVendor.collaboratorAncillary}</h2>
+        : null}
         <hr />
         <p>{data.strapiVendor.description}</p>
 
@@ -106,28 +108,32 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
           : null
         }
 
-        <hr />
+        {data.strapiVendor.website ? (
+          <React.Fragment>
+            <hr />
 
-        <p>
-          Website&nbsp;
-          {data.strapiVendor.website.includes('https://') ?
-            <a href={data.strapiVendor.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={data.strapiVendor.website}
-            >
-              <StrShort website={data.strapiVendor.website} />
-            </a>
-            :
-            <a href={`https://${data.strapiVendor.website}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={data.strapiVendor.website}
-            >
-              <StrShort website={data.strapiVendor.website} />
-            </a>
-          }
-        </p>
+            <p>
+              Website&nbsp;
+              {data.strapiVendor.website.includes('https://') ?
+                <a href={data.strapiVendor.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={data.strapiVendor.website}
+                >
+                  <StrShort website={data.strapiVendor.website} />
+                </a>
+                :
+                <a href={`https://${data.strapiVendor.website}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={data.strapiVendor.website}
+                >
+                  <StrShort website={data.strapiVendor.website} />
+                </a>
+              }
+            </p>
+          </React.Fragment>
+        ) : null}
 
         {data.strapiVendor.instagram || data.strapiVendor.pinterest || data.strapiVendor.facebook ?
           <>
@@ -142,11 +148,13 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
           : null
         }
 
+        {data.strapiVendor.collaborator ?
+        <React.Fragment>
         <hr />
-        <BlocksRenderer content={data.strapiVendor.collaborator.description} />
+          <BlocksRenderer content={data.strapiVendor.collaborator.description} />
+        </React.Fragment>
+        : null}
       </main>
-
-
 
       {data.strapiVendor.projects.length > 0 ?
         <>
@@ -167,8 +175,8 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         : null
       }
 
-      {/* // TODO: collab slug also has  */}
-      {data.allStrapiVendor.nodes.length > 0 ?
+      {data.strapiVendor.collaborator ? (
+        data.allStrapiVendor.nodes.length > 0 ?
         <>
           <div className="stork">
             <hr />
@@ -195,7 +203,8 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
             ))}
           </div>
         </>
-        : null}
+        : null
+      ) : null}
 
       {data.strapiVendor.projects.length === 0 && data.allStrapiVendor.nodes.length === 0 ?
         <div className="stork">
@@ -238,6 +247,7 @@ export const query = graphql`
         website
         pinterest
         excerpt
+        collaboratorAncillary
         collaborator {
           industry
           slug
