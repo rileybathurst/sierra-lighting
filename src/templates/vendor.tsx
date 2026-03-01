@@ -73,7 +73,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
       {data.strapiVendor.profile ?
         <Hero image={data.strapiVendor.profile} />
-        : null}
+      : null}
 
       <main className="stork">
         <h1 className="range">{data.strapiVendor.name}</h1>
@@ -167,6 +167,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         : null
       }
 
+      {/* // TODO: collab slug also has  */}
       {data.allStrapiVendor.nodes.length > 0 ?
         <>
           <div className="stork">
@@ -178,11 +179,19 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
           <div className="deck">
             {data.allStrapiVendor.nodes.map((vendor: CardType) => (
+              vendor.collaborator ? (
+                <Card
+                  key={vendor.id}
+                  {...vendor}
+                  breadcrumb={`vendor/${vendor.collaborator.slug}`}
+                />
+              ) : ( 
               <Card
                 key={vendor.id}
                 {...vendor}
-                breadcrumb='vendor'
+                breadcrumb="vendor"
               />
+              )
             ))}
           </div>
         </>
@@ -217,7 +226,7 @@ export default VendorTemplateView;
 export const query = graphql`
   query VendorTemplate(
     $slug: String!,
-    $collaborator: String!,
+    $collaborator: String,
     ) {
       strapiVendor(slug: {eq: $slug}) {
         id
@@ -304,6 +313,12 @@ export const query = graphql`
             }
             alternativeText
           }
+
+          collaborator {
+            slug
+          }
+
+          collaboratorAncillary
         }
       }
 

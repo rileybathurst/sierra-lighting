@@ -69,7 +69,15 @@ const ProjectsPage = () => {
             <div key={service.id} className={service.slug}>
               <div className="stork">
                 <hr />
-                <h2 className="baseline-drop">{service.name} Projects</h2>
+                <h2 className="baseline-drop">
+                  {service.projects.length > 3 ? (
+                    <Link to={`/${service.slug}/projects/`} className="link_subtle">
+                      {service.name} projects
+                    </Link>
+                  ) : (
+                    `${service.name} Projects`
+                  )}
+                </h2>
                 {service.description ?
                   <section>
                     <div className='react-markdown double-baseline-drop'>

@@ -1,3 +1,5 @@
+// /vendor/planners/ etc
+
 import * as React from "react"
 import { graphql, Script, Link } from "gatsby"
 import SEO from "../../components/seo"

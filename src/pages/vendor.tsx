@@ -70,12 +70,14 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
                 <Card
                   key={vendor.id}
                   {...vendor}
-                  breadcrumb="vendor"
+                  breadcrumb={`vendor/${collaborator.slug}`}
                 />
               ))}
             </div>
           </div>
         ))}
+
+        {/* // TODO: theres more without collaborators */}
 
       <Footer />
 

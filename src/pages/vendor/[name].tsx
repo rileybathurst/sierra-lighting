@@ -13,7 +13,7 @@ function VendorCatchAll({ params }: CatchAllTypes) {
 
   const { allStrapiVendor } = useStaticQuery(graphql`
     query VendorCatchAllQuery {
-      allStrapiVendor {
+      allStrapiVendor(limit: 3) {
           nodes {
             ...vendorCard
         }
@@ -41,11 +41,19 @@ function VendorCatchAll({ params }: CatchAllTypes) {
 
       <section className="deck">
         {allStrapiVendor.nodes.map((vendor: CardType) => (
+          vendor.collaborator ? (
+            <Card
+              key={vendor.id}
+              {...vendor}
+              breadcrumb={`vendor/${vendor.collaborator.slug}`}
+            />
+          ) : ( 
           <Card
             key={vendor.id}
             {...vendor}
             breadcrumb="vendor"
           />
+          )
         ))}
       </section>
 

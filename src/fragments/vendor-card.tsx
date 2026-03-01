@@ -6,6 +6,7 @@ export const query = graphql`
     name
     excerpt
     slug
+    collaboratorAncillary
 
     profile {
       localFile {
@@ -17,6 +18,10 @@ export const query = graphql`
         }
       }
       alternativeText
+    }
+
+    collaborator {
+      slug
     }
   }
 `

@@ -31,6 +31,7 @@ type ProjectPageTypes = {
 			};
 			excerpt: string;
 			slug: string;
+
 			ogimage: string;
 			image: {
 				localFile: {
@@ -76,6 +77,7 @@ type ProjectPageTypes = {
 				name: string;
 				slug: string;
 				collaborator: {
+					collaboratorAncillary?: string;
 					industry: string;
 					slug: string;
 				};
@@ -193,9 +195,10 @@ export const query = graphql`
 				id
 				name
 				slug
+				collaboratorAncillary
 				collaborator {
-				industry
-				slug
+					industry
+					slug
 				}
 			}
 
@@ -433,14 +436,23 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 											</Link>
 										</h4>
 										<p>
+
+										{/* // TODO: collaboratorAncillary */}
+										{vendor.collaborator ? (
 											<Link
-												// TODO: this isnt the right link it should be to the service not the vendor
-                        to={`/vendor/${vendor.collaborator.slug}`}
+												to={`/vendor/${vendor.collaborator.slug}`}
 												className="link--subtle"
 											>
 												<span className="capitalize">{vendor.collaborator.industry}</span>
 												<br />
 											</Link>
+										) : null}
+										{vendor.collaboratorAncillary ? (
+											<React.Fragment>
+											<span className="capitalize">{vendor.collaboratorAncillary}</span>
+												<br />
+										</React.Fragment>
+										) : null}
 										</p>
 									</div>
 								))}
