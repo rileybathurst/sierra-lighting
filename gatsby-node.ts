@@ -7,7 +7,7 @@ exports.onPostBuild = (({ reporter }) => {
 }) as GatsbyNode['onPostBuild'];
 
 exports.createPages = (async ({ actions, graphql, reporter }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
 
   const getServices = await graphql<{
     allStrapiService: { edges: { node: { slug: string } }[] }
@@ -151,17 +151,14 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   // * /vendor/envyeventmanagement/
-  // TODO: add collab slug to path if it exists, e.g. /vendor/collaborator-slug/vendor-slug
-  // TODO: or collaboratorAncillary
   const getVendors = await graphql<{
-    allStrapiVendor: { edges: { node: { slug: string; collaboratorAncillary: string; collaborator: { slug: string } } }[] }
+    allStrapiVendor: { edges: { node: { slug: string; collaborator: { slug: string } } }[] }
   }>(`
     query {
       allStrapiVendor {
         edges {
           node {
             slug
-            collaboratorAncillary
             collaborator {
               slug
             }
@@ -183,10 +180,9 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
     }
 
     let vendorPath: string;
-    if (node.collaborator && node.collaborator.slug) {
+
+    if (node.collaborator) {
       vendorPath = `/vendor/${node.collaborator.slug}/${node.slug}`;
-    /* } else if (node.collaboratorAncillary) {
-      vendorPath = `/vendor/${node.collaboratorAncillary}/${node.slug}`; */
     } else {
       vendorPath = `/vendor/${node.slug}`;
     }
@@ -199,6 +195,14 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
         collaborator: node.collaborator ? node.collaborator.slug : undefined,
       },
     });
+
+    if (node.collaborator) {
+      createRedirect({
+        fromPath: `/vendor/${node.slug}`,
+        toPath: `/vendor/${node.collaborator.slug}/${node.slug}`,
+        isPermanent: true,
+      });
+    } 
   }
 
   const getAreas = await graphql<{

@@ -11,8 +11,18 @@ import type { CatchAllTypes } from "../../types/catch-all-types";
 
 function VendorCatchAll({ params }: CatchAllTypes) {
 
+
+// ! test this has strapiVendor single code was thinking about as a redirect but might be able to use node
   const { allStrapiVendor } = useStaticQuery(graphql`
-    query VendorCatchAllQuery {
+    query VendorCatchAllQuery($slug: String) {
+      strapiVendor(slug: {eq: $slug}) {
+        name
+
+        collaborator {
+          slug
+        }
+      }
+      
       allStrapiVendor(limit: 3) {
           nodes {
             ...vendorCard
@@ -20,6 +30,9 @@ function VendorCatchAll({ params }: CatchAllTypes) {
       }
     }
   `)
+
+
+      console.log(params.name);
 
   return (
     <>
