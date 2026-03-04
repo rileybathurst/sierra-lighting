@@ -11,7 +11,7 @@ import type { CatchAllTypes } from "../../types/catch-all-types";
 
 function VendorCatchAll({ params }: CatchAllTypes) {
   const { allStrapiVendor } = useStaticQuery(graphql`
-    query VendorCatchAllQuery() {
+    query VendorCatchAllQuery {
       allStrapiVendor(limit: 3) {
           nodes {
             ...vendorCard
