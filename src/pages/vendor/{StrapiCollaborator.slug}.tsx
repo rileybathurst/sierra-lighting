@@ -84,18 +84,15 @@ const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
               <Card
                 key={vendor.id}
                 {...vendor}
-                breadcrumb="vendor"
+                breadcrumb={`vendor/${data.strapiCollaborator.slug}`}
               />
             ))}
           </div>
         </>
         : null}
 
-      {/* // TODO: loop the other collaborators */}
-
-
       <hr className="stork" />
-      {/* // ? did I do the fancy version here? */}
+
       <Breadcrumbs>
         <Breadcrumb><Link to="/vendor/">Vendor</Link></Breadcrumb>
         <Breadcrumb>{data.strapiCollaborator.industry}</Breadcrumb>
@@ -112,7 +109,7 @@ export const Head = ({ data }: CollaboratorPageTypes) => {
   return (
     <SEO
       title={`${data.strapiCollaborator.industry}`}
-      // TODO image
+      // TODO image could possibly have an overlay from us would be a rad place to do that
       description={data.strapiCollaborator?.excerpt}
       image={data.strapiCollaborator?.hero?.localFile?.url}
       url={`/vendor/${data.strapiCollaborator.slug}`}

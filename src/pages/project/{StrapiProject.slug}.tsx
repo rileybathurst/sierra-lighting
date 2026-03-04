@@ -327,6 +327,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 			: null}
 
 			{/* // TODO: use media queries to deal with a single vendor looking really weird */}
+			{/* // TODO: add links to the headings */}
 			{data.strapiProject.venue ||
 				data.strapiProject.area ||
 				data.strapiProject.vendors.length > 0 ||
@@ -427,13 +428,21 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 								{data.strapiProject.vendors.map((vendor) => (
 									<div key={vendor.id}>
 										<h4 className="range">
-											{/* // TODO these could kinda be attached so the hover state is nicer */}
+											{vendor.collaborator ? (
 											<Link
-												to={`/vendor/${vendor.slug}`}
+												to={`/vendor/${vendor.collaborator.slug}/${vendor.slug}`}
 												className="link--subtle"
 											>
 												{vendor.name}
 											</Link>
+											) : (
+												<Link
+												to={`/vendor/${vendor.slug}`}
+												className="link--subtle"
+											>
+												<span>{vendor.name}</span>
+											</Link>
+											)}
 										</h4>
 										<p>
 
@@ -448,11 +457,9 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 											</Link>
 										) : null}
 										{vendor.collaboratorAncillary ? (
-											<React.Fragment>
 											<span className="capitalize">{vendor.collaboratorAncillary}</span>
-												<br />
-										</React.Fragment>
 										) : null}
+											<hr />
 										</p>
 									</div>
 								))}
@@ -553,6 +560,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 			) : null}
 
 			{/* // TODO: when more than 3 this can get messy */}
+			{/* // TODO: this is too low with lots of vendors move it up */}
 			{data.strapiProject.lights ? (
 				<>
 					<div className="stork">

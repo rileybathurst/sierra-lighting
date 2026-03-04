@@ -30,6 +30,11 @@ const TestimonialsPage = () => {
           vendor {
             name
             slug
+
+            collaborator {
+              industry
+              slug
+            }
           }
 
           project {
@@ -57,26 +62,19 @@ const TestimonialsPage = () => {
 
       <main className="stork">
 
-        <h1 className="crest">Reviews</h1>
-        <h2 className="ridge">Testimonials</h2>
+        <h1>Testimonials</h1>
 
         <p>{data.strapiFeedback.about}</p>
 
         <ul className="testimonials">
-          {data.allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
-            <Testimonial
-              // biome is mad about the ! but typescript accepts it
-              // biome ignore lint/suspicious/noUnsafeNullableKey: The GraphQL query guarantees an `id` for each testimonial node, so this assertion is safe.
-              key={testimonial.id!}
-              customer={testimonial.customer}
-              stars={testimonial.stars}
-              review={testimonial.review}
-              title={testimonial.title}
-              slug={testimonial.slug}
-              link={testimonial.link}
-              project={testimonial.project}
-            />
-          ))}
+          {data.allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
+            return (
+              <Testimonial
+                key={testimonial.id}
+                {...testimonial}
+              />
+            );
+          })}
         </ul>
 
         <hr />

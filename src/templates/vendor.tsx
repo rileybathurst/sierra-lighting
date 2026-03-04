@@ -221,6 +221,15 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/vendor/">Vendors</Link></Breadcrumb>
+
+        {data.strapiVendor.collaborator ?
+          <Breadcrumb>
+            <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
+              {data.strapiVendor.collaborator.industry}
+            </Link>
+          </Breadcrumb>
+        : null}
+
         <Breadcrumb>{data.strapiVendor.name}</Breadcrumb>
       </Breadcrumbs>
 

@@ -4,27 +4,31 @@ import Star from "../images/star";
 
 import type TestimonialTypes from "../types/testimonial-types";
 
-function Testimonial({ key, customer, position, review, vendor, stars, project }: TestimonialTypes) {
+function Testimonial({ customer, position, review, vendor, stars, project }: TestimonialTypes) {
+  
   return (
     <li
       // use key not ID https://gist.github.com/rileybathurst/7b853da163a9b8a7724262bbd583f510
-      key={key}
+      // key={key}
       className='testimonial'
     >
       <figure>
         <blockquote>
+          {/* // ? would this be interesting with an image */}
 
           {stars && 
             <div className='testimonial--stars'>
-              {Array.from({ length: stars }).map((_, i) => (
-                <Star key={i} />
+              {Array.from({ length: stars }, (_, starNumber) => starNumber + 1).map((starNumber) => (
+                <Star key={`star-${starNumber}`} />
               ))}
             </div>
           }
 
           {project &&
-            <h3>
-              <Link to={`/project/${project.slug}`}>{project.title}</Link>
+            <h3 className="kilimanjaro">
+              <Link to={`/project/${project.slug}`}>
+                {project.title}
+              </Link>
             </h3>
           }
 
@@ -39,7 +43,9 @@ function Testimonial({ key, customer, position, review, vendor, stars, project }
 
             {vendor ?
               <h5>
-                <Link to={`/vendor/${vendor.slug}`}>{vendor.name}</Link>
+                <Link to={`/vendor${vendor?.collaborator ? `/${vendor.collaborator.slug}` : ''}/${vendor.slug}`}>
+                  {vendor.name}
+                </Link>
               </h5>
               : null}
 

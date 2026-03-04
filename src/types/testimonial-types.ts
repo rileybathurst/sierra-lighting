@@ -1,18 +1,8 @@
-type IdOnly = {
-    id: React.Key;
-    key?: undefined
-};
-
-type KeyOnly = {
-    id?: undefined;
-    key: React.Key;
-};
-
-type BaseTestimonialTypes = {
+type TestimonialTypes = {
+	id?: React.Key;
 	customer: string;
-	stars: number;
+	stars?: number;
 	review: string;
-	title: string;
 	slug?: string;
 	link?: string;
 	position?: string;
@@ -20,13 +10,15 @@ type BaseTestimonialTypes = {
 	vendor?: {
 		name: string;
 		slug: string;
+
+		collaborator?: {
+			slug: string;
+		}
 	};
     project?: {
         title: string;
         slug: string;
     };
 };
-
-type TestimonialTypes = BaseTestimonialTypes & ( IdOnly | KeyOnly);
 
 export default TestimonialTypes;
