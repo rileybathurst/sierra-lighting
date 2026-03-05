@@ -1,3 +1,8 @@
+// TODO: use the redirects to deal with plurals and not Im still not sure the best way to do this but it would be nice to not have 
+// https://sierra.lighting/projects/
+// https://sierra.lighting/project/waterside-wedding/
+// notice the dumb pluralization that was bad
+
 const path = require(`path`);
 
 import type { GatsbyNode } from 'gatsby';
