@@ -14,6 +14,7 @@ import Start from "../../components/start";
 import Hero from "../../components/hero";
 import Collage from "../../components/collage";
 import type { CollageType } from "../../types/collage-type";
+import Markdown from "react-markdown";
 
 interface AliasTypes {
 	alias: string;
@@ -49,6 +50,11 @@ export const query = graphql`
 			slug
 			excerpt
 			description
+			markdown {
+				data {
+					markdown
+				}
+			}
 
 			services {
 				...collageFragment
@@ -220,8 +226,13 @@ type LightPageTypes = {
 			id: React.Key;
 			name: string;
 			slug: string;
-			excerpt?: string | null;
+			excerpt: string;
 			description?: string | null;
+			markdown?: {
+				data: {
+					markdown: string;
+				}
+			} | null;
 			services: CollageType["services"];
 			light_groups?: {
 				id: React.Key;
@@ -266,7 +277,7 @@ type LightPageTypes = {
 			nodes?: ConnectionType[];
 		};
 	};
-	location: { search?: string;}
+	location: { search?: string; }
 };
 const LightPage = ({ data, location }: LightPageTypes) => {
 	process.env.NODE_ENV === "development"
@@ -306,8 +317,8 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 	// TODO: build the hero image switcher here
 	console.log(data.strapiLight.residentialHero);
 
-	let heroImage = data.strapiLight.image;	
-	
+	let heroImage = data.strapiLight.image;
+
 	const searchParams = new URLSearchParams(location.search);
 	if (searchParams.toString().includes("residential")) {
 		// console.log("has residential");
@@ -350,8 +361,16 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 					{data.strapiLight.alias ? (
 						<Aliases alias={data.strapiLight.alias} />
 					) : null}
+	
+					{/* // TODO: styling of lower level headings */}
+					{data.strapiLight.markdown?.data?.markdown ? (
+						<div className="markdown">
+							<Markdown>{data.strapiLight.markdown.data.markdown}</Markdown>
+						</div>
+					) : (
+						<p>{data.strapiLight.description}</p>
+					)}
 
-					<p>{data.strapiLight.description}</p>
 					<hr />
 					<Start path={data.strapiLight.slug} />
 				</article>
