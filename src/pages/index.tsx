@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
-import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { SEO } from "../components/seo";
 import Logo from "../images/logo";
 import Footer from "../components/footer";
@@ -140,7 +139,7 @@ const IndexPage = () => {
                 className="front"
                 backgroundColor="transparent"
               />
-                ) :
+            ) :
               <GatsbyImage image={data.strapiHero.front.localFile.childImageSharp.gatsbyImageData}
                 alt={data.strapiHero.front.alternativeText || "hero image"}
                 className="front"
@@ -224,12 +223,14 @@ const IndexPage = () => {
       </main >
 
       <div className="stork">
+        {/* // TODO: if its just spaces do it in a better way */}
         <p>&nbsp;</p>
         <Start path="index-services" />
       </div>
 
       <hr className="albatross " />
 
+      {/* // TODO: this puts a second main in the page */}
       <Areas />
 
       <Footer />

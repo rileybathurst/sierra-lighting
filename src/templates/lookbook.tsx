@@ -4,6 +4,10 @@ import { GatsbyImage, type IGatsbyImageData } from 'gatsby-plugin-image'
 
 // https://www.npmjs.com/package/react-responsive-masonry
 // https://www.npmjs.com/package/@types/react-responsive-masonry
+
+// TODO: add the progressive enhancment of grid-lanes when it is supported by all browsers, and use the masonry layout as a fallback
+// https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Masonry_layout
+// https://caniuse.com/css-grid-lanes
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import Header from '../components/header'
 import Footer from '../components/footer'

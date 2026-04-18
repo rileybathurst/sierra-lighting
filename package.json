@@ -16,13 +16,13 @@
   ],
   "scripts": {
     "develop": "gatsby develop",
-    "start": "blc http://sierra.lighting --exclude '*yelp*' --exclude '*tiktok*' && pa11y http://sierra.lighting &&  tsc --noEmit && stay-gold && gatsby develop",
+    "start": "blc http://sierra.lighting --exclude '*yelp*' --exclude '*tiktok*' && pa11y http://sierra.lighting && tsc --noEmit && stay-gold && gatsby develop",
     "dirty": "gatsby develop",
     "build": "tsc --noEmit && stay-gold && gatsby build",
     "clean-build": "gatsby clean && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "tsc --noEmit && stay-gold && storybook dev -p 6006",
     "build-storybook": "storybook build",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org riley-bathurst-design --project javascript-gatsby ./public && sentry-cli sourcemaps upload --org riley-bathurst-design --project javascript-gatsby ./public",
     "stay-gold": "stay-gold"

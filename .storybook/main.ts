@@ -1,6 +1,10 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
 
+import path from "path";
+import { fileURLToPath } from "url";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -41,6 +45,10 @@ const config: StorybookConfig = {
           extensions: config.resolve.extensions,
         }),
       ];
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        gatsby: path.resolve(__dirname, "__mocks__/gatsby.js"),
+      };
     }
     return config;
   },

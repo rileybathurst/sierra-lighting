@@ -9,7 +9,7 @@ import { faker } from '@faker-js/faker';
 import { Deck } from './Deck';
 import { Breadcrumbs } from './Breadcrumbs';
 import { FAQ } from './faq';
-import { Collage } from './collage';
+import { Suite } from './suite';
 
 export const Light = () => {
 
@@ -48,33 +48,33 @@ export const Light = () => {
 
             {/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device, make it a component */}
             {faker.datatype.boolean() ? (
-            <section className="stork">
-                <h3 className="crest">We use {faker.music.artist()} for</h3>
-                <ul className="list-style-none">
-                    {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(() => (
-                        <li key={faker.music.genre()}>
-                            <h3 className="kilimanjaro capitalize">
-                                <a href={faker.music.genre()}>{faker.music.genre()} lighting</a>
-                            </h3>
-                            {/* // * this seems overkill the description of wedding doesnt help */}
-                            {faker.datatype.boolean() ?
-                                <div className="react-markdown">
-                                    {faker.lorem.paragraph()}
-                                </div>
-                            : null}
-                        </li>
-                    ))}
-                </ul>
+                <section className="stork">
+                    <h3 className="crest">We use {faker.music.artist()} for</h3>
+                    <ul className="list-style-none">
+                        {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(() => (
+                            <li key={faker.music.genre()}>
+                                <h3 className="kilimanjaro capitalize">
+                                    <a href={faker.music.genre()}>{faker.music.genre()} lighting</a>
+                                </h3>
+                                {/* // * this seems overkill the description of wedding doesnt help */}
+                                {faker.datatype.boolean() ?
+                                    <div className="react-markdown">
+                                        {faker.lorem.paragraph()}
+                                    </div>
+                                    : null}
+                            </li>
+                        ))}
+                    </ul>
 
-                {/* // TODO: this should be in it's own section */}
-                <FAQ />
-            </section>
+                    {/* // TODO: this should be in it's own section */}
+                    <FAQ />
+                </section>
             ) : (
 
                 <React.Fragment>
                     <h3 className="stork crest">We use {faker.music.artist()} for</h3>
                     {/* // ? testing is it better to have the full component here */}
-                    <Collage />
+                    <Suite />
                 </React.Fragment>
             )}
 

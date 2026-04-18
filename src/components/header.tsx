@@ -8,15 +8,12 @@ import SlideMenu from "./slide-menu";
 import TopBar from "./topbar";
 import Season from "../components/season";
 
-interface HeaderTyes {
-  largeLogo?: boolean
-}
-const Header = ({ largeLogo }: HeaderTyes) => {
+const Header = ({ largeLogo }: { largeLogo?: boolean }) => {
   return (
-    <>
+    <React.Fragment>
       <TopBar />
       <header>
-        {/* // needed to hide the small menu */}
+        {/* // * needed to hide the small menu */}
         <div className="stripe">{/* stay gold */}</div>
 
         <Link to="/" className="small small-logo">
@@ -49,7 +46,7 @@ const Header = ({ largeLogo }: HeaderTyes) => {
           </ul>
         </div>
       </header>
-    </>
+    </React.Fragment>
   )
 }
 

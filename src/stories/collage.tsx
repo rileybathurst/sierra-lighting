@@ -1,7 +1,7 @@
 // this is the Collage.tsx file
 import React from 'react';
 import { faker } from '@faker-js/faker';
-import { Poster } from './Poster';
+import { Poster } from './poster';
 
 export const Collage = () => {
 

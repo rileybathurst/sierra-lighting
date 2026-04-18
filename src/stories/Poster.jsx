@@ -8,16 +8,13 @@ import ImageFile from "./assets/assets.png";
 
 export const Poster = () => {
   return (
-      <a href={faker.location.city()} className="poster">
-        <img
-          src={ImageFile} 
-          alt={faker.location.city()}
-          className="gatsby-image-wrapper"
-        />
-        <p className="">
-          {faker.location.city()}
-        </p>
-      </a>
+    <a href={faker.location.city()} className="poster">
+      <img
+        src={ImageFile}
+        alt={faker.location.city()}
+        className="gatsby-image-wrapper"
+      />
+      {faker.datatype.boolean() && <p>{faker.location.city()}</p>}
+    </a>
   );
 };
-

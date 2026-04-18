@@ -1,3 +1,13 @@
 body {
   margin: 0;
 }
+
+
+/*------------------------------------*/
+/* #STORYBOOK */
+/*------------------------------------*/
+
+.sb-show-main {
+  margin: 0 !important;
+  padding: 0 !important;
+}

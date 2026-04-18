@@ -49,8 +49,11 @@ body {
 /* TOPBAR */
 /*------------------*/
 
+/* *button:focus color match */
 .top-bar {
-  background-color: var(--brilliance);
+  background-color: var(--honey-300);
+  color: var(--neutral-800);
+    border-color: var(--honey-400);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-600);
@@ -66,11 +69,6 @@ body {
 /*------------------*/
 
 header {
-  background: var(--honey-100);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-700);
-  }
 
   h2 {
     background-color: var(--honey-50);

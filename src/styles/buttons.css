@@ -54,7 +54,7 @@ button:hover,
 button:focus,
 .button:focus,
 .button-focus-storybook {
-  color: var(--honey-800);
+  color: var(--neutral-800);
   box-shadow: var(--stratosphere);
   background-color: var(--honey-300);
   border-color: var(--honey-400);

@@ -1,23 +1,16 @@
 // this is the Name.tsx file
 import React from 'react';
 import { Topbar } from './Topbar';
+import { Menu } from './Menu';
 
-interface HeaderProps {
-  primary?: boolean;
-  onClick?: () => void;
-}
-
-export const Header = ({
-  primary = false,
-  ...props
-}: HeaderProps) => {
+export const Header = () => {
 
   return (
     <>
       <Topbar />
       <header>
         <div className="stripe">{/* stay gold */}</div>
-        header
+        <Menu />
       </header>
     </>
   );

@@ -29,3 +29,12 @@
   color: hsl(var(--honey), 100%, 50%);
   text-decoration: underline;
 }
+
+/*------------------------------------*/
+/* #STORYBOOK */
+/*------------------------------------*/
+
+.sb-show-main {
+  margin: 0 !important;
+  padding: 0 !important;
+}
