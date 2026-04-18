@@ -12,8 +12,8 @@ import Footer from "../../components/footer";
 import Card from "../../components/card";
 import Start from "../../components/start";
 import Hero from "../../components/hero";
-import Collage from "../../components/collage";
-import type { CollageType } from "../../types/collage-type";
+import Suite from "../../components/suite";
+import type { SuiteType } from "../../types/suite-type";
 import Markdown from "react-markdown";
 
 interface AliasTypes {
@@ -57,7 +57,7 @@ export const query = graphql`
 			}
 
 			services {
-				...collageFragment
+				...suiteFragment
 			}
 
 			light_groups {
@@ -233,7 +233,7 @@ type LightPageTypes = {
 					markdown: string;
 				}
 			} | null;
-			services: CollageType["services"];
+			services: SuiteType["services"];
 			light_groups?: {
 				id: React.Key;
 				name: string;
@@ -361,7 +361,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 					{data.strapiLight.alias ? (
 						<Aliases alias={data.strapiLight.alias} />
 					) : null}
-	
+
 					{/* // TODO: styling of lower level headings */}
 					{data.strapiLight.markdown?.data?.markdown ? (
 						<div className="markdown">
@@ -403,7 +403,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 			<section className="">
 				<h3 className="stork crest">We use {data.strapiLight.name} for</h3>
 
-				<Collage services={data.strapiLight.services} />
+				<Suite services={data.strapiLight.services} />
 			</section>
 
 			<section className="stork">

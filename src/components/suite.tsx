@@ -1,15 +1,15 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image";
-import Season from "../components/season";
-import type { CollageType } from "../types/collage-type";
+import Season from "./season";
+import type { SuiteType } from "../types/suite-type";
 
-const Collage = ({ services }: CollageType) => {
+const Suite = ({ services }: SuiteType) => {
 
   // console.log(services);
 
   return (
-    <div className={`collage ${Season()}`}>
+    <div className={`suite ${Season()}`}>
       {services.map((service) => (
         <Link
           key={service.id}
@@ -26,4 +26,4 @@ const Collage = ({ services }: CollageType) => {
   )
 }
 
-export default Collage
+export default Suite

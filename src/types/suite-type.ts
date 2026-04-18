@@ -1,6 +1,6 @@
-import type { ImageType } from "../types/image-type";
+import type { ImageType } from "./image-type";
 
-export type CollageType = {
+export type SuiteType = {
     services: {
         id: React.Key;
         name: string;

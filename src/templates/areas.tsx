@@ -20,7 +20,7 @@ import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import Start from '../components/start';
 import Season from '../components/season';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import Collage from '../components/collage';
+import Suite from '../components/suite';
 
 
 // this is no longer right as there might only be sub venues
@@ -139,25 +139,25 @@ type AreasTemplateTypes = {
 const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
   // Using Project Heros is interesting but I'm not sure if it's right I was just trying to get something more
-    type AreaImage = NonNullable<CardType['image']>;
-    let areaProjectHeros: AreaImage[] = [];
-    if (data.strapiArea.projects) {
-      areaProjectHeros = data.strapiArea.projects
-        .map((project) => project.image)
-        .filter((img): img is AreaImage => !!img);
-      // console.log(areaProjectHeros);
-  
-      if (data.strapiArea.areas.length > 0) {
-        data.strapiArea.areas.forEach((area) => {
-          if (area.projects.length > 0) {
-            area.projects.forEach((project) => {
-              // console.log(project.image)
-              if (project.image) areaProjectHeros.push(project.image);
-            });
-          }
-        });
-      }
+  type AreaImage = NonNullable<CardType['image']>;
+  let areaProjectHeros: AreaImage[] = [];
+  if (data.strapiArea.projects) {
+    areaProjectHeros = data.strapiArea.projects
+      .map((project) => project.image)
+      .filter((img): img is AreaImage => !!img);
+    // console.log(areaProjectHeros);
+
+    if (data.strapiArea.areas.length > 0) {
+      data.strapiArea.areas.forEach((area) => {
+        if (area.projects.length > 0) {
+          area.projects.forEach((project) => {
+            // console.log(project.image)
+            if (project.image) areaProjectHeros.push(project.image);
+          });
+        }
+      });
     }
+  }
 
   // console.log(data.strapiArea.areas.map((area) => area.projects));
 
@@ -247,8 +247,8 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         <hr />
         <h3 >Lighting installation services we provide in {data.strapiArea.name}</h3>
       </main >
-      
-      <Collage services={data.allStrapiService.nodes}/>
+
+      <Suite services={data.allStrapiService.nodes} />
 
       {areaSubAreaProjectsArray.length > 0 ?
         <section>
@@ -351,7 +351,7 @@ export const query = graphql`
 
     allStrapiService {
       nodes {
-        ...collageFragment
+        ...suiteFragment
       }
     }
 
@@ -360,7 +360,7 @@ export const query = graphql`
 
 export const Head = ({ data }: AreasTemplateTypes) => {
 
-const servicesString = data.allStrapiService.nodes.map((service) => (
+  const servicesString = data.allStrapiService.nodes.map((service) => (
     `${service.name} light installs`
   )).join(', ');
   // console.log(servicesString);

@@ -11,7 +11,7 @@ import Header from "../components/header";
 import Season from "../components/season";
 import BackImage from "../images/BackImage";
 import HeroWeddingBackImage from "../images/HeroWeddingBackImage";
-import Collage from '../components/collage';
+import Suite from '../components/suite';
 
 const IndexPage = () => {
 
@@ -28,7 +28,7 @@ const IndexPage = () => {
 
       allStrapiService {
         nodes {
-          ...collageFragment
+          ...suiteFragment
         }
       }
 
@@ -219,7 +219,7 @@ const IndexPage = () => {
         </div>
 
 
-        <Collage services={data.allStrapiService.nodes} />
+        <Suite services={data.allStrapiService.nodes} />
       </main >
 
       <div className="stork">

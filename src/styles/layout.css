@@ -904,11 +904,11 @@ footer {
 }
 
 /*------------------------------------*/
-/* #COLLAGE */
+/* #SUITE */
 /*------------------------------------*/
-/* ? posters are not always used in collages */
+/* ? posters are not always used in suites */
 
-.collage {
+.suite {
   display: flex;
   flex-flow: row wrap;
   gap: clamp(var(--vinson), 3vw, var(--aconcagua));
@@ -924,7 +924,7 @@ footer {
   }
 }
 
-.collage.xmas {
+.suite.xmas {
   .residential {
     order: 1;
   }
