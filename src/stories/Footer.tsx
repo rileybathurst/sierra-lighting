@@ -1,6 +1,9 @@
 // this is the Name.tsx file
 import React from 'react';
 import { FooterList } from './footer-list';
+import { faker } from '@faker-js/faker';
+import { Logo } from './Logo';
+import { TeamHeads } from './TeamHeads';
 
 interface FooterProps {
   primary?: boolean;
@@ -76,50 +79,37 @@ export const Footer = ({
 
         <section className="contact">
 
-          <h3 className="crest">Contact</h3>
-          <h4 className="range">Say Hello</h4>
+          <h3>Contact</h3>
 
           <div className="contact-info">
             <p>
-              <a href={`mailto:data.strapiAbout.email`}>
-                data.strapiAbout.email
+              <a href={`mailto:${faker.internet.email()}`}>
+                {faker.internet.email()}
               </a>
             </p>
             <p>
               {/* // TODO: I think this is wrong if its not broken up correctly */}
-              <a href={`teldata.strapiAbout.telephone`}>
-                Call or Text: data.strapiAbout.telephone
+              <a href={`tel:${faker.phone.number()}`}>
+                Call or Text: {faker.phone.number()}
               </a>
             </p>
           </div>
         </section>
 
         <div className="team">
-          <h3 className="crest">Who We Are</h3>
-          <h4 className="range">
-            <a href="/team" className="link--subtle">Meet Our Team</a>
-          </h4>
+          <h3>
+            <a href="/team"
+              className="link--subtle"
+            >
+              Meet Our Team
+            </a>
+          </h3>
 
           <h4>or&nbsp;
             <a href="/work" className="link--subtle">Work with us</a>
           </h4>
 
-          <div className="team-heads spin">
-            {/* {data.allStrapiTeam.nodes.map((team: TeamType) => (
-              <Link
-                key={team.slug}
-                to={`/team/${team.slug}`}
-              >
-                <GatsbyImage
-                  image={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
-                  alt={team?.avatar?.alternativeText}
-                />
-                <p>{team.name}</p>
-              </a>
-            ))
-            } */}
-          </div>
-
+          <TeamHeads />
         </div>
       </div>
 
@@ -128,30 +118,57 @@ export const Footer = ({
       <FooterList />
 
       <hr className="albatross" />
-      {/* <SocialIcons /> */}
+      <ul className="footer-social">
+        {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(() => (
+          <li key={faker.string.uuid()}>
+            <a
+              href={faker.internet.url()}
+              title={`${faker.company.name()} ${faker.company.name()}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <svg
+                width="100"
+                height="100"
+                viewBox="0 0 100 100"
+              >
+                <title>{`${faker.company.name()} ${faker.company.name()}`}</title>
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="40"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                />
+              </svg>
+            </a>
+          </li>
+        ))}
+      </ul>
 
       <hr className="condor" />
 
       <div className="footer-copyright">
         <h4 className="sr-only footer-copyright__mind-the-gap">
           <a href="/">
-            {/* {data.strapiAbout.businessName} */}
+            {faker.company.name()} &copy; {new Date().getFullYear()}
           </a>
         </h4>
 
         {/* // TODO: current link */}
         <a href="/">
-          {/* <Logo /> */}
+          <Logo />
         </a>
         <p>&copy; {new Date().getFullYear()}</p>
-        <h5 className="crest">
+        <h5>
           <a
-            href="https://www.sierrachristmaslights.com/"
+            href={faker.internet.url()}
             target="_blank"
             rel="noopener noreferrer"
             className="link--subtle"
           >
-            Formerly known as Sierra Christmas Lights
+            Formerly known as {faker.company.name()}
           </a>
         </h5>
       </div>

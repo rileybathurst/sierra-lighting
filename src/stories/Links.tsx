@@ -24,6 +24,15 @@ export const Links = () => {
         </a>
         &nbsp;dolor sit amet
       </p>
+
+
+      <p>
+        link subtle&nbsp;
+        <a href={faker.internet.url()} className="link--subtle">
+          active
+        </a>
+        &nbsp;removes the color
+      </p>
     </>
   );
 };

@@ -17,9 +17,11 @@ const Attribute = ({ category, slug, name }: AttributeTypes) => {
 
   return (
     <section className="attribute">
-      <h3 className="crest capitalize">{category}</h3>
-      <h4 className="range">
-        <Link to={`/${category}/${slug}`} className="link--subtle">
+      <h3 className="key capitalize">{category}</h3>
+      <h4 className="value">
+        <Link to={`/${category}/${slug}`}
+          className="link--subtle"
+        >
           {name}
         </Link>
       </h4>

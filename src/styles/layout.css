@@ -676,23 +676,15 @@ footer {
   max-width: var(--pelican);
   margin-inline: auto;
   padding-inline: var(--vinson);
-  /* border-inline-end: 1px solid var(--honey-400); */
 
   .attribute {
-    /* * maybe start */
-    /* display: flex; */
-    /* flex-flow: row wrap; */
-    /* gap: var(--vinson); */
-    /* * maybe end */
-
-    /*  border-inline-end: 1px solid var(--honey-400); */
     padding-inline-end: var(--vinson);
 
-    .crest {
+    .key {
       margin-block-end: var(--vinson);
     }
 
-    .range {
+    .value {
       font-size: var(--kilimanjaro);
       line-height: 2.25rem;
       margin-block-end: 0.5rem;
@@ -1071,6 +1063,8 @@ footer {
     h2 {
       grid-row: 1;
       grid-column: 1/3;
+
+      /* TODO: move this to typography.css */
       font-weight: 300;
 
       @media (min-width: 30rem) {
@@ -1102,12 +1096,10 @@ footer {
     grid-row: 3;
     height: min-content;
     z-index: var(--understory);
-    margin-inline: auto;
     padding: var(--vinson);
     align-self: flex-end;
     border-radius: var(--border-radius);
     background-color: rgb(255 255 255 / 50%); /* TODO: variable */
-    margin-block-end: 5rem;
     margin-block-end: clamp(var(--denali), 5vw, var(--everest));
 
     @media (prefers-color-scheme: dark) {
@@ -1139,6 +1131,7 @@ footer {
   max-width: 100vw;
   display: grid;
 
+  /* TODO: move this to typography.css */
   h2 {
     font-weight: 300;
   }

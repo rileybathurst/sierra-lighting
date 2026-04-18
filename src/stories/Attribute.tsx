@@ -7,15 +7,14 @@ export const Attribute = () => {
     <div className="attributes">
       {Array.from({ length: faker.number.int({ min: 0, max: 4 }) }).map((_) => (
         <section key={faker.number.int()} className="attribute">
-          <p className="crest">{faker.music.genre()}</p>
-          {Array.from({ length: faker.number.int({ min: 1, max: 2 }) }).map(
-            (_) => (
-              <h3 key={faker.number.int()} className="range">
-                <a href={faker.music.artist()} className="link--subtle">
-                  {faker.music.artist()}
-                </a>
-              </h3>
-            )
+          <p className="key">{faker.music.genre()}</p>
+          {Array.from({ length: faker.number.int({ min: 1, max: 2 }) }).map(() => (
+            <h3 key={faker.number.int()} className="value">
+              <a href={faker.music.artist()}>
+                {faker.music.artist()}
+              </a>
+            </h3>
+          )
           )}
         </section>
       ))}

@@ -152,22 +152,18 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
         <section id="contact" className="contact">
 
-          {/* // TODO: remove the double titles */}
-          <h3 className="crest">Contact</h3>
-          <h4 className="range">Say Hello</h4>
+          <h3>Contact</h3>
 
-{/* // TODO: this changes twice on hover and reverts back its just a mess of overlapping styles */}
+          {/* // TODO: this changes twice on hover and reverts back its just a mess of overlapping styles */}
           <div className="contact-info">
+            {/* // ? why does this need a <p> */}
             <p>
-              <a
-                href={`mailto:${data.strapiAbout.email}`}
-              // className='button'
-              >
+              <a href={`mailto:${data.strapiAbout.email}`}>
                 {data.strapiAbout.email}
               </a>
             </p>
             <p>
-              {/* // TODO: fix the styling */}
+              {/* // TODO: fix the styling and put this in strapi */}
               Call or Text: <Phone phone={data.strapiAbout.telephone} />
               <small>This inbox is monitored between the hours of 8am-4pm PST Monday-Friday</small>
             </p>
@@ -175,10 +171,9 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         </section>
 
         <div id="team" className="team">
-          <h3 className="crest">Who We Are</h3>
-          <h4 className="range">
-            <Link to="/team" className="link--subtle">Meet Our Team</Link>
-          </h4>
+          <h3>
+            <Link to="/team" className="link--subtle">Team</Link>
+          </h3>
 
           <h4>or&nbsp;
             <Link to="/work" className="link--subtle">Work with us</Link>

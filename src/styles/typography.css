@@ -25,8 +25,8 @@ button {
   font-family: var(--font-quote);
 }
 
+/* TODO: rename mixta to font-serif */
 .mixta,
-.range,
 .site_title,
 .areas__page .state__name {
   font-family: var(--font-serif);

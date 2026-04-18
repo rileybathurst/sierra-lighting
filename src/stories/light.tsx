@@ -3,13 +3,13 @@ import React from 'react';
 import { Topbar } from './Topbar';
 import { Menu } from './Menu';
 import { Footer } from './Footer';
-import { Hero } from './hero';
 import { Start } from './start';
 import { faker } from '@faker-js/faker';
 import { Deck } from './Deck';
 import { Breadcrumbs } from './Breadcrumbs';
 import { FAQ } from './faq';
 import { Suite } from './suite';
+import { Poster } from './poster';
 
 export const Light = () => {
 
@@ -18,7 +18,7 @@ export const Light = () => {
             <Topbar />
             <Menu />
 
-            <Hero />
+            <Poster />
 
             <main>
                 <article className="stork">
@@ -49,7 +49,7 @@ export const Light = () => {
             {/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device, make it a component */}
             {faker.datatype.boolean() ? (
                 <section className="stork">
-                    <h3 className="crest">We use {faker.music.artist()} for</h3>
+                    <h3>We use {faker.music.artist()} for</h3>
                     <ul className="list-style-none">
                         {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(() => (
                             <li key={faker.music.genre()}>
@@ -72,7 +72,7 @@ export const Light = () => {
             ) : (
 
                 <React.Fragment>
-                    <h3 className="stork crest">We use {faker.music.artist()} for</h3>
+                    <h3 className="stork">We use {faker.music.artist()} for</h3>
                     {/* // ? testing is it better to have the full component here */}
                     <Suite />
                 </React.Fragment>

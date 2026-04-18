@@ -21,8 +21,7 @@ const FaqsPage = () => {
 
       <main className="stork">
 
-        <h2 className="crest">What Do You Need To Know</h2>
-        <h1 className="range">Frequently Asked Questions</h1>
+        <h1>Frequently Asked Questions</h1>
 
         <ul className="faqs">
           {useStrapiFaq().nodes.map((faq: faqTypes) => (
@@ -53,7 +52,6 @@ export const Head = () => {
       title='FAQs'
       url="faqs"
       description="our list of frequently asked questions. Please reach out for more information and estimates."
-      image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/og_image-sierra_lighting-bistro_lights.jpg"
     >
       <Script type="application/ld+json">
         {`

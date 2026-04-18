@@ -1,4 +1,5 @@
 // TODO: look at safety page the vertical rythm is a mess
+// ? where are all these used throw some aliases on there
 
 // this is the Name.jsx file
 import React from "react";
@@ -34,21 +35,6 @@ export const Lists = () => {
         </li>
         <li>Item 3</li>
       </ul>
-      <hr className="stork" />
-      <div className="attributes">
-        <section className="attribute">
-          <h3 className="crest">Useage</h3>
-          <ul>
-            <li className="range ">
-              <a href={faker.internet.url()}>Wedding</a>
-            </li>
-            <li className="range attribute">
-              <a href={faker.internet.url()}>Social Events</a>
-            </li>
-          </ul>
-        </section>
-      </div>
-      <hr className="stork" />
     </div>
   );
 };

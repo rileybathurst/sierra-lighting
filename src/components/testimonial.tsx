@@ -5,7 +5,7 @@ import Star from "../images/star";
 import type TestimonialTypes from "../types/testimonial-types";
 
 function Testimonial({ customer, position, review, vendor, stars, project }: TestimonialTypes) {
-  
+
   return (
     <li
       // use key not ID https://gist.github.com/rileybathurst/7b853da163a9b8a7724262bbd583f510
@@ -16,7 +16,7 @@ function Testimonial({ customer, position, review, vendor, stars, project }: Tes
         <blockquote>
           {/* // ? would this be interesting with an image */}
 
-          {stars && 
+          {stars &&
             <div className='testimonial--stars'>
               {Array.from({ length: stars }, (_, starNumber) => starNumber + 1).map((starNumber) => (
                 <Star key={`star-${starNumber}`} />
@@ -32,7 +32,7 @@ function Testimonial({ customer, position, review, vendor, stars, project }: Tes
             </h3>
           }
 
-          <p className='testimonial--quote_mark range'>&ldquo;</p>
+          <p className='testimonial--quote_mark'>&ldquo;</p>
           <p>{review}</p>
 
           <figcaption>

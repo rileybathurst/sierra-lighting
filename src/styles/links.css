@@ -31,7 +31,7 @@ a:focus,
 }
 
 a::selection {
-  background-color: var(--honey-600);
+  background-color: var(--neutral-100);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-600);

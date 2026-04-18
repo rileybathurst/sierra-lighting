@@ -1,48 +1,36 @@
 // this is the Name.jsx file
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
-
-/* type FigureImage = {
-  src: string;
-  alt?: string;
-  width?: number;
-  height?: number;
-};
-
-interface FigureProps {
-  image?: FigureImage;
-  caption?: string;
-  focused?: boolean;
-} */
-
-// 	image, caption = `Photo by <a href="https://unsplash.com/@sorasagano?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sora Sagano</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`,
-// focused = false,
+import { faker } from '@faker-js/faker';
 
 export const TeamHeads = () => {
 	return (
-		<div className="team stork">
-			<h3 className="crest">Who We Are</h3>
-			<h4 className="range">
-				<a href="/team" className="link--subtle">
-					Meet Our Team
+		<div className="team-heads spin">
+			{Array.from({ length: faker.number.int({ min: 1, max: 6 }) }).map(() => (
+				<a
+					href={`/team/${faker.string.uuid()}`}
+					key={faker.string.uuid()}
+				>
+					<svg
+						width="100"
+						height="100"
+						viewBox="0 0 100 100"
+					>
+						<title>{`${faker.company.name()} ${faker.company.name()}`}</title>
+						<circle
+							cx="50"
+							cy="50"
+							r="40"
+							fill="currentColor"
+							stroke="currentColor"
+							strokeWidth="2"
+						/>
+					</svg>
+					<p>{faker.person.firstName()}</p>
 				</a>
-			</h4>
-
-			<h4>
-				or{" "}
-				<a href="/work" className="link--subtle">
-					Work with us
-				</a>
-			</h4>
-
-			<div className="team-heads spin">
-				<a href="/team/">
-					{/* // TODO images are a pain so I havent done this yet */}
-					{/* <img src={team.image} alt="adam" /> */}
-					<p>adam</p>
-				</a>
-			</div>
+			))}
 		</div>
+
 	);
 };
 

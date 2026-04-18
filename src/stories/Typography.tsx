@@ -22,6 +22,7 @@ export const Typography = () => {
         want it anymore! Hey, take a look at the earthlings. Goodbye!
       </p>
       <small>small - kosciuszko</small>
+      {/* // TODO: lighter weight heading something about boxer weights */}
       <hr />
 
       {/* // TODO: */}
@@ -33,6 +34,7 @@ export const Typography = () => {
       <p>
         Mixta should only be used on major headings prefereably with an eyebrow
       </p>
+
     </section>
   );
 };

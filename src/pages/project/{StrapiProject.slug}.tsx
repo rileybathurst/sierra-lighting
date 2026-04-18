@@ -88,7 +88,7 @@ type ProjectPageTypes = {
 				name: string;
 				link?: string;
 				service: string;
-        service_link?: string;
+				service_link?: string;
 			}[];
 
 			venue: {
@@ -297,9 +297,9 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 			<main className="stork">
 				<article>
 					<h1>{data.strapiProject.title}</h1>
-					{data.strapiProject.couple ? (
+					{data.strapiProject.couple && (
 						<h2 className="font-serif">{data.strapiProject.couple}</h2>
-					) : null}
+					)}
 					{data.strapiProject.description ? (
 						<div className="react-markdown">
 							<ReactMarkdown>
@@ -317,14 +317,14 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 			</main>
 
 
-			{data.strapiProject.testimonial ?
+			{data.strapiProject.testimonial &&
 				<React.Fragment>
 					<hr className="pelican" />
 					<div className="stork">
 						<Testimonial {...data.strapiProject.testimonial} />
 					</div>
 				</React.Fragment>
-			: null}
+			}
 
 			{/* // TODO: use media queries to deal with a single vendor looking really weird */}
 			{/* // TODO: add links to the headings */}
@@ -356,24 +356,24 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 												className="link--subtle"
 											>
 												{data.strapiProject.venue.area.name},{" "}
-                        <StateAbbreviation
-                          state={data.strapiProject.venue.area.state}
-                        />
+												<StateAbbreviation
+													state={data.strapiProject.venue.area.state}
+												/>
 											</Link>
 											<br />
 										</p>
 									) : (
-									<p>
-										<Link
-											to={`/areas/${data.strapiProject.venue.area.slug}`}
-											className="link--subtle"
-										>
-											{data.strapiProject.venue.area.name},{" "}
-											<StateAbbreviation
-												state={data.strapiProject.venue.area.state}
-											/>
-										</Link>
-									</p>
+										<p>
+											<Link
+												to={`/areas/${data.strapiProject.venue.area.slug}`}
+												className="link--subtle"
+											>
+												{data.strapiProject.venue.area.name},{" "}
+												<StateAbbreviation
+													state={data.strapiProject.venue.area.state}
+												/>
+											</Link>
+										</p>
 									)
 								) : null}
 							</section>
@@ -403,25 +403,25 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 												<br />
 											</React.Fragment>
 										) : (
-										<Link
-											key={data.strapiProject.area.slug}
-											to={`/areas/${data.strapiProject.area.slug}`}
-											className="link--subtle"
-										>
-											{data.strapiProject.area.name},{" "}
-											<StateAbbreviation
-												state={data.strapiProject.area.state}
-											/>
-										</Link>
+											<Link
+												key={data.strapiProject.area.slug}
+												to={`/areas/${data.strapiProject.area.slug}`}
+												className="link--subtle"
+											>
+												{data.strapiProject.area.name},{" "}
+												<StateAbbreviation
+													state={data.strapiProject.area.state}
+												/>
+											</Link>
 										)}
 									</h4>
 								</section>
 							</React.Fragment>
 						) : null}
 
-{/* // TODO: project/waterside-wedding/?= having multiple needs a better way of holding the service to the name and more space from the other  */}
-{/* // TODO: sometimes vendors have a different role project/waterside-wedding/?= louise and third did the planning not the floral this is a big deal to them */}
-{/* // TODO: florists shouldnt be plural im not sure which others are like this */}
+						{/* // TODO: project/waterside-wedding/?= having multiple needs a better way of holding the service to the name and more space from the other  */}
+						{/* // TODO: sometimes vendors have a different role project/waterside-wedding/?= louise and third did the planning not the floral this is a big deal to them */}
+						{/* // TODO: florists shouldnt be plural im not sure which others are like this */}
 						{data.strapiProject.vendors.length > 0 ? (
 							<section className="attribute">
 								<h3 className="crest">Vendor{data.strapiProject.vendors.length > 1 ? 's' : null}</h3>
@@ -429,36 +429,36 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 									<div key={vendor.id}>
 										<h4 className="range">
 											{vendor.collaborator ? (
-											<Link
-												to={`/vendor/${vendor.collaborator.slug}/${vendor.slug}`}
-												className="link--subtle"
-											>
-												{vendor.name}
-											</Link>
+												<Link
+													to={`/vendor/${vendor.collaborator.slug}/${vendor.slug}`}
+													className="link--subtle"
+												>
+													{vendor.name}
+												</Link>
 											) : (
 												<Link
-												to={`/vendor/${vendor.slug}`}
-												className="link--subtle"
-											>
-												<span>{vendor.name}</span>
-											</Link>
+													to={`/vendor/${vendor.slug}`}
+													className="link--subtle"
+												>
+													<span>{vendor.name}</span>
+												</Link>
 											)}
 										</h4>
 										<p>
 
-										{/* // TODO: collaboratorAncillary */}
-										{vendor.collaborator ? (
-											<Link
-												to={`/vendor/${vendor.collaborator.slug}`}
-												className="link--subtle"
-											>
-												<span className="capitalize">{vendor.collaborator.industry}</span>
-												<br />
-											</Link>
-										) : null}
-										{vendor.collaboratorAncillary ? (
-											<span className="capitalize">{vendor.collaboratorAncillary}</span>
-										) : null}
+											{/* // TODO: collaboratorAncillary */}
+											{vendor.collaborator ? (
+												<Link
+													to={`/vendor/${vendor.collaborator.slug}`}
+													className="link--subtle"
+												>
+													<span className="capitalize">{vendor.collaborator.industry}</span>
+													<br />
+												</Link>
+											) : null}
+											{vendor.collaboratorAncillary ? (
+												<span className="capitalize">{vendor.collaboratorAncillary}</span>
+											) : null}
 											<hr />
 										</p>
 									</div>
@@ -472,55 +472,55 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 								<div className="">
 									{data.strapiProject.project_single_use_links.map((link) => (
 										<div key={link.id}>
-										<h4 className="range">
-										{/* // TODO these could kinda be attached so the hover state is nicer */}
-                    {link.link ? (
-                      link.link.startsWith("http") ? (
-                        <a
-                          href={link.link}
-                          className="link--subtle"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {link.name}
-                        </a>
-                      ) : (
-                      <Link
-                        to={`/vendor/${link.link}`}
-                        className="link--subtle"
-                      >
-											{link.name}
-										</Link>
-                      )
-                    ) : (
-                      link.name
-                    )}
-									</h4>
-									<p>
-                    {link.service_link ? (
-                      link.service_link.startsWith("http") ? (
-                        <a
-                          href={link.service_link}
-                          className="link--subtle"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <span className="capitalize">{link.service}</span>
-                        </a>
-                      ) : (
-                        <Link
-                          to={`/vendor/${link.link}`}
-                          className="link--subtle"
-                        >
-                          <span className="capitalize">{link.service}</span>
-                          <br />
-                        </Link>
-                      )
-                    ) : (
-                      <span className="capitalize">{link.service}</span>
-                    )}
-									</p>
-									</div>
+											<h4 className="range">
+												{/* // TODO these could kinda be attached so the hover state is nicer */}
+												{link.link ? (
+													link.link.startsWith("http") ? (
+														<a
+															href={link.link}
+															className="link--subtle"
+															target="_blank"
+															rel="noopener noreferrer"
+														>
+															{link.name}
+														</a>
+													) : (
+														<Link
+															to={`/vendor/${link.link}`}
+															className="link--subtle"
+														>
+															{link.name}
+														</Link>
+													)
+												) : (
+													link.name
+												)}
+											</h4>
+											<p>
+												{link.service_link ? (
+													link.service_link.startsWith("http") ? (
+														<a
+															href={link.service_link}
+															className="link--subtle"
+															target="_blank"
+															rel="noopener noreferrer"
+														>
+															<span className="capitalize">{link.service}</span>
+														</a>
+													) : (
+														<Link
+															to={`/vendor/${link.link}`}
+															className="link--subtle"
+														>
+															<span className="capitalize">{link.service}</span>
+															<br />
+														</Link>
+													)
+												) : (
+													<span className="capitalize">{link.service}</span>
+												)}
+											</p>
+										</div>
 									))}
 								</div>
 							</section>
@@ -575,7 +575,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 				</>
 			) : (
 				<React.Fragment>
-          {/* // TODO: there essentially cant be no lights we would just  */}
+					{/* // TODO: there essentially cant be no lights we would just  */}
 					<div className="stork">
 						<hr />
 						<h4>Other Projects</h4>
@@ -606,7 +606,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 
 			<hr className="stork" />
 
-{/* // ? can a project have multiple services? I kinda doubt it and should be in the breadcrumb */}
+			{/* // ? can a project have multiple services? I kinda doubt it and should be in the breadcrumb */}
 			<Breadcrumbs>
 				<Breadcrumb>
 					<Link to="/projects/">Project</Link>

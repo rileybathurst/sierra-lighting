@@ -19,14 +19,14 @@ export const Testimonial = () => {
               </li>
             </ul>
           ) : (
-            
+
             <h3>
               {/* project name */}
               <a href={faker.internet.url()}>project name</a>
             </h3>
           )}
-          <p className="testimonial--quote_mark range">&quot;</p>
-          
+          <p className="testimonial--quote_mark">&quot;</p>
+
           {/* testimonial */}
           <p>{faker.lorem.paragraph()}</p>
 
@@ -40,10 +40,10 @@ export const Testimonial = () => {
 
             {/* company and position */}
             {faker.datatype.boolean() ? (
-            <p>
-              <strong>{faker.company.name()}</strong>
-              {faker.datatype.boolean() ? ` - ${faker.person.jobTitle()}` : null}
-            </p>
+              <p>
+                <strong>{faker.company.name()}</strong>
+                {faker.datatype.boolean() ? ` - ${faker.person.jobTitle()}` : null}
+              </p>
             ) : null}
 
           </figcaption>
