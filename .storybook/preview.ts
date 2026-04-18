@@ -8,6 +8,8 @@ export const parameters = {
   },
 };
 
+import "../src/stories/story.css";
+
 import "../src/styles/app.css";
 
 // Supports weights 100-700

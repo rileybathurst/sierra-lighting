@@ -74,37 +74,30 @@ ul {
 
 .footer_list > ul {
   /*  this is a flex not a grid to be able to reorder with the season */
-  display: flex;
-  flex-flow: row wrap;
+  display: grid;
   padding-inline-start: 0;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
   gap: 0.5rem;
   justify-items: space-between;
   align-items: space-between;
 
   /*  theres not 1 number that does this its close but not there */
   > li {
-    flex: 1 1 1var (--vinson);
+    flex: 1 1 1 var(--vinson);
 
     @media (min-width: 60rem) {
       flex: 1 1 9rem;
     }
 
     list-style: none;
-    line-height: 1.6rem; /*  based on the borders when hovered */
-    padding-block-end: 0.5rem;
     text-align: center;
-    padding-inline-start: 0;
-    border: 1px solid;
-    border-color: var(--honey-100);
-    border-radius: var(--border-radius);
-    background-color: var(--honey-50);
     padding-block: 0.5rem;
+    padding-inline: var(--vinson);
+    border: 1px solid var(--honey-100);
 
     @media (min-width: 60rem) {
       border: none;
       border-right: 1px solid var(--honey-400);
-      border-radius: 0;
-      background-color: transparent;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -118,16 +111,11 @@ ul {
     }
 
     ul {
-      padding-inline-start: 0;
+      padding-inline-start: 0; /* reset */
       li {
         list-style: none;
+        padding: 0;
       }
-    }
-
-    /*  this is all just guess and check as its a weird spot */
-    .footer_list--no_link {
-      padding-block-start: 0.5rem;
-      /*  padding-block-end: 0.65rem; */
     }
   }
 
@@ -253,6 +241,7 @@ ul {
 /* AFFILIATIONS */
 /*------------------*/
 
+/* TODO: I'd prefer the plural to not just be the 's' */
 .affiliations {
   list-style: none;
   gap: var(--vinson); /*  this works on grid and flex */
@@ -266,6 +255,7 @@ ul {
   padding: var(--kosciuszko); /*  reset */
 
   > .affiliation {
+    background-color: var(--neutral-100);
     border: 1px solid var(--honey-400);
     padding: var(--kosciuszko);
     box-shadow: var(--mesosphere);

@@ -18,8 +18,6 @@ main {
 }
 
 .stork,
-.trusted,
-.service-area,
 .services,
 .testimonials,
 .testimonial,
@@ -43,7 +41,8 @@ main {
   padding-inline: var(--vinson);
 }
 
-.albatross {
+.albatross,
+.footer_list {
   max-width: var(--albatross);
   margin-inline: auto;
   padding-inline: var(--vinson);
@@ -305,82 +304,18 @@ header {
   margin-block-end: var(--vinson);
 }
 
-/*  .areas-and-gallery */
-/*------------------------------------*/
-/*   .areas-and-gallery */
-/*------------------------------------*/
-
-.areas-and-gallery {
-  @media (min-width: 60rem) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: var(--albatross);
-    margin-inline: auto;
-    gap: var(--elbrus);
-
-    .service-area {
-      grid-row: 1;
-      grid-column: 2;
-    }
-
-    .home-gallery {
-      grid-row: 1;
-      grid-column: 1;
-      margin-block-start: var(--vinson);
-    }
-  }
-}
-
+/* TODO: document this */
 @media (max-width: 60rem) {
   .contact {
     padding-inline: 0;
   }
 }
 
-.home-gallery {
-  max-width: var(--stork);
-  margin-inline: auto;
-  display: flex;
-
-  @media (min-width: 60rem) {
-    flex-direction: column;
-    gap: var(--kilimanjaro);
-  }
-  /* ? this seems very specific */
-
-  .home-hero a {
-    display: grid;
-
-    > * {
-      grid-row: 1;
-      grid-column: 1;
-    }
-
-    p {
-      /* text-align: center; */
-      align-self: flex-end;
-      /*  text-align: center; */
-      justify-self: center;
-      padding: 0.25rem;
-      border-radius: var(--border-radius);
-      opacity: 0.7;
-      background-color: var(--brilliance);
-      /* * deals with poster margin-block-end */
-
-      @media (min-width: 60rem) {
-        margin-block-end: 4.5rem;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        background-color: var(--denim-700);
-      }
-    }
-  }
-}
-
 /*------------------------------------*/
 /* FOOTER */
 /* * this name isnt great as I also use it for vendors */
+/*------------------------------------*/
+
 .footer-social {
   max-width: var(--condor);
   margin-inline: auto;
@@ -932,15 +867,6 @@ footer {
   > a {
     order: 4;
   }
-}
-
-
-/*------------------------------------*/
-
-.footer_list {
-  max-width: var(--albatross);
-  margin-inline: auto;
-  padding-inline: var(--vinson);
 }
 
 /*------------------------------------*/

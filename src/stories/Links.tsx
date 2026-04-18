@@ -1,8 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { faker } from "@faker-js/faker";
-
-import "./story.css";
 
 export const Links = () => {
   return (
@@ -31,7 +28,8 @@ export const Links = () => {
         <a href={faker.internet.url()} className="link--subtle">
           active
         </a>
-        &nbsp;removes the color
+        &nbsp;removes the color<br />
+        used for a top of the footer makes sense there
       </p>
     </>
   );

@@ -32,7 +32,7 @@ export const Typography = () => {
 
       {/* // TODO: document this */}
       <p>
-        Mixta should only be used on major headings prefereably with an eyebrow
+        Mixta should only be used on major headings
       </p>
 
     </section>

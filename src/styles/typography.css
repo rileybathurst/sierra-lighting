@@ -48,6 +48,8 @@ h1,
   font-size: var(--everest); /* 48px */
   line-height: 3.75rem; /* 60px */
   margin-block-end: var(--aconcagua); /* 40px */
+
+  font-weight: 400;
 }
 
 h2,
