@@ -14,14 +14,14 @@ export const query = graphql`
         }
       }
     }
-
-    hero_dark {
-      alternativeText
-      localFile {
-        childImageSharp {
-          gatsbyImageData
-        }
-      }
-    }
   }
 `
+
+/* hero_dark {
+  alternativeText
+  localFile {
+    childImageSharp {
+      gatsbyImageData
+    }
+  }
+} */

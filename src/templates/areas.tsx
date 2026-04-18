@@ -18,9 +18,8 @@ import Card from '../components/card';
 import type { CardType } from '../types/card-type';
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import Start from '../components/start';
-import Season from '../components/season';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import Suite from '../components/suite';
+import { SuiteType } from '../types/suite-type';
 
 
 // this is no longer right as there might only be sub venues
@@ -112,27 +111,7 @@ type AreasTemplateTypes = {
       businessName: string;
     };
     allStrapiService: {
-      nodes: {
-        id: React.Key;
-        name: string;
-        slug: string;
-        hero_light: {
-          alternativeText: string;
-          localFile: {
-            childImageSharp: {
-              gatsbyImageData: IGatsbyImageData;
-            };
-          };
-        };
-        hero_dark: {
-          alternativeText: string;
-          localFile: {
-            childImageSharp: {
-              gatsbyImageData: IGatsbyImageData;
-            };
-          };
-        };
-      }[];
+      nodes: SuiteType['services'];
     };
   };
 };

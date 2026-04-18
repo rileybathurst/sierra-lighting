@@ -21,6 +21,7 @@ main {
 .services,
 .testimonials,
 .testimonial,
+.slider,
 .contact {
   max-width: var(--stork);
   margin-inline: auto;
@@ -488,20 +489,8 @@ footer {
     padding-inline-start: 0;
     margin-block-start: 0; /*  reset */
     display: block;
-    /*  padding-block-end: var(--kilimanjaro); */
-    font-size: var(--elbrus);
     line-height: 1.875rem; /* TODO: variable */
     margin-block-end: 0;
-  }
-
-  /* TODO: this seems like a mess */
-  .together h3,
-  .together p {
-    display: inline-block;
-  }
-
-  .together p {
-    margin-inline-start: var(--vinson);
   }
 }
 
@@ -551,28 +540,6 @@ footer {
     @media (prefers-color-scheme: dark) {
       border-color: var(--denim-700);
     }
-  }
-}
-
-/*------------------*/
-/* TESTIMONIALS */
-/*------------------*/
-
-.testimonial-links {
-  display: flex;
-  gap: var(--vinson);
-  flex-flow: row wrap;
-  margin-block-end: var(--line-height);
-}
-
-.services-wrap {
-  max-width: var(--albatross);
-  margin-inline: auto;
-  display: flex;
-  flex-flow: row wrap;
-
-  > * {
-    flex: 1 1 30rem;
   }
 }
 
@@ -689,51 +656,22 @@ footer {
   margin-block-start: 0;
 }
 
-/*------------------*/
-
-/* .light-hero {
-  display: grid;
-  max-width: var(--pelican);
-  margin-inline: auto;
-
-  > * {
-    grid-row: 1;
-    grid-column: 1;
-  }
-
-  .poster {
-    margin-block-end: var(--denali);
-  }
-
-  .detail {
-    margin-block-end: calc(0rem - var(--denali));
-
-    max-width: 30%;
-    max-height: 50%;
-    border: 1px solid var(--brilliance);
-    box-shadow: var(--troposphere);
-    justify-self: flex-end;
-    align-self: flex-end;
-    margin-inline-end: var(--denali);
-
-    @media (prefers-color-scheme: dark) {
-      border-color: var(--denim-600);
-    }
-  }
-} */
+.margin-block-end-aconcagua {
+  margin-block-end: var(--aconcagua);
+}
 
 /*------------------------------------*/
 
 .lookbook {
-  /* super experimental but it might be coming so I want it to test */
-  @supports (grid-template-rows: masonry) {
+  /* TODO: work against grid-lanes */
+  @supports (grid-template-rows: grid-lanes) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    grid-template-rows: masonry;
+    grid-template-rows: grid-lanes;
     gap: var(--denali);
   }
 
-  @supports not (grid-template-rows: masonry) {
+  @supports not (grid-template-rows: grid-lanes) {
     display: flex;
     flex-flow: row wrap;
     gap: var(--vinson);
@@ -872,7 +810,6 @@ footer {
 /*------------------------------------*/
 
 .qualities {
-  margin-block-end: var(--everest);
 
   padding-block-start: 5rem;
   padding-inline: var(--elbrus);
@@ -891,163 +828,7 @@ footer {
   }
 }
 
-/*------------------------------------*/
-/* #H2 */
-/*------------------------------------*/
-
-/* if this works make it back to a hero */
-
-.hero-2 {
-  display: grid;
-
-  background: var(--honey-100);
-  box-shadow: 0 0 0 100vmax var(--honey-100); /* ? */
-  clip-path: inset(0 -100vmax);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-750);
-    box-shadow: 0 0 0 100vmax var(--denim-750);
-  }
-
-  > * {
-    grid-row: 1;
-    grid-column: 1;
-  }
-
-  .hero-2-svg {
-    width: 100%;
-    max-width: 100%;
-    grid-row: 4;
-    grid-column: 1;
-    /* background-image: url("../images/hero-2.svg"); */
-    /* doing this as a background image allows blur */
-
-    background-position-x: center;
-    background-position-y: bottom;
-    background-size: cover;
-    /* min-height: 5rem; */
-
-    @media (min-width: 32rem) {
-      max-height: 20rem;
-    }
-  }
-
-/*------------------------------------*/
-/* #MENU */
-/*------------------------------------*/
-
-  .bigboy {
-    grid-row: 1;
-    grid-column: 1;
-    max-width: var(--albatross);
-    margin-inline: auto;
-    padding-inline: var(--vinson);
-    align-self: flex-start;
-  }
-
-  .h2-container {
-    width: calc(100% - var(--denali));
-    grid-row: 2;
-    grid-column: 1;
-    z-index: var(--understory);
-    max-width: var(--albatross);
-    margin-inline: auto;
-    padding-block-start: var(--kosciuszko);
-    padding-inline: var(--vinson);
-    align-self: flex-start;
-    display: grid;
-    gap: var(--vinson);
-
-    .logo {
-      grid-row: 1;
-      grid-column: 1;
-      align-self: center;
-    }
-
-    .hero-tree {
-      width: 100%;
-      grid-row: 1;
-      grid-column: 2;
-      display: grid;
-
-      > * {
-        grid-row: 1;
-        grid-column: 1;
-        justify-self: center;
-      }
-
-      .hero-tree-screen {
-        mix-blend-mode: screen;
-        z-index: var(--floor);
-      }
-
-      .hero-tree-solid {
-        z-index: var(--understory);
-      }
-    }
-
-    h2 {
-      grid-row: 1;
-      grid-column: 1/3;
-
-      /* TODO: move this to typography.css */
-      font-weight: 300;
-
-      @media (min-width: 30rem) {
-        grid-row: 2;
-      }
-    }
-
-    @media (min-width: 30rem) {
-      grid-template-columns: 1fr minmax(auto, 10rem) 1fr;
-
-      .logo {
-        justify-self: end;
-      }
-
-      svg {
-        min-height: 5rem;
-      }
-
-      h2 {
-        grid-row: 1;
-        grid-column: 3;
-      }
-    }
-  }
-
-  .h2-text {
-    max-width: var(--stork);
-    margin-inline: auto;
-    grid-row: 3;
-    height: min-content;
-    z-index: var(--understory);
-    padding: var(--vinson);
-    align-self: flex-end;
-    border-radius: var(--border-radius);
-    background-color: rgb(255 255 255 / 50%); /* TODO: variable */
-    margin-block-end: clamp(var(--denali), 5vw, var(--everest));
-
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--denim-700);
-
-      .button {
-        background-color: var(--denim-600);
-        border-color: var(--denim-500);
-        color: var(--denim-200);
-      }
-    }
-
-    p {
-      margin-block-end: var(--elbrus);
-    }
-
-    a {
-      margin-block-end: var(--vinson);
-    }
-  }
-}
-
+/* TODO: rename this */
 /*------------------------------------*/
 /* #HERO 3 */
 /*------------------------------------*/

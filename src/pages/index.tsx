@@ -36,10 +36,7 @@ const IndexPage = () => {
         nodes {
           id
           customer
-          platform
           excerpt
-          createdAt
-          stars
           title
           position
         }

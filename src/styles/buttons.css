@@ -71,7 +71,7 @@ button:focus,
 }
 
 .button-hero {
-  place-self: start;
+  place-self: center;
   font-size: var(--elbrus);
   @media (min-width: 30rem) {
     font-size: var(--kilimanjaro);

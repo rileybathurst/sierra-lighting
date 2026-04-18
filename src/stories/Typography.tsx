@@ -1,8 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
-
-import "./story.css";
-// import './typography.css';
+import { faker } from "@faker-js/faker";
 
 export const Typography = () => {
   return (
@@ -14,13 +11,7 @@ export const Typography = () => {
       <h5>h5 - elbrus</h5>
       <h6>h6 - vinson</h6>
       <p>p - vinson</p>
-      <p>
-        {/* TODO: faker */}
-        Yes, Yes, without the oops! So you two dig up, dig up dinosaurs? We
-        gotta burn the rain forest, dump toxic waste, pollute the air, and rip
-        up the OZONE! 'Cause maybe if we screw up this planet enough, they won't
-        want it anymore! Hey, take a look at the earthlings. Goodbye!
-      </p>
+      <p>{faker.lorem.paragraph()}</p>
       <small>small - kosciuszko</small>
       {/* // TODO: lighter weight heading something about boxer weights */}
       <hr />
@@ -34,6 +25,24 @@ export const Typography = () => {
       <p>
         Mixta should only be used on major headings
       </p>
+
+      <hr />
+
+
+      <h4>font weights</h4>
+      <h4>h4 - standard</h4>
+
+      <ul className="kilimanjaro">
+        <li className="bridger">Bridger - 900</li>
+        <li className="cruiser">Cruiser - 800</li>
+        <li className="heavy">heavy - 700</li>
+        <li className="middle">middle - 600</li>
+        <li className="welter">welter - 500</li>
+        <li className="light">light - 400</li>
+        <li className="feather">feather - 300</li>
+        <li className="bantam">bantam - 200</li>
+        <li className="fly">fly - 100</li>
+      </ul>
 
     </section>
   );

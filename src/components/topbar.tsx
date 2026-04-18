@@ -28,7 +28,7 @@ const TopBar = () => {
       return strapiTopbar.defaultWedding;
     } else {
       console.error('No topbar title set in Strapi');
-    return '';
+      return '';
     }
   })();
 
@@ -41,9 +41,11 @@ const TopBar = () => {
       return strapiTopbar.defaultWeddingLink;
     } else {
       console.log('No topbar link set in Strapi');
-    return '';
+      return '';
     }
   })();
+
+  // ! broken styling
 
   return (
     <div className="top-bar">

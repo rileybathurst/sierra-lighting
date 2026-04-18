@@ -1,12 +1,6 @@
-.slider-container {
-  margin-block-end: var(--kilimanjaro);
-}
-
 .slider {
-  margin-inline: auto;
-  max-width: var(--stork);
   white-space: nowrap;
-  width: calc(100vw - var(--denali));
+  width: calc(100vw - var(--denali) * 2);
 
   > ul {
     overflow-x: hidden;
@@ -14,18 +8,19 @@
     > li {
       display: inline-block;
       animation-duration: 20s;
+
       animation-name: slide;
       animation-iteration-count: infinite;
       width: 100%; /*  the text is skinnier */
     }
 
-    .testimonial--stars {
-      list-style: none;
-      display: flex;
+    h4 {
+      margin-block-end: var(--vision);
     }
 
-    /* short text looked bad breaking lines a lot */
+    /* * short text looked bad breaking lines a lot */
     p {
+      white-space: normal;
       max-width: var(--vulture);
     }
 

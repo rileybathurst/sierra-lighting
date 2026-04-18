@@ -109,6 +109,46 @@ small,
   margin-block-end: 0.875rem; /* 14px */
 }
 
+/*------------------------------------*\
+  #Weights
+\*------------------------------------*/
+
+.bridger {
+  font-weight: 900;
+}
+
+.cruiser {
+  font-weight: 800;
+}
+
+.heavy {
+  font-weight: 700;
+}
+
+.middle {
+  font-weight: 600;
+}
+
+.welter {
+  font-weight: 500;
+}
+
+.light {
+  font-weight: 400;
+}
+
+.feather {
+  font-weight: 300;
+}
+
+.bantam {
+  font-weight: 200;
+}
+
+.fly {
+  font-weight: 100;
+}
+
 /*------------------------------------*/
 
 hgroup {

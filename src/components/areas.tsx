@@ -2,6 +2,14 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby";
 import Card from "../components/card";
 import type { CardType } from "../types/card-type";
+import Season from "./season";
+import type { ImageType } from "../types/image-type";
+
+// Extend CardType locally to include weddingImage
+interface AreaCardType extends CardType {
+  image: ImageType;
+  weddingImage?: ImageType; // Optional weddingImage property
+}
 
 const Areas = () => {
 
@@ -29,8 +37,13 @@ const Areas = () => {
             }
           }
 
-          venues {
-            id
+          weddingImage {
+            alternativeText
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
           }
 
           areas {
@@ -51,6 +64,21 @@ const Areas = () => {
     b: { areas: { length: number } }
   };
 
+  // TODO: venues were getting pulled for something I dont know what tho
+  // I guess maybe a count or even if we have them for wedding
+  /* venues {
+    id
+  } */
+
+  // console.log(allStrapiArea.nodes);
+
+  allStrapiArea.nodes.map((area: AreaCardType) => {
+    if (Season() === "wedding" && area.weddingImage) {
+      area.image = area.weddingImage;
+    }
+    return area;
+  });
+
   return (
     <main className="albatross">
       <div className="stork">
@@ -63,7 +91,7 @@ const Areas = () => {
         <section className="deck">
           {allStrapiArea.nodes
             .sort((a: SortTypes['a'], b: SortTypes['b']) => b.areas.length - a.areas.length) // Sort by the number of area.areas
-            .map((area: CardType) => (
+            .map((area: AreaCardType) => (
               <Card
                 key={area.id}
                 {...area}

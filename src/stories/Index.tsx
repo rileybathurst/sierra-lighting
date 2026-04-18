@@ -12,6 +12,7 @@ import { Card } from './Card';
 
 import { faker } from '@faker-js/faker';
 import { Suite } from './suite';
+import { Slider } from './slider';
 
 export const Index = () => {
   return (
@@ -40,7 +41,9 @@ export const Index = () => {
           </div>
 
           <section className="text">
-            <div className="background">{/* stay gold */}</div>
+            <div className="background">
+              {/* stay gold */}
+            </div>
             <div className="react-markdown">
               {faker.lorem.paragraphs(2)}
             </div>
@@ -55,39 +58,27 @@ export const Index = () => {
               <p>{faker.lorem.paragraphs(1)}</p>
             </section>
           ))}
+          <hr />
         </section>
 
         {/* // TODO: move this outside the loop but needs a little more designing */}
-        <h3>
-          <a href="/process">Learn more about our process</a>
-        </h3>
-        <hr />
+        <section className="albatross">
+          <h3 className="aconcagua">
+            <a href="/process">Learn more about our process</a>
+          </h3>
+          <p>Ready to bring your vision to life? Get started with a free estimate today and let us illuminate your home or business with an unforgettable lighting display!</p>
+          <hr />
+        </section>
 
-        <div className="slider-container">
-          <section className="slider testimonials">
-            <h4>Thanks From Our Customers</h4>
+        <section id="testimonial-slider">
+          <h4 className="stork denali">Thanks From Our Customers</h4>
+          <Slider />
+          <h3 className="stork elbrus margin-block-end-aconcagua">
+            <a href="/testimonials">Read More Reviews</a>
+          </h3>
 
-            <ul>
-              {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(() => (
-                <li key={faker.string.uuid()}>
-                  <p>{faker.lorem.sentences(2)}</p>
-
-                  {/* // TODO: className="together" is a bad name */}
-                  <div className="together">
-                    <h4>{faker.person.fullName()}</h4>
-                    <p>{faker.person.jobTitle()}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            <div className="testimonial-links">
-              <h3>
-                <a href="/testimonials">Read More Reviews</a>
-              </h3>
-            </div>
-          </section>
-        </div>
+          <hr />
+        </section>
 
         <Suite />
 

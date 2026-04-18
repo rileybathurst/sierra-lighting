@@ -1,13 +1,13 @@
-// this is the Name.stories.tsx file
+// this is the Slider.tsx file
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from 'storybook/test';
-import { Widths } from './Widths';
+import { Slider } from './slider';
 
 const meta = {
-  component: Widths,
-  title: 'Atoms/Widths',
+  component: Slider,
+  title: 'Organisms/Slider',
   args: { onClick: fn() },
-} satisfies Meta<typeof Widths>;
+} satisfies Meta<typeof Slider>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

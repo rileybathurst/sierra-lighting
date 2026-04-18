@@ -6,8 +6,7 @@
     padding-inline-start: 0; /*  reset */
   }
 }
-/* ? double check this is right */
-.projects.holiday,
+
 .projects.xmas {
   .residential {
     order: 1;
