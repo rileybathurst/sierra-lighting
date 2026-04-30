@@ -58,27 +58,27 @@ main {
   gap: clamp(var(--kosciuszko), 1.667vw, var(--denali));
   padding-inline: var(--kosciuszko);
 
-  > * {
+  >* {
     flex: 1 1;
     width: 100%;
     height: fit-content;
   }
 }
 
-.pelican.wrap > *,
-.albatross.wrap > *,
-.deck > * {
+.pelican.wrap>*,
+.albatross.wrap>*,
+.deck>* {
   max-width: none;
   margin-inline: 0;
   padding-inline: 0;
 }
 
-.pelican.wrap > * {
+.pelican.wrap>* {
   flex: 1 1 calc(var(--pelican) / 2 - var(--vinson));
 }
 
-.albatross.wrap > *,
-.deck > * {
+.albatross.wrap>*,
+.deck>* {
   flex: 1 1 calc(var(--albatross) / 2 - var(--vinson));
 }
 
@@ -90,15 +90,18 @@ main {
 
 /* TODO: document all these important tags */
 .margin-block-end-0 {
-  margin-block-end: 0 !important; /* overwrites deck */
+  margin-block-end: 0 !important;
+  /* overwrites deck */
 }
 
 .margin-block-end-vinson {
-  margin-block-end: var(--vinson) !important; /* overwrites deck */
+  margin-block-end: var(--vinson) !important;
+  /* overwrites deck */
 }
 
 .margin-block-end-kilimanjaro {
-  margin-block-end: var(--kilimanjaro) !important; /* overwrites deck */
+  margin-block-end: var(--kilimanjaro) !important;
+  /* overwrites deck */
 }
 
 /*------------------------------------*/
@@ -111,7 +114,8 @@ header button svg {
 }
 
 .top-bar {
-  z-index: 4; /*  super special over the small menu */
+  z-index: 4;
+  /*  super special over the small menu */
   position: relative;
 
   hr {
@@ -121,7 +125,8 @@ header button svg {
 
 header {
   z-index: var(--canopy);
-  position: relative; /* needed for z-index */
+  position: relative;
+  /* needed for z-index */
 
   max-width: var(--pelican);
   margin-inline: auto;
@@ -152,9 +157,11 @@ header {
     border: none;
     box-shadow: none !important;
     grid-row: 1;
-    grid-column: 2; /* guess and check */
+    grid-column: 2;
+    /* guess and check */
     z-index: 2;
-    max-width: 4rem; /*  guess and check */
+    max-width: 4rem;
+    /*  guess and check */
     margin-inline-end: var(--vinson);
     margin-block-start: var(--vinson);
     justify-self: flex-end;
@@ -166,9 +173,11 @@ header {
       max-width: max-content;
     }
   }
+
   /* overwirte the regular button style */
   button:hover {
-    background-color: transparent !important; /*  overwirte the regular button style */
+    background-color: transparent !important;
+    /*  overwirte the regular button style */
     box-shadow: none;
   }
 
@@ -226,7 +235,7 @@ header {
   max-width: var(--pelican);
   margin-inline: auto;
 
-  > * {
+  >* {
     grid-row: 1;
     grid-column: 1;
   }
@@ -282,7 +291,8 @@ header {
 
   @media (prefers-color-scheme: dark) {
     border-color: var(--denim-700);
-    background-color: var(--denim-700); /* TODO these shouldnt match */
+    background-color: var(--denim-700);
+    /* TODO these shouldnt match */
   }
 
   .poster,
@@ -325,8 +335,10 @@ header {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  gap: var(--kilimanjaro); /* reset */
-  padding-inline: var(--vinson); /*  reset */
+  gap: var(--kilimanjaro);
+  /* reset */
+  padding-inline: var(--vinson);
+  /*  reset */
   justify-content: center;
 
   @media (min-width: 60rem) {
@@ -391,7 +403,7 @@ header {
   flex-wrap: wrap-reverse;
   gap: var(--elbrus);
 
-  > * {
+  >* {
     flex: 1 1 15rem;
   }
 }
@@ -400,18 +412,20 @@ header {
   max-width: var(--stork);
   margin-inline: auto;
   width: calc(100% - var(--denali));
-  display: flex; /* skip var(--vinson) due to a flex gap from a sr-only element */
+  display: flex;
+  /* skip var(--vinson) due to a flex gap from a sr-only element */
   gap: var(--vinson);
-  margin-block-start: 0.5rem; /*  skip var(--vinson) due to a flex gap from a sr-only element */
+  margin-block-start: 0.5rem;
+  /*  skip var(--vinson) due to a flex gap from a sr-only element */
   flex-direction: column;
+
   /* skip var(--vinson) due to a flex gap from a sr-only element */
   @media (min-width: 60rem) {
-    margin-block-start: var(
-      --denali
-    ); /*  skip var(--vinson) due to a flex gap from a sr-only element */
+    margin-block-start: var(--denali);
+    /*  skip var(--vinson) due to a flex gap from a sr-only element */
   }
 
-  > * {
+  >* {
     text-align: center;
     /* there shouldnt be a flex gap if you cant see the content */
   }
@@ -445,17 +459,21 @@ footer {
   border-radius: 0.5rem;
   margin-block-end: var(--kilimanjaro);
   box-shadow: var(--mesosphere);
+
   /* reset */
   figure {
-    margin: 0; /*  reset */
+    margin: 0;
+
+    /*  reset */
     /* reset */
     blockquote {
-      margin: 0; /*  reset */
+      margin: 0;
+      /*  reset */
       display: grid;
       gap: var(--vinson);
 
       /*  TODO inception rule */
-      > * {
+      >* {
         grid-column: 2;
       }
     }
@@ -480,6 +498,7 @@ footer {
 
 .testimonials {
   margin-block-end: var(--aconcagua);
+
   hr {
     padding-block-start: var(--kilimanjaro);
   }
@@ -487,9 +506,11 @@ footer {
   ul {
     /* reset */
     padding-inline-start: 0;
-    margin-block-start: 0; /*  reset */
+    margin-block-start: 0;
+    /*  reset */
     display: block;
-    line-height: 1.875rem; /* TODO: variable */
+    line-height: 1.875rem;
+    /* TODO: variable */
     margin-block-end: 0;
   }
 }
@@ -514,7 +535,7 @@ footer {
     gap: var(--vinson);
   }
 
-  > * {
+  >* {
     width: 33%;
     box-shadow: var(--troposphere);
     border-radius: var(--border-radius);
@@ -524,6 +545,7 @@ footer {
       border-color: var(--denim-700);
     }
   }
+
   /* width: 100%; */
   .gatsby-image-wrapper {
     /*  width: 100%; */
@@ -534,7 +556,8 @@ footer {
 /* TODO */
 .team {
   @media (min-width: 30rem) {
-    border-left: 1px solid var(--honey-400); /*  TODO */
+    border-left: 1px solid var(--honey-400);
+    /*  TODO */
     padding-inline-start: var(--vinson);
 
     @media (prefers-color-scheme: dark) {
@@ -555,7 +578,7 @@ footer {
   width: 100%;
   display: flex;
 
-  > * {
+  >* {
     flex: 1;
   }
 }
@@ -571,48 +594,59 @@ footer {
 
 .attributes {
   display: flex;
-  justify-content: space-evenly;
   flex-flow: row wrap;
+
   gap: var(--elbrus);
-  list-style: none;
+
+  /* move this to top level */
   max-width: var(--pelican);
   margin-inline: auto;
-  padding-inline: var(--vinson);
 
   .attribute {
-    padding-inline-end: var(--vinson);
+    /* ? maybe on this at best */
+    padding: var(--vinson);
+    border-radius: var(--vinson);
+    border: 1px solid var(--honey-100);
+    align-self: start;
 
     .key {
-      margin-block-end: var(--vinson);
+      margin-block-end: 0;
     }
 
-    .value {
-      font-size: var(--kilimanjaro);
-      line-height: 2.25rem;
-      margin-block-end: 0.5rem;
-      max-width: 20rem;
-    }
-
-    .listed {
-      list-style: none;
-      margin-block-start: 0;
-      padding-inline-start: 0;
+    h3.value {
+      margin: 0;
     }
   }
+}
 
-  .attribute h3 a::after {
-    /* TODO this isnt working */
-    content: ", ";
-    text-decoration: none; /*  TODO this isnt working */
+.attributes_few {
+  justify-content: space-evenly;
+
+  .attribute {
+    /* * guess and check */
+    flex: 1 0 8 rem;
   }
 
-  .attribute h3 a:last-child::after {
-    content: none;
-  }
 
-  .attribute:last-child {
-    border-inline-end: none;
-    padding-inline-end: 0;
+  h3.value {
+    font-size: var(--kilimanjaro);
+    /* TODO: variable */
+    line-height: 2.25rem;
+    margin: 0;
+  }
+}
+
+.attributes_many {
+  justify-content: start;
+
+  .attribute {
+    /* * guess and check */
+    flex: 1 0 12 rem;
+
+    h3.value {
+      font-size: var(--vinson);
+      line-height: 1.25rem;
+    }
   }
 }
 
@@ -663,6 +697,7 @@ footer {
 /*------------------------------------*/
 
 .lookbook {
+
   /* TODO: work against grid-lanes */
   @supports (grid-template-rows: grid-lanes) {
     display: grid;
@@ -688,7 +723,7 @@ footer {
       object-fit: cover;
     }
 
-    > * {
+    >* {
       flex: 1 1 15rem;
       /* max-height: 90vh; */
     }
@@ -723,6 +758,7 @@ footer {
 
     .flex-4 {
       flex: 2 1 30rem;
+
       @media (min-width: 30rem) {
         flex: 3 1 40rem;
       }
@@ -737,11 +773,11 @@ footer {
     }
   }
 
-  > * {
+  >* {
     text-align: center;
   }
 
-  > .look {
+  >.look {
     background-color: var(--honey-100);
     border-radius: var(--card-radius);
     box-shadow: var(--mesosphere);
@@ -763,7 +799,7 @@ footer {
     }
   }
 
-  > a:hover .gatsby-image-wrapper {
+  >a:hover .gatsby-image-wrapper {
     opacity: 0.9;
   }
 }
@@ -783,9 +819,10 @@ footer {
   margin-inline: auto;
   max-width: var(--albatross);
 
-  > * {
+  >* {
     flex: 1 1 var(--vulture);
-    margin-block-end: 0; /* use the grid gap */
+    margin-block-end: 0;
+    /* use the grid gap */
   }
 }
 
@@ -802,7 +839,7 @@ footer {
     order: 3;
   }
 
-  > a {
+  >a {
     order: 4;
   }
 }
@@ -850,6 +887,7 @@ footer {
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-700);
     }
+
     min-width: 100%;
     height: 100%;
   }
@@ -873,25 +911,29 @@ footer {
   h2 {
     grid-row: 1;
     grid-column: 1;
+
     @media (min-width: 50rem) {
       grid-column: 3;
     }
+
     z-index: var(--understory);
     margin-block-start: var(--everest);
   }
 
-  > .images {
+  >.images {
     z-index: var(--floor);
     grid-row: 2;
+
     @media (min-width: 30rem) {
       grid-row: 1/3;
     }
+
     grid-column: 1/4;
     align-self: flex-end;
     display: grid;
     max-width: calc(100vw - 2rem);
 
-    > * {
+    >* {
       grid-row: 1;
       grid-column: 1;
       max-width: 100vw;
@@ -899,11 +941,14 @@ footer {
 
     .back {
       /* margin-block-start: 14rem; */
-      aspect-ratio: 16 / 8; /* * guess and check */
+      aspect-ratio: 16 / 8;
+      /* * guess and check */
       border: 2px solid var(--honey-200);
+
       @media (prefers-color-scheme: dark) {
         border-color: var(--denim-100);
       }
+
       border-radius: var(--elbrus);
       box-shadow: var(--mesosphere);
     }
@@ -916,13 +961,15 @@ footer {
 
     grid-row: 2;
     grid-column: 1;
+
     @media (min-width: 50rem) {
       grid-column: 2;
     }
+
     align-self: center;
     z-index: var(--canopy);
 
-    > * {
+    >* {
       grid-column: 1;
     }
 
@@ -945,9 +992,11 @@ footer {
       opacity: 0.9;
       box-shadow: var(--mesosphere);
       border: 1px solid var(--honey-200);
+
       @media (prefers-color-scheme: dark) {
         border-color: var(--denim-700);
       }
+
       z-index: var(--floor);
     }
   }
