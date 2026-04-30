@@ -6,7 +6,7 @@ import Season from "./season";
 import type { ImageType } from "../types/image-type";
 
 // Extend CardType locally to include weddingImage
-interface AreaCardType extends CardType {
+type AreaCardType = CardType & {
   image: ImageType;
   weddingImage?: ImageType; // Optional weddingImage property
 }

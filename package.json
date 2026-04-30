@@ -23,6 +23,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "storybook": "tsc --noEmit && stay-gold && storybook dev -p 6006",
+    "storybook-dirty": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org riley-bathurst-design --project javascript-gatsby ./public && sentry-cli sourcemaps upload --org riley-bathurst-design --project javascript-gatsby ./public",
     "stay-gold": "stay-gold"

@@ -276,24 +276,24 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
           </React.Fragment>
         ))}
 
-          <React.Fragment key={venue.id}>
-            <div
-              className='service-card'
+        <React.Fragment key={venue.id}>
+          <div
+            className='service-card'
+          >
+            <h4
+              className='capitalize venue-title venue-title'
             >
-              <h4
-                className='capitalize venue-title venue-title'
-              >
-                <Link to="/venue">
-                  Venues
-                </Link>
-              </h4>
-            </div>
-            <Card
-              key={venue.id}
-              {...venue}
-              breadcrumb='venue'
-            />
-          </React.Fragment>
+              <Link to="/venue">
+                Venues
+              </Link>
+            </h4>
+          </div>
+          <Card
+            key={venue.id}
+            {...venue}
+            breadcrumb='venue'
+          />
+        </React.Fragment>
       </div>
     )
   }
@@ -303,18 +303,18 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
       <div className='pelican service-deck'>
         {projects.slice(0, 3).map((project, index) => (
           <React.Fragment key={project.id}>
-          <div
-            className='service-card'
-          >
-            {index === 0 ? (
-              <h4
-                className='capitalize project-title project-title'
-              >
-                <Link to='/projects'>
-                  Projects
-                </Link>
-              </h4>
-            ) : null}
+            <div
+              className='service-card'
+            >
+              {index === 0 ? (
+                <h4
+                  className='capitalize project-title project-title'
+                >
+                  <Link to='/projects'>
+                    Projects
+                  </Link>
+                </h4>
+              ) : null}
             </div>
             <Card
               key={project.id}
@@ -346,13 +346,12 @@ const ServiceView = ({ data }: ServiceTypes) => {
     <>
       <Header />
       <main>
-        {data.strapiService.videoMux ?
+        {data.strapiService.videoMux &&
           <MuxPlayer
             streamType="on-demand"
             playbackId={data.strapiService.videoMux}
             className='hero-video'
           />
-          : null
         }
 
         <section className="stork">
@@ -397,7 +396,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
               slug={light.slug}
               excerpt={light.excerpt ?? ''}
               breadcrumb='light'
-              
+
               image={light.image}
               commercialHero={light.commercialHero}
               residentialHero={light.residentialHero}
@@ -587,14 +586,11 @@ export const query = graphql`
         id
       }
 
+      # // ? seems like I shouldnt need this with the fragment
       videoMux
 
       videos {
-        name
-        mux
-        description
-        publishedAt
-        thumbnailTime
+        ...videoFragment
       }
 
       lookbookCover {
@@ -617,7 +613,7 @@ export const query = graphql`
         ...venueCard
     }
 
-    strapiVendor {
+    strapiVendor(collaborator: {slug: {eq: "planners"}}) {
         ...vendorCard
     }
 

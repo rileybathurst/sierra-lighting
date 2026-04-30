@@ -45,17 +45,12 @@ const TopBar = () => {
     }
   })();
 
-  // ! broken styling
-
   return (
-    <div className="top-bar">
-      <h2>
-        {SeasonalTopbarLink ? <Link to={`/${SeasonalTopbarLink}`}>
-          {SeasonalTopbar}
-        </Link> : null}
-      </h2>
-      <hr />
-    </div>
+    <h2 className="top-bar">
+      {SeasonalTopbarLink ? <Link to={`/${SeasonalTopbarLink}`}>
+        {SeasonalTopbar}
+      </Link> : null}
+    </h2>
   );
 };
 

@@ -110,6 +110,7 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
       : null
   }
 
+  // * adding video in here starts adding quite a few things do we do something else with the gallery if we have a video
   let combinedGallery: ImageType[] = [];
   if (gallery && gallery.length > 0) {
     if (image) {

@@ -338,6 +338,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 		<>
 			<Header />
 
+			{/* // TODO: video in the hero */}
 			<Hero
 				image={heroImage}
 				name={data.strapiLight.name}

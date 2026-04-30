@@ -7,6 +7,7 @@ import type { SuiteType } from "../types/suite-type";
 const Suite = ({ services }: SuiteType) => {
 
   // console.log(services);
+  // TODOL this needs to a grid 5 objects looks weird
 
   return (
     <div className={`suite ${Season()}`}>
@@ -16,17 +17,9 @@ const Suite = ({ services }: SuiteType) => {
           to={`/${service.slug}`}
           className={`poster ${service.slug}`}
         >
-          {/* // ! wrong place this is for areas */}
-          {/* {Season() === "wedding" ? (
-            <GatsbyImage image={service.weddingImage.localFile.childImageSharp.gatsbyImageData}
-              alt={service.weddingImage.alternativeText || service.name
-              }
-            />
-          ) : ( */}
           <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
             alt={service.hero_light.alternativeText || service.name}
           />
-          {/* )} */}
           <span>{service.name} Lighting</span>
         </Link>
       ))}

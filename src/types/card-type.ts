@@ -1,4 +1,4 @@
-// ! I think I can massivley simplify this by using extends and bringing differeent images and names in  as aliases in certain places
+// TODO: I think I can massivley simplify this by using extends and bringing differeent images and names in  as aliases in certain places
 
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 

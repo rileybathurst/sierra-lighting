@@ -4,7 +4,7 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import SEO from "../../components/seo";
-import type { IGatsbyImageData } from "gatsby-plugin-image";
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
 import type { CardType } from "../../types/card-type";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -17,6 +17,8 @@ import { Link } from "gatsby";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import Testimonial from "../../components/testimonial";
 import type TestimonialTypes from "../../types/testimonial-types";
+import VideoTypes from "../../types/video-types";
+import MuxPlayer from "@mux/mux-player-react";
 
 type ProjectPageTypes = {
 	data: {
@@ -116,6 +118,8 @@ type ProjectPageTypes = {
 			}[];
 
 			testimonial: TestimonialTypes | null;
+
+			video: VideoTypes;
 		};
 
 		triptych: {
@@ -203,6 +207,7 @@ export const query = graphql`
 			}
 
 			project_single_use_links {
+				id
 				name
 				link
 				service
@@ -232,6 +237,7 @@ export const query = graphql`
 				slug
 			}
 
+			# // TODO: fragment
 			testimonial {
 				id
 				customer
@@ -241,6 +247,10 @@ export const query = graphql`
 					name
 					slug
 				}
+			}
+
+			video {
+			...videoFragment
 			}
 		}
 
@@ -281,6 +291,7 @@ export const query = graphql`
 	}
 `;
 
+
 const ProjectPage = ({ data }: ProjectPageTypes) => {
 
 	return (
@@ -288,11 +299,20 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 			<Header />
 
 			{/* // TODO: the hero gallery need specific lights like the lookbook */}
-			<Hero
-				image={data.strapiProject.image}
-				gallery={data.strapiProject.gallery}
-				badge={false}
-			/>
+			{/* // TODO: This needs to be both. and I need to deal with the difference in heights in video and just in photo */}
+			{data.strapiProject.video ?
+				<MuxPlayer
+					streamType="on-demand"
+					playbackId={data.strapiProject.video.mux}
+					className='hero-video'
+				/>
+				:
+				<Hero
+					image={data.strapiProject.image}
+					gallery={data.strapiProject.gallery}
+					badge={false}
+				/>
+			}
 
 			<main className="stork">
 				<article>
@@ -326,6 +346,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 				</React.Fragment>
 			}
 
+			{/* // ! these are an absolute mess, I can do a lot with querying the number of items */}
 			{/* // TODO: use media queries to deal with a single vendor looking really weird */}
 			{/* // TODO: add links to the headings */}
 			{data.strapiProject.venue ||
@@ -558,6 +579,14 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 					</div>
 				</React.Fragment>
 			) : null}
+
+			{data.strapiProject.video &&
+				<Hero
+					image={data.strapiProject.image}
+					gallery={data.strapiProject.gallery}
+					badge={false}
+				/>
+			}
 
 			{/* // TODO: when more than 3 this can get messy */}
 			{/* // TODO: this is too low with lots of vendors move it up */}
