@@ -107,5 +107,10 @@
     "./gatsby-config.ts",
     "./plugins/**/*",
     "showcase.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "public",
+    "src/stories"
   ]
 }
