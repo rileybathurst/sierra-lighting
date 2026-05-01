@@ -4,7 +4,7 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import SEO from "../../components/seo";
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 import type { CardType } from "../../types/card-type";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -17,8 +17,9 @@ import { Link } from "gatsby";
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
 import Testimonial from "../../components/testimonial";
 import type TestimonialTypes from "../../types/testimonial-types";
-import VideoTypes from "../../types/video-types";
+import type VideoTypes from "../../types/video-types";
 import MuxPlayer from "@mux/mux-player-react";
+import Attribute from "../../components/attribute";
 
 type ProjectPageTypes = {
 	data: {
@@ -293,7 +294,6 @@ export const query = graphql`
 
 
 const ProjectPage = ({ data }: ProjectPageTypes) => {
-
 	return (
 		<>
 			<Header />
@@ -346,292 +346,145 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 				</React.Fragment>
 			}
 
-			{/* // ! these are an absolute mess, I can do a lot with querying the number of items */}
-			{/* // TODO: use media queries to deal with a single vendor looking really weird */}
-			{/* // TODO: add links to the headings */}
 			{data.strapiProject.venue ||
 				data.strapiProject.area ||
 				data.strapiProject.vendors.length > 0 ||
-				data.strapiProject.team ||
 				data.strapiProject.project_single_use_links ? (
 				<React.Fragment>
 					<hr className="pelican" />
 					<div className="attributes">
-						{data.strapiProject.venue ? (
-							<section className="attribute">
-								<h3 className="crest">Venue</h3>
-								<h4 className="range">
-									<Link
-										to={`/venue/${data.strapiProject.venue.slug}`}
-										className="link--subtle"
-									>
-										{data.strapiProject.venue.name}
-									</Link>
-								</h4>
+						{data.strapiProject.venue && (
+							<Attribute
+								venue={{
+									name: data.strapiProject.venue.name,
+									link: `/venue/${data.strapiProject.venue.slug}`
+								}}
+							/>
+						)}
 
-								{data.strapiProject.venue?.area ? (
-									data.strapiProject.venue.area?.region ? (
-										<p>
-											<Link
-												to={`/areas/${data.strapiProject.venue.area.region.slug}`}
-												className="link--subtle"
-											>
-												{data.strapiProject.venue.area.name},{" "}
-												<StateAbbreviation
-													state={data.strapiProject.venue.area.state}
-												/>
-											</Link>
-											<br />
-										</p>
-									) : (
-										<p>
-											<Link
-												to={`/areas/${data.strapiProject.venue.area.slug}`}
-												className="link--subtle"
-											>
-												{data.strapiProject.venue.area.name},{" "}
-												<StateAbbreviation
-													state={data.strapiProject.venue.area.state}
-												/>
-											</Link>
-										</p>
-									)
-								) : null}
-							</section>
-						) : null}
-
-						{data.strapiProject.area ? (
-							<React.Fragment>
-								{/* <Attribute
-									category="area"
-									slug={data.strapiProject.area[0].slug}
-									name={`${data.strapiProject.area[0].name}, ${data.strapiProject.area[0].state}`}
-								/> */}
-
-								<section className="attribute">
-									<h3 className="crest">Area</h3>
-									<h4 className="range">
-
-										{data.strapiProject.area.region ? (
-											<React.Fragment>
-												<Link
-													key={data.strapiProject.area.region.slug}
-													to={`/areas/${data.strapiProject.area.region.slug}`}
-													className="link--subtle"
-												>
-													{data.strapiProject.area.region.name}
-												</Link>
-												<br />
-											</React.Fragment>
-										) : (
-											<Link
-												key={data.strapiProject.area.slug}
-												to={`/areas/${data.strapiProject.area.slug}`}
-												className="link--subtle"
-											>
-												{data.strapiProject.area.name},{" "}
-												<StateAbbreviation
-													state={data.strapiProject.area.state}
-												/>
-											</Link>
-										)}
-									</h4>
-								</section>
-							</React.Fragment>
-						) : null}
+						{/* // TODO: this one is a little more complex with the slug not always being direct */}
+						{data.strapiProject.area &&
+							<Attribute
+								area={{
+									name: `${data.strapiProject.area.name}, ${StateAbbreviation({ state: data.strapiProject.area.state })}`,
+									link: data.strapiProject.area.region ?
+										`/areas/${data.strapiProject.area.region.slug}`
+										:
+										`/areas/${data.strapiProject.area.slug}`
+								}}
+							/>
+						}
 
 						{/* // TODO: project/waterside-wedding/?= having multiple needs a better way of holding the service to the name and more space from the other  */}
 						{/* // TODO: sometimes vendors have a different role project/waterside-wedding/?= louise and third did the planning not the floral this is a big deal to them */}
 						{/* // TODO: florists shouldnt be plural im not sure which others are like this */}
 						{data.strapiProject.vendors.length > 0 ? (
-							<section className="attribute">
-								<h3 className="crest">Vendor{data.strapiProject.vendors.length > 1 ? 's' : null}</h3>
-								{data.strapiProject.vendors.map((vendor) => (
-									<div key={vendor.id}>
-										<h4 className="range">
-											{vendor.collaborator ? (
-												<Link
-													to={`/vendor/${vendor.collaborator.slug}/${vendor.slug}`}
-													className="link--subtle"
-												>
-													{vendor.name}
-												</Link>
-											) : (
-												<Link
-													to={`/vendor/${vendor.slug}`}
-													className="link--subtle"
-												>
-													<span>{vendor.name}</span>
-												</Link>
-											)}
-										</h4>
-										<p>
-
-											{/* // TODO: collaboratorAncillary */}
-											{vendor.collaborator ? (
-												<Link
-													to={`/vendor/${vendor.collaborator.slug}`}
-													className="link--subtle"
-												>
-													<span className="capitalize">{vendor.collaborator.industry}</span>
-													<br />
-												</Link>
-											) : null}
-											{vendor.collaboratorAncillary ? (
-												<span className="capitalize">{vendor.collaboratorAncillary}</span>
-											) : null}
-											<hr />
-										</p>
-									</div>
-								))}
-							</section>
+							data.strapiProject.vendors.map((vendor) => (
+								vendor.collaborator?.industry ? (
+									<Attribute
+										key={String(vendor.id)}
+										{...{
+											[vendor.collaborator.industry]: {
+												name: vendor.name,
+												link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`
+											}
+										}}
+									/>
+								) : vendor.collaboratorAncillary ? (
+									<Attribute
+										key={String(vendor.id)}
+										{...{
+											[vendor.collaboratorAncillary]: {
+												name: vendor.name,
+												link: `/vendor/${vendor.slug}`
+											}
+										}}
+									/>
+								) : null
+							))
 						) : null}
 
-						{data.strapiProject.project_single_use_links ? (
-							<section className="attribute">
-								{/* // ? by definition this cant have a title <h3 className="crest"></h3> */}
-								<div className="">
-									{data.strapiProject.project_single_use_links.map((link) => (
-										<div key={link.id}>
-											<h4 className="range">
-												{/* // TODO these could kinda be attached so the hover state is nicer */}
-												{link.link ? (
-													link.link.startsWith("http") ? (
-														<a
-															href={link.link}
-															className="link--subtle"
-															target="_blank"
-															rel="noopener noreferrer"
-														>
-															{link.name}
-														</a>
-													) : (
-														<Link
-															to={`/vendor/${link.link}`}
-															className="link--subtle"
-														>
-															{link.name}
-														</Link>
-													)
-												) : (
-													link.name
-												)}
-											</h4>
-											<p>
-												{link.service_link ? (
-													link.service_link.startsWith("http") ? (
-														<a
-															href={link.service_link}
-															className="link--subtle"
-															target="_blank"
-															rel="noopener noreferrer"
-														>
-															<span className="capitalize">{link.service}</span>
-														</a>
-													) : (
-														<Link
-															to={`/vendor/${link.link}`}
-															className="link--subtle"
-														>
-															<span className="capitalize">{link.service}</span>
-															<br />
-														</Link>
-													)
-												) : (
-													<span className="capitalize">{link.service}</span>
-												)}
-											</p>
-										</div>
-									))}
-								</div>
-							</section>
-						) : null}
+						{data.strapiProject.project_single_use_links && (
+							data.strapiProject.project_single_use_links.map((singleLink) => (
+								<Attribute
+									key={String(singleLink.id)}
+									{...{
+										[singleLink.service]: {
+											name: singleLink.name,
+											link: singleLink.link
+										}
+									}}
+								/>
+							))
+						)}
 
-						{data.strapiProject.team ? (
-							<React.Fragment>
-								{/* I removed team we haven't really used it in this way but keep it incase we bring it back */}
-								{/* <Attribute
-									category="team"
-									slug={data.strapiProject.area[0].slug}
-									name={`${data.strapiProject.area[0].name}, ${data.strapiProject.area[0].state}`}
-								/> */}
 
-								<section className="attribute">
-									<h3 className="crest">Team</h3>
-									<div className="">
-										{data.strapiProject.team.map((team) => (
-											<h4
-												key={team.slug}
-												className="range last-ampersand inline"
-											>
-												<Link
-													to={`/team/${team.slug}`}
-													className="link--subtle"
-												>
-													{team.name}
-												</Link>
-											</h4>
-										))}
-									</div>
-								</section>
-							</React.Fragment>
-						) : null}
 					</div>
-				</React.Fragment>
-			) : null}
+				</React.Fragment >
+			) : null
+			}
 
-			{data.strapiProject.video &&
-				<Hero
-					image={data.strapiProject.image}
-					gallery={data.strapiProject.gallery}
-					badge={false}
-				/>
+			{/* // * this is looking for video to not show it its a negative check */}
+			{
+				data.strapiProject.video &&
+				<React.Fragment>
+					<hr className="pelican" />
+					<Hero
+						image={data.strapiProject.image}
+						gallery={data.strapiProject.gallery}
+						badge={false}
+					/>
+				</React.Fragment>
 			}
 
 			{/* // TODO: when more than 3 this can get messy */}
 			{/* // TODO: this is too low with lots of vendors move it up */}
-			{data.strapiProject.lights ? (
-				<>
-					<div className="stork">
-						<hr />
-						<h3>{data.strapiProject.title} uses these lights</h3>
-					</div>
-					<section className="deck">
-						{data.strapiProject.lights.map((light) => (
-							<Card key={light.id} {...light} breadcrumb="light" />
-						))}
-					</section>
-				</>
-			) : (
-				<React.Fragment>
-					{/* // TODO: there essentially cant be no lights we would just  */}
-					<div className="stork">
-						<hr />
-						<h4>Other Projects</h4>
-					</div>
+			{
+				data.strapiProject.lights ? (
+					<>
+						<div className="stork">
+							<hr />
+							<h3>{data.strapiProject.title} uses these lights</h3>
+						</div>
+						<section className="deck">
+							{data.strapiProject.lights.map((light) => (
+								<Card key={light.id} {...light} breadcrumb="light" />
+							))}
+						</section>
+					</>
+				) : (
+					<React.Fragment>
+						{/* // TODO: there essentially cant be no lights we would just  */}
+						<div className="stork">
+							<hr />
+							<h4>Other Projects</h4>
+						</div>
 
-					<div className="deck">
-						{data.allStrapiProject.nodes.map((project) => (
-							<Card key={project.id} {...project} breadcrumb="project" />
-						))}
-					</div>
-				</React.Fragment>
-			)}
+						<div className="deck">
+							{data.allStrapiProject.nodes.map((project) => (
+								<Card key={project.id} {...project} breadcrumb="project" />
+							))}
+						</div>
+					</React.Fragment>
+				)
+			}
 
 			{/* // TODO: this design need love */}
-			{data.additional.nodes ? (
-				<div className="stork">
-					<section className="attribute">
-						<ul>
-							{data.additional.nodes.map((light) => (
-								<li key={light.id} className="range denali">
-									<Link to={`/light/${light.slug}`}>{light.name}</Link>
-								</li>
-							))}
-						</ul>
-					</section>
-				</div>
-			) : null}
+			{
+				data.additional.nodes ? (
+					<div className="stork">
+						<section className="attribute">
+							<ul>
+								{data.additional.nodes.map((light) => (
+									<li key={light.id} className="range denali">
+										<Link to={`/light/${light.slug}`}>{light.name}</Link>
+									</li>
+								))}
+							</ul>
+						</section>
+					</div>
+				) : null
+			}
 
 			<hr className="stork" />
 

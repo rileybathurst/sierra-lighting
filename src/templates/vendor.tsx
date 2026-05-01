@@ -72,13 +72,14 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
       {data.strapiVendor.profile ?
         <Hero image={data.strapiVendor.profile} />
-      : null}
+        : null}
 
       <main className="stork">
+        <p>Sierra Lighting Collaborator</p>
         <h1 className="range">{data.strapiVendor.name}</h1>
         {data.strapiVendor.collaboratorAncillary ?
           <h2>{data.strapiVendor.collaboratorAncillary}</h2>
-        : null}
+          : null}
         <hr />
         <p>{data.strapiVendor.description}</p>
 
@@ -149,11 +150,11 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         }
 
         {data.strapiVendor.collaborator ?
-        <React.Fragment>
-        <hr />
-          <BlocksRenderer content={data.strapiVendor.collaborator.description} />
-        </React.Fragment>
-        : null}
+          <React.Fragment>
+            <hr />
+            <BlocksRenderer content={data.strapiVendor.collaborator.description} />
+          </React.Fragment>
+          : null}
       </main>
 
       {data.strapiVendor.projects.length > 0 ?
@@ -177,33 +178,33 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
       {data.strapiVendor.collaborator ? (
         data.allStrapiVendor.nodes.length > 0 ?
-        <>
-          <div className="stork">
-            <hr />
-            <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
-              <h4>Other <span className='capitalize'>{data.strapiVendor.collaborator.industry}</span> Vendors</h4>
-            </Link>
-          </div>
+          <>
+            <div className="stork">
+              <hr />
+              <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
+                <h4>Other <span className='capitalize'>{data.strapiVendor.collaborator.industry}</span> Vendors</h4>
+              </Link>
+            </div>
 
-          <div className="deck">
-            {data.allStrapiVendor.nodes.map((vendor: CardType) => (
-              vendor.collaborator ? (
-                <Card
-                  key={vendor.id}
-                  {...vendor}
-                  breadcrumb={`vendor/${vendor.collaborator.slug}`}
-                />
-              ) : ( 
-              <Card
-                key={vendor.id}
-                {...vendor}
-                breadcrumb="vendor"
-              />
-              )
-            ))}
-          </div>
-        </>
-        : null
+            <div className="deck">
+              {data.allStrapiVendor.nodes.map((vendor: CardType) => (
+                vendor.collaborator ? (
+                  <Card
+                    key={vendor.id}
+                    {...vendor}
+                    breadcrumb={`vendor/${vendor.collaborator.slug}`}
+                  />
+                ) : (
+                  <Card
+                    key={vendor.id}
+                    {...vendor}
+                    breadcrumb="vendor"
+                  />
+                )
+              ))}
+            </div>
+          </>
+          : null
       ) : null}
 
       {data.strapiVendor.projects.length === 0 && data.allStrapiVendor.nodes.length === 0 ?
@@ -215,7 +216,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
             </Link>
           </h2>
         </div>
-      : null}
+        : null}
 
       <hr className='stork' />
 
@@ -228,7 +229,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
               {data.strapiVendor.collaborator.industry}
             </Link>
           </Breadcrumb>
-        : null}
+          : null}
 
         <Breadcrumb>{data.strapiVendor.name}</Breadcrumb>
       </Breadcrumbs>

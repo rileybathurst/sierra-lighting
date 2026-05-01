@@ -68,7 +68,6 @@ const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
         : null
       }
       <main className="stork">
-
         <h1>{data.strapiCollaborator.industry}</h1>
         <BlocksRenderer content={data.strapiCollaborator.description} />
 

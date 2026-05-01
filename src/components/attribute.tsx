@@ -1,30 +1,46 @@
-// TODO: this is going to get more complex
-// absolutely everything has additionals
-// venues have areas
-// areas have state abbreviations
-// vendors have services
-// team can be multiple
-
 import * as React from "react"
-import { Link } from "gatsby"
 
 type AttributeTypes = {
-  category: string;
-  slug: string;
-  name: string;
-}
-const Attribute = ({ category, slug, name }: AttributeTypes) => {
+  [key: string]: string | {
+    [key: string]: string;
+  };
+};
 
-  return (
-    <section className="attribute">
-      <h3 className="key capitalize">{category}</h3>
-      <h4 className="value">
-        <Link to={`/${category}/${slug}`}>
-          {name}
-        </Link>
-      </h4>
-    </section>
-  )
-}
+const Attribute = (attribute: AttributeTypes) => (
+  Object.entries(attribute).map(([key, value]) => {
+    if (typeof value === "object") {
+      return (
+        <div
+          key={key}
+          className="attribute capitalize"
+        >
+          <h3 className="elbrus">{key}</h3>
+          <a href={value.link}>{value.name}</a>
+        </div>
+      )
+    }
 
-export default Attribute
+    if (value) {
+      return (
+        <div
+          key={key}
+          className="attribute"
+        >
+          <h3 className="elbrus">{key}</h3>
+          <p>{value}</p>
+        </div>
+      )
+    }
+
+    return (
+      <div
+        key={key}
+        className="attribute"
+      >
+        <h3 className="elbrus">{key}</h3>
+      </div>
+    )
+  })
+);
+
+export default Attribute;

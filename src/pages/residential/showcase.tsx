@@ -14,33 +14,7 @@ import Footer from "../../components/footer";
 import type { CardType } from "../../types/card-type";
 import type CardAndGroupType from "../../types/card-and-group-type";
 import { SEO } from "../../components/seo";
-
-// TODO: this should be a component
-type AttributeTypes = {
-  price: string;
-  roofline: string;
-  trees: string;
-}
-function Attributes({ price, roofline, trees }: AttributeTypes) {
-  const sections = Object.entries({ price, roofline, trees }).map(([key, value]) => {
-    return (
-      <section className="attribute" key={key}>
-        <h3 className="crest capitalize">{key}</h3>
-        <h4 className="range">{value}</h4>
-      </section>
-    )
-  })
-
-  return (
-    <>
-      <hr className="hr-tin-soldier stork" />
-      <div className="attributes">
-        {sections}
-      </div>
-      <hr className="hr-tin-soldier stork" />
-    </>
-  )
-}
+import Attribute from "../../components/attribute";
 
 function ResidentialShowcase() {
 
@@ -182,11 +156,19 @@ function ResidentialShowcase() {
                   </div>
                 </div>
 
-                <Attributes
-                  price={showcase.price}
-                  roofline={showcase.roofline}
-                  trees={showcase.tree}
-                />
+                {(showcase.price || showcase.roofline || showcase.tree) && (
+                  <React.Fragment>
+                    <hr />
+                    <div className="attributes">
+                      <Attribute
+                        price={showcase.price}
+                        roofline={showcase.roofline}
+                        trees={showcase.tree}
+                      />
+                    </div>
+                    <hr />
+                  </React.Fragment>
+                )}
                 <Start path="showcase" />
               </div>
             ))
