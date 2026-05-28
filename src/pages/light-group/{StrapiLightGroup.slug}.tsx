@@ -42,9 +42,6 @@ export const query = graphql`
 `
 
 const LightPage = ({ data }: LightGroupPageType) => {
-
-  console.log(data);
-
   return (
     <>
       <Header />
@@ -62,7 +59,7 @@ const LightPage = ({ data }: LightGroupPageType) => {
             breadcrumb="light"
           />
         ))}
-      </section> 
+      </section>
 
       <section className="stork">
         <hr />

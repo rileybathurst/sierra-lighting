@@ -56,10 +56,7 @@ export const data = graphql`
     }
 `;
 
-const SafetyPage = ({data}: SafetyPageTypes) => {
-
-  console.log(data.strapiSafety)
-
+const SafetyPage = ({ data }: SafetyPageTypes) => {
   return (
     <>
       <Header />
@@ -70,10 +67,10 @@ const SafetyPage = ({data}: SafetyPageTypes) => {
         <h1>Safety</h1>
 
         <div className="react-markdown">
-            <Markdown>
-              {data.strapiSafety.description.data.description}
-            </Markdown>
-          </div>
+          <Markdown>
+            {data.strapiSafety.description.data.description}
+          </Markdown>
+        </div>
       </main>
 
       <Footer />
@@ -86,7 +83,7 @@ export default SafetyPage
 
 
 
-export const Head = ({data}: SafetyPageTypes) => {
+export const Head = ({ data }: SafetyPageTypes) => {
   return (
     <SEO
       title='Safety'

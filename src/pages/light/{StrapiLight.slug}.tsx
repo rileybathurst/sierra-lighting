@@ -315,7 +315,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 	];
 
 	// TODO: build the hero image switcher here
-	console.log(data.strapiLight.residentialHero);
+	// console.log(data.strapiLight.residentialHero);
 
 	let heroImage = data.strapiLight.image;
 

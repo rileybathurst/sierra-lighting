@@ -40,7 +40,7 @@ const TopBar = () => {
     } else if (Season() === 'wedding') {
       return strapiTopbar.defaultWeddingLink;
     } else {
-      console.log('No topbar link set in Strapi');
+      console.warn('No topbar link set in Strapi');
       return '';
     }
   })();

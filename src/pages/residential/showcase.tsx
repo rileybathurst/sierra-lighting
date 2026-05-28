@@ -74,7 +74,7 @@ function ResidentialShowcase() {
 
   const lightGroupArray = lightGroupSet.sort((a, b) => a.xmasOrder - b.xmasOrder);
 
-  // ? am I doing anything more than testing here?
+  // TODO: am I doing anything more than testing here?
   lightGroupArray.map((group) => (
     data.allStrapiLight.nodes
       .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))

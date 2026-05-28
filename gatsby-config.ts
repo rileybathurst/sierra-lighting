@@ -125,16 +125,15 @@ module.exports = {
         directives: {
           "script-src":
             "'self' 'unsafe-inline' use.typekit.net www.google-analytics.com www.googletagmanager.com gstatic.com https://d3ey4dbjkt2f6s.cloudfront.net/ gstatic.com",
-          "style-src-elem": "fonts.googleapis.com",
           "style-src":
-            "'self' 'unsafe-inline' use.typekit.net https://d3ey4dbjkt2f6s.cloudfront.net/",
+            "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com https://d3ey4dbjkt2f6s.cloudfront.net/",
           "font-src": "'self' 'unsafe-inline' use.typekit.net data:",
           "img-src":
             "'self' p.typekit.net https://www.google-analytics.com *.mux.com data: about:", // I think use.typekit.net is a tracking pixel
           "connect-src":
             "'self' data:  https://www.google-analytics.com/ *.mux.com *.litix.io",
           "media-src":
-            "'self' data: https://www.google-analytics.com/ *.mux.com blob:https://sierra.lighting/",
+            "'self' data: https://www.google-analytics.com/ *.mux.com blob:",
           // you can add your directives or override defaults
         },
       },
