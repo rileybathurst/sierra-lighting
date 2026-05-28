@@ -1,63 +1,56 @@
-require('dotenv').config({
-  path: '.env',
+require("dotenv").config({
+  path: ".env",
 });
-
-// const adapter = require("gatsby-adapter-netlify")
 
 const strapiConfig = {
   accessToken: process.env.STRAPI_TOKEN,
   apiURL: process.env.STRAPI_API_URL,
   collectionTypes: [
-    'affiliation',
-    'area',
-    'collaborator',
-    'far',
-    'image-grab',
-    'job',
-    'keyword',
-    'light',
-    'light-connection',
-    'light-group',
-    'lookbook',
-    'process',
-    'project',
-    'quality',
-    'service',
-    'showcase',
-    'team',
-    'testimonial',
-    'vendor',
-    'venue',
-    'video'
+    "affiliation",
+    "area",
+    "collaborator",
+    "far",
+    "image-grab",
+    "job",
+    "keyword",
+    "light",
+    "light-connection",
+    "light-group",
+    "lookbook",
+    "process",
+    "project",
+    "quality",
+    "service",
+    "showcase",
+    "team",
+    "testimonial",
+    "vendor",
+    "venue",
+    "video",
   ],
   remoteFileHeaders: {
     Referer: process.env.STRAPI_API_URL,
   },
   singleTypes: [
-    'about',
-    'area-exploratrion',
-    'feedback',
-    'hero',
-    'lookbook-description',
-    'minimum',
-    'safety',
-    'season',
-    'topbar',
-    'vendor-description',
+    "about",
+    "area-exploratrion",
+    "feedback",
+    "hero",
+    "lookbook-description",
+    "minimum",
+    "safety",
+    "season",
+    "topbar",
+    "vendor-description",
   ],
 };
 
 module.exports = {
   graphqlTypegen: true,
 
-  /*   adapter: adapter({
-      excludeDatastoreFromEngineFunction: false,
-      imageCDN: false,
-    }), */
-
   // * gatsby-plugin-sitemap needs this
   siteMetadata: {
-    siteUrl: 'https://sierra.lighting',
+    siteUrl: "https://sierra.lighting",
   },
   plugins: [
     {
@@ -74,11 +67,10 @@ module.exports = {
         pluginConfig: {
           head: false,
           respectDNT: true,
-          exclude: [
-          ],
+          exclude: [],
           delayOnRouteUpdate: 0,
-        }
-      }
+        },
+      },
     },
     {
       resolve: "gatsby-plugin-postcss",
@@ -108,37 +100,44 @@ module.exports = {
           pngOptions: {},
           webpOptions: {},
           avifOptions: {},
-        }
-      }
-    },
-    "gatsby-transformer-sharp", {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        "name": "images",
-        "path": "./src/images/"
+        },
       },
-      __key: "images"
+    },
+    "gatsby-transformer-sharp",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "images",
+        path: "./src/images/",
+      },
+      __key: "images",
     },
     {
       resolve: "gatsby-source-strapi",
       options: strapiConfig,
     },
     {
-      resolve: 'gatsby-plugin-csp',
+      resolve: "gatsby-plugin-csp",
       options: {
         mergeSecurityHeaders: true, // ? testing june 18 2022 csp issue // boolean to turn off the default security headers
         mergeScriptHashes: false, // you can disable scripts sha256 hashes
         mergeStyleHashes: false, // you can disable styles sha256 hashes
         directives: {
-          "script-src": "'self' 'unsafe-inline' use.typekit.net www.google-analytics.com www.googletagmanager.com https://d3ey4dbjkt2f6s.cloudfront.net/ gstatic.com",
-          "style-src": "'self' 'unsafe-inline' use.typekit.net https://d3ey4dbjkt2f6s.cloudfront.net/",
+          "script-src":
+            "'self' 'unsafe-inline' use.typekit.net www.google-analytics.com www.googletagmanager.com gstatic.com https://d3ey4dbjkt2f6s.cloudfront.net/ gstatic.com",
+          "style-src-elem": "fonts.googleapis.com",
+          "style-src":
+            "'self' 'unsafe-inline' use.typekit.net https://d3ey4dbjkt2f6s.cloudfront.net/",
           "font-src": "'self' 'unsafe-inline' use.typekit.net data:",
-          "img-src": "'self' p.typekit.net https://www.google-analytics.com *.mux.com data: about:", // I think use.typekit.net is a tracking pixel
-          "connect-src": "'self' data:  https://www.google-analytics.com/ *.mux.com *.litix.io",
-          "media-src": "'self' data: https://www.google-analytics.com/ *.mux.com"
+          "img-src":
+            "'self' p.typekit.net https://www.google-analytics.com *.mux.com data: about:", // I think use.typekit.net is a tracking pixel
+          "connect-src":
+            "'self' data:  https://www.google-analytics.com/ *.mux.com *.litix.io",
+          "media-src":
+            "'self' data: https://www.google-analytics.com/ *.mux.com blob:https://sierra.lighting/",
           // you can add your directives or override defaults
-        }
-      }
+        },
+      },
     },
     {
       // ? can you query for this?
@@ -169,5 +168,5 @@ module.exports = {
         dsn: process.env.SENTRY_DSN, // this is the default
       },
     },
-  ]
+  ],
 };

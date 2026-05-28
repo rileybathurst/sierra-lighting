@@ -13,10 +13,12 @@ import { Card } from './Card';
 import { faker } from '@faker-js/faker';
 import { Suite } from './suite';
 import { Slider } from './slider';
+import { Topbar } from './Topbar';
 
 export const Index = () => {
   return (
     <React.Fragment>
+      <Topbar />
       {/* <Header
         // largeLogo={false}
       /> */}

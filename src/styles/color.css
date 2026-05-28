@@ -53,7 +53,11 @@ body {
 .top-bar {
   background-color: var(--honey-300);
   color: var(--neutral-800);
-    border-color: var(--honey-400);
+  border-color: var(--honey-400);
+
+  a {
+    color: var(--neutral-800);
+  }
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-600);
@@ -127,6 +131,7 @@ header {
 
     p {
       color: var(--neutral-600);
+
       @media (prefers-color-scheme: dark) {
         color: var(--neutral-300);
       }
