@@ -203,7 +203,8 @@ header svg:active {
 
     >p {
       /* this is legal even tho not normally the way I do it */
-      padding: 0var (--denali);
+      /* ? I dont know what I meant by that comment */
+      padding: var(--denali);
       transition: 2s ease;
     }
   }
@@ -300,7 +301,6 @@ header svg:active {
 
 .avatar {
   box-shadow: var(--troposphere);
-  border-radius: var(--border-radius);
   border-radius: 50%;
   border: 1px solid var(--brilliance);
   margin-block-end: var(--kilimanjaro);
@@ -406,12 +406,13 @@ header svg:active {
     display: grid;
     align-items: start;
     gap: var(--vinson);
-    width: calc(100% - var(--denali));
+    width: calc(100% - var(--everest));
     margin-inline: auto;
 
     overflow-x: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    /* padding: 1.5rem; */
 
     >* {
       grid-row: 1;
@@ -438,5 +439,7 @@ header svg:active {
   .poster {
     width: min(calc(var(--pelican) - 10rem), 100vw);
     height: auto;
+
+
   }
 }

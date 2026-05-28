@@ -20,123 +20,113 @@ import type TestimonialTypes from "../../types/testimonial-types";
 import type VideoTypes from "../../types/video-types";
 import MuxPlayer from "@mux/mux-player-react";
 import Attribute from "../../components/attribute";
+import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
+
+/* // TODO I can repeat this in a better way
+id: React.Key;
+name: string;
+slug: string; */
 
 type ProjectPageTypes = {
-	data: {
-		strapiProject: {
-			id: React.Key;
-			title: string;
-			couple?: string;
-			description: {
-				data: {
-					description: string;
-				};
-			};
-			excerpt: string;
-			slug: string;
+  data: {
+    strapiProject: {
+      id: React.Key;
+      title: string;
+      couple?: string;
+      description: {
+        data: {
+          description: string;
+        };
+      };
+      excerpt: string;
+      slug: string;
 
-			ogimage: string;
-			image: {
-				localFile: {
-					childImageSharp: {
-						gatsbyImageData: IGatsbyImageData;
-					};
-					url: string;
-				};
-				alternativeText: string;
-			};
-			gallery: {
-				localFile: {
-					childImageSharp: {
-						gatsbyImageData: IGatsbyImageData;
-					};
-					url: string;
-				};
-				alternativeText: string;
-			}[];
+      ogimage: string;
+      image: ImageWithAspectType;
+      gallery: ImageWithAspectType[];
 
-			lights: CardType[];
+      lights: CardType[];
 
-			area: {
-				name: string;
-				state: "california" | "nevada";
-				slug: string;
+      area: {
+        name: string;
+        state: "california" | "nevada";
+        slug: string;
 
-				region?: {
-					name: string;
-					slug: string;
-					id: React.Key;
-				};
-			};
+        region?: {
+          name: string;
+          slug: string;
+          id: React.Key;
+        };
+      };
 
-			team: {
-				id: React.Key;
-				name: string;
-				slug: string;
-			}[];
+      team: {
+        id: React.Key;
+        name: string;
+        slug: string;
+      }[];
 
-			vendors: {
-				id: React.Key;
-				name: string;
-				slug: string;
-				collaboratorAncillary?: string;
-				collaborator: {
-					industry: string;
-					slug: string;
-				};
-			}[];
+      vendors: {
+        id: React.Key;
+        name: string;
+        slug: string;
+        collaboratorAncillary?: string;
+        collaborator: {
+          industry: string;
+          slug: string;
+        };
+      }[];
 
-			project_single_use_links: {
-				id: React.Key;
-				name: string;
-				link?: string;
-				service: string;
-				service_link?: string;
-			}[];
+      project_single_use_links: {
+        id: React.Key;
+        name: string;
+        link?: string;
+        service: string;
+        service_link?: string;
+      }[];
 
-			venue: {
-				name: string;
-				slug: string;
-				id: React.Key;
+      venue: {
+        name: string;
+        slug: string;
+        id: React.Key;
 
-				area: {
-					id: React.Key;
-					name: string;
-					state: "california" | "nevada";
-					slug: string;
+        area: {
+          id: React.Key;
+          name: string;
+          state: "california" | "nevada";
+          slug: string;
 
-					region?: {
-						name: string;
-						slug: string;
-						id: React.Key;
-					};
-				};
-			};
+          region?: {
+            name: string;
+            slug: string;
+            id: React.Key;
+          };
+        };
+      };
 
-			services: {
-				name: string;
-				slug: string;
-			}[];
+      services: {
+        name: string;
+        slug: string;
+      }[];
 
-			testimonial: TestimonialTypes | null;
+      testimonial: TestimonialTypes | null;
 
-			video: VideoTypes;
-		};
+      video: VideoTypes;
+    };
 
-		triptych: {
-			nodes: CardType[];
-		};
-		additional: {
-			nodes: {
-				id: React.Key;
-				name: string;
-				slug: string;
-			}[];
-		};
-		allStrapiProject: {
-			nodes: CardType[];
-		};
-	};
+    triptych: {
+      nodes: CardType[];
+    };
+    additional: {
+      nodes: {
+        id: React.Key;
+        name: string;
+        slug: string;
+      }[];
+    };
+    allStrapiProject: {
+      nodes: CardType[];
+    };
+  };
 };
 
 export const query = graphql`
@@ -158,9 +148,12 @@ export const query = graphql`
 				localFile {
 					childImageSharp {
 						gatsbyImageData
+            resize {
+              aspectRatio
+            }
 					}
 					url
-					}
+				}
 				alternativeText
 			}
 
@@ -168,6 +161,9 @@ export const query = graphql`
 				localFile {
 					childImageSharp {
 						gatsbyImageData
+            resize {
+              aspectRatio
+            }
 					}
 					url
 				}
@@ -292,244 +288,244 @@ export const query = graphql`
 	}
 `;
 
-
 const ProjectPage = ({ data }: ProjectPageTypes) => {
-	return (
-		<>
-			<Header />
 
-			{/* // TODO: the hero gallery need specific lights like the lookbook */}
-			{/* // TODO: This needs to be both. and I need to deal with the difference in heights in video and just in photo */}
-			{data.strapiProject.video ?
-				<MuxPlayer
-					streamType="on-demand"
-					playbackId={data.strapiProject.video.mux}
-					className='hero-video'
-				/>
-				:
-				<Hero
-					image={data.strapiProject.image}
-					gallery={data.strapiProject.gallery}
-					badge={false}
-				/>
-			}
+  return (
+    <>
+      <Header />
 
-			<main className="stork">
-				<article>
-					<h1>{data.strapiProject.title}</h1>
-					{data.strapiProject.couple && (
-						<h2 className="font-serif">{data.strapiProject.couple}</h2>
-					)}
-					{data.strapiProject.description ? (
-						<div className="react-markdown">
-							<ReactMarkdown>
-								{data.strapiProject.description.data.description}
-							</ReactMarkdown>
-						</div>
-					) : (
-						<p>{data.strapiProject.excerpt}</p>
-					)}
-				</article>
+      {/* // TODO: the hero gallery need specific lights like the lookbook */}
+      {/* // TODO: This needs to be both. and I need to deal with the difference in heights in video and just in photo */}
+      {data.strapiProject.video ?
+        <MuxPlayer
+          streamType="on-demand"
+          playbackId={data.strapiProject.video.mux}
+          className='hero-video'
+        />
+        :
+        <Hero
+          image={data.strapiProject.image}
+          gallery={data.strapiProject.gallery}
+          badge={false}
+        />
+      }
 
-				<hr />
-				<h3>Interested in a project like this</h3>
-				<Start path={`project ${data.strapiProject.slug}`} />
-			</main>
+      <main className="stork">
+        <article>
+          <h1>{data.strapiProject.couple ? (
+            <h2 className="font-serif">{data.strapiProject.couple}</h2>
+          ) : data.strapiProject.title}</h1>
 
+          {data.strapiProject.description ? (
+            <div className="react-markdown">
+              <ReactMarkdown>
+                {data.strapiProject.description.data.description}
+              </ReactMarkdown>
+            </div>
+          ) : (
+            <p>{data.strapiProject.excerpt}</p>
+          )}
+        </article>
 
-			{data.strapiProject.testimonial &&
-				<React.Fragment>
-					<hr className="pelican" />
-					<div className="stork">
-						<Testimonial {...data.strapiProject.testimonial} />
-					</div>
-				</React.Fragment>
-			}
-
-			{data.strapiProject.venue ||
-				data.strapiProject.area ||
-				data.strapiProject.vendors.length > 0 ||
-				data.strapiProject.project_single_use_links ? (
-				<React.Fragment>
-					<hr className="pelican" />
-					<div className="attributes">
-						{data.strapiProject.venue && (
-							<Attribute
-								venue={{
-									name: data.strapiProject.venue.name,
-									link: `/venue/${data.strapiProject.venue.slug}`
-								}}
-							/>
-						)}
-
-						{/* // TODO: this one is a little more complex with the slug not always being direct */}
-						{data.strapiProject.area &&
-							<Attribute
-								area={{
-									name: `${data.strapiProject.area.name}, ${StateAbbreviation({ state: data.strapiProject.area.state })}`,
-									link: data.strapiProject.area.region ?
-										`/areas/${data.strapiProject.area.region.slug}`
-										:
-										`/areas/${data.strapiProject.area.slug}`
-								}}
-							/>
-						}
-
-						{/* // TODO: project/waterside-wedding/?= having multiple needs a better way of holding the service to the name and more space from the other  */}
-						{/* // TODO: sometimes vendors have a different role project/waterside-wedding/?= louise and third did the planning not the floral this is a big deal to them */}
-						{/* // TODO: florists shouldnt be plural im not sure which others are like this */}
-						{data.strapiProject.vendors.length > 0 ? (
-							data.strapiProject.vendors.map((vendor) => (
-								vendor.collaborator?.industry ? (
-									<Attribute
-										key={String(vendor.id)}
-										{...{
-											[vendor.collaborator.industry]: {
-												name: vendor.name,
-												link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`
-											}
-										}}
-									/>
-								) : vendor.collaboratorAncillary ? (
-									<Attribute
-										key={String(vendor.id)}
-										{...{
-											[vendor.collaboratorAncillary]: {
-												name: vendor.name,
-												link: `/vendor/${vendor.slug}`
-											}
-										}}
-									/>
-								) : null
-							))
-						) : null}
-
-						{data.strapiProject.project_single_use_links && (
-							data.strapiProject.project_single_use_links.map((singleLink) => (
-								<Attribute
-									key={String(singleLink.id)}
-									{...{
-										[singleLink.service]: {
-											name: singleLink.name,
-											link: singleLink.link
-										}
-									}}
-								/>
-							))
-						)}
+        <hr />
+        <h3>Interested in a project like this</h3>
+        <Start path={`project ${data.strapiProject.slug}`} />
+      </main>
 
 
-					</div>
-				</React.Fragment >
-			) : null
-			}
+      {data.strapiProject.testimonial &&
+        <React.Fragment>
+          <hr className="pelican" />
+          <div className="stork">
+            <Testimonial {...data.strapiProject.testimonial} />
+          </div>
+        </React.Fragment>
+      }
 
-			{/* // * this is looking for video to not show it its a negative check */}
-			{
-				data.strapiProject.video &&
-				<React.Fragment>
-					<hr className="pelican" />
-					<Hero
-						image={data.strapiProject.image}
-						gallery={data.strapiProject.gallery}
-						badge={false}
-					/>
-				</React.Fragment>
-			}
+      {data.strapiProject.venue ||
+        data.strapiProject.area ||
+        data.strapiProject.vendors.length > 0 ||
+        data.strapiProject.project_single_use_links ? (
+        <React.Fragment>
+          <hr className="pelican" />
+          <div className="attributes">
+            {data.strapiProject.venue && (
+              <Attribute
+                venue={{
+                  name: data.strapiProject.venue.name,
+                  link: `/venue/${data.strapiProject.venue.slug}`
+                }}
+              />
+            )}
 
-			{/* // TODO: when more than 3 this can get messy */}
-			{/* // TODO: this is too low with lots of vendors move it up */}
-			{
-				data.strapiProject.lights ? (
-					<>
-						<div className="stork">
-							<hr />
-							<h3>{data.strapiProject.title} uses these lights</h3>
-						</div>
-						<section className="deck">
-							{data.strapiProject.lights.map((light) => (
-								<Card key={light.id} {...light} breadcrumb="light" />
-							))}
-						</section>
-					</>
-				) : (
-					<React.Fragment>
-						{/* // TODO: there essentially cant be no lights we would just  */}
-						<div className="stork">
-							<hr />
-							<h4>Other Projects</h4>
-						</div>
+            {/* // TODO: this one is a little more complex with the slug not always being direct */}
+            {data.strapiProject.area &&
+              <Attribute
+                area={{
+                  name: `${data.strapiProject.area.name}, ${StateAbbreviation({ state: data.strapiProject.area.state })}`,
+                  link: data.strapiProject.area.region ?
+                    `/areas/${data.strapiProject.area.region.slug}`
+                    :
+                    `/areas/${data.strapiProject.area.slug}`
+                }}
+              />
+            }
 
-						<div className="deck">
-							{data.allStrapiProject.nodes.map((project) => (
-								<Card key={project.id} {...project} breadcrumb="project" />
-							))}
-						</div>
-					</React.Fragment>
-				)
-			}
+            {/* // TODO: project/waterside-wedding/?= having multiple needs a better way of holding the service to the name and more space from the other  */}
+            {/* // TODO: sometimes vendors have a different role project/waterside-wedding/?= louise and third did the planning not the floral this is a big deal to them */}
+            {/* // TODO: florists shouldnt be plural im not sure which others are like this */}
+            {data.strapiProject.vendors.length > 0 ? (
+              data.strapiProject.vendors.map((vendor) => (
+                vendor.collaborator?.industry ? (
+                  <Attribute
+                    key={String(vendor.id)}
+                    {...{
+                      [vendor.collaborator.industry]: {
+                        name: vendor.name,
+                        link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`
+                      }
+                    }}
+                  />
+                ) : vendor.collaboratorAncillary ? (
+                  <Attribute
+                    key={String(vendor.id)}
+                    {...{
+                      [vendor.collaboratorAncillary]: {
+                        name: vendor.name,
+                        link: `/vendor/${vendor.slug}`
+                      }
+                    }}
+                  />
+                ) : null
+              ))
+            ) : null}
 
-			{/* // TODO: this design need love */}
-			{
-				data.additional.nodes ? (
-					<div className="stork">
-						<section className="attribute">
-							<ul>
-								{data.additional.nodes.map((light) => (
-									<li key={light.id} className="range denali">
-										<Link to={`/light/${light.slug}`}>{light.name}</Link>
-									</li>
-								))}
-							</ul>
-						</section>
-					</div>
-				) : null
-			}
+            {data.strapiProject.project_single_use_links && (
+              data.strapiProject.project_single_use_links.map((singleLink) => (
+                <Attribute
+                  key={String(singleLink.id)}
+                  {...{
+                    [singleLink.service]: {
+                      name: singleLink.name,
+                      link: singleLink.link
+                    }
+                  }}
+                />
+              ))
+            )}
 
-			<hr className="stork" />
 
-			{/* // ? can a project have multiple services? I kinda doubt it and should be in the breadcrumb */}
-			<Breadcrumbs>
-				<Breadcrumb>
-					<Link to="/projects/">Project</Link>
-				</Breadcrumb>
-				<Breadcrumb>{data.strapiProject.title}</Breadcrumb>
-			</Breadcrumbs>
+          </div>
+        </React.Fragment >
+      ) : null
+      }
 
-			<Footer />
-		</>
-	);
+      {/* // * this is looking for video to not show it its a negative check */}
+      {
+        data.strapiProject.video &&
+        <React.Fragment>
+          <hr className="pelican" />
+          <Hero
+            image={data.strapiProject.image}
+            gallery={data.strapiProject.gallery}
+            badge={false}
+          />
+        </React.Fragment>
+      }
+
+      {/* // TODO: when more than 3 this can get messy */}
+      {/* // TODO: this is too low with lots of vendors move it up */}
+      {
+        data.strapiProject.lights ? (
+          <>
+            <div className="stork">
+              <hr />
+              <h3>{data.strapiProject.title} uses these lights</h3>
+            </div>
+            <section className="deck">
+              {data.strapiProject.lights.map((light) => (
+                <Card key={light.id} {...light} breadcrumb="light" />
+              ))}
+            </section>
+          </>
+        ) : (
+          <React.Fragment>
+            {/* // TODO: there essentially cant be no lights we would just  */}
+            <div className="stork">
+              <hr />
+              <h4>Other Projects</h4>
+            </div>
+
+            <div className="deck">
+              {data.allStrapiProject.nodes.map((project) => (
+                <Card key={project.id} {...project} breadcrumb="project" />
+              ))}
+            </div>
+          </React.Fragment>
+        )
+      }
+
+      {/* // TODO: this design need love */}
+      {
+        data.additional.nodes ? (
+          <div className="stork">
+            <section className="attribute">
+              <ul>
+                {data.additional.nodes.map((light) => (
+                  <li key={light.id} className="range denali">
+                    <Link to={`/light/${light.slug}`}>{light.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        ) : null
+      }
+
+      <hr className="stork" />
+
+      {/* // ? can a project have multiple services? I kinda doubt it and should be in the breadcrumb */}
+      <Breadcrumbs>
+        <Breadcrumb>
+          <Link to="/projects/">Project</Link>
+        </Breadcrumb>
+        <Breadcrumb>{data.strapiProject.title}</Breadcrumb>
+      </Breadcrumbs>
+
+      <Footer />
+    </>
+  );
 };
 
 export default ProjectPage;
 
 type ProjectPageHeadTypes = {
-	data: {
-		strapiProject: {
-			title: string;
-			excerpt: string;
-			ogimage: string;
-			slug: string;
-		};
-	};
+  data: {
+    strapiProject: {
+      title: string;
+      excerpt: string;
+      ogimage: string;
+      slug: string;
+    };
+  };
 };
 export const Head = ({ data }: ProjectPageHeadTypes) => {
-	return (
-		<SEO
-			title={`${data.strapiProject.title}`}
-			description={data.strapiProject?.excerpt}
-			image={data.strapiProject?.ogimage}
-			url={`project/${data.strapiProject.slug}`}
-			breadcrumbs={[
-				{
-					name: "Project",
-					item: "project",
-				},
-				{
-					name: data.strapiProject.slug,
-					item: `project/${data.strapiProject.slug}`,
-				},
-			]}
-		/>
-	);
+  return (
+    <SEO
+      title={`${data.strapiProject.title}`}
+      description={data.strapiProject?.excerpt}
+      image={data.strapiProject?.ogimage}
+      url={`project/${data.strapiProject.slug}`}
+      breadcrumbs={[
+        {
+          name: "Project",
+          item: "project",
+        },
+        {
+          name: data.strapiProject.slug,
+          item: `project/${data.strapiProject.slug}`,
+        },
+      ]}
+    />
+  );
 };
