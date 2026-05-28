@@ -8,6 +8,7 @@ const strapiConfig = {
   collectionTypes: [
     "affiliation",
     "area",
+    "bulb",
     "collaborator",
     "far",
     "image-grab",

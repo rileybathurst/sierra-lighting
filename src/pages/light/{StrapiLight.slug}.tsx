@@ -13,6 +13,7 @@ import Suite from "../../components/suite";
 import type { SuiteType } from "../../types/suite-type";
 import Markdown from "react-markdown";
 import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 interface AliasTypes {
 	alias: string;
@@ -99,6 +100,23 @@ export const query = graphql`
 
 			altGallery {
 				...imageWithAspectFragment
+			}
+
+			bulbs {
+				id
+				name
+				detail {
+					localFile {
+						url
+						childImageSharp {
+							gatsbyImageData(
+							breakpoints: [960, 1920]
+							width: 960
+							)
+						}
+					}
+					alternativeText
+				}
 			}
 		}
 
@@ -208,6 +226,12 @@ type LightPageTypes = {
 			projects?: CardType[] | null;
 			residentialHero?: ImageWithAspectType | null;
 			commercialHero?: ImageWithAspectType | null;
+			bulbs?: {
+				id: React.Key;
+				name: string;
+				// excerpt: string;
+				detail: GatsbyImageType;
+			}[] | null;
 		};
 		allStrapiLight: {
 			nodes: CardType[];
@@ -325,6 +349,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 					) : null}
 
 					{/* // TODO: styling of lower level headings */}
+					{/* // * theres maybe a way to link these to show a full image */}
 					{data.strapiLight.markdown?.data?.markdown ? (
 						<div className="markdown">
 							<Markdown>{data.strapiLight.markdown.data.markdown}</Markdown>
@@ -334,6 +359,29 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 					)}
 
 					<hr />
+
+					{/* // TODO: add these to strapi across the lights */}
+					{data.strapiLight.bulbs && (
+						<section>
+							<h3 className="kilimanjaro">Bulb Options</h3>
+							<div className="team-heads">
+								{data.strapiLight.bulbs.map((bulb) => (
+									<div key={bulb.id}>
+										{bulb.detail ? (
+											<GatsbyImage
+												image={bulb.detail.localFile.childImageSharp.gatsbyImageData}
+												alt={bulb.detail.alternativeText || bulb.name}
+											/>
+										) : null}
+										<p>{bulb.name}</p>
+										{/* <p>{bulb.excerpt}</p> */}
+									</div>
+								))}
+							</div>
+							<hr />
+						</section>
+					)}
+
 					<Start path={data.strapiLight.slug} />
 				</article>
 			</main>
@@ -498,10 +546,10 @@ export const Head = ({ data }: LightPageTypes) => {
 		<>
 			<SEO
 				title={`
-				${data.strapiLight.name}
-				${data.strapiLight.alias ? ` | ${aliasString}` : ""}
-				${data.strapiLight.services.every((service) => service.slug === "residential" || service.slug === "commercial") ? "christmas light installation" : "weddings light instalation"}
-       	 `}
+					${data.strapiLight.name}
+					${data.strapiLight.alias ? ` | ${aliasString}` : ""}
+					${data.strapiLight.services.every((service) => service.slug === "residential" || service.slug === "commercial") ? "christmas light installation" : "weddings light instalation"}
+				`}
 				// TODO: needs the aliases in the SEO
 				description={`${data.strapiLight?.excerpt} ${processString}`} // TODO: add some info about styles i.e. 'modern, rustic, etc.' they might be just a number of tags
 				image={data.strapiLight?.image?.localFile?.url}

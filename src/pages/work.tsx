@@ -68,14 +68,6 @@ const WorkPage = () => {
         {jobData.allStrapiJob.nodes.map((job: JobTypes) => (
           <div key={job.id}>
             <h2 itemProp="title">{job.title}</h2>
-            <h3>
-              {new Date(job.updatedAt).toLocaleDateString('en-US', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </h3>
             <ReactMarkdown>{job.description.data.description}</ReactMarkdown>
             <h3>↓ Contact us below ↓</h3>
           </div>
@@ -103,7 +95,7 @@ export const Head = () => {
     >
 
       {jobData.allStrapiJob.nodes.map((job: JobTypes) => (
-        <Script 
+        <Script
           type="application/ld+json"
           key={job.id}
         >

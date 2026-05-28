@@ -300,6 +300,10 @@ ol li {
   margin-block-end: var(--kilimanjaro);
 }
 
+.masthead h2 {
+  font-weight: 300;
+}
+
 /*------------------*/
 /* FOOTER */
 /*------------------*/

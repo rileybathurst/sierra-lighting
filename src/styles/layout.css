@@ -865,20 +865,14 @@ footer {
   }
 }
 
-/* TODO: rename this */
 /*------------------------------------*/
-/* #HERO 3 */
+/* #MASTHEAD */
 /*------------------------------------*/
 
-.hero-3 {
+.masthead {
   margin-block-start: 0;
   max-width: 100vw;
   display: grid;
-
-  /* TODO: move this to typography.css */
-  h2 {
-    font-weight: 300;
-  }
 
   .background {
     z-index: var(--floor);
@@ -982,6 +976,7 @@ footer {
     .button {
       grid-row: 2;
       margin-block-start: var(--vinson);
+      margin-inline: var(--vinson);
       z-index: var(--understory);
     }
 
@@ -1002,6 +997,8 @@ footer {
   }
 }
 
-.hero-3.wedding {
-  grid-template-columns: 20rem 1fr 20rem;
+.masthead.wedding {
+  @media (min-width: 40rem) {
+    grid-template-columns: 20rem 1fr 20rem;
+  }
 }

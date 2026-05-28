@@ -231,6 +231,12 @@ export const query = graphql`
 			video {
 			...videoFragment
 			}
+
+      themes {
+        id
+        title
+        excerpt
+      }
 		}
 
 		triptych: allStrapiLight(limit: 3, filter: {projects: {elemMatch: {slug: {eq: $slug}}}}) {

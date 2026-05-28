@@ -204,7 +204,6 @@ header svg:active {
     >p {
       /* this is legal even tho not normally the way I do it */
       /* ? I dont know what I meant by that comment */
-      padding: var(--denali);
       transition: 2s ease;
     }
   }
@@ -440,6 +439,9 @@ header svg:active {
     width: min(calc(var(--pelican) - 10rem), 100vw);
     height: auto;
 
+    >* {
+      height: 100%;
+    }
 
   }
 }
