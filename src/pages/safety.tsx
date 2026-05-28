@@ -8,7 +8,7 @@ import Footer from "../components/footer";
 import Hero from "../components/hero";
 
 import Markdown from "react-markdown";
-import type { IGatsbyImageData } from "gatsby-plugin-image";
+import type { ImageWithAspectType } from "../types/image-with-aspect-type";
 
 type SafetyPageTypes = {
   data: {
@@ -19,15 +19,7 @@ type SafetyPageTypes = {
           description: string;
         };
       };
-      image: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-        alternativeText: string;
-        url: string;
-      };
+      image: ImageWithAspectType;
     }
   }
 }
@@ -35,25 +27,19 @@ type SafetyPageTypes = {
 export const data = graphql`
   query useStrapiSafety {
     strapiSafety {
-        id
-        excerpt
+    id
+    excerpt
         description {
           data {
-            description
-          }
-        }
-
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-          alternativeText
-          url
-        }
+        description
       }
     }
+
+    image {
+      ...imageWithAspectFragment
+    }
+  }
+}
 `;
 
 const SafetyPage = ({ data }: SafetyPageTypes) => {

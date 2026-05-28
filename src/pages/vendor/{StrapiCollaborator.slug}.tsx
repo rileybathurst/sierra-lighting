@@ -1,7 +1,7 @@
 // /vendor/planners/ etc
 
 import * as React from "react"
-import { graphql, Script, Link } from "gatsby"
+import { graphql, Link } from "gatsby"
 import SEO from "../../components/seo"
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -11,7 +11,7 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import type { CardType } from "../../types/card-type";
 import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 import Hero from "../../components/hero";
-import type { ImageType } from "../../types/image-type";
+import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
 
 export const query = graphql`
   query CollaboratorQuery($slug: String!) {
@@ -27,13 +27,7 @@ export const query = graphql`
       slug
 
       hero {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-          url
-        }
-        alternativeText
+        ...imageWithAspectFragment
       }
 
       excerpt
@@ -51,7 +45,7 @@ type CollaboratorPageTypes = {
       industry: string;
       description: BlocksContent;
       excerpt: string;
-      hero?: ImageType;
+      hero?: ImageWithAspectType;
       slug?: string;
       vendors?: CardType[];
     };

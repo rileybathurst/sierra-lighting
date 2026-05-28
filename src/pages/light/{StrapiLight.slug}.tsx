@@ -3,10 +3,7 @@ import { Link, graphql } from "gatsby";
 import SEO from "../../components/seo";
 import type { GatsbyImageType } from "../../types/gatsby-image";
 import type { CardType } from "../../types/card-type";
-
 import { Breadcrumbs, Breadcrumb } from "react-aria-components";
-// import Markdown from "react-markdown";
-
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Card from "../../components/card";
@@ -15,6 +12,7 @@ import Hero from "../../components/hero";
 import Suite from "../../components/suite";
 import type { SuiteType } from "../../types/suite-type";
 import Markdown from "react-markdown";
+import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
 
 interface AliasTypes {
 	alias: string;
@@ -73,41 +71,13 @@ export const query = graphql`
 			alias
 
 			image {
-				localFile {
-					url
-					childImageSharp {
-						gatsbyImageData(
-						breakpoints: [960, 1920]
-						width: 960
-						)
-					}
-				}
-				alternativeText
-				caption
+				...imageWithAspectFragment
 			}
 			residentialHero {
-				localFile {
-					url
-					childImageSharp {
-						gatsbyImageData(
-						breakpoints: [960, 1920]
-						width: 960
-						)
-					}
-				}
-				alternativeText
+				...imageWithAspectFragment
 			}
 			commercialHero {
-				localFile {
-					url
-					childImageSharp {
-						gatsbyImageData(
-						breakpoints: [960, 1920]
-						width: 960
-						)
-					}
-				}
-				alternativeText
+				...imageWithAspectFragment
 			}
 
 			detail {
@@ -241,12 +211,12 @@ type LightPageTypes = {
 				lights: CardType[];
 			}[];
 			alias?: string | null;
-			image: GatsbyImageType;
+			image: ImageWithAspectType;
 			detail?: GatsbyImageType | null;
-			altGallery?: GatsbyImageType[] | null;
+			altGallery?: ImageWithAspectType[] | null;
 			projects?: CardType[] | null;
-			residentialHero?: GatsbyImageType | null;
-			commercialHero?: GatsbyImageType | null;
+			residentialHero?: ImageWithAspectType | null;
+			commercialHero?: ImageWithAspectType | null;
 		};
 		allStrapiLight: {
 			nodes: CardType[];

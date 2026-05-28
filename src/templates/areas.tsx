@@ -2,7 +2,7 @@
 // TODO: add a gallery of images from the area
 // TODO: showing more 18 projects like north lake is way over the top - split them by service or just pull a couple
 
-import React from 'react';
+import React, { type Key } from 'react';
 import { graphql, Link, Script } from 'gatsby'
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
@@ -16,10 +16,10 @@ import StateAbbreviation from "../components/state-abbreviation";
 import Markdown from "react-markdown";
 import Card from '../components/card';
 import type { CardType } from '../types/card-type';
-import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import Start from '../components/start';
 import Suite from '../components/suite';
-import { SuiteType } from '../types/suite-type';
+import type { SuiteType } from '../types/suite-type';
+import type { ImageWithAspectType } from '../types/image-with-aspect-type';
 
 
 // this is no longer right as there might only be sub venues
@@ -32,7 +32,13 @@ interface VenuesProps {
     slug: string;
     excerpt: string;
     venues: CardType[];
-    projects: CardType[];
+    projects: {
+      id: Key;
+      name: string;
+      slug: string;
+      excerpt: string;
+      image: ImageWithAspectType;
+    }[];
   }[];
 }
 
@@ -78,7 +84,7 @@ function Venues({ name, areas }: VenuesProps) {
 type AreasTemplateTypes = {
   data: {
     strapiArea: {
-      id: React.Key;
+      id: Key;
       name: string;
       tagline: string;
       description: {
@@ -88,24 +94,28 @@ type AreasTemplateTypes = {
       };
       state: 'california' | 'nevada';
       slug: string;
-      image: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-          url: string;
-        };
-        alternativeText: string;
-      };
+      image: ImageWithAspectType;
       areas: {
         name: string;
         slug: string;
         excerpt: string;
         venues: CardType[];
-        projects: CardType[];
+        projects: {
+          id: Key;
+          name: string;
+          slug: string;
+          excerpt: string;
+          image: ImageWithAspectType;
+        }[]
       }[];
       venues: CardType[];
-      projects: CardType[];
+      projects: {
+        id: Key;
+        name: string;
+        slug: string;
+        excerpt: string;
+        image: ImageWithAspectType;
+      }[];
     };
     strapiAbout: {
       businessName: string;
@@ -118,19 +128,17 @@ type AreasTemplateTypes = {
 const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
   // Using Project Heros is interesting but I'm not sure if it's right I was just trying to get something more
-  type AreaImage = NonNullable<CardType['image']>;
-  let areaProjectHeros: AreaImage[] = [];
+  let areaProjectHeros: ImageWithAspectType[] = [];
   if (data.strapiArea.projects) {
+
     areaProjectHeros = data.strapiArea.projects
       .map((project) => project.image)
-      .filter((img): img is AreaImage => !!img);
-    // console.log(areaProjectHeros);
+      .filter((img): img is ImageWithAspectType => !!img && !!img.localFile?.childImageSharp?.gatsbyImageData && !!img.localFile?.childImageSharp?.resize);
 
     if (data.strapiArea.areas.length > 0) {
       data.strapiArea.areas.forEach((area) => {
         if (area.projects.length > 0) {
           area.projects.forEach((project) => {
-            // console.log(project.image)
             if (project.image) areaProjectHeros.push(project.image);
           });
         }
@@ -138,14 +146,12 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
     }
   }
 
-  // console.log(data.strapiArea.areas.map((area) => area.projects));
-
   // areas and sub area projects
   const areaSubAreaProjects = new Set<CardType>();
 
   if (data.strapiArea.projects) {
     data.strapiArea.projects.forEach((project) => {
-      areaSubAreaProjects.add(project);
+      areaSubAreaProjects.add({ ...project, breadcrumb: 'project' });
     });
 
     if (data.strapiArea.areas.length > 0) {
@@ -153,7 +159,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
         if (area.projects.length > 0) {
           area.projects.forEach((project) => {
-            areaSubAreaProjects.add(project);
+            areaSubAreaProjects.add({ ...project, breadcrumb: 'project' });
           });
         }
 
@@ -173,11 +179,11 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
       {data.strapiArea.image ?
         <Hero
           image={data.strapiArea.image}
+          // ! oops I broke this
           gallery={areaProjectHeros}
         />
         : null}
       <main>
-
         <article className="stork">
           <h2 className="crest">{data.strapiArea.tagline}</h2>
           <h1 className="range">
@@ -187,7 +193,6 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
           <hr />
           <h3 className='kilimanjaro'>Ready to work with us</h3>
           <Start
-            className='button--left-align'
             path={`areas-${data.strapiArea.slug}`}
           />
           <div
@@ -216,7 +221,6 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
                 >
                   <h2 className='elbrus'>{area.name}</h2>
                   {/* <p>{area.excerpt}</p> */}
-
                 </li>
               ))}
             </ul>
@@ -225,6 +229,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         }
         <hr />
         <h3 >Lighting installation services we provide in {data.strapiArea.name}</h3>
+
       </main >
 
       <Suite services={data.allStrapiService.nodes} />
@@ -279,7 +284,7 @@ export default AreasTemplate;
 
 export const query = graphql`
   query AreasTemplate(
-    $slug: String!
+  $slug: String!
   ) {
     strapiArea(slug: {eq: $slug}) {
       id
@@ -292,21 +297,23 @@ export const query = graphql`
           description
         }
       }
-      
+
       state
       slug
 
       image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData(
-              breakpoints: [960, 1840]
-                width: 960
-            )
-          }
-          url
+        ...imageWithAspectFragment
+      }
+
+      projects {
+        id
+        title
+        slug
+        excerpt
+
+        image {
+          ...imageWithAspectFragment
         }
-        alternativeText
       }
 
       areas {
@@ -319,7 +326,14 @@ export const query = graphql`
         }
 
         projects {
-          ...projectCard
+          id
+          title
+          slug
+          excerpt
+
+          image {
+            ...imageWithAspectFragment
+          }
         }
       }
     }
@@ -333,9 +347,8 @@ export const query = graphql`
         ...suiteFragment
       }
     }
-
   }
-`
+      `
 
 export const Head = ({ data }: AreasTemplateTypes) => {
 

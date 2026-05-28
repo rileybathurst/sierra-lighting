@@ -145,29 +145,11 @@ export const query = graphql`
 			ogimage
 
 			image {
-				localFile {
-					childImageSharp {
-						gatsbyImageData
-            resize {
-              aspectRatio
-            }
-					}
-					url
-				}
-				alternativeText
+				...imageWithAspectFragment
 			}
 
 			gallery {
-				localFile {
-					childImageSharp {
-						gatsbyImageData
-            resize {
-              aspectRatio
-            }
-					}
-					url
-				}
-				alternativeText
+				...imageWithAspectFragment
 			}
 
 			lights {

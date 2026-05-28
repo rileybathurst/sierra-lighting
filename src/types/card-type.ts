@@ -1,4 +1,5 @@
 // TODO: I think I can massivley simplify this by using extends and bringing differeent images and names in  as aliases in certain places
+// TODO: needs alias for name and title as well as image, venueImage, and profile
 
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 

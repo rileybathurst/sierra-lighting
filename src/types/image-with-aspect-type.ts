@@ -1,5 +1,6 @@
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
+// TODO: theres 2 urls here and Im not sure If i need both
 type ImageWithAspectType = {
   localFile: {
     childImageSharp: {
@@ -10,6 +11,7 @@ type ImageWithAspectType = {
     };
     url?: string;
   };
+  url?: string;
   alternativeText: string;
   caption?: string;
 };

@@ -12,9 +12,8 @@ import Card from '../components/card';
 import SocialIcons from '../components/social-icons';
 import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
-// types
 import type { CardType } from '../types/card-type';
-import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import type { ImageWithAspectType } from '../types/image-with-aspect-type';
 
 interface VendorTemplateViewTypes {
   data: {
@@ -30,15 +29,7 @@ interface VendorTemplateViewTypes {
       excerpt: string;
       collaboratorAncillary?: string;
 
-      profile: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-          url: string;
-        };
-        alternativeText: string;
-      };
+      profile: ImageWithAspectType;
 
       collaborator: {
         industry: string;

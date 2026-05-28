@@ -12,8 +12,8 @@ import Hero from "../components/hero";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import type { CardType } from '../types/card-type';
 import Testimonial from '../components/testimonial';
-import type { IGatsbyImageData } from 'gatsby-plugin-image';
 import { Phone } from '../components/phone';
+import type { ImageWithAspectType } from '../types/image-with-aspect-type';
 
 type VenueViewTypes = {
   data: {
@@ -40,15 +40,7 @@ type VenueViewTypes = {
           address: string;
         }
       }
-      venueImage: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          }
-          url: string;
-        }
-        alternativeText: string;
-      }
+      venueImage: ImageWithAspectType;
       testimonials: {
         id: React.Key;
         title: string;
@@ -268,13 +260,7 @@ export const query = graphql`
         }
 
         venueImage {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-            url
-          }
-          alternativeText
+          ...imageWithAspectFragment
         }
 
         projects {
@@ -294,7 +280,8 @@ export const query = graphql`
         }
       }
 
-      # // TODO: this is a heavyhanded way until I do other uses on venues
+      # // TODO: blue is a heavyhanded way until I do other uses on venues
+      # // TODO: im pretty sure I can use a fragment here
       allStrapiVenue(
         limit: 3,
         filter: {
