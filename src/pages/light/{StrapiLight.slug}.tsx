@@ -98,16 +98,7 @@ export const query = graphql`
 			}
 
 			altGallery {
-				localFile {
-					url
-					childImageSharp {
-						gatsbyImageData(
-						breakpoints: [960, 1920]
-						width: 960
-						)
-					}
-				}
-				alternativeText
+				...imageWithAspectFragment
 			}
 		}
 

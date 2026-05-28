@@ -176,10 +176,10 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
     <>
       <Header />
 
+      {/* // TODO: check on small images */}
       {data.strapiArea.image ?
         <Hero
           image={data.strapiArea.image}
-          // ! oops I broke this
           gallery={areaProjectHeros}
         />
         : null}
