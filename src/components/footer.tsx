@@ -4,9 +4,9 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 import Logo from "../images/logo";
-import SocialIcons from "../components/social-icons";
 import Season from './season';
 import { Phone } from './phone';
+import Socials from './socials';
 
 const Footer = ({ quote }: { quote?: boolean }) => {
 
@@ -55,19 +55,20 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         businessName
         email
         telephone
-
-        yelp
-        facebook
-        instagram
-        nextdoor
-        pinterest
-        tiktok
-        linkedin
-        google
       }
+
+
     
     }
   `)
+
+  /* // ! debugging ogg 
+  allStrapiSocialSites(filter: {featured: {eq: true}}) {
+  nodes {
+    service
+    username
+  }
+} */
 
   interface TeamType {
     id: React.Key;
@@ -278,17 +279,8 @@ const Footer = ({ quote }: { quote?: boolean }) => {
       </div>
 
       <hr className="albatross" />
-      <SocialIcons
-        businessName={data.strapiAbout.businessName}
-        yelp={data.strapiAbout.yelp}
-        facebook={data.strapiAbout.facebook}
-        instagram={data.strapiAbout.instagram}
-        nextdoor={data.strapiAbout.nextdoor}
-        pinterest={data.strapiAbout.pinterest}
-        tiktok={data.strapiAbout.tiktok}
-        linkedin={data.strapiAbout.linkedin}
-        google={data.strapiAbout.google}
-      />
+      {/* // ! debugging off */}
+      {/* <Socials services={data.allStrapiSocial.nodes} /> */}
 
       <hr className="condor" />
 

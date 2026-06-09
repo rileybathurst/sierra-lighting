@@ -25,8 +25,9 @@ export const Testimonials = () => {
         Help us you buy submitting your own review
       </h3>
 
+      {/* // TODO: this is hard coded it should be a faker deal with variations */}
       <p>
-        <a href="https://g.page/r/CXdQyNRhzs8YEBA"
+        <a href={faker.internet.url()}
           target="_blank"
           rel="noopener noreferrer"
           className="hover-back hover-back--inline">
@@ -34,7 +35,7 @@ export const Testimonials = () => {
         </a><em>- preferred</em>
       </p>
       <p>
-        <a href="https://www.yelp.com/biz/sierra-lighting-calpine"
+        <a href={faker.internet.url()}
           target="_blank"
           rel="noopener noreferrer"
           className="hover-back">
@@ -42,7 +43,7 @@ export const Testimonials = () => {
         </a>
       </p>
       <p><a
-        href="https://nextdoor.com/login/?next=/pages/sierra-lighting-truckee-ca/recommend/"
+        href={faker.internet.url()}
         target="_blank"
         rel="noopener noreferrer"
         className="hover-back">

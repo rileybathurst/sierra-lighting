@@ -1,4 +1,4 @@
-// nice start but now organize by light group
+// TODO: organize by light group
 
 import React from 'react';
 import { Link, graphql } from "gatsby";
@@ -40,14 +40,14 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
 
             <section className='deck' >
                 {data.strapiService.projects
-                .toReversed()
-                .map((project) => (
-                    <Card
-                        key={project.id}
-                        {...project}
-                        breadcrumb='project'
-                    />
-                ))}
+                    .toReversed()
+                    .map((project) => (
+                        <Card
+                            key={project.id}
+                            {...project}
+                            breadcrumb='project'
+                        />
+                    ))}
             </section>
 
             <hr className='stork' />

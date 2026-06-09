@@ -26,11 +26,13 @@ function Deal() {
 
   const content = [];
   for (let i = 0; i < hand; i++) {
+    // * this way keeps the same name down the list rather than changing as it goes
+    const birdName = faker.animal.bird();
     content.push(
       <li>
-        <a href={faker.animal.bird()}>
+        <a href={birdName} title={birdName}>
           <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
-            <title>{faker.animal.bird()}</title>
+            <title>{birdName}</title>
             <polygon points={points} />
           </svg>
 
@@ -44,9 +46,9 @@ function Deal() {
 
 export const SocialIcons = () => {
   return (
-    <ul 
-      // id="footer-social" // * biome says dont use IDs
-      className="stork footer-social footer-social--self"
+    <ul
+      id="socials"
+      className="stork socials"
     >
       <Deal />
     </ul>

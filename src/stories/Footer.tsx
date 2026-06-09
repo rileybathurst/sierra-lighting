@@ -118,7 +118,7 @@ export const Footer = ({
       <FooterList />
 
       <hr className="albatross" />
-      <ul className="footer-social">
+      <ul className="socials">
         {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(() => (
           <li key={faker.string.uuid()}>
             <a

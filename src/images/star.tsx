@@ -1,6 +1,7 @@
-import * as React from "react";
+// TODO: Im pretty sure this can just be an svg file
+import React from "react";
 
-const Star = () => {
+const Star = (): React.JSX.Element => {
   return (
     <svg
       className="star"

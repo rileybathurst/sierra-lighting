@@ -9,11 +9,12 @@ import Hero from "../components/hero";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import TestimonialRanking from "../components/testimonial-ranking";
 import Card from '../components/card';
-import SocialIcons from '../components/social-icons';
+import SocialIcons from '../components/socials';
 import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
 import type { CardType } from '../types/card-type';
 import type { ImageWithAspectType } from '../types/image-with-aspect-type';
+import Socials from '../components/socials';
 
 interface VendorTemplateViewTypes {
   data: {
@@ -22,12 +23,14 @@ interface VendorTemplateViewTypes {
       name: string;
       description: string;
       slug: string;
-      instagram: string;
-      facebook: string;
       website: string;
-      pinterest: string;
       excerpt: string;
       collaboratorAncillary?: string;
+
+      instagram: string;
+      facebook: string;
+      pinterest: string;
+
 
       profile: ImageWithAspectType;
 
@@ -130,11 +133,8 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         {data.strapiVendor.instagram || data.strapiVendor.pinterest || data.strapiVendor.facebook ?
           <>
             <hr />
-            <SocialIcons
-              businessName={data.strapiVendor.name}
-              instagram={data.strapiVendor.instagram}
-              facebook={data.strapiVendor.facebook}
-              pinterest={data.strapiVendor.pinterest}
+            <Socials
+              services={[{ service: 'instagram', username: data.strapiVendor.instagram }, { service: 'facebook', username: data.strapiVendor.facebook }, { service: 'pinterest', username: data.strapiVendor.pinterest }]}
             />
           </>
           : null

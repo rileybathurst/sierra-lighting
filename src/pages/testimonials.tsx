@@ -44,17 +44,20 @@ const TestimonialsPage = () => {
         }
       }
 
-      strapiAbout {
-        google
-        yelp
-        nextdoor
-      }
+
 
       strapiFeedback {
         about
       }
     }
   `);
+
+  // ! this schema is very changed 
+  /* strapiAbout {
+  google
+  yelp
+  nextdoor
+} */
 
   return (
     <>
@@ -83,7 +86,8 @@ const TestimonialsPage = () => {
         </h3>
 
         {/* // ? these are not using the hover_back?  */}
-        {[
+        {/* // ! new version of these is needed */}
+        {/*         {[
           { url: data.strapiAbout.google, label: 'Google Review', preferred: true },
           { url: data.strapiAbout.yelp, label: 'Yelp', preferred: false },
           { url: data.strapiAbout.nextdoor, label: 'NextDoor', preferred: false }
@@ -99,7 +103,7 @@ const TestimonialsPage = () => {
             </a>
             {platform.preferred && <em>&nbsp;- preferred</em>}
           </p>
-        ))}
+        ))} */}
 
         {/* // TODO: move this to a separate component, possibly in the same file */}
         <form
