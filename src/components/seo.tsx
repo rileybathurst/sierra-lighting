@@ -1,5 +1,17 @@
 // TODO: im getting a @type organization error for address but not sure from where
 
+{/* // TODO: 
+      https://schema.org/ContactPoint
+      https://schema.org/skills
+      https://schema.org/knowsAbout
+      https://schema.org/foundingDate
+      https://schema.org/foundingLocation
+      https://schema.org/Service
+      */}
+
+{/* "about": "Creating ${data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}", */ }
+
+
 import React from "react";
 import { Script, useStaticQuery, graphql } from "gatsby";
 import type VideoTypes from "../types/video-types";
@@ -170,6 +182,44 @@ export const SEO = (SEO: SEOtypes) => {
       : `${SEO.title} | ${businessName}`
     : `${businessName} | ${SeasonalTopbar}`;
 
+  const localBusinessSchema = {
+    "@context": "https://schema.org/",
+    "@type": "LocalBusiness",
+    name: data.strapiAbout.businessName,
+    about: `Creating professional ${data.allStrapiService.nodes.map((service: { name: string; }) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area: { name: string; }) => area.name).join(', ')}`,
+    slogan: data.strapiAbout.slogan,
+    url: data.strapiAbout.url,
+    alternateName: data.strapiAbout.alternateName,
+    image: data.strapiAbout.defaultImage,
+    openingHours: data.strapiAbout.openingHours,
+    paymentAccepted: data.strapiAbout.paymentAccepted,
+    telephone: data.strapiAbout.telephone,
+    email: data.strapiAbout.email,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: data.strapiAbout.geoLatitude,
+      longitude: data.strapiAbout.geoLongitude
+    },
+    areaServed: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: data.strapiAbout.geoLatitude,
+        longitude: data.strapiAbout.geoLongitude
+      },
+      geoRadius: data.strapiAbout.geoRadius
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: data.strapiAbout.addressLocality,
+      addressRegion: data.strapiAbout.addressRegion,
+      postalCode: data.strapiAbout.postalCode,
+      addressCountry: "US"
+    },
+    keywords: data.allStrapiService.nodes.map((service: { name: string; }) => service.name).concat(data.allStrapiKeyword.nodes.map((k: { keyword: string; }) => k.keyword)).join(', ')
+  };
+
+
   console.log(pageTitle);
   console.log(SEO.image);
 
@@ -179,71 +229,14 @@ export const SEO = (SEO: SEOtypes) => {
       <meta name="description" content={SEO.description ? SEO.description : data.strapiAbout.slogan} />
       <meta name="image" itemProp="image" content={SEO.image} />
 
-      {/* OG */}
       <meta property="og:type" content="website" />
       <meta property="og:url" itemProp="URL" content={SEO.url} />
       <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={SEO.description} />
       <meta property="og:image" itemProp="image" content={SEO.image} />
 
-      {/* Twitter */}
-      {/* is this twitter I really cant see anyone caring about this for sierra */}
-      {/* TODO: do research into who uses other than og: */}
-      <meta name="twitter:title" content={pageTitle} />
-      <meta name="twitter:description" content={SEO.description} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:image" content={SEO.image} />
-
-      {/* "about": "Creating ${data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}", */}
-
-      {/* // TODO: 
-      https://schema.org/ContactPoint
-      https://schema.org/skills
-      https://schema.org/knowsAbout
-      https://schema.org/foundingDate
-      https://schema.org/foundingLocation
-      https://schema.org/Service
-      // */}
-
       <Script type="application/ld+json">
-        {`
-          {
-            "@context": "https://schema.org/",
-            "@type": "LocalBusiness",
-            "name": "${data.strapiAbout.businessName}",
-            "about": "Creating professional ${data.allStrapiService.nodes.map((service: { name: string; }) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area: { name: string; }) => area.name).join(', ')}",
-            "slogan": "${data.strapiAbout.slogan}",
-            "url": "${data.strapiAbout.url}",
-            "alternateName": "${data.strapiAbout.alternateName}",
-            "image": "${data.strapiAbout.defaultImage}",
-            "openingHours": "${data.strapiAbout.openingHours}",
-            "paymentAccepted": "${data.strapiAbout.paymentAccepted}",
-            "telephone": "${data.strapiAbout.telephone}",
-            "email": "${data.strapiAbout.email}",
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": "${data.strapiAbout.geoLatitude}",
-              "longitude": "${data.strapiAbout.geoLongitude}"
-            },
-            "areaServed": {
-              "@type": "GeoCircle",
-              "geoMidpoint": {
-          "@type": "GeoCoordinates",
-          "latitude": "${data.strapiAbout.geoLatitude}",
-          "longitude": "${data.strapiAbout.geoLongitude}"
-              },
-              "geoRadius": "${data.strapiAbout.geoRadius}"
-            },
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "${data.strapiAbout.addressLocality}",
-              "addressRegion": "${data.strapiAbout.addressRegion}",
-              "postalCode": "${data.strapiAbout.postalCode}",
-              "addressCountry": "US"
-            },
-            "keywords": "${data.allStrapiService.nodes.map((service: { name: string; }) => service.name).concat(data.allStrapiKeyword.nodes.map((k: { keyword: string; }) => k.keyword)).join(', ')}"
-          }
-        `}
+        {JSON.stringify(localBusinessSchema)}
       </Script>
 
       <Breadcrumbs
