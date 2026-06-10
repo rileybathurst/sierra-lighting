@@ -160,23 +160,36 @@ export const SEO = (SEO: SEOtypes) => {
 
   // console.log(SEO.title ? `${SEO.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${SeasonalTopbar}`);
 
+  const businessName = data.strapiAbout.businessName;
+  const hasBusinessName = SEO.title
+    ? SEO.title.toLowerCase().includes(businessName.toLowerCase())
+    : false;
+  const pageTitle = SEO.title
+    ? hasBusinessName
+      ? SEO.title
+      : `${SEO.title} | ${businessName}`
+    : `${businessName} | ${SeasonalTopbar}`;
+
+  console.log(pageTitle);
+  console.log(SEO.image);
+
   return (
-    <>
-      <title>{SEO.title ? `${SEO.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${SeasonalTopbar}`}</title>
+    <React.Fragment>
+      <title>{pageTitle}</title>
       <meta name="description" content={SEO.description ? SEO.description : data.strapiAbout.slogan} />
       <meta name="image" itemProp="image" content={SEO.image} />
 
       {/* OG */}
       <meta property="og:type" content="website" />
       <meta property="og:url" itemProp="URL" content={SEO.url} />
-      <meta property="og:title" content={SEO.title} />
+      <meta property="og:title" content={pageTitle} />
       <meta property="og:description" content={SEO.description} />
       <meta property="og:image" itemProp="image" content={SEO.image} />
 
       {/* Twitter */}
       {/* is this twitter I really cant see anyone caring about this for sierra */}
       {/* TODO: do research into who uses other than og: */}
-      <meta name="twitter:title" content={SEO.title} />
+      <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={SEO.description} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={SEO.image} />
@@ -248,7 +261,7 @@ export const SEO = (SEO: SEOtypes) => {
       )}
 
       {SEO.children}
-    </>
+    </React.Fragment>
   );
 };
 
