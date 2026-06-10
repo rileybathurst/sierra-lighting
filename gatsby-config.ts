@@ -23,6 +23,7 @@ const strapiConfig = {
     "quality",
     "service",
     "showcase",
+    "site",
     "social-site",
     "team",
     "testimonial",
@@ -34,7 +35,14 @@ const strapiConfig = {
     Referer: process.env.STRAPI_API_URL,
   },
   singleTypes: [
-    "about",
+    {
+      singularName: "about",
+      queryParams: {
+        // Strapi REST equivalent: populate[0]=social&populate[1]=social.site
+        populate: ["social", "social.site"],
+      },
+    },
+    // "about",
     "area-exploratrion",
     "feedback",
     "hero",

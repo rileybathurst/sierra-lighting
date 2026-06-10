@@ -20,6 +20,7 @@
     "fullstart": "blc http://sierra.lighting --exclude '*yelp*' --exclude '*tiktok*' && pa11y http://sierra.lighting && tsc --noEmit && stay-gold && gatsby develop",
     "dirty": "gatsby develop",
     "build": "tsc --noEmit && stay-gold && gatsby build",
+    "build-dirty": "gatsby build",
     "clean-build": "gatsby clean && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",

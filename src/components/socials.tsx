@@ -12,8 +12,11 @@ type AllStrapiSocialNode = {
 };
 
 type SocialsQueryType = {
-  allStrapiSocialSites: {
-    nodes: AllStrapiSocialNode[];
+  allStrapiSocialSite: {
+    nodes: {
+      service: string;
+      username: string;
+    }[];
   };
 };
 
@@ -21,26 +24,25 @@ void React;
 
 function SocialIcons({ services }: { services: SocialTypes[] }): React.JSX.Element {
 
-  // ! this is now it about.socials
   const { allStrapiSocialSite } = useStaticQuery<SocialsQueryType>(graphql`
-      query SocialsQuery {
-        allStrapiSocialSite {
-          nodes {
-            service
-            link
-            svg
-          }
+    query SocialsQuery {
+      allStrapiSocialSite {
+        nodes {
+          service
         }
       }
-    `)
+    }
+  `)
 
-  const socialByService = new Map<string, AllStrapiSocialNode>(
-    allStrapiSocialSite.nodes.map((node) => [node.service.toLowerCase(), node])
-  );
+  console.log(allStrapiSocialSite.nodes);
 
+  /*   const socialByService = new Map<string, AllStrapiSocialNode>(
+      allStrapiSocialSite.nodes.map((node) => [node.service.toLowerCase(), node])
+    );
+   */
   return (
     <ul className="socials">
-      {services.map((social) => {
+      {/* {services.map((social) => {
         const matchedSocial = socialByService.get(social.service.toLowerCase());
 
         if (!matchedSocial?.svg || !social.username) {
@@ -66,7 +68,7 @@ function SocialIcons({ services }: { services: SocialTypes[] }): React.JSX.Eleme
             </a>
           </li>
         );
-      })}
+      })} */}
     </ul>
   )
 }

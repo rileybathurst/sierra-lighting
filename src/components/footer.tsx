@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { Link, useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 import type { IGatsbyImageData } from "gatsby-plugin-image";
@@ -15,7 +15,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     showQuote = false;
   }
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = React.useState('');
 
   interface SubjectType {
     target: {
@@ -55,6 +55,10 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         businessName
         email
         telephone
+
+        social {
+          id
+        }
       }
 
 
@@ -279,8 +283,9 @@ const Footer = ({ quote }: { quote?: boolean }) => {
       </div>
 
       <hr className="albatross" />
-      {/* // ! debugging off */}
-      {/* <Socials services={data.allStrapiSocial.nodes} /> */}
+      {data?.strapiAbout?.social?.socialSites?.length ? (
+        <Socials services={data.strapiAbout.social.socialSites} />
+      ) : null}
 
       <hr className="condor" />
 
