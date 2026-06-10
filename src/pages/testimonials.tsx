@@ -44,20 +44,15 @@ const TestimonialsPage = () => {
         }
       }
 
-
+      strapiAbout {
+        googleReviews
+      }
 
       strapiFeedback {
         about
       }
     }
   `);
-
-  // ! this schema is very changed 
-  /* strapiAbout {
-  google
-  yelp
-  nextdoor
-} */
 
   return (
     <>
@@ -81,29 +76,21 @@ const TestimonialsPage = () => {
         </ul>
 
         <hr />
-        <h3 className="crest">
+        <h3>
           Help us you buy submitting your own review
         </h3>
 
-        {/* // ? these are not using the hover_back?  */}
-        {/* // ! new version of these is needed */}
-        {/*         {[
-          { url: data.strapiAbout.google, label: 'Google Review', preferred: true },
-          { url: data.strapiAbout.yelp, label: 'Yelp', preferred: false },
-          { url: data.strapiAbout.nextdoor, label: 'NextDoor', preferred: false }
-        ].map((platform) => (
-          <p key={platform.label}>
-            <a
-              href={platform.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button"
-            >
-              {platform.label}
-            </a>
-            {platform.preferred && <em>&nbsp;- preferred</em>}
-          </p>
-        ))} */}
+        <p>
+          <a
+            href={data.strapiAbout.googleReviews}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button"
+          >
+            Google Review
+          </a>
+          &nbsp;- preferred, or fill in the form below
+        </p>
 
         {/* // TODO: move this to a separate component, possibly in the same file */}
         <form
