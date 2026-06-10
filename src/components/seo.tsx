@@ -114,6 +114,7 @@ export const SEO = (SEO: SEOtypes) => {
         title
         link
 
+        default
         defaultXmas
         defaultXmasLink
         defaultWedding
@@ -143,7 +144,7 @@ export const SEO = (SEO: SEOtypes) => {
 
     }
   `);
-  
+
   const SeasonalTopbar = (() => {
     if (data.strapiTopbar.title && data.strapiTopbar.default) {
       return data.strapiTopbar.title;
@@ -156,6 +157,9 @@ export const SEO = (SEO: SEOtypes) => {
       return '';
     }
   })();
+
+  console.log(SEO.title);
+  console.log(SEO.title ? `${SEO.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${SeasonalTopbar}`);
 
   return (
     <>

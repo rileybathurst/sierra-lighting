@@ -58,6 +58,16 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
         social {
           id
+          username
+          featured
+          order
+
+          site {
+            id
+            service
+            link
+            svg
+          }
         }
       }
 
@@ -65,14 +75,6 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     
     }
   `)
-
-  /* // ! debugging ogg 
-  allStrapiSocialSites(filter: {featured: {eq: true}}) {
-  nodes {
-    service
-    username
-  }
-} */
 
   interface TeamType {
     id: React.Key;
@@ -87,6 +89,12 @@ const Footer = ({ quote }: { quote?: boolean }) => {
       alternativeText: string;
     };
   }
+
+  const featuredSocials = (data?.strapiAbout?.social ?? [])
+    .filter((social: { featured?: boolean }) => social.featured)
+    .sort((a: { order?: number }, b: { order?: number }) => (a.order ?? 0) - (b.order ?? 0));
+
+
 
   return (
     <footer>
@@ -223,7 +231,6 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             </ul>
           </li>
 
-
           <li className="wedding">
             <ul>
               {/* // TODO: make the top link a little more subtle */}
@@ -283,9 +290,9 @@ const Footer = ({ quote }: { quote?: boolean }) => {
       </div>
 
       <hr className="albatross" />
-      {data?.strapiAbout?.social?.socialSites?.length ? (
-        <Socials services={data.strapiAbout.social.socialSites} />
-      ) : null}
+      {featuredSocials.length > 0 && (
+        <Socials services={featuredSocials} />
+      )}
 
       <hr className="condor" />
 

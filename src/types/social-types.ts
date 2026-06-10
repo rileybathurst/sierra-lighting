@@ -1,4 +1,10 @@
 export type SocialTypes = {
-  service: string;
+  id: React.Key;
   username: string;
+  site: {
+    id: React.Key;
+    service: string;
+    link: string;
+    svg: string;
+  };
 };

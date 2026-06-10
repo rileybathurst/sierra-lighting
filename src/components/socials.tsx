@@ -1,74 +1,28 @@
 // TODO: do some work on the real colors
-// TODO: if a profile string or the full url
 
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
 import type { SocialTypes } from '../types/social-types';
-
-type AllStrapiSocialNode = {
-  service: string;
-  link?: string;
-  svg?: string;
-};
-
-type SocialsQueryType = {
-  allStrapiSocialSite: {
-    nodes: {
-      service: string;
-      username: string;
-    }[];
-  };
-};
-
-void React;
 
 function SocialIcons({ services }: { services: SocialTypes[] }): React.JSX.Element {
 
-  const { allStrapiSocialSite } = useStaticQuery<SocialsQueryType>(graphql`
-    query SocialsQuery {
-      allStrapiSocialSite {
-        nodes {
-          service
-        }
-      }
-    }
-  `)
-
-  console.log(allStrapiSocialSite.nodes);
-
-  /*   const socialByService = new Map<string, AllStrapiSocialNode>(
-      allStrapiSocialSite.nodes.map((node) => [node.service.toLowerCase(), node])
-    );
-   */
   return (
     <ul className="socials">
-      {/* {services.map((social) => {
-        const matchedSocial = socialByService.get(social.service.toLowerCase());
-
-        if (!matchedSocial?.svg || !social.username) {
-          return null;
-        }
-
-        const href = social.username.startsWith('http')
-          ? social.username
-          : `${matchedSocial.link || ''}${social.username}`;
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: social SVG markup is controlled content from Strapi
-        const icon = <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: matchedSocial.svg }} />;
-
+      {services.map((social) => {
         return (
-          <li key={social.service}>
+          <li key={social.id}>
             <a
-              href={href}
-              title={social.service}
+              href={`${social.site.link}${social.username}`}
+              title={social.site.service}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
-              {icon}
-              <span className="sr-only">{social.service}</span>
+              {/* biome-ignore lint/security/noDangerouslySetInnerHtml: social SVG markup is controlled content from Strapi */}
+              <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: social.site.svg }} />
+              <span className="sr-only">{social.site.service}</span>
             </a>
           </li>
         );
-      })} */}
+      })}
     </ul>
   )
 }

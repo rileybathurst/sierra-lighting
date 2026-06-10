@@ -4,7 +4,6 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import SEO from "../../components/seo";
-import type { IGatsbyImageData } from "gatsby-plugin-image";
 import type { CardType } from "../../types/card-type";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -111,6 +110,11 @@ type ProjectPageTypes = {
       testimonial: TestimonialTypes | null;
 
       video: VideoTypes;
+
+      themes: {
+        id: React.Key;
+        title: string;
+      }[];
     };
 
     triptych: {
@@ -235,7 +239,6 @@ export const query = graphql`
       themes {
         id
         title
-        excerpt
       }
 		}
 
@@ -278,6 +281,8 @@ export const query = graphql`
 
 const ProjectPage = ({ data }: ProjectPageTypes) => {
 
+  console.log(data.strapiProject.themes);
+
   return (
     <>
       <Header />
@@ -300,9 +305,10 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 
       <main className="stork">
         <article>
-          <h1>{data.strapiProject.couple ? (
+          <h1>{data.strapiProject.title}</h1>
+          {data.strapiProject.couple ? (
             <h2 className="font-serif">{data.strapiProject.couple}</h2>
-          ) : data.strapiProject.title}</h1>
+          ) : null}
 
           {data.strapiProject.description ? (
             <div className="react-markdown">
@@ -316,7 +322,8 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
         </article>
 
         <hr />
-        <h3>Interested in a project like this</h3>
+
+        <h3>Interested in a {data.strapiProject.themes && data.strapiProject.themes.map(theme => theme.title).join(', ')} project like this</h3>
         <Start path={`project ${data.strapiProject.slug}`} />
       </main>
 
@@ -498,6 +505,10 @@ type ProjectPageHeadTypes = {
   };
 };
 export const Head = ({ data }: ProjectPageHeadTypes) => {
+
+  console.log(data.strapiProject.title);
+  console.log(data.strapiProject.excerpt);
+
   return (
     <SEO
       title={`${data.strapiProject.title}`}
