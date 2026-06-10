@@ -3,7 +3,7 @@
 import React from 'react';
 import type { SocialTypes } from '../types/social-types';
 
-function SocialIcons({ services }: { services: SocialTypes[] }): React.JSX.Element {
+function Socials({ services }: { services: SocialTypes[] }): React.JSX.Element {
 
   return (
     <ul className="socials">
@@ -27,4 +27,4 @@ function SocialIcons({ services }: { services: SocialTypes[] }): React.JSX.Eleme
   )
 }
 
-export default SocialIcons;
+export default Socials;

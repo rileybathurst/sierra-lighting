@@ -9,12 +9,11 @@ import Hero from "../components/hero";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 import TestimonialRanking from "../components/testimonial-ranking";
 import Card from '../components/card';
-import SocialIcons from '../components/socials';
 import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
 import type { CardType } from '../types/card-type';
 import type { ImageWithAspectType } from '../types/image-with-aspect-type';
-import Socials from '../components/socials';
+import DeprecatedSocials from '../components/deprecated-socials';
 
 interface VendorTemplateViewTypes {
   data: {
@@ -131,12 +130,14 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         ) : null}
 
         {data.strapiVendor.instagram || data.strapiVendor.pinterest || data.strapiVendor.facebook ?
-          <>
+          <React.Fragment>
             <hr />
-            <Socials
-              services={[{ service: 'instagram', username: data.strapiVendor.instagram }, { service: 'facebook', username: data.strapiVendor.facebook }, { service: 'pinterest', username: data.strapiVendor.pinterest }]}
+            <DeprecatedSocials
+              instagram={data.strapiVendor.instagram}
+              pinterest={data.strapiVendor.pinterest}
+              facebook={data.strapiVendor.facebook}
             />
-          </>
+          </React.Fragment>
           : null
         }
 

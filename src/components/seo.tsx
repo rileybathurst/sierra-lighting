@@ -158,8 +158,7 @@ export const SEO = (SEO: SEOtypes) => {
     }
   })();
 
-  console.log(SEO.title);
-  console.log(SEO.title ? `${SEO.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${SeasonalTopbar}`);
+  // console.log(SEO.title ? `${SEO.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${SeasonalTopbar}`);
 
   return (
     <>
