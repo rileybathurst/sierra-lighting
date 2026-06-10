@@ -6,6 +6,7 @@ import "@fontsource/biz-udpmincho/400.css" // TODO: 400 or 500 ? Weight 500 with
 
 import "./src/styles/app.css";
 
+
 function syncDocumentTitleFromHead() {
   // Gatsby can leave document.title stale if multiple head title nodes exist.
   const titles = Array.from(document.head.querySelectorAll("title"));

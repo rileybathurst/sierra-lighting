@@ -12,7 +12,6 @@ function Socials({ services }: { services: SocialTypes[] }): React.JSX.Element {
           <li key={social.id}>
             <a
               href={`${social.site.link}${social.username}`}
-              title={social.site.service}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -23,7 +22,7 @@ function Socials({ services }: { services: SocialTypes[] }): React.JSX.Element {
           </li>
         );
       })}
-    </ul>
+    </ul >
   )
 }
 
