@@ -1,3 +1,5 @@
+// ! add something about themes
+
 import React from 'react';
 import { Link, graphql } from 'gatsby'
 import { GatsbyImage, type IGatsbyImageData } from 'gatsby-plugin-image'
@@ -50,7 +52,7 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
         />
-          <ul className='lookbook-list'>
+        <ul className='lookbook-list'>
           {lights.map((light) => (
             <li key={light.slug}>
               <Link to={`/light/${light.slug}`} >
@@ -125,14 +127,14 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
         >
           <Masonry className="test">
             {data.strapiService.lookbooks
-            .toReversed()
-            .map((lookbook: LookbookTypes) => (
-              <LinkedLook
-                key={lookbook.id}
-                image={lookbook.image}
-                lights={lookbook.lights}
-              />
-            ))}
+              .toReversed()
+              .map((lookbook: LookbookTypes) => (
+                <LinkedLook
+                  key={lookbook.id}
+                  image={lookbook.image}
+                  lights={lookbook.lights}
+                />
+              ))}
           </Masonry>
         </ResponsiveMasonry>
       </section>

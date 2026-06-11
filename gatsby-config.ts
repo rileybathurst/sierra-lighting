@@ -51,6 +51,7 @@ const strapiConfig = {
     "season",
     "topbar",
     "vendor-description",
+    "work",
   ],
 };
 

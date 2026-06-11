@@ -66,7 +66,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             id
             service
             link
-            svg
+            icon
           }
         }
       }

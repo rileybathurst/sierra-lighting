@@ -1,12 +1,14 @@
 import * as React from "react"
-import { useStaticQuery, graphql, Script } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { graphql, Script } from "gatsby"
 import { SEO } from "../components/seo";
 import ReactMarkdown from "react-markdown";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import { useStrapiJob } from "../hooks/use-strapi-job";
+import Hero from "../components/hero";
+import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import type { SocialTypes } from "../types/social-types";
+import Socials from "../components/socials";
 
 type JobTypes = {
   id: string
@@ -27,51 +29,68 @@ type JobTypes = {
   }[]
 }
 
-const WorkPage = () => {
-
-  const data = useStaticQuery(graphql`
-    query strapiImageGrabWork {
-
-      strapiImageGrab(title: {eq: "Work"}) {
-        title
-        image {
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
-        }
-      }
-
+type WorkPageTypes = {
+  data: {
+    allStrapiJob: {
+      nodes: JobTypes[]
     }
-  `)
+    strapiAbout: {
+      businessName: string
+      addressLocality: string
+      addressRegion: string
+      postalCode: string
+      social: SocialTypes[]
+    }
+    strapiWork: {
+      excerpt: string
+      hero: ImageWithAspectType;
+      sites: {
+        id: string
+      }[]
+    }
+  }
+}
 
-  const jobData = useStrapiJob()
+const WorkPage = ({ data }: WorkPageTypes) => {
+  const workSiteIds = new Set(data.strapiWork.sites.map((site) => site.id));
 
   return (
     <>
       <Header />
 
-      <div className="poster">
-        <GatsbyImage
-          image={data.strapiImageGrab.image.localFile.childImageSharp.gatsbyImageData}
-          alt={data.strapiImageGrab.title}
-        />
-      </div>
+      <Hero
+        image={data.strapiWork.hero}
+      />
 
       <main className="stork">
 
-        <h2 className="crest">{jobData.strapiAbout.businessName} is Hiring Now</h2>
-        <h1 className="range">Jobs</h1>
+
+        <h1>{data.strapiAbout.businessName} is Hiring Now</h1>
+        <p>{data.strapiWork.excerpt}</p>
+
+        <h4>Connect with us</h4>
+        <Socials
+          services={data.strapiAbout.social.filter(
+            (social) => workSiteIds.has(String(social.site.id))
+          )}
+        />
         <hr />
 
-        {jobData.allStrapiJob.nodes.map((job: JobTypes) => (
+        {data.allStrapiJob.nodes.length > 1 && (
+          <React.Fragment>
+            <h2>Jobs</h2>
+            <hr />
+          </React.Fragment>
+        )}
+        {data.allStrapiJob.nodes.map((job: JobTypes) => (
           <div key={job.id}>
-            <h2 itemProp="title">{job.title}</h2>
+            <h3 itemProp="title">{job.title}</h3>
+
+            {/* // ! tone down the h3 */}
             <ReactMarkdown>{job.description.data.description}</ReactMarkdown>
-            <h3>↓ Contact us below ↓</h3>
           </div>
         ))}
+        <h3>↓ Contact us below ↓</h3>
       </main >
 
       <Footer />
@@ -83,18 +102,16 @@ const WorkPage = () => {
 export default WorkPage
 
 // https://schema.org/JobPosting
-export const Head = () => {
-  const jobData = useStrapiJob()
+export const Head = ({ data }: WorkPageTypes) => {
 
   return (
     <SEO
-      title={`Work for ${jobData.strapiAbout.businessName}`}
-      // TODO description and info
-      // TODO I have a new image for this
+      title={`Work for ${data.strapiAbout.businessName}`}
+      description={`Explore current job openings at ${data.strapiAbout.businessName} in ${data.strapiAbout.addressLocality}, ${data.strapiAbout.addressRegion}. ${data.strapiWork.excerpt}`}
       image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
     >
 
-      {jobData.allStrapiJob.nodes.map((job: JobTypes) => (
+      {data.allStrapiJob.nodes.map((job: JobTypes) => (
         <Script
           type="application/ld+json"
           key={job.id}
@@ -124,7 +141,7 @@ export const Head = () => {
               ],
               "hiringOrganization": {
                 "@type": "Organization",
-                "name": "${jobData.strapiAbout.businessName}"
+                "name": "${data.strapiAbout.businessName}"
               }
             }
         `}
@@ -134,3 +151,68 @@ export const Head = () => {
     </SEO>
   )
 }
+
+
+export const data = graphql`
+  query workQuery {
+
+    allStrapiJob {
+      nodes {
+        id
+        title
+        updatedAt
+        description {
+          data {
+            description
+          }
+        }
+        employmentType
+        validThrough
+        
+        areas {
+          name
+          slug
+          state
+          postalCode
+        }
+      }
+    }
+
+    strapiAbout {
+      businessName
+      addressLocality
+      addressRegion
+      postalCode
+
+      social {
+        id
+        username
+        featured
+        order
+
+        site {
+          id
+          service
+          link
+          icon
+        }
+      }
+    }
+
+    strapiWork {
+      excerpt
+      hero {
+        localFile {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
+        alternativeText
+      }
+      sites {
+        id
+      }
+    }
+
+  }
+`

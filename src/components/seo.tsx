@@ -226,6 +226,8 @@ export const SEO = (SEO: SEOtypes) => {
   return (
     <React.Fragment>
       <html lang="en-US" />
+
+      {/* // TODO: tidy this up */}
       <title>{pageTitle}</title>
       <meta name="description" content={SEO.description ? SEO.description : data.strapiAbout.slogan} />
       <meta name="image" itemProp="image" content={SEO.image} />

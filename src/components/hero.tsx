@@ -130,6 +130,7 @@ function Slider({ gallery, badge }: GalleryType) {
   )
 }
 
+// ...fragment
 type HeroType = {
   image: ImageWithAspectType;
   gallery?: ImageWithAspectType[];

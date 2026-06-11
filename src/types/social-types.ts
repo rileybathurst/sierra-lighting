@@ -5,6 +5,6 @@ export type SocialTypes = {
     id: React.Key;
     service: string;
     link: string;
-    svg: string;
+    icon: string;
   };
 };

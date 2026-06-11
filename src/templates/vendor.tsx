@@ -131,6 +131,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
         {data.strapiVendor.instagram || data.strapiVendor.pinterest || data.strapiVendor.facebook ?
           <React.Fragment>
+            {/* // ! add new socials */}
             <hr />
             <DeprecatedSocials
               instagram={data.strapiVendor.instagram}

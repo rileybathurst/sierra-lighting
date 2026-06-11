@@ -148,6 +148,11 @@ export const query = graphql`
 			slug
 			ogimage
 
+      services {
+        name
+        slug
+      }
+
 			image {
 				...imageWithAspectFragment
 			}
@@ -483,6 +488,11 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
       <Breadcrumbs>
         <Breadcrumb>
           <Link to="/projects/">Project</Link>
+        </Breadcrumb>
+        <Breadcrumb>
+          <Link to={`/projects/${data.strapiProject.services[0].slug}`}>
+            {data.strapiProject.services[0].name}
+          </Link>
         </Breadcrumb>
         <Breadcrumb>{data.strapiProject.title}</Breadcrumb>
       </Breadcrumbs>
