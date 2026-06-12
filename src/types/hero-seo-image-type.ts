@@ -1,6 +1,6 @@
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
-type ImageWithAspectType = {
+export type HeroSEOImageType = {
   localFile: {
     childImageSharp: {
       gatsbyImageData: IGatsbyImageData;
@@ -13,5 +13,3 @@ type ImageWithAspectType = {
   alternativeText: string;
   caption?: string;
 };
-
-export type { ImageWithAspectType };

@@ -58,6 +58,24 @@ function DeprecatedSocials({ instagram, facebook, pinterest }: { instagram: stri
     }
   }
 
+  function validateSanitizeSocialSVG(svgString: string): string | null {
+    if (!svgString.trim().startsWith('<svg')) return null;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(svgString, 'image/svg+xml');
+
+    if (doc.querySelector('parsererror')) return null;
+
+    // Gatsby has an issue with inline SVG <title> tags and can break the page SEO title.
+    doc.querySelectorAll('title').forEach((titleNode) => {
+      titleNode.remove();
+    });
+
+    // console.log('Sanitized SVG:', new XMLSerializer().serializeToString(doc.documentElement));
+
+    return new XMLSerializer().serializeToString(doc.documentElement);
+  }
+
   return (
     <ul className="socials">{[
       { id: 'instagram', username: instagramFormatted },
@@ -74,8 +92,7 @@ function DeprecatedSocials({ instagram, facebook, pinterest }: { instagram: stri
               rel="noopener noreferrer"
             >
               {/* biome-ignore lint/security/noDangerouslySetInnerHtml: social SVG markup is controlled content from Strapi */}
-              {/* // ! this should use the new version with the sanitize */}
-              <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: site.icon }} />
+              <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: validateSanitizeSocialSVG(site.icon) || '' }} />
               <span className="sr-only">{site.service}</span>
             </a >
           </li >

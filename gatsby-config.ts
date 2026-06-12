@@ -11,6 +11,7 @@ const strapiConfig = {
     "bulb",
     "collaborator",
     "far",
+    "form",
     "image-grab",
     "job",
     "keyword",
@@ -26,7 +27,21 @@ const strapiConfig = {
     "site",
     "team",
     "testimonial",
-    "vendor",
+    // "vendor",
+    {
+      singularName: "vendor",
+      queryParams: {
+        // Strapi REST equivalent: populate[0]=social&populate[1]=social.site
+        populate: [
+          "social",
+          "social.site",
+          "collaborator",
+          "profile",
+          "testimonials",
+          "projects",
+        ],
+      },
+    },
     "venue",
     "video",
   ],
@@ -43,6 +58,7 @@ const strapiConfig = {
     },
     // "about",
     "area-exploratrion",
+    "error",
     "feedback",
     "hero",
     "lookbook-description",

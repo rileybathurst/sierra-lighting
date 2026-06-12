@@ -14,6 +14,7 @@ import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-rendere
 import type { CardType } from '../types/card-type';
 import type { ImageWithAspectType } from '../types/image-with-aspect-type';
 import DeprecatedSocials from '../components/deprecated-socials';
+import Socials from '../components/socials';
 
 interface VendorTemplateViewTypes {
   data: {
@@ -29,7 +30,16 @@ interface VendorTemplateViewTypes {
       instagram: string;
       facebook: string;
       pinterest: string;
-
+      social: {
+        id: React.Key;
+        username: string;
+        site: {
+          id: React.Key;
+          service: string;
+          link: string;
+          icon: string;
+        }
+      }[];
 
       profile: ImageWithAspectType;
 
@@ -108,6 +118,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
             <p>
               Website&nbsp;
+              {/* // TODO this seems like I could have a global function */}
               {data.strapiVendor.website.includes('https://') ?
                 <a href={data.strapiVendor.website}
                   target="_blank"
@@ -129,18 +140,27 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
           </React.Fragment>
         ) : null}
 
-        {data.strapiVendor.instagram || data.strapiVendor.pinterest || data.strapiVendor.facebook ?
+        {data.strapiVendor.social.length > 0 || data.strapiVendor.instagram || data.strapiVendor.pinterest || data.strapiVendor.facebook ? (
+
           <React.Fragment>
-            {/* // ! add new socials */}
             <hr />
-            <DeprecatedSocials
-              instagram={data.strapiVendor.instagram}
-              pinterest={data.strapiVendor.pinterest}
-              facebook={data.strapiVendor.facebook}
-            />
+            {data.strapiVendor.social.length > 0 &&
+              <Socials
+                services={data.strapiVendor.social}
+              />
+            }
+
+            {/* // * deprecated but theres too much here to migrate */}
+            {data.strapiVendor.instagram || data.strapiVendor.pinterest || data.strapiVendor.facebook ?
+              <DeprecatedSocials
+                instagram={data.strapiVendor.instagram}
+                pinterest={data.strapiVendor.pinterest}
+                facebook={data.strapiVendor.facebook}
+              />
+              : null
+            }
           </React.Fragment>
-          : null
-        }
+        ) : null}
 
         {data.strapiVendor.collaborator ?
           <React.Fragment>
@@ -249,6 +269,17 @@ export const query = graphql`
         facebook
         website
         pinterest
+
+        social {
+        id
+        username
+        site {
+          id
+          service
+          icon
+        }
+      }
+
         excerpt
         collaboratorAncillary
         collaborator {
@@ -344,6 +375,7 @@ export const Head = ({ data }: VendorTemplateViewTypes) => {
       title={`${data.strapiVendor.name}`}
       description={data.strapiVendor.excerpt}
       url={`vendor/${data.strapiVendor.slug}`}
+      // ! Image isnt working, the light is and were creating a layering system in SEO currently
       image={data.strapiVendor?.profile?.localFile?.url}
       breadcrumbs={[
         {

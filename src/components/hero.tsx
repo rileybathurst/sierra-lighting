@@ -5,6 +5,7 @@ import * as React from "react"
 import { GatsbyImage } from "gatsby-plugin-image"
 import type { ImageType } from "../types/image-type"
 import type { ImageWithAspectType } from "../types/image-with-aspect-type"
+import { HeroSEOImageType } from "../types/hero-seo-image-type"
 
 type GalleryType = {
   gallery: ImageWithAspectType[];
@@ -130,9 +131,9 @@ function Slider({ gallery, badge }: GalleryType) {
   )
 }
 
-// ...fragment
+
 type HeroType = {
-  image: ImageWithAspectType;
+  image: HeroSEOImageType;
   gallery?: ImageWithAspectType[];
   badge?: boolean;
   name?: string;

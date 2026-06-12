@@ -1,6 +1,5 @@
 // TODO: needs testimonials per service
 // TODO: add top level areas
-// Couple biome errors that im not sure how to get rid of yet
 // * vendors are hard coded to only show on wedding service page for now 
 // which is kinda messy as its always queried so reducing that work might be nice
 // TODO: vendor and venue should be last edited

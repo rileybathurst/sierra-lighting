@@ -1,29 +1,40 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Hero from "../components/hero";
+import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 
 type NotFoundPageTypes = {
   location: {
     pathname: string;
   }
+  data: {
+    strapiError: {
+      title: string;
+      pun: string;
+      return: string;
+      hero: HeroSEOImageType;
+    }
+  }
 }
-const NotFoundPage = ({ location }: NotFoundPageTypes) => {
+const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
   return (
     <>
       <Header />
 
-      {/* // TODO: work on the typographic sizes here */}
-      <main className="stork">
-        <h2 className="crest">404 - {location.pathname}</h2>
-        <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
-        <p>Want to brighten up?<br />
-          <Link to="/">Head to our home page.</Link>
-        </p>
-      </main>
+      <Hero
+        image={data.strapiError.hero}
+      />
+
+      <main>
+        <h2>404 - {location.pathname}</h2>
+        <h1>{data.strapiError.title}</h1>
+        <p>{data.strapiError.pun} - <Link to="/">{data.strapiError.return}</Link></p>
+      </main >
       <Footer />
     </>
   )
@@ -31,13 +42,26 @@ const NotFoundPage = ({ location }: NotFoundPageTypes) => {
 
 export default NotFoundPage
 
-export const Head = ({ location }: NotFoundPageTypes) => {
+export const Head = ({ data, location }: NotFoundPageTypes) => {
   return (
     <SEO
       title={`404 - ${location.pathname}`}
-      description="Looks like this page has left the party."
+      description={data.strapiError.title}
+      image={data.strapiError.hero}
       url="404"
-      image="https://sierralighting.s3.us-west-1.amazonaws.com/404-og-sierra_lighting.jpg"
     />
   )
 }
+
+export const query = graphql`
+  query errorPage {
+    strapiError {
+      title
+      pun
+      return
+      hero {
+        ...heroSEOImageFragment
+      }
+    }
+  }
+`

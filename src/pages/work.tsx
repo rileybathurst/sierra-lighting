@@ -86,8 +86,18 @@ const WorkPage = ({ data }: WorkPageTypes) => {
           <div key={job.id}>
             <h3 itemProp="title">{job.title}</h3>
 
-            {/* // ! tone down the h3 */}
-            <ReactMarkdown>{job.description.data.description}</ReactMarkdown>
+            <ReactMarkdown
+              components={{
+                h3: ({ className, ...props }) => (
+                  <h3
+                    className={["kilimanjaro", className].filter(Boolean).join(" ")}
+                    {...props}
+                  />
+                ),
+              }}
+            >
+              {job.description.data.description}
+            </ReactMarkdown>
           </div>
         ))}
         <h3>↓ Contact us below ↓</h3>

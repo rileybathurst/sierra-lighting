@@ -365,8 +365,11 @@ export const Head = ({ data }: AreasTemplateTypes) => {
 
   // console.log(subAreasString)
 
+  console.log(data.strapiArea.name);
+
   return (
     <SEO
+      // ! order by season
       title={`${data.strapiArea.name} professional Christmas, Wedding and event light installation`}
       description={`Professional ${servicesString} installations in ${data.strapiArea.name}${subAreasString ? `, ${subAreasString}` : null}.`}
       image={data.strapiArea?.image?.localFile?.url}

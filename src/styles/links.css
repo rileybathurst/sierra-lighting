@@ -25,6 +25,7 @@ a:focus,
 .a-focus-storybook {
   color: var(--honey-200);
   text-decoration: none;
+
   @media (prefers-color-scheme: dark) {
     color: var(--denim-500);
   }
@@ -42,7 +43,8 @@ a::selection {
   color: var(--neutral-700);
 
   @media (prefers-color-scheme: dark) {
-    color: var(--honey-50); /*  custom */
+    color: var(--honey-50);
+    /*  custom */
   }
 
   &:hover,
@@ -51,7 +53,8 @@ a::selection {
     color: var(--neutral-500);
 
     @media (prefers-color-scheme: dark) {
-      color: var(--honey-50); /*  custom */
+      color: var(--honey-50);
+      /*  custom */
     }
   }
 }
@@ -62,6 +65,7 @@ a::selection {
 /*  * this should be on the <a> tag to not have to worry about child styles */
 /*------------------*/
 
+/* * svg reacts different */
 .bigboy a:not(.header__logo),
 .contact-info a {
   /*  ? how much of this is a button */
@@ -77,7 +81,7 @@ a::selection {
 }
 
 /*  TODO: make this reusable */
-.bigboy a:hover,
+.bigboy a:not(.header__logo):hover,
 .bigboy a:focus,
 .contact-info a:hover,
 .contact-info a:focus .hover-back:hover,
@@ -112,7 +116,8 @@ a::selection {
 
 .footer-copyright a svg {
   border-radius: var(--border-radius);
-  border: 1px solid transparent; /*  hold the space itll come in later */
+  border: 1px solid transparent;
+  /*  hold the space itll come in later */
   padding-block: var(--kosciuszko);
   padding-inline: 0.5rem;
 }

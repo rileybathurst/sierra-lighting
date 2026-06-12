@@ -1,8 +1,7 @@
 import { graphql } from "gatsby"
 
-// ? are both url needed?
 export const query = graphql`
-  fragment imageWithAspectFragment on STRAPI__MEDIA {
+  fragment heroSEOImageFragment on STRAPI__MEDIA {
     localFile {
       childImageSharp {
         gatsbyImageData
@@ -13,6 +12,6 @@ export const query = graphql`
       url
     }
     alternativeText
-    url
+    caption
   }
 `

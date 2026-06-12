@@ -16,7 +16,6 @@ const Header = ({ largeLogo }: { largeLogo?: boolean }) => {
         {/* // * needed to hide the small menu */}
         <div className="stripe">{/* stay gold */}</div>
 
-        {/* // ! hover state is broken with a large shadow */}
         <Link to="/" className="small small-logo">
           <Logo />
         </Link>

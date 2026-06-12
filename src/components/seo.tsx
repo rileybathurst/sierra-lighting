@@ -16,6 +16,8 @@ import React from "react";
 import { Script, useStaticQuery, graphql } from "gatsby";
 import type VideoTypes from "../types/video-types";
 import Season from "./season";
+import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import { HeroSEOImageType } from "../types/hero-seo-image-type";
 
 type BreadcrumbsTypes = {
   url: string;
@@ -87,8 +89,7 @@ type SEOtypes = {
   title?: string;
   description?: string;
   url?: string;
-  image?: string;
-  imageAlt?: string;
+  image?: ImageWithAspectType; // * pass the whole image deal with it from there
   children?: React.ReactNode;
   breadcrumbs?: {
     name: string;
@@ -105,8 +106,6 @@ export const SEO = (SEO: SEOtypes) => {
         businessName
         url
         slogan
-        defaultImage
-        defaultImageAlt
         openingHours
         telephone
         email
@@ -154,6 +153,18 @@ export const SEO = (SEO: SEOtypes) => {
         }
       }
 
+      wedding: strapiService(slug: {eq: "wedding"}) {
+        hero_light {
+          ...heroSEOImageFragment
+        }
+      }
+
+      xmas: strapiService(slug: {eq: "residential"}) {
+        hero_light {
+          ...heroSEOImageFragment
+        }
+      }
+
     }
   `);
 
@@ -170,17 +181,28 @@ export const SEO = (SEO: SEOtypes) => {
     }
   })();
 
-  // console.log(SEO.title ? `${SEO.title} | ${data.strapiAbout.businessName}` : `${data.strapiAbout.businessName} | ${SeasonalTopbar}`);
+  /*------------------------------------*/
 
-  const businessName = data.strapiAbout.businessName;
-  const hasBusinessName = SEO.title
-    ? SEO.title.toLowerCase().includes(businessName.toLowerCase())
-    : false;
-  const pageTitle = SEO.title
-    ? hasBusinessName
-      ? SEO.title
-      : `${SEO.title} | ${businessName}`
-    : `${businessName} | ${SeasonalTopbar}`;
+  const pageTitle = SEO.title ?
+    `${SEO.title} | ${data.strapiAbout.businessName}`
+    : `${data.strapiAbout.businessName} | ${SeasonalTopbar}`;
+
+  /*------------------------------------*/
+
+  let seasonFallBackImage: string | undefined;
+  if (Season() === 'xmas') {
+    seasonFallBackImage = data.xmas?.hero_light.localFile.url;
+  } else if (Season() === 'wedding') {
+    seasonFallBackImage = data.wedding?.hero_light.localFile.url;
+  } else {
+    seasonFallBackImage = undefined;
+  }
+
+  var pageImage: string | undefined = SEO.image?.localFile?.url || seasonFallBackImage;
+
+  /*------------------------------------*/
+
+  let pageDesription: string = SEO.description || data.strapiAbout.slogan;
 
   const localBusinessSchema = {
     "@context": "https://schema.org/",
@@ -190,7 +212,7 @@ export const SEO = (SEO: SEOtypes) => {
     slogan: data.strapiAbout.slogan,
     url: data.strapiAbout.url,
     alternateName: data.strapiAbout.alternateName,
-    image: data.strapiAbout.defaultImage,
+    image: seasonFallBackImage,
     openingHours: data.strapiAbout.openingHours,
     paymentAccepted: data.strapiAbout.paymentAccepted,
     telephone: data.strapiAbout.telephone,
@@ -219,24 +241,19 @@ export const SEO = (SEO: SEOtypes) => {
     keywords: data.allStrapiService.nodes.map((service: { name: string; }) => service.name).concat(data.allStrapiKeyword.nodes.map((k: { keyword: string; }) => k.keyword)).join(', ')
   };
 
-
-  // console.log(pageTitle);
-  // console.log(SEO.image);
-
   return (
     <React.Fragment>
       <html lang="en-US" />
 
-      {/* // TODO: tidy this up */}
       <title>{pageTitle}</title>
       <meta name="description" content={SEO.description ? SEO.description : data.strapiAbout.slogan} />
-      <meta name="image" itemProp="image" content={SEO.image} />
+      <meta name="image" itemProp="image" content={pageImage} />
 
       <meta property="og:type" content="website" />
       <meta property="og:url" itemProp="URL" content={SEO.url} />
       <meta property="og:title" content={pageTitle} />
-      <meta property="og:description" content={SEO.description} />
-      <meta property="og:image" itemProp="image" content={SEO.image} />
+      <meta property="og:description" content={pageDesription} />
+      <meta property="og:image" itemProp="image" content={pageImage} />
 
       <Script type="application/ld+json">
         {JSON.stringify(localBusinessSchema)}

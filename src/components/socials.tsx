@@ -3,7 +3,6 @@
 import * as React from 'react';
 import type { SocialTypes } from '../types/social-types';
 
-// TODO: also put this on the plugin
 function validateSanitizeSocialSVG(svgString: string): string | null {
   if (!svgString.trim().startsWith('<svg')) return null;
 
