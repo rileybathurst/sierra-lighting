@@ -1,5 +1,5 @@
-// /vendor/planners/ etc
 
+// /vendor/planners/ etc
 import * as React from "react"
 import { graphql, Link } from "gatsby"
 import SEO from "../../components/seo"
@@ -104,7 +104,7 @@ export const Head = ({ data }: CollaboratorPageTypes) => {
       title={`${data.strapiCollaborator.industry}`}
       // TODO image could possibly have an overlay from us would be a rad place to do that
       description={data.strapiCollaborator?.excerpt}
-      image={data.strapiCollaborator?.hero?.localFile?.url}
+      image={data.strapiCollaborator?.hero}
       url={`/vendor/${data.strapiCollaborator.slug}`}
       breadcrumbs={[
         {

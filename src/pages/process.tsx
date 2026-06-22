@@ -59,7 +59,7 @@ const ProcessPage = () => {
 
 	function seasonSwitcher(e: React.ChangeEvent<HTMLInputElement>) {
 		setSeasonRadio(e.target.value);
-    // console.log('season switched', e.target.value);
+		// console.log('season switched', e.target.value);
 		return null;
 	}
 
@@ -96,22 +96,22 @@ const ProcessPage = () => {
 				</form>
 
 				<p>
-				Ready to bring your vision to life? Get started with a free estimate
-				today and let us illuminate your home or business with an unforgettable
-				lighting display!
-        </p>
-        <hr />
-        <ol>
-        {seasonRadio === "wedding" ?
-          data.wedding.nodes.map((process: processTypes) => (
-            <ProcessDetail key={process.id} {...process} />
-          )) : (
-            data.holiday.nodes.map((process: processTypes) => (
-              <ProcessDetail key={process.id} {...process} />
-            ))
-          )
-        }
-        </ol>
+					Ready to bring your vision to life? Get started with a free estimate
+					today and let us illuminate your home or business with an unforgettable
+					lighting display!
+				</p>
+				<hr />
+				<ol>
+					{seasonRadio === "wedding" ?
+						data.wedding.nodes.map((process: processTypes) => (
+							<ProcessDetail key={process.id} {...process} />
+						)) : (
+							data.holiday.nodes.map((process: processTypes) => (
+								<ProcessDetail key={process.id} {...process} />
+							))
+						)
+					}
+				</ol>
 			</main>
 
 			<Footer />
@@ -127,7 +127,8 @@ export const Head = () => {
 			title="Our process for professional wedding or christmas lights installation"
 			// TODO: needs a new description now
 			description="Learn how Sierra Lighting can help you create memorable lighting with our design process."
-			image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
+		// TODO:
+		// image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
 		/>
 	);
 };

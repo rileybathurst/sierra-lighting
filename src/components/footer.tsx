@@ -4,12 +4,13 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 import Logo from "../images/logo";
+import { isWithinBusinessHours } from './business-hours';
 import Season from './season';
 import { Phone } from './phone';
 import Socials from './socials';
+import { days } from './days';
 
 const Footer = ({ quote }: { quote?: boolean }) => {
-
   let showQuote = true;
   if (quote === false) {
     showQuote = false;
@@ -47,7 +48,6 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             }
             alternativeText
           }
-    
         }
       }
     
@@ -71,10 +71,42 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         }
       }
 
-
-    
+      strapiForm {
+        opening
+        closing
+        monitoring
+        minimum
+        outsideHours
+        days {
+          monday
+          tuesday
+          wednesday
+          thursday
+          friday
+          saturday
+          sunday
+        }
+      }
     }
   `)
+
+  /*------------------------------------*/
+
+  function Hours(time: string): JSX.Element {
+    const hour = Number(time.split(":")[0]);
+    const minute = time.split(":")[1];
+    const minuteStr = minute !== "00" ? `:${minute}` : "";
+
+    if (hour > 12) {
+      return <>{hour - 12}{minuteStr} <span className="all-small-caps">PM</span></>;
+    } else if (hour === 12) {
+      return <>{hour}{minuteStr} <span className="all-small-caps">PM</span></>;
+    } else {
+      return <>{hour}{minuteStr} <span className="all-small-caps">AM</span></>;
+    }
+  }
+
+  /*------------------------------------*/
 
   interface TeamType {
     id: React.Key;
@@ -90,17 +122,19 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     };
   }
 
+  /*------------------------------------*/
+
   const featuredSocials = (data?.strapiAbout?.social ?? [])
     .filter((social: { featured?: boolean }) => social.featured)
     .sort((a: { order?: number }, b: { order?: number }) => (a.order ?? 0) - (b.order ?? 0));
 
-
+  /*------------------------------------*/
 
   return (
     <footer>
       <hr className="stork" />
 
-      {showQuote ? (
+      {showQuote && (
         <>
           <h3 className="stork">Start With A Free Quote</h3>
 
@@ -116,7 +150,11 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             <input type="hidden" name="form-name" value="contact" />
 
             <input type="hidden" name="subject"
-              value={`Contact Form from sierra.lighting ${email}`} />
+              value={`${!isWithinBusinessHours() && "Outside Business Hours: "}Contact Form from sierra.lighting ${email}`} />
+
+            {!isWithinBusinessHours() && (
+              <input className="sr-only" type="hidden" name="hours" value={`${data.strapiForm.outsideHours}`} />
+            )}
 
             <label>Name
               <input type="text" name="name" />
@@ -144,7 +182,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
             {/* // TODO: this might be a query in the future if I keep changing it */}
             <label className='checkbox'>
-              I understand there is a minimum of $700 for christmas or holiday lights and $1,000 for new wedding or event lighting clients
+              {data.strapiForm.minimum}
               <input type="checkbox" name="minimum" />
             </label>
             <p className="sr-only">
@@ -156,11 +194,9 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             <button type="submit">Send</button>
           </form>
 
-
           <hr className='pelican' />
         </>
-      ) : null
-      }
+      )}
       <div className="footer-container">
 
         <section id="contact" className="contact">
@@ -178,7 +214,17 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             <p>
               {/* // TODO: fix the styling and put this in strapi */}
               Call or Text: <Phone phone={data.strapiAbout.telephone} />
-              <small>This inbox is monitored between the hours of 8am-4pm PST Monday-Friday</small>
+
+              {/* // * elements of typograhic style 3.2 numerals, capitals & small caps */}
+              <small>
+                {data.strapiForm.monitoring}&nbsp;
+                <span className="white-space-no-wrap">{Hours(data.strapiForm.opening)}&thinsp;and&thinsp;{Hours(data.strapiForm.closing)} <span className="all-small-caps">PST</span></span>,
+                &nbsp;<span className="white-space-no-wrap">{days(data.strapiForm.days)}</span>.&nbsp;
+                {isWithinBusinessHours()
+                  ? `We're currently open`
+                  : `Nope, we're currently closed`}
+              </small>
+
             </p>
           </div>
         </section>
@@ -213,6 +259,9 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
       <hr className="albatross" />
 
+      {/* // TODO: use grid-row as soon as it hits baseline */}
+      {/* // TODO: put all this data in an arraay and make it way more readable */}
+      {/* use strapi services etc to bring in some */}
       <div className="footer_list">
         <ul className={Season()}>
           <li className="christmas">

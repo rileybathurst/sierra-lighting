@@ -504,26 +504,13 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 
 export default ProjectPage;
 
-type ProjectPageHeadTypes = {
-  data: {
-    strapiProject: {
-      title: string;
-      excerpt: string;
-      ogimage: string;
-      slug: string;
-    };
-  };
-};
-export const Head = ({ data }: ProjectPageHeadTypes) => {
-
-  console.log(data.strapiProject.title);
-  console.log(data.strapiProject.excerpt);
+export const Head = ({ data }: ProjectPageTypes) => {
 
   return (
     <SEO
       title={`${data.strapiProject.title}`}
       description={data.strapiProject?.excerpt}
-      image={data.strapiProject?.ogimage}
+      image={data.strapiProject?.image}
       url={`project/${data.strapiProject.slug}`}
       breadcrumbs={[
         {

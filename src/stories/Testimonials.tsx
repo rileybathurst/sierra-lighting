@@ -51,6 +51,9 @@ export const Testimonials = () => {
       </a>
       </p>
 
+      {/* // TODO: faker for outside business hours */}
+      {/* // ? can i reduce the form numbers I have a */}
+
       <form
         className="stork"
         name="testimonial"

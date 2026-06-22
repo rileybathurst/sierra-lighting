@@ -33,6 +33,7 @@
   "dependencies": {
     "@fontsource-variable/josefin-sans": "^5.2.6",
     "@fontsource/biz-udpmincho": "^5.2.6",
+    "@js-temporal/polyfill": "^0.5.1",
     "@mux/mux-player-react": "^3.5.1",
     "@sentry/cli": "^2.46.0",
     "@sentry/gatsby": "^10.22.0",
@@ -40,6 +41,7 @@
     "@strapi/blocks-react-renderer": "^1.0.2",
     "@types/react-responsive-masonry": "^2.6.0",
     "axios": "^1.10.0",
+    "caniuse-lite": "^1.0.30001799",
     "gatsby": "^5.14.5",
     "gatsby-adapter-netlify": "^1.2.1",
     "gatsby-plugin-csp": "^1.1.4",

@@ -176,6 +176,16 @@ small,
 
 /*------------------------------------*/
 
+.all-small-caps {
+  font-variant-caps: all-small-caps;
+}
+
+.white-space-no-wrap {
+  white-space: nowrap;
+}
+
+/*------------------------------------*/
+
 hgroup {
   margin-block-end: var(--denali);
 

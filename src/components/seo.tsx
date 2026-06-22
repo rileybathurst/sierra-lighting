@@ -202,7 +202,7 @@ export const SEO = (SEO: SEOtypes) => {
 
   /*------------------------------------*/
 
-  let pageDesription: string = SEO.description || data.strapiAbout.slogan;
+  var pageDesription: string = SEO.description || data.strapiAbout.slogan;
 
   const localBusinessSchema = {
     "@context": "https://schema.org/",

@@ -1,4 +1,4 @@
-// ! add something about themes
+// TODO: add something about themes
 
 import React from 'react';
 import { Link, graphql } from 'gatsby'

@@ -114,7 +114,7 @@ const IndexPage = () => {
       <main className="albatross margin-block-start-0">
         {/* // TODO: tidy up these classes */}
         <div className={`masthead ${Season()}`}>
-          <div className="large logo">
+          <div className="large-visibility logo">
             <Logo />
           </div>
 

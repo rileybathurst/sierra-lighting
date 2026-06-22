@@ -25,7 +25,7 @@ export const Index = () => {
 
       <main className="albatross margin-block-start-0">
         <div className={`masthead ${faker.datatype.boolean() ? 'wedding' : 'xmas'}`}>
-          <div className="large logo">
+          <div className="large-visibility logo">
             <Logo />
           </div>
 

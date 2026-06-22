@@ -83,24 +83,24 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
           </div>
         ))}
 
-        {vendorsByCollaborator.uncategorized?.length > 0 && (
-          <div>
-            <div className="stork">
-              <hr />
-              <h3 className="capitalize">Other Vendors</h3>
-            </div>
-
-            <div className="deck">
-              {vendorsByCollaborator.uncategorized.map((vendor: CardType) => (
-                <Card
-                  key={vendor.id}
-                  {...vendor}
-                  breadcrumb={`vendor`}
-                />
-              ))}
-            </div>
+      {vendorsByCollaborator.uncategorized?.length > 0 && (
+        <div>
+          <div className="stork">
+            <hr />
+            <h3 className="capitalize">Other Vendors</h3>
           </div>
-        )}
+
+          <div className="deck">
+            {vendorsByCollaborator.uncategorized.map((vendor: CardType) => (
+              <Card
+                key={vendor.id}
+                {...vendor}
+                breadcrumb={`vendor`}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       <Footer />
 
@@ -155,6 +155,7 @@ export const Head = ({ data }: vendorHeadTypes) => {
     <SEO
       title='Vendors'
       description={data.strapiVendorDescription.excerpt}
+      // TODO:
       // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
       url="vendor"
     />

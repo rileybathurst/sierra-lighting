@@ -375,8 +375,7 @@ export const Head = ({ data }: VendorTemplateViewTypes) => {
       title={`${data.strapiVendor.name}`}
       description={data.strapiVendor.excerpt}
       url={`vendor/${data.strapiVendor.slug}`}
-      // ! Image isnt working, the light is and were creating a layering system in SEO currently
-      image={data.strapiVendor?.profile?.localFile?.url}
+      image={data.strapiVendor?.profile}
       breadcrumbs={[
         {
           name: 'Vendors',

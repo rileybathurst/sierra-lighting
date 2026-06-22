@@ -74,7 +74,7 @@ export const Head = ({ data }: SafetyPageTypes) => {
     <SEO
       title='Safety'
       description={data.strapiSafety.excerpt}
-      image={data.strapiSafety.image.url}
+      image={data.strapiSafety.image}
     />
   )
 }

@@ -190,16 +190,15 @@ const VenueView = ({ data }: VenueViewTypes) => {
           </div>
         </>
         :
-        <>
-          <div className="stork">
-            <h3 className="crest">Looking for somewhere else?</h3>
-            <h2 className="range">
-              <Link to='/venue'>
-                Other {data.strapiVenue.slug === 'blue' ? null : 'Wedding'} Venues
-              </Link>
-            </h2>
-          </div>
-        </>
+
+        <div className="stork">
+          <h3 className="crest">Looking for somewhere else?</h3>
+          <h2 className="range">
+            <Link to='/venue'>
+              Other {data.strapiVenue.slug === 'blue' ? null : 'Wedding'} Venues
+            </Link>
+          </h2>
+        </div>
       }
 
       <hr className='stork' />
@@ -329,7 +328,7 @@ export const Head = ({ data }: VenueViewTypes) => {
 
       // TODO: Sierra lighting can create lighting at
       description={data.strapiVenue.excerpt}
-      image={data.strapiVenue?.venueImage?.localFile?.url}
+      image={data.strapiVenue?.venueImage}
       // url={`venue/${data.strapiVenue.slug}`}
       // TODO: is this actually three levels deep? and why is it featured and state etc
       breadcrumbs={

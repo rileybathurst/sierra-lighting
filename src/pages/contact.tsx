@@ -45,7 +45,8 @@ export const Head = () => {
       title='Contact'
       // TODO: strapi query
       description="Contact Sierra Lighting for a free estimate. We offer full service christmas, wedding, and event lighting packages to meet any budget."
-      image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/contact-og-sierra_lighting.jpg"
+      // TODO:
+      // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/contact-og-sierra_lighting.jpg"
       url="contact"
     />
   )

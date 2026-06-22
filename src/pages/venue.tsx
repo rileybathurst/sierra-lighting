@@ -104,7 +104,8 @@ export const Head = () => {
 		<SEO
 			title="Wedding venues we create lighting at"
 			description="The natural beauty of the Lake Tahoe area makes the perfect backdrop for a wedding. Check out these Tahoe wedding venues that range from rustic to glamorous."
-			image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
+			// TODO: grab a good one from a featured venue? maybe name the query
+			// image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
 			url="venue"
 		/>
 	);

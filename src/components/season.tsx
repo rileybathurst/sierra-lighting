@@ -1,4 +1,4 @@
-// https://ntietz.com/blog/that-boolean-should-probably-be-something-else/
+// TODO: https://ntietz.com/blog/that-boolean-should-probably-be-something-else/
 import { graphql, useStaticQuery } from "gatsby"
 
 function Season() {

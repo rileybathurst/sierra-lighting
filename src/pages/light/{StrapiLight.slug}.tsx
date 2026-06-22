@@ -552,7 +552,7 @@ export const Head = ({ data }: LightPageTypes) => {
 				`}
 				// TODO: needs the aliases in the SEO
 				description={`${data.strapiLight?.excerpt} ${processString}`} // TODO: add some info about styles i.e. 'modern, rustic, etc.' they might be just a number of tags
-				image={data.strapiLight?.image?.localFile?.url}
+				image={data.strapiLight?.image}
 				url={`light/${data.strapiLight.slug}`}
 				breadcrumbs={[
 					{

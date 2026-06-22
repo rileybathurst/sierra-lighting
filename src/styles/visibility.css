@@ -2,8 +2,7 @@
 /*  Visibility */
 /*------------------*/
 
-/*  small */
-.small {
+.small-visibility {
   /*  display: none; */
 
   @media (min-width: 60rem) {
@@ -11,18 +10,13 @@
   }
 }
 
-/*  large */
-.large,
-.inherit {
+
+.large-visibility {
   display: none;
+
   @media (min-width: 60rem) {
     display: initial;
   }
-}
-
-/* testing this out in the footer im not sure if its more useful */
-.inherit {
-  display: inherit;
 }
 
 /*------------------*/

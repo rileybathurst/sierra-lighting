@@ -11,7 +11,7 @@ export const Menu = () => {
         {/* // needed to hide the small menu */}
         <div className="stripe">{/* stay gold */}</div>
 
-        <div className='small'>
+        <div className='small-visibility'>
           <Logo />
         </div>
         <button

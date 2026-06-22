@@ -4,10 +4,11 @@ import SEO from "../../components/seo"
 
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
-import type { IGatsbyImageData } from "gatsby-plugin-image";
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Markdown from "react-markdown";
+import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
+
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -45,15 +46,7 @@ type TeamTypes = {
           bio: string;
         };
       };
-      avatar: {
-        alternativeText: string;
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-          url: string;
-        };
-      };
+      avatar: ImageWithAspectType;
       projects: CardType[];
     };
     strapiAbout: {
@@ -134,7 +127,7 @@ export const Head = ({ data }: TeamTypes) => {
       title={`${data.strapiTeam.name}`}
       // TODO image
       description={data.strapiTeam?.excerpt}
-      image={data.strapiTeam?.avatar?.localFile?.url}
+      image={data.strapiTeam?.avatar}
       url={`/team/${data.strapiTeam.slug}`}
       breadcrumbs={[
         {

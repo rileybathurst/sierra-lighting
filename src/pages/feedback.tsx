@@ -8,6 +8,7 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Star from "../images/star";
+import { isWithinBusinessHours } from "../components/business-hours";
 
 type LocationTypes = {
   location: {
@@ -220,7 +221,12 @@ const FeedbackPage = ({ location }: LocationTypes) => {
           <input
             type="hidden"
             name="subject"
-            value="Feedback Form from Sierra Lighting" />
+            value={`${!isWithinBusinessHours() && "Outside Business Hours: "}Feedback Form from Sierra Lighting`}
+          />
+
+          {!isWithinBusinessHours() && (
+            <input className="sr-only" type="hidden" name="hours" value={`${data.strapiForm.outsideHours}`} />
+          )}
 
           <p className="sr-only">
             <label>
@@ -263,7 +269,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
             <textarea name="feedback" />
           </label>
 
-
+          {/* // TODO: I can loop this */}
           <div className="feedback-stars">
             <button type="button" title="1 Star Button"
               className={`feedback-star ${oneStar ? 'active' : ''} ${oneHover ? 'hover' : ''}`}

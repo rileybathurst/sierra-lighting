@@ -21,6 +21,8 @@ import Suite from '../components/suite';
 import type { SuiteType } from '../types/suite-type';
 import type { ImageWithAspectType } from '../types/image-with-aspect-type';
 
+import Season from '../components/season';
+
 
 // this is no longer right as there might only be sub venues
 // if (venues.length !== 0) {
@@ -367,12 +369,16 @@ export const Head = ({ data }: AreasTemplateTypes) => {
 
   console.log(data.strapiArea.name);
 
+  const seasonalOrder = (
+    (Season() === 'wedding') ? 'Wedding, Christmas and event'
+      : 'Christmas, Wedding and event'
+  )
+
   return (
     <SEO
-      // ! order by season
-      title={`${data.strapiArea.name} professional Christmas, Wedding and event light installation`}
+      title={`${data.strapiArea.name} professional ${seasonalOrder} light installation`}
       description={`Professional ${servicesString} installations in ${data.strapiArea.name}${subAreasString ? `, ${subAreasString}` : null}.`}
-      image={data.strapiArea?.image?.localFile?.url}
+      image={data.strapiArea?.image}
       breadcrumbs={[
         {
           name: 'Areas',

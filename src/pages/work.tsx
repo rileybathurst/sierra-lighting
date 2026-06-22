@@ -118,7 +118,8 @@ export const Head = ({ data }: WorkPageTypes) => {
     <SEO
       title={`Work for ${data.strapiAbout.businessName}`}
       description={`Explore current job openings at ${data.strapiAbout.businessName} in ${data.strapiAbout.addressLocality}, ${data.strapiAbout.addressRegion}. ${data.strapiWork.excerpt}`}
-      image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
+    // TODO:
+    // image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
     >
 
       {data.allStrapiJob.nodes.map((job: JobTypes) => (

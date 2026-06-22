@@ -88,7 +88,8 @@ export const Head = () => {
       title='Team'
       // TODO: add the query to the description
       description="The team who work for Sierra Lighting"
-      image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
+      // TODO:
+      // image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
       url="team"
     />
   )

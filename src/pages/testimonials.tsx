@@ -9,6 +9,8 @@ import Footer from "../components/footer";
 import Testimonial from "../components/testimonial";
 import type TestimonialTypes from "../types/testimonial-types";
 
+import { isWithinBusinessHours } from '../components/business-hours';
+
 const TestimonialsPage = () => {
 
   const data = useStaticQuery(graphql`
@@ -104,7 +106,12 @@ const TestimonialsPage = () => {
           <input type="hidden" name="form-name" value="testimonial" />
 
           <input type="hidden" name="subject"
-            value="Testimonial Form from sierra.lighting" />
+            value={`${!isWithinBusinessHours() && "Outside Business Hours: "} Testimonial Form from sierra.lighting`}
+          />
+
+          {!isWithinBusinessHours() && (
+            <input className="sr-only" type="hidden" name="hours" value={`${data.strapiForm.outsideHours}`} />
+          )}
 
           <p className="sr-only">
             <label>
@@ -147,7 +154,8 @@ export const Head = () => {
       title='Testimonials'
       description="Thanks From Our Customers"
       // ? is there a reason for this specific image?
-      image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
+      // TODO:
+      // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
       url="testimonials"
     />
   )
