@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 function DeprecatedSocials({ instagram, facebook, pinterest }: { instagram: string; facebook: string; pinterest: string }): React.JSX.Element {
 
-  console.log(pinterest, facebook, instagram);
+  // console.log(pinterest, facebook, instagram);
 
   const data = useStaticQuery(graphql`
       query socialQuery {
@@ -45,6 +45,8 @@ function DeprecatedSocials({ instagram, facebook, pinterest }: { instagram: stri
     }
   }
 
+  // console.log('instagramFormatted', instagramFormatted);
+
   let pinterestFormatted = '';
   if (pinterest) {
     if (pinterest.includes('pinterest.com/')) {
@@ -59,21 +61,10 @@ function DeprecatedSocials({ instagram, facebook, pinterest }: { instagram: stri
   }
 
   function validateSanitizeSocialSVG(svgString: string): string | null {
-    if (!svgString.trim().startsWith('<svg')) return null;
+    const trimmedSvg = svgString.trim();
+    if (!trimmedSvg.startsWith('<svg')) return null;
 
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(svgString, 'image/svg+xml');
-
-    if (doc.querySelector('parsererror')) return null;
-
-    // Gatsby has an issue with inline SVG <title> tags and can break the page SEO title.
-    doc.querySelectorAll('title').forEach((titleNode) => {
-      titleNode.remove();
-    });
-
-    // console.log('Sanitized SVG:', new XMLSerializer().serializeToString(doc.documentElement));
-
-    return new XMLSerializer().serializeToString(doc.documentElement);
+    return trimmedSvg.replace(/<title[\s\S]*?<\/title>/gi, '');
   }
 
   return (

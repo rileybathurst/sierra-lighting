@@ -7,6 +7,10 @@ import * as JsSearch from "js-search"
 import Card from "./card"
 import type { CardType } from "../types/card-type";
 
+function isSearchableCard(card: Partial<CardType> | null | undefined): card is CardType {
+  return Boolean(card?.id && card?.name && card?.slug);
+}
+
 interface ResultListTypes {
   searchQuery: string;
   results: CardType[];
@@ -54,14 +58,19 @@ const LightSearch = () => {
     }
   `);
 
+  const searchableLights = React.useMemo(
+    () => allStrapiLight.nodes.filter(isSearchableCard),
+    [allStrapiLight.nodes],
+  );
+
   // Initialize search instance and add documents/indexes
   const search = React.useMemo(() => {
     const s = new JsSearch.Search('id');
     s.addIndex('name');
     s.addIndex('slug');
-    s.addDocuments(allStrapiLight.nodes);
+    s.addDocuments(searchableLights);
     return s;
-  }, [allStrapiLight.nodes]);
+  }, [searchableLights]);
 
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();

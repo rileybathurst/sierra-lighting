@@ -1,6 +1,8 @@
 // TODO: run this through gatsby-node to get the service in the url
 // TODO: This query took more than 15s to run — which might indicate you're querying too much or have some unoptimized code:
 
+// TODO: remove bistro projects as they dont live anywhere so they cant be live
+
 import * as React from "react";
 import { graphql } from "gatsby";
 import SEO from "../../components/seo";

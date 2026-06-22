@@ -1,3 +1,5 @@
+// TODO: add search to the page
+
 import * as React from "react"
 import { Link, graphql } from 'gatsby';
 

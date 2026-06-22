@@ -4,21 +4,10 @@ import * as React from 'react';
 import type { SocialTypes } from '../types/social-types';
 
 function validateSanitizeSocialSVG(svgString: string): string | null {
-  if (!svgString.trim().startsWith('<svg')) return null;
+  const trimmedSvg = svgString.trim();
+  if (!trimmedSvg.startsWith('<svg')) return null;
 
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(svgString, 'image/svg+xml');
-
-  if (doc.querySelector('parsererror')) return null;
-
-  // Gatsby has an issue with inline SVG <title> tags and can break the page SEO title.
-  doc.querySelectorAll('title').forEach((titleNode) => {
-    titleNode.remove();
-  });
-
-  // console.log('Sanitized SVG:', new XMLSerializer().serializeToString(doc.documentElement));
-
-  return new XMLSerializer().serializeToString(doc.documentElement);
+  return trimmedSvg.replace(/<title[\s\S]*?<\/title>/gi, '');
 }
 
 function Socials({ services }: { services: SocialTypes[] }): React.JSX.Element {
