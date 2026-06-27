@@ -31,6 +31,7 @@
     "stay-gold": "stay-gold"
   },
   "dependencies": {
+    "@2toad/profanity": "^3.3.0",
     "@fontsource-variable/josefin-sans": "^5.2.6",
     "@fontsource/biz-udpmincho": "^5.2.6",
     "@js-temporal/polyfill": "^0.5.1",

@@ -11,8 +11,10 @@ form {
     width: calc(100% - var(--denali));
     max-width: 60rem;
     border-radius: calc(var(--border-radius) * 2);
-    padding-block: 0.5rem; /*  16 */
-    padding-inline: 0.5rem; /* 16 /
+    padding-block: 0.5rem;
+    /*  16 */
+    padding-inline: 0.5rem;
+    /* 16 /
     margin-block-end: 0.25rem; /* 8px */
     border: 1px solid var(--honey-400);
 
@@ -75,6 +77,16 @@ form {
   }
 }
 
+/*------------------------------------*/
+
+.error {
+  border-color: var(--error);
+}
+
+.error:focus-visible {
+  outline-color: var(--error);
+}
+
 /*------------------*/
 /* ProcessSwitch */
 /*------------------*/
@@ -85,6 +97,7 @@ form {
   padding: var(--vinson);
   border-radius: var(--everest);
   background-color: var(--honey-100);
+
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-600);
   }
@@ -94,7 +107,8 @@ form {
     text-align: center;
     line-height: var(--denali);
     border-radius: var(--denali);
-    margin-block-end: 0; /* reset */
+    margin-block-end: 0;
+    /* reset */
     transition: var(--moment);
     /* TODO: make this work with slide across but think about how that would work first */
     padding: 0.25rem;
@@ -119,6 +133,7 @@ form {
   label.current {
     background-color: var(--honey-400);
     color: var(--honey-700);
+
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-400);
       color: var(--denim-100);
@@ -128,6 +143,7 @@ form {
   label:hover {
     cursor: pointer;
     background-color: var(--honey-200);
+
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-500);
       color: var(--denim-100);
@@ -137,6 +153,7 @@ form {
   label.current:hover {
     cursor: default;
     background-color: var(--honey-400);
+
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-400);
     }

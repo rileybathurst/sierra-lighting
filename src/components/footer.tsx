@@ -3,6 +3,8 @@ import { Link, useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
+import { profanity } from '@2toad/profanity';
+
 import Logo from "../images/logo";
 import { isWithinBusinessHours } from './business-hours';
 import Season from './season';
@@ -16,7 +18,12 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     showQuote = false;
   }
 
+  // ? the next step would be detecting links but start with profanity checks
+  const [canSend, setCanSend] = React.useState(true);
   const [email, setEmail] = React.useState('');
+  const [emailProfanity, setEmailProfanity] = React.useState(false);
+  const [messageProfanity, setMessageProfanity] = React.useState(false);
+  const [referralProfanity, setReferralProfanity] = React.useState(false);
 
   interface SubjectType {
     target: {
@@ -24,7 +31,34 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     };
   }
   function subject(e: SubjectType) {
+    // TODO: working on this testing the contact.csv first
+    profanity.exists(e.target.value) && console.log("Profanity detected");
+    setCanSend(!profanity.exists(e.target.value));
+
     setEmail(e.target.value);
+    // console.log(e.target.value);
+
+    return null;
+  }
+
+  type ProfanityCheckType = {
+    target: {
+      name: 'message' | 'referral';
+      value: string;
+    };
+  }
+  function profanityCheck(e: ProfanityCheckType) {
+    const value = e.target.value;
+    const hasProfanity = profanity.exists(value);
+
+    if (e.target.name === "message") {
+      setMessageProfanity(hasProfanity);
+    } else if (e.target.name === "referral") {
+      setReferralProfanity(hasProfanity);
+    }
+
+    setCanSend(!hasProfanity && !emailProfanity && !messageProfanity && !referralProfanity);
+
     return null;
   }
 
@@ -76,6 +110,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         closing
         monitoring
         minimum
+        profanity
         outsideHours
         days {
           monday
@@ -97,10 +132,8 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     const minute = time.split(":")[1];
     const minuteStr = minute !== "00" ? `:${minute}` : "";
 
-    if (hour > 12) {
+    if (hour >= 12) {
       return <>{hour - 12}{minuteStr} <span className="all-small-caps">PM</span></>;
-    } else if (hour === 12) {
-      return <>{hour}{minuteStr} <span className="all-small-caps">PM</span></>;
     } else {
       return <>{hour}{minuteStr} <span className="all-small-caps">AM</span></>;
     }
@@ -150,7 +183,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             <input type="hidden" name="form-name" value="contact" />
 
             <input type="hidden" name="subject"
-              value={`${!isWithinBusinessHours() && "Outside Business Hours: "}Contact Form from sierra.lighting ${email}`} />
+              value={`${!isWithinBusinessHours() ? "Outside Business Hours: " : ""}Contact Form from sierra.lighting ${email}`} />
 
             {!isWithinBusinessHours() && (
               <input className="sr-only" type="hidden" name="hours" value={`${data.strapiForm.outsideHours}`} />
@@ -160,7 +193,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
               <input type="text" name="name" />
             </label>
             <label>Email
-              <input type="email" name="email" onChange={subject} />
+              <input type="email" name="email" onChange={subject} className={emailProfanity ? "error" : ""} />
             </label>
             <label>Phone
               <input type="tel" name="tel" />
@@ -174,10 +207,10 @@ const Footer = ({ quote }: { quote?: boolean }) => {
               </label>
             </div>
             <label>Message
-              <textarea name="message" />
+              <textarea name="message" onChange={profanityCheck} className={messageProfanity ? "error" : ""} />
             </label>
             <label>How did you hear about us?
-              <input type="text" name="referral" />
+              <input type="text" name="referral" onChange={profanityCheck} className={referralProfanity ? "error" : ""} />
             </label>
 
             {/* // TODO: this might be a query in the future if I keep changing it */}
@@ -191,7 +224,14 @@ const Footer = ({ quote }: { quote?: boolean }) => {
                 <input name="bot-field" />
               </label>
             </p>
-            <button type="submit">Send</button>
+
+            {!canSend && (
+              <p className="error">
+                {data.strapiForm.profanity}
+              </p>
+            )}
+
+            <button type="submit" disabled={!canSend}>Send</button>
           </form>
 
           <hr className='pelican' />
