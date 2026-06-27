@@ -168,6 +168,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         <>
           <h3 className="stork">Start With A Free Quote</h3>
 
+          {/* // ? should i be sanitizing inputs here */}
           <form
             name="contact"
             data-netlify="true"

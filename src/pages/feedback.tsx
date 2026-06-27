@@ -42,6 +42,10 @@ const FeedbackPage = ({ location }: LocationTypes) => {
       strapiAbout {
         googleReviews
       }
+
+      strapiForm {
+        outsideHours
+      }
     }
   `);
 

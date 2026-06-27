@@ -53,6 +53,10 @@ const TestimonialsPage = () => {
       strapiFeedback {
         about
       }
+
+      strapiForm {
+        outsideHours
+      }
     }
   `);
 
