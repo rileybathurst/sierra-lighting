@@ -35,25 +35,22 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     profanity.exists(e.target.value) && console.log("Profanity detected");
     setCanSend(!profanity.exists(e.target.value));
 
+    setEmailProfanity(profanity.exists(e.target.value));
+
     setEmail(e.target.value);
     // console.log(e.target.value);
 
     return null;
   }
 
-  type ProfanityCheckType = {
-    target: {
-      name: 'message' | 'referral';
-      value: string;
-    };
-  }
-  function profanityCheck(e: ProfanityCheckType) {
+  function profanityCheck(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
     const value = e.target.value;
     const hasProfanity = profanity.exists(value);
+    const name = e.target.name;
 
-    if (e.target.name === "message") {
+    if (name === "message") {
       setMessageProfanity(hasProfanity);
-    } else if (e.target.name === "referral") {
+    } else if (name === "referral") {
       setReferralProfanity(hasProfanity);
     }
 
