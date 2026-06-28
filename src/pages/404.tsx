@@ -65,7 +65,7 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
   }
 
   const mediaUrl = new URL(mediaPath, `${siteUrl}/`).toString()
-  console.log(`Pinterest media URL: ${mediaUrl}`)
+  const pinterestHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(pageUrl)}&media=${encodeURIComponent(mediaUrl)}`
 
   return (
     <React.Fragment>
@@ -83,7 +83,7 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
       <Footer />
 
       <a
-        href="https://www.pinterest.com/pin/create/button/"
+        href={pinterestHref}
         data-pin-do="buttonBookmark"
         data-pin-url={pageUrl}
         data-pin-media={mediaUrl}
