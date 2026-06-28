@@ -14,9 +14,9 @@ import Footer from "../components/footer";
 const testEnvValue = process.env.GATSBY_TEST || "(GATSBY_TEST is not set)";
 console.log(`Test env value: ${testEnvValue}`);
 
-console.log(`https://places.googleapis.com/v1/places/XMZ412G?fields=rating,userRatingCount&key=${process.env.GATSBY_GOOGLE_MAPS_API_KEY}`)
+console.log(`https://places.googleapis.com/v1/places/ChIJmUUESZRHmYARe--Ow646_BU?fields=rating,userRatingCount&key=${process.env.GATSBY_GOOGLE_MAPS_API_KEY}`)
 
-const placeId = 'XMZ412G';
+const placeId = 'ChIJmUUESZRHmYARe--Ow646_BU';
 const apiKey = process.env.GATSBY_GOOGLE_MAPS_API_KEY;
 const url = `https://places.googleapis.com/v1/places/${placeId}?fields=rating,userRatingCount&key=${apiKey}`;
 
