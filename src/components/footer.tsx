@@ -12,21 +12,12 @@ import { Phone } from './phone';
 import Socials from './socials';
 import { days } from './days';
 
-/*------------------------------------*/
-
-// TODO: I reied implementing caching on this and was getting stuck
-
-
-
-/*------------------------------------*/
-
-
-const Footer = ({ quote }: { serverData: { reviewCount: number | null; starRating: number | null }; quote?: boolean }) => {
+const Footer = ({ quote }: { quote?: boolean }) => {
 
   const [reviewCount, setReviewCount] = React.useState<number | null>(null);
   const [starRating, setStarRating] = React.useState<number | null>(null);
 
-
+  // TODO: I tried implementing caching on this and was getting stuck
   React.useEffect(() => {
     const placeId = 'ChIJKUUETZhHmYARR--Ow646_BU';
     const apiKey = process.env.GATSBY_GOOGLE_MAPS_API_KEY;
