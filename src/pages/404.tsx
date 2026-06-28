@@ -6,7 +6,6 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Hero from "../components/hero";
-import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 type NotFoundPageTypes = {
@@ -25,19 +24,12 @@ type NotFoundPageTypes = {
         caption: string;
         localFile: {
           absolutePath: string;
-          childImageSharp: IGatsbyImageData & {
-            gatsbyImageData: {
-              images: {
-                sources: {
-                  srcSet: string;
-                }[];
-              };
-            };
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
             resize: {
               aspectRatio: number;
             };
           };
-          url: string;
         };
       };
     }
@@ -57,12 +49,12 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
   // console.log(`https://sierra.lighting${data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim()?.split(" ")[0]}`);
 
   return (
-    <>
+    <React.Fragment>
       <Header />
 
-      {/* <Hero
-        image={data.strapiError.hero}s
-      /> */}
+      <Hero
+        image={data.strapiError.hero}
+      />
 
       <main>
         <h2>404 - {location.pathname}</h2>
@@ -71,8 +63,9 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
       </main >
       <Footer />
 
-      <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-media={`${data.strapiAbout.url}${data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData?.images?.sources?.[0]?.srcSet?.split(",").at(-1)?.trim()?.split(" ")?.[0] || ""}`}>🦄</a>
-    </>
+      <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-media={`${data.strapiAbout.url}${data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData?.images?.sources?.[0]?.srcSet?.split(",").at(-1)?.trim()?.split(" ")?.[0]}`}>🦄</a>
+      <a href={`${data.strapiAbout.url}${data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData?.images?.sources?.[0]?.srcSet?.split(",").at(-1)?.trim()?.split(" ")?.[0]}`}>{data.strapiAbout.url}${data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData?.images?.sources?.[0]?.srcSet?.split(",").at(-1)?.trim()?.split(" ")?.[0]}</a>
+    </React.Fragment>
   )
 }
 
