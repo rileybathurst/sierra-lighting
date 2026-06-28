@@ -12,7 +12,56 @@ import { Phone } from './phone';
 import Socials from './socials';
 import { days } from './days';
 
-const Footer = ({ quote }: { quote?: boolean }) => {
+/*------------------------------------*/
+
+// TODO: I reied implementing caching on this and was getting stuck
+
+
+
+/*------------------------------------*/
+
+
+const Footer = ({ quote }: { serverData: { reviewCount: number | null; starRating: number | null }; quote?: boolean }) => {
+
+  const [reviewCount, setReviewCount] = React.useState<number | null>(null);
+  const [starRating, setStarRating] = React.useState<number | null>(null);
+
+
+  React.useEffect(() => {
+    const placeId = 'ChIJKUUETZhHmYARR--Ow646_BU';
+    const apiKey = process.env.GATSBY_GOOGLE_MAPS_API_KEY;
+
+    if (!apiKey) {
+      console.error('Missing GATSBY_GOOGLE_MAPS_API_KEY');
+      return;
+    }
+
+    const url = `https://places.googleapis.com/v1/places/${placeId}?fields=rating,userRatingCount&key=${apiKey}`;
+
+    async function fetchGoogleReviews() {
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const reviewCount = data.userRatingCount;
+        const starRating = data.rating;
+
+        setReviewCount(reviewCount ?? null);
+        setStarRating(starRating ?? null);
+
+        console.log(`Google Reviews: ${reviewCount} reviews, ${starRating} stars`);
+
+        // Update your website's HTML elements
+        // document.getElementById('google-count').innerText = `${reviewCount} reviews`;
+        // document.getElementById('google-stars').innerText = `${starRating} / 5 Stars`;
+      } catch (error) {
+        console.error('Error fetching Google Places data:', error);
+      }
+    }
+
+    fetchGoogleReviews();
+  }, []);
+
   let showQuote = true;
   if (quote === false) {
     showQuote = false;
@@ -157,6 +206,8 @@ const Footer = ({ quote }: { quote?: boolean }) => {
   const featuredSocials = (data?.strapiAbout?.social ?? [])
     .filter((social: { featured?: boolean }) => social.featured)
     .sort((a: { order?: number }, b: { order?: number }) => (a.order ?? 0) - (b.order ?? 0));
+
+  const google = featuredSocials.find((social: { site: { service: string } }) => social.site.service === "google");
 
   /*------------------------------------*/
 
@@ -381,6 +432,17 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         <Socials services={featuredSocials} />
       )}
 
+      {/* // * this doesnt show on local due to the API */}
+      {starRating &&
+        <p className="albatross text-align-center margin-block-start-denali">
+          <a href={`${google?.site.link}${google?.username}`}
+            target="_blank" rel="noopener noreferrer"
+          >
+            Google Star Rating: {starRating} from {reviewCount} reviews
+          </a>
+        </p>
+      }
+
       <hr className="condor" />
 
       <div className="footer-copyright">
@@ -402,6 +464,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             rel="noopener noreferrer"
             className="link--subtle"
           >
+            {/* // TODO: I think i have a query for this */}
             Formerly known as Sierra Christmas Lights
           </a>
         </h5>

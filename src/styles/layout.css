@@ -701,6 +701,10 @@ footer {
   margin-block-start: 0;
 }
 
+.margin-block-start-denali {
+  margin-block-start: var(--denali);
+}
+
 .margin-block-end-aconcagua {
   margin-block-end: var(--aconcagua);
 }

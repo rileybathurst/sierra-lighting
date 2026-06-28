@@ -184,6 +184,10 @@ small,
   white-space: nowrap;
 }
 
+.text-align-center {
+  text-align: center;
+}
+
 /*------------------------------------*/
 
 hgroup {
