@@ -22,6 +22,8 @@ type NotFoundPageTypes = {
   }
 }
 const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
+
+  console.log(data.strapiError.hero);
   return (
     <>
       <Header />
@@ -53,6 +55,7 @@ export const Head = ({ data, location }: NotFoundPageTypes) => {
   )
 }
 
+// TODO: testing
 export const query = graphql`
   query errorPage {
     strapiError {
@@ -60,7 +63,18 @@ export const query = graphql`
       pun
       return
       hero {
-        ...heroSEOImageFragment
+        localFile {
+          absolutePath
+          childImageSharp {
+            gatsbyImageData
+            resize {
+              aspectRatio
+            }
+          }
+          url
+        }
+        alternativeText
+        caption
       }
     }
   }
