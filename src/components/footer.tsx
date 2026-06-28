@@ -300,11 +300,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
                 {data.strapiForm.monitoring}&nbsp;
                 <span className="white-space-no-wrap">{Hours(data.strapiForm.opening)}&thinsp;and&thinsp;{Hours(data.strapiForm.closing)} <span className="all-small-caps">PST</span></span>,
                 &nbsp;<span className="white-space-no-wrap">{days(data.strapiForm.days)}</span>.&nbsp;
-                {isWithinBusinessHours()
-                  ? `We're currently open`
-                  : `Nope, we're currently closed`}
               </small>
-
             </p>
           </div>
         </section>

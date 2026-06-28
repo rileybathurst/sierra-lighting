@@ -25,7 +25,7 @@ function Aliases({ alias }: AliasTypes) {
 	const split = alias.split("\n").map((line: string) => line.replace("- ", ""));
 
 	return (
-		<>
+		<React.Fragment>
 			<h3 className="kilimanjaro">Also known as:</h3>
 			<ul>
 				{split.map((aka: string) => {
@@ -37,7 +37,7 @@ function Aliases({ alias }: AliasTypes) {
 				})}
 			</ul>
 			<hr />
-		</>
+		</React.Fragment>
 	);
 }
 
@@ -265,6 +265,7 @@ type LightPageTypes = {
 	location: { search?: string; }
 };
 const LightPage = ({ data, location }: LightPageTypes) => {
+
 	process.env.NODE_ENV === "development"
 		? data.strapiLight.image
 			? null
@@ -320,7 +321,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 	}
 
 	return (
-		<>
+		<React.Fragment>
 			<Header />
 
 			{/* // TODO: video in the hero */}
@@ -463,7 +464,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 					})}
 				</div>
 			) : (
-				<>
+				<React.Fragment>
 					<hr className="stork" />
 					<h3 className="stork">Other Lights</h3>
 					<div className="deck">
@@ -471,12 +472,12 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 							<Card key={light.id} {...light} breadcrumb="light" />
 						))}
 					</div>
-				</>
+				</React.Fragment>
 			)}
 
 			{/* // TODO: if more than 3 */}
 			{data.allStrapiProject.nodes.length > 0 ? (
-				<>
+				<React.Fragment>
 					<div className="stork">
 						<hr />
 						<h3>Projects Using {data.strapiLight.name}</h3>
@@ -487,7 +488,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 							<Card key={project.id} {...project} breadcrumb="project" />
 						))}
 					</div>
-				</>
+				</React.Fragment>
 			) : null}
 
 			<hr className="stork" />
@@ -500,7 +501,11 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 			</Breadcrumbs>
 
 			<Footer />
-		</>
+
+			{/* // TODO: testing */}
+			<a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/">pinterest save</a>
+
+		</React.Fragment>
 	);
 };
 
@@ -543,7 +548,7 @@ export const Head = ({ data }: LightPageTypes) => {
 	// console.log(processString);
 
 	return (
-		<>
+		<React.Fragment>
 			<SEO
 				title={`
 					${data.strapiLight.name}
@@ -577,6 +582,12 @@ export const Head = ({ data }: LightPageTypes) => {
           }
         `}
       </Script> */}
-		</>
+			<script
+				type="text/javascript"
+				async
+				defer
+				src="https://assets.pinterest.com/js/pinit.js"
+			/>
+		</React.Fragment>
 	);
 };
