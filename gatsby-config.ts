@@ -161,6 +161,7 @@ module.exports = {
           "media-src":
             "'self' data: https://www.google-analytics.com/ *.mux.com blob:",
           // you can add your directives or override defaults
+          "frame-src": "'self' https://assets.pinterest.com/",
         },
       },
     },

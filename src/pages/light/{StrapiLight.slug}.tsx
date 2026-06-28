@@ -503,6 +503,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 			<Footer />
 
 			{/* // TODO: testing */}
+			{/* // * https://developers.pinterest.com/docs/web-features/buttons/ */}
 			<a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/">pinterest save</a>
 
 		</React.Fragment>
