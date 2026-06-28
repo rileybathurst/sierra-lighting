@@ -40,7 +40,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         setReviewCount(reviewCount ?? null);
         setStarRating(starRating ?? null);
 
-        console.log(`Google Reviews: ${reviewCount} reviews, ${starRating} stars`);
+        // console.log(`Google Reviews: ${reviewCount} reviews, ${starRating} stars`);
 
         // Update your website's HTML elements
         // document.getElementById('google-count').innerText = `${reviewCount} reviews`;
