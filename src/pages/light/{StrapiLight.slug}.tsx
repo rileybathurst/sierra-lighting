@@ -320,6 +320,10 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 		}
 	}
 
+	const canonicalLightUrl = `${data.strapiAbout.url}/light/${data.strapiLight.slug}`;
+	const pinterestHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(canonicalLightUrl)}&description=${encodeURIComponent(`${data.strapiLight.name} ${data.strapiLight.excerpt || ""}`.trim())}`;
+	console.log(pinterestHref);
+
 	return (
 		<React.Fragment>
 			<Header />
@@ -504,7 +508,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 
 			{/* // TODO: testing */}
 			{/* // * https://developers.pinterest.com/docs/web-features/buttons/ */}
-			<a data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/">pinterest save</a>
+			<a data-pin-do="buttonBookmark" href={pinterestHref}>pinterest save</a>
 
 		</React.Fragment>
 	);
