@@ -509,6 +509,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 			{/* // TODO: testing */}
 			{/* // * https://developers.pinterest.com/docs/web-features/buttons/ */}
 			<a data-pin-do="buttonBookmark" href={pinterestHref}>pinterest save</a>
+			<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-media={data.strapiLight?.image.localFile?.url}>🦄</a>
 
 		</React.Fragment>
 	);
