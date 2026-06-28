@@ -7,6 +7,13 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
+
+require("dotenv").config({
+  path: ".env",
+});
+
+console.log(`https://places.googleapis.com/v1/places/XMZ412G?fields=rating,userRatingsTotal&key=${process.env.GOOGLE_MAPS_API_KEY}`)
+
 const ContactPage = () => {
 
   const { strapiAbout } = useStaticQuery(graphql`
