@@ -39,16 +39,7 @@ type NotFoundPageTypes = {
 }
 const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
 
-  // console.log(data.strapiError.hero);
-  // console.log(data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData.images.sources[0]);
-  // console.log(data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet);
-  // console.log(data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(" ")[0]);
-  // console.log(data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim());
-  // console.log(data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim()?.split(" ")[0]);
-  // console.log(`https://sierra.lighting${data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim()?.split(" ")[0]}`);
-
   const siteUrl = data.strapiAbout.url
-  const pageUrl = new URL(location.pathname || "/", `${siteUrl}/`).toString()
   const imageSources = data.strapiError.hero.localFile.childImageSharp.gatsbyImageData.images.sources
   if (!imageSources || imageSources.length === 0) {
     throw new Error("Expected gatsbyImageData.images.sources to be defined with at least one entry")
@@ -88,7 +79,7 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
         data-pin-do="buttonBookmark"
         data-pin-shape="round"
       >
-        📍
+        svg
       </a>
 
       {/* <a
