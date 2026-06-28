@@ -320,9 +320,9 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 		}
 	}
 
-	const canonicalLightUrl = `${data.strapiAbout.url}/light/${data.strapiLight.slug}`;
-	const pinterestHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(canonicalLightUrl)}&description=${encodeURIComponent(`${data.strapiLight.name} ${data.strapiLight.excerpt || ""}`.trim())}`;
-	console.log(pinterestHref);
+	// const canonicalLightUrl = `${data.strapiAbout.url}/light/${data.strapiLight.slug}`;
+	// const pinterestHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(canonicalLightUrl)}&description=${encodeURIComponent(`${data.strapiLight.name} ${data.strapiLight.excerpt || ""}`.trim())}`;
+	// console.log(pinterestHref);
 
 	return (
 		<React.Fragment>
@@ -508,9 +508,11 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 
 			{/* // TODO: testing */}
 			{/* // * https://developers.pinterest.com/docs/web-features/buttons/ */}
-			<a data-pin-do="buttonBookmark" href={pinterestHref}>pinterest save</a>
-			<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-media={data.strapiLight?.image.localFile?.url}>🦄</a>
+			{/* <a data-pin-do="buttonBookmark" href={pinterestHref}>pinterest save</a> */}
+			<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-media={`${data.strapiAbout.url}${data.strapiLight?.image.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim()?.split(" ")[0]}`}>🦄</a>
 
+			{/* // TODO: testing  */}
+			{/* console.log(data.strapiAbout.url); */}
 		</React.Fragment>
 	);
 };
