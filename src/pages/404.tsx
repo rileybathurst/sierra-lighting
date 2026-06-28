@@ -17,7 +17,6 @@ type NotFoundPageTypes = {
       title: string;
       pun: string;
       return: string;
-      // hero: HeroSEOImageType;
       hero: {
         url: string;
         alternativeText: string;
@@ -48,6 +47,26 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
   // console.log(data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim()?.split(" ")[0]);
   // console.log(`https://sierra.lighting${data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim()?.split(" ")[0]}`);
 
+  const siteUrl = data.strapiAbout.url
+  const pageUrl = new URL(location.pathname || "/", `${siteUrl}/`).toString()
+  const imageSources = data.strapiError.hero.localFile.childImageSharp.gatsbyImageData.images.sources
+  if (!imageSources || imageSources.length === 0) {
+    throw new Error("Expected gatsbyImageData.images.sources to be defined with at least one entry")
+  }
+
+  const largestImageFromSrcSet = imageSources[0].srcSet
+    .split(",")
+    .at(-1)
+    ?.trim()
+    ?.split(" ")[0]
+  const mediaPath = largestImageFromSrcSet
+  if (!mediaPath) {
+    throw new Error("Expected a valid srcSet image URL for Pinterest media")
+  }
+
+  const mediaUrl = new URL(mediaPath, `${siteUrl}/`).toString()
+  console.log(`Pinterest media URL: ${mediaUrl}`)
+
   return (
     <React.Fragment>
       <Header />
@@ -63,8 +82,14 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
       </main >
       <Footer />
 
-      <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-media={`${data.strapiAbout.url}${data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData?.images?.sources?.[0]?.srcSet?.split(",").at(-1)?.trim()?.split(" ")?.[0]}`}>🦄</a>
-      <a href={`${data.strapiAbout.url}${data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData?.images?.sources?.[0]?.srcSet?.split(",").at(-1)?.trim()?.split(" ")?.[0]}`}>{data.strapiAbout.url}${data.strapiError.hero.localFile?.childImageSharp?.gatsbyImageData?.images?.sources?.[0]?.srcSet?.split(",").at(-1)?.trim()?.split(" ")?.[0]}</a>
+      <a
+        href="https://www.pinterest.com/pin/create/button/"
+        data-pin-do="buttonBookmark"
+        data-pin-url={pageUrl}
+        data-pin-media={mediaUrl}
+      >
+        📍
+      </a>
     </React.Fragment>
   )
 }
@@ -76,7 +101,7 @@ export const Head = ({ data, location }: NotFoundPageTypes) => {
     <SEO
       title={`404 - ${location.pathname} `}
       description={data.strapiError.title}
-      // image={data.strapiError.hero}
+      image={data.strapiError.hero}
       url="404"
     />
   )
