@@ -38,13 +38,16 @@ async function fetchGoogleReviews() {
   }
 }
 
+// yeah this doesnt worn on gatsby
 // Run the function when the page loads
-window.onload = fetchGoogleReviews;
+// window.onload = fetchGoogleReviews;
 
 /*------------------------------------*/
 
 
 const ContactPage = () => {
+
+  fetchGoogleReviews();
 
   const { strapiAbout } = useStaticQuery(graphql`
     query ContactQuery {
