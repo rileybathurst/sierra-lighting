@@ -590,12 +590,12 @@ export const Head = ({ data }: LightPageTypes) => {
           }
         `}
       </Script> */}
-			<script
+			{/* <script
 				type="text/javascript"
 				async
 				defer
 				src="https://assets.pinterest.com/js/pinit.js"
-			/>
+			/> */}
 		</React.Fragment>
 	);
 };

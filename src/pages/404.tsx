@@ -65,7 +65,8 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
   }
 
   const mediaUrl = new URL(mediaPath, `${siteUrl}/`).toString()
-  const pinterestHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(pageUrl)}&media=${encodeURIComponent(mediaUrl)}`
+  console.log(mediaUrl)
+  const pinterestHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(mediaUrl)}`
 
   return (
     <React.Fragment>
@@ -85,11 +86,17 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
       <a
         href={pinterestHref}
         data-pin-do="buttonBookmark"
-        data-pin-url={pageUrl}
-        data-pin-media={mediaUrl}
+        data-pin-shape="round"
       >
         📍
       </a>
+
+      {/* <a
+        data-pin-do="buttonPin"
+        href="https://www.pinterest.com/pin/create/button/?url=http://www.foodiecrush.com/2014/03/filet-mignon-with-porcini-mushroom-compound-butter/&media=https://i.pinimg.com/736x/17/34/8e/17348e163a3212c06e61c41c4b22b87a.jpg&description=So%20delicious!"
+        data-pin-shape="round"
+      >
+      </a> */}
     </React.Fragment>
   )
 }
