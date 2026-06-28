@@ -419,6 +419,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         <Socials services={featuredSocials} />
       )}
 
+      {/* // TODO: I can design this better */}
       {/* // * this doesnt show on local due to the API */}
       {starRating &&
         <p className="albatross text-align-center margin-block-start-denali">
