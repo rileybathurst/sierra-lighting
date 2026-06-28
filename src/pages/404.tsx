@@ -63,6 +63,7 @@ export const query = graphql`
       pun
       return
       hero {
+        url
         localFile {
           absolutePath
           childImageSharp {
