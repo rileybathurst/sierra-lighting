@@ -157,7 +157,7 @@ module.exports = {
           "img-src":
             "'self' p.typekit.net https://www.google-analytics.com *.mux.com data: about:", // I think use.typekit.net is a tracking pixel
           "connect-src":
-            "'self' data:  https://www.google-analytics.com/ *.mux.com *.litix.io",
+            "'self' data:  https://www.google-analytics.com/ https://places.googleapis.com/ *.mux.com *.litix.io",
           "media-src":
             "'self' data: https://www.google-analytics.com/ *.mux.com blob:",
           // you can add your directives or override defaults
