@@ -509,7 +509,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 			{/* // TODO: testing */}
 			{/* // * https://developers.pinterest.com/docs/web-features/buttons/ */}
 			{/* <a data-pin-do="buttonBookmark" href={pinterestHref}>pinterest save</a> */}
-			<a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-media={`${data.strapiAbout.url}${data.strapiLight?.image.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim()?.split(" ")[0]}`}>🦄</a>
+			{/* <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-media={`${data.strapiAbout.url}${data.strapiLight?.image.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim()?.split(" ")[0]}`}>🦄</a> */}
 
 			{/* // TODO: testing  */}
 			{/* console.log(data.strapiAbout.url); */}

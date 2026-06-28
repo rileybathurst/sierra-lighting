@@ -7,6 +7,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Hero from "../components/hero";
 import type { HeroSEOImageType } from "../types/hero-seo-image-type";
+import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 type NotFoundPageTypes = {
   location: {
@@ -24,7 +25,7 @@ type NotFoundPageTypes = {
         caption: string;
         localFile: {
           absolutePath: string;
-          childImageSharp: {
+          childImageSharp: IGatsbyImageData & {
             gatsbyImageData: {
               images: {
                 sources: {
@@ -59,9 +60,9 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
     <>
       <Header />
 
-      <Hero
-        image={data.strapiError.hero}
-      />
+      {/* <Hero
+        image={data.strapiError.hero}s
+      /> */}
 
       <main>
         <h2>404 - {location.pathname}</h2>
