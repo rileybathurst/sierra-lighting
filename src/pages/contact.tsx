@@ -24,7 +24,7 @@ const ContactPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <main data-has-google-maps-key={String(Boolean(process.env.GATSBY_GOOGLE_MAPS_API_KEY))}>
+      <main>
         <div className="react-markdown">
           <Markdown>
             {strapiAbout.description.data.description}
