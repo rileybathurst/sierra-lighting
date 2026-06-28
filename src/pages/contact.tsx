@@ -1,6 +1,6 @@
 // TODO: I can query the og image by season
 import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, type GetServerData } from "gatsby";
 import Markdown from "react-markdown";
 import { SEO } from "../components/seo";
 
@@ -9,45 +9,83 @@ import Footer from "../components/footer";
 
 /*------------------------------------*/
 
-// TODO: Working
+type GoogleReviewsServerData = {
+  reviewCount: number | null;
+  starRating: number | null;
+  lastUpdated: string | null;
+  error: string | null;
+};
 
-const testEnvValue = process.env.GATSBY_TEST || "(GATSBY_TEST is not set)";
-console.log(`Test env value: ${testEnvValue}`);
+type ContactPageProps = {
+  serverData: GoogleReviewsServerData;
+};
 
-console.log(`https://places.googleapis.com/v1/places/ChIJKUUETZhHmYARR--Ow646_BU?fields=rating,userRatingCount&key=${process.env.GATSBY_GOOGLE_MAPS_API_KEY}`)
+export const getServerData: GetServerData<GoogleReviewsServerData> = async () => {
+  const placeId = "ChIJKUUETZhHmYARR--Ow646_BU";
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY || process.env.GATSBY_GOOGLE_MAPS_API_KEY;
 
-const placeId = 'ChIJKUUETZhHmYARR--Ow646_BU';
-const apiKey = process.env.GATSBY_GOOGLE_MAPS_API_KEY;
-const url = `https://places.googleapis.com/v1/places/${placeId}?fields=rating,userRatingCount&key=${apiKey}`;
-
-async function fetchGoogleReviews() {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-
-    const reviewCount = data.userRatingCount;
-    const starRating = data.rating;
-
-    console.log(`Google Reviews: ${reviewCount} reviews, ${starRating} stars`);
-
-    // Update your website's HTML elements
-    // document.getElementById('google-count').innerText = `${reviewCount} reviews`;
-    // document.getElementById('google-stars').innerText = `${starRating} / 5 Stars`;
-  } catch (error) {
-    console.error('Error fetching Google Places data:', error);
+  if (!apiKey) {
+    return {
+      props: {
+        reviewCount: null,
+        starRating: null,
+        lastUpdated: null,
+        error: "Missing GOOGLE_MAPS_API_KEY",
+      },
+      headers: {
+        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+      },
+    };
   }
-}
 
-// yeah this doesnt worn on gatsby
-// Run the function when the page loads
-// window.onload = fetchGoogleReviews;
+  try {
+    const response = await fetch(
+      `https://places.googleapis.com/v1/places/${placeId}?fields=rating,userRatingCount&key=${apiKey}`,
+    );
+
+    if (!response.ok) {
+      throw new Error(`Google Places request failed: ${response.status}`);
+    }
+
+    const data = (await response.json()) as {
+      userRatingCount?: number;
+      rating?: number;
+    };
+
+    return {
+      props: {
+        reviewCount: data.userRatingCount ?? null,
+        starRating: data.rating ?? null,
+        lastUpdated: new Date().toISOString(),
+        error: null,
+      },
+      headers: {
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+      },
+    };
+  } catch (error) {
+    return {
+      props: {
+        reviewCount: null,
+        starRating: null,
+        lastUpdated: null,
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
+      headers: {
+        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+      },
+    };
+  }
+};
 
 /*------------------------------------*/
 
 
-const ContactPage = () => {
-
-  fetchGoogleReviews();
+const ContactPage = ({ serverData }: ContactPageProps) => {
+  const reviewText =
+    serverData.reviewCount !== null ? `${serverData.reviewCount} reviews` : "Reviews unavailable";
+  const ratingText =
+    serverData.starRating !== null ? `${serverData.starRating} / 5 stars` : "Rating unavailable";
 
   const { strapiAbout } = useStaticQuery(graphql`
     query ContactQuery {
@@ -64,12 +102,13 @@ const ContactPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <main data-has-google-maps-key={String(Boolean(process.env.GATSBY_GOOGLE_MAPS_API_KEY))}>
+      <main>
         <div className="react-markdown">
           <Markdown>
             {strapiAbout.description.data.description}
           </Markdown>
-          <p>Test env: {testEnvValue}</p>
+          <p>Google Reviews: {reviewText}</p>
+          <p>Google Rating: {ratingText}</p>
         </div>
       </main>
       <Footer />
