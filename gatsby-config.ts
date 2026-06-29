@@ -145,17 +145,17 @@ module.exports = {
     {
       resolve: "gatsby-plugin-csp",
       options: {
-        mergeSecurityHeaders: true, // ? testing june 18 2022 csp issue // boolean to turn off the default security headers
+        // mergeSecurityHeaders: true, // this is default why am I even writing it
         mergeScriptHashes: false, // you can disable scripts sha256 hashes
         mergeStyleHashes: false, // you can disable styles sha256 hashes
         directives: {
           "script-src":
-            "'self' 'unsafe-inline' use.typekit.net www.google-analytics.com www.googletagmanager.com gstatic.com *.gstatic.com https://d3ey4dbjkt2f6s.cloudfront.net/ https://assets.pinterest.com/",
+            "'self' 'unsafe-inline' www.google-analytics.com www.googletagmanager.com gstatic.com *.gstatic.com https://d3ey4dbjkt2f6s.cloudfront.net/ https://assets.pinterest.com/",
           "style-src":
-            "'self' 'unsafe-inline' use.typekit.net fonts.googleapis.com https://d3ey4dbjkt2f6s.cloudfront.net/",
-          "font-src": "'self' 'unsafe-inline' use.typekit.net data:",
+            "'self' 'unsafe-inline' fonts.googleapis.com https://d3ey4dbjkt2f6s.cloudfront.net/",
+          "font-src": "'self' 'unsafe-inline' data:",
           "img-src":
-            "'self' p.typekit.net https://www.google-analytics.com https://www.googletagmanager.com *.mux.com https://log.pinterest.com/ data: about:", // I think use.typekit.net is a tracking pixel
+            "'self' https://www.google-analytics.com https://www.googletagmanager.com *.mux.com https://log.pinterest.com/ data: about:", // I think use.typekit.net is a tracking pixel
           "connect-src":
             "'self' data:  https://www.google-analytics.com/ https://places.googleapis.com/ *.mux.com *.litix.io",
           "media-src":
@@ -165,6 +165,21 @@ module.exports = {
         },
       },
     },
+    // 29 June 2026
+    // with gatsby-plugin-csp on
+    // community plugin hasnt been touched in 4 years
+    // https://developer.mozilla.org/en-US/observatory/analyze?host=Sierra.lighting
+    // B: Score 75/100 Tests Passed 8 / 10
+    // Content Security Policy (CSP)
+    // −20 Failed
+    // Content Security Policy (CSP) implemented unsafely. This includes 'unsafe-inline' or data: inside script-src, overly broad sources such as https: inside object-src or script-src, or not restricting the sources for object-src or script-src.
+    // Remove unsafe-inline and data: from script-src, overly broad sources from object-src and script-src, and ensure object-src and script-src are set.
+
+    // Subresource Integrity
+    // −5 Failed
+    // Subresource Integrity (SRI) not implemented, but all external scripts are loaded over HTTPS.
+    // Add SRI to external scripts.
+
     {
       // ? can you query for this?
       resolve: "gatsby-plugin-manifest",
@@ -177,15 +192,6 @@ module.exports = {
         theme_color: "#fff",
         display: "standalone",
         icon: "src/images/sierra-lighting-icon.svg",
-      },
-    },
-    // TODO: this has way more fonts than I'm running
-    {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        typekit: {
-          id: process.env.TYPEKIT_ID,
-        },
       },
     },
     {
