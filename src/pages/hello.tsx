@@ -11,6 +11,16 @@ import Footer from "../components/footer";
 
 const HelloPage = () => {
 
+  React.useEffect(() => {
+    async function fetchHello() {
+      const response = await fetch("/.netlify/functions/hello");
+      const text = await response.text();
+      console.log(text);
+    }
+
+    fetchHello();
+  }, []);
+
   return (
     <React.Fragment>
       <Header />
