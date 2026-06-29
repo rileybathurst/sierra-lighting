@@ -79,7 +79,7 @@ module.exports = {
     siteUrl: "https://sierra.lighting",
   },
   plugins: [
-    {
+    /* {
       resolve: "gatsby-plugin-google-gtag",
       options: {
         trackingIds: [
@@ -97,7 +97,7 @@ module.exports = {
           delayOnRouteUpdate: 0,
         },
       },
-    },
+    }, */
     {
       resolve: "gatsby-plugin-postcss",
       options: {
