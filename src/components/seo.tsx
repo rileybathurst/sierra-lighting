@@ -245,7 +245,7 @@ export const SEO = (SEO: SEOtypes) => {
     <React.Fragment>
       <html lang="en-US" />
       {/* // * moved this to gatsby-ssr as I was having issues see if that fixes anything */}
-      {/* <meta charSet="UTF-8" /> */}
+      {/* meta charSet="UTF-8" */}
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>{pageTitle}</title>

@@ -180,7 +180,7 @@ module.exports = {
     // Subresource Integrity (SRI) not implemented, but all external scripts are loaded over HTTPS.
     // Add SRI to external scripts.
 
-    {
+    /*     {
       // ? can you query for this?
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -193,7 +193,9 @@ module.exports = {
         display: "standalone",
         icon: "src/images/sierra-lighting-icon.svg",
       },
-    },
+    }, */
+    // Im pretty sure this is putting in the char utf-8 meta tag in the head of the page but I was having issues with it so I moved it to gatsby-ssr
+
     {
       resolve: "@sentry/gatsby",
       options: {
