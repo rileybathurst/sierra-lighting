@@ -53,10 +53,14 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     fetchGoogleReviews();
   }, []);
 
+  /*------------------------------------*/
+
   let showQuote = true;
   if (quote === false) {
     showQuote = false;
   }
+
+  /*------------------------------------*/
 
   // ? the next step would be detecting links but start with profanity checks
   const [canSend, setCanSend] = React.useState(true);
@@ -64,24 +68,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
   const [emailProfanity, setEmailProfanity] = React.useState(false);
   const [messageProfanity, setMessageProfanity] = React.useState(false);
   const [referralProfanity, setReferralProfanity] = React.useState(false);
-
-  interface SubjectType {
-    target: {
-      value: string;
-    };
-  }
-  function subject(e: SubjectType) {
-    // TODO: working on this testing the contact.csv first
-    profanity.exists(e.target.value) && console.log("Profanity detected");
-    setCanSend(!profanity.exists(e.target.value));
-
-    setEmailProfanity(profanity.exists(e.target.value));
-
-    setEmail(e.target.value);
-    // console.log(e.target.value);
-
-    return null;
-  }
+  const [addressLink, setAddressLink] = React.useState(false);
 
   function profanityCheck(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
     const value = e.target.value;
@@ -92,12 +79,40 @@ const Footer = ({ quote }: { quote?: boolean }) => {
       setMessageProfanity(hasProfanity);
     } else if (name === "referral") {
       setReferralProfanity(hasProfanity);
+    } else if (name === "email") {
+      setEmailProfanity(hasProfanity);
     }
 
     setCanSend(!hasProfanity && !emailProfanity && !messageProfanity && !referralProfanity);
 
     return null;
   }
+
+  function subject(e: React.ChangeEvent<HTMLInputElement>) {
+    profanityCheck(e);
+
+    setEmail(e.target.value);
+    // console.log(e.target.value);
+
+    return null;
+  }
+
+  function addressCheck(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    if (value.includes("http") || value.includes("www")) {
+      setCanSend(false);
+      setAddressLink(true);
+      return null;
+    }
+
+    setAddressLink(false);
+    setCanSend(true);
+    return null;
+  }
+
+  console.log(`canSend: ${canSend}, emailProfanity: ${emailProfanity}, messageProfanity: ${messageProfanity}, referralProfanity: ${referralProfanity}, addressLink: ${addressLink}`);
+
+  /*------------------------------------*/
 
   const data = useStaticQuery(graphql`
     query FooterQuery {
@@ -148,6 +163,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         monitoring
         minimum
         profanity
+        addressLink
         outsideHours
         days {
           monday
@@ -240,12 +256,20 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             </label>
             <div className='address-together'>
               <label className='address'>Address
-                <input type="text" name="address" />
+                <input type="text" name="address" onChange={addressCheck} className={addressLink ? "error" : ""} />
               </label>
+
               <label className='zip'>City or Zip
                 <input type="text" name="zip" />
               </label>
             </div>
+
+            {addressLink && (
+              <p className="error">
+                {data.strapiForm.addressLink}
+              </p>
+            )}
+
             <label>Message
               <textarea name="message" onChange={profanityCheck} className={messageProfanity ? "error" : ""} />
             </label>
@@ -265,7 +289,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
               </label>
             </p>
 
-            {!canSend && (
+            {(emailProfanity || messageProfanity || referralProfanity) && (
               <p className="error">
                 {data.strapiForm.profanity}
               </p>
