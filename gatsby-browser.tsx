@@ -1,4 +1,6 @@
-// gatsby-plugin-web-font-loader is pull fonts as well
+// ? can this be used to remove it from each file
+// const React = require("react")
+
 import "@fontsource-variable/josefin-sans";
 
 // TODO: can i pull just the quotemark
