@@ -30,18 +30,18 @@ export const handler = async (
   }
 
   try {
-    const { link, page } = JSON.parse(event.body);
+    const { date, image } = JSON.parse(event.body);
 
     await db.execute({
-      sql: `INSERT INTO click_events (link, page, user_agent) VALUES (?, ?, ?)`,
-      args: [link, page, event.headers["user-agent"] ?? null],
+      sql: `INSERT INTO pinterest (date, image) VALUES (?, ?)`,
+      args: [date, image],
     });
 
-    console.log("Link clicked:", { link, page });
+    console.log("Pinterest entry logged:", { date, image });
 
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   } catch (err) {
     console.error(err);
-    return { statusCode: 500, body: "Failed to log click" };
+    return { statusCode: 500, body: "Failed to log Pinterest entry" };
   }
 };

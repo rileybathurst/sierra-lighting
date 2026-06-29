@@ -20,12 +20,12 @@ const HelloPage = () => {
         <button type="button" onClick={async () => {
           const response = await fetch("/.netlify/functions/log-click", {
             method: "POST",
-            body: JSON.stringify({ link: "https://www.pinterest.com/pin/123456789/" }),
+            body: JSON.stringify({ date: new Date().toISOString(), image: "https://www.pinterest.com/pin/123456789/" }),
           });
           if (response.ok) {
-            console.log("Click logged successfully");
+            console.log("Pinterest entry logged successfully");
           } else {
-            console.error("Failed to log click");
+            console.error("Failed to log Pinterest entry");
           }
         }}>
           Log Click
