@@ -110,8 +110,6 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     return null;
   }
 
-  console.log(`canSend: ${canSend}, emailProfanity: ${emailProfanity}, messageProfanity: ${messageProfanity}, referralProfanity: ${referralProfanity}, addressLink: ${addressLink}`);
-
   /*------------------------------------*/
 
   const data = useStaticQuery(graphql`

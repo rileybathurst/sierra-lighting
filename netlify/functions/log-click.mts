@@ -1,36 +1,17 @@
 // netlify/functions/log-click.js
 /// <reference types="node" />
 import { createClient } from "@libsql/client";
+import type { Config, Context } from "@netlify/functions";
 
 const db = createClient({
   url: "libsql://sierra-lighting-rileybathurst.aws-us-west-2.turso.io",
   authToken: process.env.TURSO_KEY,
 });
 
-interface HandlerResponse {
-  statusCode: number;
-  body?: string;
-}
-
-interface HandlerEvent {
-  body: string;
-  headers: {
-    "user-agent"?: string;
-    [key: string]: unknown;
-  };
-  httpMethod?: string;
-  [key: string]: unknown;
-}
-
-export const handler = async (
-  event: HandlerEvent,
-): Promise<HandlerResponse> => {
-  if (event.httpMethod !== "POST") {
-    return { statusCode: 405, body: "Method Not Allowed" };
-  }
-
+export default async (req: Request, context: Context) => {
   try {
-    const { date, image } = JSON.parse(event.body);
+    const body = await req.text();
+    const { date, image } = JSON.parse(body);
 
     await db.execute({
       sql: `INSERT INTO pinterest (date, image) VALUES (?, ?)`,
@@ -45,3 +26,7 @@ export const handler = async (
     return { statusCode: 500, body: "Failed to log Pinterest entry" };
   }
 };
+
+/* export const config: Config = {
+  path: "/click",
+}; */
