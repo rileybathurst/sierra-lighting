@@ -5,6 +5,7 @@ import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 import { profanity } from '@2toad/profanity';
 
+import SVG from 'react-inlinesvg';
 import Logo from "../images/logo";
 import { isWithinBusinessHours } from './business-hours';
 import Season from './season';
@@ -443,7 +444,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
       {/* // TODO: I can design this better */}
       {/* // * this doesnt show on local due to the API */}
-      {starRating &&
+      {/* {starRating &&
         <p className="albatross text-align-center margin-block-start-denali">
           <a href={`${google?.site.link}${google?.username}`}
             target="_blank" rel="noopener noreferrer"
@@ -451,7 +452,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             Google Star Rating: {starRating} from {reviewCount} reviews
           </a>
         </p>
-      }
+      } */}
 
       <hr className="condor" />
 

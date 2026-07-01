@@ -74,6 +74,7 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
       </main >
       <Footer />
 
+      {/* // TODO: Pinterest button */}
       <a
         href={pinterestHref}
         data-pin-do="buttonBookmark"
@@ -99,7 +100,7 @@ export const Head = ({ data, location }: NotFoundPageTypes) => {
     <SEO
       title={`404 - ${location.pathname} `}
       description={data.strapiError.title}
-      image={data.strapiError.hero}
+      // image={data.strapiError.hero}
       url="404"
     />
   )

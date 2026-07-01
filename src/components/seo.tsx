@@ -13,11 +13,12 @@
 
 
 import React from "react";
-import { Script, useStaticQuery, graphql } from "gatsby";
+import type { ReactNode } from "react";
+import { useStaticQuery, graphql, Script } from "gatsby";
 import type VideoTypes from "../types/video-types";
 import Season from "./season";
 import type { ImageWithAspectType } from "../types/image-with-aspect-type";
-import { HeroSEOImageType } from "../types/hero-seo-image-type";
+// import { VideoMux } from "@mux/mux-player-react";
 
 type BreadcrumbsTypes = {
   url: string;
@@ -54,13 +55,13 @@ const Breadcrumbs: React.FC<BreadcrumbsTypes> = ({ url, breadcrumbs }) => {
   );
 }
 
-type VideoMuxTypes = {
+/* type VideoMuxTypes = {
   videos: VideoTypes[];
   pageUrl: string;
   url: string;
   businessName: string;
 }
-const VideoMux: React.FC<VideoMuxTypes> = ({ videos, pageUrl, url, businessName }) => {
+const VideoSchema: React.FC<VideoMuxTypes> = ({ videos, pageUrl, url, businessName }) => {
   if (videos.length === 0) return null;
 
   return (
@@ -83,14 +84,14 @@ const VideoMux: React.FC<VideoMuxTypes> = ({ videos, pageUrl, url, businessName 
       ))}
     </>
   );
-}
+} */
 
 type SEOtypes = {
   title?: string;
   description?: string;
   url?: string;
   image?: ImageWithAspectType; // * pass the whole image deal with it from there
-  children?: React.ReactNode;
+  children?: ReactNode;
   breadcrumbs?: {
     name: string;
     item: string;
@@ -202,13 +203,13 @@ export const SEO = (SEO: SEOtypes) => {
 
   /*------------------------------------*/
 
-  var pageDesription: string = SEO.description || data.strapiAbout.slogan;
+  const pageDescription = SEO.description || data.strapiAbout.slogan;
 
   const localBusinessSchema = {
     "@context": "https://schema.org/",
     "@type": "LocalBusiness",
     name: data.strapiAbout.businessName,
-    about: `Creating professional ${data.allStrapiService.nodes.map((service: { name: string; }) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area: { name: string; }) => area.name).join(', ')}`,
+    description: `Creating professional ${data.allStrapiService.nodes.map((service: { name: string; }) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area: { name: string; }) => area.name).join(', ')}`,
     slogan: data.strapiAbout.slogan,
     url: data.strapiAbout.url,
     alternateName: data.strapiAbout.alternateName,
@@ -243,19 +244,20 @@ export const SEO = (SEO: SEOtypes) => {
 
   return (
     <React.Fragment>
-      <html lang="en-US" />
+      {/* <html lang="en-US" /> */}
       {/* // * moved this to gatsby-ssr as I was having issues see if that fixes anything */}
       {/* meta charSet="UTF-8" */}
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
 
       <title>{pageTitle}</title>
       <meta name="description" content={SEO.description ? SEO.description : data.strapiAbout.slogan} />
-      <meta name="image" itemProp="image" content={pageImage} />
+      {/* <meta name="image" itemProp="image" content={pageImage} /> */}
+
 
       <meta property="og:type" content="website" />
       <meta property="og:url" itemProp="URL" content={SEO.url} />
       <meta property="og:title" content={pageTitle} />
-      <meta property="og:description" content={pageDesription} />
+      <meta property="og:description" content={pageDescription} />
       <meta property="og:image" itemProp="image" content={pageImage} />
 
       <Script type="application/ld+json">
@@ -267,14 +269,14 @@ export const SEO = (SEO: SEOtypes) => {
         breadcrumbs={SEO.breadcrumbs ?? []}
       />
 
-      {SEO.videos && (
+      {/*  {SEO.videos && (
         <VideoMux
           videos={SEO.videos}
           pageUrl={SEO.url ?? ""}
           url={data.strapiAbout.url}
           businessName={data.strapiAbout.businessName}
         />
-      )}
+      )} */}
 
       {SEO.children}
     </React.Fragment>
