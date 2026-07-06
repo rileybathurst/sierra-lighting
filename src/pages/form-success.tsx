@@ -7,7 +7,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Hero from "../components/hero";
 import type { HeroSEOImageType } from "../types/hero-seo-image-type";
-import { isWithinBusinessHours } from '../components/business-hours';
+import { useIsWithinBusinessHours } from '../components/business-hours';
 
 type FormSuccessPageTypes = {
   data: {
@@ -20,6 +20,7 @@ type FormSuccessPageTypes = {
   }
 }
 const FormSuccessPage = ({ data }: FormSuccessPageTypes) => {
+  const isWithinBusinessHours = useIsWithinBusinessHours();
 
   return (
     <React.Fragment>
@@ -32,7 +33,7 @@ const FormSuccessPage = ({ data }: FormSuccessPageTypes) => {
       <main className="stork">
         <h1>Thanks - Form Success</h1>
 
-        {isWithinBusinessHours() ? (
+        {isWithinBusinessHours ? (
           <p>{data.strapiForm.thanks}<br />
             <Link to="/">Head to our home page.</Link>
           </p>

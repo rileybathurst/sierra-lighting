@@ -7,13 +7,14 @@ import { profanity } from '@2toad/profanity';
 
 import SVG from 'react-inlinesvg';
 import Logo from "../images/logo";
-import { isWithinBusinessHours } from './business-hours';
+import { useIsWithinBusinessHours } from './business-hours';
 import Season from './season';
 import { Phone } from './phone';
 import Socials from './socials';
 import { days } from './days';
 
 const Footer = ({ quote }: { quote?: boolean }) => {
+  // const isWithinBusinessHours = useIsWithinBusinessHours();
 
   const [reviewCount, setReviewCount] = React.useState<number | null>(null);
   const [starRating, setStarRating] = React.useState<number | null>(null);
@@ -60,6 +61,10 @@ const Footer = ({ quote }: { quote?: boolean }) => {
   if (quote === false) {
     showQuote = false;
   }
+
+  /*------------------------------------*/
+
+  const isWithinBusinessHours = useIsWithinBusinessHours();
 
   /*------------------------------------*/
 
@@ -238,9 +243,9 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             <input type="hidden" name="form-name" value="contact" />
 
             <input type="hidden" name="subject"
-              value={`${!isWithinBusinessHours() ? "Outside Business Hours: " : ""}Contact Form from sierra.lighting ${email}`} />
+              value={`${!isWithinBusinessHours ? "Outside Business Hours: " : ""}Contact Form from sierra.lighting ${email}`} />
 
-            {!isWithinBusinessHours() && (
+            {!isWithinBusinessHours && (
               <input className="sr-only" type="hidden" name="hours" value={`${data.strapiForm.outsideHours}`} />
             )}
 

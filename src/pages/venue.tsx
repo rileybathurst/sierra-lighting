@@ -19,8 +19,13 @@ type VenueNode = {
 		state: "california" | "nevada";
 		tagline: string;
 		featured: boolean;
-	};
-} & CardType;
+
+		region?: {
+			name: string;
+			slug: string;
+		};
+	} & CardType;
+}
 
 const VenuePage = () => {
 	const { allStrapiVenue } = useStaticQuery(graphql`
@@ -32,6 +37,10 @@ const VenuePage = () => {
 				state
 				tagline
 				featured
+				region {
+					name
+					slug
+				}
 			}
 		}
 
@@ -54,6 +63,8 @@ const VenuePage = () => {
 	}
 	const venueArray: string[] = Array.from(venueSet);
 
+	console.log("venueNodes", allStrapiVenue.nodes.map((venue: VenueNode) => venue.area.featured));
+
 	return (
 		<>
 			<Header />
@@ -69,17 +80,32 @@ const VenuePage = () => {
 							.filter((venue: VenueNode) => venue.area.slug === area)
 							.slice(0, 1)
 							.map((venuesArea: VenueNode) => (
-								<>
-									<h4 key={venuesArea.id} className="crest">
-										{venuesArea.area.tagline}
-									</h4>
-									<h3 key={venuesArea.id}>
-										<Link to={`/areas/${venuesArea.area.slug}`}>
-											{venuesArea.area.name},&nbsp;
-											<StateAbbreviation state={venuesArea.area.state} />
-										</Link>
+								<React.Fragment key={venuesArea.id}>
+									{venuesArea.area.featured ?
+										<h4 className="crest">
+											{venuesArea.area.tagline}
+										</h4>
+										:
+										<h4 className="crest">
+											<Link to={`/areas/${venuesArea.area.region?.slug}`}>
+												{venuesArea.area?.region?.name}
+											</Link>
+										</h4>
+									}
+									<h3>
+										{venuesArea.area.featured ?
+											<Link to={`/areas/${venuesArea.area.slug}`}>
+												{venuesArea.area.name},&nbsp;
+												<StateAbbreviation state={venuesArea.area.state} />
+											</Link>
+											:
+											<>
+												{venuesArea.area.name},&nbsp;
+												<StateAbbreviation state={venuesArea.area.state} />
+											</>
+										}
 									</h3>
-								</>
+								</React.Fragment>
 							))}
 					</div>
 					<div className="deck">

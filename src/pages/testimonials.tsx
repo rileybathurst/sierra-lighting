@@ -9,9 +9,10 @@ import Footer from "../components/footer";
 import Testimonial from "../components/testimonial";
 import type TestimonialTypes from "../types/testimonial-types";
 
-import { isWithinBusinessHours } from '../components/business-hours';
+import { useIsWithinBusinessHours } from '../components/business-hours';
 
 const TestimonialsPage = () => {
+  const isWithinBusinessHours = useIsWithinBusinessHours();
 
   const data = useStaticQuery(graphql`
     query TestimonialsQuery {
@@ -83,7 +84,7 @@ const TestimonialsPage = () => {
 
         <hr />
         <h3>
-          Help us you buy submitting your own review
+          Help us by submitting your own review
         </h3>
 
         <p>
@@ -110,10 +111,10 @@ const TestimonialsPage = () => {
           <input type="hidden" name="form-name" value="testimonial" />
 
           <input type="hidden" name="subject"
-            value={`${!isWithinBusinessHours() && "Outside Business Hours: "} Testimonial Form from sierra.lighting`}
+            value={`${!isWithinBusinessHours && "Outside Business Hours: "} Testimonial Form from sierra.lighting`}
           />
 
-          {!isWithinBusinessHours() && (
+          {!isWithinBusinessHours && (
             <input className="sr-only" type="hidden" name="hours" value={`${data.strapiForm.outsideHours}`} />
           )}
 

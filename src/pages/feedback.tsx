@@ -8,7 +8,7 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Star from "../images/star";
-import { isWithinBusinessHours } from "../components/business-hours";
+import { useIsWithinBusinessHours } from "../components/business-hours";
 
 type LocationTypes = {
   location: {
@@ -17,6 +17,8 @@ type LocationTypes = {
   }
 }
 const FeedbackPage = ({ location }: LocationTypes) => {
+
+  const isWithinBusinessHours = useIsWithinBusinessHours();
 
   const jobberParams = new URLSearchParams(location.search);
 
@@ -225,10 +227,10 @@ const FeedbackPage = ({ location }: LocationTypes) => {
           <input
             type="hidden"
             name="subject"
-            value={`${!isWithinBusinessHours() && "Outside Business Hours: "}Feedback Form from Sierra Lighting`}
+            value={`${!isWithinBusinessHours && "Outside Business Hours: "}Feedback Form from Sierra Lighting`}
           />
 
-          {!isWithinBusinessHours() && (
+          {!isWithinBusinessHours && (
             <input className="sr-only" type="hidden" name="hours" value={`${data.strapiForm.outsideHours}`} />
           )}
 
