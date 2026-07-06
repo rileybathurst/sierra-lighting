@@ -68,7 +68,6 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
   /*------------------------------------*/
 
-  // ? the next step would be detecting links but start with profanity checks
   const [canSend, setCanSend] = React.useState(true);
   const [email, setEmail] = React.useState('');
   const [emailProfanity, setEmailProfanity] = React.useState(false);
@@ -115,6 +114,10 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     setCanSend(true);
     return null;
   }
+
+  // * you can get around these checks without loading JS
+  // theres an option to get more complex with netlify functions or captcha or something
+  // but then were getting more and more complex
 
   /*------------------------------------*/
 
