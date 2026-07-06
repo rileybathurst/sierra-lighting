@@ -112,7 +112,7 @@ const VenuePage = () => {
 						{allStrapiVenue.nodes
 							.filter((venue: VenueNode) => venue.area.slug === area)
 							.map((venue: VenueNode) => (
-								<Card key={venue.id} {...venue} breadcrumb="venue" />
+								<Card key={venue.id} {...venue.area} breadcrumb="venue" />
 							))}
 					</div>
 				</div>
