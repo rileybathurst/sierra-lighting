@@ -23,9 +23,6 @@ export const PinterestHref = ({ imageSources }: { imageSources?: { srcSet: strin
     );
   }
 
-  console.log("imageSources:", imageSources);
-  console.log(imageSources[0].srcSet);
-
   const largestImageFromSrcSet = imageSources[0].srcSet
     .split(",")
     .at(-1)
@@ -37,8 +34,6 @@ export const PinterestHref = ({ imageSources }: { imageSources?: { srcSet: strin
   }
 
   const mediaUrl = new URL(mediaPath, `${siteUrl}/`).toString();
-
-  console.log(mediaUrl);
 
   return (
     <a href={`https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(mediaUrl)}`}
