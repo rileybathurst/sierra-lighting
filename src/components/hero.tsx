@@ -12,8 +12,9 @@ type GalleryType = {
   gallery: ImageWithAspectType[];
   caption?: string;
   badge?: boolean;
+  pinterest?: boolean;
 }
-function Slider({ gallery, badge }: GalleryType) {
+function Slider({ gallery, badge, pinterest }: GalleryType) {
 
   const inputRef = React.useRef<HTMLDivElement>(null);
   // const [imagesHeight, setImagesHeight] = React.useState(0);
@@ -118,7 +119,9 @@ function Slider({ gallery, badge }: GalleryType) {
               alt={image.alternativeText || "Gallery Image"}
             />
             {badge && image.caption ? <p className="capitalize">{image.caption}</p> : null}
-            <PinterestHref imageSources={image.localFile.childImageSharp.gatsbyImageData.images.sources} />
+            {pinterest && image.localFile.childImageSharp.gatsbyImageData.images.sources && (
+              <PinterestHref imageSources={image.localFile.childImageSharp.gatsbyImageData.images.sources} />
+            )}
           </div>
         ))}
       </div>
@@ -139,8 +142,9 @@ type HeroType = {
   badge?: boolean;
   name?: string;
   detail?: ImageType;
+  pinterest?: boolean;
 }
-function Hero({ image, gallery, badge, name, detail }: HeroType) {
+function Hero({ image, gallery, badge, name, detail, pinterest }: HeroType) {
 
   if (image) {
     process.env.NODE_ENV === "development" ?
@@ -178,6 +182,7 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
         <Slider
           gallery={combinedGallery}
           badge={badge}
+          pinterest={pinterest}
         />
         {detail ?
           <GatsbyImage
@@ -210,7 +215,9 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
         />
         : null
       }
-      <PinterestHref imageSources={image.localFile.childImageSharp.gatsbyImageData.images.sources} />
+      {pinterest && image.localFile.childImageSharp.gatsbyImageData.images.sources && (
+        <PinterestHref imageSources={image.localFile.childImageSharp.gatsbyImageData.images.sources} />
+      )}
     </div>
   )
 }
