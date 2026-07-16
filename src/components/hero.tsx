@@ -6,6 +6,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import type { ImageType } from "../types/image-type"
 import type { ImageWithAspectType } from "../types/image-with-aspect-type"
 import { HeroSEOImageType } from "../types/hero-seo-image-type"
+import { PinterestHref } from "./pinterest-href"
 
 type GalleryType = {
   gallery: ImageWithAspectType[];
@@ -117,6 +118,7 @@ function Slider({ gallery, badge }: GalleryType) {
               alt={image.alternativeText || "Gallery Image"}
             />
             {badge && image.caption ? <p className="capitalize">{image.caption}</p> : null}
+            <PinterestHref imageSources={image.localFile.childImageSharp.gatsbyImageData.images.sources} />
           </div>
         ))}
       </div>
@@ -130,7 +132,6 @@ function Slider({ gallery, badge }: GalleryType) {
     </section>
   )
 }
-
 
 type HeroType = {
   image: HeroSEOImageType;
@@ -209,6 +210,7 @@ function Hero({ image, gallery, badge, name, detail }: HeroType) {
         />
         : null
       }
+      <PinterestHref imageSources={image.localFile.childImageSharp.gatsbyImageData.images.sources} />
     </div>
   )
 }

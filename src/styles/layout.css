@@ -1017,3 +1017,12 @@ footer {
     grid-template-columns: 20rem 1fr 20rem;
   }
 }
+
+/*------------------------------------*/
+
+.pinterest-button {
+  justify-self: end;
+  /* padding: var(--kosciuszko); */
+  padding: var(--elbrus);
+  align-self: start;
+}

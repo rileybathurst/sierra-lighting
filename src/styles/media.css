@@ -110,7 +110,8 @@ svg {
     border-radius: calc(var(--vinson) - 1px);
   }
 
-  > :not(.gatsby-image-wrapper) {
+  /* TODO: testing */
+  > :not(.pinterest-button, .gatsby-image-wrapper) {
     align-self: end;
     justify-self: center;
     z-index: var(--understory);
@@ -369,14 +370,6 @@ header svg:active {
       grid-row: 1;
       grid-column: 1;
     }
-
-    /* pinterest icon */
-    .pinterest-button {
-      justify-self: end;
-      /* padding: var(--kosciuszko); */
-      padding: var(--elbrus);
-      align-self: start;
-    }
   }
 
 
@@ -475,7 +468,8 @@ header svg:active {
     width: min(calc(var(--pelican) - 10rem), 100vw);
     height: auto;
 
-    >* {
+    /* TODO: testing I might not need the not */
+    >*:not(.pinterest-button) {
       height: 100%;
     }
 

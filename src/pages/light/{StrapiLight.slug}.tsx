@@ -365,10 +365,13 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 
 					<hr />
 
+					{/* // ! oops not designed */}
 					{/* // TODO: add these to strapi across the lights */}
+					{/* // needs to be more than 1 or its just the detail image */}
 					{data.strapiLight.bulbs && (
 						<section>
 							<h3 className="kilimanjaro">Bulb Options</h3>
+							{/* // ? why team-heads or did I just not do something */}
 							<div className="team-heads">
 								{data.strapiLight.bulbs.map((bulb) => (
 									<div key={bulb.id}>
@@ -376,6 +379,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 											<GatsbyImage
 												image={bulb.detail.localFile.childImageSharp.gatsbyImageData}
 												alt={bulb.detail.alternativeText || bulb.name}
+												className="poster"
 											/>
 										) : null}
 										<p>{bulb.name}</p>
