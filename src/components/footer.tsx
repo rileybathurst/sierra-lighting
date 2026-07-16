@@ -118,6 +118,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
   // * you can get around these checks without loading JS
   // theres an option to get more complex with netlify functions or captcha or something
   // but then were getting more and more complex
+  // ? I could checck for JS? seems wierd a legit client wouldnt be using it
 
   /*------------------------------------*/
 
