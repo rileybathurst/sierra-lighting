@@ -307,6 +307,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
           image={data.strapiProject.image}
           gallery={data.strapiProject.gallery}
           badge={false}
+          pinterest
         />
       }
 

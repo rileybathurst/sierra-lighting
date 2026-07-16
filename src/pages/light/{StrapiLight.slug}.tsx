@@ -335,7 +335,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 				detail={data.strapiLight.detail ? data.strapiLight.detail : undefined}
 				gallery={data.strapiLight?.altGallery ? data.strapiLight?.altGallery : undefined}
 				badge={true}
-				pinterest={true}
+				pinterest
 			/>
 
 			<main>
