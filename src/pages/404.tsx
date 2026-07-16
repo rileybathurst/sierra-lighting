@@ -59,6 +59,24 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
   console.log(mediaUrl)
   const pinterestHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(mediaUrl)}`
 
+  const pinterestLogUrls = [
+    "https://www.pinterest.com/pin/1/",
+    "https://www.pinterest.com/pin/2/",
+  ]
+
+  const logPinterestEntry = async (image: string) => {
+    const response = await fetch("/.netlify/functions/log-variable", {
+      method: "POST",
+      body: JSON.stringify({ date: new Date().toISOString(), image }),
+    })
+
+    if (response.ok) {
+      console.log("Pinterest entry logged successfully")
+    } else {
+      console.error("Failed to log Pinterest entry")
+    }
+  }
+
   return (
     <React.Fragment>
       <Header />
@@ -82,6 +100,28 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
       >
         svg
       </a>
+      {pinterestLogUrls.map((image, index) => (
+        <button
+          key={image}
+          type="button"
+          onClick={() => {
+            void logPinterestEntry(image)
+          }}
+        >
+          {`Log ${index + 1}`}
+        </button>
+      ))}
+
+
+      <button
+        key={3}
+        type="button"
+        onClick={() => {
+          void logPinterestEntry("https://www.pinterest.com/pin/3/")
+        }}
+      >
+        {`Log 3`}
+      </button>
 
       {/* <a
         data-pin-do="buttonPin"

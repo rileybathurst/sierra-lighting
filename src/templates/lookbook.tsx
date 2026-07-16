@@ -42,6 +42,7 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
           alt={image.alternativeText}
         />
         <p>{lights[0].name}</p>
+        <span>pin</span>
       </Link >
     );
   } if (lights.length > 1) {
@@ -57,6 +58,7 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
             <li key={light.slug}>
               <Link to={`/light/${light.slug}`} >
                 <span>{light.name}</span>
+                <span>pin</span>
               </Link>
             </li>
           ))}
