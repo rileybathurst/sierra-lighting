@@ -1,6 +1,6 @@
 // TODO: add something about themes
 
-import React from 'react';
+import * as React from 'react'
 import { Link, graphql } from 'gatsby'
 import { GatsbyImage, type IGatsbyImageData } from 'gatsby-plugin-image'
 
@@ -16,11 +16,21 @@ import Footer from '../components/footer'
 import Start from '../components/start'
 import { SEO } from '../components/seo'
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
+import { logPinterestEntry } from '../components/log-pinterest-entry'
 
 type LinkedLookImageTypes = {
   localFile: {
     childImageSharp: {
-      gatsbyImageData: IGatsbyImageData
+      gatsbyImageData: IGatsbyImageData & {
+        images: {
+          sources?: {
+            srcSet: string
+          }[]
+        }
+      };
+      resize: {
+        aspectRatio: number;
+      };
     }
   }
   alternativeText: string
@@ -29,7 +39,21 @@ type LinkedLooklightsTypes = {
   slug: string
   name: string
 }
+
+const getLargestImageFromSrcSet = (
+  sources?: { srcSet: string }[]
+) => {
+  return sources?.[0]?.srcSet
+    ?.split(',')
+    .at(-1)
+    ?.trim()
+    ?.split(' ')[0]
+}
+
 function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: LinkedLooklightsTypes[] }) {
+
+  // TODO: testing
+  console.log(image.localFile.childImageSharp.gatsbyImageData.images.sources)
 
   if (lights.length === 1) {
     return (
@@ -42,11 +66,11 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
           alt={image.alternativeText}
         />
         <p>{lights[0].name}</p>
-        <span>pin</span>
+        {/* // TODO: testiing */}
+        {/* <span>{image.localFile.childImageSharp.gatsbyImageData.images.sources}</span> */}
       </Link >
     );
   } if (lights.length > 1) {
-
     return (
       <div className='look'>
         <GatsbyImage
@@ -58,8 +82,23 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
             <li key={light.slug}>
               <Link to={`/light/${light.slug}`} >
                 <span>{light.name}</span>
-                <span>pin</span>
               </Link>
+              {/* // TODO: testiing */}
+              {/* <button
+                key={light.slug}
+                type="button"
+                onClick={() => {
+                  const pinterestImage = getLargestImageFromSrcSet(
+                    image.localFile.childImageSharp.gatsbyImageData.images.sources
+                  )
+
+                  if (pinterestImage) {
+                    void logPinterestEntry(pinterestImage)
+                  }
+                }}
+              >
+                Pin
+              </button> */}
             </li>
           ))}
         </ul>
@@ -109,7 +148,7 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
   }
 
   return (
-    <>
+    <React.Fragment>
       <Header largeLogo={true} />
 
       <main className="stork">
@@ -149,7 +188,7 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 
@@ -188,9 +227,14 @@ export const query = graphql`
         }
         image {
           localFile {
+            absolutePath
             childImageSharp {
               gatsbyImageData
+              resize {
+                aspectRatio
+              }
             }
+            url
           }
           alternativeText
         }
