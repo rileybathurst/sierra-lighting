@@ -17,9 +17,7 @@ import Footer from '../components/footer'
 import Start from '../components/start'
 import { SEO } from '../components/seo'
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
-import { logPinterestEntry } from '../components/log-pinterest-entry'
-import { pinterestHref } from '../components/pinterest-href'
-import { usePinterestButton } from "../components/use-pinterest-button";
+import { PinterestHref } from '../components/pinterest-href'
 
 type LinkedLookImageTypes = {
   localFile: {
@@ -43,7 +41,7 @@ type LinkedLooklightsTypes = {
   name: string
 }
 
-const getLargestImageFromSrcSet = (
+/* const getLargestImageFromSrcSet = (
   sources?: { srcSet: string }[]
 ) => {
   return sources?.[0]?.srcSet
@@ -51,7 +49,7 @@ const getLargestImageFromSrcSet = (
     .at(-1)
     ?.trim()
     ?.split(' ')[0]
-}
+} */
 
 function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: LinkedLooklightsTypes[] }) {
 
@@ -122,7 +120,7 @@ type LookbookTemplateTypes = {
 }
 const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
 
-  usePinterestButton();
+  // usePinterestButton();
 
   type LookbookTypes = {
     id: string
@@ -167,26 +165,7 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
                     lights={lookbook.lights}
                   />
                   {/* // * putting piunterest here linked all the looks */}
-                  <a
-                    href={pinterestHref(
-                      lookbook.image.localFile.childImageSharp.gatsbyImageData.images.sources
-                    )}
-                    data-pin-do="buttonBookmark"
-                    data-pin-shape="round"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => {
-                      const pinterestImage = getLargestImageFromSrcSet(
-                        lookbook.image.localFile.childImageSharp.gatsbyImageData.images.sources
-                      )
-
-                      if (pinterestImage) {
-                        void logPinterestEntry(pinterestImage)
-                      }
-                    }}
-                  >
-                    {/* stay gold */}
-                  </a>
+                  <PinterestHref imageSources={lookbook.image.localFile.childImageSharp.gatsbyImageData.images.sources} />
                 </div>
               ))}
           </Masonry>

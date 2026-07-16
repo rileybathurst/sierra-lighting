@@ -54,33 +54,31 @@ export function useIsWithinBusinessHours() {
   const isOpenDay = currentDay
     ? (strapiForm?.days?.[currentDay] ?? false)
     : false;
-
-  console.log("isOpenDay", isOpenDay);
+  // console.log("isOpenDay", isOpenDay);
 
   const currentTime =
     Temporal.Now.zonedDateTimeISO(businessTimeZone).toPlainTime();
-
   // console.log("currentTime", currentTime.toString());
 
-  console.log("afterOpening", Temporal.PlainTime.compare(
-    currentTime,
-    Temporal.PlainTime.from(strapiForm.opening),
-  ) >= 0)
+  /*   console.log("afterOpening", Temporal.PlainTime.compare(
+      currentTime,
+      Temporal.PlainTime.from(strapiForm.opening),
+    ) >= 0) */
 
-  console.log("beforeClosing", Temporal.PlainTime.compare(
-    currentTime,
-    Temporal.PlainTime.from(strapiForm.closing),
-  ) < 0)
-
-  // console.log("isOpenDay", isOpenDay);
-  console.log("isOpen", Temporal.PlainTime.compare(
-    currentTime,
-    Temporal.PlainTime.from(strapiForm.opening),
-  ) >= 0 &&
-    Temporal.PlainTime.compare(
+  /*   console.log("beforeClosing", Temporal.PlainTime.compare(
       currentTime,
       Temporal.PlainTime.from(strapiForm.closing),
-    ) < 0)
+    ) < 0) */
+
+  // console.log("isOpenDay", isOpenDay);
+  /*   console.log("isOpen", Temporal.PlainTime.compare(
+      currentTime,
+      Temporal.PlainTime.from(strapiForm.opening),
+    ) >= 0 &&
+      Temporal.PlainTime.compare(
+        currentTime,
+        Temporal.PlainTime.from(strapiForm.closing),
+      ) < 0) */
   /*------------------------------------*/
 
   return (

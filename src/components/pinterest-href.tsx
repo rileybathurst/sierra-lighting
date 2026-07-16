@@ -1,18 +1,17 @@
+import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
-/* type pinterestHrefType = {
-  strapiAbout: {
-    url: string;
-  };
-};
+export const PinterestHref = ({ imageSources }: { imageSources?: { srcSet: string }[] }) => {
 
-console.log("pinterestHref.ts: query", query); */
-
-export const pinterestHref = (imageSources?: { srcSet: string }[]) => {
   const data = useStaticQuery(graphql`
   query pinterestHrefQuery {
     strapiAbout {
       url
+    }
+
+    strapiSocialSite(service: {eq: "pinterest"}) {
+      id
+      svg
     }
   }
 `);
@@ -23,6 +22,9 @@ export const pinterestHref = (imageSources?: { srcSet: string }[]) => {
       "Expected gatsbyImageData.images.sources to be defined with at least one entry",
     );
   }
+
+  console.log("imageSources:", imageSources);
+  console.log(imageSources[0].srcSet);
 
   const largestImageFromSrcSet = imageSources[0].srcSet
     .split(",")
@@ -35,6 +37,16 @@ export const pinterestHref = (imageSources?: { srcSet: string }[]) => {
   }
 
   const mediaUrl = new URL(mediaPath, `${siteUrl}/`).toString();
+
   console.log(mediaUrl);
-  return `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(mediaUrl)}`;
+
+  return (
+    <a href={`https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(mediaUrl)}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="pinterest-button"
+    >
+      <span dangerouslySetInnerHTML={{ __html: data.strapiSocialSite.svg }} />
+    </a>
+  );
 };

@@ -5,8 +5,11 @@
 svg {
   min-width: 5rem;
   max-width: 5rem;
-  fill: var(--brilliance);
-  fill: black;
+  fill: var(--neutral-800);
+
+  @media (prefers-color-scheme: dark) {
+    fill: var(--neutral-100);
+  }
 }
 
 .logo {
@@ -15,6 +18,31 @@ svg {
 
   @media (prefers-color-scheme: dark) {
     fill: var(--brilliance);
+  }
+}
+
+.pinterest-button {
+  z-index: var(--emergent);
+
+  svg {
+    opacity: 0.75;
+    transition: var(--moment);
+    width: 2rem;
+    height: 2rem;
+    fill: var(--neutral-100);
+
+    @media (prefers-color-scheme: dark) {
+      fill: var(--neutral-800);
+    }
+  }
+}
+
+.pinterest-button:hover svg {
+  opacity: 1;
+  fill: var(--honey-400);
+
+  @media (prefers-color-scheme: dark) {
+    fill: var(--denim-400);
   }
 }
 
@@ -343,11 +371,11 @@ header svg:active {
     }
 
     /* pinterest icon */
-    span {
-      margin-block-start: var(--vinson);
+    .pinterest-button {
       justify-self: end;
       /* padding: var(--kosciuszko); */
       padding: var(--elbrus);
+      align-self: start;
     }
   }
 

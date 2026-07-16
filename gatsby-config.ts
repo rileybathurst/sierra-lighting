@@ -24,6 +24,7 @@ const strapiConfig = {
     "quality",
     "service",
     "showcase",
+    "social-site",
     "site",
     "team",
     "testimonial",

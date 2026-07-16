@@ -1,3 +1,5 @@
+// * I think Im skipping this whole stupid thing using an svg and just pushing a very specific URL
+
 import * as React from "react";
 
 type PinterestWindow = Window & {
