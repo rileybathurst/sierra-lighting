@@ -9,6 +9,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import Hero from "../components/hero";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
+import { usePinterestButton } from "../components/use-pinterest-button";
 
 type NotFoundPageTypes = {
   location: {
@@ -43,6 +44,7 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
 
   // this is using the hero
   const siteUrl = data.strapiAbout.url
+  const pageUrl = new URL(location.pathname, `${siteUrl}/`).toString()
   const imageSources = data.strapiError.hero.localFile.childImageSharp.gatsbyImageData.images.sources
   if (!imageSources || imageSources.length === 0) {
     throw new Error("Expected gatsbyImageData.images.sources to be defined with at least one entry")
@@ -59,8 +61,9 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
   }
 
   const mediaUrl = new URL(mediaPath, `${siteUrl}/`).toString()
-  console.log(mediaUrl)
+  const pinterestDescription = `${data.strapiError.title} - ${data.strapiError.pun}`
   const pinterestHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(mediaUrl)}`
+  const pinterestPinHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(pageUrl)}&media=${encodeURIComponent(mediaUrl)}&description=${encodeURIComponent(pinterestDescription)}`
 
   const pinterestLogUrls = [
     "https://www.pinterest.com/pin/1/",
@@ -80,6 +83,8 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
     }
   }
 
+  usePinterestButton()
+
   return (
     <React.Fragment>
       <Header />
@@ -87,6 +92,8 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
       <Hero
         image={data.strapiError.hero}
       />
+
+
 
       <main>
         <h2>404 - {location.pathname}</h2>
@@ -141,15 +148,17 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
         🍔
       </a>
 
-      {/* ------------------------------------ */}
-
       <a
         data-pin-do="buttonPin"
-        href="https://www.pinterest.com/pin/create/button/?url=http://www.foodiecrush.com/2014/03/filet-mignon-with-porcini-mushroom-compound-butter/&media=https://i.pinimg.com/736x/17/34/8e/17348e163a3212c06e61c41c4b22b87a.jpg&description=So%20delicious!"
+        href={pinterestPinHref}
         data-pin-shape="round"
-      >
-        hello
-      </a>
+        aria-label="Save this page to Pinterest"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => {
+          void logPinterestEntry(mediaUrl)
+        }}
+      >{/* stay gold*/}</a>
     </React.Fragment>
   )
 }

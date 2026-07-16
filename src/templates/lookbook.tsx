@@ -19,6 +19,7 @@ import { SEO } from '../components/seo'
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
 import { logPinterestEntry } from '../components/log-pinterest-entry'
 import { pinterestHref } from '../components/pinterest-href'
+import { usePinterestButton } from "../components/use-pinterest-button";
 
 type LinkedLookImageTypes = {
   localFile: {
@@ -54,11 +55,6 @@ const getLargestImageFromSrcSet = (
 
 function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: LinkedLooklightsTypes[] }) {
 
-  // TODO: testing
-  console.log(image.localFile.childImageSharp.gatsbyImageData.images.sources)
-
-  pinterestHref(image.localFile.childImageSharp.gatsbyImageData.images.sources)
-
   if (lights.length === 1) {
     return (
       <Link
@@ -87,43 +83,6 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
               <Link to={`/light/${light.slug}`} >
                 <span>{light.name}</span>
               </Link>
-              {/* // TODO: testiing */}
-              {/* <button
-                key={light.slug}
-                type="button"
-                onClick={() => {
-                  const pinterestImage = getLargestImageFromSrcSet(
-                    image.localFile.childImageSharp.gatsbyImageData.images.sources
-                  )
-
-                  if (pinterestImage) {
-                    void logPinterestEntry(pinterestImage)
-                  }
-                }}
-              >
-                Pin
-              </button> */}
-              {/* // * this will need  */}
-              <a
-                href={pinterestHref(
-                  image.localFile.childImageSharp.gatsbyImageData.images.sources
-                )}
-                data-pin-do="buttonBookmark"
-                data-pin-shape="round"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => {
-                  const pinterestImage = getLargestImageFromSrcSet(
-                    image.localFile.childImageSharp.gatsbyImageData.images.sources
-                  )
-
-                  if (pinterestImage) {
-                    void logPinterestEntry(pinterestImage)
-                  }
-                }}
-              >
-                🍔
-              </a>
             </li>
           ))}
         </ul>
@@ -163,6 +122,8 @@ type LookbookTemplateTypes = {
 }
 const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
 
+  usePinterestButton();
+
   type LookbookTypes = {
     id: string
     spread: boolean
@@ -191,15 +152,42 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
         <ResponsiveMasonry
           columnsCountBreakPoints={{ 320: 1, 740: 2, 960: 3 }}
         >
+          {/* // ? test */}
+          {/* this thing is kinda ugly and has no hover state or anything */}
           <Masonry className="test">
             {data.strapiService.lookbooks
               .toReversed()
               .map((lookbook: LookbookTypes) => (
-                <LinkedLook
-                  key={lookbook.id}
-                  image={lookbook.image}
-                  lights={lookbook.lights}
-                />
+                <div key={lookbook.id}
+                  className='pinterest-wrapper'
+                >
+                  <LinkedLook
+                    key={lookbook.id}
+                    image={lookbook.image}
+                    lights={lookbook.lights}
+                  />
+                  {/* // * putting piunterest here linked all the looks */}
+                  <a
+                    href={pinterestHref(
+                      lookbook.image.localFile.childImageSharp.gatsbyImageData.images.sources
+                    )}
+                    data-pin-do="buttonBookmark"
+                    data-pin-shape="round"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      const pinterestImage = getLargestImageFromSrcSet(
+                        lookbook.image.localFile.childImageSharp.gatsbyImageData.images.sources
+                      )
+
+                      if (pinterestImage) {
+                        void logPinterestEntry(pinterestImage)
+                      }
+                    }}
+                  >
+                    {/* stay gold */}
+                  </a>
+                </div>
               ))}
           </Masonry>
         </ResponsiveMasonry>
