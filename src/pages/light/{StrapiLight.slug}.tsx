@@ -365,13 +365,14 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 
 					<hr />
 
-					{/* // ! oops not designed */}
+					{/* // TODO: oops not designed */}
 					{/* // TODO: add these to strapi across the lights */}
 					{/* // needs to be more than 1 or its just the detail image */}
-					{data.strapiLight.bulbs && (
+					{/* {data.strapiLight.bulbs && (
 						<section>
 							<h3 className="kilimanjaro">Bulb Options</h3>
-							{/* // ? why team-heads or did I just not do something */}
+							// ? why team-heads or did I just not do something
+							// ? maybe I actually did want to go small and cute
 							<div className="team-heads">
 								{data.strapiLight.bulbs.map((bulb) => (
 									<div key={bulb.id}>
@@ -383,13 +384,13 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 											/>
 										) : null}
 										<p>{bulb.name}</p>
-										{/* <p>{bulb.excerpt}</p> */}
+										<p>{bulb.excerpt}</p>
 									</div>
 								))}
 							</div>
 							<hr />
 						</section>
-					)}
+					)} */}
 
 					<Start path={data.strapiLight.slug} />
 				</article>
