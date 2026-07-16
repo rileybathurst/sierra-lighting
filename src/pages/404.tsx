@@ -131,6 +131,8 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
         href={pinterestHref}
         data-pin-do="buttonBookmark"
         data-pin-shape="round"
+        target="_blank"
+        rel="noopener noreferrer"
         onClick={() => {
           void logPinterestEntry("https://www.pinterest.com/pin/3/")
         }}
