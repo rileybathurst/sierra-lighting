@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
+import { logPinterestEntry } from "./log-pinterest-entry";
 
 export const PinterestHref = ({ imageSources }: { imageSources?: { srcSet: string }[] }) => {
 
@@ -40,6 +41,9 @@ export const PinterestHref = ({ imageSources }: { imageSources?: { srcSet: strin
       target="_blank"
       rel="noopener noreferrer"
       className="pinterest-button"
+      onClick={() => {
+        void logPinterestEntry(mediaPath)
+      }}
     >
       <span dangerouslySetInnerHTML={{ __html: data.strapiSocialSite.svg }} />
     </a>
