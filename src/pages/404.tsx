@@ -127,6 +127,7 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
       </button>
 
       {/* // * both log and actually do the pin */}
+      {/* // * needs target _blank to give it time to render */}
       <a
         href={pinterestHref}
         data-pin-do="buttonBookmark"

@@ -1,4 +1,5 @@
 // TODO: add something about themes
+// the import problem is mostly alaphbetical which I'm OK with I just need to automate it
 
 import * as React from 'react'
 import { Link, graphql } from 'gatsby'
@@ -17,6 +18,7 @@ import Start from '../components/start'
 import { SEO } from '../components/seo'
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
 import { logPinterestEntry } from '../components/log-pinterest-entry'
+import { pinterestHref } from '../components/pinterest-href'
 
 type LinkedLookImageTypes = {
   localFile: {
@@ -54,6 +56,8 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
 
   // TODO: testing
   console.log(image.localFile.childImageSharp.gatsbyImageData.images.sources)
+
+  pinterestHref(image.localFile.childImageSharp.gatsbyImageData.images.sources)
 
   if (lights.length === 1) {
     return (
@@ -99,6 +103,27 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
               >
                 Pin
               </button> */}
+              {/* // * this will need  */}
+              <a
+                href={pinterestHref(
+                  image.localFile.childImageSharp.gatsbyImageData.images.sources
+                )}
+                data-pin-do="buttonBookmark"
+                data-pin-shape="round"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  const pinterestImage = getLargestImageFromSrcSet(
+                    image.localFile.childImageSharp.gatsbyImageData.images.sources
+                  )
+
+                  if (pinterestImage) {
+                    void logPinterestEntry(pinterestImage)
+                  }
+                }}
+              >
+                🍔
+              </a>
             </li>
           ))}
         </ul>
