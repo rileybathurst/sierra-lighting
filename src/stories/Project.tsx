@@ -5,7 +5,7 @@ import { Attribute } from './Attribute';
 import { Footer } from './Footer';
 import { faker } from "@faker-js/faker";
 import { Start } from './start';
-import { Poster } from './poster.jsx';
+import { Poster } from './poster';
 import { Testimonial } from './Testimonial';
 import { Deck } from './Deck';
 import { Breadcrumbs } from './Breadcrumbs';

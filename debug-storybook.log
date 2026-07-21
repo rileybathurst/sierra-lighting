@@ -1,16 +1,16 @@
-[10:57:27.290] [INFO] storybook v10.4.6
-[10:57:27.442] [DEBUG] Getting package.json info for /Users/riley/Sites/sierra-lighting/package.json...
-[10:57:27.923] [DEBUG] Serving static files from [36mnode_modules/@chromatic-com/storybook/assets[39m at [36m/addon-visual-tests-assets[39m
-[10:57:27.925] [INFO] Starting...
-[10:57:27.957] [WARN] unable to find package.json for @mux/mux-player-react
-[10:57:28.109] [DEBUG] Starting preview..
-[10:57:28.116] [INFO] Addon-docs: using MDX3
-[10:57:28.127] [INFO] Using implicit CSS loaders
-[10:57:28.218] [INFO] Using default Webpack5 setup
-[10:57:28.476] [DEBUG] Using tsconfig paths for react-docgen
-[10:57:30.528] [ERROR] Failed to build the preview
-[10:57:30.533] [WARN] Force closed preview build
-[10:57:30.535] [ERROR] [38;2;241;97;97mSB_BUILDER-WEBPACK5_0003 (WebpackCompilationError): There were problems when compiling your code with Webpack.
+[11:05:23.485] [INFO] storybook v10.4.6
+[11:05:23.661] [DEBUG] Getting package.json info for /Users/riley/Sites/sierra-lighting/package.json...
+[11:05:24.373] [DEBUG] Serving static files from [36mnode_modules/@chromatic-com/storybook/assets[39m at [36m/addon-visual-tests-assets[39m
+[11:05:24.375] [INFO] Starting...
+[11:05:24.409] [WARN] unable to find package.json for @mux/mux-player-react
+[11:05:24.581] [DEBUG] Starting preview..
+[11:05:24.590] [INFO] Addon-docs: using MDX3
+[11:05:24.603] [INFO] Using implicit CSS loaders
+[11:05:24.718] [INFO] Using default Webpack5 setup
+[11:05:25.067] [DEBUG] Using tsconfig paths for react-docgen
+[11:05:27.257] [ERROR] Failed to build the preview
+[11:05:27.262] [WARN] Force closed preview build
+[11:05:27.263] [ERROR] [38;2;241;97;97mSB_BUILDER-WEBPACK5_0003 (WebpackCompilationError): There were problems when compiling your code with Webpack.
 Run Storybook with --debug-webpack for more information.[39m
     at starter (file://./node_modules/@storybook/builder-webpack5/dist/index.js:857:11)
     at starter.next (<anonymous>)
@@ -22,6 +22,5 @@ Run Storybook with --debug-webpack for more information.[39m
     at async withTelemetry (file://./node_modules/storybook/dist/_node-chunks/chunk-G7NXW2C2.js:650:12)
     at async dev (file://./node_modules/storybook/dist/bin/core.js:2735:3)
     at async _Command.<anonymous> (file://./node_modules/storybook/dist/bin/core.js:2805:92)
-[10:57:30.537] [WARN] Broken build, fix the error above.
+[11:05:27.266] [WARN] Broken build, fix the error above.
 You may need to refresh the browser.
-[10:57:38.022] [PROMPT] Would you like to send anonymous crash reports to improve Storybook and fix bugs faster? {"choice":true}
