@@ -82,7 +82,7 @@
   /* 7,310ft Australia */
 
   /* * specifically noted as spacing not a typography choice */
-  --spacing-half: var(--spacing-half);
+  --spacing-half: 0.5rem;
 
   /*------------------*/
   /* WIDTHS */
@@ -90,7 +90,8 @@
   /*  https://en.wikipedia.org/wiki/Largest_living_flying_birds_by_wingspan */
   /* TODO: sliding scale */
   --swan: 20rem;
-  --vulture: 30rem;
+  /* used on image max widths */
+  --vulture: 25rem;
   --stork: 40rem;
   --condor: 50rem;
   --pelican: 60rem;

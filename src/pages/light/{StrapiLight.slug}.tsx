@@ -13,7 +13,6 @@ import Suite from "../../components/suite";
 import type { SuiteType } from "../../types/suite-type";
 import Markdown from "react-markdown";
 import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
-import { GatsbyImage } from "gatsby-plugin-image";
 
 interface AliasTypes {
 	alias: string;
@@ -26,6 +25,7 @@ function Aliases({ alias }: AliasTypes) {
 
 	return (
 		<React.Fragment>
+			{/* // TODO: this overhangs backwards when it shouldnt */}
 			<h3 className="kilimanjaro">Also known as:</h3>
 			<ul>
 				{split.map((aka: string) => {

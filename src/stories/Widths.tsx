@@ -66,14 +66,16 @@ export const Widths = () => {
     <React.Fragment>
       <main>
         <h1>Widths</h1>
-        <p>condor is good for measure</p>
+        <p>One column layout for text with a measure of condor</p>
+        <p>hero images have a pop width of pelican</p>
+        <p>three column layout for cards with a max width of albatross</p>
       </main>
       <WidthCard
         widths={[
           { name: "swan" },
           { name: "vulture" },
           { name: "stork", alias: "services / testimonials / testimonial / contact" },
-          { name: "condor", alias: "main" },
+          { name: "condor", alias: "main / measure" },
           { name: "pelican", alias: "deck" },
           { name: "albatross", alias: "footer_list" },
         ]}

@@ -134,34 +134,30 @@ const lightsPage = () => {
         <h1 className="mixta">Lights</h1>
       </main >
 
-      <section className="stork wrap">
-        <div>
-          Filter by use:
-          <ul>
-            {data.allStrapiService.nodes.map((service: ServiceTypes) => (
-              <li key={service.id}>
-                <Link to={`/${service.slug}/lights`}>
-                  {service.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p>or by type:</p>
-          <ul>
-            {data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
-              <li key={group.slug}>
-                <Link to={`/light-group/${group.slug}`}>
-                  {group.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div >
+      <section className="condor">
+        <h3>Filter by use:</h3>
+        <ul>
+          {data.allStrapiService.nodes.map((service: ServiceTypes) => (
+            <li key={service.id}>
+              <Link to={`/${service.slug}/lights`}>
+                {service.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <h3>or by type:</h3>
+        <ul>
+          {data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
+            <li key={group.slug}>
+              <Link to={`/light-group/${group.slug}`}>
+                {group.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section >
 
-      <div className="stork">
+      <div className="condor">
         <hr />
         <h3>
           Search
@@ -172,9 +168,9 @@ const lightsPage = () => {
       {data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
         <React.Fragment key={group.slug}>
 
-          <hr className="stork" />
+          <hr className="condor" />
 
-          <section className="stork">
+          <section className="condor">
             <h2 className="mixta">
               <Link to={`/light-group/${group.slug}`}>
                 {group.name}
@@ -195,8 +191,6 @@ const lightsPage = () => {
             </div>
 
           ) : null}
-
-
 
         </React.Fragment>
       ))}

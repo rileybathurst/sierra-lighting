@@ -22,70 +22,95 @@ main {
   padding-inline: var(--vinson);
 }
 
-.stork,
-.services,
-.testimonials,
-.testimonial,
-.slider,
-.contact {
+.stork {
   max-width: var(--stork);
   margin-inline: auto;
   padding-inline: var(--vinson);
 }
 
+/* * measure */
 .condor,
-main {
+main,
+.services,
+.testimonials,
+.testimonial,
+.slider {
   max-width: var(--condor);
   margin-inline: auto;
   padding-inline: var(--vinson);
 }
 
-.pelican,
-.deck {
+/* * hero image */
+.pelican {
   max-width: var(--pelican);
   margin-inline: auto;
   padding-inline: var(--vinson);
 }
 
+/* * 3 columns */
 .albatross,
-.footer_list {
+.footer_list,
+.deck,
+.service-deck,
+.suite {
   max-width: var(--albatross);
   margin-inline: auto;
   padding-inline: var(--vinson);
 }
 
 /*------------------------------------*/
+/* #CARDS */
+/*------------------------------------*/
 
-.wrap,
-.deck {
-  display: flex;
-  flex-flow: row wrap;
-  gap: clamp(var(--kosciuszko), 1.667vw, var(--denali));
-  padding-inline: var(--kosciuszko);
+/* * service deck is mess as it has the headers and wraps on mobile */
 
-  >* {
-    flex: 1 1;
-    width: 100%;
-    height: fit-content;
-  }
+.deck,
+.suite,
+.service-deck {
+  display: grid;
+  column-gap: var(--vinson);
+  /* ? am i using the other widths or should this be a variable? */
+  grid-template-columns: repeat(auto-fill,
+      minmax(calc(var(--vulture) - var(--vinson)), 1fr));
 }
 
-.pelican.wrap>*,
-.albatross.wrap>*,
+.service-deck {
+  grid-template-rows: 1fr min-content;
+}
+
+.deck {
+  row-gap: var(--kilimanjaro);
+}
+
 .deck>* {
   max-width: none;
   margin-inline: 0;
   padding-inline: 0;
 }
 
-.pelican.wrap>* {
-  flex: 1 1 calc(var(--pelican) / 2 - var(--vinson));
+/*------------------------------------*/
+/* #SUITE ORDER */
+/*------------------------------------*/
+/* ? posters are not always used in suites */
+
+.suite.xmas {
+  .residential {
+    order: 1;
+  }
+
+  .commercial {
+    order: 2;
+  }
+
+  .wedding {
+    order: 3;
+  }
+
+  >a {
+    order: 4;
+  }
 }
 
-.albatross.wrap>*,
-.deck>* {
-  flex: 1 1 calc(var(--albatross) / 2 - var(--vinson));
-}
 
 /*------------------------------------*/
 
@@ -404,20 +429,6 @@ header {
   }
 }
 
-.footer-container {
-  max-width: var(--pelican);
-  margin-inline: auto;
-  width: calc(100% - var(--denali));
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap-reverse;
-  gap: var(--elbrus);
-
-  >* {
-    flex: 1 1 15rem;
-  }
-}
-
 .footer-copyright {
   max-width: var(--stork);
   margin-inline: auto;
@@ -560,19 +571,6 @@ footer {
   .gatsby-image-wrapper {
     /*  width: 100%; */
     height: 100%;
-  }
-}
-
-/* TODO */
-.team {
-  @media (min-width: 30rem) {
-    border-left: 1px solid var(--honey-400);
-    /*  TODO */
-    padding-inline-start: var(--vinson);
-
-    @media (prefers-color-scheme: dark) {
-      border-color: var(--denim-700);
-    }
   }
 }
 
@@ -821,46 +819,6 @@ footer {
 
   >a:hover .gatsby-image-wrapper {
     opacity: 0.9;
-  }
-}
-
-/*------------------------------------*/
-/* #SUITE */
-/*------------------------------------*/
-/* ? posters are not always used in suites */
-
-.suite {
-  display: flex;
-  flex-flow: row wrap;
-  gap: clamp(var(--vinson), 3vw, var(--aconcagua));
-  list-style: none;
-  padding-inline-start: 0;
-  margin-block: 0;
-  margin-inline: auto;
-  max-width: var(--albatross);
-
-  >* {
-    flex: 1 1 var(--vulture);
-    margin-block-end: 0;
-    /* use the grid gap */
-  }
-}
-
-.suite.xmas {
-  .residential {
-    order: 1;
-  }
-
-  .commercial {
-    order: 2;
-  }
-
-  .wedding {
-    order: 3;
-  }
-
-  >a {
-    order: 4;
   }
 }
 

@@ -6,22 +6,6 @@
 /* #CARDS */
 /*------------------------------------*/
 
-.deck,
-.service-deck {
-  display: grid;
-  column-gap: var(--vinson);
-  grid-template-columns: repeat(auto-fill,
-      minmax(calc(var(--swan) - var(--vinson)), 1fr));
-}
-
-.service-deck {
-  grid-template-rows: 1fr min-content;
-}
-
-.deck {
-  row-gap: var(--kilimanjaro);
-}
-
 .card {
   display: grid;
   row-gap: var(--vinson);

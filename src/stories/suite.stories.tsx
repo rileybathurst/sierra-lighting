@@ -5,7 +5,7 @@ import { Suite } from './suite';
 
 const meta = {
   component: Suite,
-  title: 'Atoms/Suite',
+  title: 'Organisms/Suite',
   args: { onClick: fn() },
 } satisfies Meta<typeof Suite>;
 

@@ -228,7 +228,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
   return (
     <footer>
-      <hr className="stork" />
+      <hr className="condor" />
 
       {showQuote && (
         <>
@@ -241,7 +241,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             netlify-honeypot="bot-field"
             method="POST"
             action="/form-success"
-            className="stork"
+            className="condor"
           >
 
             <input type="hidden" name="form-name" value="contact" />
@@ -306,64 +306,62 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             <button type="submit" disabled={!canSend}>Send</button>
           </form>
 
-          <hr className='pelican' />
+          <section id="contact" className="condor contact">
+            <hr />
+
+            <h3>Contact</h3>
+
+            {/* // TODO: this changes twice on hover and reverts back its just a mess of overlapping styles */}
+            <div className="contact-info">
+              {/* // ? why does this need a <p> */}
+              <p>
+                <a href={`mailto:${data.strapiAbout.email}`}>
+                  {data.strapiAbout.email}
+                </a>
+              </p>
+              <p>
+                {/* // TODO: fix the styling and put this in strapi */}
+                Call or Text: <Phone phone={data.strapiAbout.telephone} />
+
+                {/* // * elements of typograhic style 3.2 numerals, capitals & small caps */}
+                <small>
+                  {data.strapiForm.monitoring}&nbsp;
+                  <span className="white-space-no-wrap">{Hours(data.strapiForm.opening)}&thinsp;and&thinsp;{Hours(data.strapiForm.closing)} <span className="all-small-caps">PST</span></span>,
+                  &nbsp;<span className="white-space-no-wrap">{days(data.strapiForm.days)}</span>.&nbsp;
+                </small>
+              </p>
+            </div>
+            <hr />
+          </section>
         </>
       )}
-      <div className="footer-container">
 
-        <section id="contact" className="contact">
+      <div id="team" className="condor">
+        <h3>
+          <Link to="/team" className="link--subtle">Team</Link>
+        </h3>
 
-          <h3>Contact</h3>
+        <h4>or&nbsp;
+          <Link to="/work" className="link--subtle">Work with us</Link>
+        </h4>
 
-          {/* // TODO: this changes twice on hover and reverts back its just a mess of overlapping styles */}
-          <div className="contact-info">
-            {/* // ? why does this need a <p> */}
-            <p>
-              <a href={`mailto:${data.strapiAbout.email}`}>
-                {data.strapiAbout.email}
-              </a>
-            </p>
-            <p>
-              {/* // TODO: fix the styling and put this in strapi */}
-              Call or Text: <Phone phone={data.strapiAbout.telephone} />
-
-              {/* // * elements of typograhic style 3.2 numerals, capitals & small caps */}
-              <small>
-                {data.strapiForm.monitoring}&nbsp;
-                <span className="white-space-no-wrap">{Hours(data.strapiForm.opening)}&thinsp;and&thinsp;{Hours(data.strapiForm.closing)} <span className="all-small-caps">PST</span></span>,
-                &nbsp;<span className="white-space-no-wrap">{days(data.strapiForm.days)}</span>.&nbsp;
-              </small>
-            </p>
-          </div>
-        </section>
-
-        <div id="team" className="team">
-          <h3>
-            <Link to="/team" className="link--subtle">Team</Link>
-          </h3>
-
-          <h4>or&nbsp;
-            <Link to="/work" className="link--subtle">Work with us</Link>
-          </h4>
-
-          <div className="team-heads spin">
-            {data.allStrapiTeam.nodes.map((team: TeamType) => (
-              <Link
-                key={team.slug}
-                to={`/team/${team.slug}`}
-              >
-                <GatsbyImage
-                  image={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
-                  alt={team?.avatar?.alternativeText}
-                />
-                <p>{team.name}</p>
-              </Link>
-            ))
-            }
-          </div>
-
+        <div className="team-heads spin">
+          {data.allStrapiTeam.nodes.map((team: TeamType) => (
+            <Link
+              key={team.slug}
+              to={`/team/${team.slug}`}
+            >
+              <GatsbyImage
+                image={team?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
+                alt={team?.avatar?.alternativeText}
+              />
+              <p>{team.name}</p>
+            </Link>
+          ))
+          }
         </div>
       </div>
+
 
       <hr className="albatross" />
 

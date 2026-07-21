@@ -165,6 +165,8 @@ const IndexPage = () => {
 
         </div>
 
+        {/* // TODO: 2 columns becomes 1 or 3 and this seems like it should be repeated? */}
+        {/* * this is under the biggest specific image so its currently ok but will be updated */}
         <section className="qualities albatross">
           {data.allStrapiQuality.nodes.map((quality: QualityTypes) => (
             <section key={quality.id}>

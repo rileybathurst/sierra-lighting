@@ -6,20 +6,15 @@ form {
   input,
   textarea,
   input[type="checkbox"] {
-    margin-block-end: var(--spacing-half);
     display: block;
     width: calc(100% - var(--denali));
-    /* TODO: variable */
-    max-width: 60rem;
     /* TODO: variable might be new, and document why */
     border-radius: calc(var(--border-radius) * 2);
-    padding-block: var(--spacing-half);
-    /*  16 */
-    padding-inline: var(--spacing-half);
-    /* 16 /
-    margin-block-end: 0.25rem; /* 8px */
+    padding: var(--spacing-half);
+    margin-block-end: 0.25rem;
     border: 1px solid var(--honey-400);
 
+    /* TODO: move this */
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-700);
       border-color: var(--denim-600);

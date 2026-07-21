@@ -20,7 +20,7 @@ const ResultList: React.FC<ResultListTypes> = ({ searchQuery, results }) => {
   if (results.length) {
     return (
       <>
-        <h3 className="stork">Search Results</h3>
+        <h3 className="condor">Search Results</h3>
         <div className="deck">
           {results.map(result => (
             <Card
@@ -39,7 +39,7 @@ const ResultList: React.FC<ResultListTypes> = ({ searchQuery, results }) => {
   }
 
   return (
-    <h3 className="stork">Nothing found in the search</h3>
+    <h3 className="condor">Nothing found in the search</h3>
   )
 };
 
@@ -86,7 +86,7 @@ const LightSearch = () => {
     <>
       <form
         onSubmit={handleSubmit}
-        className="stork"
+        className="condor"
       >
         <label htmlFor={inputId}>
           Or enter your search here

@@ -219,8 +219,10 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
       // base[1].id = self.crypto.randomUUID();
     }
 
+
+    // TODO: build an array and put them in and deal with empties
     return (
-      <div className='pelican service-deck'>
+      <div className='service-deck'>
         {base.map((item) => (
           <React.Fragment key={item.order}>
             {item.title ? (
@@ -251,7 +253,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
   if (projects && venue) {
 
     return (
-      <div className='pelican service-deck'>
+      <div className='service-deck'>
         {projects.slice(0, 2).map((project, index) => (
           <React.Fragment key={project.id}>
             <div
@@ -276,12 +278,8 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
         ))}
 
         <React.Fragment key={venue.id}>
-          <div
-            className='service-card'
-          >
-            <h4
-              className='capitalize venue-title venue-title'
-            >
+          <div className='service-card'>
+            <h4 className='capitalize venue-title venue-title'>
               <Link to="/venue">
                 Venues
               </Link>
@@ -299,7 +297,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
 
   if (projects && !venue && !vendor) {
     return (
-      <div className='pelican service-deck'>
+      <div className='service-deck'>
         {projects.slice(0, 3).map((project, index) => (
           <React.Fragment key={project.id}>
             <div
