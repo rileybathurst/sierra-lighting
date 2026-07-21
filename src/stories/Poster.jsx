@@ -1,6 +1,5 @@
 // * not a typescript file as assets.png cannot be imported in tsx without extra config
 
-// this is the Name.jsx file
 import React from "react";
 import { faker } from "@faker-js/faker";
 
@@ -17,4 +16,4 @@ export const Poster = () => {
       {faker.datatype.boolean() && <p>{faker.location.city()}</p>}
     </a>
   );
-};
+}; // * not a typescript file as assets.png cannot be imported in tsx without extra config
