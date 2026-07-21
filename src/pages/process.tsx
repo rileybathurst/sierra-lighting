@@ -67,7 +67,7 @@ const ProcessPage = () => {
 		<>
 			<Header />
 
-			<main className="stork">
+			<main>
 				<h1 className="denali">
 					Our Process for professional lighting installation
 				</h1>

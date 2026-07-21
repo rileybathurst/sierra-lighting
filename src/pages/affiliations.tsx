@@ -7,8 +7,9 @@ import { SEO } from "../components/seo";
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-const TestimonialsPage = () => {
+const AffiliationsPage = () => {
 
+  // TODO: document why I need the ne null
   const { allStrapiAffiliation } = useStaticQuery(graphql`
     query AffiliationsQuery {
       allStrapiAffiliation(filter: { publishedAt: { ne: null } }) {
@@ -53,10 +54,7 @@ const TestimonialsPage = () => {
       <Header />
 
       <main>
-        <div className="stork">
-          {/* <h1 className="crest">Reviews</h1> */}
-          <h2 className="ridge">Affiliations</h2>
-        </div>
+        <h1>Affiliations</h1>
 
         {/* // TODO: https://schema.org/Review */}
         <ul className="affiliations">
@@ -85,7 +83,7 @@ const TestimonialsPage = () => {
   )
 }
 
-export default TestimonialsPage
+export default AffiliationsPage
 
 export const Head = () => {
   return (

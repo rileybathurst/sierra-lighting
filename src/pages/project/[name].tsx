@@ -27,7 +27,7 @@ function ProjectCatchAll({ params }: CatchAllTypes) {
     <>
       <Header />
 
-      <main className="stork">
+      <main className="above-deck">
         <h2 className="crest">404 - Project - {params.name}</h2>
         <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
         <p>Want to brighten up?<br />
@@ -45,7 +45,7 @@ function ProjectCatchAll({ params }: CatchAllTypes) {
         ))}
       </div>
 
-      <hr className="stork" />
+      <hr className="main" />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/project/">Project</Link></Breadcrumb>

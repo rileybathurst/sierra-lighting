@@ -221,7 +221,7 @@ const IndexPage = () => {
         <Suite services={data.allStrapiService.nodes} />
       </main >
 
-      <div className="stork">
+      <div className="main">
         {/* // TODO: if its just spaces do it in a better way */}
         <p>&nbsp;</p>
         <Start path="index-services" />

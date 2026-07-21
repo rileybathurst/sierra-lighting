@@ -339,37 +339,36 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 			/>
 
 			<main>
-				<article className="stork">
-					<h1 className="denali">
-						{data.strapiLight.name}
-						{holidayLight ? (
-							<span> For Christmas Lighting</span>
-						) : null}
-						{weddingLight ? (
-							<span> For Wedding Lighting</span>
-						) : null}
-					</h1>
-
-					{data.strapiLight.alias ? (
-						<Aliases alias={data.strapiLight.alias} />
+				<h1 className="denali">
+					{data.strapiLight.name}
+					{holidayLight ? (
+						<span> For Christmas Lighting</span>
 					) : null}
+					{weddingLight ? (
+						<span> For Wedding Lighting</span>
+					) : null}
+				</h1>
 
-					{/* // TODO: styling of lower level headings */}
-					{/* // * theres maybe a way to link these to show a full image */}
-					{data.strapiLight.markdown?.data?.markdown ? (
-						<div className="markdown">
-							<Markdown>{data.strapiLight.markdown.data.markdown}</Markdown>
-						</div>
-					) : (
-						<p>{data.strapiLight.description}</p>
-					)}
+				{data.strapiLight.alias ? (
+					<Aliases alias={data.strapiLight.alias} />
+				) : null}
 
-					<hr />
+				{/* // TODO: styling of lower level headings */}
+				{/* // * theres maybe a way to link these to show a full image */}
+				{data.strapiLight.markdown?.data?.markdown ? (
+					<div className="markdown">
+						<Markdown>{data.strapiLight.markdown.data.markdown}</Markdown>
+					</div>
+				) : (
+					<p>{data.strapiLight.description}</p>
+				)}
 
-					{/* // TODO: oops not designed */}
-					{/* // TODO: add these to strapi across the lights */}
-					{/* // needs to be more than 1 or its just the detail image */}
-					{/* {data.strapiLight.bulbs && (
+				<hr />
+
+				{/* // TODO: oops not designed */}
+				{/* // TODO: add these to strapi across the lights */}
+				{/* // needs to be more than 1 or its just the detail image */}
+				{/* {data.strapiLight.bulbs && (
 						<section>
 							<h3 className="kilimanjaro">Bulb Options</h3>
 							// ? why team-heads or did I just not do something
@@ -393,14 +392,15 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 						</section>
 					)} */}
 
-					<Start path={data.strapiLight.slug} />
-				</article>
+				<Start path={data.strapiLight.slug} />
 			</main>
 
 			{lightConnections.length > 0 ? (
 				<section>
-					<hr className="stork" />
-					<h3 className="stork">Ways to make your {data.strapiLight.name} shine</h3>
+					<div className="above-deck">
+						<hr />
+						<h3>Ways to make your {data.strapiLight.name} shine</h3>
+					</div>
 					<div className="deck">
 						{lightConnections.map((connection) => {
 							const light = connection.starting_light || connection.ending_light;
@@ -420,14 +420,16 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 			) : null}
 
 			{/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device */}
-			<hr className="stork" />
-			<section className="">
-				<h3 className="stork crest">We use {data.strapiLight.name} for</h3>
+			<section>
+				<div className="above-deck">
+					<hr />
+					<h3 className="crest">We use {data.strapiLight.name} for</h3>
+				</div>
 
 				<Suite services={data.strapiLight.services} />
 			</section>
 
-			<section className="stork">
+			<section className="main">
 				<hr />
 				<h3>
 					<Link to="/process">Learn more about our process</Link>
@@ -446,7 +448,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 				</ol>
 
 				{/* // TODO: design this in storybook  */}
-				<h3 className="stork kilimanjaro capitalize">
+				<h3 className="kilimanjaro capitalize">
 					<Link to="/faqs">Frequently Asked Questions</Link>
 				</h3>
 			</section>
@@ -457,8 +459,10 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 					{data.strapiLight.light_groups.map((group) => {
 						return (
 							<div key={group.id}>
-								<hr className="stork" />
-								<h3 className="stork">Other Lights in {group.name}</h3>
+								<div className="above-deck">
+									<hr />
+									<h3>Other Lights in {group.name}</h3>
+								</div>
 
 								<div className="deck">
 									{group.lights
@@ -475,8 +479,10 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 				</div>
 			) : (
 				<React.Fragment>
-					<hr className="stork" />
-					<h3 className="stork">Other Lights</h3>
+					<div className="above-deck">
+						<hr />
+						<h3>Other Lights</h3>
+					</div>
 					<div className="deck">
 						{data.allStrapiLight.nodes.map((light: CardType) => (
 							<Card key={light.id} {...light} breadcrumb="light" />
@@ -488,7 +494,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 			{/* // TODO: if more than 3 */}
 			{data.allStrapiProject.nodes.length > 0 ? (
 				<React.Fragment>
-					<div className="stork">
+					<div className="above-deck">
 						<hr />
 						<h3>Projects Using {data.strapiLight.name}</h3>
 					</div>
@@ -501,7 +507,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 				</React.Fragment>
 			) : null}
 
-			<hr className="stork" />
+			<hr className="main" />
 
 			<Breadcrumbs>
 				<Breadcrumb>

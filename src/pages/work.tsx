@@ -62,7 +62,7 @@ const WorkPage = ({ data }: WorkPageTypes) => {
         image={data.strapiWork.hero}
       />
 
-      <main className="stork">
+      <main>
 
 
         <h1>{data.strapiAbout.businessName} is Hiring Now</h1>

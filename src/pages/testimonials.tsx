@@ -65,7 +65,7 @@ const TestimonialsPage = () => {
     <>
       <Header />
 
-      <main className="stork">
+      <main>
 
         <h1>Testimonials</h1>
 
@@ -101,7 +101,6 @@ const TestimonialsPage = () => {
 
         {/* // TODO: move this to a separate component, possibly in the same file */}
         <form
-          className="stork"
           name="testimonial"
           method="POST"
           data-netlify="true"

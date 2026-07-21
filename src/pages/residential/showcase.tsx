@@ -124,61 +124,60 @@ function ResidentialShowcase() {
       <Header />
 
       <main>
-        <div className="stork">
-          <h1 className="mixta">Residential Showcase</h1>
-          <div className='react-markdown'>
-            <ReactMarkdown>
-              {data.strapiService.showcaseDescription.data.showcaseDescription}
-            </ReactMarkdown>
-          </div>
-          <hr />
-          <Start path="residential-showcase" />
+        <h1 className="mixta">Residential Showcase</h1>
+        <div className='react-markdown'>
+          <ReactMarkdown>
+            {data.strapiService.showcaseDescription.data.showcaseDescription}
+          </ReactMarkdown>
         </div>
+        <hr />
+        <Start path="residential-showcase" />
+      </main>
 
-        {showcaseArray.map((tier) => (
-          data.allStrapiShowcase.nodes
-            .filter((showcase: ShowcaseType) => showcase.tier === tier)
-            .map((showcase: ShowcaseType) => (
-              <div key={showcase.id} className="pelican">
-                <Link to={`/project/${showcase.project.slug}`}>
-                  <GatsbyImage
-                    image={showcase.project.image?.localFile?.childImageSharp?.gatsbyImageData}
-                    alt={showcase.project.title}
-                    className="poster"
-                  /></Link>
+      {showcaseArray.map((tier) => (
+        data.allStrapiShowcase.nodes
+          .filter((showcase: ShowcaseType) => showcase.tier === tier)
+          .map((showcase: ShowcaseType) => (
+            <div key={showcase.id} className="pelican">
+              <Link to={`/project/${showcase.project.slug}`}>
+                <GatsbyImage
+                  image={showcase.project.image?.localFile?.childImageSharp?.gatsbyImageData}
+                  alt={showcase.project.title}
+                  className="poster"
+                /></Link>
 
-                <div className="stork">
-                  <h3 className="capitalize">{showcase.tier} Showcase</h3>
-                  <div className='react-markdown'>
-                    <ReactMarkdown>
-                      {showcase.description.data.description}
-                    </ReactMarkdown>
-                  </div>
+              <div className="main">
+                <h3 className="capitalize">{showcase.tier} Showcase</h3>
+                <div className='react-markdown'>
+                  <ReactMarkdown>
+                    {showcase.description.data.description}
+                  </ReactMarkdown>
                 </div>
-
-                {(showcase.price || showcase.roofline || showcase.tree) && (
-                  <React.Fragment>
-                    <hr />
-                    <div className="attributes">
-                      <Attribute
-                        price={showcase.price}
-                        roofline={showcase.roofline}
-                        trees={showcase.tree}
-                      />
-                    </div>
-                    <hr />
-                  </React.Fragment>
-                )}
-                <Start path="showcase" />
               </div>
-            ))
-        ))}
 
-        < hr className="stork" />
-      </main >
+              {(showcase.price || showcase.roofline || showcase.tree) && (
+                <React.Fragment>
+                  <hr />
+                  <div className="attributes">
+                    <Attribute
+                      price={showcase.price}
+                      roofline={showcase.roofline}
+                      trees={showcase.tree}
+                    />
+                  </div>
+                  {/* // TODO: we dont need double hr theres just lines on lines on lines */}
+                  <hr />
+                </React.Fragment>
+              )}
+              <Start path="showcase" />
+            </div>
+          ))
+      ))}
+
+      <hr className="main" />
 
       <section>
-        <h4 className="stork">Lighting types used on residential christmas displays</h4>
+        <h4 className="main">Lighting types used on residential christmas displays</h4>
 
         {lightGroupArray.map((group) => (
           data.allStrapiLight.nodes
@@ -188,7 +187,7 @@ function ResidentialShowcase() {
               <>
                 <section
                   key={light.light_groups[0].id}
-                  className="stork"
+                  className="above-deck"
                 >
                   <hr />
                   <h3>
@@ -217,7 +216,7 @@ function ResidentialShowcase() {
         ))}
       </section>
 
-      <hr className="stork" />
+      <hr className="main" />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/residential/">Residential</Link></Breadcrumb>

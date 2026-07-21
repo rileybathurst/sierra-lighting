@@ -57,14 +57,9 @@ const IdeasPage = ({ location }: LocationTypes) => {
 
       <Header />
 
-      <main className="stork">
-
+      <main className="above-deck">
         <h1>Ideas</h1>
       </main>
-
-      <div className="deck">
-
-      </div>
 
       <div className="deck">
         {data.allStrapiLight.nodes
@@ -89,11 +84,9 @@ const IdeasPage = ({ location }: LocationTypes) => {
           ))}
       </div>
 
-      <div className="stork">
-        <h2>Add</h2>
-      </div>
+      <h2 className="main">Add</h2>
 
-      <ul className="stork">
+      <ul className="main">
         {data.allStrapiLight.nodes
           .filter((light: CardType) => !IdeasSearch.includes(light.slug))
           .map((light: CardType) => (

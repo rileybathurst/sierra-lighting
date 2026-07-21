@@ -222,7 +222,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     .filter((social: { featured?: boolean }) => social.featured)
     .sort((a: { order?: number }, b: { order?: number }) => (a.order ?? 0) - (b.order ?? 0));
 
-  const google = featuredSocials.find((social: { site: { service: string } }) => social.site.service === "google");
+  // const google = featuredSocials.find((social: { site: { service: string } }) => social.site.service === "google");
 
   /*------------------------------------*/
 
@@ -232,7 +232,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
       {showQuote && (
         <>
-          <h3 className="stork">Start With A Free Quote</h3>
+          <h3 className="main">Start With A Free Quote</h3>
 
           {/* // ? should i be sanitizing inputs here */}
           <form
@@ -315,7 +315,9 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             <div className="contact-info">
               {/* // ? why does this need a <p> */}
               <p>
-                <a href={`mailto:${data.strapiAbout.email}`}>
+                <a href={`mailto:${data.strapiAbout.email}`}
+                  className="button"
+                >
                   {data.strapiAbout.email}
                 </a>
               </p>

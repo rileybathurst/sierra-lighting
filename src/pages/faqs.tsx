@@ -19,7 +19,7 @@ const FaqsPage = () => {
     <>
       <Header />
 
-      <main className="stork">
+      <main>
 
         <h1>Frequently Asked Questions</h1>
 

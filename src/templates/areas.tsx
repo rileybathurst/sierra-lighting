@@ -55,7 +55,7 @@ function Venues({ name, areas }: VenuesProps) {
   if (subVenues.length > 0) {
     return (
       <>
-        <div className="stork">
+        <div className="above-deck">
           <hr />
           {/* // TODO: this is bold in a way it shouldnt be */}
           <h3 className='elbrus'>Wedding Venues in {name} we create lighting for</h3>
@@ -186,34 +186,28 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         />
         : null}
       <main>
-        <article className="stork">
-          <h2 className="crest">{data.strapiArea.tagline}</h2>
-          <h1 className="range">
-            {data.strapiArea.name},&nbsp;
-            <StateAbbreviation state={data.strapiArea.state} />
-          </h1>
-          <hr />
-          <h3 className='kilimanjaro'>Ready to work with us</h3>
-          <Start
-            path={`areas-${data.strapiArea.slug}`}
-          />
-          <div
-            className="react-markdown"
-          >
-            <Markdown
-            >
-              {data.strapiArea?.description?.data?.description}
+        <h2 className="crest">{data.strapiArea.tagline}</h2>
+        <h1 className="range">
+          {data.strapiArea.name},&nbsp;
+          <StateAbbreviation state={data.strapiArea.state} />
+        </h1>
+        <hr />
+        <h3 className='kilimanjaro'>Ready to work with us</h3>
+        <Start
+          path={`areas-${data.strapiArea.slug}`}
+        />
+        <hr />
+        {data.strapiArea?.description &&
+          <div className="react-markdown">
+            <Markdown>
+              {data.strapiArea.description.data.description}
             </Markdown>
           </div>
-
-        </article >
+        }
 
         {/* // TODO: make this a second column on a larger screen */}
-        {data.strapiArea.areas.length > 0 ?
-          <div
-            key={data.strapiArea.name}
-            className="stork"
-          >
+        {data.strapiArea.areas.length > 0 &&
+          <React.Fragment>
             <hr />
             <p className='elbrus'>Regions we light in {data.strapiArea.name}</p>
             <ul className='subareas'>
@@ -226,8 +220,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
                 </li>
               ))}
             </ul>
-          </div>
-          : null
+          </React.Fragment>
         }
         <hr />
         <h3 >Lighting installation services we provide in {data.strapiArea.name}</h3>
@@ -238,7 +231,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
       {areaSubAreaProjectsArray.length > 0 ?
         <section>
-          <div className='stork'>
+          <div className='above-deck'>
             <hr />
             <h3 >Lighting projects in we have installed in {data.strapiArea.name}</h3>
           </div>
@@ -254,7 +247,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         </section>
         : null}
 
-      <div className='stork'>
+      <div className='main'>
         <hr />
         <Start
           className='button--left-align'
@@ -270,7 +263,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
       {/* // TODO: where in the state do we work */}
 
-      <hr className='stork' />
+      <hr className='main' />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/areas/">Areas</Link></Breadcrumb>

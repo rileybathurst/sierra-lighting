@@ -227,10 +227,6 @@ ul {
   gap: var(--spacing-half);
 }
 
-.areas__page .state__name {
-  list-style: none;
-}
-
 .states {
   display: flex;
   flex-flow: row wrap;

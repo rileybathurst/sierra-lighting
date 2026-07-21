@@ -135,7 +135,7 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
     <React.Fragment>
       <Header largeLogo={true} />
 
-      <main className="stork">
+      <main>
 
         <h1>{new Date().getFullYear()} {data.strapiService.name} Lookbook</h1>
         <p>{data.strapiLookbookDescription.excerpt}</p>
@@ -172,7 +172,7 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
         </ResponsiveMasonry>
       </section>
 
-      <hr className="stork" />
+      <hr className="main" />
 
       <Breadcrumbs>
         <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name}</Link></Breadcrumb>

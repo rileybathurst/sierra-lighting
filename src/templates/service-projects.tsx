@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Link, graphql } from "gatsby";
-// import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Header from '../components/header';
 import Footer from '../components/footer';
@@ -71,7 +70,7 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
         <hr />
 
         {hasThemedProjects && (
-          <div className='condor'>
+          <div className='main'>
             <h2>Start With A Specific Theme</h2>
             <ul>
               {data.allStrapiTheme.nodes.map((theme) => (
@@ -95,7 +94,7 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
 
           return (
             <section key={theme.id} id={theme.slug}>
-              <div className='condor'>
+              <div className='above-deck'>
                 <h2>{theme.title}</h2>
                 <p>{theme.excerpt}</p>
               </div>
@@ -108,7 +107,7 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
                   />
                 ))}
               </section>
-              <hr className='condor' />
+              <hr className='main' />
             </section>
           );
         })
@@ -118,7 +117,7 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
         ungroupedProjects.length > 0 && (
           <section id="other-projects">
             {hasThemedProjects && (
-              <div className='condor'>
+              <div className='above-deck'>
                 <h2>Other Projects</h2>
               </div>
             )}
@@ -135,11 +134,11 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
         )
       }
 
-      <hr className='stork' />
+      <hr className='main' />
 
       <Breadcrumbs>
         <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name} Lighting</Link></Breadcrumb>
-        <Breadcrumb>Lights</Breadcrumb>
+        <Breadcrumb>Projects</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />

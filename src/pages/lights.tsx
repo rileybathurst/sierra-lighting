@@ -130,11 +130,10 @@ const lightsPage = () => {
   return (
     <>
       <Header />
-      <main className="stork">
+      <main>
+        {/* // TODO: this should be by default */}
         <h1 className="mixta">Lights</h1>
-      </main >
 
-      <section className="condor">
         <h3>Filter by use:</h3>
         <ul>
           {data.allStrapiService.nodes.map((service: ServiceTypes) => (
@@ -155,23 +154,18 @@ const lightsPage = () => {
             </li>
           ))}
         </ul>
-      </section >
 
-      <div className="condor">
-        <hr />
         <h3>
           Search
         </h3>
-      </div>
+      </main>
       <LightSearch />
 
       {data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
         <React.Fragment key={group.slug}>
-
-          <hr className="condor" />
-
-          <section className="condor">
-            <h2 className="mixta">
+          <section className="above-deck">
+            <hr />
+            <h2>
               <Link to={`/light-group/${group.slug}`}>
                 {group.name}
               </Link>

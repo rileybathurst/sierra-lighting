@@ -80,27 +80,23 @@ const Areas = () => {
   });
 
   return (
-    <main className="albatross">
-      <div className="stork">
-        <hgroup>
-          <h1>Service Areas</h1>
-          <p className="margin-block-end-kilimanjaro">Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
-        </hgroup>
-      </div>
-      <div className="areas__page">
-        <section className="deck">
-          {allStrapiArea.nodes
-            .sort((a: SortTypes['a'], b: SortTypes['b']) => b.areas.length - a.areas.length) // Sort by the number of area.areas
-            .map((area: AreaCardType) => (
-              <Card
-                key={area.id}
-                {...area}
-                breadcrumb='areas'
-              />
-            ))}
-        </section>
-      </div>
-    </main>
+    <React.Fragment>
+      <main className="above-deck">
+        <h1>Service Areas</h1>
+        <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
+      </main>
+      <section className="deck">
+        {allStrapiArea.nodes
+          .sort((a: SortTypes['a'], b: SortTypes['b']) => b.areas.length - a.areas.length) // Sort by the number of area.areas
+          .map((area: AreaCardType) => (
+            <Card
+              key={area.id}
+              {...area}
+              breadcrumb='areas'
+            />
+          ))}
+      </section>
+    </React.Fragment>
   );
 }
 

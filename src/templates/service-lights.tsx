@@ -104,23 +104,19 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
       <Header />
 
       <main>
-        <section className='stork'>
-          <h1 className='mixta aconcagua'>Lighting types for {data.strapiService.name}</h1>
-          <div
-            className='react-markdown'>
-            <ReactMarkdown>
-              {data.strapiService.description.data.description}
-            </ReactMarkdown>
-          </div>
-          <p>
-            <Link to={`/${data.strapiService.slug}`}>
-              Learn more about how we can light up your {data.strapiService.name}
-            </Link>
-          </p>
-        </section>
-      </main>
+        <h1 className='mixta aconcagua'>Lighting types for {data.strapiService.name}</h1>
+        <div
+          className='react-markdown'>
+          <ReactMarkdown>
+            {data.strapiService.description.data.description}
+          </ReactMarkdown>
+        </div>
+        <p>
+          <Link to={`/${data.strapiService.slug}`}>
+            Learn more about how we can light up your {data.strapiService.name}
+          </Link>
+        </p>
 
-      <section className='stork'>
         <hr />
         <p>Filter by type:</p>
         <ul>
@@ -145,7 +141,7 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
             ))
           }
         </ul>
-      </section>
+      </main>
 
       <section>
         {lightGroupArray.map((group) => (
@@ -155,7 +151,7 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
             .map((light) => (
               <React.Fragment key={group}>
                 <div
-                  className='stork'
+                  className='above-deck'
                   id={light.light_groups[0].slug}
                 >
                   <hr />
@@ -177,7 +173,7 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
                         slug={light.slug}
                         excerpt={light.excerpt ?? ''}
                         breadcrumb='light'
-                        
+
                         image={light.image}
                         commercialHero={light.commercialHero}
                         residentialHero={light.residentialHero}
@@ -191,7 +187,7 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
         ))}
       </section>
 
-      <section className='stork'>
+      <section className='main'>
         <hr />
         <h2>Lights For Other Services</h2>
         <ul>
@@ -201,9 +197,9 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
             </li>
           ))}
         </ul>
+        <hr />
       </section>
 
-      <hr className="stork" />
 
       <Breadcrumbs>
         <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name} Lighting</Link></Breadcrumb>

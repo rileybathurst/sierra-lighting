@@ -77,7 +77,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         <Hero image={data.strapiVendor.profile} />
         : null}
 
-      <main className="stork">
+      <main>
         <p>Sierra Lighting Collaborator</p>
         <h1 className="range">{data.strapiVendor.name}</h1>
         {data.strapiVendor.collaboratorAncillary ?
@@ -87,7 +87,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         <p>{data.strapiVendor.description}</p>
 
         {data.strapiVendor.testimonials.length > 0 ?
-          <div className="stork" >
+          <div className="main" >
             <ul className='testimonials'>
               {/* // TODO: component this */}
               {data.strapiVendor.testimonials.map((testimonial) => (
@@ -172,7 +172,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
       {data.strapiVendor.projects.length > 0 ?
         <>
-          <div className="stork">
+          <div className="above-deck">
             <hr />
             <h4>Projects we have worked with {data.strapiVendor.name} on</h4>
           </div>
@@ -192,7 +192,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
       {data.strapiVendor.collaborator ? (
         data.allStrapiVendor.nodes.length > 0 ?
           <>
-            <div className="stork">
+            <div className="above-deck">
               <hr />
               <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
                 <h4>Other <span className='capitalize'>{data.strapiVendor.collaborator.industry}</span> Vendors</h4>
@@ -221,7 +221,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
       ) : null}
 
       {data.strapiVendor.projects.length === 0 && data.allStrapiVendor.nodes.length === 0 ?
-        <div className="stork">
+        <div className="main">
           <h3 className="crest">Looking for something else?</h3>
           <h2 className="range">
             <Link to='/vendor'>
@@ -231,7 +231,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         </div>
         : null}
 
-      <hr className='stork' />
+      <hr className='main' />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/vendor/">Vendors</Link></Breadcrumb>

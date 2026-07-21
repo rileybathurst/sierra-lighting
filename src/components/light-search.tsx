@@ -20,7 +20,7 @@ const ResultList: React.FC<ResultListTypes> = ({ searchQuery, results }) => {
   if (results.length) {
     return (
       <>
-        <h3 className="condor">Search Results</h3>
+        <h3 className="above-deck">Search Results</h3>
         <div className="deck">
           {results.map(result => (
             <Card
@@ -39,13 +39,14 @@ const ResultList: React.FC<ResultListTypes> = ({ searchQuery, results }) => {
   }
 
   return (
-    <h3 className="condor">Nothing found in the search</h3>
+    <h3 className="main">Nothing found in the search</h3>
   )
 };
 
 const LightSearch = () => {
   const inputId = useId();
   const [searchQuery, setSearchQuery] = useState("");
+  // TODO: this is a weird duplicate type can it be removed
   const [searchResults, setSearchResults] = useState<CardType[]>([] as CardType[]);
 
   const { allStrapiLight } = useStaticQuery(graphql`
@@ -83,10 +84,9 @@ const LightSearch = () => {
   };
 
   return (
-    <>
+    <div className="main">
       <form
         onSubmit={handleSubmit}
-        className="condor"
       >
         <label htmlFor={inputId}>
           Or enter your search here
@@ -102,7 +102,7 @@ const LightSearch = () => {
         searchQuery={searchQuery}
         results={searchResults}
       />
-    </>
+    </div>
   )
 }
 

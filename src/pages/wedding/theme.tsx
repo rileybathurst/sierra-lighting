@@ -35,7 +35,7 @@ const ThemesPage = () => {
     <>
       <Header />
 
-      <main className="stork">
+      <main>
         <h1>Wedding Themes</h1>
         {/* // TODO: */}
         <p>We work with planners, etc to create</p>

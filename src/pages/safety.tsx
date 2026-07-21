@@ -49,7 +49,7 @@ const SafetyPage = ({ data }: SafetyPageTypes) => {
 
       <Hero image={data.strapiSafety.image} />
 
-      <main className="stork">
+      <main>
         <h1>Safety</h1>
 
         <div className="react-markdown">

@@ -24,9 +24,8 @@ function VendorCatchAll({ params }: CatchAllTypes) {
     <>
       <Header />
 
-      <hr className="stork" />
-
-      <main className="stork">
+      <main>
+        <hr />
         <h2 className="crest">404 - {params.name}</h2>
         <h1 className="mixta">
           Oops! Looks like this page has left the party.
@@ -38,11 +37,10 @@ function VendorCatchAll({ params }: CatchAllTypes) {
         </p>
       </main>
 
-      <hr className="stork" />
-
-      <h3 className="stork elbrus">
-        Browse some of our other prefered vendors
-      </h3>
+      <div className="above-deck">
+        <hr />
+        <h3>Browse some of our other prefered vendors</h3>
+      </div>
 
       <section className="deck">
         {allStrapiVendor.nodes.map((vendor: CardType) =>
@@ -58,7 +56,7 @@ function VendorCatchAll({ params }: CatchAllTypes) {
         )}
       </section>
 
-      <hr className="stork" />
+      <hr className="main" />
 
       <Breadcrumbs>
         <Breadcrumb>

@@ -53,9 +53,7 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
       <Header />
 
       <main>
-        {/* TODO: wedding is the prodimenant but not the only I can do more with that although this is good for seo */}
-        <h1 className="mixta">Wedding Vendors</h1>
-        {/* // TODO: needs spacing */}
+        <h1>Wedding Vendors</h1>
         <p>{data.strapiVendorDescription.excerpt}</p>
       </main >
 
@@ -64,8 +62,8 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
       {[...data.allStrapiCollaborator.nodes]
         .sort((a, b) => (vendorsByCollaborator[b.slug]?.length || 0) - (vendorsByCollaborator[a.slug]?.length || 0))
         .map((collaborator) => (
-          <div key={collaborator.id}>
-            <div className="stork">
+          <section key={collaborator.id}>
+            <div className="above-deck">
               <hr />
               <Link to={`/vendor/${collaborator.slug}`}>
                 <h3 className="capitalize">{collaborator.industry}</h3>
@@ -82,14 +80,14 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
                 />
               ))}
             </div>
-          </div>
+          </section>
         ))}
 
       {vendorsByCollaborator.uncategorized?.length > 0 && (
-        <div>
-          <div className="stork">
+        <section>
+          <div className="above-deck">
             <hr />
-            <h3 className="capitalize">Other Vendors</h3>
+            <h3>Other Vendors</h3>
           </div>
 
           <div className="deck">
@@ -101,7 +99,7 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
               />
             ))}
           </div>
-        </div>
+        </section>
       )}
 
       <Footer />

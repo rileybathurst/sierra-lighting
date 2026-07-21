@@ -29,8 +29,7 @@ button {
 
 /* TODO: rename mixta to font-serif */
 .mixta,
-.site_title,
-.areas__page .state__name {
+.site_title {
   font-family: var(--font-serif);
   font-weight: 700;
   font-style: normal;

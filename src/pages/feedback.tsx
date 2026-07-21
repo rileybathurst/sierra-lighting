@@ -177,7 +177,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     <>
       <Header />
 
-      <main className="stork">
+      <main>
 
         <h1>Feedback</h1>
         <p>{data.strapiFeedback.starting}</p>
@@ -215,7 +215,6 @@ const FeedbackPage = ({ location }: LocationTypes) => {
           netlify-honeypot="bot-field"
           method="POST"
           action="/form-success"
-          className="stork"
         >
 
           <input

@@ -92,10 +92,18 @@
   --swan: 20rem;
   /* used on image max widths */
   --vulture: 25rem;
+  /* used for card width */
   --stork: 40rem;
+  /* * measure */
+
   --condor: 50rem;
+  /* ? whats this for? */
+
   --pelican: 60rem;
+  /* * hero */
+
   --albatross: 80rem;
+  /* * 3 columns areas */
 
   /*------------------*/
   /* TIMING */

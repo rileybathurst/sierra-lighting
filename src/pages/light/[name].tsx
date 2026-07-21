@@ -27,7 +27,7 @@ function LightCatchAll({ params }: LightCatchAllType) {
   return (
     <>
       <Header />
-      <main className="stork">
+      <main className="above-deck">
         <h2 className="crest">404 / {params.name}</h2>
         <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
         <p>Want to brighten up <Link to="/">Head to our home page</Link> or explore some of our other lighting options.
@@ -40,7 +40,7 @@ function LightCatchAll({ params }: LightCatchAllType) {
         ))}
       </section>
 
-      <hr className="stork" />
+      <hr className="main" />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/lights/">Light</Link></Breadcrumb>

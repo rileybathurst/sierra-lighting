@@ -42,14 +42,13 @@ const TestimonialPage = ({ data }: TestimonialPageTypes) => {
   return (
     <>
       <Header />
-      <hr className="stork" />
+      <main>
+        <Testimonial {...data.strapiTestimonial} />
+        {/* // TODO: relations */}
 
-      <Testimonial {...data.strapiTestimonial} />
-      {/* // TODO: relations */}
-
-      <hr className="stork" />
+      </main>
       <Breadcrumbs>
-        <Breadcrumb><Link to="/testimonial/">Testimonial</Link></Breadcrumb>
+        <Breadcrumb><Link to="/testimonials/">Testimonials</Link></Breadcrumb>
         <Breadcrumb>{data.strapiTestimonial.slug}</Breadcrumb>
       </Breadcrumbs>
 
@@ -65,7 +64,7 @@ export const Head = ({ data }: TestimonialPageTypes) => {
     <SEO
       title={`${data.strapiTestimonial.customer} Testimonial`}
       description={data.strapiTestimonial?.excerpt}
-      url={`testimonial/${data.strapiTestimonial.slug}`}
+      url={`/testimonials/${data.strapiTestimonial.slug}`}
     />
   )
 }

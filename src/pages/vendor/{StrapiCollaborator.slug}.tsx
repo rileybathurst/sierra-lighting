@@ -61,7 +61,7 @@ const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
         <Hero image={data.strapiCollaborator.hero} />
         : null
       }
-      <main className="stork">
+      <main>
         <h1>{data.strapiCollaborator.industry}</h1>
         <BlocksRenderer content={data.strapiCollaborator.description} />
 
@@ -71,7 +71,7 @@ const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
 
       {(data.strapiCollaborator?.vendors?.length ?? 0) > 0 ?
         <>
-          <hr className="stork" />
+          <hr className="above-deck" />
           <div className="deck">
             {data.strapiCollaborator?.vendors?.map((vendor: CardType) => (
               <Card
@@ -84,7 +84,7 @@ const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
         </>
         : null}
 
-      <hr className="stork" />
+      <hr className="main" />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/vendor/">Vendor</Link></Breadcrumb>

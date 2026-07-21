@@ -12,17 +12,17 @@ function TestimonialCatchAll({ params }: CatchAllTypes) {
     <>
       <Header />
 
-      <main className="stork">
+      <main>
         <h2 className="crest">404</h2>
         <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
         <p>Want to brighten up?<br />
           <Link to="/">Head to our home page.</Link>
         </p>
+        <hr />
       </main>
 
       {/* // TODO: list other testimonials */}
 
-      <hr className="stork" />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/testimonial/">Testimonial</Link></Breadcrumb>

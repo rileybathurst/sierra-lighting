@@ -46,7 +46,7 @@ const LightPage = ({ data }: LightGroupPageType) => {
     <>
       <Header />
 
-      <main className="stork">
+      <main className="above-deck">
         <h1>{data.strapiLightGroup.name}</h1>
         <p>{data.strapiLightGroup.excerpt}</p>
       </main>
@@ -61,7 +61,7 @@ const LightPage = ({ data }: LightGroupPageType) => {
         ))}
       </section>
 
-      <section className="stork">
+      <section className="main">
         <hr />
         <h2>Other Light Groups</h2>
         <ul>
@@ -73,9 +73,9 @@ const LightPage = ({ data }: LightGroupPageType) => {
             </li>
           ))}
         </ul>
+        <hr />
       </section>
 
-      <hr className="stork" />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/lights/">Light Group</Link></Breadcrumb>

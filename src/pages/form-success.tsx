@@ -30,7 +30,7 @@ const FormSuccessPage = ({ data }: FormSuccessPageTypes) => {
         image={data.strapiForm.hero}
       />
 
-      <main className="stork">
+      <main>
         <h1>Thanks - Form Success</h1>
 
         {isWithinBusinessHours ? (

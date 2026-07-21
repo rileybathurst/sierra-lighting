@@ -60,7 +60,8 @@ const TeamPage = ({ data }: TeamTypes) => {
     <>
       <Header />
 
-      <main className="stork team-page">
+      {/* // ? whats team-page doing? */}
+      <main className="team-page">
         <div className="avatar-wrapper">
           <GatsbyImage
             image={data.strapiTeam?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
@@ -89,7 +90,7 @@ const TeamPage = ({ data }: TeamTypes) => {
 
       {data.strapiTeam.projects ?
         <>
-          <div className="stork">
+          <div className="above-deck">
             <hr />
             <h3>Projects {data.strapiTeam.name} has worked on</h3>
           </div>
@@ -106,7 +107,7 @@ const TeamPage = ({ data }: TeamTypes) => {
         : null
       }
 
-      <hr className="stork" />
+      <hr className="main" />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/team">Team</Link></Breadcrumb>

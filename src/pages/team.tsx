@@ -46,13 +46,11 @@ const TeamPage = () => {
   return (
     <>
       <Header />
-      <main>
-        <h3 className="stork">The {data.strapiAbout.businessName} Team</h3>
+      <main className="above-deck">
+        <h3>The {data.strapiAbout.businessName} Team</h3>
       </main >
 
-      <section
-        className="deck"
-      >
+      <section className="deck">
         {data.allStrapiTeam.nodes.map((team: TeamTypes) => (
           <Card
             key={team.id}
@@ -66,7 +64,7 @@ const TeamPage = () => {
         }
       </section>
 
-      <section className="stork">
+      <section className="main">
         <hr />
         <h3>
           <Link to="/work">

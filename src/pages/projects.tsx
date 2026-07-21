@@ -58,7 +58,7 @@ const ProjectsPage = () => {
     <>
       <Header />
 
-      <main className="stork">
+      <main>
         <h1>Projects</h1>
         <p>A gallery of some of our past work. Photos of residential and commercial displays in {data.allStrapiArea.nodes.map((area: { name: string }) => area.name).join(", ")}</p>
       </main>
@@ -67,11 +67,11 @@ const ProjectsPage = () => {
         {data.allStrapiService.nodes.map((service: ServiceType) => (
           service.projects.length > 0 ?
             <div key={service.id} className={service.slug}>
-              <div className="stork">
+              <div className="above-deck">
                 <hr />
-                <h2 className="baseline-drop">
+                <h2>
                   {service.projects.length > 3 ? (
-                    <Link to={`/${service.slug}/projects/`} className="link_subtle">
+                    <Link to={`/${service.slug}/projects/`}>
                       {service.name} projects
                     </Link>
                   ) : (
@@ -100,20 +100,20 @@ const ProjectsPage = () => {
                   ))}
               </div>
 
-              <section className="stork">
+              <section className="main">
                 {service.projects.length > 3 ?
                   <h3 className="elbrus">
-                    <Link to={`/${service.slug}/projects/`} className="link_subtle">
+                    <Link to={`/${service.slug}/projects/`}>
                       View all {service.projects.length} {service.name} projects
                     </Link>
                   </h3 >
                   : null}
               </section>
 
-              <div className="stork">
+              <div className="main">
                 {/* // TODO: make a big link style here */}
                 <h3 className="elbrus">
-                  <Link to={`/${service.slug}`} className="link_subtle">
+                  <Link to={`/${service.slug}`}>
                     Learn more about our work on {service.name} lighting
                   </Link>
                 </h3 >

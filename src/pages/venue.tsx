@@ -1,4 +1,5 @@
 // heavyhanded way of not grabbing blue venue
+
 import * as React from "react";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
@@ -29,20 +30,6 @@ type VenueNode = {
 
 const VenuePage = () => {
 	const { allStrapiVenue } = useStaticQuery(graphql`
-		fragment venueAreaInfo on STRAPI_VENUE {
-			area {
-				id
-				name
-				slug
-				state
-				tagline
-				featured
-				region {
-					name
-					slug
-				}
-			}
-		}
 
 		query VenuesQuery {
 			allStrapiVenue(
@@ -50,8 +37,20 @@ const VenuePage = () => {
 			)
 			{
 				nodes {
-				...venueCard
-				...venueAreaInfo
+					...venueCard
+
+					area {
+						id
+						name
+						slug
+						state
+						tagline
+						featured
+						region {
+							name
+							slug
+						}
+					}
 				}
 			}
 		}
@@ -63,19 +62,17 @@ const VenuePage = () => {
 	}
 	const venueArray: string[] = Array.from(venueSet);
 
-	console.log("venueNodes", allStrapiVenue.nodes.map((venue: VenueNode) => venue.area.featured));
-
 	return (
 		<>
 			<Header />
 			<main>
-				<h1 className="kilimanjaro">Wedding venues we create lighting at</h1>
+				<h1>Wedding venues we create lighting at</h1>
 			</main>
 
 			{venueArray.map((area) => (
 				<div key={area}>
-					<hr className="stork" />
-					<div className="stork">
+					<div className="above-deck">
+						<hr />
 						{allStrapiVenue.nodes
 							.filter((venue: VenueNode) => venue.area.slug === area)
 							.slice(0, 1)
@@ -99,10 +96,10 @@ const VenuePage = () => {
 												<StateAbbreviation state={venuesArea.area.state} />
 											</Link>
 											:
-											<>
+											<React.Fragment>
 												{venuesArea.area.name},&nbsp;
 												<StateAbbreviation state={venuesArea.area.state} />
-											</>
+											</React.Fragment>
 										}
 									</h3>
 								</React.Fragment>
@@ -111,8 +108,12 @@ const VenuePage = () => {
 					<div className="deck">
 						{allStrapiVenue.nodes
 							.filter((venue: VenueNode) => venue.area.slug === area)
-							.map((venue: VenueNode) => (
-								<Card key={venue.id} {...venue.area} breadcrumb="venue" />
+							.map((venue: CardType) => (
+								<Card
+									key={venue.id}
+									{...venue}
+									breadcrumb="venue"
+								/>
 							))}
 					</div>
 				</div>
@@ -129,6 +130,7 @@ export const Head = () => {
 	return (
 		<SEO
 			title="Wedding venues we create lighting at"
+			// TODO: query this
 			description="The natural beauty of the Lake Tahoe area makes the perfect backdrop for a wedding. Check out these Tahoe wedding venues that range from rustic to glamorous."
 			// TODO: grab a good one from a featured venue? maybe name the query
 			// image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"

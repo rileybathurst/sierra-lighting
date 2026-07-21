@@ -75,7 +75,8 @@ const VenueView = ({ data }: VenueViewTypes) => {
         <Hero image={data.strapiVenue.venueImage} />
         : null}
 
-      <main className="stork venue">
+      {/* // ? whats the venue class doing? */}
+      <main className="venue">
         <hgroup>
           <p className="crest">{data.strapiVenue.area.name}, <StateAbbreviation state={data.strapiVenue.area.state} /></p>
           <h1 className="range">{data.strapiVenue.name}</h1>
@@ -135,7 +136,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
       /> */}
 
       {/* // TODO: what can we create here */}
-      <section className='stork'>
+      <section className='above-deck'>
         <hr />
         <h3>Explore the lighting styles we can create at {data.strapiVenue.name}</h3>
       </section>
@@ -150,14 +151,14 @@ const VenueView = ({ data }: VenueViewTypes) => {
         ))}
       </div>
 
-      <h4 className='stork'>
+      <h4 className='main'>
         <Link to='/wedding/lights'>Browse all our wedding lighting styles</Link>
       </h4>
 
       {data.strapiVenue.projects.length > 0 ?
         <>
-          <hr className='stork' />
-          <div className="stork">
+          <div className="above-deck">
+            <hr />
             <h3 className="crest">Projects at {data.strapiVenue.name}</h3>
           </div>
           <div className="deck">
@@ -175,8 +176,8 @@ const VenueView = ({ data }: VenueViewTypes) => {
 
       {data.allStrapiVenue.nodes.length > 0 ?
         <>
-          <hr className="stork" />
-          <div className="stork">
+          <div className="above-deck">
+            <hr />
             <h3 className="crest">More Venues in {data.strapiVenue.area.name}, <StateAbbreviation state={data.strapiVenue.area.state} /></h3>
           </div>
           <div className="deck">
@@ -191,7 +192,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
         </>
         :
 
-        <div className="stork">
+        <div className="main">
           <h3 className="crest">Looking for somewhere else?</h3>
           <h2 className="range">
             <Link to='/venue'>
@@ -201,7 +202,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
         </div>
       }
 
-      <hr className='stork' />
+      <hr className='main' />
 
       {/* // ? I dont think we have non featured pages anymore */}
       <Breadcrumbs>

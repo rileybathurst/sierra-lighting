@@ -5,6 +5,10 @@ export const Phone = ({ phone }: { phone: number }) => {
   const change = string.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
 
   return (
-    <a href={`tel:${phone}`}>{change}</a>
+    <a href={`tel:${phone}`}
+      className="button"
+    >
+      {change}
+    </a>
   )
 }

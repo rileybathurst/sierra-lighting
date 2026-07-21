@@ -20,6 +20,7 @@ function AreaCatchAll({ params }: CatchAllTypes) {
     }
   `);
 
+  // TODO: dont do interfaces unless you have to, use types instead
   interface AreaCatchAllType {
     name: string;
     slug: string;
@@ -28,7 +29,7 @@ function AreaCatchAll({ params }: CatchAllTypes) {
   return (
     <>
       <Header />
-      <main className="stork">
+      <main>
         <h2 className="crest">404 - areas / {params.name}</h2>
         <h1 className="mixta">
           Oops! Looks like this page has left the party.
@@ -49,7 +50,7 @@ function AreaCatchAll({ params }: CatchAllTypes) {
 
       </main>
 
-      <hr className="stork" />
+      <hr className="main" />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/areas/">Areas</Link></Breadcrumb>

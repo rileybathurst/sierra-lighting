@@ -311,7 +311,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
         />
       }
 
-      <main className="stork">
+      <main>
         <article>
           <h1>{data.strapiProject.title}</h1>
           {data.strapiProject.couple ? (
@@ -331,18 +331,16 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 
         <hr />
 
-        <h3>Interested in a {data.strapiProject.themes && data.strapiProject.themes.map(theme => theme.title).join(', ')} project like this</h3>
+        <h3>Interested in a {data.strapiProject.themes?.map(theme => theme.title).join(', ')} project like this</h3>
         <Start path={`project ${data.strapiProject.slug}`} />
       </main>
 
 
       {data.strapiProject.testimonial &&
-        <React.Fragment>
-          <hr className="pelican" />
-          <div className="stork">
-            <Testimonial {...data.strapiProject.testimonial} />
-          </div>
-        </React.Fragment>
+        <div className="main">
+          <hr />
+          <Testimonial {...data.strapiProject.testimonial} />
+        </div>
       }
 
       {data.strapiProject.venue ||
@@ -441,7 +439,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
       {
         data.strapiProject.lights ? (
           <>
-            <div className="stork">
+            <div className="above-deck">
               <hr />
               <h3>{data.strapiProject.title} uses these lights</h3>
             </div>
@@ -454,7 +452,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
         ) : (
           <React.Fragment>
             {/* // TODO: there essentially cant be no lights we would just  */}
-            <div className="stork">
+            <div className="main">
               <hr />
               <h4>Other Projects</h4>
             </div>
@@ -468,10 +466,11 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
         )
       }
 
-      {/* // TODO: this design need love */}
+      {/* // TODO: this design need love // ? why attributes */}
+      {/* // TODO: attribute widths */}
       {
         data.additional.nodes ? (
-          <div className="stork">
+          <div className="main">
             <section className="attribute">
               <ul>
                 {data.additional.nodes.map((light) => (
@@ -485,16 +484,18 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
         ) : null
       }
 
-      <hr className="stork" />
+      <hr className="main" />
 
       {/* // ? can a project have multiple services? I kinda doubt it and should be in the breadcrumb */}
       <Breadcrumbs>
         <Breadcrumb>
-          <Link to="/projects/">Project</Link>
+          <Link to={`/${data.strapiProject.services[0].slug}`}>
+            {data.strapiProject.services[0].name}
+          </Link>
         </Breadcrumb>
         <Breadcrumb>
-          <Link to={`/projects/${data.strapiProject.services[0].slug}`}>
-            {data.strapiProject.services[0].name}
+          <Link to={`/${data.strapiProject.services[0].slug}/projects/`}>
+            Projects
           </Link>
         </Breadcrumb>
         <Breadcrumb>{data.strapiProject.title}</Breadcrumb>
