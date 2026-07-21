@@ -6,7 +6,7 @@ export const Card = () => {
     <div className="card">
       <div className="image">
         <img
-          src={faker.image.urlLoremFlickr()}
+          src={faker.image.urlPicsumPhotos()}
           alt={faker.animal.bird()}
           className="gatsby-image-wrapper"
         />

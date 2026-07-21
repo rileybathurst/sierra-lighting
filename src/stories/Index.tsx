@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { Footer } from './Footer';
 // import { Header } from './Header';
 import { Logo } from './Logo';
-import { Poster } from './Poster.jsx';
+import { Poster } from './poster.jsx';
 import { Start } from './start';
 import { Card } from './Card';
 

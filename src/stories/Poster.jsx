@@ -2,13 +2,13 @@
 
 import { faker } from "@faker-js/faker";
 
-import ImageFile from "./assets/assets.png";
+// import ImageFile from "./assets/assets.png";
 
 export const Poster = () => {
   return (
     <a href={faker.location.city()} className="poster">
       <img
-        src={ImageFile}
+        src={faker.image.urlPicsumPhotos({ width: 1920, height: 1080 })}
         alt={faker.location.city()}
         className="gatsby-image-wrapper"
       />

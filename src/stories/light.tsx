@@ -9,7 +9,7 @@ import { Deck } from './Deck';
 import { Breadcrumbs } from './Breadcrumbs';
 import { FAQ } from './faq';
 import { Suite } from './suite';
-import { Poster } from './Poster.jsx';
+import { Poster } from './poster.jsx';
 
 export const Light = () => {
 

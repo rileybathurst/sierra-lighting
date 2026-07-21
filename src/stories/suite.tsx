@@ -1,7 +1,7 @@
 // this is the Suite.tsx file
 import React from 'react';
 import { faker } from '@faker-js/faker';
-import { Poster } from './Poster.jsx';
+import { Poster } from './poster.jsx';
 
 export const Suite = () => {
 
