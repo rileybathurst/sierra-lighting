@@ -80,7 +80,7 @@ module.exports = {
     siteUrl: "https://sierra.lighting",
   },
   plugins: [
-    /* {
+    {
       resolve: "gatsby-plugin-google-gtag",
       options: {
         trackingIds: [
@@ -98,7 +98,7 @@ module.exports = {
           delayOnRouteUpdate: 0,
         },
       },
-    }, */
+    },
     {
       resolve: "gatsby-plugin-postcss",
       options: {
@@ -180,6 +180,8 @@ module.exports = {
     // −5 Failed
     // Subresource Integrity (SRI) not implemented, but all external scripts are loaded over HTTPS.
     // Add SRI to external scripts.
+
+    // * Score: 80 / 100 with this off
 
     /*     {
       // ? can you query for this?
