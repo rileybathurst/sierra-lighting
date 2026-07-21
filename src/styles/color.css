@@ -187,9 +187,9 @@ header {
 
 /* img, leaving this on will for sure break things */
 .storybook-image {
-  background-color: white;
+  background-color: var(--neutral-800);
   border-radius: 0.25rem;
-  box-shadow: var(--penumbra);
+  box-shadow: var(--troposphere);
 }
 
 .error {
