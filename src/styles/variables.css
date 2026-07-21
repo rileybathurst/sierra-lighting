@@ -1,3 +1,7 @@
+/* Index
+- additionals
+*/
+
 /*------------------------------------*/
 /* VARIABLES */
 /*------------------------------------*/
@@ -8,7 +12,6 @@
   /*------------------*/
   --honey: 35;
   --denim: 215;
-  /*  also using whitesmoke */
 
   --honey-50: hsl(var(--honey), 100%, 97.5%);
   --honey-100: hsl(var(--honey), 100%, 87.5%);
@@ -28,32 +31,9 @@
   --denim-700: hsl(var(--denim), 100%, 12.5%);
   --denim-750: hsl(var(--denim), 100%, 7.5%);
 
-  /* TODO: pull all this we dont need it get back and focus */
-  --pitch: 2.5%;
-  --dark: 12.5%;
-  --dull: 25%;
-  --dim: 37.5%;
-  --mid: 50%;
-  --glow: 62.5%;
-  --light: 75%;
-  --bright: 87.5%;
-  --brilliant: 97.5%;
-
-  /* TODO: the new version of neutral-x00 etc */
-  /* TODO: also deal with all white, black, whitesmoke and layer those properly */
   /*------------------*/
   /* NEUTRALS */
   /*------------------*/
-
-  --black-metal: hsl(0, 0%, 2.5%);
-  --black-out: hsl(0, 0%, 12.5%);
-  --raven-black: hsl(0, 0%, 25%);
-  --industrial-revolution: hsl(0, 0%, 37.5%);
-  --grey: hsl(0, 0%, 50%);
-  --cold-grey: hsl(0, 0%, 62.5%);
-  --tin-soldier: hsl(0, 0%, 75%);
-  --kingly-cloud: hsl(0, 0%, 87.5%);
-  --brilliance: hsl(0, 0%, 97.5%);
 
   --neutral-100: hsl(0, 0%, 97.5%);
   --neutral-200: hsl(0, 0%, 95%);
@@ -101,6 +81,9 @@
   --kosciuszko: 0.75rem;
   /* 7,310ft Australia */
 
+  /* * specifically noted as spacing not a typography choice */
+  --spacing-half: var(--spacing-half);
+
   /*------------------*/
   /* WIDTHS */
   /*------------------*/
@@ -140,7 +123,7 @@
   /*------------------*/
   /*  TODO: needs a better metaphor */
   --border-radius: 0.125rem;
-  --card-radius: 0.5rem;
+  --card-radius: var(--spacing-half);
 
   /*------------------*/
   /* Z INDEX LAYERS */

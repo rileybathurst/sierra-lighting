@@ -67,7 +67,7 @@
     "react-responsive-masonry": "^2.7.1",
     "remark-gfm": "^4.0.1",
     "sharp": "^0.35.2",
-    "stay-gold": "^1.1.8"
+    "stay-gold": "^1.5.6"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",

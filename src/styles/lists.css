@@ -1,9 +1,14 @@
+/* Index
+- pagination
+- subareas
+*/
+
 /*------------------*/
 /* LISTS */
 /*------------------*/
 
 ul {
-  padding-inline-start: 0.5rem;
+  padding-inline-start: var(--spacing-half);
 
   li {
     padding: 0;
@@ -38,7 +43,7 @@ ul {
 }
 
 .react-aria-Breadcrumbs {
-  gap: 0.5rem;
+  gap: var(--spacing-half);
   flex-flow: row wrap;
   max-width: var(--stork);
   margin-inline: auto;
@@ -72,17 +77,17 @@ ul {
 /* FOOTER */
 /*------------------*/
 
-.footer_list > ul {
+.footer_list>ul {
   /*  this is a flex not a grid to be able to reorder with the season */
   display: grid;
   padding-inline-start: 0;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
-  gap: 0.5rem;
+  gap: var(--spacing-half);
   justify-items: space-between;
   align-items: space-between;
 
   /*  theres not 1 number that does this its close but not there */
-  > li {
+  >li {
     flex: 1 1 1 var(--vinson);
 
     @media (min-width: 60rem) {
@@ -91,7 +96,7 @@ ul {
 
     list-style: none;
     text-align: center;
-    padding-block: 0.5rem;
+    padding-block: var(--spacing-half);
     padding-inline: var(--vinson);
     border: 1px solid var(--honey-100);
 
@@ -111,7 +116,9 @@ ul {
     }
 
     ul {
-      padding-inline-start: 0; /* reset */
+      padding-inline-start: 0;
+
+      /* reset */
       li {
         list-style: none;
         padding: 0;
@@ -126,7 +133,7 @@ ul {
   }
 }
 
-.footer_list > ul {
+.footer_list>ul {
   .wedding {
     order: 1;
   }
@@ -135,13 +142,14 @@ ul {
     order: 2;
   }
 
-  > li {
+  >li {
     order: 3;
   }
 }
 
 
 .footer_list .xmas {
+
   .residential,
   .christmas {
     order: 1;
@@ -155,7 +163,7 @@ ul {
     order: 3;
   }
 
-  > li {
+  >li {
     order: 4;
   }
 }
@@ -165,7 +173,8 @@ ul {
 /*------------------*/
 
 .faqs {
-  padding-inline-start: 0; /*  reset */
+  padding-inline-start: 0;
+  /*  reset */
 
   h2 {
     font-size: clamp(var(--kilimanjaro), 1.667vw, var(--aconcagua));
@@ -180,16 +189,16 @@ ul {
 .testimonials__page {
   padding-inline-start: 0;
 
-  > li {
+  >li {
     list-style: none;
     background-color: hsl(var(--honey), 12%, 97.5%);
     padding: var(--vinson);
-    border-radius: 0.5rem;
+    border-radius: var(--spacing-half);
     border: 1px solid var(--honey-400);
     margin-block-end: var(--vinson);
     box-shadow: var(--mesosphere);
 
-    > ul {
+    >ul {
       /*  stars */
       padding-inline-start: 0;
     }
@@ -197,13 +206,13 @@ ul {
     h2 {
       font-size: clamp(var(--kilimanjaro), 1.667vw, var(--aconcagua));
       line-height: clamp(var(--denali), 1.667vw, var(--everest));
-      margin-block-end: 0.5rem;
+      margin-block-end: var(--spacing-half);
     }
 
     h3 {
       font-size: clamp(var(--kilimanjaro), 1.667vw, var(--aconcagua));
       line-height: clamp(var(--denali), 1.667vw, var(--everest));
-      margin-block-end: 0.5rem;
+      margin-block-end: var(--spacing-half);
     }
   }
 
@@ -215,7 +224,7 @@ ul {
 .stars {
   display: flex;
   justify-content: flex-start;
-  gap: 0.5rem;
+  gap: var(--spacing-half);
 }
 
 .areas__page .state__name {
@@ -227,7 +236,7 @@ ul {
   flex-flow: row wrap;
   gap: var(--vinson);
 
-  > * {
+  >* {
     flex: 1 1 10rem;
   }
 }
@@ -244,17 +253,20 @@ ul {
 /* TODO: I'd prefer the plural to not just be the 's' */
 .affiliations {
   list-style: none;
-  gap: var(--vinson); /*  this works on grid and flex */
-  max-width: var(--albatross); /*  60rem */
+  gap: var(--vinson);
+  /*  this works on grid and flex */
+  max-width: var(--albatross);
+  /*  60rem */
   margin-inline: auto;
 
   /*  Im not using flex so I can get the subgrid to line up */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(1var (--vinson), 1fr));
   justify-content: stretch;
-  padding: var(--kosciuszko); /*  reset */
+  padding: var(--kosciuszko);
+  /*  reset */
 
-  > .affiliation {
+  >.affiliation {
     background-color: var(--neutral-100);
     border: 1px solid var(--honey-400);
     padding: var(--kosciuszko);
@@ -262,8 +274,10 @@ ul {
     border-radius: var(--card-radius);
     display: grid;
     /*  grid-row: 1 / 5; /* this breaking as cards can not drop down rows */
-    grid-row: span 4; /*  this is the key to having the cards line up */
-    grid-template-rows: subgrid; /*  chromium browsers dont line up internally but dont break */
+    grid-row: span 4;
+    /*  this is the key to having the cards line up */
+    grid-template-rows: subgrid;
+    /*  chromium browsers dont line up internally but dont break */
     gap: var(--vinson);
 
     @media (prefers-color-scheme: dark) {
@@ -283,11 +297,13 @@ ul {
     h3 {
       font-size: clamp(var(--elbrus), 1.667vw, var(--kilimanjaro));
       line-height: clamp(var(--kilimanjaro), 1.667vw, var(--denali));
-      margin-block-end: 0; /*  use the gap */
+      margin-block-end: 0;
+      /*  use the gap */
     }
 
     p {
-      margin-block-end: 0; /*  use the gap */
+      margin-block-end: 0;
+      /*  use the gap */
     }
   }
 }
@@ -297,13 +313,15 @@ ul {
 /*------------------*/
 
 .link-list {
+
   /*  this should be a variable of h2 named after a mountain */
   ul {
     list-style: none;
     padding-inline-start: 0;
 
     li {
-      font-size: var(--denali); /*  TODO: needs a clamp */
+      font-size: var(--denali);
+      /*  TODO: needs a clamp */
       line-height: var(--aconcagua);
       margin-block-end: 1.875rem;
       padding-inline-start: 0;
@@ -314,7 +332,7 @@ ul {
         border: 1px solid var(--honey-300);
         width: max-content;
         padding-block-start: var(--kosciuszko);
-        padding-block-end: 0.5rem;
+        padding-block-end: var(--spacing-half);
         padding-inline: var(--vinson);
         box-shadow: var(--mesosphere);
         transition: var(--moment);

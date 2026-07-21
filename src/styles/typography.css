@@ -234,17 +234,9 @@ hr {
   }
 }
 
+/* ? where is this used? */
 hr.stork {
   padding-inline: 0;
-}
-
-.hr-grey {
-  border-top-color: var(--grey);
-}
-
-.hr-tin-soldier {
-  border-top-color: var(--tin-soldier);
-  /*  TODO: dark */
 }
 
 /*------------------*/
@@ -330,16 +322,6 @@ ol li {
 /* REMS */
 /*------------------*/
 
-/*
-0.25rem = 4px
-0.375rem = 6px
-0.5rem = 8px
-0.625rem = 10px
-var(--kosciuszko) = 12px
-var(--vinson) = 16px
-var(--kilimanjaro) = 24px
-*/
-
 .testimonials {
   h4 {
     margin-block-end: var(--line-height);
@@ -348,6 +330,7 @@ var(--kilimanjaro) = 24px
   h4 span {
     font-size: var(--vinson);
     font-family: var(--font-sans);
+    /* TODO: variable */
     font-weight: 400;
   }
 

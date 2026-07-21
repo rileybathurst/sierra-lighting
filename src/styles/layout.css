@@ -1,3 +1,8 @@
+/* Index
+- suite
+- masthead
+*/
+
 /*------------------------------------*/
 /* BASE */
 /*------------------------------------*/
@@ -249,7 +254,7 @@ header {
 
     max-width: 30%;
     max-height: 50%;
-    border: 1px solid var(--brilliance);
+    border: 1px solid var(--neutral-100);
     box-shadow: var(--troposphere);
     justify-self: flex-end;
     align-self: flex-end;
@@ -285,7 +290,7 @@ header {
   border-radius: var(--vinson);
   box-shadow: var(--mesosphere);
   padding: var(--vinson);
-  border: 1px solid var(--brilliance);
+  border: 1px solid var(--neutral-100);
   background-color: var(--honey-100);
   margin-block-end: var(--denali);
 
@@ -297,11 +302,11 @@ header {
 
   .poster,
   .gatsby-image-wrapper {
-    border-radius: 0.5rem;
+    border-radius: var(--spacing-half);
   }
 
   h3 {
-    margin-block-end: 0.5rem;
+    margin-block-end: var(--spacing-half);
   }
 
   ul {
@@ -420,7 +425,7 @@ header {
   display: flex;
   /* skip var(--vinson) due to a flex gap from a sr-only element */
   gap: var(--vinson);
-  margin-block-start: 0.5rem;
+  margin-block-start: var(--spacing-half);
   /*  skip var(--vinson) due to a flex gap from a sr-only element */
   flex-direction: column;
 
@@ -461,7 +466,7 @@ footer {
 .testimonial {
   list-style: none;
   padding: var(--vinson);
-  border-radius: 0.5rem;
+  border-radius: var(--spacing-half);
   margin-block-end: var(--kilimanjaro);
   box-shadow: var(--mesosphere);
 
@@ -532,7 +537,7 @@ footer {
 .triple {
   display: flex;
   gap: 0.25rem;
-  max-width: 60rem;
+  max-width: var(--pelican);
   margin-inline: auto;
   margin-block: var(--everest);
 
@@ -544,7 +549,7 @@ footer {
     width: 33%;
     box-shadow: var(--troposphere);
     border-radius: var(--border-radius);
-    border: 1px solid var(--brilliance);
+    border: 1px solid var(--neutral-100);
 
     @media (prefers-color-scheme: dark) {
       border-color: var(--denim-700);
@@ -612,7 +617,7 @@ footer {
     padding: var(--vinson);
     border-radius: var(--vinson);
     background-color: var(--honey-100);
-    border: 1px solid var(--brilliance);
+    border: 1px solid var(--neutral-100);
     align-self: start;
 
     @media (prefers-color-scheme: dark) {
@@ -673,7 +678,7 @@ footer {
     flex: 1 1 10rem;
     border-radius: var(--border-radius);
     box-shadow: var(--troposphere);
-    border: 1px solid var(--brilliance);
+    border: 1px solid var(--neutral-100);
 
     @media (prefers-color-scheme: dark) {
       border-color: var(--denim-700);
@@ -796,7 +801,7 @@ footer {
     background-color: var(--honey-100);
     border-radius: var(--card-radius);
     box-shadow: var(--mesosphere);
-    border: 2px solid var(--brilliance);
+    border: 2px solid var(--neutral-100);
     transition: var(--moment);
 
     @media (prefers-color-scheme: dark) {

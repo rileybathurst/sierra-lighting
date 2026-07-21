@@ -1,3 +1,7 @@
+/* Index
+- svg
+*/
+
 /*------------------------------------*/
 /* LINKS */
 /*------------------------------------*/
@@ -70,7 +74,7 @@ a::selection {
 .contact-info a {
   /*  ? how much of this is a button */
   padding-block: var(--kosciuszko);
-  padding-inline: 0.5rem;
+  padding-inline: var(--spacing-half);
   display: block;
   max-width: max-content;
   border-radius: var(--border-radius);
@@ -100,7 +104,7 @@ a::selection {
 .hover-back__hover {
   margin-inline: auto;
   padding-block: 0.25rem;
-  padding-inline: 0.5rem;
+  padding-inline: var(--spacing-half);
   max-width: max-content;
   line-height: 1.6rem;
 }
@@ -119,7 +123,7 @@ a::selection {
   border: 1px solid transparent;
   /*  hold the space itll come in later */
   padding-block: var(--kosciuszko);
-  padding-inline: 0.5rem;
+  padding-inline: var(--spacing-half);
 }
 
 .footer-copyright a:hover svg,

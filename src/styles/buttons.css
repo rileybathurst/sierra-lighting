@@ -1,3 +1,7 @@
+/* Index
+- buttons
+*/
+
 /*------------------------------------*/
 /* #BUTTONS */
 /*------------------------------------*/
@@ -8,7 +12,7 @@ button,
   border: 1px solid var(--honey-300);
   width: max-content;
   padding-block-start: var(--kosciuszko);
-  padding-block-end: 0.5rem;
+  padding-block-end: var(--spacing-half);
   padding-inline: var(--vinson);
   box-shadow: var(--mesosphere);
   transition: var(--moment);
@@ -27,7 +31,7 @@ button,
 /* TODO: notes on why these 2 are split out */
 button {
   padding-block-start: var(--kosciuszko);
-  padding-block-end: 0.5rem;
+  padding-block-end: var(--spacing-half);
 }
 
 .button {
@@ -101,10 +105,9 @@ button:disabled,
 }
 
 .feedback-star {
-  background-color: var(--brilliance);
+  background-color: var(--neutral-100);
   border: 1px solid var(--honey-100);
   box-shadow: none;
-  /* padding-block: clamp(0.5rem, 1vw, 1rem); */
 
   svg {
     min-width: clamp(2rem, 5vw, 5rem);

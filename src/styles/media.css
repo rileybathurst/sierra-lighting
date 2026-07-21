@@ -1,3 +1,8 @@
+/* Index
+- poster
+- gallery
+*/
+
 /*------------------*/
 /* SVG */
 /*------------------*/
@@ -14,10 +19,10 @@ svg {
 
 .logo {
   max-width: 10rem;
-  fill: var(--black-metal);
+  fill: var(--neutral-800);
 
   @media (prefers-color-scheme: dark) {
-    fill: var(--brilliance);
+    fill: var(--neutral-100);
   }
 }
 
@@ -27,8 +32,8 @@ svg {
   svg {
     opacity: 0.75;
     transition: var(--moment);
-    width: 2rem;
-    height: 2rem;
+    width: var(--denali);
+    height: var(--denali);
     fill: var(--neutral-100);
 
     @media (prefers-color-scheme: dark) {
@@ -70,7 +75,7 @@ svg {
   margin-inline: auto;
   box-shadow: var(--troposphere);
   border-radius: var(--vinson);
-  border: 2px solid var(--brilliance);
+  border: 2px solid var(--neutral-100);
   margin-block-end: var(--kilimanjaro);
   max-width: var(--pelican);
 
@@ -115,12 +120,12 @@ svg {
     align-self: end;
     justify-self: center;
     z-index: var(--understory);
-    background-color: var(--brilliance);
-    border-radius: 0.5rem;
+    background-color: var(--neutral-100);
+    border-radius: var(--spacing-half);
     padding: var(--vinson);
     margin-block-end: var(--vinson);
     box-shadow: var(--troposphere);
-    border: 1px solid var(--brilliance);
+    border: 1px solid var(--neutral-100);
 
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-700);
@@ -184,7 +189,6 @@ header svg:hover {
 }
 
 header svg:active {
-  fill: hsl(var(--honey), 100%, var(--dull));
   fill: var(--honey-600);
 
   @media (prefers-color-scheme: dark) {
@@ -213,10 +217,9 @@ header svg:active {
       border-radius: 50%;
       max-height: 8rem;
       transition: 2s ease;
-      border: 2px white solid;
-      /*  ? white white? */
+      border: 2px var(--neutral-100) solid;
       box-shadow: var(--mesosphere);
-      margin-block-end: 0.5rem;
+      margin-block-end: var(--spacing-half);
       aspect-ratio: 1;
 
       img {
@@ -330,14 +333,14 @@ header svg:active {
 .avatar {
   box-shadow: var(--troposphere);
   border-radius: 50%;
-  border: 1px solid var(--brilliance);
+  border: 1px solid var(--neutral-100);
   margin-block-end: var(--kilimanjaro);
   margin-inline: auto;
   aspect-ratio: 1;
   max-width: 80%;
 
   @media (min-width: 60rem) {
-    max-width: 20rem;
+    max-width: var(--swan);
   }
 }
 
@@ -353,7 +356,7 @@ header svg:active {
   margin-block-end: var(--aconcagua);
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
-  border: 1px solid var(--brilliance);
+  border: 1px solid var(--neutral-100);
   /*  TODO: theres a slight white gap at the bottom */
 }
 
@@ -393,7 +396,7 @@ header svg:active {
   }
 
   .look:not(:has(ul, p)) .gatsby-image-wrapper {
-    margin-block: 0.5rem;
+    margin-block: var(--spacing-half);
   }
 
   .gatsby-image-wrapper {
