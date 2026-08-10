@@ -1,23 +1,23 @@
-// TODO: use the redirects to deal with plurals and not Im still not sure the best way to do this but it would be nice to not have 
+// TODO: use the redirects to deal with plurals and not Im still not sure the best way to do this but it would be nice to not have
 // https://sierra.lighting/projects/
 // https://sierra.lighting/project/waterside-wedding/
 // notice the dumb pluralization that was bad
 
 const path = require(`path`);
 
-import type { GatsbyNode } from 'gatsby';
+import type { GatsbyNode } from "gatsby";
 
 exports.onPostBuild = (({ reporter }) => {
-  reporter.info('Your Gatsby site has been built!')
-}) as GatsbyNode['onPostBuild'];
+  reporter.info("Your Gatsby site has been built!");
+}) as GatsbyNode["onPostBuild"];
 
 exports.createPages = (async ({ actions, graphql, reporter }) => {
   const { createPage, createRedirect } = actions;
 
   const getServices = await graphql<{
-    allStrapiService: { edges: { node: { slug: string } }[] }
+    allStrapiService: { edges: { node: { slug: string } }[] };
   }>(`
-    query {
+    query CreateServicePages {
       allStrapiService {
         edges {
           node {
@@ -29,13 +29,17 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   `);
 
   if (!getServices.data) {
-    reporter.panicOnBuild(`GraphQL query for services failed: ${JSON.stringify(getServices.errors)}`);
+    reporter.panicOnBuild(
+      `GraphQL query for services failed: ${JSON.stringify(getServices.errors)}`,
+    );
     return;
   }
 
   for (const { node } of getServices.data.allStrapiService.edges) {
     if (!node || !node.slug) {
-      reporter.warn(`Skipping service page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      reporter.warn(
+        `Skipping service page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
+      );
       continue;
     }
 
@@ -50,9 +54,9 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
 
   // * Im also using /christmas-lights/ which might be replaced with a node query before here
   const getServiceLights = await graphql<{
-    allStrapiService: { edges: { node: { slug: string } }[] }
+    allStrapiService: { edges: { node: { slug: string } }[] };
   }>(`
-    query {
+    query CreateServiceLightPages {
       allStrapiService {
         edges {
           node {
@@ -64,13 +68,17 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   `);
 
   if (!getServiceLights.data) {
-    reporter.panicOnBuild(`GraphQL query for service lights failed: ${JSON.stringify(getServiceLights.errors)}`);
+    reporter.panicOnBuild(
+      `GraphQL query for service lights failed: ${JSON.stringify(getServiceLights.errors)}`,
+    );
     return;
   }
 
   for (const { node } of getServiceLights.data.allStrapiService.edges) {
     if (!node || !node.slug) {
-      reporter.warn(`Skipping service-lights page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      reporter.warn(
+        `Skipping service-lights page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
+      );
       continue;
     }
 
@@ -84,9 +92,9 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   const getServiceProjects = await graphql<{
-    allStrapiService: { edges: { node: { slug: string } }[] }
+    allStrapiService: { edges: { node: { slug: string } }[] };
   }>(`
-    query {
+    query CreateServiceProjectPages {
       allStrapiService {
         edges {
           node {
@@ -98,13 +106,17 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   `);
 
   if (!getServiceProjects.data) {
-    reporter.panicOnBuild(`GraphQL query for service projects failed: ${JSON.stringify(getServiceProjects.errors)}`);
+    reporter.panicOnBuild(
+      `GraphQL query for service projects failed: ${JSON.stringify(getServiceProjects.errors)}`,
+    );
     return;
   }
 
   for (const { node } of getServiceProjects.data.allStrapiService.edges) {
     if (!node || !node.slug) {
-      reporter.warn(`Skipping service-lights page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      reporter.warn(
+        `Skipping service-lights page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
+      );
       continue;
     }
 
@@ -118,9 +130,11 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   const getVenues = await graphql<{
-    allStrapiVenue: { edges: { node: { slug: string; area: { slug: string } } }[] }
+    allStrapiVenue: {
+      edges: { node: { slug: string; area: { slug: string } } }[];
+    };
   }>(`
-    query {
+    query CreateVenuePages {
       allStrapiVenue {
         edges {
           node {
@@ -135,13 +149,17 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   `);
 
   if (!getVenues.data) {
-    reporter.panicOnBuild(`GraphQL query for venues failed: ${JSON.stringify(getVenues.errors)}`);
+    reporter.panicOnBuild(
+      `GraphQL query for venues failed: ${JSON.stringify(getVenues.errors)}`,
+    );
     return;
   }
 
   for (const { node } of getVenues.data.allStrapiVenue.edges) {
     if (!node || !node.slug) {
-      reporter.warn(`Skipping venue page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      reporter.warn(
+        `Skipping venue page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
+      );
       continue;
     }
 
@@ -157,9 +175,11 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
 
   // * /vendor/envyeventmanagement/
   const getVendors = await graphql<{
-    allStrapiVendor: { edges: { node: { slug: string; collaborator: { slug: string } } }[] }
+    allStrapiVendor: {
+      edges: { node: { slug: string; collaborator: { slug: string } } }[];
+    };
   }>(`
-    query {
+    query CreateVendorPages {
       allStrapiVendor {
         edges {
           node {
@@ -174,13 +194,17 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   `);
 
   if (!getVendors.data) {
-    reporter.panicOnBuild(`GraphQL query for vendors failed: ${JSON.stringify(getVendors.errors)}`);
+    reporter.panicOnBuild(
+      `GraphQL query for vendors failed: ${JSON.stringify(getVendors.errors)}`,
+    );
     return;
   }
 
   for (const { node } of getVendors.data.allStrapiVendor.edges) {
     if (!node || !node.slug) {
-      reporter.warn(`Skipping vendor page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      reporter.warn(
+        `Skipping vendor page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
+      );
       continue;
     }
 
@@ -207,13 +231,13 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
         toPath: `/vendor/${node.collaborator.slug}/${node.slug}`,
         isPermanent: true,
       });
-    } 
+    }
   }
 
   const getAreas = await graphql<{
-    allStrapiArea: { edges: { node: { slug: string } }[] }
+    allStrapiArea: { edges: { node: { slug: string } }[] };
   }>(`
-    query {
+    query CreateAreaPages {
       allStrapiArea(filter: {featured: {eq: true}}) {
         edges {
           node {
@@ -225,14 +249,17 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   `);
 
   if (!getAreas.data) {
-    reporter.panicOnBuild(`GraphQL query for areas failed: ${JSON.stringify(getAreas.errors)}`);
+    reporter.panicOnBuild(
+      `GraphQL query for areas failed: ${JSON.stringify(getAreas.errors)}`,
+    );
     return;
   }
 
   for (const { node } of getAreas.data.allStrapiArea.edges) {
-
     if (!node || !node.slug) {
-      reporter.warn(`Skipping area page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      reporter.warn(
+        `Skipping area page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
+      );
       continue;
     }
 
@@ -244,11 +271,13 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
       },
     });
   }
-  
+
   const getLookBooks = await graphql<{
-    allStrapiService: { edges: { node: { slug: string; lookbooks?: { id: string }[] } }[] }
+    allStrapiService: {
+      edges: { node: { slug: string; lookbooks?: { id: string }[] } }[];
+    };
   }>(`
-    query {
+    query CreateLookbookPages {
       allStrapiService {
         edges {
           node {
@@ -263,13 +292,17 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   `);
 
   if (!getLookBooks.data) {
-    reporter.panicOnBuild(`GraphQL query for lookbooks failed: ${JSON.stringify(getLookBooks.errors)}`);
+    reporter.panicOnBuild(
+      `GraphQL query for lookbooks failed: ${JSON.stringify(getLookBooks.errors)}`,
+    );
     return;
   }
 
   for (const { node } of getLookBooks.data.allStrapiService.edges) {
     if (!node || !node.slug) {
-      reporter.warn(`Skipping lookbook page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`);
+      reporter.warn(
+        `Skipping lookbook page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
+      );
       continue;
     }
 
@@ -283,4 +316,4 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
       });
     }
   }
-}) as GatsbyNode['createPages'];
+}) as GatsbyNode["createPages"];

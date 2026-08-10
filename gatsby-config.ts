@@ -105,7 +105,7 @@ module.exports = {
         postCssPlugins: [
           require("postcss-import"),
           require("autoprefixer"),
-          require("postcss-nested"),
+          require("postcss-nested").default,
         ],
       },
     },
