@@ -1,3 +1,5 @@
+// ! remove some junk I was testing along the way
+
 import type { Config, Context } from "@netlify/functions";
 
 export default async (req: Request, context: Context) => {

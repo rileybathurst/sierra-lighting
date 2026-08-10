@@ -350,17 +350,11 @@ export const Head = ({ data }: AreasTemplateTypes) => {
   const servicesString = data.allStrapiService.nodes.map((service) => (
     `${service.name} light installs`
   )).join(', ');
-  // console.log(servicesString);
 
   let subAreasString = '';
   if (data.strapiArea.areas.length > 0) {
-    // console.log(data.strapiArea.areas)
     subAreasString = data.strapiArea.areas.map((area) => area.name).join(', ');
   }
-
-  // console.log(subAreasString)
-
-  console.log(data.strapiArea.name);
 
   const seasonalOrder = (
     (Season() === 'wedding') ? 'Wedding, Christmas and event'

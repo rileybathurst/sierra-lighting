@@ -202,6 +202,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
         </div>
       }
 
+      {/* // TODO: I think above breadcrumb could be a thing depending on design */}
       <hr className='main' />
 
       {/* // ? I dont think we have non featured pages anymore */}
