@@ -121,7 +121,7 @@ function HoaPage() {
             ))
         ))}
 
-      <hr className="main" />
+      <hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/residential/">Residential</Link></Breadcrumb>

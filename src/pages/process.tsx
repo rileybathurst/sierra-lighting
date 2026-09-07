@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import { SEO } from "../components/seo";
 import Season from "../components/season";
 import Header from "../components/header";
@@ -18,7 +18,7 @@ type processTypes = {
 function ProcessDetail({ id, name, markdown }: processTypes) {
 	return (
 		<li key={id}>
-			<h3>{name}</h3>
+			<h3 className="margin-block-end-vinson">{name}</h3>
 			<div className="react-markdown">
 				<ReactMarkdown>{markdown.data.markdown}</ReactMarkdown>
 			</div>
@@ -112,6 +112,11 @@ const ProcessPage = () => {
 						)
 					}
 				</ol>
+				<p>
+					<Link to="/safety">
+						Learn more about how our safety practices keep you protected
+					</Link>
+				</p>
 			</main>
 
 			<Footer />

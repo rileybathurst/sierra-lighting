@@ -56,7 +56,7 @@ function VendorCatchAll({ params }: CatchAllTypes) {
         )}
       </section>
 
-      <hr className="main" />
+      <hr />
 
       <Breadcrumbs>
         <Breadcrumb>

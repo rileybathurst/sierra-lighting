@@ -8,70 +8,68 @@
 
 button,
 .button {
-  background-color: var(--honey-200);
-  border: 1px solid var(--honey-300);
+  background-color: var(--denim-600);
+  border: 1px solid var(--honey-750);
+  color: var(--neutral-100);
   width: max-content;
   padding-block-start: var(--kosciuszko);
   padding-block-end: var(--spacing-half);
   padding-inline: var(--vinson);
   box-shadow: var(--mesosphere);
   transition: var(--moment);
+  /* * .button--left-align if needed */
   margin-inline-start: var(--vinson);
   margin-block-end: var(--kilimanjaro);
   border-radius: var(--border-radius);
-  color: var(--honey-600);
+
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-700);
-    border-color: var(--denim-600);
-    color: var(--denim-200);
+    background-color: var(--honey-200);
+    border-color: var(--honey-300);
+    color: var(--neutral-800);
   }
 }
 
-/* TODO: notes on why these 2 are split out */
-button {
-  padding-block-start: var(--kosciuszko);
-  padding-block-end: var(--spacing-half);
-}
-
+/* * overwrite a defaults */
 .button {
   text-decoration: none;
   display: inline-block;
-  padding-block: var(--kosciuszko);
 }
 
 button:hover,
 .button:hover,
 .button-hover-storybook {
-  color: var(--honey-700);
+  background-color: var(--denim-500);
+  border-color: var(--denim-700);
+  color: var(--neutral-200);
   box-shadow: var(--stratosphere);
-  background-color: var(--honey-300);
-  border-color: var(--honey-400);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-600);
-    border-color: var(--denim-500);
-    color: var(--denim-100);
+    background-color: var(--honey-300);
+    border-color: var(--honey-400);
+    color: var(--neutral-800);
   }
 }
 
 button:focus,
 .button:focus,
 .button-focus-storybook {
-  color: var(--neutral-800);
-  box-shadow: var(--stratosphere);
-  background-color: var(--honey-300);
-  border-color: var(--honey-400);
+  color: var(--neutral-200);
+  box-shadow: var(--troposphere);
+  background-color: var(--denim-500);
+  border-color: var(--denim-600);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-500);
-    border-color: var(--denim-400);
-    color: var(--denim-100);
+    background-color: var(--honey-400);
+    border-color: var(--honey-500);
+    color: var(--neutral-800);
   }
 }
 
+/*------------------------------------*/
+
 button:disabled,
-.button:disabled {
+.button-disabled {
   background-color: var(--error);
   color: var(--neutral-100);
   border-color: var(--neutral-100);
@@ -82,6 +80,8 @@ button:disabled,
   }
 }
 
+/*------------------------------------*/
+
 .button--left-align {
   margin-inline-start: 0;
 }
@@ -89,6 +89,7 @@ button:disabled,
 .button-hero {
   place-self: center;
   font-size: var(--elbrus);
+  letter-spacing: 0.02em;
 
   @media (min-width: 30rem) {
     font-size: var(--kilimanjaro);

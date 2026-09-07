@@ -107,7 +107,7 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
                   />
                 ))}
               </section>
-              <hr className='main' />
+              < hr />
             </section>
           );
         })
@@ -134,7 +134,7 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
         )
       }
 
-      <hr className='main' />
+      < hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name} Lighting</Link></Breadcrumb>

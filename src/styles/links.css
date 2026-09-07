@@ -7,31 +7,32 @@
 /*------------------------------------*/
 
 a {
-  color: var(--honey-600);
+  /* * 400 is a fail has to be darker */
+  color: var(--honey-500);
   transition: var(--moment);
 
   @media (prefers-color-scheme: dark) {
-    color: var(--denim-300);
+    color: var(--honey-200);
   }
 }
 
 a:hover,
 .a-hover-storybook {
   text-decoration: none;
-  color: var(--honey-400);
+  color: var(--honey-500);
 
   @media (prefers-color-scheme: dark) {
-    color: var(--denim-400);
+    color: var(--honey-300);
   }
 }
 
 a:focus,
 .a-focus-storybook {
-  color: var(--honey-200);
+  color: var(--honey-600);
   text-decoration: none;
 
   @media (prefers-color-scheme: dark) {
-    color: var(--denim-500);
+    color: var(--honey-400);
   }
 }
 
@@ -58,7 +59,7 @@ a::selection {
 
     @media (prefers-color-scheme: dark) {
       color: var(--honey-50);
-      /*  custom */
+      /* custom */
     }
   }
 }

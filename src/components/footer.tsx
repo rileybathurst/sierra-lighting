@@ -232,7 +232,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
       {showQuote && (
         <>
-          <h3 className="main">Start With A Free Quote</h3>
+          <h3 className="condor">Start With A Free Quote</h3>
 
           {/* // ? should i be sanitizing inputs here */}
           <form
@@ -254,10 +254,20 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             )}
 
             <label>Name
-              <input type="text" name="name" />
+              <input
+                type="text"
+                name="name"
+                autoComplete="name"
+              />
             </label>
             <label>Email
-              <input type="email" name="email" onChange={subject} className={emailProfanity ? "error" : ""} />
+              <input
+                type="email"
+                name="email"
+                autoComplete="email"
+                onChange={subject}
+                className={emailProfanity ? "error" : ""}
+              />
             </label>
             <label>Phone
               <input type="tel" name="tel" />
@@ -303,7 +313,13 @@ const Footer = ({ quote }: { quote?: boolean }) => {
               </p>
             )}
 
-            <button type="submit" disabled={!canSend}>Send</button>
+            <button
+              type="submit"
+              disabled={!canSend}
+              className="button--left-align"
+            >
+              Send
+            </button>
           </form>
 
           <section id="contact" className="condor contact">
@@ -313,17 +329,13 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
             {/* // TODO: this changes twice on hover and reverts back its just a mess of overlapping styles */}
             <div className="contact-info">
-              {/* // ? why does this need a <p> */}
+              <a href={`mailto:${data.strapiAbout.email}`}
+                className="button button--left-align"
+              >
+                {data.strapiAbout.email}
+              </a>
               <p>
-                <a href={`mailto:${data.strapiAbout.email}`}
-                  className="button"
-                >
-                  {data.strapiAbout.email}
-                </a>
-              </p>
-              <p>
-                {/* // TODO: fix the styling and put this in strapi */}
-                Call or Text: <Phone phone={data.strapiAbout.telephone} />
+                Call or Text: <Phone phone={data.strapiAbout.telephone} leftAlign />
 
                 {/* // * elements of typograhic style 3.2 numerals, capitals & small caps */}
                 <small>
@@ -339,8 +351,8 @@ const Footer = ({ quote }: { quote?: boolean }) => {
       )}
 
       <div id="team" className="condor">
-        <h3>
-          <Link to="/team" className="link--subtle">Team</Link>
+        <h3 className="margin-block-end-vinson">
+          <Link to="/team" className="link--subtle">Meet Our Team</Link>
         </h3>
 
         <h4>or&nbsp;
@@ -477,7 +489,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
           <Logo />
         </Link>
         <p>&copy; {new Date().getFullYear()}</p>
-        <h5 className="crest">
+        <h5>
           <a
             href="https://www.sierrachristmaslights.com/"
             target="_blank"

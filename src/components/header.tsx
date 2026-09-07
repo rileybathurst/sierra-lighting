@@ -35,7 +35,7 @@ const Header = ({ largeLogo }: { largeLogo?: boolean }) => {
               <Link to="/commercial">Commercial<br />Christmas Lights</Link>
             </li>
             <li key="wedding" className="wedding">
-              <Link to="/wedding">Wedding</Link>
+              <Link to="/wedding">Wedding<br />Lighting</Link>
             </li>
             <li key="start" className="c">
               <Link to="/contact/?big-menu">

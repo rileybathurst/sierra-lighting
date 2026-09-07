@@ -31,6 +31,16 @@ ul {
   }
 }
 
+ol li {
+  margin-block-end: var(--kilimanjaro);
+}
+
+.ol-title {
+  display: block;
+  font-size: var(--kilimanjaro);
+  margin-block-end: var(--kilimanjaro);
+}
+
 /*------------------*/
 /* BREADCRUMBS */
 /*------------------*/
@@ -249,18 +259,7 @@ ul {
 /* TODO: I'd prefer the plural to not just be the 's' */
 .affiliations {
   list-style: none;
-  gap: var(--vinson);
-  /*  this works on grid and flex */
-  max-width: var(--albatross);
-  /*  60rem */
   margin-inline: auto;
-
-  /*  Im not using flex so I can get the subgrid to line up */
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(1var (--vinson), 1fr));
-  justify-content: stretch;
-  padding: var(--kosciuszko);
-  /*  reset */
 
   >.affiliation {
     background-color: var(--neutral-100);

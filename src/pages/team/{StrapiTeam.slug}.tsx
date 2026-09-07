@@ -107,7 +107,7 @@ const TeamPage = ({ data }: TeamTypes) => {
         : null
       }
 
-      <hr className="main" />
+      <hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/team">Team</Link></Breadcrumb>

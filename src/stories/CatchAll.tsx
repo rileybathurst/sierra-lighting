@@ -38,7 +38,7 @@ export const CatchAll = ({
       {/* // TODO: use params to lock this to 3 cards */}
       <Deck />
 
-      <hr className="stork" />
+      <hr />
 
       <Breadcrumbs />
 

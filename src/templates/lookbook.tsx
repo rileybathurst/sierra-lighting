@@ -172,7 +172,7 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
         </ResponsiveMasonry>
       </section>
 
-      <hr className="main" />
+      <hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name}</Link></Breadcrumb>

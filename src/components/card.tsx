@@ -29,7 +29,6 @@ const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, b
 
   return (
     <section
-      // key={key}
       className="card"
     >
       <Link
@@ -51,7 +50,7 @@ const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, b
       </Link>
       <div className="paper">{/* stay gold */}</div>
       <h2>
-        <Link to={`/${breadcrumb}/${slug}`}>
+        <Link to={`/${breadcrumb}/${slug}?=${query ?? ''}`}>
           {name ?? title}
         </Link>
       </h2>

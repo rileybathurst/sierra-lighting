@@ -15,10 +15,18 @@ export const Card = () => {
       <div className="paper">{/* stay gold */}</div>
 
       <h2>
-        <a href={faker.animal.bird()}>{faker.animal.bird()}</a>
+        <a href={faker.animal.bird()}>
+          {faker.animal.bird()}
+        </a>
       </h2>
+      {faker.datatype.boolean() && (
+        <ul>
+          {Array.from({ length: faker.datatype.number({ min: 1, max: 5 }) }).map((_, index) => (
+            <li key={index}>{faker.lorem.word()}</li>
+          ))}
+        </ul>
+      )}
       <p className="description">{faker.lorem.sentences(2)}</p>
-      {/* theres a chance theres a ul here on the area cards */}
     </div>
   );
 };

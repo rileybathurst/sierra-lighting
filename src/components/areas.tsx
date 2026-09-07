@@ -82,7 +82,7 @@ const Areas = () => {
   return (
     <React.Fragment>
       <main className="above-deck">
-        <h1>Service Areas</h1>
+        <h1 className="margin-block-end-vinson">Service Areas</h1>
         <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
       </main>
       <section className="deck">

@@ -14,10 +14,9 @@ form {
     margin-block-end: 0.25rem;
     border: 1px solid var(--honey-400);
 
-    /* TODO: move this */
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-700);
-      border-color: var(--denim-600);
+      border-color: var(--denim-400);
       color: var(--honey-50);
     }
   }
@@ -27,9 +26,8 @@ form {
   }
 
   label {
-    width: calc(100% - var(--denali));
+    width: 100%;
     margin-block-end: var(--elbrus);
-    margin-inline: auto;
   }
 
   /* TODO: esspecially on mobile these currently look bad */
@@ -61,8 +59,7 @@ form {
   }
 
   .address-together {
-    width: calc(100% - var(--denali));
-    margin-inline: auto;
+    width: 100%;
     display: flex;
 
     .address {

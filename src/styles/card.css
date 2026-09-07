@@ -74,11 +74,14 @@
 
   h2 {
     grid-row: 3;
-    font-size: clamp(var(--kilimanjaro), 1.5vw, var(--aconcagua));
+    /* font-size: clamp(var(--kilimanjaro), 1.5vw, var(--aconcagua)); */
+    /* font-size: var(--denali); */
+    font-size: var(--kilimanjaro);
     line-height: clamp(var(--denali), 1.5vw, var(--everest));
     margin-block-end: 0;
     font-family: var(--font-sans);
-    font-weight: 400;
+    /* font-weight: 400; */
+    font-weight: 600;
   }
 
   p,
@@ -89,6 +92,15 @@
 
     @media (prefers-color-scheme: dark) {
       color: var(--neutral-300);
+    }
+
+    p {
+      margin-block-end: var(--kosciuszko);
+    }
+
+    ul {
+      margin-block: 0;
+      padding-inline-start: var(--vinson);
     }
   }
 }
@@ -221,12 +233,6 @@
   text-decoration: none;
   /* * clears links text */
 
-  /* > * {
-    display: flex;
-    controls the supra
-    flex-direction: column-reverse;
-  } */
-
   .name {
     grid-row: 1;
     grid-column: 2;
@@ -274,4 +280,147 @@
   h4 {
     font-weight: bold;
   }
+}
+
+/*------------------------------------*/
+
+.linked-card {
+  display: grid;
+  row-gap: var(--vinson);
+  grid-row: span 5;
+  grid-template-rows: subgrid;
+  /* this is breaking when on the service page as theres title pushing the size */
+  /* TODO: I can wrap it in a not */
+
+  /* * this has to be top level then drop down */
+  text-decoration: none;
+
+  >* {
+    grid-column: 1;
+  }
+
+  .paper {
+    grid-row: 2/5;
+    background-color: var(--honey-100);
+    box-shadow: var(--mesosphere);
+    border: 2px solid var(--neutral-100);
+    border-radius: var(--card-radius);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--denim-700);
+      border-color: var(--denim-600);
+    }
+  }
+
+  .image {
+    grid-row: 1/3;
+    border-radius: var(--card-radius);
+    width: calc(100% - var(--denali));
+    margin-inline: auto;
+    z-index: var(--understory);
+
+    @media (prefers-color-scheme: dark) {
+      border-color: var(--denim-700);
+    }
+
+    .gatsby-image-wrapper {
+      aspect-ratio: 3/2;
+      width: 100%;
+      box-shadow: var(--stratosphere);
+      border-radius: var(--card-radius);
+      transition: transform 0.5s ease;
+      border: 2px solid var(--neutral-100);
+
+      @media (prefers-color-scheme: dark) {
+        border-color: var(--denim-600);
+      }
+    }
+
+    /*  safari needs this */
+    img {
+      border-radius: var(--card-radius);
+      transition: transform 0.5s ease;
+    }
+
+    /* TODO this breaks the border radius s  */
+    /* document which browsers support this s  */
+    img:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  >* {
+    padding-inline: var(--vinson);
+  }
+
+  h2 {
+    grid-row: 3;
+    font-size: var(--kilimanjaro);
+    line-height: clamp(var(--denali), 1.5vw, var(--everest));
+    margin-block-end: 0;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-decoration: underline;
+    /* * 1 deeper as the card is deeper */
+    color: var(--honey-500);
+
+    /* ! dark */
+    /* @media (prefers-color-scheme: dark) {
+      color: var(--honey-400);
+    } */
+  }
+
+  p,
+  .subarea {
+    grid-row: 4;
+    margin-block-end: var(--kilimanjaro);
+    color: var(--neutral-600);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--neutral-300);
+    }
+
+    p {
+      margin-block-end: var(--kosciuszko);
+    }
+
+    ul {
+      margin-block: 0;
+      padding-inline-start: var(--vinson);
+    }
+  }
+}
+
+a.linked-card:hover {
+  img {
+    transform: scale(1.05);
+  }
+
+  .paper {
+    background-color: var(--honey-200);
+    box-shadow: var(--stratosphere);
+  }
+
+  h2 {
+    color: var(--honey-500);
+  }
+
+  /* ! dark */
+}
+
+a.linked-card:focus {
+  img {
+    transform: scale(1.05);
+  }
+
+  .paper {
+    background-color: var(--honey-200);
+    box-shadow: var(--stratosphere);
+  }
+
+  h2 {
+    color: var(--honey-600);
+  }
+
+  /* ! dark */
 }

@@ -231,7 +231,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         </div>
         : null}
 
-      <hr className='main' />
+      < hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/vendor/">Vendors</Link></Breadcrumb>

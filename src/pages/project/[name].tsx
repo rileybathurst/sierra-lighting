@@ -45,7 +45,7 @@ function ProjectCatchAll({ params }: CatchAllTypes) {
         ))}
       </div>
 
-      <hr className="main" />
+      <hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/project/">Project</Link></Breadcrumb>

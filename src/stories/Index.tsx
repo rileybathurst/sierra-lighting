@@ -98,7 +98,7 @@ export const Index = () => {
       <main className="albatross">
         <div className="stork">
           <hgroup>
-            <h1>Service Areas</h1>
+            <h1 className="margin-block-end-vinson">Service Areas</h1>
             <p className="margin-block-end-kilimanjaro">Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
           </hgroup>
         </div>

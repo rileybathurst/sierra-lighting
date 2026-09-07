@@ -427,7 +427,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
           : null}
       </section >
 
-      <section className='process stork backed bb'>
+      <section className='process stork'>
         <hr />
         <h2>Our {data.strapiService.name} lighting Process</h2>
         <p>
@@ -446,11 +446,18 @@ const ServiceView = ({ data }: ServiceTypes) => {
             </li>
           ))}
         </ol>
-        <p>
-          <Link to="/faqs">
-            Learn more about our process on our FAQ page
-          </Link>
-        </p>
+        <ul>
+          <li>
+            <Link to="/safety">
+              Learn more about our safety practices
+            </Link>
+          </li>
+          <li>
+            <Link to="/faqs">
+              Learn more about our process on our FAQ page
+            </Link>
+          </li>
+        </ul>
         <hr />
       </section>
 
@@ -463,13 +470,14 @@ const ServiceView = ({ data }: ServiceTypes) => {
               {data.strapiService.after_the_triptych.data.after_the_triptych}
             </Markdown>
           </div>
+          <hr />
         </div>
         : null
       }
 
       {/* // TODO: this needs a design maybe from the home page but thats pretty large and heavy */}
       <section className='stork'>
-        <hr />
+
         <h3 className='elbrus'>We install {data.strapiService.name} lighting in and around</h3>
         <ul>
           {data.allStrapiArea.nodes

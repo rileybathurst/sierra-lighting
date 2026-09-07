@@ -6,6 +6,7 @@ import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Card from "../components/card";
 
 const AffiliationsPage = () => {
 
@@ -55,9 +56,10 @@ const AffiliationsPage = () => {
 
       <main>
         <h1>Affiliations</h1>
+      </main>
 
-        {/* // TODO: https://schema.org/Review */}
-        <ul className="affiliations">
+      {/* // TODO: https://schema.org/Review */}
+      {/*         <ul className="affiliations">
           {allStrapiAffiliation.nodes.map((affiliation: AffiliationTypes) => (
             <li key={affiliation.id} className='affiliation'>
               <GatsbyImage
@@ -73,9 +75,23 @@ const AffiliationsPage = () => {
               <p><a href={affiliation.link} target='_blank' rel='noopener noreferrer'>Visit Them</a></p>
             </li>
           ))}
-        </ul>
+        </ul> */}
 
-      </main>
+
+      {/* // ! href is currently broken with how its using a card */}
+      <section className="deck">
+        {allStrapiAffiliation.nodes.map((affiliation: AffiliationTypes) => (
+          <Card
+            key={affiliation.id}
+            image={affiliation?.logo?.localFile?.childImageSharp?.gatsbyImageData}
+            alt={affiliation?.logo?.alternativeText}
+            title={affiliation.name}
+            excerpt={affiliation.excerpt}
+            href={affiliation.link}
+          />
+        ))}
+      </section>
+
 
       <Footer />
 

@@ -17,6 +17,7 @@
 @import "buttons";
 @import "links";
 @import "lists";
+@import "singles";
 @import "visibility";
 
 @import "pages/projects";

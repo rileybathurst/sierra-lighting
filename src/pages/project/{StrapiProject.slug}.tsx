@@ -227,16 +227,8 @@ export const query = graphql`
 				slug
 			}
 
-			# // TODO: fragment
 			testimonial {
-				id
-				customer
-				position
-				review
-				vendor {
-					name
-					slug
-				}
+				...testimonialCardFragment
 			}
 
 			video {
@@ -484,7 +476,7 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
         ) : null
       }
 
-      <hr className="main" />
+      <hr />
 
       {/* // ? can a project have multiple services? I kinda doubt it and should be in the breadcrumb */}
       <Breadcrumbs>

@@ -23,11 +23,11 @@ const FaqsPage = () => {
 
         <h1>Frequently Asked Questions</h1>
 
-        <ul className="faqs">
+        <ul className="faqs list-style-none">
           {useStrapiFaq().nodes.map((faq: faqTypes) => (
             <li key={faq.id}>
               <hr />
-              <h2>{faq.question}</h2>
+              <h2 className="margin-block-end-vinson">{faq.question}</h2>
               <div>
                 <div>
                   {faq.answer}

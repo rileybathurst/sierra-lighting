@@ -295,9 +295,17 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 		weddingLight = true;
 	}
 
+	const outConnections = data.outConnection?.nodes ?? [];
+	const outgoingLightSlugs = new Set(
+		outConnections.flatMap((connection) =>
+			connection.starting_light ? [connection.starting_light.slug] : [],
+		),
+	);
 	const lightConnections = [
-		...(data.inConnection?.nodes ?? []),
-		...(data.outConnection?.nodes ?? []),
+		...(data.inConnection?.nodes ?? []).filter(
+			(connection) => !outgoingLightSlugs.has(connection.ending_light?.slug ?? ""),
+		),
+		...outConnections,
 	];
 
 	// TODO: build the hero image switcher here
@@ -507,7 +515,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 				</React.Fragment>
 			) : null}
 
-			<hr className="main" />
+			<hr />
 
 			<Breadcrumbs>
 				<Breadcrumb>

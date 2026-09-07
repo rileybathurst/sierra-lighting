@@ -84,7 +84,7 @@ const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
         </>
         : null}
 
-      <hr className="main" />
+      <hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/vendor/">Vendor</Link></Breadcrumb>

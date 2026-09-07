@@ -44,7 +44,7 @@ export const Light = () => {
                 </article>
             </main>
 
-            <hr className="stork" />
+            <hr />
 
             {/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device, make it a component */}
             {faker.datatype.boolean() ? (
@@ -79,7 +79,7 @@ export const Light = () => {
             )}
 
             <div>
-                <hr className="stork" />
+                <hr />
                 <h3 className="stork">Other Lights in {faker.music.genre()}</h3>
                 <Deck />
             </div>
@@ -90,7 +90,7 @@ export const Light = () => {
             </div>
             <Deck />
 
-            <hr className="stork" />
+            <hr />
 
             <Breadcrumbs />
 

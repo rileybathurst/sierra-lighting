@@ -33,6 +33,7 @@ const strapiConfig = {
       singularName: "vendor",
       queryParams: {
         // Strapi REST equivalent: populate[0]=social&populate[1]=social.site
+        // ! policy
         populate: [
           "social",
           "social.site",

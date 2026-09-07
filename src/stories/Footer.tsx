@@ -5,19 +5,11 @@ import { faker } from '@faker-js/faker';
 import { Logo } from './Logo';
 import { TeamHeads } from './TeamHeads';
 
-interface FooterProps {
-  primary?: boolean;
-  onClick?: () => void;
-}
-
-export const Footer = ({
-  primary = false,
-  ...props
-}: FooterProps) => {
+export const Footer = () => {
 
   return (
     <footer>
-      <hr className="stork" />
+      <hr />
 
       <h3 className="stork">Start With A Free Quote</h3>
 
@@ -73,11 +65,11 @@ export const Footer = ({
         <button type="submit">Send</button>
       </form>
 
-
+      {/* // TODO: this is broken here */}
       <hr className='pelican' />
       <div className="footer-container">
 
-        <section className="contact">
+        <section id="contact" className="condor contact">
 
           <h3>Contact</h3>
 

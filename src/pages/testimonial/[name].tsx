@@ -23,7 +23,6 @@ function TestimonialCatchAll({ params }: CatchAllTypes) {
 
       {/* // TODO: list other testimonials */}
 
-
       <Breadcrumbs>
         <Breadcrumb><Link to="/testimonial/">Testimonial</Link></Breadcrumb>
         <Breadcrumb>{params.name}</Breadcrumb>

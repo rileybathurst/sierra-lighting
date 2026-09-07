@@ -14,6 +14,7 @@ import type { CardType } from '../types/card-type';
 import Testimonial from '../components/testimonial';
 import { Phone } from '../components/phone';
 import type { ImageWithAspectType } from '../types/image-with-aspect-type';
+import TestimonialTypes from '../types/testimonial-types';
 
 type VenueViewTypes = {
   data: {
@@ -41,18 +42,7 @@ type VenueViewTypes = {
         }
       }
       venueImage: ImageWithAspectType;
-      testimonials: {
-        id: React.Key;
-        title: string;
-        review: string;
-        stars: number;
-        customer: string;
-        position: string;
-        vendor: {
-          name: string;
-          slug: string;
-        }
-      }[]
+      testimonials: TestimonialTypes[] | null;
 
       projects: CardType[]
 
@@ -84,7 +74,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
         <hr />
         <p>{data.strapiVenue.description}</p>
 
-        {data.strapiVenue.testimonials.length > 0 ?
+        {data.strapiVenue.testimonials && data.strapiVenue.testimonials.length > 0 ?
           <Testimonial {...data.strapiVenue.testimonials[0]} />
           : null
         }
@@ -203,7 +193,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
       }
 
       {/* // TODO: I think above breadcrumb could be a thing depending on design */}
-      <hr className='main' />
+      < hr />
 
       {/* // ? I dont think we have non featured pages anymore */}
       <Breadcrumbs>
@@ -268,16 +258,7 @@ export const query = graphql`
           ...projectCard
         }
         testimonials {
-          id
-          title
-          review
-          stars
-          customer
-          position
-          vendor {
-            name
-            slug
-          }
+          ...testimonialCardFragment
         }
       }
 

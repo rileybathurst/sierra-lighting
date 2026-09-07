@@ -40,7 +40,7 @@ function LightCatchAll({ params }: LightCatchAllType) {
         ))}
       </section>
 
-      <hr className="main" />
+      <hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/lights/">Light</Link></Breadcrumb>

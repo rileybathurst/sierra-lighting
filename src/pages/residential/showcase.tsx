@@ -174,7 +174,7 @@ function ResidentialShowcase() {
           ))
       ))}
 
-      <hr className="main" />
+      <hr />
 
       <section>
         <h4 className="main">Lighting types used on residential christmas displays</h4>
@@ -216,7 +216,7 @@ function ResidentialShowcase() {
         ))}
       </section>
 
-      <hr className="main" />
+      <hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/residential/">Residential</Link></Breadcrumb>

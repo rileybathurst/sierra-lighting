@@ -31,7 +31,8 @@ main,
 .services,
 .testimonials,
 .testimonial,
-.slider {
+.slider,
+hr {
   max-width: var(--stork);
   margin-inline: auto;
   padding-inline: var(--vinson);
@@ -112,34 +113,6 @@ main,
   >a {
     order: 4;
   }
-}
-
-
-/*------------------------------------*/
-
-.inline {
-  display: inline;
-}
-
-/* TODO: document all these important tags */
-.margin-block-end-0 {
-  margin-block-end: 0 !important;
-  /* overwrites deck */
-}
-
-.margin-block-end-vinson {
-  margin-block-end: var(--vinson) !important;
-  /* overwrites deck */
-}
-
-.margin-block-end-kilimanjaro {
-  margin-block-end: var(--kilimanjaro) !important;
-  /* overwrites deck */
-}
-
-.margin-block-end-denali,
-.above-deck {
-  margin-block-end: var(--denali);
 }
 
 /*------------------------------------*/
@@ -353,13 +326,6 @@ header {
   margin-block-end: var(--vinson);
 }
 
-/* TODO: document this */
-@media (max-width: 60rem) {
-  .contact {
-    padding-inline: 0;
-  }
-}
-
 /*------------------------------------*/
 /* FOOTER */
 /* * this name isnt great as I also use it for vendors */
@@ -421,7 +387,7 @@ header {
 
       /* TODO: variable */
       @media (prefers-color-scheme: dark) {
-        fill: var(--denim-500);
+        fill: var(--honey-200);
       }
     }
 
@@ -836,6 +802,7 @@ footer {
 
   padding-block-start: 5rem;
   padding-inline: var(--elbrus);
+  margin-block-end: clamp(var(--kilimanjaro), 5vw, var(--everest));
 
   max-width: 100vw;
   display: grid;

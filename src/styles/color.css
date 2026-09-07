@@ -1,5 +1,4 @@
 /* Index
-- buttons
 - qualities
 - plans
 */
@@ -18,39 +17,6 @@ body {
   }
 }
 
-/*------------------------------------*/
-/* #BUTTONS */
-/*------------------------------------*/
-
-.button--hover {
-  color: var(--honey-700);
-  box-shadow: var(--stratosphere);
-  background-color: var(--honey-300);
-  border-color: var(--honey-400);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-700);
-    border-color: var(--denim-600);
-  }
-}
-
-.backed {
-  background-color: var(--honey-50);
-  box-shadow: 0 0 0 100vmax var(--honey-50);
-  clip-path: inset(0 -100vmax);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-700);
-    box-shadow: 0 0 0 100vmax var(--denim-700);
-  }
-}
-
-/* TODO Name */
-.bb {
-  margin-block: var(--elbrus);
-  padding-block: var(--elbrus);
-}
-
 /*------------------*/
 /* TOPBAR */
 /*------------------*/
@@ -65,11 +31,28 @@ body {
     color: var(--neutral-800);
   }
 
+  a:hover {
+    color: var(--neutral-700);
+  }
+
+  a:focus {
+    color: var(--neutral-600);
+  }
+
   @media (prefers-color-scheme: dark) {
     background-color: var(--denim-600);
 
+    /* * reset to regular dark link color */
     a {
-      color: var(--neutral-100);
+      color: var(--honey-200);
+    }
+
+    a:hover {
+      color: var(--honey-300);
+    }
+
+    a:focus {
+      color: var(--honey-400);
     }
   }
 }
@@ -119,15 +102,6 @@ header {
 /*------------------------------------*/
 
 .qualities {
-  background: var(--honey-50);
-  box-shadow: 0 0 0 100vmax var(--honey-50);
-  clip-path: inset(0 -100vmax);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-700);
-    box-shadow: 0 0 0 100vmax var(--denim-700);
-  }
-
   section {
     border-block-end: 1px solid var(--honey-400);
 
@@ -155,7 +129,7 @@ header {
 
 /*  match the card */
 .testimonial {
-  background-color: var(--honey-50);
+  background-color: var(--honey-100);
   border: 2px solid var(--neutral-100);
   box-shadow: var(--mesosphere);
 
@@ -165,26 +139,12 @@ header {
   }
 }
 
-.slider-container {
-  display: flex;
-  /*  keeps the margins in */
-  background-color: var(--honey-50);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-700);
-  }
+.testimonial svg {
+  fill: var(--honey-400);
 }
 
-.testimonial {
-  background-color: var(--neutral-100);
-
-  @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-750);
-  }
-
-  svg {
-    fill: var(--honey-400);
-  }
+.slider-container {
+  display: flex;
 }
 
 /*------------------------------------*/

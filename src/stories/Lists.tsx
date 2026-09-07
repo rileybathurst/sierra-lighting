@@ -14,14 +14,14 @@ export const Lists = () => {
         <li>Item 2</li>
         <li>Item 3</li>
       </ul>
-      <hr className="" />
+      <hr />
       List Style None
       <ul className="list-style-none">
         <li>Item 1</li>
         <li>Item 2</li>
         <li>Item 3</li>
       </ul>
-      <hr className="" />
+      <hr />
       Inset List Style None
       <ul className="list-style-none">
         <li>Item 1</li>

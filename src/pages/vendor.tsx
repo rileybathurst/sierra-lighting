@@ -1,4 +1,5 @@
 // TODO: add search to the page
+// TODO: add other vendors service
 
 import * as React from "react"
 import { Link, graphql } from 'gatsby';
@@ -10,10 +11,16 @@ import Card from "../components/card";
 import type { CardType } from "../types/card-type";
 import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
+type VendorCardType = CardType & {
+  projects: {
+    id: React.Key;
+  }[];
+};
+
 type vendorsPageTypes = {
   data: {
     allStrapiVendor: {
-      nodes: CardType[];
+      nodes: VendorCardType[];
     };
     allStrapiCollaborator: {
       nodes: {
@@ -30,9 +37,9 @@ type vendorsPageTypes = {
 }
 const VendorsPage = ({ data }: vendorsPageTypes) => {
 
-  const vendorsByCollaborator: Record<string, CardType[]> = {};
+  const vendorsByCollaborator: Record<string, VendorCardType[]> = {};
 
-  data.allStrapiVendor.nodes.forEach((vendor: CardType & { collaborator?: { slug: string } }) => {
+  data.allStrapiVendor.nodes.forEach((vendor) => {
     const slug = vendor.collaborator?.slug;
     if (slug) {
       if (!vendorsByCollaborator[slug]) {
@@ -72,13 +79,15 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
             </div>
 
             <div className="deck">
-              {vendorsByCollaborator[collaborator.slug]?.map((vendor: CardType) => (
-                <Card
-                  key={vendor.id}
-                  {...vendor}
-                  breadcrumb={`vendor/${collaborator.slug}`}
-                />
-              ))}
+              {[...(vendorsByCollaborator[collaborator.slug] ?? [])]
+                .sort((a, b) => b.projects.length - a.projects.length)
+                .map((vendor) => (
+                  <Card
+                    key={vendor.id}
+                    {...vendor}
+                    breadcrumb={`vendor/${collaborator.slug}`}
+                  />
+                ))}
             </div>
           </section>
         ))}
@@ -120,6 +129,9 @@ export const query = graphql`
           id
           industry
           slug
+        }
+        projects {
+          id
         }
       }
     }

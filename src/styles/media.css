@@ -240,23 +240,11 @@ header svg:active {
     }
   }
 
-  >a:hover p {
-    border-radius: var(--border-radius);
-    box-shadow: var(--stratosphere);
-    background: var(--honey-50);
-
-    @media (prefers-color-scheme: dark) {
-      background: var(--denim-700);
-    }
-  }
-
   >a:hover>.gatsby-image-wrapper {
     box-shadow: var(--stratosphere);
     border-color: var(--honey-400);
   }
 }
-
-/*  .team-heads */
 
 /*------------------------------------*/
 /* SPIN */

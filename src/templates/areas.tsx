@@ -263,7 +263,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
       {/* // TODO: where in the state do we work */}
 
-      <hr className='main' />
+      < hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/areas/">Areas</Link></Breadcrumb>

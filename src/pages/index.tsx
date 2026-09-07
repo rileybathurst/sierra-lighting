@@ -12,6 +12,7 @@ import Season from "../components/season";
 import BackImage from "../images/BackImage";
 import HeroWeddingBackImage from "../images/HeroWeddingBackImage";
 import Suite from '../components/suite';
+import type TestimonialTypes from '../types/testimonial-types';
 
 const IndexPage = () => {
 
@@ -34,11 +35,7 @@ const IndexPage = () => {
 
       allStrapiTestimonial(sort: {position: ASC}) {
         nodes {
-          id
-          customer
-          excerpt
-          title
-          position
+          ...testimonialCardFragment
         }
       }
 
@@ -88,24 +85,6 @@ const IndexPage = () => {
       }
     }
   }
-
-  interface TestimonialTypes {
-    id: React.Key;
-    customer: string;
-    platform: string;
-    excerpt: string;
-    createdAt: string;
-    stars: number;
-    title: string;
-    position: string;
-
-    project?: {
-      slug?: string;
-      title?: string;
-    }
-  }
-
-  // console.log(Season());
 
   return (
     <>
@@ -170,9 +149,7 @@ const IndexPage = () => {
         <section className="qualities albatross">
           {data.allStrapiQuality.nodes.map((quality: QualityTypes) => (
             <section key={quality.id}>
-              <div className='brow'>
-                <h3 className='supra'>{quality.name}</h3>
-              </div>
+              <h3 className='font-serif'>{quality.name}</h3>
               <p>{quality.description.data.description}</p>
             </section>
           ))}
@@ -187,10 +164,16 @@ const IndexPage = () => {
 
             <ul>
               {/* // TODO: make this a component */}
-              {data.allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => (
-                <li key={testimonial.id} className="slider">
-                  {/* // TODO: once testimonial projects are in place, re-add this */}
-                  {/* {testimonial.project ?
+              {data.allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
+                const truncationPoint = testimonial.review.indexOf(" ", 160);
+                const review = truncationPoint === -1
+                  ? testimonial.review
+                  : `${testimonial.review.slice(0, truncationPoint)}...`;
+
+                return (
+                  <li key={testimonial.id} className="slider">
+                    {/* // TODO: once testimonial projects are in place, re-add this */}
+                    {/* {testimonial.project ?
                     <h4>
                       <Link to={`/project/${testimonial.project.slug}`}>
                         {testimonial.project.title}
@@ -198,14 +181,15 @@ const IndexPage = () => {
                     </h4>
                     : null} */}
 
-                  <p>{testimonial.excerpt}</p>
-                  {/* // TODO: className="together" is a bad name */}
-                  <div className="together">
-                    <h4>{testimonial.customer}</h4>
-                    <p>{testimonial.position}</p>
-                  </div>
-                </li>
-              ))}
+                    <p>{review}</p>
+                    {/* // TODO: className="together" is a bad name */}
+                    <div className="together">
+                      <h4>{testimonial.customer}</h4>
+                      <p>{testimonial.position}</p>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
 
             <div className="testimonial-links">

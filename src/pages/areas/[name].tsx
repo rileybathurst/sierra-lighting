@@ -50,7 +50,7 @@ function AreaCatchAll({ params }: CatchAllTypes) {
 
       </main>
 
-      <hr className="main" />
+      <hr />
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/areas/">Areas</Link></Breadcrumb>

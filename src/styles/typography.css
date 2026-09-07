@@ -39,11 +39,6 @@ button {
     #Type Rythym
 \*------------------------------------*/
 
-p {
-  margin-block-end: 0.625rem;
-  /* 10px */
-}
-
 h1,
 .everest {
   margin-top: 0;
@@ -118,9 +113,23 @@ h2,
 h3,
 h4,
 h5,
+h6 {
+  letter-spacing: -0.02em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
 h6,
 p {
   margin-block-start: 0;
+}
+
+p {
+  margin-block-end: 0.625rem;
+  /* 10px */
 }
 
 small,
@@ -281,8 +290,6 @@ h2.top-bar {
 
   font-size: var(--kilimanjaro);
   line-height: var(--denali);
-  margin-block-end: 1.75rem;
-
   margin-block-end: 0.5lh;
 
   @supports not (margin: var(--elbrus)) {
@@ -293,17 +300,6 @@ h2.top-bar {
 /*------------------------------------*/
 /* HOME */
 /*------------------------------------*/
-
-/*  TODO: should be in lists */
-ol li {
-  margin-block-end: var(--kilimanjaro);
-}
-
-.ol-title {
-  display: block;
-  font-size: var(--kilimanjaro);
-  margin-block-end: var(--kilimanjaro);
-}
 
 .masthead h2 {
   font-weight: 300;
@@ -356,29 +352,6 @@ ol li {
 
 .long-title {
   white-space: break-spaces;
-}
-
-.qualities {
-  .brow {
-    display: flex;
-    flex-direction: column-reverse;
-
-    .supra {
-      font-family: var(--font-serif);
-      font-style: normal;
-      font-weight: 700;
-      font-size: var(--aconcagua);
-      line-height: var(--everest);
-      margin-block-end: 0.5lh;
-    }
-
-    .eyebrow {
-      font-size: var(--kilimanjaro);
-      line-height: var(--denali);
-      font-weight: 100;
-      margin-block-end: 0.25lh;
-    }
-  }
 }
 
 .capitalize {
