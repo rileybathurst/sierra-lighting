@@ -26,3 +26,9 @@
 .above-deck {
   margin-block-end: var(--denali);
 }
+
+/*------------------------------------*/
+
+.align-self-center {
+  align-self: center;
+}

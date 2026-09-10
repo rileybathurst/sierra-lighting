@@ -363,11 +363,6 @@
     text-decoration: underline;
     /* * 1 deeper as the card is deeper */
     color: var(--honey-500);
-
-    /* ! dark */
-    /* @media (prefers-color-scheme: dark) {
-      color: var(--honey-400);
-    } */
   }
 
   p,
@@ -405,7 +400,7 @@ a.linked-card:hover {
     color: var(--honey-500);
   }
 
-  /* ! dark */
+  /* TODO: add dark mode styles */
 }
 
 a.linked-card:focus {
@@ -422,5 +417,5 @@ a.linked-card:focus {
     color: var(--honey-600);
   }
 
-  /* ! dark */
+  /* TODO: add dark mode styles */
 }

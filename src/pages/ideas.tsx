@@ -63,7 +63,7 @@ const IdeasPage = ({ location }: LocationTypes) => {
 
       <div className="deck">
         {data.allStrapiLight.nodes
-          .filter((light: CardType) => IdeasSearch.includes(light.slug))
+          .filter((light: CardType) => IdeasSearch.includes(light.slug ?? ''))
           .map((light: CardType) => (
             <div key={light.id}>
               {/* // ? should this be a React.fragment wrapping */}
@@ -74,7 +74,7 @@ const IdeasPage = ({ location }: LocationTypes) => {
               <p>
                 <Link to={`/ideas/?${nextSearchParams.toString()}`} onClick={(e) => {
                   e.preventDefault();
-                  nextSearchParams.delete('light', light.slug);
+                  nextSearchParams.delete('light', light.slug ?? '');
                   window.location.href = `/ideas/?${nextSearchParams.toString()}`;
                 }}>
                   Remove
@@ -88,11 +88,11 @@ const IdeasPage = ({ location }: LocationTypes) => {
 
       <ul className="main">
         {data.allStrapiLight.nodes
-          .filter((light: CardType) => !IdeasSearch.includes(light.slug))
+          .filter((light: CardType) => !IdeasSearch.includes(light.slug ?? ''))
           .map((light: CardType) => (
             <li key={light.id}>
-              <Link to={`/ideas/?${nextSearchParams.toString()}&light=${light.slug}`}>
-                Add {light.slug}
+              <Link to={`/ideas/?${nextSearchParams.toString()}&light=${light.slug ?? ''}`}>
+                Add {light.slug ?? ''}
               </Link>
             </li>
           ))}

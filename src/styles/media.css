@@ -17,6 +17,11 @@ svg {
   }
 }
 
+/* * cookie pop up box */
+#cc-main svg {
+  min-width: revert;
+}
+
 .logo {
   max-width: 10rem;
   fill: var(--neutral-800);

@@ -500,6 +500,13 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             Formerly known as Sierra Christmas Lights
           </a>
         </h5>
+        <button
+          type="button"
+          className="align-self-center"
+          onClick={() => window.dispatchEvent(new Event("sierra:show-cookie-preferences"))}
+        >
+          Cookie Settings
+        </button>
       </div>
 
     </footer>

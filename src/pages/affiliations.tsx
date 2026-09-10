@@ -1,6 +1,6 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
+import type { IGatsbyImageData } from "gatsby-plugin-image"
 
 import { SEO } from "../components/seo";
 
@@ -77,14 +77,11 @@ const AffiliationsPage = () => {
           ))}
         </ul> */}
 
-
-      {/* // ! href is currently broken with how its using a card */}
       <section className="deck">
         {allStrapiAffiliation.nodes.map((affiliation: AffiliationTypes) => (
           <Card
             key={affiliation.id}
-            image={affiliation?.logo?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={affiliation?.logo?.alternativeText}
+            image={affiliation?.logo}
             title={affiliation.name}
             excerpt={affiliation.excerpt}
             href={affiliation.link}
@@ -92,9 +89,7 @@ const AffiliationsPage = () => {
         ))}
       </section>
 
-
       <Footer />
-
     </>
   )
 }

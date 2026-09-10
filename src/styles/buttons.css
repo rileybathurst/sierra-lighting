@@ -80,6 +80,13 @@ button:disabled,
   }
 }
 
+/* CookieConsent places this control beside a flexible modal title. */
+#cc-main .pm__close-btn {
+  flex: 0 0 40px;
+  margin: 0;
+  padding: 0;
+}
+
 /*------------------------------------*/
 
 .button--left-align {

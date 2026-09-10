@@ -82,25 +82,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-plugin-google-gtag",
-      options: {
-        trackingIds: [
-          process.env.GA, // Google Analytics / GA
-        ],
-        gtagConfig: {
-          optimize_id: "OPT_CONTAINER_ID",
-          anonymize_ip: true,
-          cookie_expires: 0,
-        },
-        pluginConfig: {
-          head: false,
-          respectDNT: true,
-          exclude: [],
-          delayOnRouteUpdate: 0,
-        },
-      },
-    },
-    {
       resolve: "gatsby-plugin-postcss",
       options: {
         postCssPlugins: [
