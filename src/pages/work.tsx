@@ -213,16 +213,13 @@ export const data = graphql`
     strapiWork {
       excerpt
       hero {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
-          }
-        }
-        alternativeText
+        ...heroSEOImageFragment
       }
+
       sites {
         id
       }
+      
     }
 
   }

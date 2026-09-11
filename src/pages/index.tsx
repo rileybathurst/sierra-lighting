@@ -54,20 +54,10 @@ const IndexPage = () => {
 
       strapiHero {
         front {
-          alternativeText
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
+          ...heroSEOImageFragment
         }
         wedding_front {
-          alternativeText
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
+          ...heroSEOImageFragment
         }
       }
 

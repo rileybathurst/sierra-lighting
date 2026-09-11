@@ -20,14 +20,8 @@ const AffiliationsPage = () => {
           excerpt
           href: link
 
-          logo {
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-              url
-            }
-            alternativeText
+          image: logo {
+            ...cardImageFragment
           }
         }
       }

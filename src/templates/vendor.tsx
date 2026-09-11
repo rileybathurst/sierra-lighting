@@ -295,16 +295,7 @@ export const query = graphql`
         }
 
         profile {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                breakpoints: [960, 1840]
-                  width: 960
-              )
-            }
-            url
-          }
-          alternativeText
+          ...heroSEOImageFragment
         }
 
         testimonials {
@@ -317,22 +308,7 @@ export const query = graphql`
         }
 
         projects {
-          id
-          title
-          slug
-          excerpt
-  
-          image {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
+          ...projectCard
         }
       }
 
@@ -341,26 +317,7 @@ export const query = graphql`
         filter: {collaborator: {slug: {eq: $collaborator}}, slug: {ne: $slug}}
       ) {
         nodes {
-          name
-          id
-          slug
-          excerpt
-    
-          profile {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [111, 165, 222, 444, 880]
-                  width: 222
-                )
-              }
-            }
-            alternativeText
-          }
-
-          collaborator {
-            slug
-          }
+          ...vendorCardFragment
 
           collaboratorAncillary
         }

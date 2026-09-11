@@ -8,12 +8,7 @@ function HeroWeddingBackImage() {
     query HeroWeddingBackImageQuery {
       strapiHero {
         wedding_back {
-          alternativeText
-          localFile {
-            childImageSharp {
-              gatsbyImageData
-            }
-          }
+          ...heroSEOImageFragment
         }
       }
     }

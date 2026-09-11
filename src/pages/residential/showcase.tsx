@@ -22,7 +22,25 @@ function ResidentialShowcase() {
     query ShowcaseQuery {
       allStrapiShowcase {
         nodes {
-          ...showcase
+          id
+          roofline
+          price
+          tree
+          tier
+
+          description {
+            data {
+              description
+            }
+          }
+          
+          project {
+            id
+            slug
+            image {
+              ...heroSEOImageFragment
+            }
+          }
         }
       }
 
