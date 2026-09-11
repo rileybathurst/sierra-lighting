@@ -13,7 +13,7 @@ const Start = ({ className, path }: startTypes) => {
       to={`/contact?=start-${path}`}
       className={`button button-hero ${className}`}
     >
-      Start with a free quote
+      Request a free quote
     </Link>
   )
 }

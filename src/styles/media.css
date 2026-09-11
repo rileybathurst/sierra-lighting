@@ -350,7 +350,8 @@ header svg:active {
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
   border: 1px solid var(--neutral-100);
-  /*  TODO: theres a slight white gap at the bottom */
+  /* TODO: theres a slight white gap at the bottom */
+  /* * this note is hitting the stay gold check dont worry about it */
 }
 
 /*------------------------------------*/

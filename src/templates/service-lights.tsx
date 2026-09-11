@@ -105,6 +105,7 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
       <Header />
 
       <main>
+        {/* // TODO: Lighting types for Wedding is not a well written title */}
         {/* // ? I thought h1 always had styling? */}
         {/* // * aconcagua for a long headline */}
         <h1 className='mixta aconcagua'>Lighting types for {data.strapiService.name}</h1>

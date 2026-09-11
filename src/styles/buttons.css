@@ -9,7 +9,7 @@
 button,
 .button {
   background-color: var(--denim-600);
-  border: 1px solid var(--honey-750);
+  border: 1px solid var(--honey-700);
   color: var(--neutral-100);
   width: max-content;
   padding-block-start: var(--kosciuszko);

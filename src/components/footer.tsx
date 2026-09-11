@@ -232,7 +232,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
       {showQuote && (
         <>
-          <h3 className="stork">Start With A Free Quote</h3>
+          <h3 className="stork">Request a Free Quote</h3>
 
           {/* // ? should i be sanitizing inputs here */}
           <form
@@ -288,7 +288,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
               </p>
             )}
 
-            <label>Message
+            <label>How can we help?
               <textarea name="message" onChange={profanityCheck} className={messageProfanity ? "error" : ""} />
             </label>
             <label>How did you hear about us?
