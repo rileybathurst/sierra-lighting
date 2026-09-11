@@ -12,7 +12,7 @@ import ReactMarkdown from "react-markdown";
 
 const ProjectsPage = () => {
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiService, allStrapiArea } = useStaticQuery(graphql`
     query ProjectsQuery {
       allStrapiService {
         nodes {
@@ -60,11 +60,11 @@ const ProjectsPage = () => {
 
       <main>
         <h1>Projects</h1>
-        <p>A gallery of some of our past work. Photos of residential and commercial displays in {data.allStrapiArea.nodes.map((area: { name: string }) => area.name).join(", ")}</p>
+        <p>A gallery of some of our past work. Photos of residential and commercial displays in {allStrapiArea.nodes.map((area: { name: string }) => area.name).join(", ")}</p>
       </main>
 
       <div className={`projects ${Season()}`}>
-        {data.allStrapiService.nodes.map((service: ServiceType) => (
+        {allStrapiService.nodes.map((service: ServiceType) => (
           service.projects.length > 0 ?
             <div key={service.id} className={service.slug}>
               <div className="above-deck">

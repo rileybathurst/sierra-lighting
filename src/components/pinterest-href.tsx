@@ -4,7 +4,7 @@ import { logPinterestEntry } from "./log-pinterest-entry";
 
 export const PinterestHref = ({ imageSources }: { imageSources?: { srcSet: string }[] }) => {
 
-  const data = useStaticQuery(graphql`
+  const { strapiAbout, strapiSocialSite } = useStaticQuery(graphql`
   query pinterestHrefQuery {
     strapiAbout {
       url
@@ -17,7 +17,7 @@ export const PinterestHref = ({ imageSources }: { imageSources?: { srcSet: strin
   }
 `);
 
-  const siteUrl = data.strapiAbout.url;
+  const siteUrl = strapiAbout.url;
   if (!imageSources || imageSources.length === 0) {
     throw new Error(
       "Expected gatsbyImageData.images.sources to be defined with at least one entry",
@@ -45,7 +45,7 @@ export const PinterestHref = ({ imageSources }: { imageSources?: { srcSet: strin
         void logPinterestEntry(mediaPath)
       }}
     >
-      <span dangerouslySetInnerHTML={{ __html: data.strapiSocialSite.svg }} />
+      <span dangerouslySetInnerHTML={{ __html: strapiSocialSite.svg }} />
     </a>
   );
 };

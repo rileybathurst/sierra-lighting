@@ -22,7 +22,7 @@ const IdeasPage = ({ location }: LocationTypes) => {
 
   const startingSearchParams = new URLSearchParams(location.search);
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiLight } = useStaticQuery(graphql`
     query IdeasQuery {
 
       allStrapiLight {
@@ -62,7 +62,7 @@ const IdeasPage = ({ location }: LocationTypes) => {
       </main>
 
       <div className="deck">
-        {data.allStrapiLight.nodes
+        {allStrapiLight.nodes
           .filter((light: CardType) => IdeasSearch.includes(light.slug ?? ''))
           .map((light: CardType) => (
             <div key={light.id}>
@@ -87,7 +87,7 @@ const IdeasPage = ({ location }: LocationTypes) => {
       <h2 className="main">Add</h2>
 
       <ul className="main">
-        {data.allStrapiLight.nodes
+        {allStrapiLight.nodes
           .filter((light: CardType) => !IdeasSearch.includes(light.slug ?? ''))
           .map((light: CardType) => (
             <li key={light.id}>

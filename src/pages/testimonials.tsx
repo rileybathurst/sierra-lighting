@@ -14,7 +14,7 @@ import { useIsWithinBusinessHours } from '../components/business-hours';
 const TestimonialsPage = () => {
   const isWithinBusinessHours = useIsWithinBusinessHours();
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiTestimonial, strapiAbout, strapiFeedback, strapiForm } = useStaticQuery(graphql`
     query TestimonialsQuery {
       allStrapiTestimonial(
         sort: {order: ASC}
@@ -69,10 +69,10 @@ const TestimonialsPage = () => {
 
         <h1>Testimonials</h1>
 
-        <p>{data.strapiFeedback.about}</p>
+        <p>{strapiFeedback.about}</p>
 
         <ul className="testimonials">
-          {data.allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
+          {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
             return (
               <Testimonial
                 key={testimonial.id}
@@ -89,7 +89,7 @@ const TestimonialsPage = () => {
 
         <p>
           <a
-            href={data.strapiAbout.googleReviews}
+            href={strapiAbout.googleReviews}
             target="_blank"
             rel="noopener noreferrer"
             className="button"
@@ -114,7 +114,7 @@ const TestimonialsPage = () => {
           />
 
           {!isWithinBusinessHours && (
-            <input className="sr-only" type="hidden" name="hours" value={`${data.strapiForm.outsideHours}`} />
+            <input className="sr-only" type="hidden" name="hours" value={`${strapiForm.outsideHours}`} />
           )}
 
           <p className="sr-only">

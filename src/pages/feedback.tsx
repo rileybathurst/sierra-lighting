@@ -33,7 +33,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     }
   }
 
-  const data = useStaticQuery(graphql`
+  const { strapiFeedback, strapiAbout, strapiForm } = useStaticQuery(graphql`
     query FeedbackQuery {
       strapiFeedback {
         starting
@@ -167,11 +167,11 @@ const FeedbackPage = ({ location }: LocationTypes) => {
   useEffect(() => {
     if (fiveStar) {
       const timer = setTimeout(() => {
-        window.location.href = data.strapiAbout.googleReviews;
+        window.location.href = strapiAbout.googleReviews;
       }, 7000);
       return () => clearTimeout(timer);
     }
-  }, [fiveStar, data.strapiAbout.googleReviews]);
+  }, [fiveStar, strapiAbout.googleReviews]);
 
   return (
     <>
@@ -180,7 +180,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
       <main>
 
         <h1>Feedback</h1>
-        <p>{data.strapiFeedback.starting}</p>
+        <p>{strapiFeedback.starting}</p>
 
         {stars > 0 &&
           <h3>{stars} Star{stars > 1 && 's'}</h3>
@@ -188,11 +188,11 @@ const FeedbackPage = ({ location }: LocationTypes) => {
 
         {positive &&
           <>
-            <p>{data.strapiFeedback.positive}</p>
+            <p>{strapiFeedback.positive}</p>
             <button
               className="button"
               type="button"
-              onClick={() => window.open(data.strapiAbout.googleReviews, "_blank", "noopener,noreferrer")}
+              onClick={() => window.open(strapiAbout.googleReviews, "_blank", "noopener,noreferrer")}
             >
               Please Leave Us A Review
             </button>
@@ -201,7 +201,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
         }
         {negative &&
           <>
-            <p>{data.strapiFeedback.negative}</p>
+            <p>{strapiFeedback.negative}</p>
             <h3
             >
               Please Let Us Know How We Can Improve
@@ -230,7 +230,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
           />
 
           {!isWithinBusinessHours && (
-            <input className="sr-only" type="hidden" name="hours" value={`${data.strapiForm.outsideHours}`} />
+            <input className="sr-only" type="hidden" name="hours" value={`${strapiForm.outsideHours}`} />
           )}
 
           <p className="sr-only">

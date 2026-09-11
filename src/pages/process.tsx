@@ -27,7 +27,7 @@ function ProcessDetail({ id, name, markdown }: processTypes) {
 }
 
 const ProcessPage = () => {
-	const data = useStaticQuery(graphql`
+	const { holiday, wedding: weddingProcesses } = useStaticQuery(graphql`
     query ProcessQuery {
       holiday: allStrapiProcess(
         filter: {services: {elemMatch: {slug: {eq: "residential"}}}},
@@ -103,10 +103,10 @@ const ProcessPage = () => {
 				<hr />
 				<ol>
 					{seasonRadio === "wedding" ?
-						data.wedding.nodes.map((process: processTypes) => (
+						weddingProcesses.nodes.map((process: processTypes) => (
 							<ProcessDetail key={process.id} {...process} />
 						)) : (
-							data.holiday.nodes.map((process: processTypes) => (
+							holiday.nodes.map((process: processTypes) => (
 								<ProcessDetail key={process.id} {...process} />
 							))
 						)

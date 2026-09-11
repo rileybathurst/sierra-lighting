@@ -12,7 +12,7 @@ import ReactMarkdown from "react-markdown";
 
 const ThemesPage = () => {
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiTheme } = useStaticQuery(graphql`
     query ThemesQuery {
       allStrapiTheme {
         nodes {
@@ -42,7 +42,7 @@ const ThemesPage = () => {
       </main>
 
       <section>
-        {data.allStrapiTheme.nodes.map((theme: CardType) => (
+        {allStrapiTheme.nodes.map((theme: CardType) => (
           <h3 key={theme.id}>{theme.title}</h3>
         ))}
       </section>

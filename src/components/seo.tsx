@@ -9,7 +9,7 @@
       https://schema.org/Service
       */}
 
-{/* "about": "Creating ${data.allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}", */ }
+{/* "about": "Creating ${allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${allStrapiArea.nodes.map((area) => area.name).join(', ')}", */ }
 
 
 import React from "react";
@@ -100,7 +100,7 @@ type SEOtypes = {
 }
 export const SEO = (SEO: SEOtypes) => {
 
-  const data = useStaticQuery(graphql`
+  const { strapiAbout, strapiTopbar, allStrapiService, allStrapiArea, allStrapiKeyword, wedding, xmas } = useStaticQuery(graphql`
     query SEOQuery {
       
       strapiAbout {
@@ -170,12 +170,12 @@ export const SEO = (SEO: SEOtypes) => {
   `);
 
   const SeasonalTopbar = (() => {
-    if (data.strapiTopbar.title && data.strapiTopbar.default) {
-      return data.strapiTopbar.title;
+    if (strapiTopbar.title && strapiTopbar.default) {
+      return strapiTopbar.title;
     } else if (Season() === 'xmas') {
-      return data.strapiTopbar.defaultXmas;
+      return strapiTopbar.defaultXmas;
     } else if (Season() === 'wedding') {
-      return data.strapiTopbar.defaultWedding;
+      return strapiTopbar.defaultWedding;
     } else {
       console.error('No topbar title set in Strapi');
       return '';
@@ -185,16 +185,16 @@ export const SEO = (SEO: SEOtypes) => {
   /*------------------------------------*/
 
   const pageTitle = SEO.title ?
-    `${SEO.title} | ${data.strapiAbout.businessName}`
-    : `${data.strapiAbout.businessName} | ${SeasonalTopbar}`;
+    `${SEO.title} | ${strapiAbout.businessName}`
+    : `${strapiAbout.businessName} | ${SeasonalTopbar}`;
 
   /*------------------------------------*/
 
   let seasonFallBackImage: string | undefined;
   if (Season() === 'xmas') {
-    seasonFallBackImage = data.xmas?.hero_light.localFile.url;
+    seasonFallBackImage = xmas?.hero_light.localFile.url;
   } else if (Season() === 'wedding') {
-    seasonFallBackImage = data.wedding?.hero_light.localFile.url;
+    seasonFallBackImage = wedding?.hero_light.localFile.url;
   } else {
     seasonFallBackImage = undefined;
   }
@@ -203,43 +203,43 @@ export const SEO = (SEO: SEOtypes) => {
 
   /*------------------------------------*/
 
-  const pageDescription = SEO.description || data.strapiAbout.slogan;
+  const pageDescription = SEO.description || strapiAbout.slogan;
 
   const localBusinessSchema = {
     "@context": "https://schema.org/",
     "@type": "LocalBusiness",
-    name: data.strapiAbout.businessName,
-    description: `Creating professional ${data.allStrapiService.nodes.map((service: { name: string; }) => service.name).join(' lighting installation, ')} lighting installations in ${data.allStrapiArea.nodes.map((area: { name: string; }) => area.name).join(', ')}`,
-    slogan: data.strapiAbout.slogan,
-    url: data.strapiAbout.url,
-    alternateName: data.strapiAbout.alternateName,
+    name: strapiAbout.businessName,
+    description: `Creating professional ${allStrapiService.nodes.map((service: { name: string; }) => service.name).join(' lighting installation, ')} lighting installations in ${allStrapiArea.nodes.map((area: { name: string; }) => area.name).join(', ')}`,
+    slogan: strapiAbout.slogan,
+    url: strapiAbout.url,
+    alternateName: strapiAbout.alternateName,
     image: seasonFallBackImage,
-    openingHours: data.strapiAbout.openingHours,
-    paymentAccepted: data.strapiAbout.paymentAccepted,
-    telephone: data.strapiAbout.telephone,
-    email: data.strapiAbout.email,
+    openingHours: strapiAbout.openingHours,
+    paymentAccepted: strapiAbout.paymentAccepted,
+    telephone: strapiAbout.telephone,
+    email: strapiAbout.email,
     geo: {
       "@type": "GeoCoordinates",
-      latitude: data.strapiAbout.geoLatitude,
-      longitude: data.strapiAbout.geoLongitude
+      latitude: strapiAbout.geoLatitude,
+      longitude: strapiAbout.geoLongitude
     },
     areaServed: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
-        latitude: data.strapiAbout.geoLatitude,
-        longitude: data.strapiAbout.geoLongitude
+        latitude: strapiAbout.geoLatitude,
+        longitude: strapiAbout.geoLongitude
       },
-      geoRadius: data.strapiAbout.geoRadius
+      geoRadius: strapiAbout.geoRadius
     },
     address: {
       "@type": "PostalAddress",
-      addressLocality: data.strapiAbout.addressLocality,
-      addressRegion: data.strapiAbout.addressRegion,
-      postalCode: data.strapiAbout.postalCode,
+      addressLocality: strapiAbout.addressLocality,
+      addressRegion: strapiAbout.addressRegion,
+      postalCode: strapiAbout.postalCode,
       addressCountry: "US"
     },
-    keywords: data.allStrapiService.nodes.map((service: { name: string; }) => service.name).concat(data.allStrapiKeyword.nodes.map((k: { keyword: string; }) => k.keyword)).join(', ')
+    keywords: allStrapiService.nodes.map((service: { name: string; }) => service.name).concat(allStrapiKeyword.nodes.map((k: { keyword: string; }) => k.keyword)).join(', ')
   };
 
   return (
@@ -250,7 +250,7 @@ export const SEO = (SEO: SEOtypes) => {
       {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
 
       <title>{pageTitle}</title>
-      <meta name="description" content={SEO.description ? SEO.description : data.strapiAbout.slogan} />
+      <meta name="description" content={SEO.description ? SEO.description : strapiAbout.slogan} />
       {/* <meta name="image" itemProp="image" content={pageImage} /> */}
 
 
@@ -265,7 +265,7 @@ export const SEO = (SEO: SEOtypes) => {
       </Script>
 
       <Breadcrumbs
-        url={data.strapiAbout.url}
+        url={strapiAbout.url}
         breadcrumbs={SEO.breadcrumbs ?? []}
       />
 
@@ -273,8 +273,8 @@ export const SEO = (SEO: SEOtypes) => {
         <VideoMux
           videos={SEO.videos}
           pageUrl={SEO.url ?? ""}
-          url={data.strapiAbout.url}
-          businessName={data.strapiAbout.businessName}
+          url={strapiAbout.url}
+          businessName={strapiAbout.businessName}
         />
       )} */}
 

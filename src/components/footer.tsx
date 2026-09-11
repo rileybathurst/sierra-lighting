@@ -5,7 +5,7 @@ import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 import { profanity } from '@2toad/profanity';
 
-import SVG from 'react-inlinesvg';
+// import SVG from 'react-inlinesvg';
 import Logo from "../images/logo";
 import { useIsWithinBusinessHours } from './business-hours';
 import Season from './season';
@@ -122,7 +122,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
   /*------------------------------------*/
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiTeam, strapiAbout, strapiForm } = useStaticQuery(graphql`
     query FooterQuery {
       allStrapiTeam {
         nodes {
@@ -218,7 +218,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
   /*------------------------------------*/
 
-  const featuredSocials = (data?.strapiAbout?.social ?? [])
+  const featuredSocials = (strapiAbout?.social ?? [])
     .filter((social: { featured?: boolean }) => social.featured)
     .sort((a: { order?: number }, b: { order?: number }) => (a.order ?? 0) - (b.order ?? 0));
 
@@ -250,7 +250,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
               value={`${!isWithinBusinessHours ? "Outside Business Hours: " : ""}Contact Form from sierra.lighting ${email}`} />
 
             {!isWithinBusinessHours && (
-              <input className="sr-only" type="hidden" name="hours" value={`${data.strapiForm.outsideHours}`} />
+              <input className="sr-only" type="hidden" name="hours" value={`${strapiForm.outsideHours}`} />
             )}
 
             <label>Name
@@ -284,7 +284,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
             {addressLink && (
               <p className="error">
-                {data.strapiForm.addressLink}
+                {strapiForm.addressLink}
               </p>
             )}
 
@@ -297,7 +297,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
             {/* // TODO: this might be a query in the future if I keep changing it */}
             <label className='checkbox'>
-              {data.strapiForm.minimum}
+              {strapiForm.minimum}
               <input type="checkbox" name="minimum" />
             </label>
             <p className="sr-only">
@@ -309,7 +309,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
             {(emailProfanity || messageProfanity || referralProfanity) && (
               <p className="error">
-                {data.strapiForm.profanity}
+                {strapiForm.profanity}
               </p>
             )}
 
@@ -329,19 +329,19 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
             {/* // TODO: this changes twice on hover and reverts back its just a mess of overlapping styles */}
             <div className="contact-info">
-              <a href={`mailto:${data.strapiAbout.email}`}
+              <a href={`mailto:${strapiAbout.email}`}
                 className="button button--left-align"
               >
-                {data.strapiAbout.email}
+                {strapiAbout.email}
               </a>
               <p>
-                Call or Text: <Phone phone={data.strapiAbout.telephone} leftAlign />
+                Call or Text: <Phone phone={strapiAbout.telephone} leftAlign />
 
                 {/* // * elements of typograhic style 3.2 numerals, capitals & small caps */}
                 <small>
-                  {data.strapiForm.monitoring}&nbsp;
-                  <span className="white-space-no-wrap">{Hours(data.strapiForm.opening)}&thinsp;and&thinsp;{Hours(data.strapiForm.closing)} <span className="all-small-caps">PST</span></span>,
-                  &nbsp;<span className="white-space-no-wrap">{days(data.strapiForm.days)}</span>.&nbsp;
+                  {strapiForm.monitoring}&nbsp;
+                  <span className="white-space-no-wrap">{Hours(strapiForm.opening)}&thinsp;and&thinsp;{Hours(strapiForm.closing)} <span className="all-small-caps">PST</span></span>,
+                  &nbsp;<span className="white-space-no-wrap">{days(strapiForm.days)}</span>.&nbsp;
                 </small>
               </p>
             </div>
@@ -360,7 +360,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         </h4>
 
         <div className="team-heads spin">
-          {data.allStrapiTeam.nodes.map((team: TeamType) => (
+          {allStrapiTeam.nodes.map((team: TeamType) => (
             <Link
               key={team.slug}
               to={`/team/${team.slug}`}
@@ -480,7 +480,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
       <div className="footer-copyright">
         <h4 className="sr-only footer-copyright__mind-the-gap">
           <Link to="/">
-            {data.strapiAbout.businessName}
+            {strapiAbout.businessName}
           </Link>
         </h4>
 

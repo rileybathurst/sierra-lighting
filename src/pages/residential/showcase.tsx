@@ -18,7 +18,7 @@ import Attribute from "../../components/attribute";
 
 function ResidentialShowcase() {
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiShowcase, strapiService, allStrapiLight } = useStaticQuery(graphql`
     query ShowcaseQuery {
       allStrapiShowcase {
         nodes {
@@ -51,7 +51,7 @@ function ResidentialShowcase() {
   `);
 
   const showcaseSet = new Set();
-  for (const showcase of data.allStrapiShowcase.nodes) {
+  for (const showcase of allStrapiShowcase.nodes) {
     showcaseSet.add(showcase.tier)
   }
   const showcaseArray = Array.from(showcaseSet);
@@ -63,7 +63,7 @@ function ResidentialShowcase() {
   const lightGroupSet: slugAndOrderType[] = [];
   const seenSlugs = new Set();
 
-  for (const light of data.allStrapiLight.nodes) {
+  for (const light of allStrapiLight.nodes) {
     light.light_groups.forEach((group: slugAndOrderType) => {
       if (!seenSlugs.has(group.slug)) {
         lightGroupSet.push({ slug: group.slug, xmasOrder: group.xmasOrder });
@@ -76,7 +76,7 @@ function ResidentialShowcase() {
 
   // TODO: am I doing anything more than testing here?
   lightGroupArray.map((group) => (
-    data.allStrapiLight.nodes
+    allStrapiLight.nodes
       .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))
       .slice(0, 1)
       .map((light: CardAndGroupType) => (
@@ -127,7 +127,7 @@ function ResidentialShowcase() {
         <h1 className="mixta">Residential Showcase</h1>
         <div className='react-markdown'>
           <ReactMarkdown>
-            {data.strapiService.showcaseDescription.data.showcaseDescription}
+            {strapiService.showcaseDescription.data.showcaseDescription}
           </ReactMarkdown>
         </div>
         <hr />
@@ -135,7 +135,7 @@ function ResidentialShowcase() {
       </main>
 
       {showcaseArray.map((tier) => (
-        data.allStrapiShowcase.nodes
+        allStrapiShowcase.nodes
           .filter((showcase: ShowcaseType) => showcase.tier === tier)
           .map((showcase: ShowcaseType) => (
             <div key={showcase.id} className="pelican">
@@ -180,7 +180,7 @@ function ResidentialShowcase() {
         <h4 className="main">Lighting types used on residential christmas displays</h4>
 
         {lightGroupArray.map((group) => (
-          data.allStrapiLight.nodes
+          allStrapiLight.nodes
             .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))
             .slice(0, 1)
             .map((light: CardAndGroupType) => (
@@ -201,7 +201,7 @@ function ResidentialShowcase() {
                 <section
                   key={light.id}
                   className="deck">
-                  {data.allStrapiLight.nodes
+                  {allStrapiLight.nodes
                     .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))
                     .map((light: CardType) => (
                       <Card

@@ -26,7 +26,7 @@ type CardTypesWithLightGroups = CardType & {
 
 function HoaPage() {
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiLight } = useStaticQuery(graphql`
     query HoaQuery {
 
       allStrapiLight(
@@ -52,7 +52,7 @@ function HoaPage() {
   const lightGroupSet: slugAndOrderType[] = [];
   const seenSlugs = new Set();
 
-  for (const light of data.allStrapiLight.nodes) {
+  for (const light of allStrapiLight.nodes) {
     interface LightGroupType {
       slug: string;
       xmasOrder: number;
@@ -86,7 +86,7 @@ function HoaPage() {
       {lightGroupArray
         .map((group) => (
 
-          data.allStrapiLight.nodes
+          allStrapiLight.nodes
             .filter((keyLight: CardTypesWithLightGroups) => keyLight.light_groups[0].slug === (group.slug))
             .slice(0, 1)
             .map((keyLight: CardTypesWithLightGroups) => (
@@ -107,7 +107,7 @@ function HoaPage() {
                 <section
                   key={keyLight.id}
                   className="deck">
-                  {data.allStrapiLight.nodes
+                  {allStrapiLight.nodes
                     .filter((light: CardTypesWithLightGroups) => light.light_groups[0].slug === (group.slug))
                     .map((light: CardType) => (
                       <Card

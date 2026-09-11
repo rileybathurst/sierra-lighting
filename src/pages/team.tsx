@@ -9,7 +9,7 @@ import Card from "../components/card";
 
 const TeamPage = () => {
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiTeam, strapiAbout } = useStaticQuery(graphql`
     query TeamPageQuery {
       allStrapiTeam {
         nodes {
@@ -47,11 +47,11 @@ const TeamPage = () => {
     <>
       <Header />
       <main className="above-deck">
-        <h3>The {data.strapiAbout.businessName} Team</h3>
+        <h3>The {strapiAbout.businessName} Team</h3>
       </main >
 
       <section className="deck">
-        {data.allStrapiTeam.nodes.map((team: TeamTypes) => (
+        {allStrapiTeam.nodes.map((team: TeamTypes) => (
           <Card
             key={team.id}
             title={team.name}

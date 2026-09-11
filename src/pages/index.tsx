@@ -16,7 +16,7 @@ import type TestimonialTypes from '../types/testimonial-types';
 
 const IndexPage = () => {
 
-  const data = useStaticQuery(graphql`
+  const { strapiAbout, allStrapiService, allStrapiTestimonial, allStrapiQuality, strapiHero } = useStaticQuery(graphql`
     query IndexQuery {
       strapiAbout {
         description {
@@ -98,7 +98,7 @@ const IndexPage = () => {
           </div>
 
           <h2>
-            {data.strapiAbout.slogan.split(" ").map((word: string) => (
+            {strapiAbout.slogan.split(" ").map((word: string) => (
               <React.Fragment key={word}>
                 {word}
                 <br className="medium-up" />
@@ -110,14 +110,14 @@ const IndexPage = () => {
           <div className="images">
             {Season() === 'wedding' ? <HeroWeddingBackImage /> : <BackImage />}
             {Season() === 'wedding' ? (
-              <GatsbyImage image={data.strapiHero.wedding_front.localFile.childImageSharp.gatsbyImageData}
-                alt={data.strapiHero.wedding_front.alternativeText || "hero image"}
+              <GatsbyImage image={strapiHero.wedding_front.localFile.childImageSharp.gatsbyImageData}
+                alt={strapiHero.wedding_front.alternativeText || "hero image"}
                 className="front"
                 backgroundColor="transparent"
               />
             ) :
-              <GatsbyImage image={data.strapiHero.front.localFile.childImageSharp.gatsbyImageData}
-                alt={data.strapiHero.front.alternativeText || "hero image"}
+              <GatsbyImage image={strapiHero.front.localFile.childImageSharp.gatsbyImageData}
+                alt={strapiHero.front.alternativeText || "hero image"}
                 className="front"
                 backgroundColor="transparent"
               />
@@ -126,14 +126,14 @@ const IndexPage = () => {
 
           <section className="text">
             <div className="background">{/* stay gold */}</div>
-            {data.strapiAbout ?
+            {strapiAbout ?
               <Markdown components={{
                 p: ({ node, ...props }) => (
                   <div className="react-markdown" {...props} />
                 )
               }}
               >
-                {data.strapiAbout.description.data.description}
+                {strapiAbout.description.data.description}
               </Markdown>
               : null
             }
@@ -147,7 +147,7 @@ const IndexPage = () => {
         {/* // TODO: 2 columns becomes 1 or 3 and this seems like it should be repeated? */}
         {/* * this is under the biggest specific image so its currently ok but will be updated */}
         <section className="qualities albatross">
-          {data.allStrapiQuality.nodes.map((quality: QualityTypes) => (
+          {allStrapiQuality.nodes.map((quality: QualityTypes) => (
             <section key={quality.id}>
               <h3 className='font-serif'>{quality.name}</h3>
               <p>{quality.description.data.description}</p>
@@ -164,7 +164,7 @@ const IndexPage = () => {
 
             <ul>
               {/* // TODO: make this a component */}
-              {data.allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
+              {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
                 const truncationPoint = testimonial.review.indexOf(" ", 160);
                 const review = truncationPoint === -1
                   ? testimonial.review
@@ -202,7 +202,7 @@ const IndexPage = () => {
         </div>
 
 
-        <Suite services={data.allStrapiService.nodes} />
+        <Suite services={allStrapiService.nodes} />
       </main >
 
       <div className="main">

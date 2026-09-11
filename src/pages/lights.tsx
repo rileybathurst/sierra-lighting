@@ -15,7 +15,7 @@ import type { CardType } from "../types/card-type";
 
 const lightsPage = () => {
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiLightGroup, allStrapiService } = useStaticQuery(graphql`
     query LightsQuery {
 
       allStrapiLightGroup {
@@ -70,7 +70,7 @@ const lightsPage = () => {
 
   // * check that each light group has lights
   if (process.env.NODE_ENV === "development") {
-    data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => {
+    allStrapiLightGroup.nodes.map((group: LightGroupTypes) => {
       // console.log(group.name);
 
       if (group.lights.length === 0) {
@@ -84,7 +84,7 @@ const lightsPage = () => {
   // * Order the groups by season
   // console.log(Season());
   if (Season() === 'wedding') {
-    data.allStrapiLightGroup.nodes.sort((a: LightGroupTypes, b: LightGroupTypes) => {
+    allStrapiLightGroup.nodes.sort((a: LightGroupTypes, b: LightGroupTypes) => {
       if (a.weddingOrder === null && b.weddingOrder === null) return 0;
       if (a.weddingOrder === null) return 1;
       if (b.weddingOrder === null) return -1;
@@ -92,18 +92,18 @@ const lightsPage = () => {
 
     });
   } else if (Season() === 'xmas') {
-    data.allStrapiLightGroup.nodes.sort((a: LightGroupTypes, b: LightGroupTypes) => {
+    allStrapiLightGroup.nodes.sort((a: LightGroupTypes, b: LightGroupTypes) => {
       if (a.xmasOrder === null && b.xmasOrder === null) return 0;
       if (a.xmasOrder === null) return 1;
       if (b.xmasOrder === null) return -1;
       return a.xmasOrder - b.xmasOrder;
     });
   }
-  // console.log(data.allStrapiLightGroup.nodes);
+  // console.log(allStrapiLightGroup.nodes);
   // * This is functional
 
   // order the lights by season in each group
-  data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => {
+  allStrapiLightGroup.nodes.map((group: LightGroupTypes) => {
     if (Season() === 'wedding') {
       group.lights.sort((a: CardType, b: CardType) => {
         const aWeddingOrder = (a as ExtendedCardType).weddingOrder;
@@ -136,7 +136,7 @@ const lightsPage = () => {
 
         <h3>Filter by use:</h3>
         <ul>
-          {data.allStrapiService.nodes.map((service: ServiceTypes) => (
+          {allStrapiService.nodes.map((service: ServiceTypes) => (
             <li key={service.id}>
               <Link to={`/${service.slug}/lights`}>
                 {service.name}
@@ -146,7 +146,7 @@ const lightsPage = () => {
         </ul>
         <h3>or by type:</h3>
         <ul>
-          {data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
+          {allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
             <li key={group.slug}>
               <Link to={`/light-group/${group.slug}`}>
                 {group.name}
@@ -161,7 +161,7 @@ const lightsPage = () => {
       </main>
       <LightSearch />
 
-      {data.allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
+      {allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
         <React.Fragment key={group.slug}>
           <section className="above-deck">
             <hr />
