@@ -145,10 +145,11 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
 
   // empty card slots
   // * I know this has type issues
-  const base: { card: CardType | Record<string, never>, title: boolean, breadcrumb: string, cardBreadcrumb: string, order: number, id: React.Key }[] = [
-    { card: {} as CardType, title: false, breadcrumb: '', cardBreadcrumb: '', order: 0, id: '' },
-    { card: {} as CardType, title: false, breadcrumb: '', cardBreadcrumb: '', order: 1, id: '' },
-    { card: {} as CardType, title: false, breadcrumb: '', cardBreadcrumb: '', order: 2, id: '' },
+  const base: { card: CardType | Record<string, never>, title: boolean, breadcrumb: string, cardBreadcrumb: "project" | "vendor" | "venue", order: number, id: React.Key }[] = [
+    // * default to project link to satisfy types
+    { card: {}, title: false, breadcrumb: '', cardBreadcrumb: 'project', order: 0, id: '' },
+    { card: {}, title: false, breadcrumb: '', cardBreadcrumb: 'project', order: 1, id: '' },
+    { card: {}, title: false, breadcrumb: '', cardBreadcrumb: 'project', order: 2, id: '' },
   ];
 
   // console.log(base);
@@ -224,7 +225,6 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
       base[1].cardBreadcrumb = 'venue';
       // base[1].id = self.crypto.randomUUID();
     }
-
 
     // TODO: build an array and put them in and deal with empties
     return (
@@ -392,10 +392,11 @@ const ServiceView = ({ data }: ServiceTypes) => {
         <hr className='stork' />
 
         <div className='deck'>
+          {/* // ? cant I pass this as a spread? */}
           {data.strapiService.featured_lights.map((light) => (
             <ImageCheck
               key={light.id}
-              name={light.title}
+              title={light.title}
               slug={light.slug || ''}
               excerpt={light.excerpt ?? ''}
               breadcrumb='light'
@@ -621,11 +622,11 @@ export const query = graphql`
     }
 
     strapiVenue(services: {elemMatch: {slug: {eq: $slug}}}) {
-        ...venueCard
+        ...venueCardFragment
     }
 
     strapiVendor(collaborator: {slug: {eq: "planners"}}) {
-        ...vendorCard
+        ...vendorCardFragment
     }
 
     allStrapiLookbook(filter: {service: {slug: {eq: $slug}}}) {

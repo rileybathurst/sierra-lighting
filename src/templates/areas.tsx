@@ -302,7 +302,7 @@ export const query = graphql`
         excerpt
 
         venues {
-          ...venueCard
+          ...venueCardFragment
         }
 
         projects {

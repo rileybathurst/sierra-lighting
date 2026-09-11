@@ -1,3 +1,5 @@
+// ? this is only used in showcase but I also have types in there
+// TODO: also seems a little messy
 import type { CardType } from "./card-type";
 
 type CardAndGroupType = {

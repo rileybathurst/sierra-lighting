@@ -9,18 +9,25 @@ interface BaseCardTypes {
   // * removing the questions throws errors
   id?: React.Key;
   key?: React.Key;
+
+  image: {
+    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
+    alternativeText: string;
+  };
+
   title: string;
-  href?: string;
-  slug?: string; // ? can this be set to a few specifics like 'venue', 'vendor', 'service'?
   excerpt: string;
+
   areas?: {
     name: string;
     slug: string;
   }[];
   subAreas?: string;
-  breadcrumb?: string;
+
+  // ? where is this
   query?: string;
 
+  // * this is for vendor as the breadcrumb needs a secondary layer
   collaborator?: {
     slug: string;
   };
@@ -28,30 +35,27 @@ interface BaseCardTypes {
   updatedAt?: string | number | undefined;
 }
 
-interface Image {
-  image: {
-    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
-    alternativeText: string;
-  };
-  venueImage?: never;
-  profile?: never;
+interface Link {
+  slug: string;
+  breadcrumb:
+    | "venue"
+    // * uncategorized vendors don't have the secondary slug
+    | "vendor"
+    | `vendor/${string}`
+    | "service"
+    | "project"
+    | "light"
+    | "areas"
+    | "team";
+  href?: never;
 }
-interface VenueImage {
-  image?: never;
-  venueImage: {
-    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
-    alternativeText: string;
-  };
-  profile?: never;
-}
-interface Profile {
-  image?: never;
-  venueImage?: never;
-  profile: {
-    localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
-    alternativeText: string;
-  };
-}
-type ImageOrVenueImageOrProfile = Image | VenueImage | Profile;
 
-export type CardType = BaseCardTypes & ImageOrVenueImageOrProfile;
+interface Href {
+  slug?: never;
+  breadcrumb?: never;
+  href: string;
+}
+
+export type CardType = BaseCardTypes & Link;
+export type CardHrefType = BaseCardTypes & Href;
+export type CardProps = CardType | CardHrefType;

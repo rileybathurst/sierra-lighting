@@ -14,7 +14,7 @@ function VendorCatchAll({ params }: CatchAllTypes) {
     query VendorCatchAllQuery {
       allStrapiVendor(limit: 3) {
           nodes {
-            ...vendorCard
+            ...vendorCardFragment
         }
       }
     }
@@ -48,10 +48,14 @@ function VendorCatchAll({ params }: CatchAllTypes) {
             <Card
               key={vendor.id}
               {...vendor}
-              breadcrumb={`vendor/${vendor.collaborator.slug}`}
+              breadcrumb={`vendor/${vendor.collaborator.slug}` as const}
             />
           ) : (
-            <Card key={vendor.id} {...vendor} breadcrumb="vendor" />
+            <Card
+              key={vendor.id}
+              {...vendor}
+              breadcrumb="vendor"
+            />
           ),
         )}
       </section>

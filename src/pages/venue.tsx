@@ -37,7 +37,7 @@ const VenuePage = () => {
 			)
 			{
 				nodes {
-					...venueCard
+					...venueCardFragment
 
 					area {
 						id

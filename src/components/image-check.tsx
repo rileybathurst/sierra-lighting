@@ -1,23 +1,9 @@
 import React from 'react';
 import Card from '../components/card';
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
+import type { CardType } from '../types/card-type';
 
-type ImageCheckTypes = {
-  excerpt: string,
-  breadcrumb: string,
-  query: string,
-  name: string,
-  slug: string,
-
-  image: {
-    localFile: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData;
-      }
-    },
-    alternativeText: string
-  },
-
+type ImageCheckTypes = CardType & {
   residentialHero?: {
     localFile: {
       childImageSharp: {
@@ -35,7 +21,7 @@ type ImageCheckTypes = {
     alternativeText: string
   },
 }
-const ImageCheck = ({ breadcrumb, excerpt, query, image, name, slug, residentialHero, commercialHero }: ImageCheckTypes) => {
+const ImageCheck = ({ breadcrumb, excerpt, query, image, title, slug, residentialHero, commercialHero }: ImageCheckTypes) => {
 
   let cardImage = image;
   if (query === 'residential' && residentialHero) {
@@ -46,7 +32,7 @@ const ImageCheck = ({ breadcrumb, excerpt, query, image, name, slug, residential
 
   return (
     <Card
-      title={name}
+      title={title}
       slug={slug}
       excerpt={excerpt ?? ''}
       breadcrumb={breadcrumb}

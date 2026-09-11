@@ -205,7 +205,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
                   <Card
                     key={vendor.id}
                     {...vendor}
-                    breadcrumb={`vendor/${vendor.collaborator.slug}`}
+                    breadcrumb={`vendor/${vendor.collaborator.slug}` as const}
                   />
                 ) : (
                   <Card

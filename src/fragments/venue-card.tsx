@@ -1,13 +1,13 @@
 import { graphql } from "gatsby"
 
 export const query = graphql`
-  fragment venueCard on STRAPI_VENUE {
+  fragment venueCardFragment on STRAPI_VENUE {
     id
     name
     excerpt
     slug
 
-    venueImage {
+    image: venueImage {
       localFile {
         childImageSharp {
           gatsbyImageData(

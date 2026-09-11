@@ -1,12 +1,12 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from 'gatsby';
-import type { IGatsbyImageData } from "gatsby-plugin-image"
 
 import { SEO } from "../components/seo";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Card from "../components/card";
+import type { CardHrefType } from "../types/card-type";
 
 const AffiliationsPage = () => {
 
@@ -16,9 +16,9 @@ const AffiliationsPage = () => {
       allStrapiAffiliation(filter: { publishedAt: { ne: null } }) {
         nodes {
           id
-          name
+          title: name
           excerpt
-          link
+          href: link
 
           logo {
             localFile {
@@ -34,22 +34,6 @@ const AffiliationsPage = () => {
     }
   `)
 
-  type AffiliationTypes = {
-    id: React.Key;
-    name: string;
-    excerpt: string;
-    link: string;
-    logo: {
-      localFile: {
-        childImageSharp: {
-          gatsbyImageData: IGatsbyImageData;
-        };
-        url: string;
-      };
-      alternativeText: string;
-    };
-  }
-
   return (
     <>
       <Header />
@@ -58,33 +42,11 @@ const AffiliationsPage = () => {
         <h1>Affiliations</h1>
       </main>
 
-      {/* // TODO: https://schema.org/Review */}
-      {/*         <ul className="affiliations">
-          {allStrapiAffiliation.nodes.map((affiliation: AffiliationTypes) => (
-            <li key={affiliation.id} className='affiliation'>
-              <GatsbyImage
-                image={affiliation?.logo?.localFile?.childImageSharp?.gatsbyImageData}
-                alt={affiliation?.logo?.alternativeText}
-                className=''
-                objectFit='contain'
-              />
-              <a href={affiliation.link} target='_blank' rel='noopener noreferrer'>
-                <h3>{affiliation.name}</h3>
-              </a>
-              <p>{affiliation.excerpt}</p>
-              <p><a href={affiliation.link} target='_blank' rel='noopener noreferrer'>Visit Them</a></p>
-            </li>
-          ))}
-        </ul> */}
-
       <section className="deck">
-        {allStrapiAffiliation.nodes.map((affiliation: AffiliationTypes) => (
+        {allStrapiAffiliation.nodes.map((affiliation: CardHrefType) => (
           <Card
             key={affiliation.id}
-            image={affiliation?.logo}
-            title={affiliation.name}
-            excerpt={affiliation.excerpt}
-            href={affiliation.link}
+            {...affiliation}
           />
         ))}
       </section>

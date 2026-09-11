@@ -105,6 +105,8 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
       <Header />
 
       <main>
+        {/* // ? I thought h1 always had styling? */}
+        {/* // * aconcagua for a long headline */}
         <h1 className='mixta aconcagua'>Lighting types for {data.strapiService.name}</h1>
         <div
           className='react-markdown'>
@@ -165,12 +167,13 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
                 <div
                   className='deck'
                 >
+                  {/* // ? can i pass this as a spread? */}
                   {data.allStrapiLight.nodes
                     .filter((light) => light.light_groups.map((g) => g.slug).includes(group))
                     .map((light) => light.image && (
                       <ImageCheck
                         key={light.id}
-                        name={light.title}
+                        title={light.title}
                         slug={light.slug ?? ''}
                         excerpt={light.excerpt ?? ''}
                         breadcrumb='light'
@@ -200,7 +203,6 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
         </ul>
         <hr />
       </section>
-
 
       <Breadcrumbs>
         <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name} Lighting</Link></Breadcrumb>

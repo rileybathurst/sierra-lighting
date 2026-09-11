@@ -232,7 +232,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
       {showQuote && (
         <>
-          <h3 className="condor">Start With A Free Quote</h3>
+          <h3 className="stork">Start With A Free Quote</h3>
 
           {/* // ? should i be sanitizing inputs here */}
           <form
@@ -241,7 +241,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             netlify-honeypot="bot-field"
             method="POST"
             action="/form-success"
-            className="condor"
+            className="stork"
           >
 
             <input type="hidden" name="form-name" value="contact" />
@@ -322,7 +322,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             </button>
           </form>
 
-          <section id="contact" className="condor contact">
+          <section id="contact" className="stork contact">
             <hr />
 
             <h3>Contact</h3>
@@ -350,7 +350,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         </>
       )}
 
-      <div id="team" className="condor">
+      <div id="team" className="stork">
         <h3 className="margin-block-end-vinson">
           <Link to="/team" className="link--subtle">Meet Our Team</Link>
         </h3>
@@ -475,7 +475,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         </p>
       } */}
 
-      <hr className="condor" />
+      <hr className="stork" />
 
       <div className="footer-copyright">
         <h4 className="sr-only footer-copyright__mind-the-gap">

@@ -11,7 +11,12 @@ import Card from "../components/card";
 import type { CardType } from "../types/card-type";
 import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
-type VendorCardType = CardType & {
+type VendorNode = CardType & {
+  collaborator: {
+    id: React.Key;
+    industry: string;
+    slug: string;
+  };
   projects: {
     id: React.Key;
   }[];
@@ -20,8 +25,9 @@ type VendorCardType = CardType & {
 type vendorsPageTypes = {
   data: {
     allStrapiVendor: {
-      nodes: VendorCardType[];
+      nodes: VendorNode[];
     };
+
     allStrapiCollaborator: {
       nodes: {
         id: React.Key;
@@ -37,7 +43,7 @@ type vendorsPageTypes = {
 }
 const VendorsPage = ({ data }: vendorsPageTypes) => {
 
-  const vendorsByCollaborator: Record<string, VendorCardType[]> = {};
+  const vendorsByCollaborator: Record<string, VendorNode[]> = {};
 
   data.allStrapiVendor.nodes.forEach((vendor) => {
     const slug = vendor.collaborator?.slug;
@@ -75,6 +81,7 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
               <Link to={`/vendor/${collaborator.slug}`}>
                 <h3 className="capitalize">{collaborator.industry}</h3>
               </Link>
+              {/* // * I dont like blocks with gatsby but I don't want to fix it now */}
               <BlocksRenderer content={collaborator.description} />
             </div>
 
@@ -85,7 +92,7 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
                   <Card
                     key={vendor.id}
                     {...vendor}
-                    breadcrumb={`vendor/${collaborator.slug}`}
+                    breadcrumb={`vendor/${collaborator.slug}` as const}
                   />
                 ))}
             </div>
@@ -100,11 +107,11 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
           </div>
 
           <div className="deck">
-            {vendorsByCollaborator.uncategorized.map((vendor: CardType) => (
+            {vendorsByCollaborator.uncategorized.map((vendor) => (
               <Card
                 key={vendor.id}
                 {...vendor}
-                breadcrumb={`vendor`}
+                breadcrumb={"vendor"}
               />
             ))}
           </div>
@@ -124,7 +131,7 @@ export const query = graphql`
   query VendorsQuery {
     allStrapiVendor {
       nodes {
-        ...vendorCard
+        ...vendorCardFragment
         collaborator {
           id
           industry

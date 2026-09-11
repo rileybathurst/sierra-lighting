@@ -44,7 +44,7 @@ export const data = graphql`
 
 const SafetyPage = ({ data }: SafetyPageTypes) => {
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <Hero image={data.strapiSafety.image} />
@@ -52,6 +52,7 @@ const SafetyPage = ({ data }: SafetyPageTypes) => {
       <main>
         <h1>Safety</h1>
 
+        {/* // TODO: this has a ul with kinda messy formatting */}
         <div className="react-markdown">
           <Markdown>
             {data.strapiSafety.description.data.description}
@@ -60,14 +61,11 @@ const SafetyPage = ({ data }: SafetyPageTypes) => {
       </main>
 
       <Footer />
-
-    </>
+    </React.Fragment>
   )
 }
 
 export default SafetyPage
-
-
 
 export const Head = ({ data }: SafetyPageTypes) => {
   return (

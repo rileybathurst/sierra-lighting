@@ -33,7 +33,7 @@ export const query = graphql`
       excerpt
 
       vendors {
-        ...vendorCard
+        ...vendorCardFragment
       }
     }
   }
@@ -77,7 +77,8 @@ const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
               <Card
                 key={vendor.id}
                 {...vendor}
-                breadcrumb={`vendor/${data.strapiCollaborator.slug}`}
+                // * as const helps the type with collaborator being only used sometimes but always here
+                breadcrumb={`vendor/${data.strapiCollaborator.slug}` as const}
               />
             ))}
           </div>

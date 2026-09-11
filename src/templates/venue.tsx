@@ -272,22 +272,7 @@ export const query = graphql`
         }
       ) {
         nodes {
-          name
-          id
-          slug
-          excerpt
-
-          venueImage {
-            localFile {
-              childImageSharp {
-                gatsbyImageData(
-                  breakpoints: [660]
-                  width: 660
-                )
-              }
-            }
-            alternativeText
-          }
+          ...venueCardFragment
 
           area {
             name

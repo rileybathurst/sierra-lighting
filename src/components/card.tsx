@@ -1,11 +1,9 @@
-// when passing with the spread you have to pass the breadcrumb after
-
-import * as React from "react"
+import * as React from 'react';
 import { Link } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
-import type { CardType } from "../types/card-type";
+import type { CardProps } from "../types/card-type";
 
-const Card = ({ image, venueImage, profile, title, slug, excerpt, areas, breadcrumb, query, href }: CardType) => {
+const Card = ({ image, title, slug, excerpt, areas, breadcrumb, query, href }: CardProps) => {
 
   if (process.env.NODE_ENV === "development" && !areas && !excerpt) {
     console.warn(`${title} card has no content`)
@@ -15,10 +13,10 @@ const Card = ({ image, venueImage, profile, title, slug, excerpt, areas, breadcr
     console.warn(`${title} card has no content`)
   }
 
-  const CardImage = image?.localFile?.childImageSharp?.gatsbyImageData ?? venueImage?.localFile?.childImageSharp?.gatsbyImageData ?? profile?.localFile?.childImageSharp?.gatsbyImageData;
-  const CardAlt = image?.alternativeText ?? venueImage?.alternativeText ?? profile?.alternativeText ?? title;
+  const CardImage = image?.localFile?.childImageSharp?.gatsbyImageData;
+  const CardAlt = image?.alternativeText ?? title;
 
-  if (!image?.alternativeText && !venueImage?.alternativeText && !profile?.alternativeText) {
+  if (!image?.alternativeText) {
     console.warn(`${title} image has no alt`)
   }
 
