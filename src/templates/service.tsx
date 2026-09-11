@@ -20,7 +20,6 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import type { GatsbyImageType } from '../types/gatsby-image';
 import type VideoTypes from '../types/video-types';
 import ImageCheck from '../components/image-check';
-import type { LightCardType } from '../types/light-card-type';
 
 interface ServiceTypes {
   data: {
@@ -32,7 +31,15 @@ interface ServiceTypes {
       after_the_triptych: { data: { after_the_triptych: string } };
       projects: (CardType & { updatedAt: string })[];
       triptych: { id: React.Key; localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } } }[];
-      featured_lights: (LightCardType & {
+      featured_lights: (Omit<CardType, 'image'> & {
+        image: {
+          localFile: {
+            childImageSharp: {
+              gatsbyImageData: IGatsbyImageData;
+            }
+          },
+          alternativeText: string
+        };
         residentialHero?: {
           localFile: {
             childImageSharp: {
@@ -112,7 +119,6 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
 
   const [reversedProjects] = React.useState(projects?.slice().reverse() ?? []);
   projects = reversedProjects;
-
 
   /* const emptyCard = {
     id: '',
@@ -389,8 +395,8 @@ const ServiceView = ({ data }: ServiceTypes) => {
           {data.strapiService.featured_lights.map((light) => (
             <ImageCheck
               key={light.id}
-              name={light.name}
-              slug={light.slug}
+              name={light.title}
+              slug={light.slug || ''}
               excerpt={light.excerpt ?? ''}
               breadcrumb='light'
 
@@ -673,7 +679,7 @@ export const Head = ({ data }: ServiceTypes) => {
 
   const sanitazeDescription = data.strapiService.description.data.description.replace(/"/g, " inches");
 
-  const descriptionKeyWords = `Creating professional ${data.strapiService.name} lighting installations including ${data.strapiService.featured_lights.map((light: LightCardType) => light.name).join(', ')} in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}`;
+  const descriptionKeyWords = `Creating professional ${data.strapiService.name} lighting installations including ${data.strapiService.featured_lights.map((light) => light.title).join(', ')} in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}`;
 
   return (
     <SEO

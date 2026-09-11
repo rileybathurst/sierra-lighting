@@ -5,7 +5,7 @@ import type { CardType } from "../types/card-type";
 import Season from "./season";
 import type { ImageType } from "../types/image-type";
 
-// Extend CardType locally to include weddingImage
+// * Extend CardType locally to include weddingImage
 type AreaCardType = CardType & {
   image: ImageType;
   weddingImage?: ImageType; // Optional weddingImage property
@@ -22,7 +22,7 @@ const Areas = () => {
         ) {
         nodes {
           id
-          name
+          title: name
           slug
           excerpt
 

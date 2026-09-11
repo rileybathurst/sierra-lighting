@@ -15,7 +15,7 @@ type LightGroupPageType = {
   data: {
     strapiLightGroup: LightGroupType;
     allStrapiLightGroup: {
-      nodes: CardType[];
+      nodes: LightGroupType[];
     };
   };
 };
@@ -43,7 +43,7 @@ export const query = graphql`
 
 const LightPage = ({ data }: LightGroupPageType) => {
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       <main className="above-deck">
@@ -83,7 +83,7 @@ const LightPage = ({ data }: LightGroupPageType) => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

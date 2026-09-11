@@ -34,13 +34,7 @@ interface VenuesProps {
     slug: string;
     excerpt: string;
     venues: CardType[];
-    projects: {
-      id: Key;
-      name: string;
-      slug: string;
-      excerpt: string;
-      image: ImageWithAspectType;
-    }[];
+    projects: CardType[];
   }[];
 }
 
@@ -87,7 +81,7 @@ type AreasTemplateTypes = {
   data: {
     strapiArea: {
       id: Key;
-      name: string;
+      title: string;
       tagline: string;
       description: {
         data: {
@@ -101,23 +95,12 @@ type AreasTemplateTypes = {
         name: string;
         slug: string;
         excerpt: string;
+        // ? are both versions of venues and projects necessary
         venues: CardType[];
-        projects: {
-          id: Key;
-          name: string;
-          slug: string;
-          excerpt: string;
-          image: ImageWithAspectType;
-        }[]
+        projects: CardType[]
       }[];
       venues: CardType[];
-      projects: {
-        id: Key;
-        name: string;
-        slug: string;
-        excerpt: string;
-        image: ImageWithAspectType;
-      }[];
+      projects: CardType[];
     };
     strapiAbout: {
       businessName: string;
@@ -135,13 +118,15 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
     areaProjectHeros = data.strapiArea.projects
       .map((project) => project.image)
-      .filter((img): img is ImageWithAspectType => !!img && !!img.localFile?.childImageSharp?.gatsbyImageData && !!img.localFile?.childImageSharp?.resize);
+      .filter((img): img is ImageWithAspectType => !!img && !!img.localFile?.childImageSharp?.gatsbyImageData);
 
     if (data.strapiArea.areas.length > 0) {
       data.strapiArea.areas.forEach((area) => {
         if (area.projects.length > 0) {
           area.projects.forEach((project) => {
-            if (project.image) areaProjectHeros.push(project.image);
+            if (project.image?.localFile?.childImageSharp?.gatsbyImageData) {
+              areaProjectHeros.push(project.image as ImageWithAspectType);
+            }
           });
         }
       });
@@ -188,7 +173,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
       <main>
         <h2 className="crest">{data.strapiArea.tagline}</h2>
         <h1 className="range">
-          {data.strapiArea.name},&nbsp;
+          {data.strapiArea.title},&nbsp;
           <StateAbbreviation state={data.strapiArea.state} />
         </h1>
         <hr />
@@ -209,7 +194,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         {data.strapiArea.areas.length > 0 &&
           <React.Fragment>
             <hr />
-            <p className='elbrus'>Regions we light in {data.strapiArea.name}</p>
+            <p className='elbrus'>Regions we light in {data.strapiArea.title}</p>
             <ul className='subareas'>
               {data.strapiArea.areas.map((area) => (
                 <li
@@ -223,7 +208,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
           </React.Fragment>
         }
         <hr />
-        <h3 >Lighting installation services we provide in {data.strapiArea.name}</h3>
+        <h3 >Lighting installation services we provide in {data.strapiArea.title}</h3>
 
       </main >
 
@@ -233,7 +218,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         <section>
           <div className='above-deck'>
             <hr />
-            <h3 >Lighting projects in we have installed in {data.strapiArea.name}</h3>
+            <h3 >Lighting projects in we have installed in {data.strapiArea.title}</h3>
           </div>
           <div className="deck">
             {areaSubAreaProjectsArray.map((project: CardType) => (
@@ -256,7 +241,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
       </div>
 
       <Venues
-        name={data.strapiArea.name}
+        name={data.strapiArea.title}
         venues={data.strapiArea.venues}
         areas={data.strapiArea.areas}
       />
@@ -267,7 +252,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/areas/">Areas</Link></Breadcrumb>
-        <Breadcrumb>{data.strapiArea.name}</Breadcrumb>
+        <Breadcrumb>{data.strapiArea.title}</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
@@ -283,7 +268,7 @@ export const query = graphql`
   ) {
     strapiArea(slug: {eq: $slug}) {
       id
-      name
+      title: name
       tagline
       excerpt
 
@@ -363,15 +348,15 @@ export const Head = ({ data }: AreasTemplateTypes) => {
 
   return (
     <SEO
-      title={`${data.strapiArea.name} professional ${seasonalOrder} light installation`}
-      description={`Professional ${servicesString} installations in ${data.strapiArea.name}${subAreasString ? `, ${subAreasString}` : null}.`}
+      title={`${data.strapiArea.title} professional ${seasonalOrder} light installation`}
+      description={`Professional ${servicesString} installations in ${data.strapiArea.title}${subAreasString ? `, ${subAreasString}` : null}.`}
       image={data.strapiArea?.image}
       breadcrumbs={[
         {
           name: 'Areas',
           item: 'areas'
         }, {
-          name: data.strapiArea.name,
+          name: data.strapiArea.title,
           item: `areas/${data.strapiArea.slug}`
         }
       ]}
@@ -384,7 +369,7 @@ export const Head = ({ data }: AreasTemplateTypes) => {
             "name": "${data.strapiAbout.businessName}",
             "areaServed": {
               "@type": "Place",
-              "name": "${data.strapiArea.name}"
+              "name": "${data.strapiArea.title}"
             }
           }
         `}

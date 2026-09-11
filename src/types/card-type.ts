@@ -4,8 +4,12 @@
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 interface BaseCardTypes {
+  // * key is passed to fufill React's requirement for list items
+  // * id is passed through the spread
+  // * removing the questions throws errors
   id?: React.Key;
   key?: React.Key;
+  title: string;
   href?: string;
   slug?: string; // ? can this be set to a few specifics like 'venue', 'vendor', 'service'?
   excerpt: string;
@@ -23,16 +27,6 @@ interface BaseCardTypes {
 
   updatedAt?: string | number | undefined;
 }
-
-interface Title {
-  title: string;
-  name?: never;
-}
-interface Name {
-  title?: never;
-  name: string;
-}
-type TitleOrName = Title | Name;
 
 interface Image {
   image: {
@@ -60,4 +54,4 @@ interface Profile {
 }
 type ImageOrVenueImageOrProfile = Image | VenueImage | Profile;
 
-export type CardType = BaseCardTypes & TitleOrName & ImageOrVenueImageOrProfile;
+export type CardType = BaseCardTypes & ImageOrVenueImageOrProfile;

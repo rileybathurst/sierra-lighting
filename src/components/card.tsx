@@ -5,21 +5,21 @@ import { Link } from "gatsby"
 import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
 import type { CardType } from "../types/card-type";
 
-const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, breadcrumb, query, href }: CardType) => {
+const Card = ({ image, venueImage, profile, title, slug, excerpt, areas, breadcrumb, query, href }: CardType) => {
 
   if (process.env.NODE_ENV === "development" && !areas && !excerpt) {
-    console.warn(`${title ?? name} card has no content`)
+    console.warn(`${title} card has no content`)
   }
 
   if (process.env.NODE_ENV === "development" && areas?.length === 0 && !excerpt) {
-    console.warn(`${title ?? name} card has no content`)
+    console.warn(`${title} card has no content`)
   }
 
   const CardImage = image?.localFile?.childImageSharp?.gatsbyImageData ?? venueImage?.localFile?.childImageSharp?.gatsbyImageData ?? profile?.localFile?.childImageSharp?.gatsbyImageData;
-  const CardAlt = image?.alternativeText ?? venueImage?.alternativeText ?? profile?.alternativeText ?? title ?? name ?? "";
+  const CardAlt = image?.alternativeText ?? venueImage?.alternativeText ?? profile?.alternativeText ?? title;
 
   if (!image?.alternativeText && !venueImage?.alternativeText && !profile?.alternativeText) {
-    console.warn(`${title ?? name} image has no alt`)
+    console.warn(`${title} image has no alt`)
   }
 
   return (
@@ -37,7 +37,7 @@ const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, b
             <StaticImage
               // TODO: I can probably do something interesting with an svg
               src="https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg"
-              alt={title ?? name ?? ""}
+              alt={title}
             />
           }
         </a>
@@ -55,7 +55,7 @@ const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, b
             <StaticImage
               // TODO: I can probably do something interesting with an svg
               src="https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg"
-              alt={title ?? name ?? ""}
+              alt={title}
             />
           }
         </Link>
@@ -64,11 +64,11 @@ const Card = ({ image, venueImage, profile, title, name, slug, excerpt, areas, b
       <h2>
         {href ? (
           <a href={href} target="_blank" rel="noopener noreferrer">
-            {name ?? title}
+            {title}
           </a>
         ) : (
           <Link to={`/${breadcrumb}/${slug}?=${query ?? ''}`}>
-            {name ?? title}
+            {title}
           </Link>
         )}
       </h2>

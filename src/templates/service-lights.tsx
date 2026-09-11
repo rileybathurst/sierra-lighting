@@ -10,7 +10,7 @@ import ReactMarkdown from 'react-markdown';
 import SEO from '../components/seo';
 import ImageCheck from '../components/image-check';
 
-import type { LightCardType } from '../types/light-card-type';
+import type { CardType } from '../types/card-type';
 import type { IGatsbyImageData } from 'gatsby-plugin-image';
 
 interface ServiceLightViewTypes {
@@ -35,7 +35,7 @@ interface ServiceLightViewTypes {
     },
 
     allStrapiLight: {
-      nodes: (LightCardType & {
+      nodes: (CardType & {
         light_groups: {
           name: string,
           slug: string,
@@ -43,6 +43,7 @@ interface ServiceLightViewTypes {
           weddingOrder: number,
           xmasOrder: number,
         }[];
+        // TODO: I can simplify this for a hero type if thats set or do it
         residentialHero?: {
           localFile: {
             childImageSharp: {
@@ -166,11 +167,11 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
                 >
                   {data.allStrapiLight.nodes
                     .filter((light) => light.light_groups.map((g) => g.slug).includes(group))
-                    .map((light) => (
+                    .map((light) => light.image && (
                       <ImageCheck
                         key={light.id}
-                        name={light.name}
-                        slug={light.slug}
+                        name={light.title}
+                        slug={light.slug ?? ''}
                         excerpt={light.excerpt ?? ''}
                         breadcrumb='light'
 

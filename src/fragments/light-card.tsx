@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 export const query = graphql`
   fragment lightCard on STRAPI_LIGHT {
     id
-    name
+    title:name
     slug
     excerpt
 

@@ -8,7 +8,7 @@ import Card from "./card"
 import type { CardType } from "../types/card-type";
 
 function isSearchableCard(card: Partial<CardType> | null | undefined): card is CardType {
-  return Boolean(card?.id && card?.name && card?.slug);
+  return Boolean(card?.id && card?.title && card?.slug);
 }
 
 interface ResultListTypes {

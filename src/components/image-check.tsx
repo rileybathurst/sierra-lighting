@@ -46,7 +46,7 @@ const ImageCheck = ({ breadcrumb, excerpt, query, image, name, slug, residential
 
   return (
     <Card
-      name={name}
+      title={name}
       slug={slug}
       excerpt={excerpt ?? ''}
       breadcrumb={breadcrumb}

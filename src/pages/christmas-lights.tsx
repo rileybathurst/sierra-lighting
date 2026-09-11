@@ -7,7 +7,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import LightSearch from "../components/light-search";
 import Card from "../components/card";
-import type { LightCardType } from "../types/light-card-type";
+import type { CardType } from "../types/card-type";
 import type { LightGroupType } from "../types/light-group-type";
 
 const lightsPage = () => {
@@ -104,7 +104,7 @@ const lightsPage = () => {
                   className="deck">
                   {allStrapiLight.nodes
                     .filter((light: ChristmasLightType) => light.light_groups[0].xmasOrder === (group))
-                    .map((light: LightCardType) => (
+                    .map((light: CardType) => (
                       <Card
                         key={light.id}
                         {...light}
