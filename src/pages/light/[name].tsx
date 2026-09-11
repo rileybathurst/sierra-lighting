@@ -5,21 +5,20 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Card from "../../components/card";
 import type { CardType } from "../../types/card-type";
-import SEO from "../../components/seo";
+import { SEO } from "../../components/seo";
+import type { CatchAllTypes } from "../../types/catch-all-types";
 
-type LightCatchAllType = {
-  params: {
-    name: string
-  }
-}
-function LightCatchAll({ params }: LightCatchAllType) {
+function LightCatchAll({ params }: CatchAllTypes) {
 
-  const { allStrapiLight } = useStaticQuery(graphql`
+  const { allStrapiLight, strapiError } = useStaticQuery(graphql`
     query LightCatchAllQuery {
       allStrapiLight(limit: 3) {
         nodes {
           ...lightCard
         }
+      }
+      strapiError {
+        ...errorFragment
       }
     }
   `)
@@ -29,9 +28,8 @@ function LightCatchAll({ params }: LightCatchAllType) {
       <Header />
       <main className="above-deck">
         <h2 className="crest">404 / {params.name}</h2>
-        <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
-        <p>Want to brighten up <Link to="/">Head to our home page</Link> or explore some of our other lighting options.
-        </p>
+        <h1>{strapiError.title}</h1>
+        <p>{strapiError.pun} - <Link to="/">{strapiError.return}</Link></p>
       </main>
 
       <section className="deck">
@@ -44,7 +42,7 @@ function LightCatchAll({ params }: LightCatchAllType) {
 
       <Breadcrumbs>
         <Breadcrumb><Link to="/lights/">Light</Link></Breadcrumb>
-        {/* ? should this be a different and broken breadcrumb? */}
+        {/* // ? should this be a different and broken breadcrumb? */}
         <Breadcrumb>{params.name}</Breadcrumb>
       </Breadcrumbs>
 
@@ -55,7 +53,7 @@ function LightCatchAll({ params }: LightCatchAllType) {
 
 export default LightCatchAll
 
-export const Head = ({ params }: LightCatchAllType) => {
+export const Head = ({ params }: CatchAllTypes) => {
   return (
     <SEO
       title={`404 - light / ${params.name}`}

@@ -12,7 +12,6 @@ type AreaCardType = CardType & {
 }
 
 const Areas = () => {
-
   const { allStrapiArea } = useStaticQuery(graphql`
     query AreasQuery {
       allStrapiArea(
@@ -21,29 +20,10 @@ const Areas = () => {
         },
         ) {
         nodes {
-          id
-          title: name
-          slug
-          excerpt
-
-          state
-
-          image {
-            alternativeText
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
-          }
+          ...areaCardFragment
 
           weddingImage {
-            alternativeText
-            localFile {
-              childImageSharp {
-                gatsbyImageData
-              }
-            }
+            ...cardImageFragment
           }
 
           areas {

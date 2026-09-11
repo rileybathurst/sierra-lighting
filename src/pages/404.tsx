@@ -35,9 +35,6 @@ type NotFoundPageTypes = {
         };
       };
     }
-    strapiAbout: {
-      url: string;
-    }
   }
 }
 const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
@@ -45,21 +42,15 @@ const NotFoundPage = ({ data, location }: NotFoundPageTypes) => {
   return (
     <React.Fragment>
       <Header />
-
       <Hero
         image={data.strapiError.hero}
       />
-
-
-
       <main>
         <h2>404 - {location.pathname}</h2>
         <h1>{data.strapiError.title}</h1>
         <p>{data.strapiError.pun} - <Link to="/">{data.strapiError.return}</Link></p>
       </main >
       <Footer />
-
-      <PinterestHref imageSources={data.strapiError.hero.localFile.childImageSharp.gatsbyImageData.images.sources} />
     </React.Fragment>
   )
 }
@@ -71,7 +62,7 @@ export const Head = ({ data, location }: NotFoundPageTypes) => {
     <SEO
       title={`404 - ${location.pathname} `}
       description={data.strapiError.title}
-      // image={data.strapiError.hero}
+      image={data.strapiError.hero}
       url="404"
     />
   )
@@ -81,28 +72,10 @@ export const Head = ({ data, location }: NotFoundPageTypes) => {
 export const query = graphql`
   query errorPage {
     strapiError {
-      title
-      pun
-      return
+      ...errorFragment
       hero {
-        url
-        localFile {
-          absolutePath
-          childImageSharp {
-            gatsbyImageData
-            resize {
-              aspectRatio
-            }
-          }
-          url
-        }
-        alternativeText
-        caption
+        ...heroSEOImageFragment
       }
-    }
-
-    strapiAbout {
-      url
     }
   }
 `

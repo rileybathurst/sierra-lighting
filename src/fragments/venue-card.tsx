@@ -8,15 +8,7 @@ export const query = graphql`
     slug
 
     image: venueImage {
-      localFile {
-        childImageSharp {
-          gatsbyImageData(
-            breakpoints: [111, 165, 222, 444]
-            width: 222
-          )
-        }
-      }
-      alternativeText
+      ...cardImageFragment
     }
   }
 `

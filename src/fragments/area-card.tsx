@@ -1,12 +1,11 @@
 import { graphql } from "gatsby"
 
 export const query = graphql`
-  fragment lightCard on STRAPI_LIGHT {
+  fragment areaCardFragment on STRAPI_AREA {
     id
     title:name
     slug
     excerpt
-
     image {
       ...cardImageFragment
     }

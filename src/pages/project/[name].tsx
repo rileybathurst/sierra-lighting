@@ -6,19 +6,21 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import Card from "../../components/card";
 
-// types
 import type { CatchAllTypes } from "../../types/catch-all-types";
 import type { CardType } from "../../types/card-type";
-import SEO from "../../components/seo";
+import { SEO } from "../../components/seo";
 
 function ProjectCatchAll({ params }: CatchAllTypes) {
 
-  const { allStrapiProject } = useStaticQuery(graphql`
+  const { allStrapiProject, strapiError } = useStaticQuery(graphql`
     query {
       allStrapiProject(limit: 3) {
         nodes {
           ...projectCard
         }
+      }
+      strapiError {
+        ...errorFragment
       }
     }
   `)
@@ -29,10 +31,8 @@ function ProjectCatchAll({ params }: CatchAllTypes) {
 
       <main className="above-deck">
         <h2 className="crest">404 - Project - {params.name}</h2>
-        <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
-        <p>Want to brighten up?<br />
-          <Link to="/">Head to our home page.</Link>
-        </p>
+        <h1>{strapiError.title}</h1>
+        <p>{strapiError.pun} - <Link to="/">{strapiError.return}</Link></p>
       </main>
 
       <div className="deck">

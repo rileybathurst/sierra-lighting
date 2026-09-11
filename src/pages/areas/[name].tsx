@@ -6,49 +6,40 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { SEO } from "../../components/seo";
 import type { CatchAllTypes } from "../../types/catch-all-types";
+import Card from "../../components/card";
+import { CardType } from "../../types/card-type";
 
 function AreaCatchAll({ params }: CatchAllTypes) {
 
-  const { allStrapiArea } = useStaticQuery(graphql`
+  const { allStrapiArea, strapiError } = useStaticQuery(graphql`
     query AreaCatchAllQuery {
       allStrapiArea(filter: {featured: {eq: true}}) {
         nodes {
-          name
-          slug
+          ...areaCardFragment
         }
+      }
+      strapiError {
+        ...errorFragment
       }
     }
   `);
-
-  // TODO: dont do interfaces unless you have to, use types instead
-  interface AreaCatchAllType {
-    name: string;
-    slug: string;
-  }
 
   return (
     <>
       <Header />
       <main>
         <h2 className="crest">404 - areas / {params.name}</h2>
-        <h1 className="mixta">
-          Oops! Looks like this page has left the party.
-        </h1>
-        <p>
-          We Can't find that area. Maybe try one of these instead:
-        </p>
-        {/* // TODO: these should be cards */}
-        <ul>
-          {allStrapiArea.nodes.map((area: AreaCatchAllType) => (
-            <li key={area.slug}>
-              <Link to={`/areas/${area.slug}`}>
-                {area.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-
+        <h1>{strapiError.title}</h1>
+        <p>{strapiError.pun} - <Link to="/">{strapiError.return}</Link></p>
       </main>
+
+      {allStrapiArea.nodes.map((area: CardType) => (
+        <Card
+          key={area.id}
+          {...area}
+          breadcrumb="areas"
+        />
+      ))}
 
       <hr />
 

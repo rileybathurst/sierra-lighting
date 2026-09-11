@@ -10,12 +10,16 @@ import { SEO } from "../../components/seo";
 import type { CatchAllTypes } from "../../types/catch-all-types";
 
 function VendorCatchAll({ params }: CatchAllTypes) {
-  const { allStrapiVendor } = useStaticQuery(graphql`
+  const { allStrapiVendor, strapiError } = useStaticQuery(graphql`
     query VendorCatchAllQuery {
       allStrapiVendor(limit: 3) {
           nodes {
             ...vendorCardFragment
         }
+      }
+
+      strapiError {
+        ...errorFragment
       }
     }
   `);
@@ -27,14 +31,8 @@ function VendorCatchAll({ params }: CatchAllTypes) {
       <main>
         <hr />
         <h2 className="crest">404 - {params.name}</h2>
-        <h1 className="mixta">
-          Oops! Looks like this page has left the party.
-        </h1>
-        <p>
-          Want to brighten up?
-          <br />
-          <Link to="/">Head to our home page.</Link>
-        </p>
+        <h1>{strapiError.title}</h1>
+        <p>{strapiError.pun} - <Link to="/">{strapiError.return}</Link></p>
       </main>
 
       <div className="above-deck">

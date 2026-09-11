@@ -5,7 +5,7 @@ function DeprecatedSocials({ instagram, facebook, pinterest }: { instagram: stri
 
   // console.log(pinterest, facebook, instagram);
 
-  const data = useStaticQuery(graphql`
+  const { allStrapiSite } = useStaticQuery(graphql`
       query socialQuery {
         allStrapiSite{
           nodes {
@@ -72,7 +72,7 @@ function DeprecatedSocials({ instagram, facebook, pinterest }: { instagram: stri
       { id: 'instagram', username: instagramFormatted },
       { id: 'facebook', username: facebookFormatted },
       { id: 'pinterest', username: pinterestFormatted }].filter((social) => social.username).map((social) => {
-        const site = data.allStrapiSite.nodes.find((node: { service: string }) => node.service === social.id);
+        const site = allStrapiSite.nodes.find((node: { service: string }) => node.service === social.id);
 
         return (
           <li key={social.id}>

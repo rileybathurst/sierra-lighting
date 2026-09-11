@@ -1,24 +1,30 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { SEO } from "../../components/seo";
 
-// types
 import type { CatchAllTypes } from "../../types/catch-all-types";
 
 function LightGroupCatchAll({ params }: CatchAllTypes) {
+
+  const { strapiError } = useStaticQuery(graphql`
+    query LightGroupCatchAllQuery {
+      strapiError {
+        ...errorFragment
+      }
+    }
+  `);
+
   return (
     <>
       <Header />
       <main>
-        <h2 className="crest">404</h2>
-        <h1 className="mixta">Oops! Looks like this page has left the party.</h1>
-        <p>Want to brighten up?<br />
-          <Link to="/">Head to our home page.</Link>
-        </p>
+        <h2 className="crest">404 - light group / {params.name}</h2>
+        <h1>{strapiError.title}</h1>
+        <p>{strapiError.pun} - <Link to="/">{strapiError.return}</Link></p>
         <hr />
       </main>
 
