@@ -54,11 +54,12 @@
   /* TYPOGRAPHY */
   /*------------------*/
 
-  --font-sans: "Josefin Sans Variable", ui-sans-serif, system-ui, sans-serif,
+  --font-sans:
+    "Josefin Sans Variable", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* TODO: adobe font im pulling replace with google */
-  --font-serif: "mixta-didone", ui-serif, Georgia, Cambria, "Times New Roman",
-    serif;
+  --font-serif:
+    "mixta-didone", ui-serif, Georgia, Cambria, "Times New Roman", serif;
   --font-quote: "BIZ UDPMincho", serif;
 
   --line-height: 1.25rem;
@@ -121,17 +122,17 @@
   /* close, sharp shadow */
 
   /* * honey-400 with transparency */
-  --mesosphere: 0 6px 12px hsla(35, 75%, 50%, 0.3),
-    0 2px 4px hsla(35, 75%, 50%, 0.2);
+  --mesosphere:
+    0 6px 12px hsla(35, 75%, 50%, 0.3), 0 2px 4px hsla(35, 75%, 50%, 0.2);
 
   /* * honey-500 with transparency */
-  --stratosphere: 0 12px 24px hsla(35, 75%, 50%, 0.3),
-    0 4px 8px hsla(35, 87.5%, 25%, 0.3);
+  --stratosphere:
+    0 12px 24px hsla(35, 75%, 50%, 0.3), 0 4px 8px hsla(35, 87.5%, 25%, 0.3);
 
   /* * honey-600 with transparency */
   /* TODO: needs more color and saturation */
-  --troposphere: 0 12px 24px hsla(35, 75%, 50%, 0.4),
-    0 4px 8px hsla(35, 87.5%, 25%, 0.4);
+  --troposphere:
+    0 12px 24px hsla(35, 75%, 50%, 0.4), 0 4px 8px hsla(35, 87.5%, 25%, 0.4);
 
   /*------------------*/
   /* EXTRAS */
@@ -160,13 +161,15 @@
     /* Ambient light shadow */
     /* Direct light shadow */
 
-    --mesosphere: 0 3px 6px hsla(215, 100%, 25%, 0.12),
-      0 2px 4px hsla(215, 100%, 50%, 0.1);
+    --mesosphere:
+      0 3px 6px hsla(215, 100%, 25%, 0.12), 0 2px 4px hsla(215, 100%, 50%, 0.1);
 
-    --stratosphere: 0 14px 24px hsla(215, 100%, 25%, 0.16),
-      0 4px 12px hsla(215, 87%, 50%, 0.12);
+    --stratosphere:
+      0 14px 24px hsla(215, 100%, 25%, 0.16), 0 4px 12px
+      hsla(215, 87%, 50%, 0.12);
 
-    --troposphere: 0 5px 12px hsla(215, 100%, 12.5%, 0.4),
-      0 18px 32px hsla(215, 100%, 12.5%, 0.16);
+    --troposphere:
+      0 5px 12px hsla(215, 100%, 12.5%, 0.4), 0 18px 32px
+      hsla(215, 100%, 12.5%, 0.16);
   }
 }

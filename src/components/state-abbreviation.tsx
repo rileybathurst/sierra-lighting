@@ -1,6 +1,6 @@
 type StateAbbreviationType = {
-  state: 'california' | 'nevada';
-}
+  state: "california" | "nevada";
+};
 export default function StateAbbreviation({ state }: StateAbbreviationType) {
   switch (state) {
     case "california":
@@ -8,4 +8,4 @@ export default function StateAbbreviation({ state }: StateAbbreviationType) {
     case "nevada":
       return "NV";
   }
-};
+}

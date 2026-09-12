@@ -1,34 +1,31 @@
 // TODO: biome doesnt like this page but its not top priority
 
-import React, { useState, useEffect } from "react"
-import { useStaticQuery, graphql } from 'gatsby';
-
-import { SEO } from "../components/seo";
-
-import Header from "../components/header";
-import Footer from "../components/footer";
-import Star from "../images/star";
+import { graphql, useStaticQuery } from "gatsby";
+import React, { useEffect, useState } from "react";
 import { useIsWithinBusinessHours } from "../components/business-hours";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import { SEO } from "../components/seo";
+import Star from "../images/star";
 
 type LocationTypes = {
   location: {
     pathname: string;
     search: string;
-  }
-}
+  };
+};
 const FeedbackPage = ({ location }: LocationTypes) => {
-
   const isWithinBusinessHours = useIsWithinBusinessHours();
 
   const jobberParams = new URLSearchParams(location.search);
 
-  let jobberName = '';
-  let jobberEmail = '';
+  let jobberName = "";
+  let jobberEmail = "";
   for (const [key, value] of jobberParams.entries()) {
-    if (key === 'name') {
+    if (key === "name") {
       jobberName = value;
     }
-    if (key === 'email') {
+    if (key === "email") {
       jobberEmail = value;
     }
   }
@@ -68,7 +65,6 @@ const FeedbackPage = ({ location }: LocationTypes) => {
 
   const [stars, setStars] = useState(0);
 
-
   const One = () => {
     setPositive(false);
     setNegative(true);
@@ -78,7 +74,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setFourStar(false);
     setFiveStar(false);
     setStars(1);
-  }
+  };
 
   const Two = () => {
     setPositive(false);
@@ -89,7 +85,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setFourStar(false);
     setFiveStar(false);
     setStars(2);
-  }
+  };
 
   const Three = () => {
     setPositive(false);
@@ -100,7 +96,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setFourStar(false);
     setFiveStar(false);
     setStars(3);
-  }
+  };
 
   const Four = () => {
     setPositive(false);
@@ -111,7 +107,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setFourStar(true);
     setFiveStar(false);
     setStars(4);
-  }
+  };
 
   const Five = () => {
     setPositive(true);
@@ -122,7 +118,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setFourStar(true);
     setFiveStar(true);
     setStars(5);
-  }
+  };
 
   const OneHover = () => {
     setOneHover(true);
@@ -130,7 +126,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setThreeHover(false);
     setFourHover(false);
     setFiveHover(false);
-  }
+  };
 
   const TwoHover = () => {
     setOneHover(true);
@@ -138,7 +134,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setThreeHover(false);
     setFourHover(false);
     setFiveHover(false);
-  }
+  };
 
   const ThreeHover = () => {
     setOneHover(true);
@@ -146,7 +142,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setThreeHover(true);
     setFourHover(false);
     setFiveHover(false);
-  }
+  };
 
   const FourHover = () => {
     setOneHover(true);
@@ -154,7 +150,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setThreeHover(true);
     setFourHover(true);
     setFiveHover(false);
-  }
+  };
 
   const FiveHover = () => {
     setOneHover(true);
@@ -162,7 +158,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     setThreeHover(true);
     setFourHover(true);
     setFiveHover(true);
-  }
+  };
 
   useEffect(() => {
     if (fiveStar) {
@@ -178,36 +174,39 @@ const FeedbackPage = ({ location }: LocationTypes) => {
       <Header />
 
       <main>
-
         <h1>Feedback</h1>
         <p>{strapiFeedback.starting}</p>
 
-        {stars > 0 &&
-          <h3>{stars} Star{stars > 1 && 's'}</h3>
-        }
+        {stars > 0 && (
+          <h3>
+            {stars} Star{stars > 1 && "s"}
+          </h3>
+        )}
 
-        {positive &&
+        {positive && (
           <>
             <p>{strapiFeedback.positive}</p>
             <button
               className="button"
               type="button"
-              onClick={() => window.open(strapiAbout.googleReviews, "_blank", "noopener,noreferrer")}
+              onClick={() =>
+                window.open(
+                  strapiAbout.googleReviews,
+                  "_blank",
+                  "noopener,noreferrer",
+                )
+              }
             >
               Please Leave Us A Review
             </button>
           </>
-
-        }
-        {negative &&
+        )}
+        {negative && (
           <>
             <p>{strapiFeedback.negative}</p>
-            <h3
-            >
-              Please Let Us Know How We Can Improve
-            </h3>
+            <h3>Please Let Us Know How We Can Improve</h3>
           </>
-        }
+        )}
 
         <form
           name="feedback"
@@ -216,12 +215,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
           method="POST"
           action="/form-success"
         >
-
-          <input
-            type="hidden"
-            name="form-name"
-            value="feedback"
-          />
+          <input type="hidden" name="form-name" value="feedback" />
 
           <input
             type="hidden"
@@ -230,7 +224,12 @@ const FeedbackPage = ({ location }: LocationTypes) => {
           />
 
           {!isWithinBusinessHours && (
-            <input className="sr-only" type="hidden" name="hours" value={`${strapiForm.outsideHours}`} />
+            <input
+              className="sr-only"
+              type="hidden"
+              name="hours"
+              value={`${strapiForm.outsideHours}`}
+            />
           )}
 
           <p className="sr-only">
@@ -240,106 +239,96 @@ const FeedbackPage = ({ location }: LocationTypes) => {
             </label>
           </p>
 
-          <label
-            className={negative ? "" : "sr-only"}
-          >
+          <label className={negative ? "" : "sr-only"}>
             Name
-            <input
-              type={negative ? "text" : "hidden"}
-              name="name"
-
-            />
+            <input type={negative ? "text" : "hidden"} name="name" />
           </label>
-          <label
-            className={negative ? "" : "sr-only"}
-          >Email
-            <input
-              type={negative ? "email" : "hidden"}
-              name="email"
-            />
+          <label className={negative ? "" : "sr-only"}>
+            Email
+            <input type={negative ? "email" : "hidden"} name="email" />
           </label>
-          <label className="sr-only">Stars (out of five)
-            <input
-              type="number"
-              min="0"
-              max="5"
-              name="stars"
-              value={stars}
-            />
+          <label className="sr-only">
+            Stars (out of five)
+            <input type="number" min="0" max="5" name="stars" value={stars} />
           </label>
 
-          <label
-            className={negative ? "" : "sr-only"}
-          >Feedback
+          <label className={negative ? "" : "sr-only"}>
+            Feedback
             <textarea name="feedback" />
           </label>
 
           {/* // TODO: I can loop this */}
           <div className="feedback-stars">
-            <button type="button" title="1 Star Button"
-              className={`feedback-star ${oneStar ? 'active' : ''} ${oneHover ? 'hover' : ''}`}
+            <button
+              type="button"
+              title="1 Star Button"
+              className={`feedback-star ${oneStar ? "active" : ""} ${oneHover ? "hover" : ""}`}
               onClick={One}
               onMouseOver={OneHover}
               onFocus={OneHover}
             >
               <Star />
             </button>
-            <button type="button" title="2 Star Button"
+            <button
+              type="button"
+              title="2 Star Button"
               onClick={Two}
               onMouseOver={TwoHover}
               onFocus={TwoHover}
-              className={`feedback-star ${twoStar ? 'active' : ''} ${twoHover ? 'hover' : ''}`}
+              className={`feedback-star ${twoStar ? "active" : ""} ${twoHover ? "hover" : ""}`}
             >
               <Star />
             </button>
-            <button type="button" title="3 Star Button"
+            <button
+              type="button"
+              title="3 Star Button"
               onClick={Three}
               onMouseOver={ThreeHover}
               onFocus={ThreeHover}
-              className={`feedback-star ${threeStar ? 'active' : ''} ${threeHover ? 'hover' : ''}`}
+              className={`feedback-star ${threeStar ? "active" : ""} ${threeHover ? "hover" : ""}`}
             >
               <Star />
             </button>
-            <button type="button" title="4 Star Button"
+            <button
+              type="button"
+              title="4 Star Button"
               onClick={Four}
               onMouseOver={FourHover}
               onFocus={FourHover}
-              className={`feedback-star ${fourStar ? 'active' : ''} ${fourHover ? 'hover' : ''}`}
+              className={`feedback-star ${fourStar ? "active" : ""} ${fourHover ? "hover" : ""}`}
             >
               <Star />
             </button>
-            <button type="button" title="5 Star Button"
+            <button
+              type="button"
+              title="5 Star Button"
               onClick={Five}
               onMouseOver={FiveHover}
               onFocus={FiveHover}
-              className={`feedback-star ${fiveStar ? 'active' : ''} ${fiveHover ? 'hover' : ''}`}
+              className={`feedback-star ${fiveStar ? "active" : ""} ${fiveHover ? "hover" : ""}`}
             >
               <Star />
             </button>
           </div>
 
-          <button
-            className={negative ? "button" : "sr-only"}
-            type="submit"
-          >Send</button>
-
+          <button className={negative ? "button" : "sr-only"} type="submit">
+            Send
+          </button>
         </form>
-
-      </main >
+      </main>
 
       <Footer quote={false} />
-
     </>
-  )
-}
+  );
+};
 
-export default FeedbackPage
+export default FeedbackPage;
 
 export const Head = () => {
   return (
     <SEO
-      title='Feedback'
+      title="Feedback"
       description="We value your feedback and would love to hear your thoughts about your experience."
     />
-  )
-}
+  );
+};

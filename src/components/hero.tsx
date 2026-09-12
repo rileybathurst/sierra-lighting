@@ -1,21 +1,20 @@
 // TODO: deal with tall images
 // TODO: images of different heights currently look like a mess
 
-import * as React from "react"
-import { GatsbyImage } from "gatsby-plugin-image"
-import type { ImageType } from "../types/image-type"
-import type { ImageWithAspectType } from "../types/image-with-aspect-type"
-import { HeroSEOImageType } from "../types/hero-seo-image-type"
-import { PinterestHref } from "./pinterest-href"
+import { GatsbyImage } from "gatsby-plugin-image";
+import * as React from "react";
+import type { HeroSEOImageType } from "../types/hero-seo-image-type";
+import type { ImageType } from "../types/image-type";
+import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import { PinterestHref } from "./pinterest-href";
 
 type GalleryType = {
   gallery: ImageWithAspectType[];
   caption?: string;
   badge?: boolean;
   pinterest?: boolean;
-}
+};
 function Slider({ gallery, badge, pinterest }: GalleryType) {
-
   const inputRef = React.useRef<HTMLDivElement>(null);
   // const [imagesHeight, setImagesHeight] = React.useState(0);
   const [imagesWidth, setImagesWidth] = React.useState(0);
@@ -30,7 +29,9 @@ function Slider({ gallery, badge, pinterest }: GalleryType) {
       // const nextHeight = element.clientHeight;
       const nextWidth = element.clientWidth;
       // setImagesHeight((prevHeight) => prevHeight === nextHeight ? prevHeight : nextHeight);
-      setImagesWidth((prevWidth) => prevWidth === nextWidth ? prevWidth : nextWidth);
+      setImagesWidth((prevWidth) =>
+        prevWidth === nextWidth ? prevWidth : nextWidth,
+      );
     };
 
     updateHeight();
@@ -75,7 +76,7 @@ function Slider({ gallery, badge, pinterest }: GalleryType) {
       left: targetIndex * slideWidth,
       behavior: "smooth",
     });
-  }
+  };
 
   const scrollNext = () => {
     const metrics = getSlideMetrics();
@@ -90,50 +91,54 @@ function Slider({ gallery, badge, pinterest }: GalleryType) {
       left: targetIndex * slideWidth,
       behavior: "smooth",
     });
-  }
+  };
 
   return (
     <section className="gallery">
-      <button
-        type="button"
-        className="prev"
-        onClick={scrollPrev}
-      >
+      <button type="button" className="prev" onClick={scrollPrev}>
         Prev
       </button>
-      <div
-        className="images"
-        ref={inputRef}
-      >
-
+      <div className="images" ref={inputRef}>
         {gallery.map((image) => (
           <div
-            key={image.localFile.childImageSharp.gatsbyImageData.images.fallback?.src}
+            key={
+              image.localFile.childImageSharp.gatsbyImageData.images.fallback
+                ?.src
+            }
             className={`poster ${image.localFile.childImageSharp.gatsbyImageData.width}`}
-            style={{ height: imagesWidth / 9 * 6, width: (imagesWidth / 9 * 6) * image.localFile.childImageSharp.resize.aspectRatio }}
+            style={{
+              height: (imagesWidth / 9) * 6,
+              width:
+                (imagesWidth / 9) *
+                6 *
+                image.localFile.childImageSharp.resize.aspectRatio,
+            }}
           >
             <GatsbyImage
-              image={
-                image?.localFile?.childImageSharp?.gatsbyImageData
-              }
+              image={image?.localFile?.childImageSharp?.gatsbyImageData}
               alt={image.alternativeText || "Gallery Image"}
             />
-            {badge && image.caption ? <p className="capitalize">{image.caption}</p> : null}
-            {pinterest && image.localFile.childImageSharp.gatsbyImageData.images.sources && (
-              <PinterestHref imageSources={image.localFile.childImageSharp.gatsbyImageData.images.sources} />
-            )}
+            {badge && image.caption ? (
+              <p className="capitalize">{image.caption}</p>
+            ) : null}
+            {pinterest &&
+              image.localFile.childImageSharp.gatsbyImageData.images
+                .sources && (
+                <PinterestHref
+                  imageSources={
+                    image.localFile.childImageSharp.gatsbyImageData.images
+                      .sources
+                  }
+                />
+              )}
           </div>
         ))}
       </div>
-      <button
-        type="button"
-        className="next"
-        onClick={scrollNext}
-      >
+      <button type="button" className="next" onClick={scrollNext}>
         Next
       </button>
     </section>
-  )
+  );
 }
 
 type HeroType = {
@@ -143,19 +148,20 @@ type HeroType = {
   name?: string;
   detail?: ImageType;
   pinterest?: boolean;
-}
+};
 function Hero({ image, gallery, badge, name, detail, pinterest }: HeroType) {
-
   if (image) {
-    process.env.NODE_ENV === "development" ?
-      image.localFile.childImageSharp.gatsbyImageData?.width <= 959
-        ? console.warn('Hero Image is too small')
+    process.env.NODE_ENV === "development"
+      ? image.localFile.childImageSharp.gatsbyImageData?.width <= 959
+        ? console.warn("Hero Image is too small")
         : null
-      : null
+      : null;
 
-    process.env.NODE_ENV === "development" ?
-      image.alternativeText ? null : console.warn('hero has no alt text')
-      : null
+    process.env.NODE_ENV === "development"
+      ? image.alternativeText
+        ? null
+        : console.warn("hero has no alt text")
+      : null;
   }
 
   // * adding video in here starts adding quite a few things do we do something else with the gallery if we have a video
@@ -179,21 +185,20 @@ function Hero({ image, gallery, badge, name, detail, pinterest }: HeroType) {
   if (combinedGallery.length > 0) {
     return (
       <div className="hero-image">
-        <Slider
-          gallery={combinedGallery}
-          badge={badge}
-          pinterest={pinterest}
-        />
-        {detail ?
+        <Slider gallery={combinedGallery} badge={badge} pinterest={pinterest} />
+        {detail ? (
           <GatsbyImage
             image={detail?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={detail?.alternativeText ? detail?.alternativeText : name || "Hero Detail Image"}
+            alt={
+              detail?.alternativeText
+                ? detail?.alternativeText
+                : name || "Hero Detail Image"
+            }
             className="detail poster"
           />
-          : null
-        }
+        ) : null}
       </div>
-    )
+    );
   }
 
   if (!image) {
@@ -201,25 +206,35 @@ function Hero({ image, gallery, badge, name, detail, pinterest }: HeroType) {
   }
 
   return (
-    <div className={`hero-image  ${image.localFile.childImageSharp.gatsbyImageData.width <= 959 ? 'hero-stork' : null}`}>
+    <div
+      className={`hero-image  ${image.localFile.childImageSharp.gatsbyImageData.width <= 959 ? "hero-stork" : null}`}
+    >
       <GatsbyImage
         image={image.localFile.childImageSharp.gatsbyImageData}
         alt={image.alternativeText || "Hero Image"}
         className="poster"
       />
-      {detail ?
+      {detail ? (
         <GatsbyImage
           image={detail?.localFile?.childImageSharp?.gatsbyImageData}
-          alt={detail.alternativeText ? detail?.alternativeText : name || "Hero Detail Image"}
+          alt={
+            detail.alternativeText
+              ? detail?.alternativeText
+              : name || "Hero Detail Image"
+          }
           className="detail poster"
         />
-        : null
-      }
-      {pinterest && image.localFile.childImageSharp.gatsbyImageData.images.sources && (
-        <PinterestHref imageSources={image.localFile.childImageSharp.gatsbyImageData.images.sources} />
-      )}
+      ) : null}
+      {pinterest &&
+        image.localFile.childImageSharp.gatsbyImageData.images.sources && (
+          <PinterestHref
+            imageSources={
+              image.localFile.childImageSharp.gatsbyImageData.images.sources
+            }
+          />
+        )}
     </div>
-  )
+  );
 }
 
 export default Hero;

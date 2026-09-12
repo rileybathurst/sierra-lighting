@@ -1,22 +1,22 @@
 // * specifically removed from the SEO on Rom's request in /static/robots.txt
 
-import * as React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image"
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import { graphql, Link, useStaticQuery } from "gatsby";
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
+import * as React from "react";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 
 import ReactMarkdown from "react-markdown";
-import Start from "../../components/start";
-import Card from "../../components/card";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import type { CardType } from "../../types/card-type";
-import { SEO } from "../../components/seo";
 import Attribute from "../../components/attribute";
+import Card from "../../components/card";
+import Footer from "../../components/footer";
+import Header from "../../components/header";
+import { SEO } from "../../components/seo";
+import Start from "../../components/start";
+import type { CardType } from "../../types/card-type";
 
 function ResidentialShowcase() {
-
-  const { allStrapiShowcase, strapiService, allStrapiLight } = useStaticQuery(graphql`
+  const { allStrapiShowcase, strapiService, allStrapiLight } =
+    useStaticQuery(graphql`
     query ShowcaseQuery {
       allStrapiShowcase {
         nodes {
@@ -80,9 +80,9 @@ function ResidentialShowcase() {
   };
 
   type slugAndOrderType = {
-    slug: string,
-    xmasOrder: number
-  }
+    slug: string;
+    xmasOrder: number;
+  };
 
   type ShowcaseType = {
     id: React.Key;
@@ -106,15 +106,14 @@ function ResidentialShowcase() {
           };
         };
       };
-    }
-  }
+    };
+  };
 
   const showcaseSet = new Set();
   for (const showcase of allStrapiShowcase.nodes) {
-    showcaseSet.add(showcase.tier)
+    showcaseSet.add(showcase.tier);
   }
   const showcaseArray = Array.from(showcaseSet);
-
 
   const lightGroupSet: slugAndOrderType[] = [];
   const seenSlugs = new Set();
@@ -128,7 +127,9 @@ function ResidentialShowcase() {
     });
   }
 
-  const lightGroupArray = lightGroupSet.sort((a, b) => a.xmasOrder - b.xmasOrder);
+  const lightGroupArray = lightGroupSet.sort(
+    (a, b) => a.xmasOrder - b.xmasOrder,
+  );
 
   return (
     <>
@@ -136,7 +137,7 @@ function ResidentialShowcase() {
 
       <main>
         <h1 className="mixta">Residential Showcase</h1>
-        <div className='react-markdown'>
+        <div className="react-markdown">
           <ReactMarkdown>
             {strapiService.showcaseDescription.data.showcaseDescription}
           </ReactMarkdown>
@@ -145,20 +146,24 @@ function ResidentialShowcase() {
         <Start path="residential-showcase" />
       </main>
 
-      {showcaseArray.map((tier) => (
+      {showcaseArray.map((tier) =>
         allStrapiShowcase.nodes
           .filter((showcase: ShowcaseType) => showcase.tier === tier)
           .map((showcase: ShowcaseType) => (
             <div key={showcase.id} className="pelican">
               <Link to={`/project/${showcase.project.slug}`}>
                 <GatsbyImage
-                  image={showcase.project.image?.localFile?.childImageSharp?.gatsbyImageData}
+                  image={
+                    showcase.project.image?.localFile?.childImageSharp
+                      ?.gatsbyImageData
+                  }
                   alt={showcase.project.title}
                   className="poster"
-                /></Link>
+                />
+              </Link>
 
               <h3 className="capitalize">{showcase.tier} Showcase</h3>
-              <div className='react-markdown margin-block-end-kilimanjaro'>
+              <div className="react-markdown margin-block-end-kilimanjaro">
                 <ReactMarkdown>
                   {showcase.description.data.description}
                 </ReactMarkdown>
@@ -176,25 +181,26 @@ function ResidentialShowcase() {
               <Start path={`showcase ${showcase.tier}`} />
               <hr />
             </div>
-          ))
-      ))}
+          )),
+      )}
 
       <hr />
 
       <section>
-        <h4 className="main">Lighting types used on residential christmas displays</h4>
+        <h4 className="main">
+          Lighting types used on residential christmas displays
+        </h4>
 
-        {lightGroupArray.map((group) => (
+        {lightGroupArray.map((group) =>
           allStrapiLight.nodes
-            .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))
+            .filter(
+              (light: CardAndGroupType) =>
+                light.light_groups[0].slug === group.slug,
+            )
             .slice(0, 1)
             .map((light: CardAndGroupType) => (
-              <React.Fragment
-                key={light.light_groups[0].id}
-              >
-                <section
-                  className="above-deck"
-                >
+              <React.Fragment key={light.light_groups[0].id}>
+                <section className="above-deck">
                   <hr />
                   <h3>
                     <Link to={`/lights#${light.light_groups[0].slug}`}>
@@ -204,42 +210,37 @@ function ResidentialShowcase() {
                   <p key={light.id}>{light.light_groups[0].excerpt}</p>
                 </section>
 
-                <section
-                  key={light.id}
-                  className="deck">
+                <section key={light.id} className="deck">
                   {allStrapiLight.nodes
-                    .filter((light: CardAndGroupType) => light?.light_groups[0].slug === (group.slug))
+                    .filter(
+                      (light: CardAndGroupType) =>
+                        light?.light_groups[0].slug === group.slug,
+                    )
                     .map((light: CardType) => (
-                      <Card
-                        key={light.id}
-                        {...light}
-                        breadcrumb='light'
-                      />
+                      <Card key={light.id} {...light} breadcrumb="light" />
                     ))}
                 </section>
               </React.Fragment>
-            ))
-        ))}
+            )),
+        )}
       </section>
 
       <hr />
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/residential/">Residential</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to="/residential/">Residential</Link>
+        </Breadcrumb>
         <Breadcrumb>Showcase</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
     </>
-  )
+  );
 }
 
-export default ResidentialShowcase
+export default ResidentialShowcase;
 
 export const Head = () => {
-  return (
-    <SEO
-      title='Residential Christmas Light Showcase'
-    />
-  )
-}
+  return <SEO title="Residential Christmas Light Showcase" />;
+};

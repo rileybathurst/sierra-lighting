@@ -1,9 +1,9 @@
-import React from 'react';
-import { graphql, Script } from 'gatsby';
-import { SEO } from "../components/seo";
-import Footer from "../components/footer";
+import { graphql, Script } from "gatsby";
+import React from "react";
 import Markdown from "react-markdown";
+import Footer from "../components/footer";
 import Header from "../components/header";
+import { SEO } from "../components/seo";
 
 type AboutPageTypes = {
   data: {
@@ -11,15 +11,14 @@ type AboutPageTypes = {
       description: {
         data: {
           description: string;
-        }
-      }
+        };
+      };
       slogan: string;
-    }
-  }
-}
+    };
+  };
+};
 
 const AboutPage = ({ data }: AboutPageTypes) => {
-
   return (
     <>
       <Header />
@@ -28,45 +27,41 @@ const AboutPage = ({ data }: AboutPageTypes) => {
       {/* <Hero /> */}
 
       <main>
-        {data.strapiAbout ?
-          <Markdown components={{
-            p: ({ node, ...props }) => (
-              <div className="react-markdown" {...props} />
-            )
-          }}
+        {data.strapiAbout ? (
+          <Markdown
+            components={{
+              p: ({ node, ...props }) => (
+                <div className="react-markdown" {...props} />
+              ),
+            }}
           >
             {data.strapiAbout.description.data.description}
           </Markdown>
-          : null
-        }
-      </main >
+        ) : null}
+      </main>
 
       <Footer />
-
     </>
-  )
-}
+  );
+};
 
-export default AboutPage
+export default AboutPage;
 
 export const Head = ({ data }: AboutPageTypes) => {
   return (
-    <SEO
-      description={data.strapiAbout.slogan}
-    >
+    <SEO description={data.strapiAbout.slogan}>
       <Script type="application /ld + json">
-        {
-          `
+        {`
           {
             "@context": "https://schema.org",
             "@type": "AboutPage",
             "name": "About ",
           }
         `}
-      </Script >
-    </SEO >
-  )
-}
+      </Script>
+    </SEO>
+  );
+};
 
 export const data = graphql`
   query AboutQuery {

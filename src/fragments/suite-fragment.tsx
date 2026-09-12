@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment suiteFragment on STRAPI_SERVICE {
@@ -15,7 +15,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 /* hero_dark {
   alternativeText

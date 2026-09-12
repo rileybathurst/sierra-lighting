@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment vendorCardFragment on STRAPI_VENDOR {
@@ -16,4 +16,4 @@ export const query = graphql`
       slug
     }
   }
-`
+`;

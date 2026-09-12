@@ -1,23 +1,27 @@
 // TODO: im getting a @type organization error for address but not sure from where
 
-{/* // TODO: 
+{
+  /* // TODO: 
       https://schema.org/ContactPoint
       https://schema.org/skills
       https://schema.org/knowsAbout
       https://schema.org/foundingDate
       https://schema.org/foundingLocation
       https://schema.org/Service
-      */}
+      */
+}
 
-{/* "about": "Creating ${allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${allStrapiArea.nodes.map((area) => area.name).join(', ')}", */ }
+{
+  /* "about": "Creating ${allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${allStrapiArea.nodes.map((area) => area.name).join(', ')}", */
+}
 
-
-import React from "react";
+import { graphql, Script, useStaticQuery } from "gatsby";
 import type { ReactNode } from "react";
-import { useStaticQuery, graphql, Script } from "gatsby";
+import React from "react";
+import type { ImageWithAspectType } from "../types/image-with-aspect-type";
 import type VideoTypes from "../types/video-types";
 import Season from "./season";
-import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+
 // import { VideoMux } from "@mux/mux-player-react";
 
 type BreadcrumbsTypes = {
@@ -26,9 +30,8 @@ type BreadcrumbsTypes = {
     name: string;
     item: string;
   }[];
-}
+};
 const Breadcrumbs: React.FC<BreadcrumbsTypes> = ({ url, breadcrumbs }) => {
-
   if (!Object.entries(breadcrumbs).length) return null;
 
   // auto format is weird on here dont manually fix it
@@ -40,20 +43,22 @@ const Breadcrumbs: React.FC<BreadcrumbsTypes> = ({ url, breadcrumbs }) => {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            ${Object.entries(breadcrumbs).map(([key, breadcrumb]) => {
-        return `{
+            ${Object.entries(breadcrumbs)
+              .map(([key, breadcrumb]) => {
+                return `{
                 "@type": "ListItem",
                 "position": ${Number.parseInt(key) + 1},
                 "name": "${breadcrumb.name}",
                 "item": "${url}/${breadcrumb.item}"
-              }`
-      }).join(',\n')}
+              }`;
+              })
+              .join(",\n")}
             ]
           }
         `}
     </Script>
   );
-}
+};
 
 /* type VideoMuxTypes = {
   videos: VideoTypes[];
@@ -97,10 +102,17 @@ type SEOtypes = {
     item: string;
   }[];
   videos?: VideoTypes[] | null;
-}
+};
 export const SEO = (SEO: SEOtypes) => {
-
-  const { strapiAbout, strapiTopbar, allStrapiService, allStrapiArea, allStrapiKeyword, wedding, xmas } = useStaticQuery(graphql`
+  const {
+    strapiAbout,
+    strapiTopbar,
+    allStrapiService,
+    allStrapiArea,
+    allStrapiKeyword,
+    wedding,
+    xmas,
+  } = useStaticQuery(graphql`
     query SEOQuery {
       
       strapiAbout {
@@ -172,34 +184,35 @@ export const SEO = (SEO: SEOtypes) => {
   const SeasonalTopbar = (() => {
     if (strapiTopbar.title && strapiTopbar.default) {
       return strapiTopbar.title;
-    } else if (Season() === 'xmas') {
+    } else if (Season() === "xmas") {
       return strapiTopbar.defaultXmas;
-    } else if (Season() === 'wedding') {
+    } else if (Season() === "wedding") {
       return strapiTopbar.defaultWedding;
     } else {
-      console.error('No topbar title set in Strapi');
-      return '';
+      console.error("No topbar title set in Strapi");
+      return "";
     }
   })();
 
   /*------------------------------------*/
 
-  const pageTitle = SEO.title ?
-    `${SEO.title} | ${strapiAbout.businessName}`
+  const pageTitle = SEO.title
+    ? `${SEO.title} | ${strapiAbout.businessName}`
     : `${strapiAbout.businessName} | ${SeasonalTopbar}`;
 
   /*------------------------------------*/
 
   let seasonFallBackImage: string | undefined;
-  if (Season() === 'xmas') {
+  if (Season() === "xmas") {
     seasonFallBackImage = xmas?.hero_light.localFile.url;
-  } else if (Season() === 'wedding') {
+  } else if (Season() === "wedding") {
     seasonFallBackImage = wedding?.hero_light.localFile.url;
   } else {
     seasonFallBackImage = undefined;
   }
 
-  var pageImage: string | undefined = SEO.image?.localFile?.url || seasonFallBackImage;
+  var pageImage: string | undefined =
+    SEO.image?.localFile?.url || seasonFallBackImage;
 
   /*------------------------------------*/
 
@@ -209,7 +222,7 @@ export const SEO = (SEO: SEOtypes) => {
     "@context": "https://schema.org/",
     "@type": "LocalBusiness",
     name: strapiAbout.businessName,
-    description: `Creating professional ${allStrapiService.nodes.map((service: { name: string; }) => service.name).join(' lighting installation, ')} lighting installations in ${allStrapiArea.nodes.map((area: { name: string; }) => area.name).join(', ')}`,
+    description: `Creating professional ${allStrapiService.nodes.map((service: { name: string }) => service.name).join(" lighting installation, ")} lighting installations in ${allStrapiArea.nodes.map((area: { name: string }) => area.name).join(", ")}`,
     slogan: strapiAbout.slogan,
     url: strapiAbout.url,
     alternateName: strapiAbout.alternateName,
@@ -221,25 +234,28 @@ export const SEO = (SEO: SEOtypes) => {
     geo: {
       "@type": "GeoCoordinates",
       latitude: strapiAbout.geoLatitude,
-      longitude: strapiAbout.geoLongitude
+      longitude: strapiAbout.geoLongitude,
     },
     areaServed: {
       "@type": "GeoCircle",
       geoMidpoint: {
         "@type": "GeoCoordinates",
         latitude: strapiAbout.geoLatitude,
-        longitude: strapiAbout.geoLongitude
+        longitude: strapiAbout.geoLongitude,
       },
-      geoRadius: strapiAbout.geoRadius
+      geoRadius: strapiAbout.geoRadius,
     },
     address: {
       "@type": "PostalAddress",
       addressLocality: strapiAbout.addressLocality,
       addressRegion: strapiAbout.addressRegion,
       postalCode: strapiAbout.postalCode,
-      addressCountry: "US"
+      addressCountry: "US",
     },
-    keywords: allStrapiService.nodes.map((service: { name: string; }) => service.name).concat(allStrapiKeyword.nodes.map((k: { keyword: string; }) => k.keyword)).join(', ')
+    keywords: allStrapiService.nodes
+      .map((service: { name: string }) => service.name)
+      .concat(allStrapiKeyword.nodes.map((k: { keyword: string }) => k.keyword))
+      .join(", "),
   };
 
   return (
@@ -250,9 +266,11 @@ export const SEO = (SEO: SEOtypes) => {
       {/* <meta name="viewport" content="width=device-width, initial-scale=1" /> */}
 
       <title>{pageTitle}</title>
-      <meta name="description" content={SEO.description ? SEO.description : strapiAbout.slogan} />
+      <meta
+        name="description"
+        content={SEO.description ? SEO.description : strapiAbout.slogan}
+      />
       {/* <meta name="image" itemProp="image" content={pageImage} /> */}
-
 
       <meta property="og:type" content="website" />
       <meta property="og:url" itemProp="URL" content={SEO.url} />
@@ -264,10 +282,7 @@ export const SEO = (SEO: SEOtypes) => {
         {JSON.stringify(localBusinessSchema)}
       </Script>
 
-      <Breadcrumbs
-        url={strapiAbout.url}
-        breadcrumbs={SEO.breadcrumbs ?? []}
-      />
+      <Breadcrumbs url={strapiAbout.url} breadcrumbs={SEO.breadcrumbs ?? []} />
 
       {/*  {SEO.videos && (
         <VideoMux

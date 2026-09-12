@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { graphql, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
+import React, { useEffect, useRef, useState } from "react";
 
 function HeroWeddingBackImage() {
-
   const { strapiHero } = useStaticQuery(graphql`
     query HeroWeddingBackImageQuery {
       strapiHero {
@@ -26,7 +25,7 @@ function HeroWeddingBackImage() {
       let observer: IntersectionObserver;
 
       const options = {
-        threshold: buildThresholdList()
+        threshold: buildThresholdList(),
       };
 
       observer = new IntersectionObserver(handleIntersect, options);
@@ -73,15 +72,15 @@ function HeroWeddingBackImage() {
   const backStyle = {
     marginBlockStart: `${ratio}rem`,
     transition: "2s",
-  }
+  };
 
   return (
-    <div
-      style={backStyle}
-      ref={image}
-    >{/* needs this to load quick enough */}
+    <div style={backStyle} ref={image}>
+      {/* needs this to load quick enough */}
       <GatsbyImage
-        image={strapiHero.wedding_back.localFile.childImageSharp.gatsbyImageData}
+        image={
+          strapiHero.wedding_back.localFile.childImageSharp.gatsbyImageData
+        }
         alt={strapiHero.wedding_back.alternativeText || "background image"}
         className="back"
         objectPosition="bottom"

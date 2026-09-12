@@ -1,23 +1,20 @@
-import * as React from "react"
+import * as React from "react";
+import Areas from "../components/areas";
+import Footer from "../components/footer";
+import Header from "../components/header";
 import { SEO } from "../components/seo";
 
-import Header from "../components/header";
-import Footer from "../components/footer";
-import Areas from "../components/areas";
-
 const AreasPage = () => {
-
   return (
     <>
       <Header />
       <Areas />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default AreasPage
-
+export default AreasPage;
 
 export const Head = () => {
   return (
@@ -28,5 +25,5 @@ export const Head = () => {
       // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/areas-og-sierra_lighting.jpg"
       url="areas"
     />
-  )
-}
+  );
+};

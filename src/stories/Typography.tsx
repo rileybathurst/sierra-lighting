@@ -1,5 +1,5 @@
-import React from "react";
 import { faker } from "@faker-js/faker";
+import React from "react";
 
 export const Typography = () => {
   return (
@@ -22,12 +22,9 @@ export const Typography = () => {
       <p className="font-quote">&ldquo;font-quote</p>
 
       {/* // TODO: document this */}
-      <p>
-        Mixta should only be used on major headings
-      </p>
+      <p>Mixta should only be used on major headings</p>
 
       <hr />
-
 
       <h4>font weights</h4>
       <h4>h4 - standard</h4>
@@ -43,7 +40,6 @@ export const Typography = () => {
         <li className="bantam">bantam - 200</li>
         <li className="fly">fly - 100</li>
       </ul>
-
     </section>
   );
 };

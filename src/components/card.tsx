@@ -1,16 +1,28 @@
-import * as React from 'react';
-import { Link, useStaticQuery, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { graphql, Link, useStaticQuery } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import * as React from "react";
 import type { CardProps } from "../types/card-type";
 
-const Card = ({ image, title, slug, excerpt, areas, breadcrumb, query, href }: CardProps) => {
-
-  if (process.env.NODE_ENV === "development" && (!areas || areas?.length === 0) && !excerpt) {
-    console.warn(`${title} card has no content`)
+const Card = ({
+  image,
+  title,
+  slug,
+  excerpt,
+  areas,
+  breadcrumb,
+  query,
+  href,
+}: CardProps) => {
+  if (
+    process.env.NODE_ENV === "development" &&
+    (!areas || areas?.length === 0) &&
+    !excerpt
+  ) {
+    console.warn(`${title} card has no content`);
   }
 
   if (!image?.alternativeText) {
-    console.warn(`${title} image has no alt`)
+    console.warn(`${title} image has no alt`);
   }
 
   const { strapiError } = useStaticQuery(graphql`
@@ -24,23 +36,33 @@ const Card = ({ image, title, slug, excerpt, areas, breadcrumb, query, href }: C
     `);
 
   return (
-    <section
-      className="card"
-    >
+    <section className="card">
       {href ? (
-        <a href={href} target="_blank" rel="noopener noreferrer" className="image">
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="image"
+        >
           <GatsbyImage
-            image={image ? image?.localFile?.childImageSharp?.gatsbyImageData : strapiError.missingCard.localFile.childImageSharp.gatsbyImageData}
+            image={
+              image
+                ? image?.localFile?.childImageSharp?.gatsbyImageData
+                : strapiError.missingCard.localFile.childImageSharp
+                    .gatsbyImageData
+            }
             alt={image?.alternativeText ?? title}
           />
         </a>
       ) : (
-        <Link
-          to={`/${breadcrumb}/${slug}?=${query ?? ''}`}
-          className="image"
-        >
+        <Link to={`/${breadcrumb}/${slug}?=${query ?? ""}`} className="image">
           <GatsbyImage
-            image={image ? image?.localFile?.childImageSharp?.gatsbyImageData : strapiError.missingCard.localFile.childImageSharp.gatsbyImageData}
+            image={
+              image
+                ? image?.localFile?.childImageSharp?.gatsbyImageData
+                : strapiError.missingCard.localFile.childImageSharp
+                    .gatsbyImageData
+            }
             alt={image?.alternativeText ?? title}
           />
         </Link>
@@ -52,33 +74,30 @@ const Card = ({ image, title, slug, excerpt, areas, breadcrumb, query, href }: C
             {title}
           </a>
         ) : (
-          <Link to={`/${breadcrumb}/${slug}?=${query ?? ''}`}>
-            {title}
-          </Link>
+          <Link to={`/${breadcrumb}/${slug}?=${query ?? ""}`}>{title}</Link>
         )}
       </h2>
-      {areas ?
-        areas?.length > 0 ?
+      {areas ? (
+        areas?.length > 0 ? (
           <div className="subarea">
             <p>{excerpt}</p>
-            <div >
+            <div>
               <p>Including:</p>
               <ul>
-                {areas.map(area => (
-                  <li
-                    key={area.name}
-                  >
-                    {area.name}
-                  </li>
+                {areas.map((area) => (
+                  <li key={area.name}>{area.name}</li>
                 ))}
               </ul>
             </div>
           </div>
-          :
+        ) : (
           <p>{excerpt}</p>
-        : <p>{excerpt}</p>}
+        )
+      ) : (
+        <p>{excerpt}</p>
+      )}
     </section>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

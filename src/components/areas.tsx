@@ -1,15 +1,15 @@
-import * as React from "react"
-import { useStaticQuery, graphql } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
+import * as React from "react";
 import Card from "../components/card";
 import type { CardType } from "../types/card-type";
-import Season from "./season";
 import type { ImageType } from "../types/image-type";
+import Season from "./season";
 
 // * Extend CardType locally to include weddingImage
 type AreaCardType = CardType & {
   image: ImageType;
   weddingImage?: ImageType; // Optional weddingImage property
-}
+};
 
 const Areas = () => {
   const { allStrapiArea } = useStaticQuery(graphql`
@@ -36,9 +36,9 @@ const Areas = () => {
   `);
 
   interface SortTypes {
-    a: { areas: { length: number } },
-    b: { areas: { length: number } }
-  };
+    a: { areas: { length: number } };
+    b: { areas: { length: number } };
+  }
 
   allStrapiArea.nodes.map((area: AreaCardType) => {
     if (Season() === "wedding" && area.weddingImage) {
@@ -51,21 +51,23 @@ const Areas = () => {
     <React.Fragment>
       <main className="above-deck">
         <h1 className="margin-block-end-vinson">Service Areas</h1>
-        <p>Don't see your town on the list? Don't worry, we serve the entire Reno Tahoe area.</p>
+        <p>
+          Don't see your town on the list? Don't worry, we serve the entire Reno
+          Tahoe area.
+        </p>
       </main>
       <section className="deck">
         {allStrapiArea.nodes
-          .sort((a: SortTypes['a'], b: SortTypes['b']) => b.areas.length - a.areas.length)
+          .sort(
+            (a: SortTypes["a"], b: SortTypes["b"]) =>
+              b.areas.length - a.areas.length,
+          )
           .map((area: AreaCardType) => (
-            <Card
-              key={area.id}
-              {...area}
-              breadcrumb='areas'
-            />
+            <Card key={area.id} {...area} breadcrumb="areas" />
           ))}
       </section>
     </React.Fragment>
   );
-}
+};
 
-export default Areas
+export default Areas;

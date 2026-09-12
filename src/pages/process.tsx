@@ -1,33 +1,34 @@
-import React, { useState } from "react";
-import { useStaticQuery, graphql, Link } from "gatsby";
-import { SEO } from "../components/seo";
-import Season from "../components/season";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import type React from "react";
+import { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import Season from "../components/season";
+import { SEO } from "../components/seo";
 
 type processTypes = {
-	id: React.Key;
-	name: string;
-	markdown: {
-		data: {
-			markdown: string;
-		};
-	};
+  id: React.Key;
+  name: string;
+  markdown: {
+    data: {
+      markdown: string;
+    };
+  };
 };
 function ProcessDetail({ id, name, markdown }: processTypes) {
-	return (
-		<li key={id}>
-			<h3 className="margin-block-end-vinson">{name}</h3>
-			<div className="react-markdown">
-				<ReactMarkdown>{markdown.data.markdown}</ReactMarkdown>
-			</div>
-		</li>
-	);
+  return (
+    <li key={id}>
+      <h3 className="margin-block-end-vinson">{name}</h3>
+      <div className="react-markdown">
+        <ReactMarkdown>{markdown.data.markdown}</ReactMarkdown>
+      </div>
+    </li>
+  );
 }
 
 const ProcessPage = () => {
-	const { holiday, wedding: weddingProcesses } = useStaticQuery(graphql`
+  const { holiday, wedding: weddingProcesses } = useStaticQuery(graphql`
     query ProcessQuery {
       holiday: allStrapiProcess(
         filter: {services: {elemMatch: {slug: {eq: "residential"}}}},
@@ -49,91 +50,89 @@ const ProcessPage = () => {
     }
   `);
 
-	// TODO: needs the adjective component
-	// const ready = 'Ready to bring your vision to life ? Get started with a free estimate today and let us illuminate your wedding or event with an unforgettable lighting display!';
+  // TODO: needs the adjective component
+  // const ready = 'Ready to bring your vision to life ? Get started with a free estimate today and let us illuminate your wedding or event with an unforgettable lighting display!';
 
-	const xmas = "Christmas or Holiday lights installation";
-	const wedding = "Wedding, Commercial or Social Event lights installation";
+  const xmas = "Christmas or Holiday lights installation";
+  const wedding = "Wedding, Commercial or Social Event lights installation";
 
-	const [seasonRadio, setSeasonRadio] = useState(Season());
+  const [seasonRadio, setSeasonRadio] = useState(Season());
 
-	function seasonSwitcher(e: React.ChangeEvent<HTMLInputElement>) {
-		setSeasonRadio(e.target.value);
-		// console.log('season switched', e.target.value);
-		return null;
-	}
+  function seasonSwitcher(e: React.ChangeEvent<HTMLInputElement>) {
+    setSeasonRadio(e.target.value);
+    // console.log('season switched', e.target.value);
+    return null;
+  }
 
-	return (
-		<>
-			<Header />
+  return (
+    <>
+      <Header />
 
-			<main>
-				<h1 className="denali">
-					Our Process for professional lighting installation
-				</h1>
+      <main>
+        <h1 className="denali">
+          Our Process for professional lighting installation
+        </h1>
 
-				<form className="process-switch">
-					<label className={seasonRadio === "wedding" ? "current" : undefined}>
-						<input
-							type="radio"
-							name="season"
-							value="wedding"
-							onChange={seasonSwitcher}
-							checked={seasonRadio === "wedding"}
-						/>
-						{wedding}
-					</label>
-					<label className={seasonRadio === "xmas" ? "current" : undefined}>
-						<input
-							type="radio"
-							name="season"
-							value="xmas"
-							onChange={seasonSwitcher}
-							checked={seasonRadio === "xmas"}
-						/>
-						{xmas}
-					</label>
-				</form>
+        <form className="process-switch">
+          <label className={seasonRadio === "wedding" ? "current" : undefined}>
+            <input
+              type="radio"
+              name="season"
+              value="wedding"
+              onChange={seasonSwitcher}
+              checked={seasonRadio === "wedding"}
+            />
+            {wedding}
+          </label>
+          <label className={seasonRadio === "xmas" ? "current" : undefined}>
+            <input
+              type="radio"
+              name="season"
+              value="xmas"
+              onChange={seasonSwitcher}
+              checked={seasonRadio === "xmas"}
+            />
+            {xmas}
+          </label>
+        </form>
 
-				<p>
-					Ready to bring your vision to life? Get started with a free estimate
-					today and let us illuminate your home or business with an unforgettable
-					lighting display!
-				</p>
-				<hr />
-				<ol>
-					{seasonRadio === "wedding" ?
-						weddingProcesses.nodes.map((process: processTypes) => (
-							<ProcessDetail key={process.id} {...process} />
-						)) : (
-							holiday.nodes.map((process: processTypes) => (
-								<ProcessDetail key={process.id} {...process} />
-							))
-						)
-					}
-				</ol>
-				<p>
-					<Link to="/safety">
-						Learn more about how our safety practices keep you protected
-					</Link>
-				</p>
-			</main>
+        <p>
+          Ready to bring your vision to life? Get started with a free estimate
+          today and let us illuminate your home or business with an
+          unforgettable lighting display!
+        </p>
+        <hr />
+        <ol>
+          {seasonRadio === "wedding"
+            ? weddingProcesses.nodes.map((process: processTypes) => (
+                <ProcessDetail key={process.id} {...process} />
+              ))
+            : holiday.nodes.map((process: processTypes) => (
+                <ProcessDetail key={process.id} {...process} />
+              ))}
+        </ol>
+        <p>
+          <Link to="/safety">
+            Learn more about how our safety practices keep you protected
+          </Link>
+        </p>
+      </main>
 
-			<Footer />
-		</>
-	);
+      <Footer />
+    </>
+  );
 };
 
 export default ProcessPage;
 
 export const Head = () => {
-	return (
-		<SEO
-			title="Our process for professional wedding or christmas lights installation"
-			// TODO: needs a new description now
-			description="Learn how Sierra Lighting can help you create memorable lighting with our design process."
-		// TODO:
-		// image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
-		/>
-	);
+  return (
+    <SEO
+      title="Our process for professional wedding or christmas lights installation"
+      // TODO: needs a new description now
+      description="Learn how Sierra Lighting can help you create memorable lighting with our design process."
+      // TODO:
+      // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
+    />
+  );
 };

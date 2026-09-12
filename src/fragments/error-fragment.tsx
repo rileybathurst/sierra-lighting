@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment errorFragment on STRAPI_ERROR {
@@ -6,4 +6,4 @@ export const query = graphql`
     pun
     return
   }
-`
+`;

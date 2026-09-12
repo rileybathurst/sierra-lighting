@@ -14,12 +14,12 @@
   /* this is breaking when on the service page as theres title pushing the size */
   /* TODO: I can wrap it in a not */
 
-  >* {
+  > * {
     grid-column: 1;
   }
 
   .paper {
-    grid-row: 2/5;
+    grid-row: 2 / 5;
     background-color: var(--honey-100);
     box-shadow: var(--mesosphere);
     border: 2px solid var(--neutral-100);
@@ -32,7 +32,7 @@
   }
 
   .image {
-    grid-row: 1/3;
+    grid-row: 1 / 3;
     border-radius: var(--card-radius);
     width: calc(100% - var(--denali));
     margin-inline: auto;
@@ -43,7 +43,7 @@
     }
 
     .gatsby-image-wrapper {
-      aspect-ratio: 3/2;
+      aspect-ratio: 3 / 2;
       width: 100%;
       box-shadow: var(--stratosphere);
       border-radius: var(--card-radius);
@@ -68,7 +68,7 @@
     }
   }
 
-  >* {
+  > * {
     padding-inline: var(--vinson);
   }
 
@@ -244,7 +244,7 @@
   }
 
   .jobber {
-    grid-row: 1/3;
+    grid-row: 1 / 3;
     grid-column: 1;
     display: grid;
     place-items: center;
@@ -295,12 +295,12 @@
   /* * this has to be top level then drop down */
   text-decoration: none;
 
-  >* {
+  > * {
     grid-column: 1;
   }
 
   .paper {
-    grid-row: 2/5;
+    grid-row: 2 / 5;
     background-color: var(--honey-100);
     box-shadow: var(--mesosphere);
     border: 2px solid var(--neutral-100);
@@ -313,7 +313,7 @@
   }
 
   .image {
-    grid-row: 1/3;
+    grid-row: 1 / 3;
     border-radius: var(--card-radius);
     width: calc(100% - var(--denali));
     margin-inline: auto;
@@ -324,7 +324,7 @@
     }
 
     .gatsby-image-wrapper {
-      aspect-ratio: 3/2;
+      aspect-ratio: 3 / 2;
       width: 100%;
       box-shadow: var(--stratosphere);
       border-radius: var(--card-radius);
@@ -349,7 +349,7 @@
     }
   }
 
-  >* {
+  > * {
     padding-inline: var(--vinson);
   }
 

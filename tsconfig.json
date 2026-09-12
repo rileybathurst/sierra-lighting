@@ -108,9 +108,5 @@
     "./plugins/**/*",
     "showcase.tsx"
   ],
-  "exclude": [
-    "node_modules",
-    "public",
-    "src/stories"
-  ]
+  "exclude": ["node_modules", "public", "src/stories"]
 }

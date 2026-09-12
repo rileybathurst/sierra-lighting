@@ -1,25 +1,24 @@
 // TODO: needs testimonials per service
 // TODO: add top level areas
-// * vendors are hard coded to only show on wedding service page for now 
+// * vendors are hard coded to only show on wedding service page for now
 // which is kinda messy as its always queried so reducing that work might be nice
 // TODO: vendor and venue should be last edited
 
-import React from 'react';
-import { graphql, Link, Script } from 'gatsby'
-import MuxPlayer from '@mux/mux-player-react';
-import { SEO } from "../components/seo";
-
-import Header from "../components/header";
-import Footer from "../components/footer";
+import MuxPlayer from "@mux/mux-player-react";
+import { graphql, Link, Script } from "gatsby";
+import type { IGatsbyImageData } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
+import React from "react";
 import Markdown from "react-markdown";
-import Card from '../components/card';
-import type { CardType } from '../types/card-type';
-import Start from '../components/start';
-import type { IGatsbyImageData } from 'gatsby-plugin-image';
-import { GatsbyImage } from 'gatsby-plugin-image';
-import type { GatsbyImageType } from '../types/gatsby-image';
-import type VideoTypes from '../types/video-types';
-import ImageCheck from '../components/image-check';
+import Card from "../components/card";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import ImageCheck from "../components/image-check";
+import { SEO } from "../components/seo";
+import Start from "../components/start";
+import type { CardType } from "../types/card-type";
+import type { GatsbyImageType } from "../types/gatsby-image";
+import type VideoTypes from "../types/video-types";
 
 interface ServiceTypes {
   data: {
@@ -30,31 +29,34 @@ interface ServiceTypes {
       description: { data: { description: string } };
       after_the_triptych: { data: { after_the_triptych: string } };
       projects: (CardType & { updatedAt: string })[];
-      triptych: { id: React.Key; localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } } }[];
-      featured_lights: (Omit<CardType, 'image'> & {
+      triptych: {
+        id: React.Key;
+        localFile: { childImageSharp: { gatsbyImageData: IGatsbyImageData } };
+      }[];
+      featured_lights: (Omit<CardType, "image"> & {
         image: {
           localFile: {
             childImageSharp: {
               gatsbyImageData: IGatsbyImageData;
-            }
-          },
-          alternativeText: string
+            };
+          };
+          alternativeText: string;
         };
         residentialHero?: {
           localFile: {
             childImageSharp: {
               gatsbyImageData: IGatsbyImageData;
-            }
-          },
-          alternativeText: string
-        },
+            };
+          };
+          alternativeText: string;
+        };
         commercialHero?: {
           localFile: {
             childImageSharp: {
-              gatsbyImageData: IGatsbyImageData
-            }
-          },
-          alternativeText: string
+              gatsbyImageData: IGatsbyImageData;
+            };
+          };
+          alternativeText: string;
         };
       })[];
       videoMux: string;
@@ -63,13 +65,13 @@ interface ServiceTypes {
       venues: CardType[];
       vendors: CardType[];
       videos: VideoTypes[];
-    }
+    };
     allStrapiProcess: {
       nodes: {
         id: React.Key;
         name: string;
         markdown: { data: { markdown: string } };
-      }[]
+      }[];
     };
     strapiVenue: CardType;
     strapiVendor: CardType;
@@ -78,7 +80,7 @@ interface ServiceTypes {
     strapiAbout: {
       businessName: string;
       url: string;
-    }
+    };
     allStrapiArea: {
       nodes: {
         id: React.Key;
@@ -88,10 +90,10 @@ interface ServiceTypes {
         areas: {
           id: React.Key;
           name: string;
-        }[]
-      }[]
-    }
-  }
+        }[];
+      }[];
+    };
+  };
 }
 
 type SortTypes = {
@@ -99,14 +101,14 @@ type SortTypes = {
     areas: {
       id: React.Key;
       name: string;
-    }[]
-  },
+    }[];
+  };
   b: {
     areas: {
       id: React.Key;
       name: string;
-    }[]
-  }
+    }[];
+  };
 };
 
 interface BaseTypes {
@@ -116,7 +118,6 @@ interface BaseTypes {
   serviceSlug: string;
 }
 function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
-
   const [reversedProjects] = React.useState(projects?.slice().reverse() ?? []);
   projects = reversedProjects;
 
@@ -145,18 +146,45 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
 
   // empty card slots
   // * I know this has type issues
-  const base: { card: CardType | Record<string, never>, title: boolean, breadcrumb: string, cardBreadcrumb: "project" | "vendor" | "venue", order: number, id: React.Key }[] = [
+  const base: {
+    card: CardType | Record<string, never>;
+    title: boolean;
+    breadcrumb: string;
+    cardBreadcrumb: "project" | "vendor" | "venue";
+    order: number;
+    id: React.Key;
+  }[] = [
     // * default to project link to satisfy types
-    { card: {}, title: false, breadcrumb: '', cardBreadcrumb: 'project', order: 0, id: '' },
-    { card: {}, title: false, breadcrumb: '', cardBreadcrumb: 'project', order: 1, id: '' },
-    { card: {}, title: false, breadcrumb: '', cardBreadcrumb: 'project', order: 2, id: '' },
+    {
+      card: {},
+      title: false,
+      breadcrumb: "",
+      cardBreadcrumb: "project",
+      order: 0,
+      id: "",
+    },
+    {
+      card: {},
+      title: false,
+      breadcrumb: "",
+      cardBreadcrumb: "project",
+      order: 1,
+      id: "",
+    },
+    {
+      card: {},
+      title: false,
+      breadcrumb: "",
+      cardBreadcrumb: "project",
+      order: 2,
+      id: "",
+    },
   ];
 
   // console.log(base);
 
   // wrap everything as they are always passed but often have no length
   if (projects && venue && vendor) {
-
     // * the heirarchy is projects, vendors, venues
 
     // first create the 3 spots as projects if possible
@@ -166,7 +194,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
       base[0].title = true;
       // TODO: this has an ugly hard code to fix the link
       base[0].breadcrumb = `${serviceSlug}/projects`;
-      base[0].cardBreadcrumb = 'project';
+      base[0].cardBreadcrumb = "project";
       base[0].order = 0;
       // this doesnt work on gatsby build
       // base[0].id = self.crypto.randomUUID();
@@ -176,7 +204,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
     if (projects.length > 1) {
       base[1].card = projects[1];
       base[1].breadcrumb = `${serviceSlug}/projects`;
-      base[1].cardBreadcrumb = 'project';
+      base[1].cardBreadcrumb = "project";
       base[1].order = 1;
       // base[1].id = self.crypto.randomUUID();
     }
@@ -185,26 +213,25 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
     if (projects.length > 2) {
       base[2].card = projects[2];
       base[2].breadcrumb = `${serviceSlug}/projects`;
-      base[2].cardBreadcrumb = 'project';
+      base[2].cardBreadcrumb = "project";
       base[2].order = 2;
       // base[2].id = self.crypto.randomUUID();
     }
 
     // * if has projects and vendors
     if (vendor && venue) {
-
       // put the vendor in the second spot
       base[1].card = vendor;
       base[1].title = true;
-      base[1].breadcrumb = 'vendor';
-      base[1].cardBreadcrumb = 'vendor';
+      base[1].breadcrumb = "vendor";
+      base[1].cardBreadcrumb = "vendor";
       // base[1].id = self.crypto.randomUUID();
 
       // put the venue in the third spot
       base[2].card = venue;
       base[2].title = true;
-      base[2].breadcrumb = 'venue';
-      base[2].cardBreadcrumb = 'venue';
+      base[2].breadcrumb = "venue";
+      base[2].cardBreadcrumb = "venue";
       // base[2].id = self.crypto.randomUUID();
 
       // if has projects and vendors but no venues
@@ -212,37 +239,40 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
     } else if (vendor) {
       base[2].card = vendor;
       base[2].title = true;
-      base[2].breadcrumb = 'vendor';
-      base[2].cardBreadcrumb = 'vendor';
+      base[2].breadcrumb = "vendor";
+      base[2].cardBreadcrumb = "vendor";
       // base[2].id = self.crypto.randomUUID();
-
     } else if (venue) {
       // if has projects and venues but no vendors
       // put the venue in the second spot
       base[1].card = venue;
       base[1].title = true;
-      base[1].breadcrumb = 'venue';
-      base[1].cardBreadcrumb = 'venue';
+      base[1].breadcrumb = "venue";
+      base[1].cardBreadcrumb = "venue";
       // base[1].id = self.crypto.randomUUID();
     }
 
     // TODO: build an array and put them in and deal with empties
     return (
-      <div className='service-deck'>
+      <div className="service-deck">
         {base.map((item) => (
           <React.Fragment key={item.order}>
             {item.title ? (
-              <h4 className={`capitalize project-title ${item.breadcrumb}-title`}>
-                <Link to={`/${item.breadcrumb}${item.breadcrumb === `${serviceSlug}/project` ? 's' : ''}`}>
-                  {item.breadcrumb.includes('project') ? 'Projects' : item.breadcrumb.charAt(0).toUpperCase() + item.breadcrumb.slice(1)}
+              <h4
+                className={`capitalize project-title ${item.breadcrumb}-title`}
+              >
+                <Link
+                  to={`/${item.breadcrumb}${item.breadcrumb === `${serviceSlug}/project` ? "s" : ""}`}
+                >
+                  {item.breadcrumb.includes("project")
+                    ? "Projects"
+                    : item.breadcrumb.charAt(0).toUpperCase() +
+                      item.breadcrumb.slice(1)}
                 </Link>
               </h4>
             ) : null}
             {item.card?.id ? (
-              <div
-                key={`${item.id}-card`}
-                className='service-card'
-              >
+              <div key={`${item.id}-card`} className="service-card">
                 <Card
                   key={`${item.id}-card`}
                   {...(item.card as CardType)}
@@ -253,94 +283,66 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
           </React.Fragment>
         ))}
       </div>
-    )
+    );
   }
 
   if (projects && venue) {
-
     return (
-      <div className='service-deck'>
+      <div className="service-deck">
         {projects.slice(0, 2).map((project, index) => (
           <React.Fragment key={project.id}>
-            <div
-              className='service-card'
-            >
+            <div className="service-card">
               {index === 0 ? (
-                <h4
-                  className='capitalize project-title project-title'
-                >
-                  <Link to={`/${serviceSlug}/projects`}>
-                    Projects
-                  </Link>
+                <h4 className="capitalize project-title project-title">
+                  <Link to={`/${serviceSlug}/projects`}>Projects</Link>
                 </h4>
               ) : null}
             </div>
-            <Card
-              key={project.id}
-              {...project}
-              breadcrumb='project'
-            />
+            <Card key={project.id} {...project} breadcrumb="project" />
           </React.Fragment>
         ))}
 
         <React.Fragment key={venue.id}>
-          <div className='service-card'>
-            <h4 className='capitalize venue-title venue-title'>
-              <Link to="/venue">
-                Venues
-              </Link>
+          <div className="service-card">
+            <h4 className="capitalize venue-title venue-title">
+              <Link to="/venue">Venues</Link>
             </h4>
           </div>
-          <Card
-            key={venue.id}
-            {...venue}
-            breadcrumb='venue'
-          />
+          <Card key={venue.id} {...venue} breadcrumb="venue" />
         </React.Fragment>
       </div>
-    )
+    );
   }
 
   if (projects && !venue && !vendor) {
     return (
-      <div className='service-deck'>
+      <div className="service-deck">
         {projects.slice(0, 3).map((project, index) => (
           <React.Fragment key={project.id}>
-            <div
-              className='service-card'
-            >
+            <div className="service-card">
               {index === 0 ? (
-                <h4
-                  className='capitalize project-title project-title'
-                >
-                  <Link to='/projects'>
-                    Projects
-                  </Link>
+                <h4 className="capitalize project-title project-title">
+                  <Link to="/projects">Projects</Link>
                 </h4>
               ) : null}
             </div>
-            <Card
-              key={project.id}
-              {...project}
-              breadcrumb='project'
-            />
+            <Card key={project.id} {...project} breadcrumb="project" />
           </React.Fragment>
         ))}
       </div>
-    )
+    );
   }
 
   return null;
 }
 
 const ServiceView = ({ data }: ServiceTypes) => {
-
   const adj: { [key: string]: string } = {
-    wedding: 'special day',
-    residential: 'home',
-    commercial: 'business',
-    'commercial-events': 'business',
-    'social_events': 'event',
+    wedding: "special day",
+    residential: "home",
+    commercial: "business",
+    "commercial-events": "business",
+    social_events: "event",
   };
   // patio: 'patio'
   const adjective = adj[data.strapiService.slug];
@@ -349,21 +351,21 @@ const ServiceView = ({ data }: ServiceTypes) => {
     <>
       <Header />
       <main>
-        {data.strapiService.videoMux &&
+        {data.strapiService.videoMux && (
           <MuxPlayer
             streamType="on-demand"
             playbackId={data.strapiService.videoMux}
-            className='hero-video'
+            className="hero-video"
           />
-        }
+        )}
 
         <section className="stork">
-          <h1 className='mixta'>
+          <h1 className="mixta">
             {/* // TODO: needs a clamp on the size */}
             {data.strapiService.name} Lighting Installation
           </h1>
 
-          <div className='react-markdown'>
+          <div className="react-markdown">
             <Markdown>
               {data.strapiService.description.data.description}
             </Markdown>
@@ -385,26 +387,23 @@ const ServiceView = ({ data }: ServiceTypes) => {
             </div>
           ))}
         </section> */}
-      </main >
+      </main>
 
       <section className="lights">
+        <hr className="stork" />
 
-        <hr className='stork' />
-
-        <div className='deck'>
+        <div className="deck">
           {/* // ? cant I pass this as a spread? */}
           {data.strapiService.featured_lights.map((light) => (
             <ImageCheck
               key={light.id}
               title={light.title}
-              slug={light.slug || ''}
-              excerpt={light.excerpt ?? ''}
-              breadcrumb='light'
-
+              slug={light.slug || ""}
+              excerpt={light.excerpt ?? ""}
+              breadcrumb="light"
               image={light.image}
               commercialHero={light.commercialHero}
               residentialHero={light.residentialHero}
-
               query={data.strapiService.slug}
             />
           ))}
@@ -413,118 +412,138 @@ const ServiceView = ({ data }: ServiceTypes) => {
         <div className="stork">
           <h2 className="kilimanjaro">
             <Link to={`/${data.strapiService.slug}/lights`}>
-              {data.strapiService.lights.length} {data.strapiService.name} lighting styles explore them here
+              {data.strapiService.lights.length} {data.strapiService.name}{" "}
+              lighting styles explore them here
             </Link>
           </h2>
-
         </div>
 
-        {data.allStrapiLookbook?.nodes.length > 0 ?
+        {data.allStrapiLookbook?.nodes.length > 0 ? (
           <>
-            <hr className='pelican' />
-            <Link to={`/${data.strapiService.slug}/lookbook`} className='poster ratio-16-9'>
+            <hr className="pelican" />
+            <Link
+              to={`/${data.strapiService.slug}/lookbook`}
+              className="poster ratio-16-9"
+            >
               <GatsbyImage
-                image={data.strapiService.lookbookCover?.localFile.childImageSharp.gatsbyImageData}
-                alt={data.strapiService.lookbookCover?.alternativeText || `${data.strapiService.slug} Lookbook`}
+                image={
+                  data.strapiService.lookbookCover?.localFile.childImageSharp
+                    .gatsbyImageData
+                }
+                alt={
+                  data.strapiService.lookbookCover?.alternativeText ||
+                  `${data.strapiService.slug} Lookbook`
+                }
                 objectPosition="center"
               />
-              <h3>Browse our {new Date().getFullYear()} {data.strapiService.name} Lookbook</h3>
+              <h3>
+                Browse our {new Date().getFullYear()} {data.strapiService.name}{" "}
+                Lookbook
+              </h3>
             </Link>
           </>
-          : null}
-      </section >
+        ) : null}
+      </section>
 
-      <section className='process stork'>
+      <section className="process stork">
         <hr />
         <h2>Our {data.strapiService.name} lighting Process</h2>
         <p>
-          Ready to bring your vision to life? Get started with a free estimate today and let us illuminate your {adjective} with an unforgettable lighting display!
+          Ready to bring your vision to life? Get started with a free estimate
+          today and let us illuminate your {adjective} with an unforgettable
+          lighting display!
         </p>
         <hr />
         <ol>
           {data.allStrapiProcess.nodes.map((process) => (
             <li key={process.id}>
               <span className="ol-title">{process.name}</span>
-              <div className='react-markdown'>
-                <Markdown>
-                  {process.markdown.data.markdown}
-                </Markdown>
+              <div className="react-markdown">
+                <Markdown>{process.markdown.data.markdown}</Markdown>
               </div>
             </li>
           ))}
         </ol>
         <ul>
           <li>
-            <Link to="/safety">
-              Learn more about our safety practices
-            </Link>
+            <Link to="/safety">Learn more about our safety practices</Link>
           </li>
           <li>
-            <Link to="/faqs">
-              Learn more about our process on our FAQ page
-            </Link>
+            <Link to="/faqs">Learn more about our process on our FAQ page</Link>
           </li>
         </ul>
         <hr />
       </section>
 
-      {data.strapiService.after_the_triptych.data.after_the_triptych !== '' ?
-        <div className='consultant stork'>
-          <h3 className='kilimanjaro'>Have you ever noticed how much lighting can affect the feeling of space?</h3>
+      {data.strapiService.after_the_triptych.data.after_the_triptych !== "" ? (
+        <div className="consultant stork">
+          <h3 className="kilimanjaro">
+            Have you ever noticed how much lighting can affect the feeling of
+            space?
+          </h3>
 
-          <div className='react-markdown'>
+          <div className="react-markdown">
             <Markdown>
               {data.strapiService.after_the_triptych.data.after_the_triptych}
             </Markdown>
           </div>
           <hr />
         </div>
-        : null
-      }
+      ) : null}
 
       {/* // TODO: this needs a design maybe from the home page but thats pretty large and heavy */}
-      <section className='stork'>
-
-        <h3 className='elbrus'>We install {data.strapiService.name} lighting in and around</h3>
+      <section className="stork">
+        <h3 className="elbrus">
+          We install {data.strapiService.name} lighting in and around
+        </h3>
         <ul>
           {data.allStrapiArea.nodes
-            .sort((a: SortTypes['a'], b: SortTypes['b']) => b.areas.length - a.areas.length) // Sort by the number of area.areas
+            .sort(
+              (a: SortTypes["a"], b: SortTypes["b"]) =>
+                b.areas.length - a.areas.length,
+            ) // Sort by the number of area.areas
             .map((area) => (
               <li key={area.id}>
                 <Link to={`/areas/${area.slug}`}>
-                  {area.name}, <span className='capitalize'>{area.state}</span>
-                  <span className='sr-only'>{data.strapiService.name} Lighting Installation</span>
+                  {area.name}, <span className="capitalize">{area.state}</span>
+                  <span className="sr-only">
+                    {data.strapiService.name} Lighting Installation
+                  </span>
                 </Link>
-                {area.areas.length > 0 ?
-                  <ul
-                    className='sub-area-ul'
-                  >
+                {area.areas.length > 0 ? (
+                  <ul className="sub-area-ul">
                     {area.areas.map((subArea) => (
                       <li key={subArea.id}>
-                        {subArea.name} <span className='sr-only'>{data.strapiService.name} Lighting Installation</span>
+                        {subArea.name}{" "}
+                        <span className="sr-only">
+                          {data.strapiService.name} Lighting Installation
+                        </span>
                       </li>
                     ))}
                   </ul>
-                  : null}
+                ) : null}
               </li>
             ))}
         </ul>
       </section>
 
-      {data.strapiService.projects || data.strapiVenue || data.strapiVendor ?
+      {data.strapiService.projects || data.strapiVenue || data.strapiVendor ? (
         <React.Fragment>
-          <hr className='pelican' />
+          <hr className="pelican" />
           <Base
             projects={data.strapiService?.projects}
             venue={data.strapiVenue}
-            vendor={data.strapiService.slug === 'wedding' ? data.strapiVendor : data.strapiService?.vendors?.[0]}
+            vendor={
+              data.strapiService.slug === "wedding"
+                ? data.strapiVendor
+                : data.strapiService?.vendors?.[0]
+            }
             serviceSlug={data.strapiService.slug}
           />
         </React.Fragment>
-        : null}
+      ) : null}
 
-      < Footer />
-
+      <Footer />
     </>
   );
 };
@@ -654,7 +673,7 @@ export const query = graphql`
     }
 
   }
-`
+`;
 
 // Header
 // Video (if exists)
@@ -677,10 +696,10 @@ export const query = graphql`
 // Footer
 
 export const Head = ({ data }: ServiceTypes) => {
+  const sanitazeDescription =
+    data.strapiService.description.data.description.replace(/"/g, " inches");
 
-  const sanitazeDescription = data.strapiService.description.data.description.replace(/"/g, " inches");
-
-  const descriptionKeyWords = `Creating professional ${data.strapiService.name} lighting installations including ${data.strapiService.featured_lights.map((light) => light.title).join(', ')} in ${data.allStrapiArea.nodes.map((area) => area.name).join(', ')}`;
+  const descriptionKeyWords = `Creating professional ${data.strapiService.name} lighting installations including ${data.strapiService.featured_lights.map((light) => light.title).join(", ")} in ${data.allStrapiArea.nodes.map((area) => area.name).join(", ")}`;
 
   return (
     <SEO
@@ -702,5 +721,5 @@ export const Head = ({ data }: ServiceTypes) => {
       `}
       </Script>
     </SEO>
-  )
-}
+  );
+};

@@ -1,47 +1,51 @@
 // TODO: organize by light group
 
-import React from 'react';
-import { Link, graphql } from "gatsby";
-
-import Header from '../components/header';
-import Footer from '../components/footer';
-import SEO from '../components/seo';
-import type { CardType } from '../types/card-type';
-import Card from '../components/card';
-import Start from '../components/start';
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import { graphql, Link } from "gatsby";
+import React from "react";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
+import Card from "../components/card";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import SEO from "../components/seo";
+import Start from "../components/start";
+import type { CardType } from "../types/card-type";
 
 type ServiceProjectsTypes = {
   data: {
     strapiService: {
-      id: React.Key
+      id: React.Key;
       name: string;
       slug: string;
       excerpt: string;
       projects: (CardType & {
         themes?: {
-          id: React.Key
+          id: React.Key;
         }[];
       })[];
     };
     allStrapiTheme: {
       nodes: {
-        id: React.Key
+        id: React.Key;
         title: string;
         slug: string;
         excerpt: string;
       }[];
     };
   };
-}
+};
 
 const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
   const projects = data.strapiService.projects.toReversed();
-  const projectsByThemeId = new Map<string, ServiceProjectsTypes['data']['strapiService']['projects']>();
-  const ungroupedProjects: ServiceProjectsTypes['data']['strapiService']['projects'] = [];
+  const projectsByThemeId = new Map<
+    string,
+    ServiceProjectsTypes["data"]["strapiService"]["projects"]
+  >();
+  const ungroupedProjects: ServiceProjectsTypes["data"]["strapiService"]["projects"] =
+    [];
 
   for (const project of projects) {
-    const themeIds = project.themes?.map((theme) => theme.id).filter(Boolean) ?? [];
+    const themeIds =
+      project.themes?.map((theme) => theme.id).filter(Boolean) ?? [];
 
     if (themeIds.length === 0) {
       ungroupedProjects.push(project);
@@ -70,7 +74,7 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
         <hr />
 
         {hasThemedProjects && (
-          <div className='main'>
+          <div className="main">
             <h2>Start With A Specific Theme</h2>
             <ul>
               {data.allStrapiTheme.nodes.map((theme) => (
@@ -81,68 +85,67 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
             </ul>
           </div>
         )}
-
       </main>
 
-      {
-        data.allStrapiTheme.nodes.map((theme) => {
-          const themeProjects = projectsByThemeId.get(theme.id) ?? [];
+      {data.allStrapiTheme.nodes.map((theme) => {
+        const themeProjects = projectsByThemeId.get(theme.id) ?? [];
 
-          if (themeProjects.length === 0) {
-            return null;
-          }
+        if (themeProjects.length === 0) {
+          return null;
+        }
 
-          return (
-            <section key={theme.id} id={theme.slug}>
-              <div className='above-deck'>
-                <h2>{theme.title}</h2>
-                <p>{theme.excerpt}</p>
-              </div>
-              <section className='deck'>
-                {themeProjects.map((project) => (
-                  <Card
-                    key={`${theme.id}-${project.id}`}
-                    {...project}
-                    breadcrumb='project'
-                  />
-                ))}
-              </section>
-              < hr />
-            </section>
-          );
-        })
-      }
-
-      {
-        ungroupedProjects.length > 0 && (
-          <section id="other-projects">
-            {hasThemedProjects && (
-              <div className='above-deck'>
-                <h2>Other Projects</h2>
-              </div>
-            )}
-            <section className='deck'>
-              {ungroupedProjects.map((project) => (
+        return (
+          <section key={theme.id} id={theme.slug}>
+            <div className="above-deck">
+              <h2>{theme.title}</h2>
+              <p>{theme.excerpt}</p>
+            </div>
+            <section className="deck">
+              {themeProjects.map((project) => (
                 <Card
-                  key={`ungrouped-${project.id}`}
+                  key={`${theme.id}-${project.id}`}
                   {...project}
-                  breadcrumb='project'
+                  breadcrumb="project"
                 />
               ))}
             </section>
+            <hr />
           </section>
-        )
-      }
+        );
+      })}
 
-      < hr />
+      {ungroupedProjects.length > 0 && (
+        <section id="other-projects">
+          {hasThemedProjects && (
+            <div className="above-deck">
+              <h2>Other Projects</h2>
+            </div>
+          )}
+          <section className="deck">
+            {ungroupedProjects.map((project) => (
+              <Card
+                key={`ungrouped-${project.id}`}
+                {...project}
+                breadcrumb="project"
+              />
+            ))}
+          </section>
+        </section>
+      )}
+
+      <hr />
 
       <Breadcrumbs>
-        <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name} Lighting</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to={`/${data.strapiService.slug}`}>
+            {data.strapiService.name} Lighting
+          </Link>
+        </Breadcrumb>
         <Breadcrumb>Projects</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
-    </React.Fragment >
+    </React.Fragment>
   );
 };
 
@@ -178,7 +181,7 @@ export const query = graphql`
     }
 
   }
-`
+`;
 
 export const Head = ({ data }: ServiceProjectsTypes) => {
   return (
@@ -189,14 +192,14 @@ export const Head = ({ data }: ServiceProjectsTypes) => {
       breadcrumbs={[
         {
           name: data.strapiService.name,
-          item: data.strapiService.slug
+          item: data.strapiService.slug,
         },
         {
           name: `${data.strapiService.name} Projects`,
-          item: `${data.strapiService.slug}/projects`
-        }
+          item: `${data.strapiService.slug}/projects`,
+        },
       ]}
-    // TODO: image
+      // TODO: image
     />
-  )
-}
+  );
+};

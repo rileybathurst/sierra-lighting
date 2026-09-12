@@ -1,15 +1,13 @@
-import * as React from "react"
-import { graphql } from "gatsby"
-import SEO from "../../components/seo"
-import type { LightGroupType } from "../../types/light-group-type"
-
-import { Link } from "gatsby";
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import { graphql, Link } from "gatsby";
+import * as React from "react";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
+import Card from "../../components/card";
+import Footer from "../../components/footer";
 
 import Header from "../../components/header";
-import Footer from "../../components/footer";
-import Card from "../../components/card";
+import SEO from "../../components/seo";
 import type { CardType } from "../../types/card-type";
+import type { LightGroupType } from "../../types/light-group-type";
 
 type LightGroupPageType = {
   data: {
@@ -39,7 +37,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 const LightPage = ({ data }: LightGroupPageType) => {
   return (
@@ -53,11 +51,7 @@ const LightPage = ({ data }: LightGroupPageType) => {
 
       <section className="deck">
         {data.strapiLightGroup.lights.map((light: CardType) => (
-          <Card
-            key={light.id}
-            {...light}
-            breadcrumb="light"
-          />
+          <Card key={light.id} {...light} breadcrumb="light" />
         ))}
       </section>
 
@@ -76,9 +70,10 @@ const LightPage = ({ data }: LightGroupPageType) => {
         <hr />
       </section>
 
-
       <Breadcrumbs>
-        <Breadcrumb><Link to="/lights/">Light Group</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to="/lights/">Light Group</Link>
+        </Breadcrumb>
         <Breadcrumb>{data.strapiLightGroup.name}</Breadcrumb>
       </Breadcrumbs>
 
@@ -97,5 +92,5 @@ export const Head = ({ data }: LightGroupPageType) => {
       // image={data.strapiArea?.image?.localFile?.url}
       url={`light-group/${data.strapiLightGroup.slug}`}
     />
-  )
-}
+  );
+};

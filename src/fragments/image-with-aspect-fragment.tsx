@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 // ? are both url needed?
 export const query = graphql`
@@ -15,4 +15,4 @@ export const query = graphql`
     alternativeText
     url
   }
-`
+`;

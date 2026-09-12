@@ -1,10 +1,10 @@
 // this is the Name.stories.tsx file
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { Project } from './Project';
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import { Project } from "./Project";
 
 const meta = {
   component: Project,
-  title: 'Pages/Project',
+  title: "Pages/Project",
   args: { onClick: () => {} },
 } satisfies Meta<typeof Project>;
 

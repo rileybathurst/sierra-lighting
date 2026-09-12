@@ -1,9 +1,12 @@
-import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
+import React from "react";
 import { logPinterestEntry } from "./log-pinterest-entry";
 
-export const PinterestHref = ({ imageSources }: { imageSources?: { srcSet: string }[] }) => {
-
+export const PinterestHref = ({
+  imageSources,
+}: {
+  imageSources?: { srcSet: string }[];
+}) => {
   const { strapiAbout, strapiSocialSite } = useStaticQuery(graphql`
   query pinterestHrefQuery {
     strapiAbout {
@@ -37,12 +40,13 @@ export const PinterestHref = ({ imageSources }: { imageSources?: { srcSet: strin
   const mediaUrl = new URL(mediaPath, `${siteUrl}/`).toString();
 
   return (
-    <a href={`https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(mediaUrl)}`}
+    <a
+      href={`https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(mediaUrl)}`}
       target="_blank"
       rel="noopener noreferrer"
       className="pinterest-button"
       onClick={() => {
-        void logPinterestEntry(mediaPath)
+        void logPinterestEntry(mediaPath);
       }}
     >
       <span dangerouslySetInnerHTML={{ __html: strapiSocialSite.svg }} />

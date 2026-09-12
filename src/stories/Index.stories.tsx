@@ -10,4 +10,3 @@ export default {
 const Template = () => <Index />;
 
 export const Primary = Template.bind({});
-

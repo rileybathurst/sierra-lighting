@@ -10,4 +10,3 @@ export default {
 const Template = () => <Lists />;
 
 export const Primary = Template.bind({});
-

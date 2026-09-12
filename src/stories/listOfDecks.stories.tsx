@@ -10,4 +10,3 @@ export default {
 const Template = () => <ListofDecks />;
 
 export const Primary = Template.bind({});
-

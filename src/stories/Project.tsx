@@ -1,26 +1,29 @@
 // this is the Name.tsx file
-import React from 'react';
-import { Header } from './Header';
-import { Attribute } from './Attribute';
-import { Footer } from './Footer';
+
 import { faker } from "@faker-js/faker";
-import { Start } from './start';
-import { Poster } from './poster';
-import { Testimonial } from './Testimonial';
-import { Deck } from './Deck';
-import { Breadcrumbs } from './Breadcrumbs';
+import React from "react";
+import { Attribute } from "./Attribute";
+import { Breadcrumbs } from "./Breadcrumbs";
+import { Deck } from "./Deck";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
+import { Poster } from "./poster";
+import { Start } from "./start";
+import { Testimonial } from "./Testimonial";
 
 export const Project = () => {
-
   return (
     <>
       <Header />
       <Poster />
-      <main className='stork'>
+      <main className="stork">
         <article>
-
           <h1>Project</h1>
-          {faker.datatype.boolean() && <h2 className="font-serif">{faker.person.firstName()} & {faker.person.firstName()}</h2>}
+          {faker.datatype.boolean() && (
+            <h2 className="font-serif">
+              {faker.person.firstName()} & {faker.person.firstName()}
+            </h2>
+          )}
 
           <div className="react-markdown">
             <p>{faker.lorem.lines()}</p>
@@ -45,8 +48,7 @@ export const Project = () => {
 
       <div className="stork">
         <hr />
-        <h3>
-          {faker.music.album()} uses these lights</h3>
+        <h3>{faker.music.album()} uses these lights</h3>
       </div>
 
       <Deck />

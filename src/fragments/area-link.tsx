@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment areaLink on STRAPI_AREA {
@@ -7,4 +7,4 @@ export const query = graphql`
     state
     slug
   }
-`
+`;

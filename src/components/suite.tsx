@@ -1,11 +1,10 @@
-import * as React from "react"
-import { Link } from "gatsby"
+import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import Season from "./season";
+import * as React from "react";
 import type { SuiteType } from "../types/suite-type";
+import Season from "./season";
 
 const Suite = ({ services }: SuiteType) => {
-
   // console.log(services);
   // TODOL this needs to a grid 5 objects looks weird
 
@@ -17,15 +16,16 @@ const Suite = ({ services }: SuiteType) => {
           to={`/${service.slug}`}
           className={`poster ${service.slug}`}
         >
-          <GatsbyImage image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
+          <GatsbyImage
+            image={service.hero_light.localFile.childImageSharp.gatsbyImageData}
             alt={service.hero_light.alternativeText || service.name}
           />
           <span>{service.name} Lighting</span>
         </Link>
       ))}
     </div>
-  )
-}
+  );
+};
 
 // TODO: this has a hero dark on fragment I'm just not using it
-export default Suite
+export default Suite;

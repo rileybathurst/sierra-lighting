@@ -2,27 +2,22 @@
 // TODO: add a gallery of images from the area
 // TODO: showing more 18 projects like north lake is way over the top - split them by service or just pull a couple
 
-import React, { type Key } from 'react';
-import { graphql, Link, Script } from 'gatsby'
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
-
-import { SEO } from "../components/seo";
-
-import Header from "../components/header";
-import Footer from "../components/footer";
-
-import Hero from "../components/hero";
-import StateAbbreviation from "../components/state-abbreviation";
+import { graphql, Link, Script } from "gatsby";
+import React, { type Key } from "react";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import Markdown from "react-markdown";
-import Card from '../components/card';
-import type { CardType } from '../types/card-type';
-import Start from '../components/start';
-import Suite from '../components/suite';
-import type { SuiteType } from '../types/suite-type';
-import type { ImageWithAspectType } from '../types/image-with-aspect-type';
-
-import Season from '../components/season';
-
+import Card from "../components/card";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import Hero from "../components/hero";
+import Season from "../components/season";
+import { SEO } from "../components/seo";
+import Start from "../components/start";
+import StateAbbreviation from "../components/state-abbreviation";
+import Suite from "../components/suite";
+import type { CardType } from "../types/card-type";
+import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import type { SuiteType } from "../types/suite-type";
 
 // this is no longer right as there might only be sub venues
 // if (venues.length !== 0) {
@@ -52,30 +47,26 @@ function Venues({ name, areas }: VenuesProps) {
         <div className="above-deck">
           <hr />
           {/* // TODO: this is bold in a way it shouldnt be */}
-          <h3 className='elbrus'>Wedding Venues in {name} we create lighting for</h3>
+          <h3 className="elbrus">
+            Wedding Venues in {name} we create lighting for
+          </h3>
         </div>
 
         <div className="deck">
-          {subVenues.length > 0 ?
-            areas.map((area) => (
-              area.venues.length >= 1 ?
-                area.venues.map((venue: CardType) => (
-                  <Card
-                    key={venue.id}
-                    {...venue}
-                    breadcrumb='venue'
-                  />
-                ))
-                : null
-            ))
-            : null
-          }
-
+          {subVenues.length > 0
+            ? areas.map((area) =>
+                area.venues.length >= 1
+                  ? area.venues.map((venue: CardType) => (
+                      <Card key={venue.id} {...venue} breadcrumb="venue" />
+                    ))
+                  : null,
+              )
+            : null}
         </div>
       </>
     );
   }
-  return null
+  return null;
 }
 type AreasTemplateTypes = {
   data: {
@@ -88,7 +79,7 @@ type AreasTemplateTypes = {
           description: string;
         };
       };
-      state: 'california' | 'nevada';
+      state: "california" | "nevada";
       slug: string;
       image: ImageWithAspectType;
       areas: {
@@ -97,7 +88,7 @@ type AreasTemplateTypes = {
         excerpt: string;
         // ? are both versions of venues and projects necessary
         venues: CardType[];
-        projects: CardType[]
+        projects: CardType[];
       }[];
       venues: CardType[];
       projects: CardType[];
@@ -106,19 +97,20 @@ type AreasTemplateTypes = {
       businessName: string;
     };
     allStrapiService: {
-      nodes: SuiteType['services'];
+      nodes: SuiteType["services"];
     };
   };
 };
 const AreasTemplate = ({ data }: AreasTemplateTypes) => {
-
   // Using Project Heros is interesting but I'm not sure if it's right I was just trying to get something more
   let areaProjectHeros: ImageWithAspectType[] = [];
   if (data.strapiArea.projects) {
-
     areaProjectHeros = data.strapiArea.projects
       .map((project) => project.image)
-      .filter((img): img is ImageWithAspectType => !!img && !!img.localFile?.childImageSharp?.gatsbyImageData);
+      .filter(
+        (img): img is ImageWithAspectType =>
+          !!img && !!img.localFile?.childImageSharp?.gatsbyImageData,
+      );
 
     if (data.strapiArea.areas.length > 0) {
       data.strapiArea.areas.forEach((area) => {
@@ -138,21 +130,18 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
   if (data.strapiArea.projects) {
     data.strapiArea.projects.forEach((project) => {
-      areaSubAreaProjects.add({ ...project, breadcrumb: 'project' });
+      areaSubAreaProjects.add({ ...project, breadcrumb: "project" });
     });
 
     if (data.strapiArea.areas.length > 0) {
       data.strapiArea.areas.forEach((area) => {
-
         if (area.projects.length > 0) {
           area.projects.forEach((project) => {
-            areaSubAreaProjects.add({ ...project, breadcrumb: 'project' });
+            areaSubAreaProjects.add({ ...project, breadcrumb: "project" });
           });
         }
-
       });
     }
-
   }
 
   // console.log(areaSubAreaProjects);
@@ -164,12 +153,9 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
       <Header />
 
       {/* // TODO: check on small images */}
-      {data.strapiArea.image ?
-        <Hero
-          image={data.strapiArea.image}
-          gallery={areaProjectHeros}
-        />
-        : null}
+      {data.strapiArea.image ? (
+        <Hero image={data.strapiArea.image} gallery={areaProjectHeros} />
+      ) : null}
       <main>
         <h2 className="crest">{data.strapiArea.tagline}</h2>
         <h1 className="range">
@@ -177,65 +163,60 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
           <StateAbbreviation state={data.strapiArea.state} />
         </h1>
         <hr />
-        <h3 className='kilimanjaro'>Ready to work with us</h3>
-        <Start
-          path={`areas-${data.strapiArea.slug}`}
-        />
+        <h3 className="kilimanjaro">Ready to work with us</h3>
+        <Start path={`areas-${data.strapiArea.slug}`} />
         <hr />
-        {data.strapiArea?.description &&
+        {data.strapiArea?.description && (
           <div className="react-markdown">
-            <Markdown>
-              {data.strapiArea.description.data.description}
-            </Markdown>
+            <Markdown>{data.strapiArea.description.data.description}</Markdown>
           </div>
-        }
+        )}
 
         {/* // TODO: make this a second column on a larger screen */}
-        {data.strapiArea.areas.length > 0 &&
+        {data.strapiArea.areas.length > 0 && (
           <React.Fragment>
             <hr />
-            <p className='elbrus'>Regions we light in {data.strapiArea.title}</p>
-            <ul className='subareas'>
+            <p className="elbrus">
+              Regions we light in {data.strapiArea.title}
+            </p>
+            <ul className="subareas">
               {data.strapiArea.areas.map((area) => (
-                <li
-                  key={area.name}
-                >
-                  <h2 className='elbrus'>{area.name}</h2>
+                <li key={area.name}>
+                  <h2 className="elbrus">{area.name}</h2>
                   {/* <p>{area.excerpt}</p> */}
                 </li>
               ))}
             </ul>
           </React.Fragment>
-        }
+        )}
         <hr />
-        <h3 >Lighting installation services we provide in {data.strapiArea.title}</h3>
-
-      </main >
+        <h3>
+          Lighting installation services we provide in {data.strapiArea.title}
+        </h3>
+      </main>
 
       <Suite services={data.allStrapiService.nodes} />
 
-      {areaSubAreaProjectsArray.length > 0 ?
+      {areaSubAreaProjectsArray.length > 0 ? (
         <section>
-          <div className='above-deck'>
+          <div className="above-deck">
             <hr />
-            <h3 >Lighting projects in we have installed in {data.strapiArea.title}</h3>
+            <h3>
+              Lighting projects in we have installed in {data.strapiArea.title}
+            </h3>
           </div>
           <div className="deck">
             {areaSubAreaProjectsArray.map((project: CardType) => (
-              <Card
-                key={project.id}
-                {...project}
-                breadcrumb='project'
-              />
+              <Card key={project.id} {...project} breadcrumb="project" />
             ))}
           </div>
         </section>
-        : null}
+      ) : null}
 
-      <div className='main'>
+      <div className="main">
         <hr />
         <Start
-          className='button--left-align'
+          className="button--left-align"
           path={`areas-services-${data.strapiArea.slug}`}
         />
       </div>
@@ -248,10 +229,12 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
       {/* // TODO: where in the state do we work */}
 
-      < hr />
+      <hr />
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/areas/">Areas</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to="/areas/">Areas</Link>
+        </Breadcrumb>
         <Breadcrumb>{data.strapiArea.title}</Breadcrumb>
       </Breadcrumbs>
 
@@ -328,23 +311,22 @@ export const query = graphql`
       }
     }
   }
-      `
+      `;
 
 export const Head = ({ data }: AreasTemplateTypes) => {
+  const servicesString = data.allStrapiService.nodes
+    .map((service) => `${service.name} light installs`)
+    .join(", ");
 
-  const servicesString = data.allStrapiService.nodes.map((service) => (
-    `${service.name} light installs`
-  )).join(', ');
-
-  let subAreasString = '';
+  let subAreasString = "";
   if (data.strapiArea.areas.length > 0) {
-    subAreasString = data.strapiArea.areas.map((area) => area.name).join(', ');
+    subAreasString = data.strapiArea.areas.map((area) => area.name).join(", ");
   }
 
-  const seasonalOrder = (
-    (Season() === 'wedding') ? 'Wedding, Christmas and event'
-      : 'Christmas, Wedding and event'
-  )
+  const seasonalOrder =
+    Season() === "wedding"
+      ? "Wedding, Christmas and event"
+      : "Christmas, Wedding and event";
 
   return (
     <SEO
@@ -353,12 +335,13 @@ export const Head = ({ data }: AreasTemplateTypes) => {
       image={data.strapiArea?.image}
       breadcrumbs={[
         {
-          name: 'Areas',
-          item: 'areas'
-        }, {
+          name: "Areas",
+          item: "areas",
+        },
+        {
           name: data.strapiArea.title,
-          item: `areas/${data.strapiArea.slug}`
-        }
+          item: `areas/${data.strapiArea.slug}`,
+        },
       ]}
     >
       <Script type="application/ld+json">
@@ -374,6 +357,6 @@ export const Head = ({ data }: AreasTemplateTypes) => {
           }
         `}
       </Script>
-    </SEO >
-  )
-}
+    </SEO>
+  );
+};

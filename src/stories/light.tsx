@@ -1,100 +1,107 @@
 // this is the Light.tsx file
-import React from 'react';
-import { Topbar } from './Topbar';
-import { Menu } from './Menu';
-import { Footer } from './Footer';
-import { Start } from './start';
-import { faker } from '@faker-js/faker';
-import { Deck } from './Deck';
-import { Breadcrumbs } from './Breadcrumbs';
-import { FAQ } from './faq';
-import { Suite } from './suite';
-import { Poster } from './poster';
+
+import { faker } from "@faker-js/faker";
+import React from "react";
+import { Breadcrumbs } from "./Breadcrumbs";
+import { Deck } from "./Deck";
+import { Footer } from "./Footer";
+import { FAQ } from "./faq";
+import { Menu } from "./Menu";
+import { Poster } from "./poster";
+import { Start } from "./start";
+import { Suite } from "./suite";
+import { Topbar } from "./Topbar";
 
 export const Light = () => {
+  return (
+    <>
+      <Topbar />
+      <Menu />
 
-    return (
-        <>
-            <Topbar />
-            <Menu />
+      <Poster />
 
-            <Poster />
+      <main>
+        <article className="stork">
+          <h1 className="denali">
+            {faker.music.artist()}
+            {faker.datatype.boolean()
+              ? " for Christmas Lighting"
+              : " for Wedding Lighting"}
+          </h1>
 
-            <main>
-                <article className="stork">
-                    <h1 className="denali">
-                        {faker.music.artist()}
-                        {faker.datatype.boolean() ? ' for Christmas Lighting' : ' for Wedding Lighting'}
-                    </h1>
+          {faker.datatype.boolean() ? (
+            <React.Fragment>
+              <h3 className="kilimanjaro">Also known as:</h3>
+              <ul>
+                {Array.from({
+                  length: faker.number.int({ min: 1, max: 10 }),
+                }).map(() => (
+                  <li key={faker.music.artist()}>{faker.music.artist()}</li>
+                ))}
+              </ul>
+            </React.Fragment>
+          ) : null}
 
-                    {faker.datatype.boolean() ? (
-                        <React.Fragment>
-                            <h3 className="kilimanjaro">Also known as:</h3>
-                            <ul>
-                                {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(() => (
-                                    <li key={faker.music.artist()}>{faker.music.artist()}</li>
-                                ))}
-                            </ul>
-                        </React.Fragment>
-                    ) : null}
+          <p>{faker.lorem.paragraph()}</p>
+          <hr />
+          <Start />
+        </article>
+      </main>
 
-                    <p>{faker.lorem.paragraph()}</p>
-                    <hr />
-                    <Start />
-                </article>
-            </main>
+      <hr />
 
-            <hr />
-
-            {/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device, make it a component */}
-            {faker.datatype.boolean() ? (
-                <section className="stork">
-                    <h3>We use {faker.music.artist()} for</h3>
-                    <ul className="list-style-none">
-                        {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(() => (
-                            <li key={faker.music.genre()}>
-                                <h3 className="kilimanjaro capitalize">
-                                    <a href={faker.music.genre()}>{faker.music.genre()} lighting</a>
-                                </h3>
-                                {/* // * this seems overkill the description of wedding doesnt help */}
-                                {faker.datatype.boolean() ?
-                                    <div className="react-markdown">
-                                        {faker.lorem.paragraph()}
-                                    </div>
-                                    : null}
-                            </li>
-                        ))}
-                    </ul>
-
-                    {/* // TODO: this should be in it's own section */}
-                    <FAQ />
-                </section>
-            ) : (
-
-                <React.Fragment>
-                    <h3 className="stork">We use {faker.music.artist()} for</h3>
-                    {/* // ? testing is it better to have the full component here */}
-                    <Suite />
-                </React.Fragment>
+      {/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device, make it a component */}
+      {faker.datatype.boolean() ? (
+        <section className="stork">
+          <h3>We use {faker.music.artist()} for</h3>
+          <ul className="list-style-none">
+            {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(
+              () => (
+                <li key={faker.music.genre()}>
+                  <h3 className="kilimanjaro capitalize">
+                    <a href={faker.music.genre()}>
+                      {faker.music.genre()} lighting
+                    </a>
+                  </h3>
+                  {/* // * this seems overkill the description of wedding doesnt help */}
+                  {faker.datatype.boolean() ? (
+                    <div className="react-markdown">
+                      {faker.lorem.paragraph()}
+                    </div>
+                  ) : null}
+                </li>
+              ),
             )}
+          </ul>
 
-            <div>
-                <hr />
-                <h3 className="stork">Other Lights in {faker.music.genre()}</h3>
-                <Deck />
-            </div>
+          {/* // TODO: this should be in it's own section */}
+          <FAQ />
+        </section>
+      ) : (
+        <React.Fragment>
+          <h3 className="stork">We use {faker.music.artist()} for</h3>
+          {/* // ? testing is it better to have the full component here */}
+          <Suite />
+        </React.Fragment>
+      )}
 
-            <div className="stork">
-                <hr />
-                <h3>Projects Using {faker.music.artist()}</h3>
-            </div>
-            <Deck />
+      <div>
+        <hr />
+        <h3 className="stork">Other Lights in {faker.music.genre()}</h3>
+        <Deck />
+      </div>
 
-            <hr />
+      <div className="stork">
+        <hr />
+        <h3>Projects Using {faker.music.artist()}</h3>
+      </div>
+      <Deck />
 
-            <Breadcrumbs />
+      <hr />
 
-            <Footer />
-        </>
-    );
+      <Breadcrumbs />
+
+      <Footer />
+    </>
+  );
 };

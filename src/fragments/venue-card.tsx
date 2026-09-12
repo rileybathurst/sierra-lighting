@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment venueCardFragment on STRAPI_VENUE {
@@ -11,4 +11,4 @@ export const query = graphql`
       ...cardImageFragment
     }
   }
-`
+`;

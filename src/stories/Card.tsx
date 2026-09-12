@@ -1,5 +1,5 @@
-import React from "react";
 import { faker } from "@faker-js/faker";
+import React from "react";
 
 export const Card = () => {
   return (
@@ -15,13 +15,13 @@ export const Card = () => {
       <div className="paper">{/* stay gold */}</div>
 
       <h2>
-        <a href={faker.animal.bird()}>
-          {faker.animal.bird()}
-        </a>
+        <a href={faker.animal.bird()}>{faker.animal.bird()}</a>
       </h2>
       {faker.datatype.boolean() && (
         <ul>
-          {Array.from({ length: faker.datatype.number({ min: 1, max: 5 }) }).map((_, index) => (
+          {Array.from({
+            length: faker.datatype.number({ min: 1, max: 5 }),
+          }).map((_, index) => (
             <li key={index}>{faker.lorem.word()}</li>
           ))}
         </ul>

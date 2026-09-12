@@ -22,7 +22,6 @@ button,
   margin-block-end: var(--kilimanjaro);
   border-radius: var(--border-radius);
 
-
   @media (prefers-color-scheme: dark) {
     background-color: var(--honey-200);
     border-color: var(--honey-300);

@@ -3,16 +3,15 @@ import * as React from "react";
 type ColorCardTypes = {
   color: string;
   variables?: string[];
-}
+};
 
 export const ColorCards = ({ color, variables }: ColorCardTypes) => (
   <section className="color-deck">
-
-    {variables ?
+    {variables ? (
       variables.map((variable) => (
         <div
           key={`${color}-${variable}`}
-          className={`color-card ${color}${variable ? '-' : null}${variable}`}
+          className={`color-card ${color}${variable ? "-" : null}${variable}`}
         >
           {color} - {variable}
           {/* // TODO: we use color-card inside color card that can't be right */}
@@ -26,10 +25,8 @@ export const ColorCards = ({ color, variables }: ColorCardTypes) => (
           </div>
         </div>
       ))
-      :
-      <div
-        className={`color-card ${color}`}
-      >
+    ) : (
+      <div className={`color-card ${color}`}>
         {color}
         <div
           className="color-card"
@@ -40,6 +37,6 @@ export const ColorCards = ({ color, variables }: ColorCardTypes) => (
           {/* stay gold */}
         </div>
       </div>
-    }
+    )}
   </section>
 );

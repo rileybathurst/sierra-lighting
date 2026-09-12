@@ -1,9 +1,8 @@
-import React from 'react';
-import { graphql, Link, useStaticQuery } from 'gatsby'
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { graphql, Link, useStaticQuery } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import React from "react";
 
 const Lookbook = ({ slug }: { slug: string }) => {
-
   const { strapiLookbook } = useStaticQuery(graphql`
     query LookbookPosterQuery {
       strapiLookbook {
@@ -17,20 +16,22 @@ const Lookbook = ({ slug }: { slug: string }) => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <>
-      <hr className='pelican' />
-      <Link to={`/${slug}/lookbook`} className='poster ratio-16-9'>
+      <hr className="pelican" />
+      <Link to={`/${slug}/lookbook`} className="poster ratio-16-9">
         <GatsbyImage
           image={strapiLookbook.image.localFile.childImageSharp.gatsbyImageData}
           alt={strapiLookbook.image.alternativeText || `${slug} Lookbook`}
           objectPosition="center"
         />
-        <h3>Browse our {new Date().getFullYear()} {slug} Lookbook</h3>
+        <h3>
+          Browse our {new Date().getFullYear()} {slug} Lookbook
+        </h3>
       </Link>
     </>
-  )
-}
-export default Lookbook
+  );
+};
+export default Lookbook;

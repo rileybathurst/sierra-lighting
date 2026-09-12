@@ -1,5 +1,5 @@
 // TODO: https://ntietz.com/blog/that-boolean-should-probably-be-something-else/
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby";
 
 function Season() {
   const { strapiSeason } = useStaticQuery(graphql`
@@ -8,11 +8,11 @@ function Season() {
         season
       }
     }
-  `)
+  `);
 
   // console.log('strapiSeason', strapiSeason.season)
 
-  return strapiSeason.season
+  return strapiSeason.season;
 }
 
-export default Season
+export default Season;

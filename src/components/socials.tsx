@@ -1,11 +1,10 @@
 // TODO: do some work on the real colors
 
-import * as React from 'react';
-import SVG from 'react-inlinesvg';
-import type { SocialTypes } from '../types/social-types';
+import type * as React from "react";
+import SVG from "react-inlinesvg";
+import type { SocialTypes } from "../types/social-types";
 
 function Socials({ services }: { services: SocialTypes[] }): React.JSX.Element {
-
   return (
     <ul className="socials">
       {services.map((social) => {

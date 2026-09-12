@@ -1,5 +1,5 @@
-import React from "react";
 import { faker } from "@faker-js/faker";
+import React from "react";
 
 export const Links = () => {
   return (
@@ -22,13 +22,13 @@ export const Links = () => {
         &nbsp;dolor sit amet
       </p>
 
-
       <p>
         link subtle&nbsp;
         <a href={faker.internet.url()} className="link--subtle">
           active
         </a>
-        &nbsp;removes the color<br />
+        &nbsp;removes the color
+        <br />
         used for a top of the footer makes sense there
       </p>
     </>

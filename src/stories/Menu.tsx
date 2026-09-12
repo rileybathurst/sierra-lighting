@@ -1,25 +1,22 @@
 // this is the Name.tsx file
-import React from 'react';
-import PropTypes from 'prop-types';
 
-import { Logo } from './Logo';
+import PropTypes from "prop-types";
+import React from "react";
+
+import { Logo } from "./Logo";
 
 export const Menu = () => {
   return (
-    <header >
+    <header>
       <div className="header-container">
         {/* // needed to hide the small menu */}
         <div className="stripe">{/* stay gold */}</div>
 
-        <div className='small-visibility'>
+        <div className="small-visibility">
           <Logo />
         </div>
-        <button
-          className="button-spinner"
-          aria-label="Open Menu"
-          type='button'
-        >
-          <span className='sr-only'>open menu</span>
+        <button className="button-spinner" aria-label="Open Menu" type="button">
+          <span className="sr-only">open menu</span>
           <div className="hamburger">
             <div>
               <span className="line"></span>
@@ -28,9 +25,7 @@ export const Menu = () => {
             </div>
           </div>
         </button>
-        <nav
-          className='menu__small'
-        >
+        <nav className="menu__small">
           <menu>
             <ul className="wedding">
               <li key="residential" className="xmas_r">
@@ -43,15 +38,13 @@ export const Menu = () => {
                 <a href="/wedding">Wedding</a>
               </li>
               <li key="start" className="c">
-                <a href="/quote">
-                  Start With A Free Quote
-                </a>
+                <a href="/quote">Start With A Free Quote</a>
               </li>
-            </ul >
+            </ul>
           </menu>
         </nav>
 
-        <div className='bigboy'>
+        <div className="bigboy">
           <ul className="wedding">
             <li key="logo" className="logo">
               <a href="/" className="header__logo">
@@ -59,10 +52,18 @@ export const Menu = () => {
               </a>
             </li>
             <li key="residential" className="xmas_r">
-              <a href="/residential">Residential<br />Christmas Lights</a>
+              <a href="/residential">
+                Residential
+                <br />
+                Christmas Lights
+              </a>
             </li>
             <li key="commercial" className="xmas_c">
-              <a href="/commercial">Commercial<br />Christmas Lights</a>
+              <a href="/commercial">
+                Commercial
+                <br />
+                Christmas Lights
+              </a>
             </li>
             <li key="wedding" className="wedding">
               <a href="/wedding">Wedding</a>
@@ -73,10 +74,10 @@ export const Menu = () => {
                 Free Quote
               </a>
             </li>
-          </ul >
-        </div >
-      </div >
-    </header >
+          </ul>
+        </div>
+      </div>
+    </header>
   );
 };
 

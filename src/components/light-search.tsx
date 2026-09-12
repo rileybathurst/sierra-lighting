@@ -1,13 +1,14 @@
 // TODO: This query took more than 15s to run — which might indicate you're querying too much or have some unoptimized code:
 
-import React, { useState, useId } from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import * as JsSearch from "js-search"
-
-import Card from "./card"
+import { graphql, useStaticQuery } from "gatsby";
+import * as JsSearch from "js-search";
+import React, { useId, useState } from "react";
 import type { CardType } from "../types/card-type";
+import Card from "./card";
 
-function isSearchableCard(card: Partial<CardType> | null | undefined): card is CardType {
+function isSearchableCard(
+  card: Partial<CardType> | null | undefined,
+): card is CardType {
   return Boolean(card?.id && card?.title && card?.slug);
 }
 
@@ -22,32 +23,28 @@ const ResultList: React.FC<ResultListTypes> = ({ searchQuery, results }) => {
       <>
         <h3 className="above-deck">Search Results</h3>
         <div className="deck">
-          {results.map(result => (
-            <Card
-              key={result.id}
-              {...result}
-              breadcrumb="light"
-            />
+          {results.map((result) => (
+            <Card key={result.id} {...result} breadcrumb="light" />
           ))}
         </div>
       </>
-    )
+    );
   }
 
   if (searchQuery === "") {
     return null;
   }
 
-  return (
-    <h3 className="main">Nothing found in the search</h3>
-  )
+  return <h3 className="main">Nothing found in the search</h3>;
 };
 
 const LightSearch = () => {
   const inputId = useId();
   const [searchQuery, setSearchQuery] = useState("");
   // TODO: this is a weird duplicate type can it be removed
-  const [searchResults, setSearchResults] = useState<CardType[]>([] as CardType[]);
+  const [searchResults, setSearchResults] = useState<CardType[]>(
+    [] as CardType[],
+  );
 
   const { allStrapiLight } = useStaticQuery(graphql`
     query SearchQuery {
@@ -66,14 +63,14 @@ const LightSearch = () => {
 
   // Initialize search instance and add documents/indexes
   const search = React.useMemo(() => {
-    const s = new JsSearch.Search('id');
-    s.addIndex('name');
-    s.addIndex('slug');
+    const s = new JsSearch.Search("id");
+    s.addIndex("name");
+    s.addIndex("slug");
     s.addDocuments(searchableLights);
     return s;
   }, [searchableLights]);
 
-  const handleSubmit = (event: { preventDefault: () => void; }) => {
+  const handleSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
   };
 
@@ -85,12 +82,8 @@ const LightSearch = () => {
 
   return (
     <div className="main">
-      <form
-        onSubmit={handleSubmit}
-      >
-        <label htmlFor={inputId}>
-          Or enter your search here
-        </label>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor={inputId}>Or enter your search here</label>
         <input
           id={inputId}
           value={searchQuery}
@@ -98,12 +91,9 @@ const LightSearch = () => {
           placeholder="Enter your search here"
         />
       </form>
-      <ResultList
-        searchQuery={searchQuery}
-        results={searchResults}
-      />
+      <ResultList searchQuery={searchQuery} results={searchResults} />
     </div>
-  )
-}
+  );
+};
 
-export default LightSearch
+export default LightSearch;

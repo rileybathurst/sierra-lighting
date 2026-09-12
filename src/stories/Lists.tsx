@@ -1,9 +1,9 @@
 // TODO: look at safety page the vertical rythm is a mess
 // ? where are all these used throw some aliases on there
 
+import { faker } from "@faker-js/faker";
 // this is the Name.jsx file
 import React from "react";
-import { faker } from "@faker-js/faker";
 
 export const Lists = () => {
   return (

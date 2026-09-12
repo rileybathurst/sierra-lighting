@@ -1,7 +1,6 @@
-
-import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'gatsby';
-import Season from './season';
+import { Link } from "gatsby";
+import React, { useEffect, useRef, useState } from "react";
+import Season from "./season";
 
 const Hamburger = ({ className }: { className: string }) => {
   return (
@@ -27,15 +26,13 @@ const MenuList = () => (
       <Link to="/commercial">Commercial Christmas Lights</Link>
     </li>
     <li key="start" className="c">
-      <Link to="/contact?small-menu">
-        Start With A Free Quote
-      </Link>
+      <Link to="/contact?small-menu">Start With A Free Quote</Link>
     </li>
   </ul>
-)
+);
 
 function SlideMenu() {
-  const [slide, setSlide] = useState('firstload');
+  const [slide, setSlide] = useState("firstload");
   const [amount, setAmount] = useState(0);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -50,10 +47,10 @@ function SlideMenu() {
       <>
         <button
           className="button-spinner"
-          onClick={() => setSlide('close')}
+          onClick={() => setSlide("close")}
           type="button"
         >
-          <span className='sr-only'>open menu</span>
+          <span className="sr-only">open menu</span>
           <Hamburger className="inactive" />
         </button>
         <nav
@@ -62,7 +59,7 @@ function SlideMenu() {
             marginBottom: `-${amount}px`,
           }}
           ref={ref}
-          className='menu__small'
+          className="menu__small"
         >
           <menu>
             <MenuList />
@@ -77,20 +74,20 @@ function SlideMenu() {
       <>
         <button
           className="button-spinner"
-          onClick={() => setSlide('close')}
+          onClick={() => setSlide("close")}
           type="button"
         >
-          <span className='sr-only'>open menu</span>
+          <span className="sr-only">open menu</span>
           <Hamburger className="inactive" />
         </button>
         <nav
           style={{
             transform: `translateY(-${amount}px)`,
             marginBottom: `-${amount}px`,
-            transition: '2s ease',
+            transition: "2s ease",
           }}
           ref={ref}
-          className='menu__small'
+          className="menu__small"
         >
           <menu>
             <MenuList />
@@ -104,10 +101,10 @@ function SlideMenu() {
     <>
       <button
         className="button-spinner"
-        onClick={() => setSlide('menu')}
+        onClick={() => setSlide("menu")}
         type="button"
       >
-        <span className='sr-only'>open menu</span>
+        <span className="sr-only">open menu</span>
         {/* <span
             style={{ transform: 'translateY(0)' }}
             className="span-styles"
@@ -117,12 +114,12 @@ function SlideMenu() {
       </button>
       <nav
         style={{
-          transform: 'translateY(0)',
+          transform: "translateY(0)",
           marginBottom: `-${amount}px`,
-          transition: '2s ease',
+          transition: "2s ease",
         }}
         ref={ref}
-        className='menu__small'
+        className="menu__small"
       >
         <menu>
           <MenuList />
@@ -132,4 +129,4 @@ function SlideMenu() {
   );
 }
 
-export default SlideMenu
+export default SlideMenu;

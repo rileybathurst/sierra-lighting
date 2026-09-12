@@ -1,20 +1,19 @@
-import React from 'react';
-import { graphql, Link, Script } from 'gatsby'
+import { graphql, Link, Script } from "gatsby";
+import type React from "react";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import Markdown from "react-markdown";
-import { SEO } from "../components/seo";
-
-import Header from "../components/header";
+import Card from "../components/card";
 import Footer from "../components/footer";
-import Card from '../components/card';
-import StateAbbreviation from "../components/state-abbreviation";
-import StrShort from "../components/StrShort";
+import Header from "../components/header";
 import Hero from "../components/hero";
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
-import type { CardType } from '../types/card-type';
-import Testimonial from '../components/testimonial';
-import { Phone } from '../components/phone';
-import type { ImageWithAspectType } from '../types/image-with-aspect-type';
-import type TestimonialTypes from '../types/testimonial-types';
+import { Phone } from "../components/phone";
+import StrShort from "../components/StrShort";
+import { SEO } from "../components/seo";
+import StateAbbreviation from "../components/state-abbreviation";
+import Testimonial from "../components/testimonial";
+import type { CardType } from "../types/card-type";
+import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import type TestimonialTypes from "../types/testimonial-types";
 
 type VenueViewTypes = {
   data: {
@@ -28,14 +27,14 @@ type VenueViewTypes = {
       phone?: number;
       area: {
         name: string;
-        state: 'california' | 'nevada';
+        state: "california" | "nevada";
         slug: string;
         featured: boolean;
         region: {
           name: string;
           slug: string;
-        }
-      }
+        };
+      };
       streetAddress?: string;
       addressLocality?: string;
       addressRegion?: string;
@@ -44,94 +43,101 @@ type VenueViewTypes = {
       address?: {
         data?: {
           address: string;
-        }
-      }
+        };
+      };
       venueImage: ImageWithAspectType;
       testimonials: TestimonialTypes[] | null;
 
-      projects: CardType[]
-
-    }
+      projects: CardType[];
+    };
     allStrapiVenue: {
-      nodes: CardType[]
-    }
+      nodes: CardType[];
+    };
     strapiService: {
-      featured_lights: CardType[]
-    }
-  }
-}
+      featured_lights: CardType[];
+    };
+  };
+};
 const VenueView = ({ data }: VenueViewTypes) => {
-
   return (
     <>
       <Header />
 
-      {data.strapiVenue.venueImage ?
+      {data.strapiVenue.venueImage ? (
         <Hero image={data.strapiVenue.venueImage} />
-        : null}
+      ) : null}
 
       {/* // ? whats the venue class doing? */}
       <main className="venue">
         <hgroup>
-          <p className="crest">{data.strapiVenue.area.name}, <StateAbbreviation state={data.strapiVenue.area.state} /></p>
+          <p className="crest">
+            {data.strapiVenue.area.name},{" "}
+            <StateAbbreviation state={data.strapiVenue.area.state} />
+          </p>
           <h1 className="range">{data.strapiVenue.name}</h1>
         </hgroup>
         <hr />
         <p>{data.strapiVenue.description}</p>
 
-        {data.strapiVenue.testimonials && data.strapiVenue.testimonials.length > 0 ?
+        {data.strapiVenue.testimonials &&
+        data.strapiVenue.testimonials.length > 0 ? (
           <Testimonial {...data.strapiVenue.testimonials[0]} />
-          : null
-        }
+        ) : null}
 
         <hr />
         {/* // TODO this could probably be more structured with seo */}
-        {data.strapiVenue.streetAddress || data.strapiVenue.addressLocality || data.strapiVenue.addressRegion || data.strapiVenue.postalCode ? (
+        {data.strapiVenue.streetAddress ||
+        data.strapiVenue.addressLocality ||
+        data.strapiVenue.addressRegion ||
+        data.strapiVenue.postalCode ? (
           <address>
-            {data.strapiVenue.streetAddress && `${data.strapiVenue.streetAddress},`}
-            {data.strapiVenue.addressLocality && `${data.strapiVenue.addressLocality},`}
-            {data.strapiVenue.addressRegion && `${data.strapiVenue.addressRegion},`}
+            {data.strapiVenue.streetAddress &&
+              `${data.strapiVenue.streetAddress},`}
+            {data.strapiVenue.addressLocality &&
+              `${data.strapiVenue.addressLocality},`}
+            {data.strapiVenue.addressRegion &&
+              `${data.strapiVenue.addressRegion},`}
             {data.strapiVenue.postalCode && `${data.strapiVenue.postalCode}`}
           </address>
         ) : null}
 
         {/* // * this is the deprecated version */}
-        {data.strapiVenue?.address?.data?.address ?
+        {data.strapiVenue?.address?.data?.address ? (
           <address>
-            <div className='react-markdown'>
-              <Markdown>
-                {data.strapiVenue.address.data.address}
-              </Markdown>
+            <div className="react-markdown">
+              <Markdown>{data.strapiVenue.address.data.address}</Markdown>
             </div>
           </address>
-          : null}
+        ) : null}
 
-        {data.strapiVenue.phone ?
-          <p>Phone: <Phone phone={data.strapiVenue.phone} /></p>
-          : null
-        }
+        {data.strapiVenue.phone ? (
+          <p>
+            Phone: <Phone phone={data.strapiVenue.phone} />
+          </p>
+        ) : null}
 
         <p>
           Website&nbsp;
-          {data.strapiVenue.website.includes('https://') ?
-            <a href={data.strapiVenue.website}
+          {data.strapiVenue.website.includes("https://") ? (
+            <a
+              href={data.strapiVenue.website}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={data.strapiVenue.website}
             >
               <StrShort website={data.strapiVenue.website} />
             </a>
-            :
-            <a href={`https://${data.strapiVenue.website}`}
+          ) : (
+            <a
+              href={`https://${data.strapiVenue.website}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={data.strapiVenue.website}
             >
               <StrShort website={data.strapiVenue.website} />
             </a>
-          }
+          )}
         </p>
-
       </main>
       {/* 
       <Region
@@ -141,26 +147,24 @@ const VenueView = ({ data }: VenueViewTypes) => {
       /> */}
 
       {/* // TODO: what can we create here */}
-      <section className='above-deck'>
+      <section className="above-deck">
         <hr />
-        <h3>Explore the lighting styles we can create at {data.strapiVenue.name}</h3>
+        <h3>
+          Explore the lighting styles we can create at {data.strapiVenue.name}
+        </h3>
       </section>
 
-      <div className='deck'>
+      <div className="deck">
         {data.strapiService.featured_lights.map((light: CardType) => (
-          <Card
-            key={light.id}
-            {...light}
-            breadcrumb='light'
-          />
+          <Card key={light.id} {...light} breadcrumb="light" />
         ))}
       </div>
 
-      <h4 className='main'>
-        <Link to='/wedding/lights'>Browse all our wedding lighting styles</Link>
+      <h4 className="main">
+        <Link to="/wedding/lights">Browse all our wedding lighting styles</Link>
       </h4>
 
-      {data.strapiVenue.projects.length > 0 ?
+      {data.strapiVenue.projects.length > 0 ? (
         <>
           <div className="above-deck">
             <hr />
@@ -168,59 +172,54 @@ const VenueView = ({ data }: VenueViewTypes) => {
           </div>
           <div className="deck">
             {data.strapiVenue.projects.map((card: CardType) => (
-              <Card
-                key={card.id}
-                {...card}
-                breadcrumb='project'
-              />
+              <Card key={card.id} {...card} breadcrumb="project" />
             ))}
           </div>
         </>
-        : null
-      }
+      ) : null}
 
-      {data.allStrapiVenue.nodes.length > 0 ?
+      {data.allStrapiVenue.nodes.length > 0 ? (
         <>
           <div className="above-deck">
             <hr />
-            <h3 className="crest">More Venues in {data.strapiVenue.area.name}, <StateAbbreviation state={data.strapiVenue.area.state} /></h3>
+            <h3 className="crest">
+              More Venues in {data.strapiVenue.area.name},{" "}
+              <StateAbbreviation state={data.strapiVenue.area.state} />
+            </h3>
           </div>
           <div className="deck">
             {data.allStrapiVenue.nodes.map((card: CardType) => (
-              <Card
-                key={card.id}
-                {...card}
-                breadcrumb='venue'
-              />
+              <Card key={card.id} {...card} breadcrumb="venue" />
             ))}
           </div>
         </>
-        :
-
+      ) : (
         <div className="main">
           <h3 className="crest">Looking for somewhere else?</h3>
           <h2 className="range">
-            <Link to='/venue'>
-              Other {data.strapiVenue.slug === 'blue' ? null : 'Wedding'} Venues
+            <Link to="/venue">
+              Other {data.strapiVenue.slug === "blue" ? null : "Wedding"} Venues
             </Link>
           </h2>
         </div>
-      }
+      )}
 
       {/* // TODO: I think above breadcrumb could be a thing depending on design */}
-      < hr />
+      <hr />
 
       {/* // ? I dont think we have non featured pages anymore */}
       <Breadcrumbs>
-        <Breadcrumb><Link to="/venue/">Venues</Link></Breadcrumb>
         <Breadcrumb>
-          {data.strapiVenue.area.featured ?
+          <Link to="/venue/">Venues</Link>
+        </Breadcrumb>
+        <Breadcrumb>
+          {data.strapiVenue.area.featured ? (
             <Link to={`/areas/${data.strapiVenue.area.slug}`}>
               {data.strapiVenue.area.name}
             </Link>
-            :
+          ) : (
             data.strapiVenue.area.name
-          }
+          )}
         </Breadcrumb>
         <Breadcrumb>{data.strapiVenue.name}</Breadcrumb>
       </Breadcrumbs>
@@ -306,59 +305,56 @@ export const query = graphql`
         }
       }
   }
-`
+`;
 
 export const Head = ({ data }: VenueViewTypes) => {
   return (
     <SEO
       title={`${data.strapiVenue.name} Wedding Venue`}
-
       // TODO: Sierra lighting can create lighting at
       description={data.strapiVenue.excerpt}
       image={data.strapiVenue?.venueImage}
       // url={`venue/${data.strapiVenue.slug}`}
       // TODO: is this actually three levels deep? and why is it featured and state etc
-      breadcrumbs={
-        [
-          {
-            name: 'Venues',
-            item: '/venue'
-          },
-          {
-            name: data.strapiVenue.area.featured ?
-              data.strapiVenue.area.name :
-              `${data.strapiVenue.area.name}, ${data.strapiVenue.area.state}`,
-            item: `/areas/${data.strapiVenue.area.slug}`
-          },
-          {
-            name: data.strapiVenue.name,
-            item: `/venue/${data.strapiVenue.slug}`
-          }
-        ]
-      }
+      breadcrumbs={[
+        {
+          name: "Venues",
+          item: "/venue",
+        },
+        {
+          name: data.strapiVenue.area.featured
+            ? data.strapiVenue.area.name
+            : `${data.strapiVenue.area.name}, ${data.strapiVenue.area.state}`,
+          item: `/areas/${data.strapiVenue.area.slug}`,
+        },
+        {
+          name: data.strapiVenue.name,
+          item: `/venue/${data.strapiVenue.slug}`,
+        },
+      ]}
     >
       <Script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Place",
-          "name": data.strapiVenue.name,
-          "description": data.strapiVenue?.excerpt,
+          name: data.strapiVenue.name,
+          description: data.strapiVenue?.excerpt,
 
-          "url": data.strapiVenue?.slug,
-          "mainEntityOfPage": {
+          url: data.strapiVenue?.slug,
+          mainEntityOfPage: {
             "@type": "WebPage",
-            "@id": `https://sierra.lighting/venue/${data.strapiVenue?.slug}/`
+            "@id": `https://sierra.lighting/venue/${data.strapiVenue?.slug}/`,
           },
 
-          "address": {
+          address: {
             "@type": "PostalAddress",
-            "streetAddress": data.strapiVenue?.streetAddress,
-            "addressLocality": data.strapiVenue?.addressLocality,
-            "addressRegion": data.strapiVenue?.addressRegion,
-            "postalCode": data.strapiVenue?.postalCode
-          }
+            streetAddress: data.strapiVenue?.streetAddress,
+            addressLocality: data.strapiVenue?.addressLocality,
+            addressRegion: data.strapiVenue?.addressRegion,
+            postalCode: data.strapiVenue?.postalCode,
+          },
         })}
       </Script>
     </SEO>
-  )
-}
+  );
+};

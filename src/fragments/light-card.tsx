@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment lightCard on STRAPI_LIGHT {
@@ -11,4 +11,4 @@ export const query = graphql`
       ...cardImageFragment
     }
   }
-`
+`;

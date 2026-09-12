@@ -1,12 +1,11 @@
+import { graphql, Link, useStaticQuery } from "gatsby";
 import * as React from "react";
-import { Link, graphql, useStaticQuery } from "gatsby";
-import { Breadcrumbs, Breadcrumb } from "react-aria-components";
-
-import Header from "../../components/header";
-import Footer from "../../components/footer";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import Card from "../../components/card";
-import type { CardType } from "../../types/card-type";
+import Footer from "../../components/footer";
+import Header from "../../components/header";
 import { SEO } from "../../components/seo";
+import type { CardType } from "../../types/card-type";
 import type { CatchAllTypes } from "../../types/catch-all-types";
 
 function VendorCatchAll({ params }: CatchAllTypes) {
@@ -32,7 +31,9 @@ function VendorCatchAll({ params }: CatchAllTypes) {
         <hr />
         <h2 className="crest">404 - {params.name}</h2>
         <h1>{strapiError.title}</h1>
-        <p>{strapiError.pun} - <Link to="/">{strapiError.return}</Link></p>
+        <p>
+          {strapiError.pun} - <Link to="/">{strapiError.return}</Link>
+        </p>
       </main>
 
       <div className="above-deck">
@@ -49,11 +50,7 @@ function VendorCatchAll({ params }: CatchAllTypes) {
               breadcrumb={`vendor/${vendor.collaborator.slug}` as const}
             />
           ) : (
-            <Card
-              key={vendor.id}
-              {...vendor}
-              breadcrumb="vendor"
-            />
+            <Card key={vendor.id} {...vendor} breadcrumb="vendor" />
           ),
         )}
       </section>

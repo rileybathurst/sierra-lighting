@@ -28,9 +28,7 @@ const WidthCard = ({ widths }: WidthCardTypes) => {
         >
           {name}
 
-          {alias && (
-            <p>alias:&nbsp;{alias}</p>
-          )}
+          {alias && <p>alias:&nbsp;{alias}</p>}
 
           <br />
           <p
@@ -71,7 +69,10 @@ export const Widths = () => {
         widths={[
           { name: "swan" },
           { name: "vulture" },
-          { name: "stork", alias: "services / testimonials / testimonial / contact" },
+          {
+            name: "stork",
+            alias: "services / testimonials / testimonial / contact",
+          },
           { name: "condor", alias: "main / measure" },
           { name: "pelican", alias: "hero" },
           { name: "albatross", alias: "3 column areas" },

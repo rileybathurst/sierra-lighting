@@ -1,17 +1,14 @@
-import * as React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
-
-import { SEO } from "../components/seo";
-
-import Header from "../components/header";
-import Footer from "../components/footer";
-import Card from "../components/card";
-import type { CardType } from "../types/card-type";
-import Season from "../components/season";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import type * as React from "react";
 import ReactMarkdown from "react-markdown";
+import Card from "../components/card";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import Season from "../components/season";
+import { SEO } from "../components/seo";
+import type { CardType } from "../types/card-type";
 
 const ProjectsPage = () => {
-
   const { allStrapiService, allStrapiArea } = useStaticQuery(graphql`
     query ProjectsQuery {
       allStrapiService {
@@ -49,8 +46,8 @@ const ProjectsPage = () => {
     description: {
       data: {
         description: string;
-      }
-    }
+      };
+    };
     projects: CardType[];
   }
 
@@ -60,12 +57,18 @@ const ProjectsPage = () => {
 
       <main>
         <h1>Projects</h1>
-        <p>A gallery of some of our past work. Photos of residential and commercial displays in {allStrapiArea.nodes.map((area: { name: string }) => area.name).join(", ")}</p>
+        <p>
+          A gallery of some of our past work. Photos of residential and
+          commercial displays in{" "}
+          {allStrapiArea.nodes
+            .map((area: { name: string }) => area.name)
+            .join(", ")}
+        </p>
       </main>
 
       <div className={`projects ${Season()}`}>
-        {allStrapiService.nodes.map((service: ServiceType) => (
-          service.projects.length > 0 ?
+        {allStrapiService.nodes.map((service: ServiceType) =>
+          service.projects.length > 0 ? (
             <div key={service.id} className={service.slug}>
               <div className="above-deck">
                 <hr />
@@ -78,36 +81,30 @@ const ProjectsPage = () => {
                     `${service.name} Projects`
                   )}
                 </h2>
-                {service.description ?
+                {service.description ? (
                   <section>
-                    <div className='react-markdown double-baseline-drop'>
+                    <div className="react-markdown double-baseline-drop">
                       <ReactMarkdown>
                         {service.description.data.description}
                       </ReactMarkdown>
                     </div>
                   </section>
-                  : null}
+                ) : null}
               </div>
               <div className="deck">
-                {service.projects
-                  .slice(-3)
-                  .map((project: CardType) => (
-                    <Card
-                      key={project.id}
-                      {...project}
-                      breadcrumb="project"
-                    />
-                  ))}
+                {service.projects.slice(-3).map((project: CardType) => (
+                  <Card key={project.id} {...project} breadcrumb="project" />
+                ))}
               </div>
 
               <section className="main">
-                {service.projects.length > 3 ?
+                {service.projects.length > 3 ? (
                   <h3 className="elbrus">
                     <Link to={`/${service.slug}/projects/`}>
                       View all {service.projects.length} {service.name} projects
                     </Link>
-                  </h3 >
-                  : null}
+                  </h3>
+                ) : null}
               </section>
 
               <div className="main">
@@ -116,11 +113,11 @@ const ProjectsPage = () => {
                   <Link to={`/${service.slug}`}>
                     Learn more about our work on {service.name} lighting
                   </Link>
-                </h3 >
-              </div >
+                </h3>
+              </div>
             </div>
-            : null
-        ))}
+          ) : null,
+        )}
       </div>
 
       <Footer />
@@ -133,12 +130,12 @@ export default ProjectsPage;
 export const Head = () => {
   return (
     <SEO
-      title='Projects'
+      title="Projects"
       // TODO: query as above has to move where the query is. I think projects shows the moved query
       description="A gallery of some of our past work. Photos of residential and commercial displays in Reno, Tahoe, Truckee, Martis Camp, Lahontan, Grays Crossing, Old Greenwood, Somersett, Caughlin Ranch, Verdi, Damonte Ranch, Galena, Montreux, Incline Village, and more!"
       // TODO:
       // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/projects-og-sierra_lighting.jpg"
       url="projects"
     />
-  )
-}
+  );
+};

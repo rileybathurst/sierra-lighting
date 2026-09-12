@@ -1,23 +1,23 @@
 // TODO: add something about themes
 // the import problem is mostly alaphbetical which I'm OK with I just need to automate it
 
-import * as React from 'react'
-import { Link, graphql } from 'gatsby'
-import { GatsbyImage, type IGatsbyImageData } from 'gatsby-plugin-image'
+import { graphql, Link } from "gatsby";
+import { GatsbyImage, type IGatsbyImageData } from "gatsby-plugin-image";
+import * as React from "react";
 
 // https://www.npmjs.com/package/react-responsive-masonry
 // https://www.npmjs.com/package/@types/react-responsive-masonry
 
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 // TODO: add the progressive enhancment of grid-lanes when it is supported by all browsers, and use the masonry layout as a fallback
 // https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Masonry_layout
 // https://caniuse.com/css-grid-lanes
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
-import Header from '../components/header'
-import Footer from '../components/footer'
-import Start from '../components/start'
-import { SEO } from '../components/seo'
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components'
-import { PinterestHref } from '../components/pinterest-href'
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import { PinterestHref } from "../components/pinterest-href";
+import { SEO } from "../components/seo";
+import Start from "../components/start";
 
 type LinkedLookImageTypes = {
   localFile: {
@@ -25,21 +25,21 @@ type LinkedLookImageTypes = {
       gatsbyImageData: IGatsbyImageData & {
         images: {
           sources?: {
-            srcSet: string
-          }[]
-        }
+            srcSet: string;
+          }[];
+        };
       };
       resize: {
         aspectRatio: number;
       };
-    }
-  }
-  alternativeText: string
-}
+    };
+  };
+  alternativeText: string;
+};
 type LinkedLooklightsTypes = {
-  slug: string
-  name: string
-}
+  slug: string;
+  name: string;
+};
 
 /* const getLargestImageFromSrcSet = (
   sources?: { srcSet: string }[]
@@ -51,14 +51,16 @@ type LinkedLooklightsTypes = {
     ?.split(' ')[0]
 } */
 
-function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: LinkedLooklightsTypes[] }) {
-
+function LinkedLook({
+  image,
+  lights,
+}: {
+  image: LinkedLookImageTypes;
+  lights: LinkedLooklightsTypes[];
+}) {
   if (lights.length === 1) {
     return (
-      <Link
-        to={`/light/${lights[0].slug}`}
-        className='look'
-      >
+      <Link to={`/light/${lights[0].slug}`} className="look">
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
@@ -66,19 +68,20 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
         <p>{lights[0].name}</p>
         {/* // TODO: testiing */}
         {/* <span>{image.localFile.childImageSharp.gatsbyImageData.images.sources}</span> */}
-      </Link >
+      </Link>
     );
-  } if (lights.length > 1) {
+  }
+  if (lights.length > 1) {
     return (
-      <div className='look'>
+      <div className="look">
         <GatsbyImage
           image={image.localFile.childImageSharp.gatsbyImageData}
           alt={image.alternativeText}
         />
-        <ul className='lookbook-list'>
+        <ul className="lookbook-list">
           {lights.map((light) => (
             <li key={light.slug}>
-              <Link to={`/light/${light.slug}`} >
+              <Link to={`/light/${light.slug}`}>
                 <span>{light.name}</span>
               </Link>
             </li>
@@ -89,7 +92,7 @@ function LinkedLook({ image, lights }: { image: LinkedLookImageTypes, lights: Li
   }
 
   return (
-    <div className='look'>
+    <div className="look">
       <GatsbyImage
         image={image.localFile.childImageSharp.gatsbyImageData}
         alt={image.alternativeText}
@@ -105,39 +108,39 @@ type LookbookTemplateTypes = {
       name: string;
       slug: string;
       lookbooks: {
-        id: string
-        spread: boolean
-        order: number
-        flex: boolean
-        image: LinkedLookImageTypes
-        lights: LinkedLooklightsTypes[]
-      }[]
+        id: string;
+        spread: boolean;
+        order: number;
+        flex: boolean;
+        image: LinkedLookImageTypes;
+        lights: LinkedLooklightsTypes[];
+      }[];
     };
     strapiLookbookDescription: {
-      excerpt: string
-    }
+      excerpt: string;
+    };
   };
-}
+};
 const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
-
   // usePinterestButton();
 
   type LookbookTypes = {
-    id: string
-    spread: boolean
-    order: number
-    flex: boolean
-    image: LinkedLookImageTypes
-    lights: LinkedLooklightsTypes[]
-  }
+    id: string;
+    spread: boolean;
+    order: number;
+    flex: boolean;
+    image: LinkedLookImageTypes;
+    lights: LinkedLooklightsTypes[];
+  };
 
   return (
     <React.Fragment>
       <Header largeLogo={true} />
 
       <main>
-
-        <h1>{new Date().getFullYear()} {data.strapiService.name} Lookbook</h1>
+        <h1>
+          {new Date().getFullYear()} {data.strapiService.name} Lookbook
+        </h1>
         <p>{data.strapiLookbookDescription.excerpt}</p>
         <Start
           className="button--left-align"
@@ -147,25 +150,26 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
       </main>
 
       <section className="albatross look5">
-        <ResponsiveMasonry
-          columnsCountBreakPoints={{ 320: 1, 740: 2, 960: 3 }}
-        >
+        <ResponsiveMasonry columnsCountBreakPoints={{ 320: 1, 740: 2, 960: 3 }}>
           {/* // ? test */}
           {/* this thing is kinda ugly and has no hover state or anything */}
           <Masonry className="test">
             {data.strapiService.lookbooks
               .toReversed()
               .map((lookbook: LookbookTypes) => (
-                <div key={lookbook.id}
-                  className='pinterest-wrapper'
-                >
+                <div key={lookbook.id} className="pinterest-wrapper">
                   <LinkedLook
                     key={lookbook.id}
                     image={lookbook.image}
                     lights={lookbook.lights}
                   />
                   {/* // * putting piunterest here linked all the looks */}
-                  <PinterestHref imageSources={lookbook.image.localFile.childImageSharp.gatsbyImageData.images.sources} />
+                  <PinterestHref
+                    imageSources={
+                      lookbook.image.localFile.childImageSharp.gatsbyImageData
+                        .images.sources
+                    }
+                  />
                 </div>
               ))}
           </Masonry>
@@ -175,7 +179,11 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
       <hr />
 
       <Breadcrumbs>
-        <Breadcrumb><Link to={`/${data.strapiService.slug}`}>{data.strapiService.name}</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to={`/${data.strapiService.slug}`}>
+            {data.strapiService.name}
+          </Link>
+        </Breadcrumb>
         <Breadcrumb>Lookbook</Breadcrumb>
       </Breadcrumbs>
 
@@ -194,15 +202,16 @@ export const Head = ({ data }: LookbookTemplateTypes) => {
       breadcrumbs={[
         {
           name: data.strapiService.name,
-          item: data.strapiService.slug
-        }, {
-          name: 'Lookbook',
-          item: 'lookbook'
-        }
+          item: data.strapiService.slug,
+        },
+        {
+          name: "Lookbook",
+          item: "lookbook",
+        },
       ]}
     />
-  )
-}
+  );
+};
 
 export const query = graphql`
   query LookbookTemplateQuery($slug: String!) {

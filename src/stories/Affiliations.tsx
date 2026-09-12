@@ -3,7 +3,6 @@
 import React from "react";
 
 export const Affiliations = () => {
-
   return (
     <ul className="affiliations">
       <li className="affiliation">
@@ -29,4 +28,3 @@ export const Affiliations = () => {
     </ul>
   );
 };
-

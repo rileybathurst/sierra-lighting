@@ -1,44 +1,44 @@
+import { graphql, Link } from "gatsby";
 import * as React from "react";
-import { Link, graphql } from "gatsby";
-import SEO from "../../components/seo";
-import type { GatsbyImageType } from "../../types/gatsby-image";
-import type { CardType } from "../../types/card-type";
-import { Breadcrumbs, Breadcrumb } from "react-aria-components";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import Card from "../../components/card";
-import Start from "../../components/start";
-import Hero from "../../components/hero";
-import Suite from "../../components/suite";
-import type { SuiteType } from "../../types/suite-type";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import Markdown from "react-markdown";
+import Card from "../../components/card";
+import Footer from "../../components/footer";
+import Header from "../../components/header";
+import Hero from "../../components/hero";
+import SEO from "../../components/seo";
+import Start from "../../components/start";
+import Suite from "../../components/suite";
+import type { CardType } from "../../types/card-type";
+import type { GatsbyImageType } from "../../types/gatsby-image";
 import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
+import type { SuiteType } from "../../types/suite-type";
 
 interface AliasTypes {
-	alias: string;
+  alias: string;
 }
 function Aliases({ alias }: AliasTypes) {
-	// this combines with a specific regex in strapi
-	// testing with market lights
-	// console.log(light.alias);
-	const split = alias.split("\n").map((line: string) => line.replace("- ", ""));
+  // this combines with a specific regex in strapi
+  // testing with market lights
+  // console.log(light.alias);
+  const split = alias.split("\n").map((line: string) => line.replace("- ", ""));
 
-	return (
-		<React.Fragment>
-			{/* // TODO: this overhangs backwards when it shouldnt */}
-			<h3 className="kilimanjaro">Also known as:</h3>
-			<ul>
-				{split.map((aka: string) => {
-					return (
-						<li key={aka} className="capitalize">
-							{aka}
-						</li>
-					);
-				})}
-			</ul>
-			<hr />
-		</React.Fragment>
-	);
+  return (
+    <React.Fragment>
+      {/* // TODO: this overhangs backwards when it shouldnt */}
+      <h3 className="kilimanjaro">Also known as:</h3>
+      <ul>
+        {split.map((aka: string) => {
+          return (
+            <li key={aka} className="capitalize">
+              {aka}
+            </li>
+          );
+        })}
+      </ul>
+      <hr />
+    </React.Fragment>
+  );
 }
 
 export const query = graphql`
@@ -193,190 +193,192 @@ export const query = graphql`
 `;
 
 type ConnectionType = {
-	name: string;
-	excerpt: string;
-	starting_light?: CardType;
-	ending_light?: CardType;
+  name: string;
+  excerpt: string;
+  starting_light?: CardType;
+  ending_light?: CardType;
 };
 
 type LightPageTypes = {
-	data: {
-		strapiLight: {
-			id: React.Key;
-			name: string;
-			slug: string;
-			excerpt: string;
-			description?: string | null;
-			markdown?: {
-				data: {
-					markdown: string;
-				}
-			} | null;
-			services: SuiteType["services"];
-			light_groups?: {
-				id: React.Key;
-				name: string;
-				slug: string;
-				lights: CardType[];
-			}[];
-			alias?: string | null;
-			image: ImageWithAspectType;
-			detail?: GatsbyImageType | null;
-			altGallery?: ImageWithAspectType[] | null;
-			projects?: CardType[] | null;
-			residentialHero?: ImageWithAspectType | null;
-			commercialHero?: ImageWithAspectType | null;
-			bulbs?: {
-				id: React.Key;
-				name: string;
-				// excerpt: string;
-				detail: GatsbyImageType;
-			}[] | null;
-		};
-		allStrapiLight: {
-			nodes: CardType[];
-		};
-		allStrapiProject: {
-			nodes: CardType[];
-		};
-		wedding: {
-			nodes: {
-				id: React.Key;
-				name: string;
-			}[];
-		};
-		holiday: {
-			nodes: {
-				id: React.Key;
-				name: string;
-			}[];
-		};
-		strapiAbout: {
-			url: string;
-		};
+  data: {
+    strapiLight: {
+      id: React.Key;
+      name: string;
+      slug: string;
+      excerpt: string;
+      description?: string | null;
+      markdown?: {
+        data: {
+          markdown: string;
+        };
+      } | null;
+      services: SuiteType["services"];
+      light_groups?: {
+        id: React.Key;
+        name: string;
+        slug: string;
+        lights: CardType[];
+      }[];
+      alias?: string | null;
+      image: ImageWithAspectType;
+      detail?: GatsbyImageType | null;
+      altGallery?: ImageWithAspectType[] | null;
+      projects?: CardType[] | null;
+      residentialHero?: ImageWithAspectType | null;
+      commercialHero?: ImageWithAspectType | null;
+      bulbs?:
+        | {
+            id: React.Key;
+            name: string;
+            // excerpt: string;
+            detail: GatsbyImageType;
+          }[]
+        | null;
+    };
+    allStrapiLight: {
+      nodes: CardType[];
+    };
+    allStrapiProject: {
+      nodes: CardType[];
+    };
+    wedding: {
+      nodes: {
+        id: React.Key;
+        name: string;
+      }[];
+    };
+    holiday: {
+      nodes: {
+        id: React.Key;
+        name: string;
+      }[];
+    };
+    strapiAbout: {
+      url: string;
+    };
 
-		inConnection: {
-			nodes?: ConnectionType[];
-		};
-		outConnection: {
-			nodes?: ConnectionType[];
-		};
-	};
-	location: { search?: string; }
+    inConnection: {
+      nodes?: ConnectionType[];
+    };
+    outConnection: {
+      nodes?: ConnectionType[];
+    };
+  };
+  location: { search?: string };
 };
 const LightPage = ({ data, location }: LightPageTypes) => {
+  process.env.NODE_ENV === "development"
+    ? data.strapiLight.image
+      ? null
+      : console.warn(`${data.strapiLight.name} image is missing`)
+    : null;
 
-	process.env.NODE_ENV === "development"
-		? data.strapiLight.image
-			? null
-			: console.warn(`${data.strapiLight.name} image is missing`)
-		: null;
+  process.env.NODE_ENV === "development"
+    ? data.strapiLight.image?.alternativeText
+      ? null
+      : console.warn(`${data.strapiLight.name} image has no alt`)
+    : null;
+  // console.log(projects);
 
-	process.env.NODE_ENV === "development"
-		? data.strapiLight.image?.alternativeText
-			? null
-			: console.warn(`${data.strapiLight.name} image has no alt`)
-		: null;
-	// console.log(projects);
+  let holidayLight = false;
+  let weddingLight = false;
 
-	let holidayLight = false;
-	let weddingLight = false;
+  if (
+    data.strapiLight.services.every(
+      (service) =>
+        service.slug === "residential" || service.slug === "commercial",
+    )
+  ) {
+    // console.log('this is a holiday light');
+    holidayLight = true;
+  } else {
+    // console.log('this is a wedding light');
+    weddingLight = true;
+  }
 
-	if (
-		data.strapiLight.services.every(
-			(service) =>
-				service.slug === "residential" || service.slug === "commercial",
-		)
-	) {
-		// console.log('this is a holiday light');
-		holidayLight = true;
-	} else {
-		// console.log('this is a wedding light');
-		weddingLight = true;
-	}
+  const outConnections = data.outConnection?.nodes ?? [];
+  const outgoingLightSlugs = new Set(
+    outConnections.flatMap((connection) =>
+      connection.starting_light ? [connection.starting_light.slug] : [],
+    ),
+  );
+  const lightConnections = [
+    ...(data.inConnection?.nodes ?? []).filter(
+      (connection) =>
+        !outgoingLightSlugs.has(connection.ending_light?.slug ?? ""),
+    ),
+    ...outConnections,
+  ];
 
-	const outConnections = data.outConnection?.nodes ?? [];
-	const outgoingLightSlugs = new Set(
-		outConnections.flatMap((connection) =>
-			connection.starting_light ? [connection.starting_light.slug] : [],
-		),
-	);
-	const lightConnections = [
-		...(data.inConnection?.nodes ?? []).filter(
-			(connection) => !outgoingLightSlugs.has(connection.ending_light?.slug ?? ""),
-		),
-		...outConnections,
-	];
+  // TODO: build the hero image switcher here
+  // console.log(data.strapiLight.residentialHero);
 
-	// TODO: build the hero image switcher here
-	// console.log(data.strapiLight.residentialHero);
+  let heroImage = data.strapiLight.image;
 
-	let heroImage = data.strapiLight.image;
+  const searchParams = new URLSearchParams(location.search);
+  if (searchParams.toString().includes("residential")) {
+    // console.log("has residential");
+    if (data.strapiLight.residentialHero) {
+      // console.log("has residential hero");
+      heroImage = data.strapiLight.residentialHero;
+    }
+  }
+  if (searchParams.toString().includes("commercial")) {
+    // console.log("has commercial");
+    if (data.strapiLight.commercialHero) {
+      heroImage = data.strapiLight.commercialHero;
+    }
+  }
 
-	const searchParams = new URLSearchParams(location.search);
-	if (searchParams.toString().includes("residential")) {
-		// console.log("has residential");
-		if (data.strapiLight.residentialHero) {
-			// console.log("has residential hero");
-			heroImage = data.strapiLight.residentialHero;
-		}
-	}
-	if (searchParams.toString().includes("commercial")) {
-		// console.log("has commercial");
-		if (data.strapiLight.commercialHero) {
-			heroImage = data.strapiLight.commercialHero;
-		}
-	}
+  // const canonicalLightUrl = `${data.strapiAbout.url}/light/${data.strapiLight.slug}`;
+  // const pinterestHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(canonicalLightUrl)}&description=${encodeURIComponent(`${data.strapiLight.name} ${data.strapiLight.excerpt || ""}`.trim())}`;
+  // console.log(pinterestHref);
 
-	// const canonicalLightUrl = `${data.strapiAbout.url}/light/${data.strapiLight.slug}`;
-	// const pinterestHref = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(canonicalLightUrl)}&description=${encodeURIComponent(`${data.strapiLight.name} ${data.strapiLight.excerpt || ""}`.trim())}`;
-	// console.log(pinterestHref);
+  return (
+    <React.Fragment>
+      <Header />
 
-	return (
-		<React.Fragment>
-			<Header />
+      {/* // TODO: video in the hero */}
+      <Hero
+        image={heroImage}
+        name={data.strapiLight.name}
+        detail={data.strapiLight.detail ? data.strapiLight.detail : undefined}
+        gallery={
+          data.strapiLight?.altGallery
+            ? data.strapiLight?.altGallery
+            : undefined
+        }
+        badge={true}
+        pinterest
+      />
 
-			{/* // TODO: video in the hero */}
-			<Hero
-				image={heroImage}
-				name={data.strapiLight.name}
-				detail={data.strapiLight.detail ? data.strapiLight.detail : undefined}
-				gallery={data.strapiLight?.altGallery ? data.strapiLight?.altGallery : undefined}
-				badge={true}
-				pinterest
-			/>
+      <main>
+        <h1 className="denali">
+          {data.strapiLight.name}
+          {holidayLight ? <span> For Christmas Lighting</span> : null}
+          {weddingLight ? <span> For Wedding Lighting</span> : null}
+        </h1>
 
-			<main>
-				<h1 className="denali">
-					{data.strapiLight.name}
-					{holidayLight ? (
-						<span> For Christmas Lighting</span>
-					) : null}
-					{weddingLight ? (
-						<span> For Wedding Lighting</span>
-					) : null}
-				</h1>
+        {data.strapiLight.alias ? (
+          <Aliases alias={data.strapiLight.alias} />
+        ) : null}
 
-				{data.strapiLight.alias ? (
-					<Aliases alias={data.strapiLight.alias} />
-				) : null}
+        {/* // TODO: styling of lower level headings */}
+        {/* // * theres maybe a way to link these to show a full image */}
+        {data.strapiLight.markdown?.data?.markdown ? (
+          <div className="markdown">
+            <Markdown>{data.strapiLight.markdown.data.markdown}</Markdown>
+          </div>
+        ) : (
+          <p>{data.strapiLight.description}</p>
+        )}
 
-				{/* // TODO: styling of lower level headings */}
-				{/* // * theres maybe a way to link these to show a full image */}
-				{data.strapiLight.markdown?.data?.markdown ? (
-					<div className="markdown">
-						<Markdown>{data.strapiLight.markdown.data.markdown}</Markdown>
-					</div>
-				) : (
-					<p>{data.strapiLight.description}</p>
-				)}
+        <hr />
 
-				<hr />
-
-				{/* // TODO: oops not designed */}
-				{/* // TODO: add these to strapi across the lights */}
-				{/* // needs to be more than 1 or its just the detail image */}
-				{/* {data.strapiLight.bulbs && (
+        {/* // TODO: oops not designed */}
+        {/* // TODO: add these to strapi across the lights */}
+        {/* // needs to be more than 1 or its just the detail image */}
+        {/* {data.strapiLight.bulbs && (
 						<section>
 							<h3 className="kilimanjaro">Bulb Options</h3>
 							// ? why team-heads or did I just not do something
@@ -400,141 +402,142 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 						</section>
 					)} */}
 
-				<Start path={data.strapiLight.slug} />
-			</main>
+        <Start path={data.strapiLight.slug} />
+      </main>
 
-			{lightConnections.length > 0 ? (
-				<section>
-					<div className="above-deck">
-						<hr />
-						<h3>Ways to make your {data.strapiLight.name} shine</h3>
-					</div>
-					<div className="deck">
-						{lightConnections.map((connection) => {
-							const light = connection.starting_light || connection.ending_light;
-							return (
-								light && (
-									<Card
-										key={connection.name}
-										{...light}
-										excerpt={connection.excerpt}
-										breadcrumb="light"
-									/>
-								)
-							);
-						})}
-					</div>
-				</section>
-			) : null}
+      {lightConnections.length > 0 ? (
+        <section>
+          <div className="above-deck">
+            <hr />
+            <h3>Ways to make your {data.strapiLight.name} shine</h3>
+          </div>
+          <div className="deck">
+            {lightConnections.map((connection) => {
+              const light =
+                connection.starting_light || connection.ending_light;
+              return (
+                light && (
+                  <Card
+                    key={connection.name}
+                    {...light}
+                    excerpt={connection.excerpt}
+                    breadcrumb="light"
+                  />
+                )
+              );
+            })}
+          </div>
+        </section>
+      ) : null}
 
-			{/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device */}
-			<section>
-				<div className="above-deck">
-					<hr />
-					<h3 className="crest">We use {data.strapiLight.name} for</h3>
-				</div>
+      {/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device */}
+      <section>
+        <div className="above-deck">
+          <hr />
+          <h3 className="crest">We use {data.strapiLight.name} for</h3>
+        </div>
 
-				<Suite services={data.strapiLight.services} />
-			</section>
+        <Suite services={data.strapiLight.services} />
+      </section>
 
-			<section className="main">
-				<hr />
-				<h3>
-					<Link to="/process">Learn more about our process</Link>
-				</h3>
-				<ol>
-					{data.strapiLight.services.every(
-						(service) =>
-							service.slug === "residential" || service.slug === "commercial",
-					)
-						? data.holiday.nodes.map((process) => {
-							return <li key={process.id}>{process.name}</li>;
-						})
-						: data.wedding.nodes.map((process) => {
-							return <li key={process.id}>{process.name}</li>;
-						})}
-				</ol>
+      <section className="main">
+        <hr />
+        <h3>
+          <Link to="/process">Learn more about our process</Link>
+        </h3>
+        <ol>
+          {data.strapiLight.services.every(
+            (service) =>
+              service.slug === "residential" || service.slug === "commercial",
+          )
+            ? data.holiday.nodes.map((process) => {
+                return <li key={process.id}>{process.name}</li>;
+              })
+            : data.wedding.nodes.map((process) => {
+                return <li key={process.id}>{process.name}</li>;
+              })}
+        </ol>
 
-				{/* // TODO: design this in storybook  */}
-				<h3 className="kilimanjaro capitalize">
-					<Link to="/faqs">Frequently Asked Questions</Link>
-				</h3>
-			</section>
+        {/* // TODO: design this in storybook  */}
+        <h3 className="kilimanjaro capitalize">
+          <Link to="/faqs">Frequently Asked Questions</Link>
+        </h3>
+      </section>
 
-			{/* // TODO: atleast one of these divs is just a react fragment but dont break the css by just removing stuff */}
-			{data.strapiLight.light_groups ? (
-				<div>
-					{data.strapiLight.light_groups.map((group) => {
-						return (
-							<div key={group.id}>
-								<div className="above-deck">
-									<hr />
-									<h3>Other Lights in {group.name}</h3>
-								</div>
+      {/* // TODO: atleast one of these divs is just a react fragment but dont break the css by just removing stuff */}
+      {data.strapiLight.light_groups ? (
+        <div>
+          {data.strapiLight.light_groups.map((group) => {
+            return (
+              <div key={group.id}>
+                <div className="above-deck">
+                  <hr />
+                  <h3>Other Lights in {group.name}</h3>
+                </div>
 
-								<div className="deck">
-									{group.lights
-										.filter(
-											(lightSlug) => lightSlug.slug !== data.strapiLight.slug,
-										)
-										.map((light: CardType) => (
-											<Card key={light.id} {...light} breadcrumb="light" />
-										))}
-								</div>
-							</div>
-						);
-					})}
-				</div>
-			) : (
-				<React.Fragment>
-					<div className="above-deck">
-						<hr />
-						<h3>Other Lights</h3>
-					</div>
-					<div className="deck">
-						{data.allStrapiLight.nodes.map((light: CardType) => (
-							<Card key={light.id} {...light} breadcrumb="light" />
-						))}
-					</div>
-				</React.Fragment>
-			)}
+                <div className="deck">
+                  {group.lights
+                    .filter(
+                      (lightSlug) => lightSlug.slug !== data.strapiLight.slug,
+                    )
+                    .map((light: CardType) => (
+                      <Card key={light.id} {...light} breadcrumb="light" />
+                    ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <React.Fragment>
+          <div className="above-deck">
+            <hr />
+            <h3>Other Lights</h3>
+          </div>
+          <div className="deck">
+            {data.allStrapiLight.nodes.map((light: CardType) => (
+              <Card key={light.id} {...light} breadcrumb="light" />
+            ))}
+          </div>
+        </React.Fragment>
+      )}
 
-			{/* // TODO: if more than 3 */}
-			{data.allStrapiProject.nodes.length > 0 ? (
-				<React.Fragment>
-					<div className="above-deck">
-						<hr />
-						<h3>Projects Using {data.strapiLight.name}</h3>
-					</div>
+      {/* // TODO: if more than 3 */}
+      {data.allStrapiProject.nodes.length > 0 ? (
+        <React.Fragment>
+          <div className="above-deck">
+            <hr />
+            <h3>Projects Using {data.strapiLight.name}</h3>
+          </div>
 
-					<div className="deck">
-						{data.allStrapiProject.nodes.map((project: CardType) => (
-							<Card key={project.id} {...project} breadcrumb="project" />
-						))}
-					</div>
-				</React.Fragment>
-			) : null}
+          <div className="deck">
+            {data.allStrapiProject.nodes.map((project: CardType) => (
+              <Card key={project.id} {...project} breadcrumb="project" />
+            ))}
+          </div>
+        </React.Fragment>
+      ) : null}
 
-			<hr />
+      <hr />
 
-			<Breadcrumbs>
-				<Breadcrumb>
-					<Link to="/lights/">Lights</Link>
-				</Breadcrumb>
-				<Breadcrumb>{data.strapiLight.name}</Breadcrumb>
-			</Breadcrumbs>
+      <Breadcrumbs>
+        <Breadcrumb>
+          <Link to="/lights/">Lights</Link>
+        </Breadcrumb>
+        <Breadcrumb>{data.strapiLight.name}</Breadcrumb>
+      </Breadcrumbs>
 
-			<Footer />
+      <Footer />
 
-			{/* // TODO: testing */}
-			{/* // * https://developers.pinterest.com/docs/web-features/buttons/ */}
-			{/* <a data-pin-do="buttonBookmark" href={pinterestHref}>pinterest save</a> */}
-			{/* <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-media={`${data.strapiAbout.url}${data.strapiLight?.image.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim()?.split(" ")[0]}`}>🦄</a> */}
+      {/* // TODO: testing */}
+      {/* // * https://developers.pinterest.com/docs/web-features/buttons/ */}
+      {/* <a data-pin-do="buttonBookmark" href={pinterestHref}>pinterest save</a> */}
+      {/* <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" data-pin-media={`${data.strapiAbout.url}${data.strapiLight?.image.localFile?.childImageSharp?.gatsbyImageData.images.sources[0].srcSet.split(",").at(-1).trim()?.split(" ")[0]}`}>🦄</a> */}
 
-			{/* // TODO: testing  */}
-			{/* console.log(data.strapiAbout.url); */}
-		</React.Fragment>
-	);
+      {/* // TODO: testing  */}
+      {/* console.log(data.strapiAbout.url); */}
+    </React.Fragment>
+  );
 };
 
 export default LightPage;
@@ -542,63 +545,63 @@ export default LightPage;
 // TODO: might need a image default variable here
 
 export const Head = ({ data }: LightPageTypes) => {
-	let aliasString = "";
+  let aliasString = "";
 
-	if (data.strapiLight.alias) {
-		// console.log(data.strapiLight.alias)
-		const alias = data.strapiLight.alias;
-		aliasString = alias
-			.split("\n")
-			.map((item) => item.trim().replace(/^- /, ""))
-			.map((item) => item.charAt(0).toUpperCase() + item.slice(1))
-			.join(" | ");
-		// console.log(aliasString);
-	}
+  if (data.strapiLight.alias) {
+    // console.log(data.strapiLight.alias)
+    const alias = data.strapiLight.alias;
+    aliasString = alias
+      .split("\n")
+      .map((item) => item.trim().replace(/^- /, ""))
+      .map((item) => item.charAt(0).toUpperCase() + item.slice(1))
+      .join(" | ");
+    // console.log(aliasString);
+  }
 
-	let processString = "";
-	// console.log(data.wedding.nodes);
+  let processString = "";
+  // console.log(data.wedding.nodes);
 
-	if (
-		data.strapiLight.services.every(
-			(service) =>
-				service.slug === "residential" || service.slug === "commercial",
-		)
-	) {
-		for (const process of data.holiday.nodes) {
-			processString += ` | ${process.name}`;
-		}
-	} else {
-		for (const process of data.wedding.nodes) {
-			processString += ` | ${process.name}`;
-		}
-	}
+  if (
+    data.strapiLight.services.every(
+      (service) =>
+        service.slug === "residential" || service.slug === "commercial",
+    )
+  ) {
+    for (const process of data.holiday.nodes) {
+      processString += ` | ${process.name}`;
+    }
+  } else {
+    for (const process of data.wedding.nodes) {
+      processString += ` | ${process.name}`;
+    }
+  }
 
-	// console.log(processString);
+  // console.log(processString);
 
-	return (
-		<React.Fragment>
-			<SEO
-				title={`
+  return (
+    <React.Fragment>
+      <SEO
+        title={`
 					${data.strapiLight.name}
 					${data.strapiLight.alias ? ` | ${aliasString}` : ""}
 					${data.strapiLight.services.every((service) => service.slug === "residential" || service.slug === "commercial") ? "christmas light installation" : "weddings light instalation"}
 				`}
-				// TODO: needs the aliases in the SEO
-				description={`${data.strapiLight?.excerpt} ${processString}`} // TODO: add some info about styles i.e. 'modern, rustic, etc.' they might be just a number of tags
-				image={data.strapiLight?.image}
-				url={`light/${data.strapiLight.slug}`}
-				breadcrumbs={[
-					{
-						name: "Light",
-						item: "lights",
-					},
-					{
-						name: data.strapiLight.name,
-						item: `light/${data.strapiLight.slug}`,
-					},
-				]}
-			/>
-			{/*       <Script type="application/ld+json">
+        // TODO: needs the aliases in the SEO
+        description={`${data.strapiLight?.excerpt} ${processString}`} // TODO: add some info about styles i.e. 'modern, rustic, etc.' they might be just a number of tags
+        image={data.strapiLight?.image}
+        url={`light/${data.strapiLight.slug}`}
+        breadcrumbs={[
+          {
+            name: "Light",
+            item: "lights",
+          },
+          {
+            name: data.strapiLight.name,
+            item: `light/${data.strapiLight.slug}`,
+          },
+        ]}
+      />
+      {/*       <Script type="application/ld+json">
         {`
           {
             "@context": "https://schema.org/",
@@ -610,12 +613,12 @@ export const Head = ({ data }: LightPageTypes) => {
           }
         `}
       </Script> */}
-			{/* <script
+      {/* <script
 				type="text/javascript"
 				async
 				defer
 				src="https://assets.pinterest.com/js/pinit.js"
 			/> */}
-		</React.Fragment>
-	);
+    </React.Fragment>
+  );
 };

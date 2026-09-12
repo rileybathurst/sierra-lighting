@@ -1,9 +1,8 @@
+import { graphql, Link, useStaticQuery } from "gatsby";
 import * as React from "react";
-import { useStaticQuery, graphql, Link } from "gatsby";
 import Season from "./season";
 
 const TopBar = () => {
-
   const { strapiTopbar } = useStaticQuery(graphql`
   query TopBarQuery {
     strapiTopbar {
@@ -17,39 +16,39 @@ const TopBar = () => {
       defaultWeddingLink
     }
   }
-`)
+`);
 
   const SeasonalTopbar = (() => {
     if (strapiTopbar.title && strapiTopbar.default) {
       return strapiTopbar.title;
-    } else if (Season() === 'xmas') {
+    } else if (Season() === "xmas") {
       return strapiTopbar.defaultXmas;
-    } else if (Season() === 'wedding') {
+    } else if (Season() === "wedding") {
       return strapiTopbar.defaultWedding;
     } else {
-      console.error('No topbar title set in Strapi');
-      return '';
+      console.error("No topbar title set in Strapi");
+      return "";
     }
   })();
 
   const SeasonalTopbarLink = (() => {
     if (strapiTopbar.link && strapiTopbar.title && strapiTopbar.default) {
       return strapiTopbar.link;
-    } else if (Season() === 'xmas') {
+    } else if (Season() === "xmas") {
       return strapiTopbar.defaultXmasLink;
-    } else if (Season() === 'wedding') {
+    } else if (Season() === "wedding") {
       return strapiTopbar.defaultWeddingLink;
     } else {
-      console.warn('No topbar link set in Strapi');
-      return '';
+      console.warn("No topbar link set in Strapi");
+      return "";
     }
   })();
 
   return (
     <h2 className="top-bar">
-      {SeasonalTopbarLink ? <Link to={`/${SeasonalTopbarLink}`}>
-        {SeasonalTopbar}
-      </Link> : null}
+      {SeasonalTopbarLink ? (
+        <Link to={`/${SeasonalTopbarLink}`}>{SeasonalTopbar}</Link>
+      ) : null}
     </h2>
   );
 };

@@ -1,20 +1,17 @@
 // TODO: storybook and fragment more of this if not componentize it
 // TODO: move the check for lights having a service on the page of that light
 
-import * as React from "react"
-import { Link, useStaticQuery, graphql } from 'gatsby';
-
-import { SEO } from "../components/seo";
-
-import Header from "../components/header";
-import Footer from "../components/footer";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import * as React from "react";
 import Card from "../components/card";
+import Footer from "../components/footer";
+import Header from "../components/header";
 import LightSearch from "../components/light-search";
 import Season from "../components/season";
+import { SEO } from "../components/seo";
 import type { CardType } from "../types/card-type";
 
 const lightsPage = () => {
-
   const { allStrapiLightGroup, allStrapiService } = useStaticQuery(graphql`
     query LightsQuery {
 
@@ -46,22 +43,22 @@ const lightsPage = () => {
       }
 
     }
-  `)
+  `);
 
   type ServiceTypes = {
-    id: string
-    name: string
-    slug: string
-  }
+    id: string;
+    name: string;
+    slug: string;
+  };
 
   type LightGroupTypes = {
-    name: string
-    slug: string
-    excerpt: string
-    weddingOrder: number | null
-    xmasOrder: number | null
+    name: string;
+    slug: string;
+    excerpt: string;
+    weddingOrder: number | null;
+    xmasOrder: number | null;
     lights: CardType[];
-  }
+  };
 
   type ExtendedCardType = CardType & {
     weddingOrder: number | null;
@@ -83,15 +80,14 @@ const lightsPage = () => {
 
   // * Order the groups by season
   // console.log(Season());
-  if (Season() === 'wedding') {
+  if (Season() === "wedding") {
     allStrapiLightGroup.nodes.sort((a: LightGroupTypes, b: LightGroupTypes) => {
       if (a.weddingOrder === null && b.weddingOrder === null) return 0;
       if (a.weddingOrder === null) return 1;
       if (b.weddingOrder === null) return -1;
       return a.weddingOrder - b.weddingOrder;
-
     });
-  } else if (Season() === 'xmas') {
+  } else if (Season() === "xmas") {
     allStrapiLightGroup.nodes.sort((a: LightGroupTypes, b: LightGroupTypes) => {
       if (a.xmasOrder === null && b.xmasOrder === null) return 0;
       if (a.xmasOrder === null) return 1;
@@ -104,7 +100,7 @@ const lightsPage = () => {
 
   // order the lights by season in each group
   allStrapiLightGroup.nodes.map((group: LightGroupTypes) => {
-    if (Season() === 'wedding') {
+    if (Season() === "wedding") {
       group.lights.sort((a: CardType, b: CardType) => {
         const aWeddingOrder = (a as ExtendedCardType).weddingOrder;
         const bWeddingOrder = (b as ExtendedCardType).weddingOrder;
@@ -113,7 +109,7 @@ const lightsPage = () => {
         if (bWeddingOrder === null) return -1;
         return aWeddingOrder - bWeddingOrder;
       });
-    } else if (Season() === 'xmas') {
+    } else if (Season() === "xmas") {
       group.lights.sort((a: CardType, b: CardType) => {
         const aXmasOrder = (a as ExtendedCardType).xmasOrder;
         const bXmasOrder = (b as ExtendedCardType).xmasOrder;
@@ -138,9 +134,7 @@ const lightsPage = () => {
         <ul>
           {allStrapiService.nodes.map((service: ServiceTypes) => (
             <li key={service.id}>
-              <Link to={`/${service.slug}/lights`}>
-                {service.name}
-              </Link>
+              <Link to={`/${service.slug}/lights`}>{service.name}</Link>
             </li>
           ))}
         </ul>
@@ -148,16 +142,12 @@ const lightsPage = () => {
         <ul>
           {allStrapiLightGroup.nodes.map((group: LightGroupTypes) => (
             <li key={group.slug}>
-              <Link to={`/light-group/${group.slug}`}>
-                {group.name}
-              </Link>
+              <Link to={`/light-group/${group.slug}`}>{group.name}</Link>
             </li>
           ))}
         </ul>
 
-        <h3>
-          Search
-        </h3>
+        <h3>Search</h3>
       </main>
       <LightSearch />
 
@@ -166,9 +156,7 @@ const lightsPage = () => {
           <section className="above-deck">
             <hr />
             <h2>
-              <Link to={`/light-group/${group.slug}`}>
-                {group.name}
-              </Link>
+              <Link to={`/light-group/${group.slug}`}>{group.name}</Link>
             </h2>
             {group.excerpt ? <p>{group.excerpt}</p> : null}
           </section>
@@ -176,35 +164,28 @@ const lightsPage = () => {
           {group.lights.length > 0 ? (
             <div className="deck">
               {group.lights.map((light) => (
-                <Card
-                  {...light}
-                  key={light.id}
-                  breadcrumb="light"
-                />
+                <Card {...light} key={light.id} breadcrumb="light" />
               ))}
             </div>
-
           ) : null}
-
         </React.Fragment>
       ))}
 
       <Footer />
-
     </>
-  )
-}
+  );
+};
 
-export default lightsPage
+export default lightsPage;
 
 export const Head = () => {
   return (
     <SEO
-      title='Lights'
+      title="Lights"
       // TODO: where does this come from?
       description="When you're looking for custom, elegant, one of a kind ambiance for you wedding, look no further than Sierra Lighting. Creating beautiful displays is all we do! We also offer landscape lighting services to make your outdoor space shine all summer long with cafe lights, uplighting, and more."
-    // TODO:     
-    // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/lights-og-sierra_lighting.jpg"
+      // TODO:
+      // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/lights-og-sierra_lighting.jpg"
     />
-  )
-}
+  );
+};

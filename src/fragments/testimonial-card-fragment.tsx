@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment testimonialCardFragment on STRAPI_TESTIMONIAL {
@@ -12,4 +12,4 @@ export const query = graphql`
       slug
     }
   }
-`
+`;

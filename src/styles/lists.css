@@ -87,7 +87,7 @@ ol li {
 /* FOOTER */
 /*------------------*/
 
-.footer_list>ul {
+.footer_list > ul {
   display: grid;
   padding-inline-start: 0;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
@@ -96,7 +96,7 @@ ol li {
   align-items: space-between;
 
   /*  theres not 1 number that does this its close but not there */
-  >li {
+  > li {
     flex: 1 1 1 var(--vinson);
 
     @media (min-width: 60rem) {
@@ -143,7 +143,7 @@ ol li {
   }
 }
 
-.footer_list>ul {
+.footer_list > ul {
   .wedding {
     order: 1;
   }
@@ -152,14 +152,12 @@ ol li {
     order: 2;
   }
 
-  >li {
+  > li {
     order: 3;
   }
 }
 
-
 .footer_list .xmas {
-
   .residential,
   .christmas {
     order: 1;
@@ -173,7 +171,7 @@ ol li {
     order: 3;
   }
 
-  >li {
+  > li {
     order: 4;
   }
 }
@@ -199,7 +197,7 @@ ol li {
 .testimonials__page {
   padding-inline-start: 0;
 
-  >li {
+  > li {
     list-style: none;
     background-color: hsl(var(--honey), 12%, 97.5%);
     padding: var(--vinson);
@@ -208,7 +206,7 @@ ol li {
     margin-block-end: var(--vinson);
     box-shadow: var(--mesosphere);
 
-    >ul {
+    > ul {
       /*  stars */
       padding-inline-start: 0;
     }
@@ -242,7 +240,7 @@ ol li {
   flex-flow: row wrap;
   gap: var(--vinson);
 
-  >* {
+  > * {
     flex: 1 1 10rem;
   }
 }
@@ -261,7 +259,7 @@ ol li {
   list-style: none;
   margin-inline: auto;
 
-  >.affiliation {
+  > .affiliation {
     background-color: var(--neutral-100);
     border: 1px solid var(--honey-400);
     padding: var(--kosciuszko);
@@ -308,7 +306,6 @@ ol li {
 /*------------------*/
 
 .link-list {
-
   /*  this should be a variable of h2 named after a mountain */
   ul {
     list-style: none;

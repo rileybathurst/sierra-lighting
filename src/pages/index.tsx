@@ -1,24 +1,29 @@
-import React from 'react';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { SEO } from "../components/seo";
-import Logo from "../images/logo";
-import Footer from "../components/footer";
-import Areas from '../components/areas';
-import Start from "../components/start";
+import React from "react";
 import Markdown from "react-markdown";
+import Areas from "../components/areas";
+import Footer from "../components/footer";
 import Header from "../components/header";
 import Season from "../components/season";
+import { SEO } from "../components/seo";
+import Start from "../components/start";
+import Suite from "../components/suite";
 import BackImage from "../images/BackImage";
 import HeroWeddingBackImage from "../images/HeroWeddingBackImage";
-import Suite from '../components/suite';
-import type TestimonialTypes from '../types/testimonial-types';
+import Logo from "../images/logo";
+import type TestimonialTypes from "../types/testimonial-types";
 
 const IndexPage = ({ location }: { location: Location }) => {
-
   console.log(location);
 
-  const { strapiAbout, allStrapiService, allStrapiTestimonial, allStrapiQuality, strapiHero } = useStaticQuery(graphql`
+  const {
+    strapiAbout,
+    allStrapiService,
+    allStrapiTestimonial,
+    allStrapiQuality,
+    strapiHero,
+  } = useStaticQuery(graphql`
     query IndexQuery {
       strapiAbout {
         description {
@@ -65,7 +70,7 @@ const IndexPage = ({ location }: { location: Location }) => {
 
 
     }
-  `)
+  `);
 
   interface QualityTypes {
     id: React.Key;
@@ -74,8 +79,8 @@ const IndexPage = ({ location }: { location: Location }) => {
     description: {
       data: {
         description: string;
-      }
-    }
+      };
+    };
   }
 
   return (
@@ -100,40 +105,44 @@ const IndexPage = ({ location }: { location: Location }) => {
 
           {/* // TODO: Hero needs renaming now that I'm more happy with it */}
           <div className="images">
-            {Season() === 'wedding' ? <HeroWeddingBackImage /> : <BackImage />}
-            {Season() === 'wedding' ? (
-              <GatsbyImage image={strapiHero.wedding_front.localFile.childImageSharp.gatsbyImageData}
+            {Season() === "wedding" ? <HeroWeddingBackImage /> : <BackImage />}
+            {Season() === "wedding" ? (
+              <GatsbyImage
+                image={
+                  strapiHero.wedding_front.localFile.childImageSharp
+                    .gatsbyImageData
+                }
                 alt={strapiHero.wedding_front.alternativeText || "hero image"}
                 className="front"
                 backgroundColor="transparent"
               />
-            ) :
-              <GatsbyImage image={strapiHero.front.localFile.childImageSharp.gatsbyImageData}
+            ) : (
+              <GatsbyImage
+                image={
+                  strapiHero.front.localFile.childImageSharp.gatsbyImageData
+                }
                 alt={strapiHero.front.alternativeText || "hero image"}
                 className="front"
                 backgroundColor="transparent"
               />
-            }
+            )}
           </div>
 
           <section className="text">
             <div className="background">{/* stay gold */}</div>
-            {strapiAbout ?
-              <Markdown components={{
-                p: ({ node, ...props }) => (
-                  <div className="react-markdown" {...props} />
-                )
-              }}
+            {strapiAbout ? (
+              <Markdown
+                components={{
+                  p: ({ node, ...props }) => (
+                    <div className="react-markdown" {...props} />
+                  ),
+                }}
               >
                 {strapiAbout.description.data.description}
               </Markdown>
-              : null
-            }
-            <Start
-              path="hero"
-            />
-          </section >
-
+            ) : null}
+            <Start path="hero" />
+          </section>
         </div>
 
         {/* // TODO: 2 columns becomes 1 or 3 and this seems like it should be repeated? */}
@@ -141,7 +150,7 @@ const IndexPage = ({ location }: { location: Location }) => {
         <section className="qualities albatross">
           {allStrapiQuality.nodes.map((quality: QualityTypes) => (
             <section key={quality.id}>
-              <h3 className='font-serif'>{quality.name}</h3>
+              <h3 className="font-serif">{quality.name}</h3>
               <p>{quality.description.data.description}</p>
             </section>
           ))}
@@ -156,16 +165,18 @@ const IndexPage = ({ location }: { location: Location }) => {
 
             <ul>
               {/* // TODO: make this a component */}
-              {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
-                const truncationPoint = testimonial.review.indexOf(" ", 160);
-                const review = truncationPoint === -1
-                  ? testimonial.review
-                  : `${testimonial.review.slice(0, truncationPoint)}...`;
+              {allStrapiTestimonial.nodes.map(
+                (testimonial: TestimonialTypes) => {
+                  const truncationPoint = testimonial.review.indexOf(" ", 160);
+                  const review =
+                    truncationPoint === -1
+                      ? testimonial.review
+                      : `${testimonial.review.slice(0, truncationPoint)}...`;
 
-                return (
-                  <li key={testimonial.id} className="slider">
-                    {/* // TODO: once testimonial projects are in place, re-add this */}
-                    {/* {testimonial.project ?
+                  return (
+                    <li key={testimonial.id} className="slider">
+                      {/* // TODO: once testimonial projects are in place, re-add this */}
+                      {/* {testimonial.project ?
                     <h4>
                       <Link to={`/project/${testimonial.project.slug}`}>
                         {testimonial.project.title}
@@ -173,15 +184,16 @@ const IndexPage = ({ location }: { location: Location }) => {
                     </h4>
                     : null} */}
 
-                    <p>{review}</p>
-                    {/* // TODO: className="together" is a bad name */}
-                    <div className="together">
-                      <h4>{testimonial.customer}</h4>
-                      <p>{testimonial.position}</p>
-                    </div>
-                  </li>
-                );
-              })}
+                      <p>{review}</p>
+                      {/* // TODO: className="together" is a bad name */}
+                      <div className="together">
+                        <h4>{testimonial.customer}</h4>
+                        <p>{testimonial.position}</p>
+                      </div>
+                    </li>
+                  );
+                },
+              )}
             </ul>
 
             <div className="testimonial-links">
@@ -193,9 +205,8 @@ const IndexPage = ({ location }: { location: Location }) => {
           </section>
         </div>
 
-
         <Suite services={allStrapiService.nodes} />
-      </main >
+      </main>
 
       <div className="main">
         {/* // TODO: if its just spaces do it in a better way */}
@@ -210,13 +221,11 @@ const IndexPage = ({ location }: { location: Location }) => {
 
       <Footer location={location} />
     </>
-  )
-}
+  );
+};
 
-export default IndexPage
+export default IndexPage;
 
 export const Head = () => {
-  return (
-    <SEO />
-  )
-}
+  return <SEO />;
+};

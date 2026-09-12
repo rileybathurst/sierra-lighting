@@ -1,12 +1,12 @@
 // this is the Name.tsx file
-import React from 'react';
-import { FooterList } from './footer-list';
-import { faker } from '@faker-js/faker';
-import { Logo } from './Logo';
-import { TeamHeads } from './TeamHeads';
+
+import { faker } from "@faker-js/faker";
+import React from "react";
+import { FooterList } from "./footer-list";
+import { Logo } from "./Logo";
+import { TeamHeads } from "./TeamHeads";
 
 export const Footer = () => {
-
   return (
     <footer>
       <hr />
@@ -21,39 +21,49 @@ export const Footer = () => {
         method="POST"
         action="/form-success"
       >
-
         <input type="hidden" name="form-name" value="contact" />
 
-        <input type="hidden" name="subject"
-          value={`Contact Form from sierra.lighting email`} />
+        <input
+          type="hidden"
+          name="subject"
+          value={`Contact Form from sierra.lighting email`}
+        />
 
-        <label>Name
+        <label>
+          Name
           <input type="text" name="name" />
         </label>
-        <label>Email
+        <label>
+          Email
           <input type="email" name="email" />
         </label>
-        <label>Phone
+        <label>
+          Phone
           <input type="tel" name="tel" />
         </label>
-        <div className='address-together'>
-          <label className='address'>Address
+        <div className="address-together">
+          <label className="address">
+            Address
             <input type="text" name="address" />
           </label>
-          <label className='zip'>City or Zip
+          <label className="zip">
+            City or Zip
             <input type="text" name="zip" />
           </label>
         </div>
-        <label>Message
+        <label>
+          Message
           <textarea name="message" />
         </label>
-        <label>How did you hear about us?
+        <label>
+          How did you hear about us?
           <input type="text" name="referral" />
         </label>
 
         {/* // TODO: this might be a query in the future if I keep changing it */}
-        <label className='checkbox'>
-          I understand there is a minimum of $700 for christmas or holiday lights and $1,000 for new wedding or event lighting clients
+        <label className="checkbox">
+          I understand there is a minimum of $700 for christmas or holiday
+          lights and $1,000 for new wedding or event lighting clients
           <input type="checkbox" name="minimum" />
         </label>
         <p className="sr-only">
@@ -66,11 +76,9 @@ export const Footer = () => {
       </form>
 
       {/* // TODO: this is broken here */}
-      <hr className='pelican' />
+      <hr className="pelican" />
       <div className="footer-container">
-
         <section id="contact" className="condor flex">
-
           <h3 className="margin-block-end-vinson">Contact</h3>
 
           <p>
@@ -88,15 +96,16 @@ export const Footer = () => {
 
         <div className="team">
           <h3>
-            <a href="/team"
-              className="link--subtle"
-            >
+            <a href="/team" className="link--subtle">
               Meet Our Team
             </a>
           </h3>
 
-          <h4>or&nbsp;
-            <a href="/work" className="link--subtle">Work with us</a>
+          <h4>
+            or&nbsp;
+            <a href="/work" className="link--subtle">
+              Work with us
+            </a>
           </h4>
 
           <TeamHeads />
@@ -109,32 +118,30 @@ export const Footer = () => {
 
       <hr className="albatross" />
       <ul className="socials">
-        {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(() => (
-          <li key={faker.string.uuid()}>
-            <a
-              href={faker.internet.url()}
-              title={`${faker.company.name()} ${faker.company.name()}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <svg
-                width="100"
-                height="100"
-                viewBox="0 0 100 100"
+        {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(
+          () => (
+            <li key={faker.string.uuid()}>
+              <a
+                href={faker.internet.url()}
+                title={`${faker.company.name()} ${faker.company.name()}`}
+                target="_blank"
+                rel="noreferrer"
               >
-                <title>{`${faker.company.name()} ${faker.company.name()}`}</title>
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="40"
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                />
-              </svg>
-            </a>
-          </li>
-        ))}
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                  <title>{`${faker.company.name()} ${faker.company.name()}`}</title>
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </a>
+            </li>
+          ),
+        )}
       </ul>
 
       <hr className="condor" />

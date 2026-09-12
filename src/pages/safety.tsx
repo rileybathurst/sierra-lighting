@@ -1,13 +1,10 @@
-import * as React from "react"
-import { graphql } from 'gatsby';
-
-import { SEO } from "../components/seo";
-
-import Header from "../components/header";
-import Footer from "../components/footer";
-import Hero from "../components/hero";
-
+import { graphql } from "gatsby";
+import * as React from "react";
 import Markdown from "react-markdown";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import Hero from "../components/hero";
+import { SEO } from "../components/seo";
 import type { ImageWithAspectType } from "../types/image-with-aspect-type";
 
 type SafetyPageTypes = {
@@ -20,9 +17,9 @@ type SafetyPageTypes = {
         };
       };
       image: ImageWithAspectType;
-    }
-  }
-}
+    };
+  };
+};
 
 export const data = graphql`
   query useStrapiSafety {
@@ -54,25 +51,23 @@ const SafetyPage = ({ data }: SafetyPageTypes) => {
 
         {/* // TODO: this has a ul with kinda messy formatting */}
         <div className="react-markdown">
-          <Markdown>
-            {data.strapiSafety.description.data.description}
-          </Markdown>
+          <Markdown>{data.strapiSafety.description.data.description}</Markdown>
         </div>
       </main>
 
       <Footer />
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default SafetyPage
+export default SafetyPage;
 
 export const Head = ({ data }: SafetyPageTypes) => {
   return (
     <SEO
-      title='Safety'
+      title="Safety"
       description={data.strapiSafety.excerpt}
       image={data.strapiSafety.image}
     />
-  )
-}
+  );
+};

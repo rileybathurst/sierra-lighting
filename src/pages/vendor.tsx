@@ -1,15 +1,17 @@
 // TODO: add search to the page
 // TODO: add other vendors service
 
-import * as React from "react"
-import { Link, graphql } from 'gatsby';
-
-import { SEO } from "../components/seo";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import {
+  type BlocksContent,
+  BlocksRenderer,
+} from "@strapi/blocks-react-renderer";
+import { graphql, Link } from "gatsby";
+import type * as React from "react";
 import Card from "../components/card";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import { SEO } from "../components/seo";
 import type { CardType } from "../types/card-type";
-import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
 
 type VendorNode = CardType & {
   collaborator: {
@@ -40,9 +42,8 @@ type vendorsPageTypes = {
       excerpt: string;
     };
   };
-}
+};
 const VendorsPage = ({ data }: vendorsPageTypes) => {
-
   const vendorsByCollaborator: Record<string, VendorNode[]> = {};
 
   data.allStrapiVendor.nodes.forEach((vendor) => {
@@ -52,8 +53,7 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
         vendorsByCollaborator[slug] = [];
       }
       vendorsByCollaborator[slug].push(vendor);
-    }
-    else {
+    } else {
       if (!vendorsByCollaborator.uncategorized) {
         vendorsByCollaborator.uncategorized = [];
       }
@@ -68,12 +68,16 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
       <main>
         <h1>Wedding Vendors</h1>
         <p>{data.strapiVendorDescription.excerpt}</p>
-      </main >
+      </main>
 
       {/* // TODO: something here for the collabs that are currently not filled in such as DJs */}
       {/* // TODO: order these manually as an override to length */}
       {[...data.allStrapiCollaborator.nodes]
-        .sort((a, b) => (vendorsByCollaborator[b.slug]?.length || 0) - (vendorsByCollaborator[a.slug]?.length || 0))
+        .sort(
+          (a, b) =>
+            (vendorsByCollaborator[b.slug]?.length || 0) -
+            (vendorsByCollaborator[a.slug]?.length || 0),
+        )
         .map((collaborator) => (
           <section key={collaborator.id}>
             <div className="above-deck">
@@ -108,23 +112,18 @@ const VendorsPage = ({ data }: vendorsPageTypes) => {
 
           <div className="deck">
             {vendorsByCollaborator.uncategorized.map((vendor) => (
-              <Card
-                key={vendor.id}
-                {...vendor}
-                breadcrumb={"vendor"}
-              />
+              <Card key={vendor.id} {...vendor} breadcrumb={"vendor"} />
             ))}
           </div>
         </section>
       )}
 
       <Footer />
-
     </>
-  )
-}
+  );
+};
 
-export default VendorsPage
+export default VendorsPage;
 
 //  this might have to go to the bottom and not be usestaticquery
 export const query = graphql`
@@ -160,23 +159,23 @@ export const query = graphql`
       excerpt
     }
   }
-`
+`;
 
 type vendorHeadTypes = {
   data: {
     strapiVendorDescription: {
       excerpt: string;
-    }
-  }
-}
+    };
+  };
+};
 export const Head = ({ data }: vendorHeadTypes) => {
   return (
     <SEO
-      title='Vendors'
+      title="Vendors"
       description={data.strapiVendorDescription.excerpt}
       // TODO:
       // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/vendors-og-sierra_lighting.jpg"
       url="vendor"
     />
-  )
-}
+  );
+};

@@ -1,10 +1,10 @@
 // this is the Name.stories.tsx file
-import type { Meta, StoryObj } from '@storybook/react-webpack5';
-import { CatchAll } from './CatchAll';
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import { CatchAll } from "./CatchAll";
 
 const meta = {
   component: CatchAll,
-  title: 'Pages/CatchAll',
+  title: "Pages/CatchAll",
   args: { onClick: () => {} },
 } satisfies Meta<typeof CatchAll>;
 

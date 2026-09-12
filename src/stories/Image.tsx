@@ -1,6 +1,7 @@
 // this is the Name.jsx file
-import React from 'react';
-import PropTypes from 'prop-types';
+
+import PropTypes from "prop-types";
+import React from "react";
 
 // import { ImageFile } from './assets/accessibility.png';
 

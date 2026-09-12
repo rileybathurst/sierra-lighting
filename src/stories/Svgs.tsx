@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
 import { faker } from "@faker-js/faker";
+import PropTypes from "prop-types";
+import React from "react";
 // import { Buffer } from "buffer"; // ? maybe
 
 export const Svgs = () => {

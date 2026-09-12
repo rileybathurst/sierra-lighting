@@ -1,16 +1,16 @@
 // TODO: link names
-import * as React from "react"
-import { Link, graphql, useStaticQuery } from "gatsby"
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import { SEO } from "../../components/seo";
-import type { CatchAllTypes } from "../../types/catch-all-types";
+
+import { graphql, Link, useStaticQuery } from "gatsby";
+import * as React from "react";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import Card from "../../components/card";
-import { CardType } from "../../types/card-type";
+import Footer from "../../components/footer";
+import Header from "../../components/header";
+import { SEO } from "../../components/seo";
+import type { CardType } from "../../types/card-type";
+import type { CatchAllTypes } from "../../types/catch-all-types";
 
 function AreaCatchAll({ params }: CatchAllTypes) {
-
   const { allStrapiArea, strapiError } = useStaticQuery(graphql`
     query AreaCatchAllQuery {
       allStrapiArea(filter: {featured: {eq: true}}) {
@@ -30,36 +30,32 @@ function AreaCatchAll({ params }: CatchAllTypes) {
       <main>
         <h2 className="crest">404 - areas / {params.name}</h2>
         <h1>{strapiError.title}</h1>
-        <p>{strapiError.pun} - <Link to="/">{strapiError.return}</Link></p>
+        <p>
+          {strapiError.pun} - <Link to="/">{strapiError.return}</Link>
+        </p>
       </main>
 
       {allStrapiArea.nodes.map((area: CardType) => (
-        <Card
-          key={area.id}
-          {...area}
-          breadcrumb="areas"
-        />
+        <Card key={area.id} {...area} breadcrumb="areas" />
       ))}
 
       <hr />
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/areas/">Areas</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to="/areas/">Areas</Link>
+        </Breadcrumb>
         {/* ? should this be a different and broken breadcrumb? */}
         <Breadcrumb>{params.name}</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
     </>
-  )
+  );
 }
 
-export default AreaCatchAll
+export default AreaCatchAll;
 
 export const Head = ({ params }: CatchAllTypes) => {
-  return (
-    <SEO
-      title={`404 - area / ${params.name}`}
-    />
-  )
-}
+  return <SEO title={`404 - area / ${params.name}`} />;
+};

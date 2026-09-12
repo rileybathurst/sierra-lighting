@@ -2,6 +2,7 @@
 // TODO: also push the data to a netlify function so I can understand what and where the form has temporal issues without putting it all in the email
 import { Temporal } from "@js-temporal/polyfill";
 import { graphql, useStaticQuery } from "gatsby";
+
 const businessTimeZone = "America/Los_Angeles";
 
 type BusinessHoursInput = {
@@ -29,7 +30,6 @@ const dayKeys: Array<keyof BusinessHoursInput["days"]> = [
 ];
 
 export function useIsWithinBusinessHours() {
-
   const { strapiForm } = useStaticQuery(graphql`
     query BusinessHoursQuery {
       strapiForm {

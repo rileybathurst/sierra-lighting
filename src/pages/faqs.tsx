@@ -1,26 +1,23 @@
-import * as React from "react"
-import { Script } from 'gatsby';
-
-import { SEO } from "../components/seo";
+import { Script } from "gatsby";
+import type * as React from "react";
+import Footer from "../components/footer";
 
 import Header from "../components/header";
-import Footer from "../components/footer";
+import { SEO } from "../components/seo";
 import { useStrapiFaq } from "../hooks/use-strapi-faq";
 
 const FaqsPage = () => {
-
   type faqTypes = {
     id: React.Key;
     question: string;
     answer: string;
-  }
+  };
 
   return (
     <>
       <Header />
 
       <main>
-
         <h1>Frequently Asked Questions</h1>
 
         <ul className="faqs list-style-none">
@@ -29,9 +26,7 @@ const FaqsPage = () => {
               <hr />
               <h2 className="margin-block-end-vinson">{faq.question}</h2>
               <div>
-                <div>
-                  {faq.answer}
-                </div>
+                <div>{faq.answer}</div>
               </div>
             </li>
           ))}
@@ -39,17 +34,16 @@ const FaqsPage = () => {
       </main>
 
       <Footer />
-
     </>
-  )
-}
+  );
+};
 
-export default FaqsPage
+export default FaqsPage;
 
 export const Head = () => {
   return (
     <SEO
-      title='FAQs'
+      title="FAQs"
       url="faqs"
       description="our list of frequently asked questions. Please reach out for more information and estimates."
     >
@@ -59,21 +53,22 @@ export const Head = () => {
             "@context": "https://schema.org",
             "@type": "FAQPage",
             "mainEntity": [
-              ${useStrapiFaq().nodes.map((faq: { question: string; answer: string; }) => (
-          `{
+              ${useStrapiFaq()
+                .nodes.map(
+                  (faq: { question: string; answer: string }) => `{
                   "@type": "Question",
                   "name": "${faq.question}",
                   "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "${faq.answer}"
                   }
-                }`
-        ))
-            .join(',')}
+                }`,
+                )
+                .join(",")}
             ]
           }
         `}
       </Script>
     </SEO>
-  )
-}
+  );
+};

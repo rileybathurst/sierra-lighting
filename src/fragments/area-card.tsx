@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment areaCardFragment on STRAPI_AREA {
@@ -10,4 +10,4 @@ export const query = graphql`
       ...cardImageFragment
     }
   }
-`
+`;

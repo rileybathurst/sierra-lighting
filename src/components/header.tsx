@@ -1,12 +1,11 @@
 // TODO: add the active class styles and fix the menu I think astro has a versiopn thats way better
 
-import * as React from "react"
-import { Link } from "gatsby"
-
+import { Link } from "gatsby";
+import * as React from "react";
+import Season from "../components/season";
 import Logo from "../images/logo";
 import SlideMenu from "./slide-menu";
 import TopBar from "./topbar";
-import Season from "../components/season";
 
 const Header = ({ largeLogo }: { largeLogo?: boolean }) => {
   return (
@@ -21,7 +20,7 @@ const Header = ({ largeLogo }: { largeLogo?: boolean }) => {
         </Link>
         <SlideMenu />
 
-        <div className='bigboy'>
+        <div className="bigboy">
           <ul className={Season()}>
             <li key="logo" className={`logo ${largeLogo}`}>
               <Link to="/" className="header__logo">
@@ -29,13 +28,25 @@ const Header = ({ largeLogo }: { largeLogo?: boolean }) => {
               </Link>
             </li>
             <li key="residential" className="xmas_r">
-              <Link to="/residential">Residential<br />Christmas Lights</Link>
+              <Link to="/residential">
+                Residential
+                <br />
+                Christmas Lights
+              </Link>
             </li>
             <li key="commercial" className="xmas_c">
-              <Link to="/commercial">Commercial<br />Christmas Lights</Link>
+              <Link to="/commercial">
+                Commercial
+                <br />
+                Christmas Lights
+              </Link>
             </li>
             <li key="wedding" className="wedding">
-              <Link to="/wedding">Wedding<br />Lighting</Link>
+              <Link to="/wedding">
+                Wedding
+                <br />
+                Lighting
+              </Link>
             </li>
             <li key="start" className="c">
               <Link to="/contact/?big-menu">
@@ -47,7 +58,7 @@ const Header = ({ largeLogo }: { largeLogo?: boolean }) => {
         </div>
       </header>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

@@ -1,20 +1,17 @@
-import * as React from "react"
-import { useStaticQuery, graphql } from 'gatsby';
-
-import { SEO } from "../components/seo";
-
-import Header from "../components/header";
+import { graphql, useStaticQuery } from "gatsby";
+import * as React from "react";
+import { useIsWithinBusinessHours } from "../components/business-hours";
 import Footer from "../components/footer";
-
+import Header from "../components/header";
+import { SEO } from "../components/seo";
 import Testimonial from "../components/testimonial";
 import type TestimonialTypes from "../types/testimonial-types";
-
-import { useIsWithinBusinessHours } from '../components/business-hours';
 
 const TestimonialsPage = () => {
   const isWithinBusinessHours = useIsWithinBusinessHours();
 
-  const { allStrapiTestimonial, strapiAbout, strapiFeedback, strapiForm } = useStaticQuery(graphql`
+  const { allStrapiTestimonial, strapiAbout, strapiFeedback, strapiForm } =
+    useStaticQuery(graphql`
     query TestimonialsQuery {
       allStrapiTestimonial(
         sort: {order: ASC}
@@ -66,26 +63,18 @@ const TestimonialsPage = () => {
       <Header />
 
       <main>
-
         <h1>Testimonials</h1>
 
         <p>{strapiFeedback.about}</p>
 
         <ul className="testimonials">
           {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
-            return (
-              <Testimonial
-                key={testimonial.id}
-                {...testimonial}
-              />
-            );
+            return <Testimonial key={testimonial.id} {...testimonial} />;
           })}
         </ul>
 
         <hr />
-        <h3>
-          Help us by submitting your own review
-        </h3>
+        <h3>Help us by submitting your own review</h3>
 
         <p>
           <a
@@ -109,12 +98,19 @@ const TestimonialsPage = () => {
         >
           <input type="hidden" name="form-name" value="testimonial" />
 
-          <input type="hidden" name="subject"
+          <input
+            type="hidden"
+            name="subject"
             value={`${!isWithinBusinessHours && "Outside Business Hours: "} Testimonial Form from sierra.lighting`}
           />
 
           {!isWithinBusinessHours && (
-            <input className="sr-only" type="hidden" name="hours" value={`${strapiForm.outsideHours}`} />
+            <input
+              className="sr-only"
+              type="hidden"
+              name="hours"
+              value={`${strapiForm.outsideHours}`}
+            />
           )}
 
           <p className="sr-only">
@@ -124,43 +120,46 @@ const TestimonialsPage = () => {
             </label>
           </p>
 
-          <label>Name
+          <label>
+            Name
             <input type="text" name="name" />
           </label>
-          <label>Stars (out of five)
+          <label>
+            Stars (out of five)
             <input type="number" min="0" max="5" name="stars" />
           </label>
-          <label>Title
+          <label>
+            Title
             <input type="text" name="title" />
           </label>
-          <label>Review
+          <label>
+            Review
             <textarea name="review" />
           </label>
-          <label>Email
+          <label>
+            Email
             <input type="email" name="email" />
           </label>
           <button type="submit">Send</button>
         </form>
-
-      </main >
+      </main>
 
       <Footer />
-
     </>
-  )
-}
+  );
+};
 
-export default TestimonialsPage
+export default TestimonialsPage;
 
 export const Head = () => {
   return (
     <SEO
-      title='Testimonials'
+      title="Testimonials"
       description="Thanks From Our Customers"
       // ? is there a reason for this specific image?
       // TODO:
       // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/testimonials-og-sierra_lighting.jpg"
       url="testimonials"
     />
-  )
-}
+  );
+};

@@ -61,10 +61,7 @@ function configureCookieConsent() {
       },
       analytics: {
         autoClear: {
-          cookies: [
-            { name: /^_ga/ },
-            { name: /^_gid/ },
-          ],
+          cookies: [{ name: /^_ga/ }, { name: /^_gid/ }],
         },
         services: {
           googleAnalytics: {
@@ -80,7 +77,8 @@ function configureCookieConsent() {
         en: {
           consentModal: {
             title: "Cookie preferences",
-            description: "We use essential services to make this site work and optional analytics services to understand how it is used.",
+            description:
+              "We use essential services to make this site work and optional analytics services to understand how it is used.",
             acceptAllBtn: "Accept all",
             acceptNecessaryBtn: "Reject optional",
             showPreferencesBtn: "Manage preferences",
@@ -93,16 +91,19 @@ function configureCookieConsent() {
             sections: [
               {
                 title: "Cookie usage",
-                description: "You can choose which optional services Sierra Lighting may use. You can change your choice at any time.",
+                description:
+                  "You can choose which optional services Sierra Lighting may use. You can change your choice at any time.",
               },
               {
                 title: "Essential services",
-                description: "These services are required for the site to function and cannot be disabled. Netlify hosts this site and processes contact and enquiry forms. Sentry helps us detect and fix technical errors. Mux delivers project videos and processes playback, browser, device, and network information required to provide video.",
+                description:
+                  "These services are required for the site to function and cannot be disabled. Netlify hosts this site and processes contact and enquiry forms. Sentry helps us detect and fix technical errors. Mux delivers project videos and processes playback, browser, device, and network information required to provide video.",
                 linkedCategory: "necessary",
               },
               {
                 title: "Analytics services",
-                description: "Google Analytics measures visits and interactions.",
+                description:
+                  "Google Analytics measures visits and interactions.",
                 linkedCategory: "analytics",
               },
             ],
@@ -120,9 +121,17 @@ function configureCookieConsent() {
 function syncDocumentTitleFromHead() {
   // Gatsby can leave document.title stale if multiple head title nodes exist.
   const titles = Array.from(document.head.querySelectorAll("title"));
-  const preferred = titles.find((title) => title.getAttribute("data-gatsby-head") === "true");
-  const fallback = titles.find((title) => (title.textContent ?? "").trim().length > 0);
-  const nextTitle = (preferred?.textContent ?? fallback?.textContent ?? "").trim();
+  const preferred = titles.find(
+    (title) => title.getAttribute("data-gatsby-head") === "true",
+  );
+  const fallback = titles.find(
+    (title) => (title.textContent ?? "").trim().length > 0,
+  );
+  const nextTitle = (
+    preferred?.textContent ??
+    fallback?.textContent ??
+    ""
+  ).trim();
 
   if (nextTitle && document.title !== nextTitle) {
     document.title = nextTitle;

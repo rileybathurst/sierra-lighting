@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment lightGroup on STRAPI_LIGHT_GROUP {
@@ -14,4 +14,4 @@ export const query = graphql`
     weddingOrder
     xmasOrder
   }
-`
+`;

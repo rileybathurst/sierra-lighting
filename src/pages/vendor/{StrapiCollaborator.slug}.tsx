@@ -1,16 +1,18 @@
-
+import {
+  type BlocksContent,
+  BlocksRenderer,
+} from "@strapi/blocks-react-renderer";
+import { graphql, Link } from "gatsby";
 // /vendor/planners/ etc
-import * as React from "react"
-import { graphql, Link } from "gatsby"
-import SEO from "../../components/seo"
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import Start from "../../components/start";
+import * as React from "react";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import Card from "../../components/card";
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
-import type { CardType } from "../../types/card-type";
-import { BlocksRenderer, type BlocksContent } from '@strapi/blocks-react-renderer';
+import Footer from "../../components/footer";
+import Header from "../../components/header";
 import Hero from "../../components/hero";
+import SEO from "../../components/seo";
+import Start from "../../components/start";
+import type { CardType } from "../../types/card-type";
 import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
 
 export const query = graphql`
@@ -37,7 +39,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 type CollaboratorPageTypes = {
   data: {
@@ -57,10 +59,9 @@ const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
     <>
       <Header />
 
-      {data.strapiCollaborator?.hero ?
+      {data.strapiCollaborator?.hero ? (
         <Hero image={data.strapiCollaborator.hero} />
-        : null
-      }
+      ) : null}
       <main>
         <h1>{data.strapiCollaborator.industry}</h1>
         <BlocksRenderer content={data.strapiCollaborator.description} />
@@ -69,7 +70,7 @@ const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
         <Start path={`vendor/${data.strapiCollaborator.industry}`} />
       </main>
 
-      {(data.strapiCollaborator?.vendors?.length ?? 0) > 0 ?
+      {(data.strapiCollaborator?.vendors?.length ?? 0) > 0 ? (
         <>
           <hr className="above-deck" />
           <div className="deck">
@@ -83,12 +84,14 @@ const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
             ))}
           </div>
         </>
-        : null}
+      ) : null}
 
       <hr />
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/vendor/">Vendor</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to="/vendor/">Vendor</Link>
+        </Breadcrumb>
         <Breadcrumb>{data.strapiCollaborator.industry}</Breadcrumb>
       </Breadcrumbs>
 
@@ -117,7 +120,6 @@ export const Head = ({ data }: CollaboratorPageTypes) => {
           item: `vendor/${data.strapiCollaborator.slug}`,
         },
       ]}
-    >
-    </SEO>
-  )
-}
+    ></SEO>
+  );
+};

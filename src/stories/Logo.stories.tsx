@@ -10,4 +10,3 @@ export default {
 const Template = () => <Logo />;
 
 export const Primary = Template.bind({});
-

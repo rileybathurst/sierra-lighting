@@ -1,8 +1,8 @@
 import type { StorybookConfig } from "@storybook/react-webpack5";
 
 import path from "path";
-import { fileURLToPath } from "url";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
+import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -21,7 +21,7 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-webpack5-compiler-swc",
     "@chromatic-com/storybook",
-    "@storybook/addon-docs"
+    "@storybook/addon-docs",
   ],
 
   docs: {},

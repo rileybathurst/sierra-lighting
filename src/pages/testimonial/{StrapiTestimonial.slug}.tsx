@@ -1,11 +1,10 @@
-import * as React from "react"
-import { graphql, Link } from "gatsby"
-import SEO from "../../components/seo"
-
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
+import { graphql, Link } from "gatsby";
+import type * as React from "react";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
+import Footer from "../../components/footer";
 
 import Header from "../../components/header";
-import Footer from "../../components/footer"
+import SEO from "../../components/seo";
 
 import Testimonial from "../../components/testimonial";
 
@@ -21,7 +20,7 @@ export const data = graphql`
       createdAt
     }
   }
-`
+`;
 
 type TestimonialPageTypes = {
   data: {
@@ -34,21 +33,21 @@ type TestimonialPageTypes = {
       title: string;
       createdAt: string;
       excerpt: string;
-    }
-  }
-}
+    };
+  };
+};
 const TestimonialPage = ({ data }: TestimonialPageTypes) => {
-
   return (
     <>
       <Header />
       <main>
         <Testimonial {...data.strapiTestimonial} />
         {/* // TODO: relations */}
-
       </main>
       <Breadcrumbs>
-        <Breadcrumb><Link to="/testimonials/">Testimonials</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to="/testimonials/">Testimonials</Link>
+        </Breadcrumb>
         <Breadcrumb>{data.strapiTestimonial.slug}</Breadcrumb>
       </Breadcrumbs>
 
@@ -66,5 +65,5 @@ export const Head = ({ data }: TestimonialPageTypes) => {
       description={data.strapiTestimonial?.excerpt}
       url={`/testimonials/${data.strapiTestimonial.slug}`}
     />
-  )
-}
+  );
+};

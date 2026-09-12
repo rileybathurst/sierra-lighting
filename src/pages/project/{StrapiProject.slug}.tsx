@@ -3,25 +3,24 @@
 
 // TODO: remove bistro projects as they dont live anywhere so they cant be live
 
+import MuxPlayer from "@mux/mux-player-react";
+import { graphql, Link } from "gatsby";
 import * as React from "react";
-import { graphql } from "gatsby";
-import SEO from "../../components/seo";
-import type { CardType } from "../../types/card-type";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import StateAbbreviation from "../../components/state-abbreviation";
-import Card from "../../components/card";
-import Start from "../../components/start";
-import Hero from "../../components/hero";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import ReactMarkdown from "react-markdown";
-import { Link } from "gatsby";
-import { Breadcrumbs, Breadcrumb } from "react-aria-components";
+import Attribute from "../../components/attribute";
+import Card from "../../components/card";
+import Footer from "../../components/footer";
+import Header from "../../components/header";
+import Hero from "../../components/hero";
+import SEO from "../../components/seo";
+import Start from "../../components/start";
+import StateAbbreviation from "../../components/state-abbreviation";
 import Testimonial from "../../components/testimonial";
+import type { CardType } from "../../types/card-type";
+import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
 import type TestimonialTypes from "../../types/testimonial-types";
 import type VideoTypes from "../../types/video-types";
-import MuxPlayer from "@mux/mux-player-react";
-import Attribute from "../../components/attribute";
-import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
 
 /* // TODO I can repeat this in a better way
 id: React.Key;
@@ -264,7 +263,6 @@ export const query = graphql`
 `;
 
 const ProjectPage = ({ data }: ProjectPageTypes) => {
-
   console.log(data.strapiProject.themes);
 
   return (
@@ -273,20 +271,20 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 
       {/* // TODO: the hero gallery need specific lights like the lookbook */}
       {/* // TODO: This needs to be both. and I need to deal with the difference in heights in video and just in photo */}
-      {data.strapiProject.video ?
+      {data.strapiProject.video ? (
         <MuxPlayer
           streamType="on-demand"
           playbackId={data.strapiProject.video.mux}
-          className='hero-video'
+          className="hero-video"
         />
-        :
+      ) : (
         <Hero
           image={data.strapiProject.image}
           gallery={data.strapiProject.gallery}
           badge={false}
           pinterest
         />
-      }
+      )}
 
       <main>
         <article>
@@ -308,22 +306,25 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 
         <hr />
 
-        <h3>Interested in a {data.strapiProject.themes?.map(theme => theme.title).join(', ')} project like this</h3>
+        <h3>
+          Interested in a{" "}
+          {data.strapiProject.themes?.map((theme) => theme.title).join(", ")}{" "}
+          project like this
+        </h3>
         <Start path={`project ${data.strapiProject.slug}`} />
       </main>
 
-
-      {data.strapiProject.testimonial &&
+      {data.strapiProject.testimonial && (
         <div className="main">
           <hr />
           <Testimonial {...data.strapiProject.testimonial} />
         </div>
-      }
+      )}
 
       {data.strapiProject.venue ||
-        data.strapiProject.area ||
-        data.strapiProject.vendors.length > 0 ||
-        data.strapiProject.project_single_use_links ? (
+      data.strapiProject.area ||
+      data.strapiProject.vendors.length > 0 ||
+      data.strapiProject.project_single_use_links ? (
         <React.Fragment>
           <hr className="pelican" />
           <div className="attributes">
@@ -331,76 +332,70 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
               <Attribute
                 venue={{
                   name: data.strapiProject.venue.name,
-                  link: `/venue/${data.strapiProject.venue.slug}`
+                  link: `/venue/${data.strapiProject.venue.slug}`,
                 }}
               />
             )}
 
             {/* // TODO: this one is a little more complex with the slug not always being direct */}
-            {data.strapiProject.area &&
+            {data.strapiProject.area && (
               <Attribute
                 area={{
                   name: `${data.strapiProject.area.name}, ${StateAbbreviation({ state: data.strapiProject.area.state })}`,
-                  link: data.strapiProject.area.region ?
-                    `/areas/${data.strapiProject.area.region.slug}`
-                    :
-                    `/areas/${data.strapiProject.area.slug}`
+                  link: data.strapiProject.area.region
+                    ? `/areas/${data.strapiProject.area.region.slug}`
+                    : `/areas/${data.strapiProject.area.slug}`,
                 }}
               />
-            }
+            )}
 
             {/* // TODO: project/waterside-wedding/?= having multiple needs a better way of holding the service to the name and more space from the other  */}
             {/* // TODO: sometimes vendors have a different role project/waterside-wedding/?= louise and third did the planning not the floral this is a big deal to them */}
             {/* // TODO: florists shouldnt be plural im not sure which others are like this */}
-            {data.strapiProject.vendors.length > 0 ? (
-              data.strapiProject.vendors.map((vendor) => (
-                vendor.collaborator?.industry ? (
-                  <Attribute
-                    key={String(vendor.id)}
-                    {...{
-                      [vendor.collaborator.industry]: {
-                        name: vendor.name,
-                        link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`
-                      }
-                    }}
-                  />
-                ) : vendor.collaboratorAncillary ? (
-                  <Attribute
-                    key={String(vendor.id)}
-                    {...{
-                      [vendor.collaboratorAncillary]: {
-                        name: vendor.name,
-                        link: `/vendor/${vendor.slug}`
-                      }
-                    }}
-                  />
-                ) : null
-              ))
-            ) : null}
+            {data.strapiProject.vendors.length > 0
+              ? data.strapiProject.vendors.map((vendor) =>
+                  vendor.collaborator?.industry ? (
+                    <Attribute
+                      key={String(vendor.id)}
+                      {...{
+                        [vendor.collaborator.industry]: {
+                          name: vendor.name,
+                          link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`,
+                        },
+                      }}
+                    />
+                  ) : vendor.collaboratorAncillary ? (
+                    <Attribute
+                      key={String(vendor.id)}
+                      {...{
+                        [vendor.collaboratorAncillary]: {
+                          name: vendor.name,
+                          link: `/vendor/${vendor.slug}`,
+                        },
+                      }}
+                    />
+                  ) : null,
+                )
+              : null}
 
-            {data.strapiProject.project_single_use_links && (
+            {data.strapiProject.project_single_use_links &&
               data.strapiProject.project_single_use_links.map((singleLink) => (
                 <Attribute
                   key={String(singleLink.id)}
                   {...{
                     [singleLink.service]: {
                       name: singleLink.name,
-                      link: singleLink.link
-                    }
+                      link: singleLink.link,
+                    },
                   }}
                 />
-              ))
-            )}
-
-
+              ))}
           </div>
-        </React.Fragment >
-      ) : null
-      }
+        </React.Fragment>
+      ) : null}
 
       {/* // * this is looking for video to not show it its a negative check */}
-      {
-        data.strapiProject.video &&
+      {data.strapiProject.video && (
         <React.Fragment>
           <hr className="pelican" />
           <Hero
@@ -409,57 +404,53 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
             badge={false}
           />
         </React.Fragment>
-      }
+      )}
 
       {/* // TODO: when more than 3 this can get messy */}
       {/* // TODO: this is too low with lots of vendors move it up */}
-      {
-        data.strapiProject.lights ? (
-          <>
-            <div className="above-deck">
-              <hr />
-              <h3>{data.strapiProject.title} uses these lights</h3>
-            </div>
-            <section className="deck">
-              {data.strapiProject.lights.map((light) => (
-                <Card key={light.id} {...light} breadcrumb="light" />
-              ))}
-            </section>
-          </>
-        ) : (
-          <React.Fragment>
-            {/* // TODO: there essentially cant be no lights we would just  */}
-            <div className="main">
-              <hr />
-              <h4>Other Projects</h4>
-            </div>
+      {data.strapiProject.lights ? (
+        <>
+          <div className="above-deck">
+            <hr />
+            <h3>{data.strapiProject.title} uses these lights</h3>
+          </div>
+          <section className="deck">
+            {data.strapiProject.lights.map((light) => (
+              <Card key={light.id} {...light} breadcrumb="light" />
+            ))}
+          </section>
+        </>
+      ) : (
+        <React.Fragment>
+          {/* // TODO: there essentially cant be no lights we would just  */}
+          <div className="main">
+            <hr />
+            <h4>Other Projects</h4>
+          </div>
 
-            <div className="deck">
-              {data.allStrapiProject.nodes.map((project) => (
-                <Card key={project.id} {...project} breadcrumb="project" />
-              ))}
-            </div>
-          </React.Fragment>
-        )
-      }
+          <div className="deck">
+            {data.allStrapiProject.nodes.map((project) => (
+              <Card key={project.id} {...project} breadcrumb="project" />
+            ))}
+          </div>
+        </React.Fragment>
+      )}
 
       {/* // TODO: this design need love // ? why attributes */}
       {/* // TODO: attribute widths */}
-      {
-        data.additional.nodes ? (
-          <div className="main">
-            <section className="attribute">
-              <ul>
-                {data.additional.nodes.map((light) => (
-                  <li key={light.id} className="range denali">
-                    <Link to={`/light/${light.slug}`}>{light.name}</Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          </div>
-        ) : null
-      }
+      {data.additional.nodes ? (
+        <div className="main">
+          <section className="attribute">
+            <ul>
+              {data.additional.nodes.map((light) => (
+                <li key={light.id} className="range denali">
+                  <Link to={`/light/${light.slug}`}>{light.name}</Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      ) : null}
 
       <hr />
 
@@ -486,7 +477,6 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
 export default ProjectPage;
 
 export const Head = ({ data }: ProjectPageTypes) => {
-
   return (
     <SEO
       title={`${data.strapiProject.title}`}

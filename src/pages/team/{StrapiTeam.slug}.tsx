@@ -1,21 +1,16 @@
-import * as React from "react"
-import { graphql, Script } from "gatsby"
-import SEO from "../../components/seo"
-
-import { Link } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image"
-import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
-
+import { graphql, Link, Script } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import type * as React from "react";
+import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import Markdown from "react-markdown";
-import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
-
+import Card from "../../components/card";
+import Footer from "../../components/footer";
 
 import Header from "../../components/header";
-import Footer from "../../components/footer";
-import Card from "../../components/card";
+import SEO from "../../components/seo";
 import Start from "../../components/start";
-
 import type { CardType } from "../../types/card-type";
+import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
 
 export const query = graphql`
   query TeamQuery($slug: String!) {
@@ -32,7 +27,7 @@ export const query = graphql`
       businessName
     }
   }
-`
+`;
 
 type TeamTypes = {
   data: {
@@ -64,31 +59,31 @@ const TeamPage = ({ data }: TeamTypes) => {
       <main className="team-page">
         <div className="avatar-wrapper">
           <GatsbyImage
-            image={data.strapiTeam?.avatar?.localFile?.childImageSharp?.gatsbyImageData}
-            alt={data.strapiTeam?.avatar?.alternativeText || data.strapiTeam.name}
-            className='avatar'
+            image={
+              data.strapiTeam?.avatar?.localFile?.childImageSharp
+                ?.gatsbyImageData
+            }
+            alt={
+              data.strapiTeam?.avatar?.alternativeText || data.strapiTeam.name
+            }
+            className="avatar"
           />
         </div>
         <h1>{data.strapiTeam.name}</h1>
 
-        {data.strapiTeam.bio ?
+        {data.strapiTeam.bio ? (
           <div className="react-markdown">
-            <Markdown>
-              {data.strapiTeam.bio.data.bio}
-            </Markdown>
+            <Markdown>{data.strapiTeam.bio.data.bio}</Markdown>
           </div>
-          : null
-        }
+        ) : null}
 
         <hr />
 
         <h3>Would you like to work with {data.strapiTeam.name}</h3>
-        <Start
-          path={data.strapiTeam.slug}
-        />
+        <Start path={data.strapiTeam.slug} />
       </main>
 
-      {data.strapiTeam.projects ?
+      {data.strapiTeam.projects ? (
         <>
           <div className="above-deck">
             <hr />
@@ -96,21 +91,18 @@ const TeamPage = ({ data }: TeamTypes) => {
           </div>
           <div className="deck">
             {data.strapiTeam.projects.map((project: CardType) => (
-              <Card
-                key={project.id}
-                {...project}
-                breadcrumb="project"
-              />
+              <Card key={project.id} {...project} breadcrumb="project" />
             ))}
           </div>
         </>
-        : null
-      }
+      ) : null}
 
       <hr />
 
       <Breadcrumbs>
-        <Breadcrumb><Link to="/team">Team</Link></Breadcrumb>
+        <Breadcrumb>
+          <Link to="/team">Team</Link>
+        </Breadcrumb>
         <Breadcrumb>{data.strapiTeam.name}</Breadcrumb>
       </Breadcrumbs>
 
@@ -120,7 +112,6 @@ const TeamPage = ({ data }: TeamTypes) => {
 };
 
 export default TeamPage;
-
 
 export const Head = ({ data }: TeamTypes) => {
   return (
@@ -141,7 +132,6 @@ export const Head = ({ data }: TeamTypes) => {
         },
       ]}
     >
-
       {/* // TODO: jobTitle */}
       {/* // TODO: move the organization to seo file */}
       {/* // TODO: locality is there */}
@@ -171,5 +161,5 @@ export const Head = ({ data }: TeamTypes) => {
         `}
       </Script>
     </SEO>
-  )
-}
+  );
+};

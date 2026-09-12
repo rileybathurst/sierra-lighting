@@ -1,18 +1,15 @@
 // this is the Name.tsx file
-import React from 'react';
-import { faker } from '@faker-js/faker';
-import { Start } from './start';
+
+import { faker } from "@faker-js/faker";
+import React from "react";
+import { Start } from "./start";
 
 interface ShowProps {
   primary?: boolean;
   onClick?: () => void;
 }
 
-export const Show = ({
-  primary = false,
-  ...props
-}: ShowProps) => {
-
+export const Show = ({ primary = false, ...props }: ShowProps) => {
   return (
     <div className="pelican">
       <a href={faker.location.city()}>
@@ -24,10 +21,10 @@ export const Show = ({
       </a>
 
       <div className="stork">
-        <h3 className="capitalize">{faker.helpers.arrayElement(['gold', 'silver', 'bronze'])} Showcase</h3>
-        <p>
-          {faker.lorem.sentences(2)}
-        </p>
+        <h3 className="capitalize">
+          {faker.helpers.arrayElement(["gold", "silver", "bronze"])} Showcase
+        </h3>
+        <p>{faker.lorem.sentences(2)}</p>
       </div>
 
       {/* // TODO: make the things */}

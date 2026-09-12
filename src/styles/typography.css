@@ -219,9 +219,7 @@ hgroup {
 
 /* TODO: im going to need a lot more of these */
 ::selection {
-  background-color: hsl(var(--honey),
-      100%,
-      50%);
+  background-color: hsl(var(--honey), 100%, 50%);
   /*  contrast to background : */
 
   @media (prefers-color-scheme: dark) {

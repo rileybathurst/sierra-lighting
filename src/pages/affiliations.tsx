@@ -1,15 +1,12 @@
-import * as React from "react"
-import { useStaticQuery, graphql } from 'gatsby';
-
-import { SEO } from "../components/seo";
-
-import Header from "../components/header";
-import Footer from "../components/footer";
+import { graphql, useStaticQuery } from "gatsby";
+import * as React from "react";
 import Card from "../components/card";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import { SEO } from "../components/seo";
 import type { CardHrefType } from "../types/card-type";
 
 const AffiliationsPage = () => {
-
   // TODO: document why I need the ne null
   const { allStrapiAffiliation } = useStaticQuery(graphql`
     query AffiliationsQuery {
@@ -26,7 +23,7 @@ const AffiliationsPage = () => {
         }
       }
     }
-  `)
+  `);
 
   return (
     <>
@@ -38,25 +35,17 @@ const AffiliationsPage = () => {
 
       <section className="deck">
         {allStrapiAffiliation.nodes.map((affiliation: CardHrefType) => (
-          <Card
-            key={affiliation.id}
-            {...affiliation}
-          />
+          <Card key={affiliation.id} {...affiliation} />
         ))}
       </section>
 
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default AffiliationsPage
+export default AffiliationsPage;
 
 export const Head = () => {
-  return (
-    <SEO
-      title="Affiliations"
-      url="affiliations"
-    />
-  )
-}
+  return <SEO title="Affiliations" url="affiliations" />;
+};

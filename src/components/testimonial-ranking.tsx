@@ -1,12 +1,13 @@
-
-import React from 'react';
+import React from "react";
 import Star from "../images/star";
 
 type TestimonialRankingTypes = {
   stars: number;
 };
 
-const TestimonialRanking = ({ stars }: TestimonialRankingTypes): JSX.Element | null => {
+const TestimonialRanking = ({
+  stars,
+}: TestimonialRankingTypes): JSX.Element | null => {
   const count: number[] = [];
 
   if (stars > 1) {
@@ -18,15 +19,16 @@ const TestimonialRanking = ({ stars }: TestimonialRankingTypes): JSX.Element | n
 
     return (
       <ul className="testimonial--stars">
-        {count.map(x =>
+        {count.map((x) => (
           <li key={x}>
             {/* // TODO: move sr-only a11y work here */}
             <Star />
-          </li>)}
+          </li>
+        ))}
       </ul>
     );
   }
   return null;
-}
+};
 
-export default TestimonialRanking
+export default TestimonialRanking;

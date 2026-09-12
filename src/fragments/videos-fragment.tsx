@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from "gatsby";
 
 export const query = graphql`
   fragment videoFragment on STRAPI_VIDEO {
@@ -8,4 +8,4 @@ export const query = graphql`
     publishedAt
     thumbnailTime
   }
-`
+`;

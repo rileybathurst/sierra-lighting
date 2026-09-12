@@ -1,11 +1,11 @@
 // this is the Name.tsx file
-import React from 'react';
-import PropTypes from 'prop-types';
-import { faker } from '@faker-js/faker';
+
+import { faker } from "@faker-js/faker";
+import PropTypes from "prop-types";
+import React from "react";
 
 // I think this is the old deal and theres a way quicker way to do this with map
 function Deal() {
-
   const hand = faker.number.int(10);
   // console.log(hand);
 
@@ -19,9 +19,7 @@ function Deal() {
   }).join(" ");
 
   if (hand < 1) {
-    return (
-      <h1>There are no cards available</h1>
-    );
+    return <h1>There are no cards available</h1>;
   }
 
   const content = [];
@@ -35,21 +33,17 @@ function Deal() {
             <title>{birdName}</title>
             <polygon points={points} />
           </svg>
-
         </a>
-      </li>
+      </li>,
     );
   }
 
-  return (<>{content}</>);
+  return <>{content}</>;
 }
 
 export const SocialIcons = () => {
   return (
-    <ul
-      id="socials"
-      className="stork socials"
-    >
+    <ul id="socials" className="stork socials">
       <Deal />
     </ul>
   );
