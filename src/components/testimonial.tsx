@@ -7,14 +7,9 @@ import type TestimonialTypes from "../types/testimonial-types";
 function Testimonial({ customer, position, review, vendor, stars, project }: TestimonialTypes) {
 
   return (
-    <li
-      // use key not ID https://gist.github.com/rileybathurst/7b853da163a9b8a7724262bbd583f510
-      // key={key}
-      className='testimonial'
-    >
+    <li className='testimonial'>
       <figure>
         <blockquote>
-          {/* // ? would this be interesting with an image */}
 
           {stars &&
             <div className='testimonial--stars'>

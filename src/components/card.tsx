@@ -1,24 +1,27 @@
 import * as React from 'react';
-import { Link } from "gatsby"
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image"
+import { Link, useStaticQuery, graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
 import type { CardProps } from "../types/card-type";
 
 const Card = ({ image, title, slug, excerpt, areas, breadcrumb, query, href }: CardProps) => {
 
-  if (process.env.NODE_ENV === "development" && !areas && !excerpt) {
+  if (process.env.NODE_ENV === "development" && (!areas || areas?.length === 0) && !excerpt) {
     console.warn(`${title} card has no content`)
   }
-
-  if (process.env.NODE_ENV === "development" && areas?.length === 0 && !excerpt) {
-    console.warn(`${title} card has no content`)
-  }
-
-  const CardImage = image?.localFile?.childImageSharp?.gatsbyImageData;
-  const CardAlt = image?.alternativeText ?? title;
 
   if (!image?.alternativeText) {
     console.warn(`${title} image has no alt`)
   }
+
+  const { strapiError } = useStaticQuery(graphql`
+      query cardQuery {
+        strapiError {
+          missingCard {
+            ...cardImageFragment
+          }
+        }
+      }
+    `);
 
   return (
     <section
@@ -26,36 +29,20 @@ const Card = ({ image, title, slug, excerpt, areas, breadcrumb, query, href }: C
     >
       {href ? (
         <a href={href} target="_blank" rel="noopener noreferrer" className="image">
-          {CardImage ?
-            <GatsbyImage
-              image={CardImage}
-              alt={CardAlt}
-            />
-            :
-            <StaticImage
-              // TODO: I can probably do something interesting with an svg
-              src="https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg"
-              alt={title}
-            />
-          }
+          <GatsbyImage
+            image={image ? image?.localFile?.childImageSharp?.gatsbyImageData : strapiError.missingCard.localFile.childImageSharp.gatsbyImageData}
+            alt={image?.alternativeText ?? title}
+          />
         </a>
       ) : (
         <Link
           to={`/${breadcrumb}/${slug}?=${query ?? ''}`}
           className="image"
         >
-          {CardImage ?
-            <GatsbyImage
-              image={CardImage}
-              alt={CardAlt}
-            />
-            :
-            <StaticImage
-              // TODO: I can probably do something interesting with an svg
-              src="https://sierralighting.s3.us-west-1.amazonaws.com/missing-card-image.jpg"
-              alt={title}
-            />
-          }
+          <GatsbyImage
+            image={image ? image?.localFile?.childImageSharp?.gatsbyImageData : strapiError.missingCard.localFile.childImageSharp.gatsbyImageData}
+            alt={image?.alternativeText ?? title}
+          />
         </Link>
       )}
       <div className="paper">{/* stay gold */}</div>

@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { Link, useStaticQuery, graphql } from "gatsby";
+import { Link, useStaticQuery, graphql, withPrefix } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image"
 import type { IGatsbyImageData } from "gatsby-plugin-image";
 
 import { profanity } from '@2toad/profanity';
 
-// import SVG from 'react-inlinesvg';
 import Logo from "../images/logo";
 import { useIsWithinBusinessHours } from './business-hours';
 import Season from './season';
@@ -13,7 +12,10 @@ import { Phone } from './phone';
 import Socials from './socials';
 import { days } from './days';
 
-const Footer = ({ quote }: { quote?: boolean }) => {
+const Footer = ({ quote, location }: { quote?: boolean; location?: Location }) => {
+
+  console.log(location);
+
   // const isWithinBusinessHours = useIsWithinBusinessHours();
 
   const [reviewCount, setReviewCount] = React.useState<number | null>(null);
@@ -147,6 +149,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     
       strapiAbout {
         businessName
+        alternateName
         email
         telephone
 
@@ -202,7 +205,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
   /*------------------------------------*/
 
-  interface TeamType {
+  type TeamType = {
     id: React.Key;
     name: string;
     slug: string;
@@ -214,7 +217,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
       };
       alternativeText: string;
     };
-  }
+  };
 
   /*------------------------------------*/
 
@@ -222,9 +225,120 @@ const Footer = ({ quote }: { quote?: boolean }) => {
     .filter((social: { featured?: boolean }) => social.featured)
     .sort((a: { order?: number }, b: { order?: number }) => (a.order ?? 0) - (b.order ?? 0));
 
-  // const google = featuredSocials.find((social: { site: { service: string } }) => social.site.service === "google");
+  const google = featuredSocials.find(
+    (social: { site?: { service?: string } }) => social.site?.service === "google",
+  );
 
   /*------------------------------------*/
+
+  const footerLists = [
+    {
+      title: "christmas",
+      body: [
+        {
+          text: "Christmas Light Installation",
+          link: false,
+        },
+        {
+          text: "Residential",
+          link: "/residential",
+        },
+        {
+          text: "Commercial",
+          link: "/commercial",
+        },
+        {
+          text: "Christmas Lights",
+          link: "/christmas-lights",
+        }
+      ]
+    },
+    {
+      title: "wedding",
+      body: [
+        {
+          text: "Wedding Light Installation",
+          link: "/wedding",
+        },
+        {
+          text: "Wedding Lights",
+          link: "/wedding/lights",
+        },
+        {
+          text: "Venues",
+          link: "/venue",
+        },
+        {
+          text: "Vendors",
+          link: "/vendor",
+        }
+      ]
+    },
+    {
+      title: "additional-services",
+      body: [
+        {
+          text: "Additional Lighting Services",
+          link: false,
+        },
+        {
+          text: "Social Events",
+          link: "/social-events",
+        },
+        {
+          text: "Commercial Events",
+          link: "/commercial-events",
+        },
+        // TODO: this shouldnt be here its just as the list is currently shorter and needs to be redesigned
+        {
+          text: "Safety Practices",
+          link: "/safety",
+        }
+      ]
+    },
+    {
+      title: "work",
+      body: [
+        {
+          text: "Our Work",
+          link: false,
+        },
+        {
+          text: "Projects",
+          link: "/projects",
+        },
+        {
+          text: "Process",
+          link: "/process",
+        },
+        {
+          text: "Service Areas",
+          link: "/areas",
+        }
+      ]
+    },
+    {
+      title: "contacts",
+      body: [
+        {
+          text: "Contact Us",
+          link: "/contact?=footer",
+        },
+        {
+          text: "FAQs",
+          link: "/faqs",
+        },
+        {
+          text: "Testimonials",
+          link: "/testimonials",
+        },
+        {
+          text: "Affiliations",
+          link: "/affiliations"
+        }
+      ]
+    }
+  ];
 
   return (
     <footer>
@@ -295,7 +409,6 @@ const Footer = ({ quote }: { quote?: boolean }) => {
               <input type="text" name="referral" onChange={profanityCheck} className={referralProfanity ? "error" : ""} />
             </label>
 
-            {/* // TODO: this might be a query in the future if I keep changing it */}
             <label className='checkbox'>
               {strapiForm.minimum}
               <input type="checkbox" name="minimum" />
@@ -322,25 +435,25 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             </button>
           </form>
 
-          <section id="contact" className="stork contact">
+          <section id="contact" className="stork">
             <hr />
 
-            <h3>Contact</h3>
-
-            {/* // TODO: this changes twice on hover and reverts back its just a mess of overlapping styles */}
-            <div className="contact-info">
+            <h3 className="margin-block-end-vinson">Contact</h3>
+            <div className="flex-column">
               <a href={`mailto:${strapiAbout.email}`}
                 className="button button--left-align"
               >
                 {strapiAbout.email}
               </a>
               <p>
-                Call or Text: <Phone phone={strapiAbout.telephone} leftAlign />
+                Call or Text:<br />
+                <Phone phone={strapiAbout.telephone} leftAlign />
+                <br />
 
                 {/* // * elements of typograhic style 3.2 numerals, capitals & small caps */}
                 <small>
                   {strapiForm.monitoring}&nbsp;
-                  <span className="white-space-no-wrap">{Hours(strapiForm.opening)}&thinsp;and&thinsp;{Hours(strapiForm.closing)} <span className="all-small-caps">PST</span></span>,
+                  <span className="white-space-no-wrap">{Hours(strapiForm.opening)}&thinsp;and&thinsp;{Hours(strapiForm.closing)}&thinsp;<span className="all-small-caps">PST</span></span>,
                   &nbsp;<span className="white-space-no-wrap">{days(strapiForm.days)}</span>.&nbsp;
                 </small>
               </p>
@@ -376,85 +489,27 @@ const Footer = ({ quote }: { quote?: boolean }) => {
         </div>
       </div>
 
-
       <hr className="albatross" />
 
-      {/* // TODO: use grid-row as soon as it hits baseline */}
-      {/* // TODO: put all this data in an arraay and make it way more readable */}
-      {/* use strapi services etc to bring in some */}
       <div className="footer_list">
         <ul className={Season()}>
-          <li className="christmas">
-            <ul>
-              <li key="christmas" className="footer_list--no_link">
-                <strong>Christmas Light Installation</strong>
-              </li>
-
-              <li key="residential"><Link to="/residential">Residential</Link></li>
-              <li key="commercial"><Link to="/commercial">Commercial</Link></li>
-              <li key="christmas light">
-                <Link to="/christmas-lights">
-                  Christmas Lights
-                </Link>
-              </li>
-            </ul>
-          </li>
-
-          <li className="wedding">
-            <ul>
-              {/* // TODO: make the top link a little more subtle */}
-              <li key="wedding" className="link--subtle">
-                {/* // TODO: tidy up the long titles */}
-                <Link to="/wedding"><strong>Wedding Light Installation</strong></Link>
-              </li>
-              <li key="wedding lights">
-                <Link to="/wedding/lights">Wedding Lights</Link>
-              </li>
-              <li key="venues"><Link to="/venue">Venues</Link></li>
-              <li key="vendors"><Link to="/vendor">Vendors</Link></li>
-            </ul>
-          </li>
-
-          <li className="additional-services">
-            <ul>
-              <li key="services" className="footer_list--no_link">
-                <strong>Additional Lighting Services</strong>
-              </li>
-              {/* <li key="patio"><Link to="/patio">Patio Lighting <span className='sr-only'>Lighting Installation</span></Link></li> */}
-              {/* // ? why have i removed the sr */}
-              <li key="events"><Link to="/social-events">Social Events {/* <span className='sr-only'>Lighting Installation</span> */}</Link></li>
-              <li key="commercial-events">
-                <Link to="/commercial-events">Commercial Events {/* <span className='sr-only'>Lighting Installation</span> */}</Link>
-              </li>
-
-              {/* // TODO: this shouldnt be here its just as the list is currently shorter and needs to be redesigned */}
-              <li key="safety"><Link to="/safety">Safety Practices</Link></li>
-            </ul>
-          </li>
-
-          <li id="work">
-            <ul>
-              <li key="work" className="footer_list--no_link">
-                <strong>Our Work</strong>
-              </li>
-              <li key="projects"><Link to="/projects">Projects</Link></li>
-              <li key="process"><Link to="/process">Process</Link></li>
-              <li key="areas"><Link to="/areas">Service Areas</Link></li>
-            </ul>
-          </li>
-
-          <li id="contacts">
-            <ul>
-              {/* // TODO: contact also needs the subtle link */}
-              <li key="contact" className="">
-                <Link to="/contact?=footer"><strong>Contact</strong></Link>
-              </li>
-              {/* <li key="work"><Link to="/work">Work with us</Link></li> */}
-              <li key="faqs"><Link to="/faqs">FAQs</Link></li>
-              <li key="testimonials"><Link to="/testimonials">Testimonials</Link></li>
-              <li key="affiliations"><Link to="/affiliations">Affiliations</Link></li>
-            </ul>
-          </li>
+          {footerLists.map((list) => (
+            <li key={list.title}>
+              <ul>
+                {list.body.map((item) => (
+                  <li key={item.text}>
+                    {typeof item.link === "string" ? (
+                      <Link to={item.link}>
+                        {item.text}
+                      </Link>
+                    ) : (
+                      item.text
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -465,7 +520,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
 
       {/* // TODO: I can design this better */}
       {/* // * this doesnt show on local due to the API */}
-      {/* {starRating &&
+      {starRating &&
         <p className="albatross text-align-center margin-block-start-denali">
           <a href={`${google?.site.link}${google?.username}`}
             target="_blank" rel="noopener noreferrer"
@@ -473,7 +528,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             Google Star Rating: {starRating} from {reviewCount} reviews
           </a>
         </p>
-      } */}
+      }
 
       <hr className="stork" />
 
@@ -484,10 +539,16 @@ const Footer = ({ quote }: { quote?: boolean }) => {
           </Link>
         </h4>
 
-        {/* // TODO: current link */}
-        <Link to="/">
+        {location?.pathname === withPrefix("/") ? (
           <Logo />
-        </Link>
+        ) : (
+          <Link to="/"
+            // * ensures the link takes the full width of its container
+            className="width-100"
+          >
+            <Logo />
+          </Link>
+        )}
         <p>&copy; {new Date().getFullYear()}</p>
         <h5>
           <a
@@ -496,8 +557,7 @@ const Footer = ({ quote }: { quote?: boolean }) => {
             rel="noopener noreferrer"
             className="link--subtle"
           >
-            {/* // TODO: I think i have a query for this */}
-            Formerly known as Sierra Christmas Lights
+            Formerly known as {strapiAbout.alternateName}
           </a>
         </h5>
         <button

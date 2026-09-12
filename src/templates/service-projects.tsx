@@ -14,19 +14,19 @@ import { Breadcrumbs, Breadcrumb } from 'react-aria-components';
 type ServiceProjectsTypes = {
   data: {
     strapiService: {
-      id: string;
+      id: React.Key
       name: string;
       slug: string;
       excerpt: string;
       projects: (CardType & {
         themes?: {
-          id: string;
+          id: React.Key
         }[];
       })[];
     };
     allStrapiTheme: {
       nodes: {
-        id: string;
+        id: React.Key
         title: string;
         slug: string;
         excerpt: string;

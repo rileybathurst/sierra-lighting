@@ -95,7 +95,6 @@ module.exports = {
             resolve: "gatsby-plugin-sharp",
             options: {
                 defaults: {
-                    //, TODO: check as this was off to get under a ram limit bug on netlify it seems to be working May '22
                     formats: ["auto", "webp"],
                     placeholder: "dominantColor",
                     quality: 50,

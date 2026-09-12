@@ -11,10 +11,10 @@ import Card from "../components/card";
 import StateAbbreviation from "../components/state-abbreviation";
 import type { CardType } from "../types/card-type";
 
-type VenueNode = {
-	id: string;
+type VenueType = {
+	id: React.Key
 	area: {
-		id: string;
+		id: React.Key
 		name: string;
 		slug: string;
 		state: "california" | "nevada";
@@ -70,13 +70,13 @@ const VenuePage = () => {
 			</main>
 
 			{venueArray.map((area) => (
-				<div key={area}>
+				<section key={area}>
 					<div className="above-deck">
 						<hr />
 						{allStrapiVenue.nodes
-							.filter((venue: VenueNode) => venue.area.slug === area)
+							.filter((venue: VenueType) => venue.area.slug === area)
 							.slice(0, 1)
-							.map((venuesArea: VenueNode) => (
+							.map((venuesArea: VenueType) => (
 								<React.Fragment key={venuesArea.id}>
 									{venuesArea.area.featured ?
 										<h4 className="crest">
@@ -107,7 +107,7 @@ const VenuePage = () => {
 					</div>
 					<div className="deck">
 						{allStrapiVenue.nodes
-							.filter((venue: VenueNode) => venue.area.slug === area)
+							.filter((venue: VenueType) => venue.area.slug === area)
 							.map((venue: CardType) => (
 								<Card
 									key={venue.id}
@@ -116,7 +116,7 @@ const VenuePage = () => {
 								/>
 							))}
 					</div>
-				</div>
+				</section>
 			))}
 			<Footer />
 		</>

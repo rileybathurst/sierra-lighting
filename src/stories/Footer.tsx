@@ -69,23 +69,21 @@ export const Footer = () => {
       <hr className='pelican' />
       <div className="footer-container">
 
-        <section id="contact" className="condor contact">
+        <section id="contact" className="condor flex">
 
-          <h3>Contact</h3>
+          <h3 className="margin-block-end-vinson">Contact</h3>
 
-          <div className="contact-info">
-            <p>
-              <a href={`mailto:${faker.internet.email()}`}>
-                {faker.internet.email()}
-              </a>
-            </p>
-            <p>
-              {/* // TODO: I think this is wrong if its not broken up correctly */}
-              <a href={`tel:${faker.phone.number()}`}>
-                Call or Text: {faker.phone.number()}
-              </a>
-            </p>
-          </div>
+          <p>
+            <a href={`mailto:${faker.internet.email()}`}>
+              {faker.internet.email()}
+            </a>
+          </p>
+          <p>
+            {/* // TODO: I think this is wrong if its not broken up correctly */}
+            <a href={`tel:${faker.phone.number()}`}>
+              Call or Text: {faker.phone.number()}
+            </a>
+          </p>
         </section>
 
         <div className="team">

@@ -25,6 +25,8 @@ button {
 /* make it this */
 .testimonials .testimonial--quote_mark {
   font-family: var(--font-quote);
+  font-size: var(--aconcagua);
+  margin-block-start: var(--kosciuszko);
 }
 
 /* TODO: rename mixta to font-serif */

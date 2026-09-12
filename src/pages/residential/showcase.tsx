@@ -1,5 +1,4 @@
 // * specifically removed from the SEO on Rom's request in /static/robots.txt
-// TODO: create these progamatically for all services if they have tiers but thats just another level
 
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
@@ -12,7 +11,6 @@ import Card from "../../components/card";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
 import type { CardType } from "../../types/card-type";
-import type CardAndGroupType from "../../types/card-and-group-type";
 import { SEO } from "../../components/seo";
 import Attribute from "../../components/attribute";
 
@@ -68,16 +66,56 @@ function ResidentialShowcase() {
     }
   `);
 
+  type CardAndGroupType = {
+    card: CardType;
+    id: React.Key;
+    name: string;
+    slug: string;
+    light_groups: {
+      id: React.Key;
+      name: string;
+      slug: string;
+      excerpt: string;
+    }[];
+  };
+
+  type slugAndOrderType = {
+    slug: string,
+    xmasOrder: number
+  }
+
+  type ShowcaseType = {
+    id: React.Key;
+    tier: string;
+    description: {
+      data: {
+        description: string;
+      };
+    };
+    price: string;
+    roofline: string;
+    tree: string;
+
+    project: {
+      slug: string;
+      title: string;
+      image: {
+        localFile: {
+          childImageSharp: {
+            gatsbyImageData: IGatsbyImageData;
+          };
+        };
+      };
+    }
+  }
+
   const showcaseSet = new Set();
   for (const showcase of allStrapiShowcase.nodes) {
     showcaseSet.add(showcase.tier)
   }
   const showcaseArray = Array.from(showcaseSet);
 
-  type slugAndOrderType = {
-    slug: string,
-    xmasOrder: number
-  }
+
   const lightGroupSet: slugAndOrderType[] = [];
   const seenSlugs = new Set();
 
@@ -91,51 +129,6 @@ function ResidentialShowcase() {
   }
 
   const lightGroupArray = lightGroupSet.sort((a, b) => a.xmasOrder - b.xmasOrder);
-
-  // TODO: am I doing anything more than testing here?
-  lightGroupArray.map((group) => (
-    allStrapiLight.nodes
-      .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))
-      .slice(0, 1)
-      .map((light: CardAndGroupType) => (
-        console.log(light.light_groups)
-      ))
-  ));
-
-  // TODO: This page breaks if a light doesnt have a group do a better of console logging that
-
-  type ShowcaseType = {
-    id: React.Key;
-    tier: string;
-    description: {
-      data: {
-        description: string;
-      };
-    };
-    price: string;
-    roofline: string;
-    tree: string;
-    project: {
-      slug: string;
-      title: string;
-      image: {
-        localFile: {
-          childImageSharp: {
-            gatsbyImageData: IGatsbyImageData;
-          };
-        };
-      };
-      description: {
-        data: {
-          description: string;
-        };
-      };
-      price: string;
-      roofline: string;
-      tree: string;
-    }
-  }
-
 
   return (
     <>
@@ -164,30 +157,24 @@ function ResidentialShowcase() {
                   className="poster"
                 /></Link>
 
-              <div className="main">
-                <h3 className="capitalize">{showcase.tier} Showcase</h3>
-                <div className='react-markdown'>
-                  <ReactMarkdown>
-                    {showcase.description.data.description}
-                  </ReactMarkdown>
-                </div>
+              <h3 className="capitalize">{showcase.tier} Showcase</h3>
+              <div className='react-markdown margin-block-end-kilimanjaro'>
+                <ReactMarkdown>
+                  {showcase.description.data.description}
+                </ReactMarkdown>
               </div>
 
               {(showcase.price || showcase.roofline || showcase.tree) && (
-                <React.Fragment>
-                  <hr />
-                  <div className="attributes">
-                    <Attribute
-                      price={showcase.price}
-                      roofline={showcase.roofline}
-                      trees={showcase.tree}
-                    />
-                  </div>
-                  {/* // TODO: we dont need double hr theres just lines on lines on lines */}
-                  <hr />
-                </React.Fragment>
+                <div className="attributes margin-block-end-kilimanjaro">
+                  <Attribute
+                    price={showcase.price}
+                    roofline={showcase.roofline}
+                    trees={showcase.tree}
+                  />
+                </div>
               )}
-              <Start path="showcase" />
+              <Start path={`showcase ${showcase.tier}`} />
+              <hr />
             </div>
           ))
       ))}
@@ -202,9 +189,10 @@ function ResidentialShowcase() {
             .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))
             .slice(0, 1)
             .map((light: CardAndGroupType) => (
-              <>
+              <React.Fragment
+                key={light.light_groups[0].id}
+              >
                 <section
-                  key={light.light_groups[0].id}
                   className="above-deck"
                 >
                   <hr />
@@ -220,7 +208,7 @@ function ResidentialShowcase() {
                   key={light.id}
                   className="deck">
                   {allStrapiLight.nodes
-                    .filter((light: CardAndGroupType) => light.light_groups[0].slug === (group.slug))
+                    .filter((light: CardAndGroupType) => light?.light_groups[0].slug === (group.slug))
                     .map((light: CardType) => (
                       <Card
                         key={light.id}
@@ -229,7 +217,7 @@ function ResidentialShowcase() {
                       />
                     ))}
                 </section>
-              </>
+              </React.Fragment>
             ))
         ))}
       </section>

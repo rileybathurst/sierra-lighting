@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby'
+import { graphql, Link, Script } from 'gatsby'
 
 import { SEO } from "../components/seo";
 import Header from "../components/header";
@@ -271,14 +271,14 @@ export const query = graphql`
         pinterest
 
         social {
-        id
-        username
-        site {
           id
-          service
-          icon
+          username
+          site {
+            id
+            service
+            icon
+          }
         }
-      }
 
         excerpt
         collaboratorAncillary
@@ -326,6 +326,8 @@ export const query = graphql`
   }
 `
 
+// ! vendor and venue need image to be sorted
+
 export const Head = ({ data }: VendorTemplateViewTypes) => {
   return (
     <SEO
@@ -343,6 +345,23 @@ export const Head = ({ data }: VendorTemplateViewTypes) => {
           item: `vendor/${data.strapiVendor.slug}`
         }
       ]}
-    />
+    >
+      <Script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": data.strapiVendor.name,
+          "description": data.strapiVendor.excerpt,
+
+          "url": `vendor/${data.strapiVendor.slug}`,
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://sierra.lighting/vendor/${data.strapiVendor?.slug}/`
+          },
+
+
+        })}
+      </Script>
+    </SEO>
   )
 }

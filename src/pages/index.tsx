@@ -14,7 +14,9 @@ import HeroWeddingBackImage from "../images/HeroWeddingBackImage";
 import Suite from '../components/suite';
 import type TestimonialTypes from '../types/testimonial-types';
 
-const IndexPage = () => {
+const IndexPage = ({ location }: { location: Location }) => {
+
+  console.log(location);
 
   const { strapiAbout, allStrapiService, allStrapiTestimonial, allStrapiQuality, strapiHero } = useStaticQuery(graphql`
     query IndexQuery {
@@ -206,8 +208,7 @@ const IndexPage = () => {
       {/* // TODO: this puts a second main in the page */}
       <Areas />
 
-      <Footer />
-
+      <Footer location={location} />
     </>
   )
 }

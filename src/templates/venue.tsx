@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby'
+import { graphql, Link, Script } from 'gatsby'
 import Markdown from "react-markdown";
 import { SEO } from "../components/seo";
 
@@ -14,7 +14,7 @@ import type { CardType } from '../types/card-type';
 import Testimonial from '../components/testimonial';
 import { Phone } from '../components/phone';
 import type { ImageWithAspectType } from '../types/image-with-aspect-type';
-import TestimonialTypes from '../types/testimonial-types';
+import type TestimonialTypes from '../types/testimonial-types';
 
 type VenueViewTypes = {
   data: {
@@ -36,8 +36,13 @@ type VenueViewTypes = {
           slug: string;
         }
       }
-      address: {
-        data: {
+      streetAddress?: string;
+      addressLocality?: string;
+      addressRegion?: string;
+      postalCode?: string;
+
+      address?: {
+        data?: {
           address: string;
         }
       }
@@ -81,7 +86,17 @@ const VenueView = ({ data }: VenueViewTypes) => {
 
         <hr />
         {/* // TODO this could probably be more structured with seo */}
-        {data.strapiVenue.address ?
+        {data.strapiVenue.streetAddress || data.strapiVenue.addressLocality || data.strapiVenue.addressRegion || data.strapiVenue.postalCode ? (
+          <address>
+            {data.strapiVenue.streetAddress && `${data.strapiVenue.streetAddress},`}
+            {data.strapiVenue.addressLocality && `${data.strapiVenue.addressLocality},`}
+            {data.strapiVenue.addressRegion && `${data.strapiVenue.addressRegion},`}
+            {data.strapiVenue.postalCode && `${data.strapiVenue.postalCode}`}
+          </address>
+        ) : null}
+
+        {/* // * this is the deprecated version */}
+        {data.strapiVenue?.address?.data?.address ?
           <address>
             <div className='react-markdown'>
               <Markdown>
@@ -250,6 +265,11 @@ export const query = graphql`
           }
         }
 
+        streetAddress
+        addressLocality
+        addressRegion
+        postalCode
+
         venueImage {
           ...imageWithAspectFragment
         }
@@ -262,8 +282,7 @@ export const query = graphql`
         }
       }
 
-      # // TODO: blue is a heavyhanded way until I do other uses on venues
-      # // TODO: im pretty sure I can use a fragment here
+      # // * blue is a heavyhanded way until I do other uses on venues
       allStrapiVenue(
         limit: 3,
         filter: {
@@ -317,6 +336,29 @@ export const Head = ({ data }: VenueViewTypes) => {
           }
         ]
       }
-    />
+    >
+      <Script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Place",
+          "name": data.strapiVenue.name,
+          "description": data.strapiVenue?.excerpt,
+
+          "url": data.strapiVenue?.slug,
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://sierra.lighting/venue/${data.strapiVenue?.slug}/`
+          },
+
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": data.strapiVenue?.streetAddress,
+            "addressLocality": data.strapiVenue?.addressLocality,
+            "addressRegion": data.strapiVenue?.addressRegion,
+            "postalCode": data.strapiVenue?.postalCode
+          }
+        })}
+      </Script>
+    </SEO>
   )
 }

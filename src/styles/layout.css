@@ -413,6 +413,9 @@ header {
   margin-block-start: var(--spacing-half);
   /*  skip var(--vinson) due to a flex gap from a sr-only element */
   flex-direction: column;
+  /* ! align changes the size when its linked */
+  align-items: center;
+  align-items: anchor-center;
 
   /* skip var(--vinson) due to a flex gap from a sr-only element */
   @media (min-width: 60rem) {
@@ -427,7 +430,7 @@ header {
 
   /*  there shouldnt be a flex gap if you cant see the content */
   .footer-copyright__mind-the-gap {
-    margin-block-end: -var(--vinson);
+    margin-block-end: var(--vinson);
   }
 }
 

@@ -1,7 +1,8 @@
 import "@fontsource-variable/josefin-sans";
 
-// TODO: can i pull just the quotemark
-import "@fontsource/biz-udpmincho/400.css" // TODO: 400 or 500 ? Weight 500 with all styles included.
+// * as minimal as possible pull of the font
+import "@fontsource/biz-udpmincho/latin-400.css";
+
 import * as CookieConsent from "vanilla-cookieconsent";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 

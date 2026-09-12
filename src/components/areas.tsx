@@ -29,10 +29,6 @@ const Areas = () => {
           areas {
             name
             slug
-
-            venues {
-              id
-            }
           }
         }
       }
@@ -43,14 +39,6 @@ const Areas = () => {
     a: { areas: { length: number } },
     b: { areas: { length: number } }
   };
-
-  // TODO: venues were getting pulled for something I dont know what tho
-  // I guess maybe a count or even if we have them for wedding
-  /* venues {
-    id
-  } */
-
-  // console.log(allStrapiArea.nodes);
 
   allStrapiArea.nodes.map((area: AreaCardType) => {
     if (Season() === "wedding" && area.weddingImage) {
@@ -67,7 +55,7 @@ const Areas = () => {
       </main>
       <section className="deck">
         {allStrapiArea.nodes
-          .sort((a: SortTypes['a'], b: SortTypes['b']) => b.areas.length - a.areas.length) // Sort by the number of area.areas
+          .sort((a: SortTypes['a'], b: SortTypes['b']) => b.areas.length - a.areas.length)
           .map((area: AreaCardType) => (
             <Card
               key={area.id}

@@ -218,3 +218,33 @@
 .hamburger.is-active .line:nth-child(3) {
   transform: translateY(-0.7rem) rotate(90deg);
 }
+
+/*------------------------------------*/
+
+/* * svg reacts different */
+.bigboy a:not(.header__logo) {
+  /*  ? how much of this is a button */
+  padding-block: var(--kosciuszko);
+  padding-inline: var(--spacing-half);
+  display: block;
+  max-width: max-content;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  transform: var(--moment);
+  transition: var(--moment);
+  /*  theres no color indicated here it all comes from the <a> so it doesnt need a dark */
+}
+
+/*  TODO: make this reusable */
+.bigboy a:not(.header__logo):hover,
+.bigboy a:focus {
+  background-color: var(--honey-100);
+  border-color: var(--honey-200);
+  box-shadow: var(--mesosphere);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--denim-700);
+    border-color: var(--denim-600);
+    color: var(--denim-200);
+  }
+}
