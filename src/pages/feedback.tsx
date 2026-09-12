@@ -1,5 +1,3 @@
-// TODO: biome doesnt like this page but its not top priority
-
 import { graphql, useStaticQuery } from "gatsby";
 import React, { useEffect, useState } from "react";
 import { useIsWithinBusinessHours } from "../components/business-hours";
@@ -8,19 +6,21 @@ import Header from "../components/header";
 import { SEO } from "../components/seo";
 import Star from "../images/star";
 
-type LocationTypes = {
+// TODO: are these getting used?
+/* type LocationTypes = {
   location: {
     pathname: string;
     search: string;
   };
-};
-const FeedbackPage = ({ location }: LocationTypes) => {
+}; */
+
+// { location }: LocationTypes
+const FeedbackPage = () => {
   const isWithinBusinessHours = useIsWithinBusinessHours();
 
-  const jobberParams = new URLSearchParams(location.search);
+  // const jobberParams = new URLSearchParams(location.search);
 
-  // ! are these being used?
-  let jobberName = "";
+  /* let jobberName = "";
   let jobberEmail = "";
   for (const [key, value] of jobberParams.entries()) {
     if (key === "name") {
@@ -29,7 +29,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     if (key === "email") {
       jobberEmail = value;
     }
-  }
+  } */
 
   const { strapiFeedback, strapiAbout, strapiForm } = useStaticQuery(graphql`
     query FeedbackQuery {
@@ -157,6 +157,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
                 key={rating}
                 type="button"
                 title={`${rating} Star Button`}
+                // ! there is something weird going on here
                 className={`feedback-star ${rating <= stars ? "active" : ""} ${rating <= hoveredStars ? "hover" : ""}`}
                 onClick={() => setStars(rating)}
                 onMouseOver={() => setHoveredStars(rating)}

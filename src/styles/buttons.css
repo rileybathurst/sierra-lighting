@@ -108,13 +108,18 @@ button:disabled,
 /*------------------------------------*/
 
 .feedback-stars button {
-  margin-inline: 0;
+  margin-inline: 1px;
 }
 
 .feedback-star {
-  background-color: var(--neutral-100);
-  border: 1px solid var(--honey-100);
   box-shadow: none;
+  background-color: var(--honey-100);
+  border: 1px solid var(--honey-200);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--denim-500);
+    border-color: var(--denim-400);
+  }
 
   svg {
     min-width: clamp(2rem, 5vw, 5rem);
@@ -122,26 +127,19 @@ button:disabled,
   }
 }
 
-.feedback-star.active svg {
-  fill: var(--honey-300);
-
-  @media (prefers-color-scheme: dark) {
-    fill: var(--denim-300);
-  }
-}
-
 .feedback-star.hover {
-  background-color: var(--honey-100);
+  background-color: var(--denim-500);
+  border-color: var(--honey-300);
 
   @media (prefers-color-scheme: dark) {
-    background-color: var(--denim-100);
+    background-color: var(--honey-300);
   }
 
   svg {
     fill: var(--honey-500);
 
     @media (prefers-color-scheme: dark) {
-      fill: var(--denim-500);
+      fill: var(--neutral-700);
     }
   }
 }
