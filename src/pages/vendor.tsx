@@ -6,7 +6,7 @@ import {
   BlocksRenderer,
 } from "@strapi/blocks-react-renderer";
 import { graphql, Link } from "gatsby";
-import type * as React from "react";
+import React from "react";
 import Card from "../components/card";
 import Footer from "../components/footer";
 import Header from "../components/header";

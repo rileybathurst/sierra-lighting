@@ -19,6 +19,7 @@ const FeedbackPage = ({ location }: LocationTypes) => {
 
   const jobberParams = new URLSearchParams(location.search);
 
+  // ! are these being used?
   let jobberName = "";
   let jobberEmail = "";
   for (const [key, value] of jobberParams.entries()) {
@@ -48,126 +49,19 @@ const FeedbackPage = ({ location }: LocationTypes) => {
     }
   `);
 
-  const [positive, setPositive] = useState(false);
-  const [negative, setNegative] = useState(false);
-
-  const [oneStar, setOneStar] = useState(false);
-  const [twoStar, setTwoStar] = useState(false);
-  const [threeStar, setThreeStar] = useState(false);
-  const [fourStar, setFourStar] = useState(false);
-  const [fiveStar, setFiveStar] = useState(false);
-
-  const [oneHover, setOneHover] = useState(false);
-  const [twoHover, setTwoHover] = useState(false);
-  const [threeHover, setThreeHover] = useState(false);
-  const [fourHover, setFourHover] = useState(false);
-  const [fiveHover, setFiveHover] = useState(false);
-
   const [stars, setStars] = useState(0);
-
-  const One = () => {
-    setPositive(false);
-    setNegative(true);
-    setOneStar(true);
-    setTwoStar(false);
-    setThreeStar(false);
-    setFourStar(false);
-    setFiveStar(false);
-    setStars(1);
-  };
-
-  const Two = () => {
-    setPositive(false);
-    setNegative(true);
-    setOneStar(true);
-    setTwoStar(true);
-    setThreeStar(false);
-    setFourStar(false);
-    setFiveStar(false);
-    setStars(2);
-  };
-
-  const Three = () => {
-    setPositive(false);
-    setNegative(true);
-    setOneStar(true);
-    setTwoStar(true);
-    setThreeStar(true);
-    setFourStar(false);
-    setFiveStar(false);
-    setStars(3);
-  };
-
-  const Four = () => {
-    setPositive(false);
-    setNegative(true);
-    setOneStar(true);
-    setTwoStar(true);
-    setThreeStar(true);
-    setFourStar(true);
-    setFiveStar(false);
-    setStars(4);
-  };
-
-  const Five = () => {
-    setPositive(true);
-    setNegative(false);
-    setOneStar(true);
-    setTwoStar(true);
-    setThreeStar(true);
-    setFourStar(true);
-    setFiveStar(true);
-    setStars(5);
-  };
-
-  const OneHover = () => {
-    setOneHover(true);
-    setTwoHover(false);
-    setThreeHover(false);
-    setFourHover(false);
-    setFiveHover(false);
-  };
-
-  const TwoHover = () => {
-    setOneHover(true);
-    setTwoHover(true);
-    setThreeHover(false);
-    setFourHover(false);
-    setFiveHover(false);
-  };
-
-  const ThreeHover = () => {
-    setOneHover(true);
-    setTwoHover(true);
-    setThreeHover(true);
-    setFourHover(false);
-    setFiveHover(false);
-  };
-
-  const FourHover = () => {
-    setOneHover(true);
-    setTwoHover(true);
-    setThreeHover(true);
-    setFourHover(true);
-    setFiveHover(false);
-  };
-
-  const FiveHover = () => {
-    setOneHover(true);
-    setTwoHover(true);
-    setThreeHover(true);
-    setFourHover(true);
-    setFiveHover(true);
-  };
+  const [hoveredStars, setHoveredStars] = useState(0);
+  const positive = stars === 5;
+  const negative = stars > 0 && !positive;
 
   useEffect(() => {
-    if (fiveStar) {
+    if (positive) {
       const timer = setTimeout(() => {
         window.location.href = strapiAbout.googleReviews;
       }, 7000);
       return () => clearTimeout(timer);
     }
-  }, [fiveStar, strapiAbout.googleReviews]);
+  }, [positive, strapiAbout.googleReviews]);
 
   return (
     <>
@@ -257,58 +151,20 @@ const FeedbackPage = ({ location }: LocationTypes) => {
             <textarea name="feedback" />
           </label>
 
-          {/* // TODO: I can loop this */}
           <div className="feedback-stars">
-            <button
-              type="button"
-              title="1 Star Button"
-              className={`feedback-star ${oneStar ? "active" : ""} ${oneHover ? "hover" : ""}`}
-              onClick={One}
-              onMouseOver={OneHover}
-              onFocus={OneHover}
-            >
-              <Star />
-            </button>
-            <button
-              type="button"
-              title="2 Star Button"
-              onClick={Two}
-              onMouseOver={TwoHover}
-              onFocus={TwoHover}
-              className={`feedback-star ${twoStar ? "active" : ""} ${twoHover ? "hover" : ""}`}
-            >
-              <Star />
-            </button>
-            <button
-              type="button"
-              title="3 Star Button"
-              onClick={Three}
-              onMouseOver={ThreeHover}
-              onFocus={ThreeHover}
-              className={`feedback-star ${threeStar ? "active" : ""} ${threeHover ? "hover" : ""}`}
-            >
-              <Star />
-            </button>
-            <button
-              type="button"
-              title="4 Star Button"
-              onClick={Four}
-              onMouseOver={FourHover}
-              onFocus={FourHover}
-              className={`feedback-star ${fourStar ? "active" : ""} ${fourHover ? "hover" : ""}`}
-            >
-              <Star />
-            </button>
-            <button
-              type="button"
-              title="5 Star Button"
-              onClick={Five}
-              onMouseOver={FiveHover}
-              onFocus={FiveHover}
-              className={`feedback-star ${fiveStar ? "active" : ""} ${fiveHover ? "hover" : ""}`}
-            >
-              <Star />
-            </button>
+            {[1, 2, 3, 4, 5].map((rating) => (
+              <button
+                key={rating}
+                type="button"
+                title={`${rating} Star Button`}
+                className={`feedback-star ${rating <= stars ? "active" : ""} ${rating <= hoveredStars ? "hover" : ""}`}
+                onClick={() => setStars(rating)}
+                onMouseOver={() => setHoveredStars(rating)}
+                onFocus={() => setHoveredStars(rating)}
+              >
+                <Star />
+              </button>
+            ))}
           </div>
 
           <button className={negative ? "button" : "sr-only"} type="submit">

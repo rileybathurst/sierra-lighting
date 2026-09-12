@@ -1,5 +1,5 @@
 import { graphql, Link, Script } from "gatsby";
-import type React from "react";
+import React from "react";
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import Markdown from "react-markdown";
 import Card from "../components/card";

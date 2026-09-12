@@ -6,7 +6,6 @@ import * as React from "react";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import Hero from "../components/hero";
-import { PinterestHref } from "../components/pinterest-href";
 import { SEO } from "../components/seo";
 
 type NotFoundPageTypes = {
@@ -18,6 +17,7 @@ type NotFoundPageTypes = {
       title: string;
       pun: string;
       return: string;
+      // TODO: theres a type for this
       hero: {
         url: string;
         alternativeText: string;

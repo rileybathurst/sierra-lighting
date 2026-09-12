@@ -36,7 +36,7 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getServices.data.allStrapiService.edges) {
-    if (!node || !node.slug) {
+    if (!node.slug) {
       reporter.warn(
         `Skipping service page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
       );
@@ -75,7 +75,7 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getServiceLights.data.allStrapiService.edges) {
-    if (!node || !node.slug) {
+    if (!node.slug) {
       reporter.warn(
         `Skipping service-lights page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
       );
@@ -113,9 +113,9 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getServiceProjects.data.allStrapiService.edges) {
-    if (!node || !node.slug) {
+    if (!node.slug) {
       reporter.warn(
-        `Skipping service-lights page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
+        `Skipping service-projects page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
       );
       continue;
     }
@@ -156,7 +156,7 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getVenues.data.allStrapiVenue.edges) {
-    if (!node || !node.slug) {
+    if (!node.slug) {
       reporter.warn(
         `Skipping venue page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
       );
@@ -201,7 +201,7 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getVendors.data.allStrapiVendor.edges) {
-    if (!node || !node.slug) {
+    if (!node.slug) {
       reporter.warn(
         `Skipping vendor page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
       );
@@ -256,7 +256,7 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getAreas.data.allStrapiArea.edges) {
-    if (!node || !node.slug) {
+    if (!node.slug) {
       reporter.warn(
         `Skipping area page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
       );
@@ -299,7 +299,7 @@ exports.createPages = (async ({ actions, graphql, reporter }) => {
   }
 
   for (const { node } of getLookBooks.data.allStrapiService.edges) {
-    if (!node || !node.slug) {
+    if (!node.slug) {
       reporter.warn(
         `Skipping lookbook page creation because node.slug is missing or node is null: ${JSON.stringify(node)}`,
       );

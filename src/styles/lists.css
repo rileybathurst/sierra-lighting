@@ -319,7 +319,6 @@ ol li {
       padding-inline-start: 0;
 
       a {
-        padding-inline-start: 0;
         background-color: var(--honey-200);
         border: 1px solid var(--honey-300);
         width: max-content;

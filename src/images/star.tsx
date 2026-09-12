@@ -1,5 +1,5 @@
 // TODO: Im pretty sure this can just be an svg file
-import type React from "react";
+import React from "react";
 
 const Star = (): React.JSX.Element => {
   return (

@@ -10,7 +10,6 @@ import Card from "../../components/card";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import { SEO } from "../../components/seo";
-import Start from "../../components/start";
 import type { CardType } from "../../types/card-type";
 import type { LightGroupType } from "../../types/light-group-type";
 

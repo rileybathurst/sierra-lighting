@@ -2,7 +2,7 @@
 // * removed from the SEO while testing / buildimg /static/robots.txt
 
 import { graphql, Link, useStaticQuery } from "gatsby";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Card from "../components/card";
 import Footer from "../components/footer";
 import Header from "../components/header";
@@ -32,7 +32,7 @@ const IdeasPage = ({ location }: LocationTypes) => {
   `);
 
   const IdeasSearch: string[] = [];
-  for (const [key, value] of startingSearchParams.entries()) {
+  for (const [value] of startingSearchParams.entries()) {
     IdeasSearch.push(value);
   }
 

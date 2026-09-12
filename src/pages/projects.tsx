@@ -1,5 +1,5 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
-import type * as React from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import Card from "../components/card";
 import Footer from "../components/footer";

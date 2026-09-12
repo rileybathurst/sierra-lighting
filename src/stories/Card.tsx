@@ -20,9 +20,9 @@ export const Card = () => {
       {faker.datatype.boolean() && (
         <ul>
           {Array.from({
-            length: faker.datatype.number({ min: 1, max: 5 }),
-          }).map((_, index) => (
-            <li key={index}>{faker.lorem.word()}</li>
+            length: faker.number.int({ min: 1, max: 5 }),
+          }).map(() => (
+            <li key={faker.number.int()}>{faker.lorem.word()}</li>
           ))}
         </ul>
       )}

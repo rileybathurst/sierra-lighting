@@ -37,7 +37,7 @@ type ServiceProjectsTypes = {
 const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
   const projects = data.strapiService.projects.toReversed();
   const projectsByThemeId = new Map<
-    string,
+    React.Key,
     ServiceProjectsTypes["data"]["strapiService"]["projects"]
   >();
   const ungroupedProjects: ServiceProjectsTypes["data"]["strapiService"]["projects"] =

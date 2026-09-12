@@ -1,5 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
-import type React from "react";
+import React from "react";
+import { validateSanitizeSocialSVG } from "./validate-sanitize-social-svg";
 
 function DeprecatedSocials({
   instagram,
@@ -67,13 +68,6 @@ function DeprecatedSocials({
     }
   }
 
-  function validateSanitizeSocialSVG(svgString: string): string | null {
-    const trimmedSvg = svgString.trim();
-    if (!trimmedSvg.startsWith("<svg")) return null;
-
-    return trimmedSvg.replace(/<title[\s\S]*?<\/title>/gi, "");
-  }
-
   return (
     <ul className="socials">
       {[
@@ -95,9 +89,9 @@ function DeprecatedSocials({
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {/* biome-ignore lint/security/noDangerouslySetInnerHtml: social SVG markup is controlled content from Strapi */}
                 <span
                   aria-hidden="true"
+                  // biome-ignore lint/security/noDangerouslySetInnerHtml: social SVG markup is controlled content from Strapi
                   dangerouslySetInnerHTML={{
                     __html: validateSanitizeSocialSVG(site.icon) || "",
                   }}

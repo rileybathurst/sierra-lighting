@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { logPinterestEntry } from "./log-pinterest-entry";
+import { validateSanitizeSocialSVG } from "./validate-sanitize-social-svg";
 
 export const PinterestHref = ({
   imageSources,
@@ -49,7 +50,12 @@ export const PinterestHref = ({
         void logPinterestEntry(mediaPath);
       }}
     >
-      <span dangerouslySetInnerHTML={{ __html: strapiSocialSite.svg }} />
+      <span
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: social SVG markup is controlled content from Strapi
+        dangerouslySetInnerHTML={{
+          __html: validateSanitizeSocialSVG(strapiSocialSite.svg) || "",
+        }}
+      />
     </a>
   );
 };

@@ -2,13 +2,13 @@
 
 {
   /* // TODO: 
-      https://schema.org/ContactPoint
-      https://schema.org/skills
-      https://schema.org/knowsAbout
-      https://schema.org/foundingDate
-      https://schema.org/foundingLocation
-      https://schema.org/Service
-      */
+  https://schema.org/ContactPoint
+  https://schema.org/skills
+  https://schema.org/knowsAbout
+  https://schema.org/foundingDate
+  https://schema.org/foundingLocation
+  https://schema.org/Service
+*/
 }
 
 {
@@ -47,7 +47,7 @@ const Breadcrumbs: React.FC<BreadcrumbsTypes> = ({ url, breadcrumbs }) => {
               .map(([key, breadcrumb]) => {
                 return `{
                 "@type": "ListItem",
-                "position": ${Number.parseInt(key) + 1},
+                "position": ${Number.parseInt(key, 10) + 1},
                 "name": "${breadcrumb.name}",
                 "item": "${url}/${breadcrumb.item}"
               }`;

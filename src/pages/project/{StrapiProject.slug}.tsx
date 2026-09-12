@@ -378,18 +378,17 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
                 )
               : null}
 
-            {data.strapiProject.project_single_use_links &&
-              data.strapiProject.project_single_use_links.map((singleLink) => (
-                <Attribute
-                  key={String(singleLink.id)}
-                  {...{
-                    [singleLink.service]: {
-                      name: singleLink.name,
-                      link: singleLink.link,
-                    },
-                  }}
-                />
-              ))}
+            {data.strapiProject.project_single_use_links?.map((singleLink) => (
+              <Attribute
+                key={String(singleLink.id)}
+                {...{
+                  [singleLink.service]: {
+                    name: singleLink.name,
+                    link: singleLink.link,
+                  },
+                }}
+              />
+            ))}
           </div>
         </React.Fragment>
       ) : null}

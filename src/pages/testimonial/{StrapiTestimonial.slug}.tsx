@@ -1,5 +1,5 @@
 import { graphql, Link } from "gatsby";
-import type * as React from "react";
+import React from "react";
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import Footer from "../../components/footer";
 

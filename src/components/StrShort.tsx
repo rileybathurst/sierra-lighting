@@ -1,9 +1,6 @@
-import * as React from "react";
+import React from "react";
 
-interface StrShortTypes {
-  website: string;
-}
-function StrShort({ website }: StrShortTypes) {
+function StrShort({ website }: { website: string }) {
   let str = website;
   const secure = "https://";
   const http = "http://";
@@ -43,7 +40,7 @@ function StrShort({ website }: StrShortTypes) {
     str = str.slice(0, -1);
   }
 
-  return <>{str}</>;
+  return <React.Fragment>{str}</React.Fragment>;
 }
 
 export default StrShort;

@@ -10,10 +10,6 @@ import Header from "../components/header";
 import { SEO } from "../components/seo";
 
 const ContactPage = () => {
-  // TODO: testing
-  const isWithinBusinessHours = useIsWithinBusinessHours();
-  // console.log("isWithinBusinessHours", isWithinBusinessHours);
-
   const { strapiAbout } = useStaticQuery(graphql`
     query ContactQuery {
       strapiAbout {

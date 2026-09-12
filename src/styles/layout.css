@@ -417,7 +417,10 @@ header {
   flex-direction: column;
   /* ! align changes the size when its linked */
   align-items: center;
-  align-items: anchor-center;
+
+  @supports (align-items: anchor-center) {
+    align-items: anchor-center;
+  }
 
   /* skip var(--vinson) due to a flex gap from a sr-only element */
   @media (min-width: 60rem) {

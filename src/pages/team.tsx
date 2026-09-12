@@ -1,6 +1,6 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import type { IGatsbyImageData } from "gatsby-plugin-image";
-import type * as React from "react";
+import React from "react";
 import Card from "../components/card";
 import Footer from "../components/footer";
 import Header from "../components/header";

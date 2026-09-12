@@ -1,8 +1,7 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import type { StorybookConfig } from "@storybook/react-webpack5";
-
-import path from "path";
 import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
-import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

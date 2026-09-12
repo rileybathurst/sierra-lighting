@@ -271,8 +271,7 @@ header svg:active {
   &::before {
     transition:
       border-top-color 0.15s linear,
-      /*  Stagger border appearances */
-      border-right-color 0.15s linear 0.1s,
+      /*  Stagger border appearances */ border-right-color 0.15s linear 0.1s,
       border-bottom-color 0.15s linear 0.2s;
   }
 
