@@ -5,7 +5,7 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import Hero from "../components/hero";
 import { SEO } from "../components/seo";
-import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 
 type SafetyPageTypes = {
   data: {
@@ -16,7 +16,7 @@ type SafetyPageTypes = {
           description: string;
         };
       };
-      image: ImageWithAspectType;
+      image: HeroSEOImageType;
     };
   };
 };
@@ -33,7 +33,7 @@ export const data = graphql`
     }
 
     image {
-      ...imageWithAspectFragment
+      ...heroSEOImageFragment
     }
   }
 }

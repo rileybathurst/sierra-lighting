@@ -65,7 +65,6 @@ export const Buttons = () => {
             key={rating}
             type="button"
             title={`${rating} Star Button`}
-            // ! there is something weird going on here
             className={`feedback-star ${rating <= stars ? "active" : ""} ${rating <= hoveredStars ? "hover" : ""}`}
             onClick={() => setStars(rating)}
             onMouseOver={() => setHoveredStars(rating)}

@@ -18,7 +18,6 @@ const Footer = ({
   quote?: boolean;
   location?: Location;
 }) => {
-  console.log(location);
 
   // const isWithinBusinessHours = useIsWithinBusinessHours();
 
@@ -98,9 +97,9 @@ const Footer = ({
 
     setCanSend(
       !hasProfanity &&
-        !emailProfanity &&
-        !messageProfanity &&
-        !referralProfanity,
+      !emailProfanity &&
+      !messageProfanity &&
+      !referralProfanity,
     );
 
     return null;
@@ -367,7 +366,7 @@ const Footer = ({
 
   return (
     <footer>
-      <hr className="condor" />
+      <hr className="stork" />
 
       {showQuote && (
         <>

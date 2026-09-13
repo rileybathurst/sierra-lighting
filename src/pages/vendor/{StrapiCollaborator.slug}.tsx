@@ -13,7 +13,7 @@ import Hero from "../../components/hero";
 import SEO from "../../components/seo";
 import Start from "../../components/start";
 import type { CardType } from "../../types/card-type";
-import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
+import type { HeroSEOImageType } from "../../types/hero-seo-image-type";
 
 export const query = graphql`
   query CollaboratorQuery($slug: String!) {
@@ -29,7 +29,7 @@ export const query = graphql`
       slug
 
       hero {
-        ...imageWithAspectFragment
+        ...heroSEOImageFragment
       }
 
       excerpt
@@ -47,7 +47,7 @@ type CollaboratorPageTypes = {
       industry: string;
       description: BlocksContent;
       excerpt: string;
-      hero?: ImageWithAspectType;
+      hero?: HeroSEOImageType;
       slug?: string;
       vendors?: CardType[];
     };

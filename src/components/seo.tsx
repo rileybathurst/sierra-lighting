@@ -18,7 +18,7 @@
 import { graphql, Script, useStaticQuery } from "gatsby";
 import type { ReactNode } from "react";
 import React from "react";
-import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 import type VideoTypes from "../types/video-types";
 import Season from "./season";
 
@@ -44,15 +44,15 @@ const Breadcrumbs: React.FC<BreadcrumbsTypes> = ({ url, breadcrumbs }) => {
           "@type": "BreadcrumbList",
           "itemListElement": [
             ${Object.entries(breadcrumbs)
-              .map(([key, breadcrumb]) => {
-                return `{
+          .map(([key, breadcrumb]) => {
+            return `{
                 "@type": "ListItem",
                 "position": ${Number.parseInt(key, 10) + 1},
                 "name": "${breadcrumb.name}",
                 "item": "${url}/${breadcrumb.item}"
               }`;
-              })
-              .join(",\n")}
+          })
+          .join(",\n")}
             ]
           }
         `}
@@ -95,7 +95,7 @@ type SEOtypes = {
   title?: string;
   description?: string;
   url?: string;
-  image?: ImageWithAspectType; // * pass the whole image deal with it from there
+  image?: HeroSEOImageType; // * pass the whole image deal with it from there
   children?: ReactNode;
   breadcrumbs?: {
     name: string;

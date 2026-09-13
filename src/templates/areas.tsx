@@ -16,12 +16,12 @@ import Start from "../components/start";
 import StateAbbreviation from "../components/state-abbreviation";
 import Suite from "../components/suite";
 import type { CardType } from "../types/card-type";
-import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 import type { SuiteType } from "../types/suite-type";
 
 // this is no longer right as there might only be sub venues
 // if (venues.length !== 0) {
-interface VenuesProps {
+type venuesTypes = {
   name: string;
   venues: CardType[];
   areas: {
@@ -33,7 +33,7 @@ interface VenuesProps {
   }[];
 }
 
-function Venues({ name, areas }: VenuesProps) {
+function Venues({ name, areas }: venuesTypes) {
   const subVenues = [];
   areas.forEach((area) => {
     if (area.venues.length > 0) {
@@ -55,12 +55,12 @@ function Venues({ name, areas }: VenuesProps) {
         <div className="deck">
           {subVenues.length > 0
             ? areas.map((area) =>
-                area.venues.length >= 1
-                  ? area.venues.map((venue: CardType) => (
-                      <Card key={venue.id} {...venue} breadcrumb="venue" />
-                    ))
-                  : null,
-              )
+              area.venues.length >= 1
+                ? area.venues.map((venue: CardType) => (
+                  <Card key={venue.id} {...venue} breadcrumb="venue" />
+                ))
+                : null,
+            )
             : null}
         </div>
       </>
@@ -81,7 +81,7 @@ type AreasTemplateTypes = {
       };
       state: "california" | "nevada";
       slug: string;
-      image: ImageWithAspectType;
+      image: HeroSEOImageType;
       areas: {
         name: string;
         slug: string;
@@ -103,12 +103,12 @@ type AreasTemplateTypes = {
 };
 const AreasTemplate = ({ data }: AreasTemplateTypes) => {
   // Using Project Heros is interesting but I'm not sure if it's right I was just trying to get something more
-  let areaProjectHeros: ImageWithAspectType[] = [];
+  let areaProjectHeros: HeroSEOImageType[] = [];
   if (data.strapiArea.projects) {
     areaProjectHeros = data.strapiArea.projects
       .map((project) => project.image)
       .filter(
-        (img): img is ImageWithAspectType =>
+        (img): img is HeroSEOImageType =>
           !!img && !!img.localFile?.childImageSharp?.gatsbyImageData,
       );
 
@@ -117,7 +117,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         if (area.projects.length > 0) {
           area.projects.forEach((project) => {
             if (project.image?.localFile?.childImageSharp?.gatsbyImageData) {
-              areaProjectHeros.push(project.image as ImageWithAspectType);
+              areaProjectHeros.push(project.image as HeroSEOImageType);
             }
           });
         }
@@ -147,6 +147,15 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
   // console.log(areaSubAreaProjects);
   const areaSubAreaProjectsArray = Array.from(areaSubAreaProjects);
   // console.log(areaSubAreaProjectsArray);
+
+  console.log(data.strapiArea.venues)
+  console.log(data.strapiArea.areas.map((area) => area.name))
+  console.log(data.strapiArea.areas.map((area) => area.venues))
+
+  const allVenues = [
+    ...data.strapiArea.venues,
+    ...data.strapiArea.areas.flatMap((area) => area.venues),
+  ];
 
   return (
     <>
@@ -213,21 +222,18 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         </section>
       ) : null}
 
-      <div className="main">
+      <div className="above-deck">
         <hr />
-        <Start
-          className="button--left-align"
-          path={`areas-services-${data.strapiArea.slug}`}
-        />
+        <h3 className="elbrus">
+          Wedding Venues in {data.strapiArea.title} we create lighting for
+        </h3>
       </div>
 
-      <Venues
-        name={data.strapiArea.title}
-        venues={data.strapiArea.venues}
-        areas={data.strapiArea.areas}
-      />
-
-      {/* // TODO: where in the state do we work */}
+      <div className="deck">
+        {allVenues.map((venue: CardType) => (
+          <Card key={venue.id} {...venue} breadcrumb="venue" />
+        ))}
+      </div>
 
       <hr />
 
@@ -265,7 +271,7 @@ export const query = graphql`
       slug
 
       image {
-        ...imageWithAspectFragment
+        ...heroSEOImageFragment
       }
 
       projects {
@@ -275,8 +281,12 @@ export const query = graphql`
         excerpt
 
         image {
-          ...imageWithAspectFragment
+          ...heroSEOImageFragment
         }
+      }
+
+      venues {
+        ...venueCardFragment
       }
 
       areas {
@@ -295,7 +305,7 @@ export const query = graphql`
           excerpt
 
           image {
-            ...imageWithAspectFragment
+            ...heroSEOImageFragment
           }
         }
       }

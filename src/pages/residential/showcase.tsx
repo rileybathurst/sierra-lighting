@@ -136,7 +136,7 @@ function ResidentialShowcase() {
       <Header />
 
       <main>
-        <h1 className="mixta">Residential Showcase</h1>
+        <h1>Residential Showcase</h1>
         <div className="react-markdown">
           <ReactMarkdown>
             {strapiService.showcaseDescription.data.showcaseDescription}

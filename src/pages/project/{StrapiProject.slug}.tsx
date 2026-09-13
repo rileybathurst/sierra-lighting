@@ -18,7 +18,7 @@ import Start from "../../components/start";
 import StateAbbreviation from "../../components/state-abbreviation";
 import Testimonial from "../../components/testimonial";
 import type { CardType } from "../../types/card-type";
-import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
+import type { HeroSEOImageType } from "../../types/hero-seo-image-type";
 import type TestimonialTypes from "../../types/testimonial-types";
 import type VideoTypes from "../../types/video-types";
 
@@ -42,8 +42,8 @@ type ProjectPageTypes = {
       slug: string;
 
       ogimage: string;
-      image: ImageWithAspectType;
-      gallery: ImageWithAspectType[];
+      image: HeroSEOImageType;
+      gallery: HeroSEOImageType[];
 
       lights: CardType[];
 
@@ -155,11 +155,11 @@ export const query = graphql`
       }
 
 			image {
-				...imageWithAspectFragment
+				...heroSEOImageFragment
 			}
 
 			gallery {
-				...imageWithAspectFragment
+				...heroSEOImageFragment
 			}
 
 			lights {
@@ -322,9 +322,9 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
       )}
 
       {data.strapiProject.venue ||
-      data.strapiProject.area ||
-      data.strapiProject.vendors.length > 0 ||
-      data.strapiProject.project_single_use_links ? (
+        data.strapiProject.area ||
+        data.strapiProject.vendors.length > 0 ||
+        data.strapiProject.project_single_use_links ? (
         <React.Fragment>
           <hr className="pelican" />
           <div className="attributes">
@@ -354,28 +354,28 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
             {/* // TODO: florists shouldnt be plural im not sure which others are like this */}
             {data.strapiProject.vendors.length > 0
               ? data.strapiProject.vendors.map((vendor) =>
-                  vendor.collaborator?.industry ? (
-                    <Attribute
-                      key={String(vendor.id)}
-                      {...{
-                        [vendor.collaborator.industry]: {
-                          name: vendor.name,
-                          link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`,
-                        },
-                      }}
-                    />
-                  ) : vendor.collaboratorAncillary ? (
-                    <Attribute
-                      key={String(vendor.id)}
-                      {...{
-                        [vendor.collaboratorAncillary]: {
-                          name: vendor.name,
-                          link: `/vendor/${vendor.slug}`,
-                        },
-                      }}
-                    />
-                  ) : null,
-                )
+                vendor.collaborator?.industry ? (
+                  <Attribute
+                    key={String(vendor.id)}
+                    {...{
+                      [vendor.collaborator.industry]: {
+                        name: vendor.name,
+                        link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`,
+                      },
+                    }}
+                  />
+                ) : vendor.collaboratorAncillary ? (
+                  <Attribute
+                    key={String(vendor.id)}
+                    {...{
+                      [vendor.collaboratorAncillary]: {
+                        name: vendor.name,
+                        link: `/vendor/${vendor.slug}`,
+                      },
+                    }}
+                  />
+                ) : null,
+              )
               : null}
 
             {data.strapiProject.project_single_use_links?.map((singleLink) => (

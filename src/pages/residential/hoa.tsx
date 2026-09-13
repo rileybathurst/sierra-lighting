@@ -73,7 +73,7 @@ function HoaPage() {
       <Header />
 
       <main>
-        <h1 className="mixta">Residential HOAs</h1>
+        <h1>Residential HOAs</h1>
         <div className="react-markdown">
           <ReactMarkdown>
             {/* // TODO: move to strapi if we use this */}

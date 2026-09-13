@@ -7,7 +7,7 @@ import Header from "../components/header";
 import Hero from "../components/hero";
 import { SEO } from "../components/seo";
 import Socials from "../components/socials";
-import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 import type { SocialTypes } from "../types/social-types";
 
 type JobTypes = {
@@ -43,7 +43,7 @@ type WorkPageTypes = {
     };
     strapiWork: {
       excerpt: string;
-      hero: ImageWithAspectType;
+      hero: HeroSEOImageType;
       sites: {
         id: string;
       }[];
@@ -114,8 +114,8 @@ export const Head = ({ data }: WorkPageTypes) => {
     <SEO
       title={`Work for ${data.strapiAbout.businessName}`}
       description={`Explore current job openings at ${data.strapiAbout.businessName} in ${data.strapiAbout.addressLocality}, ${data.strapiAbout.addressRegion}. ${data.strapiWork.excerpt}`}
-      // TODO:
-      // image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
+    // TODO:
+    // image="https://sierralighting.s3.us-west-1.amazonaws.com/sierra_lighting-work--og_imge.jpg"
     >
       {data.allStrapiJob.nodes.map((job: JobTypes) => (
         <Script type="application/ld+json" key={job.id}>
@@ -130,8 +130,8 @@ export const Head = ({ data }: WorkPageTypes) => {
               "validThrough": "${new Date(job.validThrough).toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" })}",
               "jobLocation": [
                 ${job.areas
-                  .map(
-                    (area) => `
+              .map(
+                (area) => `
                   {
                     "@type": "Place",
                     "address": {
@@ -143,8 +143,8 @@ export const Head = ({ data }: WorkPageTypes) => {
                     }
                   }
                 `,
-                  )
-                  .join(",")}
+              )
+              .join(",")}
               ],
               "hiringOrganization": {
                 "@type": "Organization",

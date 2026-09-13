@@ -10,7 +10,7 @@ import Header from "../../components/header";
 import SEO from "../../components/seo";
 import Start from "../../components/start";
 import type { CardType } from "../../types/card-type";
-import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
+import type { HeroSEOImageType } from "../../types/hero-seo-image-type";
 
 export const query = graphql`
   query TeamQuery($slug: String!) {
@@ -41,7 +41,7 @@ type TeamTypes = {
           bio: string;
         };
       };
-      avatar: ImageWithAspectType;
+      avatar: HeroSEOImageType;
       projects: CardType[];
     };
     strapiAbout: {

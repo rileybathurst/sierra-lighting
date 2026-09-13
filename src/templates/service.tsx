@@ -154,32 +154,32 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
     order: number;
     id: React.Key;
   }[] = [
-    // * default to project link to satisfy types
-    {
-      card: {},
-      title: false,
-      breadcrumb: "",
-      cardBreadcrumb: "project",
-      order: 0,
-      id: "",
-    },
-    {
-      card: {},
-      title: false,
-      breadcrumb: "",
-      cardBreadcrumb: "project",
-      order: 1,
-      id: "",
-    },
-    {
-      card: {},
-      title: false,
-      breadcrumb: "",
-      cardBreadcrumb: "project",
-      order: 2,
-      id: "",
-    },
-  ];
+      // * default to project link to satisfy types
+      {
+        card: {},
+        title: false,
+        breadcrumb: "",
+        cardBreadcrumb: "project",
+        order: 0,
+        id: "",
+      },
+      {
+        card: {},
+        title: false,
+        breadcrumb: "",
+        cardBreadcrumb: "project",
+        order: 1,
+        id: "",
+      },
+      {
+        card: {},
+        title: false,
+        breadcrumb: "",
+        cardBreadcrumb: "project",
+        order: 2,
+        id: "",
+      },
+    ];
 
   // console.log(base);
 
@@ -267,7 +267,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
                   {item.breadcrumb.includes("project")
                     ? "Projects"
                     : item.breadcrumb.charAt(0).toUpperCase() +
-                      item.breadcrumb.slice(1)}
+                    item.breadcrumb.slice(1)}
                 </Link>
               </h4>
             ) : null}
@@ -360,7 +360,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
         )}
 
         <section className="stork">
-          <h1 className="mixta">
+          <h1>
             {/* // TODO: needs a clamp on the size */}
             {data.strapiService.name} Lighting Installation
           </h1>

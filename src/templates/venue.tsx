@@ -12,8 +12,9 @@ import { SEO } from "../components/seo";
 import StateAbbreviation from "../components/state-abbreviation";
 import Testimonial from "../components/testimonial";
 import type { CardType } from "../types/card-type";
-import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 import type TestimonialTypes from "../types/testimonial-types";
+import { data } from "../pages/about";
 
 type VenueViewTypes = {
   data: {
@@ -45,7 +46,7 @@ type VenueViewTypes = {
           address: string;
         };
       };
-      venueImage: ImageWithAspectType;
+      venueImage: HeroSEOImageType;
       testimonials: TestimonialTypes[] | null;
 
       projects: CardType[];
@@ -55,6 +56,10 @@ type VenueViewTypes = {
     };
     strapiService: {
       featured_lights: CardType[];
+    };
+
+    strapiAbout: {
+      businessName: string;
     };
   };
 };
@@ -80,16 +85,16 @@ const VenueView = ({ data }: VenueViewTypes) => {
         <p>{data.strapiVenue.description}</p>
 
         {data.strapiVenue.testimonials &&
-        data.strapiVenue.testimonials.length > 0 ? (
+          data.strapiVenue.testimonials.length > 0 ? (
           <Testimonial {...data.strapiVenue.testimonials[0]} />
         ) : null}
 
         <hr />
-        {/* // TODO this could probably be more structured with seo */}
+
         {data.strapiVenue.streetAddress ||
-        data.strapiVenue.addressLocality ||
-        data.strapiVenue.addressRegion ||
-        data.strapiVenue.postalCode ? (
+          data.strapiVenue.addressLocality ||
+          data.strapiVenue.addressRegion ||
+          data.strapiVenue.postalCode ? (
           <address>
             {data.strapiVenue.streetAddress &&
               `${data.strapiVenue.streetAddress},`}
@@ -102,7 +107,11 @@ const VenueView = ({ data }: VenueViewTypes) => {
         ) : null}
 
         {/* // * this is the deprecated version */}
-        {data.strapiVenue?.address?.data?.address ? (
+        {!data.strapiVenue.streetAddress &&
+          !data.strapiVenue.addressLocality &&
+          !data.strapiVenue.addressRegion &&
+          !data.strapiVenue.postalCode &&
+          data.strapiVenue?.address?.data?.address ? (
           <address>
             <div className="react-markdown">
               <Markdown>{data.strapiVenue.address.data.address}</Markdown>
@@ -146,10 +155,9 @@ const VenueView = ({ data }: VenueViewTypes) => {
         areas={data.strapiVenue.area.areas}
       /> */}
 
-      {/* // TODO: what can we create here */}
       <section className="above-deck">
         <hr />
-        <h3>
+        <h3 className="kilimanjaro">
           Explore the lighting styles we can create at {data.strapiVenue.name}
         </h3>
       </section>
@@ -204,7 +212,6 @@ const VenueView = ({ data }: VenueViewTypes) => {
         </div>
       )}
 
-      {/* // TODO: I think above breadcrumb could be a thing depending on design */}
       <hr />
 
       {/* // ? I dont think we have non featured pages anymore */}
@@ -270,7 +277,7 @@ export const query = graphql`
         postalCode
 
         venueImage {
-          ...imageWithAspectFragment
+          ...heroSEOImageFragment
         }
 
         projects {
@@ -304,18 +311,35 @@ export const query = graphql`
           ...lightCard
         }
       }
+
+      strapiAbout{
+        businessName
+      }
   }
 `;
 
 export const Head = ({ data }: VenueViewTypes) => {
+  const { streetAddress, addressLocality, addressRegion, postalCode } =
+    data.strapiVenue;
+  const structuredAddress = [
+    streetAddress,
+    addressLocality,
+    addressRegion,
+    postalCode,
+  ]
+    .filter(Boolean)
+    .join(", ");
+  const legacyAddress = data.strapiVenue.address?.data?.address?.replace(
+    /[\r\n]+/g,
+    " ",
+  );
+  const address = structuredAddress || legacyAddress || "";
+
   return (
     <SEO
       title={`${data.strapiVenue.name} Wedding Venue`}
-      // TODO: Sierra lighting can create lighting at
-      description={data.strapiVenue.excerpt}
+      description={`${data.strapiAbout.businessName} creates beautiful lighting for weddings and events at ${data.strapiVenue.name} located at ${address}`}
       image={data.strapiVenue?.venueImage}
-      // url={`venue/${data.strapiVenue.slug}`}
-      // TODO: is this actually three levels deep? and why is it featured and state etc
       breadcrumbs={[
         {
           name: "Venues",
@@ -339,6 +363,7 @@ export const Head = ({ data }: VenueViewTypes) => {
           "@type": "Place",
           name: data.strapiVenue.name,
           description: data.strapiVenue?.excerpt,
+          image: data.strapiVenue?.venueImage?.localFile?.url,
 
           url: data.strapiVenue?.slug,
           mainEntityOfPage: {

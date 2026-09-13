@@ -5,11 +5,10 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import * as React from "react";
 import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 import type { ImageType } from "../types/image-type";
-import type { ImageWithAspectType } from "../types/image-with-aspect-type";
 import { PinterestHref } from "./pinterest-href";
 
 type GalleryType = {
-  gallery: ImageWithAspectType[];
+  gallery: HeroSEOImageType[];
   caption?: string;
   badge?: boolean;
   pinterest?: boolean;
@@ -143,7 +142,7 @@ function Slider({ gallery, badge, pinterest }: GalleryType) {
 
 type HeroType = {
   image: HeroSEOImageType;
-  gallery?: ImageWithAspectType[];
+  gallery?: HeroSEOImageType[];
   badge?: boolean;
   name?: string;
   detail?: ImageType;
@@ -165,10 +164,10 @@ function Hero({ image, gallery, badge, name, detail, pinterest }: HeroType) {
   }
 
   // * adding video in here starts adding quite a few things do we do something else with the gallery if we have a video
-  let combinedGallery: ImageWithAspectType[] = [];
+  let combinedGallery: HeroSEOImageType[] = [];
   if (gallery && gallery.length > 0) {
     if (image) {
-      const imageWithAlt: ImageWithAspectType = {
+      const imageWithAlt: HeroSEOImageType = {
         localFile: {
           ...image.localFile,
           url: undefined,

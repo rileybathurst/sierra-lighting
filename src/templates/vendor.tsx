@@ -15,7 +15,9 @@ import { SEO } from "../components/seo";
 import Socials from "../components/socials";
 import TestimonialRanking from "../components/testimonial-ranking";
 import type { CardType } from "../types/card-type";
-import type { ImageWithAspectType } from "../types/image-with-aspect-type";
+import type { HeroSEOImageType } from "../types/hero-seo-image-type";
+import WebsiteLink from "../components/website-link";
+import Testimonial from "../components/testimonial";
 
 interface VendorTemplateViewTypes {
   data: {
@@ -42,7 +44,7 @@ interface VendorTemplateViewTypes {
         };
       }[];
 
-      profile: ImageWithAspectType;
+      profile: HeroSEOImageType;
 
       collaborator: {
         industry: string;
@@ -64,6 +66,10 @@ interface VendorTemplateViewTypes {
 
     allStrapiVendor: {
       nodes: CardType[];
+    };
+
+    strapiAbout: {
+      businessName: string;
     };
   };
 }
@@ -87,31 +93,17 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         <p>{data.strapiVendor.description}</p>
 
         {data.strapiVendor.testimonials.length > 0 ? (
-          <div className="main">
-            <ul className="testimonials">
-              {/* // TODO: component this */}
-              {data.strapiVendor.testimonials.map((testimonial) => (
-                <li key={testimonial.id} className="testimonial">
-                  <figure>
-                    <blockquote>
-                      <h3 className="sr-only">{testimonial.title}</h3>
-                      {/* // TODO stars */}
-                      <TestimonialRanking stars={testimonial.stars} />
-                      <p className="testimonial--quote_mark range">&ldquo;</p>
-                      <p>{testimonial.review}</p>
-                      <figcaption>
-                        <h4 className="range">{testimonial.customer}</h4>
-                        <p className="crest">
-                          <strong>{data.strapiVendor.name}</strong> -{" "}
-                          {testimonial.position}
-                        </p>
-                      </figcaption>
-                    </blockquote>
-                  </figure>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <section className="testimonials">
+            {data.strapiVendor.testimonials.map((testimonial) => (
+              <Testimonial
+                key={testimonial.id}
+                customer={testimonial.customer}
+                position={testimonial.position}
+                review={testimonial.review}
+                stars={testimonial.stars}
+              />
+            ))}
+          </section>
         ) : null}
 
         {data.strapiVendor.website ? (
@@ -119,35 +111,15 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
             <hr />
 
             <p>
-              Website&nbsp;
-              {/* // TODO this seems like I could have a global function */}
-              {data.strapiVendor.website.includes("https://") ? (
-                <a
-                  href={data.strapiVendor.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={data.strapiVendor.website}
-                >
-                  <StrShort website={data.strapiVendor.website} />
-                </a>
-              ) : (
-                <a
-                  href={`https://${data.strapiVendor.website}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={data.strapiVendor.website}
-                >
-                  <StrShort website={data.strapiVendor.website} />
-                </a>
-              )}
+              Website <WebsiteLink website={data.strapiVendor.website} />
             </p>
           </React.Fragment>
         ) : null}
 
         {data.strapiVendor.social.length > 0 ||
-        data.strapiVendor.instagram ||
-        data.strapiVendor.pinterest ||
-        data.strapiVendor.facebook ? (
+          data.strapiVendor.instagram ||
+          data.strapiVendor.pinterest ||
+          data.strapiVendor.facebook ? (
           <React.Fragment>
             <hr />
             {data.strapiVendor.social.length > 0 && (
@@ -156,8 +128,8 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
             {/* // * deprecated but theres too much here to migrate */}
             {data.strapiVendor.instagram ||
-            data.strapiVendor.pinterest ||
-            data.strapiVendor.facebook ? (
+              data.strapiVendor.pinterest ||
+              data.strapiVendor.facebook ? (
               <DeprecatedSocials
                 instagram={data.strapiVendor.instagram}
                 pinterest={data.strapiVendor.pinterest}
@@ -175,64 +147,70 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
             />
           </React.Fragment>
         ) : null}
-      </main>
+      </main >
 
-      {data.strapiVendor.projects.length > 0 ? (
-        <>
-          <div className="above-deck">
-            <hr />
-            <h4>Projects we have worked with {data.strapiVendor.name} on</h4>
-          </div>
-          <div className="deck">
-            {data.strapiVendor.projects.map((project: CardType) => (
-              <Card key={project.id} {...project} breadcrumb="project" />
-            ))}
-          </div>
-        </>
-      ) : null}
-
-      {data.strapiVendor.collaborator ? (
-        data.allStrapiVendor.nodes.length > 0 ? (
+      {
+        data.strapiVendor.projects.length > 0 ? (
           <>
             <div className="above-deck">
               <hr />
-              <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
-                <h4>
-                  Other{" "}
-                  <span className="capitalize">
-                    {data.strapiVendor.collaborator.industry}
-                  </span>{" "}
-                  Vendors
-                </h4>
-              </Link>
+              <h4>Projects we have worked with {data.strapiVendor.name} on</h4>
             </div>
-
             <div className="deck">
-              {data.allStrapiVendor.nodes.map((vendor: CardType) =>
-                vendor.collaborator ? (
-                  <Card
-                    key={vendor.id}
-                    {...vendor}
-                    breadcrumb={`vendor/${vendor.collaborator.slug}` as const}
-                  />
-                ) : (
-                  <Card key={vendor.id} {...vendor} breadcrumb="vendor" />
-                ),
-              )}
+              {data.strapiVendor.projects.map((project: CardType) => (
+                <Card key={project.id} {...project} breadcrumb="project" />
+              ))}
             </div>
           </>
         ) : null
-      ) : null}
+      }
 
-      {data.strapiVendor.projects.length === 0 &&
-      data.allStrapiVendor.nodes.length === 0 ? (
-        <div className="main">
-          <h3 className="crest">Looking for something else?</h3>
-          <h2 className="range">
-            <Link to="/vendor">Other Wedding Vendors</Link>
-          </h2>
-        </div>
-      ) : null}
+      {
+        data.strapiVendor.collaborator ? (
+          data.allStrapiVendor.nodes.length > 0 ? (
+            <>
+              <div className="above-deck">
+                <hr />
+                <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
+                  <h4>
+                    Other{" "}
+                    <span className="capitalize">
+                      {data.strapiVendor.collaborator.industry}
+                    </span>{" "}
+                    Vendors
+                  </h4>
+                </Link>
+              </div>
+
+              <div className="deck">
+                {data.allStrapiVendor.nodes.map((vendor: CardType) =>
+                  vendor.collaborator ? (
+                    <Card
+                      key={vendor.id}
+                      {...vendor}
+                      breadcrumb={`vendor/${vendor.collaborator.slug}` as const}
+                    />
+                  ) : (
+                    <Card key={vendor.id} {...vendor} breadcrumb="vendor" />
+                  ),
+                )}
+              </div>
+            </>
+          ) : null
+        ) : null
+      }
+
+      {
+        data.strapiVendor.projects.length === 0 &&
+          data.allStrapiVendor.nodes.length === 0 ? (
+          <div className="main">
+            <h3 className="crest">Looking for something else?</h3>
+            <h2 className="range">
+              <Link to="/vendor">Other Wedding Vendors</Link>
+            </h2>
+          </div>
+        ) : null
+      }
 
       <hr />
 
@@ -327,16 +305,18 @@ export const query = graphql`
         }
       }
 
+      strapiAbout {
+        businessName
+      }
+
   }
 `;
-
-// ! vendor and venue need image to be sorted
 
 export const Head = ({ data }: VendorTemplateViewTypes) => {
   return (
     <SEO
       title={`${data.strapiVendor.name}`}
-      description={data.strapiVendor.excerpt}
+      description={`${data.strapiAbout.businessName} collaborates with ${data.strapiVendor.name} to create beautiful lighting for weddings and events.`}
       url={`vendor/${data.strapiVendor.slug}`}
       image={data.strapiVendor?.profile}
       breadcrumbs={[

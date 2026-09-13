@@ -11,7 +11,7 @@ import Start from "../../components/start";
 import Suite from "../../components/suite";
 import type { CardType } from "../../types/card-type";
 import type { GatsbyImageType } from "../../types/gatsby-image";
-import type { ImageWithAspectType } from "../../types/image-with-aspect-type";
+import type { HeroSEOImageType } from "../../types/hero-seo-image-type";
 import type { SuiteType } from "../../types/suite-type";
 
 interface AliasTypes {
@@ -72,13 +72,13 @@ export const query = graphql`
 			alias
 
 			image {
-				...imageWithAspectFragment
+				...heroSEOImageFragment
 			}
 			residentialHero {
-				...imageWithAspectFragment
+				...heroSEOImageFragment
 			}
 			commercialHero {
-				...imageWithAspectFragment
+				...heroSEOImageFragment
 			}
 
 			detail {
@@ -99,7 +99,7 @@ export const query = graphql`
 			}
 
 			altGallery {
-				...imageWithAspectFragment
+				...heroSEOImageFragment
 			}
 
 			bulbs {
@@ -220,20 +220,20 @@ type LightPageTypes = {
         lights: CardType[];
       }[];
       alias?: string | null;
-      image: ImageWithAspectType;
+      image: HeroSEOImageType;
       detail?: GatsbyImageType | null;
-      altGallery?: ImageWithAspectType[] | null;
+      altGallery?: HeroSEOImageType[] | null;
       projects?: CardType[] | null;
-      residentialHero?: ImageWithAspectType | null;
-      commercialHero?: ImageWithAspectType | null;
+      residentialHero?: HeroSEOImageType | null;
+      commercialHero?: HeroSEOImageType | null;
       bulbs?:
-        | {
-            id: React.Key;
-            name: string;
-            // excerpt: string;
-            detail: GatsbyImageType;
-          }[]
-        | null;
+      | {
+        id: React.Key;
+        name: string;
+        // excerpt: string;
+        detail: GatsbyImageType;
+      }[]
+      | null;
     };
     allStrapiLight: {
       nodes: CardType[];
@@ -451,11 +451,11 @@ const LightPage = ({ data, location }: LightPageTypes) => {
               service.slug === "residential" || service.slug === "commercial",
           )
             ? data.holiday.nodes.map((process) => {
-                return <li key={process.id}>{process.name}</li>;
-              })
+              return <li key={process.id}>{process.name}</li>;
+            })
             : data.wedding.nodes.map((process) => {
-                return <li key={process.id}>{process.name}</li>;
-              })}
+              return <li key={process.id}>{process.name}</li>;
+            })}
         </ol>
 
         {/* // TODO: design this in storybook  */}

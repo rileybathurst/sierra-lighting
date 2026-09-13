@@ -1,5 +1,3 @@
-// TODO: organize by light group
-
 import { graphql, Link } from "gatsby";
 import React from "react";
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
@@ -9,6 +7,7 @@ import Header from "../components/header";
 import SEO from "../components/seo";
 import Start from "../components/start";
 import type { CardType } from "../types/card-type";
+import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 
 type ServiceProjectsTypes = {
   data: {
@@ -23,6 +22,9 @@ type ServiceProjectsTypes = {
         }[];
       })[];
     };
+    strapiProject: {
+      image: HeroSEOImageType;
+    }
     allStrapiTheme: {
       nodes: {
         id: React.Key;
@@ -31,10 +33,14 @@ type ServiceProjectsTypes = {
         excerpt: string;
       }[];
     };
+
+    strapiAbout: {
+      businessName: string;
+    };
   };
 };
 
-const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
+const ServiceProjectsView = ({ data }: ServiceProjectsTypes) => {
   const projects = data.strapiService.projects.toReversed();
   const projectsByThemeId = new Map<
     React.Key,
@@ -68,8 +74,8 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
       <Header />
 
       <main>
-        <h1>Projects for {data.strapiService.name}</h1>
-        <p>{data.strapiService.excerpt}</p>
+        <h1 className="margin-block-end-vinson">{data.strapiService.name} Projects</h1>
+        <p className="margin-block-end-kilimanjaro">{data.strapiService.excerpt}</p>
         <Start />
         <hr />
 
@@ -149,7 +155,7 @@ const ServiceLightView = ({ data }: ServiceProjectsTypes) => {
   );
 };
 
-export default ServiceLightView;
+export default ServiceProjectsView;
 
 export const query = graphql`
   query ServiceProjectsTemplate(
@@ -163,11 +169,17 @@ export const query = graphql`
       excerpt
 
       projects {
-          ...projectCard
+        ...projectCard
 
         themes {
           id
         }
+      }
+    }
+
+    strapiProject(services: {elemMatch: {slug: {eq: "residential"}}}) {
+      image {
+      ...heroSEOImageFragment
       }
     }
 
@@ -180,15 +192,20 @@ export const query = graphql`
       }
     }
 
+    strapiAbout {
+      businessName
+    }
+
   }
 `;
 
 export const Head = ({ data }: ServiceProjectsTypes) => {
   return (
     <SEO
-      title={`${data.strapiService.name} projects completed by Sierra Lighting`}
-      // description={data.strapiService.excerpt}
+      title={`${data.strapiService.name} projects completed by ${data.strapiAbout.businessName}`}
+      description={data.strapiService.excerpt}
       url={`${data.strapiService.slug}/projects`}
+      image={data.strapiProject.image}
       breadcrumbs={[
         {
           name: data.strapiService.name,
@@ -199,7 +216,6 @@ export const Head = ({ data }: ServiceProjectsTypes) => {
           item: `${data.strapiService.slug}/projects`,
         },
       ]}
-      // TODO: image
     />
   );
 };

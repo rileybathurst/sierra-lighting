@@ -1,7 +1,4 @@
-// TODO: organize by light group order especially wedding is wrong
-
 import { graphql, Link } from "gatsby";
-import type { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
 import ReactMarkdown from "react-markdown";
@@ -10,8 +7,9 @@ import Header from "../components/header";
 import ImageCheck from "../components/image-check";
 import SEO from "../components/seo";
 import type { CardType } from "../types/card-type";
+import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 
-interface ServiceLightViewTypes {
+type ServiceLightViewTypes = {
   data: {
     strapiService: {
       id: string;
@@ -23,6 +21,7 @@ interface ServiceLightViewTypes {
         };
       };
       excerpt: string;
+      ogimage: HeroSEOImageType;
     };
     allStrapiService: {
       nodes: {
@@ -31,45 +30,22 @@ interface ServiceLightViewTypes {
         slug: string;
       }[];
     };
-
-    allStrapiLight: {
-      nodes: (CardType & {
-        light_groups: {
-          name: string;
-          slug: string;
-          excerpt: string;
-          weddingOrder: number;
-          xmasOrder: number;
-        }[];
-        // TODO: I can simplify this for a hero type if thats set or do it
-        residentialHero?: {
-          localFile: {
-            childImageSharp: {
-              gatsbyImageData: IGatsbyImageData;
-            };
-          };
-          alternativeText: string;
-        };
-        commercialHero?: {
-          localFile: {
-            childImageSharp: {
-              gatsbyImageData: IGatsbyImageData;
-            };
-          };
-          alternativeText: string;
-        };
-      })[];
-    };
     allStrapiLightGroup: {
       nodes: {
+        id: React.Key;
         name: string;
         slug: string;
         weddingOrder: number;
         xmasOrder: number;
+        excerpt: string;
+        lights: (CardType & {
+          services: { slug: string }[];
+        })[];
       }[];
     };
   };
 }
+
 const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
   // sort by value
   const events = ["Wedding", "Non-wedding Events", "Commercial Events"];
@@ -84,24 +60,14 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
     data.allStrapiLightGroup.nodes.sort((a, b) => a.xmasOrder - b.xmasOrder);
   }
 
-  const lightGroupSet = new Set<string>();
-  for (const light of data.allStrapiLight.nodes) {
-    light.light_groups.forEach((g) => {
-      lightGroupSet.add(g.slug);
-    });
-  }
-  const lightGroupArray = Array.from(lightGroupSet) as string[];
-
   return (
     <>
       <Header />
 
       <main>
-        {/* // TODO: Lighting types for Wedding is not a well written title */}
-        {/* // ? I thought h1 always had styling? */}
         {/* // * aconcagua for a long headline */}
-        <h1 className="mixta aconcagua">
-          Lighting types for {data.strapiService.name}
+        <h1 className="aconcagua">
+          {data.strapiService.name} Lighting products
         </h1>
         <div className="react-markdown">
           <ReactMarkdown>
@@ -117,69 +83,38 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
         <hr />
         <p>Filter by type:</p>
         <ul>
-          {data.allStrapiLightGroup.nodes
-            .filter((group) => lightGroupArray.includes(group.slug))
-
-            // TODO: sort by value
-            /* if (data.strapiService.slug === 'wedding') {
-                        .sort((a, b) => a.weddingOrder - b.weddingOrder)
-                      } else if(data.strapiService.slug === 'christmas') {
-                        .sort((a, b) => a.xmasOrder - b.xmasOrder)
-                      } */
-            // {data.strapiService.slug}
-            // ? do I need to put the sort order before the return?
-
-            .map((group) => (
-              <li key={group.slug}>
-                <Link to={`#${group.slug}`}>{group.name}</Link>
-              </li>
-            ))}
+          {data.allStrapiLightGroup.nodes.map((group) => (
+            <li key={group.slug}>
+              <Link to={`#${group.slug}`}>{group.name}</Link>
+            </li>
+          ))}
         </ul>
       </main>
 
       <section>
-        {lightGroupArray.map((group) =>
-          data.allStrapiLight.nodes
-            .filter((light) =>
-              light.light_groups.map((g) => g.slug).includes(group),
-            )
-            .slice(0, 1)
-            .map((light) => (
-              <React.Fragment key={group}>
-                <div className="above-deck" id={light.light_groups[0].slug}>
-                  <hr />
-                  <h2>
-                    <Link to={`/light-group/${light.light_groups[0].slug}`}>
-                      {light.light_groups[0].name}
-                    </Link>
-                  </h2>
-                </div>
-                <div className="deck">
-                  {/* // ? can i pass this as a spread? */}
-                  {data.allStrapiLight.nodes
-                    .filter((light) =>
-                      light.light_groups.map((g) => g.slug).includes(group),
-                    )
-                    .map(
-                      (light) =>
-                        light.image && (
-                          <ImageCheck
-                            key={light.id}
-                            title={light.title}
-                            slug={light.slug ?? ""}
-                            excerpt={light.excerpt ?? ""}
-                            breadcrumb="light"
-                            image={light.image}
-                            commercialHero={light.commercialHero}
-                            residentialHero={light.residentialHero}
-                            query={data.strapiService.slug}
-                          />
-                        ),
-                    )}
-                </div>
-              </React.Fragment>
-            )),
-        )}
+        {data.allStrapiLightGroup.nodes.map((group) => (
+          <React.Fragment key={group.id}>
+            <div className="above-deck" id={group.slug}>
+              <hr />
+              <h2>
+                <Link to={`/light-group/${group.slug}`}>
+                  {group.name}
+                </Link>
+              </h2>
+              <p>{group.excerpt}</p>
+            </div>
+            <div className="deck">
+              {group.lights
+                .filter(light => light.services.some(service => service.slug === data.strapiService.slug))
+                .map((light) =>
+                  <ImageCheck
+                    key={light.id}
+                    {...light}
+                  />
+                )}
+            </div>
+          </React.Fragment>
+        ))}
       </section>
 
       <section className="main">
@@ -225,6 +160,9 @@ export const query = graphql`
           description
         }
       }
+      ogimage {
+        ...heroSEOImageFragment
+      }
     }
 
     allStrapiService(filter: {slug: {ne: $slug}}) {
@@ -235,53 +173,28 @@ export const query = graphql`
       }
     }
 
-    allStrapiLight(
-      filter: {services: {elemMatch: {slug: {eq: $slug}}}}
-      ) {
-      nodes {
-        ...lightCard
-        light_groups {
-          id
-          name
-          slug
-          excerpt
-          weddingOrder
-          xmasOrder
-        }
-
-        residentialHero {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                breakpoints: [111, 165, 222, 444, 880]
-                width: 222
-              )
-            }
-          }
-          alternativeText
-        }
-        
-        commercialHero {
-          localFile {
-            childImageSharp {
-              gatsbyImageData(
-                breakpoints: [111, 165, 222, 444, 880]
-                width: 222
-              )
-            }
-          }
-          alternativeText
-        }
-      }
-    }
-
-    allStrapiLightGroup {
+    allStrapiLightGroup(filter: {services: {elemMatch: {slug: {eq: $slug}}}}) {
       nodes {
         id
         name
         slug
+        excerpt
         weddingOrder
         xmasOrder
+
+        lights {
+          ...lightCard
+          services {
+            slug
+          }
+          
+          residentialHero {
+            ...cardImageFragment
+          }
+          commercialHero {
+            ...cardImageFragment
+          }
+        }
       }
     }
 
@@ -294,6 +207,7 @@ export const Head = ({ data }: ServiceLightViewTypes) => {
       title={`Lighting types for ${data.strapiService.name}`}
       description={data.strapiService.excerpt}
       url={`${data.strapiService.slug}/lights`}
+      image={data.strapiService.ogimage}
       breadcrumbs={[
         {
           name: data.strapiService.name,
@@ -304,7 +218,6 @@ export const Head = ({ data }: ServiceLightViewTypes) => {
           item: `${data.strapiService.slug}/lights`,
         },
       ]}
-      // TODO: image
     />
   );
 };
