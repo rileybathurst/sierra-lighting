@@ -1,6 +1,6 @@
 /* Index
 - pagination
-- subareas
+- area list
 */
 
 /*------------------*/
@@ -376,23 +376,31 @@ ol li {
 }
 
 /*------------------------------------*/
-
-/*------------------------------------*/
-/* #SUBAREAS */
+/* #AREA LIST */
 /*------------------------------------*/
 
-ul.subareas {
+ul.area-list {
+  list-style: disc;
+  margin-block-start: 0;
+
+  /* biome-ignore lint: controlled speicficity */
+  li {
+    line-height: 1.75rem;
+  }
+
   h2 {
     font-size: var(--elbrus);
     line-height: var(--kilimanjaro);
   }
-}
 
-.sub-area-ul {
-  list-style: none;
-  display: flex;
-  flex-flow: row wrap;
-  gap: var(--vinson);
-  padding-inline-start: 0;
-  margin-block-start: var(--vinson);
+  /* biome-ignore lint: controlled speicficity */
+  ul {
+    list-style: disc;
+    padding-inline-start: var(--vinson);
+  }
+
+  /* * kinda a weird old way to do this but works */
+  @media (min-width: 40rem) {
+    column-count: 2;
+  }
 }

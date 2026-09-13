@@ -58,6 +58,8 @@ function LinkedLook({
   image: LinkedLookImageTypes;
   lights: LinkedLooklightsTypes[];
 }) {
+  const [isFirstLightActive, setIsFirstLightActive] = React.useState(false);
+
   if (lights.length === 1) {
     return (
       <Link to={`/light/${lights[0].slug}`} className="look">
@@ -66,22 +68,37 @@ function LinkedLook({
           alt={image.alternativeText}
         />
         <p>{lights[0].name}</p>
-        {/* // TODO: testiing */}
-        {/* <span>{image.localFile.childImageSharp.gatsbyImageData.images.sources}</span> */}
       </Link>
     );
   }
   if (lights.length > 1) {
     return (
-      <div className="look">
-        <GatsbyImage
-          image={image.localFile.childImageSharp.gatsbyImageData}
-          alt={image.alternativeText}
-        />
+      <div
+        className={`look ${isFirstLightActive ? "first-light-active" : undefined}`}
+      >
+        <Link
+          to={`/light/${lights[0].slug}`}
+          onMouseEnter={() => setIsFirstLightActive(true)}
+          onMouseLeave={() => setIsFirstLightActive(false)}
+          onFocus={() => setIsFirstLightActive(true)}
+          onBlur={() => setIsFirstLightActive(false)}
+        >
+          <GatsbyImage
+            image={image.localFile.childImageSharp.gatsbyImageData}
+            alt={image.alternativeText}
+          />
+        </Link>
         <ul className="lookbook-list">
-          {lights.map((light) => (
+          {lights.map((light, index) => (
             <li key={light.slug}>
-              <Link to={`/light/${light.slug}`}>
+              <Link
+                to={`/light/${light.slug}`}
+                className={
+                  index === 0 && isFirstLightActive
+                    ? "first-light-active"
+                    : undefined
+                }
+              >
                 <span>{light.name}</span>
               </Link>
             </li>
@@ -91,6 +108,7 @@ function LinkedLook({
     );
   }
 
+  console.warn(image.alternativeText, "No lights available for this look");
   return (
     <div className="look">
       <GatsbyImage
@@ -108,7 +126,7 @@ type LookbookTemplateTypes = {
       name: string;
       slug: string;
       lookbooks: {
-        id: string;
+        id: React.Key;
         spread: boolean;
         order: number;
         flex: boolean;
@@ -125,7 +143,7 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
   // usePinterestButton();
 
   type LookbookTypes = {
-    id: string;
+    id: React.Key;
     spread: boolean;
     order: number;
     flex: boolean;
@@ -151,9 +169,8 @@ const LookbookTemplate = ({ data }: LookbookTemplateTypes) => {
 
       <section className="albatross look5">
         <ResponsiveMasonry columnsCountBreakPoints={{ 320: 1, 740: 2, 960: 3 }}>
-          {/* // ? test */}
           {/* this thing is kinda ugly and has no hover state or anything */}
-          <Masonry className="test">
+          <Masonry className="masonry">
             {data.strapiService.lookbooks
               .toReversed()
               .map((lookbook: LookbookTypes) => (

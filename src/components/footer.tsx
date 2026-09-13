@@ -18,7 +18,6 @@ const Footer = ({
   quote?: boolean;
   location?: Location;
 }) => {
-
   // const isWithinBusinessHours = useIsWithinBusinessHours();
 
   const [reviewCount, setReviewCount] = React.useState<number | null>(null);
@@ -97,9 +96,9 @@ const Footer = ({
 
     setCanSend(
       !hasProfanity &&
-      !emailProfanity &&
-      !messageProfanity &&
-      !referralProfanity,
+        !emailProfanity &&
+        !messageProfanity &&
+        !referralProfanity,
     );
 
     return null;

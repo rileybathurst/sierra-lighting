@@ -2,6 +2,8 @@
 /* SINGLES */
 /*------------------------------------*/
 
+/* LAYOUT */
+
 .inline {
   display: inline;
 }
@@ -11,6 +13,26 @@
   flex-direction: column;
 }
 
+/*------------------------------------*/
+
+.margin-0 {
+  margin: 0;
+}
+
+/*------------------------------------*/
+/* MARGIN BLOCK START UTILITIES */
+/*------------------------------------*/
+
+.margin-block-start-0 {
+  margin-block-start: 0;
+}
+
+.margin-block-start-denali {
+  margin-block-start: var(--denali);
+}
+
+/*------------------------------------*/
+/* MARGIN BLOCK END UTILITIES */
 /*------------------------------------*/
 
 /* TODO: document all these important tags */
@@ -29,6 +51,10 @@
   margin-block-end: var(--kilimanjaro) !important;
 }
 
+.margin-block-end-aconcagua {
+  margin-block-end: var(--aconcagua);
+}
+
 .margin-block-end-denali,
 .above-deck {
   margin-block-end: var(--denali);
@@ -42,4 +68,21 @@
 
 .width-100 {
   width: 100%;
+}
+
+.gap-vinson {
+  /* biome-ignore lint: overwrites the responsive masonry defaults */
+  gap: var(--vinson) !important;
+}
+
+/*------------------------------------*/
+/* TYPOGRAPHY */
+/*------------------------------------*/
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.lowercase {
+  text-transform: lowercase;
 }

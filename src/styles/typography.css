@@ -20,28 +20,16 @@ button {
   font-family: var(--font-serif);
 }
 
-/*  TODO maybe this https://fonts.adobe.com/fonts/park-lane but it needs to only get the apostrophe */
-.font-quote,
-/* make it this */
-.testimonials .testimonial--quote_mark {
+.font-quote {
   font-family: var(--font-quote);
   font-size: var(--aconcagua);
   margin-block-start: var(--kosciuszko);
-}
-
-/* TODO: rename mixta to font-serif */
-.mixta,
-.site_title {
-  font-family: var(--font-serif);
-  font-weight: 700;
-  font-style: normal;
 }
 
 /*------------------------------------*\
     #Type Rythym
 \*------------------------------------*/
 
-/* TODO: how often do I not want this as mixta? seems like it should be consistent */
 h1,
 .everest {
   margin-top: 0;
@@ -74,7 +62,6 @@ h3,
   /* 32px */
   line-height: var(--aconcagua);
   /* 40px */
-  /* TODO: variable */
   margin-block-end: 1.875rem;
   /* 30px */
 }
@@ -327,7 +314,6 @@ h2.top-bar {
   h4 span {
     font-size: var(--vinson);
     font-family: var(--font-sans);
-    /* TODO: variable */
     font-weight: 400;
   }
 
@@ -337,35 +323,6 @@ h2.top-bar {
     margin-block-end: 0;
     /* let the grid do the work */
   }
-}
-
-.area-list li {
-  line-height: 1.75rem;
-}
-
-.site_title {
-  max-width: var(--stork);
-  margin-inline: auto;
-  padding-inline: var(--vinson);
-  font-size: clamp(var(--elbrus), 2.5vw, var(--denali));
-  line-height: clamp(var(--denali), 2.5vw, var(--everest));
-  margin-block-start: var(--kilimanjaro);
-}
-
-.long-title {
-  white-space: break-spaces;
-}
-
-.capitalize {
-  text-transform: capitalize;
-}
-
-.last-ampersand:nth-child(n + 2):last-child::before {
-  content: " & ";
-}
-
-.lowercase {
-  text-transform: lowercase;
 }
 
 /*------------------------------------*/

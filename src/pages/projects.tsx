@@ -24,7 +24,7 @@ const ProjectsPage = () => {
 
           projects {
             updatedAt
-            ...projectCard
+            ...projectCardFragment
           }
 
         }

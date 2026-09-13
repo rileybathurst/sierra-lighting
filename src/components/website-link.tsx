@@ -2,7 +2,6 @@ import React from "react";
 import StrShort from "./StrShort";
 
 function WebsiteLink({ website }: { website: string }) {
-
   const tidy = website.includes("https://") ? (
     <a
       href={website}

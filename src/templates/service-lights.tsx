@@ -6,7 +6,7 @@ import Footer from "../components/footer";
 import Header from "../components/header";
 import ImageCheck from "../components/image-check";
 import SEO from "../components/seo";
-import type { CardType } from "../types/card-type";
+import type { CardTypeOmitBreadcumb } from "../types/card-type";
 import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 
 type ServiceLightViewTypes = {
@@ -38,18 +38,17 @@ type ServiceLightViewTypes = {
         weddingOrder: number;
         xmasOrder: number;
         excerpt: string;
-        lights: (CardType & {
+        lights: (CardTypeOmitBreadcumb & {
           services: { slug: string }[];
         })[];
       }[];
     };
   };
-}
+};
 
 const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
   // sort by value
   const events = ["Wedding", "Non-wedding Events", "Commercial Events"];
-
   const xmas = ["Residential Christmas", "Commercial Christmas"];
 
   if (events.includes(data.strapiService.name)) {
@@ -97,21 +96,20 @@ const ServiceLightView = ({ data }: ServiceLightViewTypes) => {
             <div className="above-deck" id={group.slug}>
               <hr />
               <h2>
-                <Link to={`/light-group/${group.slug}`}>
-                  {group.name}
-                </Link>
+                <Link to={`/light-group/${group.slug}`}>{group.name}</Link>
               </h2>
               <p>{group.excerpt}</p>
             </div>
             <div className="deck">
               {group.lights
-                .filter(light => light.services.some(service => service.slug === data.strapiService.slug))
-                .map((light) =>
-                  <ImageCheck
-                    key={light.id}
-                    {...light}
-                  />
-                )}
+                .filter((light) =>
+                  light.services.some(
+                    (service) => service.slug === data.strapiService.slug,
+                  ),
+                )
+                .map((light) => (
+                  <ImageCheck key={light.id} breadcrumb="light" {...light} />
+                ))}
             </div>
           </React.Fragment>
         ))}

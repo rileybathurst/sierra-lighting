@@ -22,11 +22,6 @@ import type { HeroSEOImageType } from "../../types/hero-seo-image-type";
 import type TestimonialTypes from "../../types/testimonial-types";
 import type VideoTypes from "../../types/video-types";
 
-/* // TODO I can repeat this in a better way
-id: React.Key;
-name: string;
-slug: string; */
-
 type ProjectPageTypes = {
   data: {
     strapiProject: {
@@ -256,7 +251,7 @@ export const query = graphql`
 
 		allStrapiProject(filter: {slug: {nin: [$slug] }}) {
 			nodes {
-				...projectCard
+				...projectCardFragment
 			}
 		}
 	}
@@ -322,9 +317,9 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
       )}
 
       {data.strapiProject.venue ||
-        data.strapiProject.area ||
-        data.strapiProject.vendors.length > 0 ||
-        data.strapiProject.project_single_use_links ? (
+      data.strapiProject.area ||
+      data.strapiProject.vendors.length > 0 ||
+      data.strapiProject.project_single_use_links ? (
         <React.Fragment>
           <hr className="pelican" />
           <div className="attributes">
@@ -354,28 +349,28 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
             {/* // TODO: florists shouldnt be plural im not sure which others are like this */}
             {data.strapiProject.vendors.length > 0
               ? data.strapiProject.vendors.map((vendor) =>
-                vendor.collaborator?.industry ? (
-                  <Attribute
-                    key={String(vendor.id)}
-                    {...{
-                      [vendor.collaborator.industry]: {
-                        name: vendor.name,
-                        link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`,
-                      },
-                    }}
-                  />
-                ) : vendor.collaboratorAncillary ? (
-                  <Attribute
-                    key={String(vendor.id)}
-                    {...{
-                      [vendor.collaboratorAncillary]: {
-                        name: vendor.name,
-                        link: `/vendor/${vendor.slug}`,
-                      },
-                    }}
-                  />
-                ) : null,
-              )
+                  vendor.collaborator?.industry ? (
+                    <Attribute
+                      key={String(vendor.id)}
+                      {...{
+                        [vendor.collaborator.industry]: {
+                          name: vendor.name,
+                          link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`,
+                        },
+                      }}
+                    />
+                  ) : vendor.collaboratorAncillary ? (
+                    <Attribute
+                      key={String(vendor.id)}
+                      {...{
+                        [vendor.collaboratorAncillary]: {
+                          name: vendor.name,
+                          link: `/vendor/${vendor.slug}`,
+                        },
+                      }}
+                    />
+                  ) : null,
+                )
               : null}
 
             {data.strapiProject.project_single_use_links?.map((singleLink) => (

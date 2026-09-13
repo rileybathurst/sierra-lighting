@@ -25,7 +25,7 @@ export const Testimonial = () => {
               <a href={faker.internet.url()}>project name</a>
             </h3>
           )}
-          <p className="testimonial--quote_mark">&quot;</p>
+          <p className="font-quote">&quot;</p>
 
           {/* testimonial */}
           <p>{faker.lorem.paragraph()}</p>

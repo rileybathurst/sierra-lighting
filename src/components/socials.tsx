@@ -5,6 +5,7 @@ import SVG from "react-inlinesvg";
 import type { SocialTypes } from "../types/social-types";
 
 function Socials({ services }: { services: SocialTypes[] }): React.JSX.Element {
+
   return (
     <ul className="socials">
       {services.map((social) => {

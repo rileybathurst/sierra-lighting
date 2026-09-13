@@ -13,11 +13,11 @@ import Hero from "../components/hero";
 import StrShort from "../components/StrShort";
 import { SEO } from "../components/seo";
 import Socials from "../components/socials";
+import Testimonial from "../components/testimonial";
 import TestimonialRanking from "../components/testimonial-ranking";
+import WebsiteLink from "../components/website-link";
 import type { CardType } from "../types/card-type";
 import type { HeroSEOImageType } from "../types/hero-seo-image-type";
-import WebsiteLink from "../components/website-link";
-import Testimonial from "../components/testimonial";
 
 interface VendorTemplateViewTypes {
   data: {
@@ -75,6 +75,7 @@ interface VendorTemplateViewTypes {
 }
 
 const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
+
   return (
     <>
       <Header />
@@ -147,70 +148,64 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
             />
           </React.Fragment>
         ) : null}
-      </main >
+      </main>
 
-      {
-        data.strapiVendor.projects.length > 0 ? (
+      {data.strapiVendor.projects.length > 0 ? (
+        <>
+          <div className="above-deck">
+            <hr />
+            <h4>Projects we have worked with {data.strapiVendor.name} on</h4>
+          </div>
+          <div className="deck">
+            {data.strapiVendor.projects.map((project: CardType) => (
+              <Card key={project.id} {...project} breadcrumb="project" />
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      {data.strapiVendor.collaborator ? (
+        data.allStrapiVendor.nodes.length > 0 ? (
           <>
             <div className="above-deck">
               <hr />
-              <h4>Projects we have worked with {data.strapiVendor.name} on</h4>
+              <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
+                <h4>
+                  Other{" "}
+                  <span className="capitalize">
+                    {data.strapiVendor.collaborator.industry}
+                  </span>{" "}
+                  Vendors
+                </h4>
+              </Link>
             </div>
+
             <div className="deck">
-              {data.strapiVendor.projects.map((project: CardType) => (
-                <Card key={project.id} {...project} breadcrumb="project" />
-              ))}
+              {data.allStrapiVendor.nodes.map((vendor: CardType) =>
+                vendor.collaborator ? (
+                  <Card
+                    key={vendor.id}
+                    {...vendor}
+                    breadcrumb={`vendor/${vendor.collaborator.slug}` as const}
+                  />
+                ) : (
+                  <Card key={vendor.id} {...vendor} breadcrumb="vendor" />
+                ),
+              )}
             </div>
           </>
         ) : null
-      }
+      ) : null}
 
-      {
-        data.strapiVendor.collaborator ? (
-          data.allStrapiVendor.nodes.length > 0 ? (
-            <>
-              <div className="above-deck">
-                <hr />
-                <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
-                  <h4>
-                    Other{" "}
-                    <span className="capitalize">
-                      {data.strapiVendor.collaborator.industry}
-                    </span>{" "}
-                    Vendors
-                  </h4>
-                </Link>
-              </div>
-
-              <div className="deck">
-                {data.allStrapiVendor.nodes.map((vendor: CardType) =>
-                  vendor.collaborator ? (
-                    <Card
-                      key={vendor.id}
-                      {...vendor}
-                      breadcrumb={`vendor/${vendor.collaborator.slug}` as const}
-                    />
-                  ) : (
-                    <Card key={vendor.id} {...vendor} breadcrumb="vendor" />
-                  ),
-                )}
-              </div>
-            </>
-          ) : null
-        ) : null
-      }
-
-      {
-        data.strapiVendor.projects.length === 0 &&
-          data.allStrapiVendor.nodes.length === 0 ? (
-          <div className="main">
-            <h3 className="crest">Looking for something else?</h3>
-            <h2 className="range">
-              <Link to="/vendor">Other Wedding Vendors</Link>
-            </h2>
-          </div>
-        ) : null
-      }
+      {data.strapiVendor.projects.length === 0 &&
+        data.allStrapiVendor.nodes.length === 0 ? (
+        <div className="main">
+          <h3 className="crest">Looking for something else?</h3>
+          <h2 className="range">
+            <Link to="/vendor">Other Wedding Vendors</Link>
+          </h2>
+        </div>
+      ) : null}
 
       <hr />
 
@@ -259,6 +254,7 @@ export const query = graphql`
             id
             service
             icon
+            link
           }
         }
 
@@ -290,7 +286,7 @@ export const query = graphql`
         }
 
         projects {
-          ...projectCard
+          ...projectCardFragment
         }
       }
 

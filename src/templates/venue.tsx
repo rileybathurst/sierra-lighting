@@ -11,10 +11,10 @@ import StrShort from "../components/StrShort";
 import { SEO } from "../components/seo";
 import StateAbbreviation from "../components/state-abbreviation";
 import Testimonial from "../components/testimonial";
+import { data } from "../pages/about";
 import type { CardType } from "../types/card-type";
 import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 import type TestimonialTypes from "../types/testimonial-types";
-import { data } from "../pages/about";
 
 type VenueViewTypes = {
   data: {
@@ -85,16 +85,16 @@ const VenueView = ({ data }: VenueViewTypes) => {
         <p>{data.strapiVenue.description}</p>
 
         {data.strapiVenue.testimonials &&
-          data.strapiVenue.testimonials.length > 0 ? (
+        data.strapiVenue.testimonials.length > 0 ? (
           <Testimonial {...data.strapiVenue.testimonials[0]} />
         ) : null}
 
         <hr />
 
         {data.strapiVenue.streetAddress ||
-          data.strapiVenue.addressLocality ||
-          data.strapiVenue.addressRegion ||
-          data.strapiVenue.postalCode ? (
+        data.strapiVenue.addressLocality ||
+        data.strapiVenue.addressRegion ||
+        data.strapiVenue.postalCode ? (
           <address>
             {data.strapiVenue.streetAddress &&
               `${data.strapiVenue.streetAddress},`}
@@ -108,10 +108,10 @@ const VenueView = ({ data }: VenueViewTypes) => {
 
         {/* // * this is the deprecated version */}
         {!data.strapiVenue.streetAddress &&
-          !data.strapiVenue.addressLocality &&
-          !data.strapiVenue.addressRegion &&
-          !data.strapiVenue.postalCode &&
-          data.strapiVenue?.address?.data?.address ? (
+        !data.strapiVenue.addressLocality &&
+        !data.strapiVenue.addressRegion &&
+        !data.strapiVenue.postalCode &&
+        data.strapiVenue?.address?.data?.address ? (
           <address>
             <div className="react-markdown">
               <Markdown>{data.strapiVenue.address.data.address}</Markdown>
@@ -281,7 +281,7 @@ export const query = graphql`
         }
 
         projects {
-          ...projectCard
+          ...projectCardFragment
         }
         testimonials {
           ...testimonialCardFragment

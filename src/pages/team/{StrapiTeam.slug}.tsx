@@ -18,7 +18,7 @@ export const query = graphql`
       ...teamFragment
 
       projects {
-        ...projectCard
+        ...projectCardFragment
       }
     }
 

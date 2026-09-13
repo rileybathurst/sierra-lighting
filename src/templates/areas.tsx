@@ -1,7 +1,3 @@
-// TODO: holiday vs wedding flip here
-// TODO: add a gallery of images from the area
-// TODO: showing more 18 projects like north lake is way over the top - split them by service or just pull a couple
-
 import { graphql, Link, Script } from "gatsby";
 import React, { type Key } from "react";
 import { Breadcrumb, Breadcrumbs } from "react-aria-components";
@@ -19,79 +15,36 @@ import type { CardType } from "../types/card-type";
 import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 import type { SuiteType } from "../types/suite-type";
 
-// this is no longer right as there might only be sub venues
-// if (venues.length !== 0) {
-type venuesTypes = {
-  name: string;
-  venues: CardType[];
-  areas: {
-    name: string;
-    slug: string;
-    excerpt: string;
-    venues: CardType[];
-    projects: CardType[];
-  }[];
-}
-
-function Venues({ name, areas }: venuesTypes) {
-  const subVenues = [];
-  areas.forEach((area) => {
-    if (area.venues.length > 0) {
-      subVenues.push(area.venues);
-    }
-  });
-
-  if (subVenues.length > 0) {
-    return (
-      <>
-        <div className="above-deck">
-          <hr />
-          {/* // TODO: this is bold in a way it shouldnt be */}
-          <h3 className="elbrus">
-            Wedding Venues in {name} we create lighting for
-          </h3>
-        </div>
-
-        <div className="deck">
-          {subVenues.length > 0
-            ? areas.map((area) =>
-              area.venues.length >= 1
-                ? area.venues.map((venue: CardType) => (
-                  <Card key={venue.id} {...venue} breadcrumb="venue" />
-                ))
-                : null,
-            )
-            : null}
-        </div>
-      </>
-    );
-  }
-  return null;
-}
 type AreasTemplateTypes = {
   data: {
     strapiArea: {
       id: Key;
       title: string;
       tagline: string;
-      description: {
+      weddingDescription: {
         data: {
-          description: string;
+          weddingDescription: string;
+        };
+      };
+      xmasDescription: {
+        data: {
+          xmasDescription: string;
         };
       };
       state: "california" | "nevada";
       slug: string;
       image: HeroSEOImageType;
+      weddingImage: HeroSEOImageType;
       areas: {
         name: string;
         slug: string;
         excerpt: string;
         // ? are both versions of venues and projects necessary
         venues: CardType[];
-        projects: CardType[];
+        projects: (CardType & { services: { slug: string }[] })[];
       }[];
       venues: CardType[];
-      projects: CardType[];
+      projects: (CardType & { services: { slug: string }[] })[];
     };
     strapiAbout: {
       businessName: string;
@@ -125,45 +78,30 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
     }
   }
 
-  // areas and sub area projects
-  const areaSubAreaProjects = new Set<CardType>();
-
-  if (data.strapiArea.projects) {
-    data.strapiArea.projects.forEach((project) => {
-      areaSubAreaProjects.add({ ...project, breadcrumb: "project" });
-    });
-
-    if (data.strapiArea.areas.length > 0) {
-      data.strapiArea.areas.forEach((area) => {
-        if (area.projects.length > 0) {
-          area.projects.forEach((project) => {
-            areaSubAreaProjects.add({ ...project, breadcrumb: "project" });
-          });
-        }
-      });
-    }
-  }
-
-  // console.log(areaSubAreaProjects);
-  const areaSubAreaProjectsArray = Array.from(areaSubAreaProjects);
-  // console.log(areaSubAreaProjectsArray);
-
-  console.log(data.strapiArea.venues)
-  console.log(data.strapiArea.areas.map((area) => area.name))
-  console.log(data.strapiArea.areas.map((area) => area.venues))
+  const allProjects = [
+    ...data.strapiArea.projects,
+    ...data.strapiArea.areas.flatMap((area) => area.projects),
+  ];
 
   const allVenues = [
     ...data.strapiArea.venues,
     ...data.strapiArea.areas.flatMap((area) => area.venues),
   ];
 
+  const eventSlugs = ["wedding", "social-events", "commercial-events"];
+  const xmasSlugs = ["residential", "commercial"];
+
+  const startingImage =
+    Season() === "wedding"
+      ? data.strapiArea?.weddingImage
+      : data.strapiArea.image;
+
   return (
     <>
       <Header />
 
-      {/* // TODO: check on small images */}
-      {data.strapiArea.image ? (
-        <Hero image={data.strapiArea.image} gallery={areaProjectHeros} />
+      {startingImage ? (
+        <Hero image={startingImage} gallery={areaProjectHeros} />
       ) : null}
       <main>
         <h2 className="crest">{data.strapiArea.tagline}</h2>
@@ -174,24 +112,29 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         <hr />
         <h3 className="kilimanjaro">Ready to work with us</h3>
         <Start path={`areas-${data.strapiArea.slug}`} />
-        <hr />
-        {data.strapiArea?.description && (
+
+        {(data.strapiArea?.weddingDescription ||
+          data.strapiArea?.xmasDescription) && (
           <div className="react-markdown">
-            <Markdown>{data.strapiArea.description.data.description}</Markdown>
+            <hr />
+            <Markdown>
+              {Season() === "wedding"
+                ? data.strapiArea.weddingDescription.data.weddingDescription
+                : data.strapiArea.xmasDescription.data.xmasDescription}
+            </Markdown>
           </div>
         )}
 
-        {/* // TODO: make this a second column on a larger screen */}
         {data.strapiArea.areas.length > 0 && (
           <React.Fragment>
             <hr />
             <p className="elbrus">
               Regions we light in {data.strapiArea.title}
             </p>
-            <ul className="subareas">
+            <ul className="area-list">
               {data.strapiArea.areas.map((area) => (
                 <li key={area.name}>
-                  <h2 className="elbrus">{area.name}</h2>
+                  <h3 className="elbrus">{area.name}</h3>
                   {/* <p>{area.excerpt}</p> */}
                 </li>
               ))}
@@ -206,18 +149,35 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
       <Suite services={data.allStrapiService.nodes} />
 
-      {areaSubAreaProjectsArray.length > 0 ? (
+      {allProjects.length > 0 ? (
         <section>
           <div className="above-deck">
             <hr />
             <h3>
-              Lighting projects in we have installed in {data.strapiArea.title}
+              Lighting projects we have installed in {data.strapiArea.title}
             </h3>
           </div>
           <div className="deck">
-            {areaSubAreaProjectsArray.map((project: CardType) => (
-              <Card key={project.id} {...project} breadcrumb="project" />
-            ))}
+            {allProjects
+              .filter((project) =>
+                (project.services ?? []).some((service) =>
+                  eventSlugs.includes(service.slug),
+                ),
+              )
+              .slice(-3)
+              .map((project: CardType) => (
+                <Card key={project.id} {...project} breadcrumb="project" />
+              ))}
+            {allProjects
+              .filter((project) =>
+                (project.services ?? []).some((service) =>
+                  xmasSlugs.includes(service.slug),
+                ),
+              )
+              .slice(-3)
+              .map((project: CardType) => (
+                <Card key={project.id} {...project} breadcrumb="project" />
+              ))}
           </div>
         </section>
       ) : null}
@@ -261,9 +221,14 @@ export const query = graphql`
       tagline
       excerpt
 
-      description {
+      weddingDescription {
         data {
-          description
+          weddingDescription
+        }
+      }
+      xmasDescription {
+        data {
+          xmasDescription
         }
       }
 
@@ -271,6 +236,10 @@ export const query = graphql`
       slug
 
       image {
+        ...heroSEOImageFragment
+      }
+
+      weddingImage {
         ...heroSEOImageFragment
       }
 
@@ -298,6 +267,7 @@ export const query = graphql`
           ...venueCardFragment
         }
 
+        # needs to supply a hero image as well as the card hence not the card fragment
         projects {
           id
           title
@@ -306,6 +276,10 @@ export const query = graphql`
 
           image {
             ...heroSEOImageFragment
+          }
+
+          services {
+            slug
           }
         }
       }

@@ -349,10 +349,12 @@ header svg:active {
   box-shadow: var(--troposphere);
   border-radius: var(--border-radius);
   border: 1px solid var(--neutral-100);
-  /* TODO: theres a slight white gap at the bottom */
-  /* * this note is hitting the stay gold check dont worry about it */
+  /* TODO: theres a slight white at the bottom */
+  /* * this note is hitting the stay-gold check dont worry about it */
 }
 
+/*------------------------------------*/
+/* LOOKBOOK */
 /*------------------------------------*/
 
 /* ? was this a working 5th try what am I doing? */
@@ -367,17 +369,13 @@ header svg:active {
     }
   }
 
-  .look,
-  .gatsby-image-wrapper {
-    width: calc(100% - var(--vinson));
-  }
-
   .look {
-    margin-block-end: var(--vinson);
+    margin-block-end: 0;
     border-radius: var(--card-radius);
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: var(--moment);
     background-color: var(--honey-100);
 
     @media (prefers-color-scheme: dark) {
@@ -385,25 +383,31 @@ header svg:active {
     }
   }
 
-  .look:not(:has(ul, p)) .gatsby-image-wrapper {
-    margin-block: var(--spacing-half);
+  a.look:hover,
+  .look.first-light-active {
+    background-color: var(--honey-200);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--denim-700);
+    }
   }
 
   .gatsby-image-wrapper {
+    width: calc(100% - var(--vinson));
+    margin-inline-start: calc(var(--vinson) / 2);
+    margin-block-start: calc(var(--vinson) / 2);
     border-radius: var(--card-radius);
-    margin-inline: auto;
     margin-block-end: var(--vinson);
-  }
-
-  a .gatsby-image-wrapper {
     transition: var(--moment);
   }
 
-  a:hover {
-    .gatsby-image-wrapper {
-      transform: scale(1.05);
-      filter: brightness(0.8);
-    }
+  a:hover .gatsby-image-wrapper {
+    transform: scale(1.05);
+    filter: brightness(0.8);
+  }
+
+  .lookbook-list a.first-light-active {
+    text-decoration: none;
   }
 
   ul {
@@ -461,8 +465,7 @@ header svg:active {
     width: min(calc(var(--pelican) - 10rem), 100vw);
     height: auto;
 
-    /* TODO: testing I might not need the not */
-    > *:not(.pinterest-button) {
+    > *:not(p, .pinterest-button) {
       height: 100%;
     }
   }

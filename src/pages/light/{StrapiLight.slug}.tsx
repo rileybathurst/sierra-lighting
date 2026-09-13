@@ -10,8 +10,8 @@ import SEO from "../../components/seo";
 import Start from "../../components/start";
 import Suite from "../../components/suite";
 import type { CardType } from "../../types/card-type";
-import type { GatsbyImageType } from "../../types/gatsby-image";
 import type { HeroSEOImageType } from "../../types/hero-seo-image-type";
+import type { ImageType } from "../../types/image-type";
 import type { SuiteType } from "../../types/suite-type";
 
 interface AliasTypes {
@@ -95,7 +95,7 @@ export const query = graphql`
 			}
 
 			projects {
-				...projectCard
+				...projectCardFragment
 			}
 
 			altGallery {
@@ -181,7 +181,7 @@ export const query = graphql`
 			limit: 3
 			) {
 			nodes {
-				...projectCard
+				...projectCardFragment
 			}
 		}
 
@@ -221,19 +221,19 @@ type LightPageTypes = {
       }[];
       alias?: string | null;
       image: HeroSEOImageType;
-      detail?: GatsbyImageType | null;
+      detail?: ImageType | null;
       altGallery?: HeroSEOImageType[] | null;
       projects?: CardType[] | null;
       residentialHero?: HeroSEOImageType | null;
       commercialHero?: HeroSEOImageType | null;
       bulbs?:
-      | {
-        id: React.Key;
-        name: string;
-        // excerpt: string;
-        detail: GatsbyImageType;
-      }[]
-      | null;
+        | {
+            id: React.Key;
+            name: string;
+            // excerpt: string;
+            detail: ImageType;
+          }[]
+        | null;
     };
     allStrapiLight: {
       nodes: CardType[];
@@ -451,11 +451,11 @@ const LightPage = ({ data, location }: LightPageTypes) => {
               service.slug === "residential" || service.slug === "commercial",
           )
             ? data.holiday.nodes.map((process) => {
-              return <li key={process.id}>{process.name}</li>;
-            })
+                return <li key={process.id}>{process.name}</li>;
+              })
             : data.wedding.nodes.map((process) => {
-              return <li key={process.id}>{process.name}</li>;
-            })}
+                return <li key={process.id}>{process.name}</li>;
+              })}
         </ol>
 
         {/* // TODO: design this in storybook  */}

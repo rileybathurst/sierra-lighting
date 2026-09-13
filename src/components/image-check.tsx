@@ -1,25 +1,12 @@
-import type { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
 import Card from "../components/card";
-import type { CardType } from "../types/card-type";
+import type { CardType, CardTypeOmitBreadcumb } from "../types/card-type";
+import type { ImageType } from "../types/image-type";
 
-type ImageCheckTypes = CardType & {
-  residentialHero?: {
-    localFile: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData;
-      };
-    };
-    alternativeText: string;
-  };
-  commercialHero?: {
-    localFile: {
-      childImageSharp: {
-        gatsbyImageData: IGatsbyImageData;
-      };
-    };
-    alternativeText: string;
-  };
+type ImageCheckTypes = CardTypeOmitBreadcumb & {
+  breadcrumb: CardType["breadcrumb"];
+  residentialHero?: ImageType;
+  commercialHero?: ImageType;
 };
 const ImageCheck = ({
   breadcrumb,

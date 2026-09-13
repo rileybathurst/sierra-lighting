@@ -17,7 +17,7 @@ import ImageCheck from "../components/image-check";
 import { SEO } from "../components/seo";
 import Start from "../components/start";
 import type { CardType } from "../types/card-type";
-import type { GatsbyImageType } from "../types/gatsby-image";
+import type { ImageType } from "../types/image-type";
 import type VideoTypes from "../types/video-types";
 
 interface ServiceTypes {
@@ -61,7 +61,7 @@ interface ServiceTypes {
       })[];
       videoMux: string;
       lights: { id: string }[]; // Add the lights property
-      lookbookCover: GatsbyImageType;
+      lookbookCover: ImageType;
       venues: CardType[];
       vendors: CardType[];
       videos: VideoTypes[];
@@ -154,32 +154,32 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
     order: number;
     id: React.Key;
   }[] = [
-      // * default to project link to satisfy types
-      {
-        card: {},
-        title: false,
-        breadcrumb: "",
-        cardBreadcrumb: "project",
-        order: 0,
-        id: "",
-      },
-      {
-        card: {},
-        title: false,
-        breadcrumb: "",
-        cardBreadcrumb: "project",
-        order: 1,
-        id: "",
-      },
-      {
-        card: {},
-        title: false,
-        breadcrumb: "",
-        cardBreadcrumb: "project",
-        order: 2,
-        id: "",
-      },
-    ];
+    // * default to project link to satisfy types
+    {
+      card: {},
+      title: false,
+      breadcrumb: "",
+      cardBreadcrumb: "project",
+      order: 0,
+      id: "",
+    },
+    {
+      card: {},
+      title: false,
+      breadcrumb: "",
+      cardBreadcrumb: "project",
+      order: 1,
+      id: "",
+    },
+    {
+      card: {},
+      title: false,
+      breadcrumb: "",
+      cardBreadcrumb: "project",
+      order: 2,
+      id: "",
+    },
+  ];
 
   // console.log(base);
 
@@ -267,7 +267,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
                   {item.breadcrumb.includes("project")
                     ? "Projects"
                     : item.breadcrumb.charAt(0).toUpperCase() +
-                    item.breadcrumb.slice(1)}
+                      item.breadcrumb.slice(1)}
                 </Link>
               </h4>
             ) : null}
@@ -496,7 +496,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
         <h3 className="elbrus">
           We install {data.strapiService.name} lighting in and around
         </h3>
-        <ul>
+        <ul className="area-list">
           {data.allStrapiArea.nodes
             .sort(
               (a: SortTypes["a"], b: SortTypes["b"]) =>
@@ -574,7 +574,7 @@ export const query = graphql`
 
       projects {
         updatedAt
-        ...projectCard
+        ...projectCardFragment
       }
 
       triptych {

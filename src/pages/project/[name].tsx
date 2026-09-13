@@ -13,7 +13,7 @@ function ProjectCatchAll({ params }: CatchAllTypes) {
     query {
       allStrapiProject(limit: 3) {
         nodes {
-          ...projectCard
+          ...projectCardFragment
         }
       }
       strapiError {

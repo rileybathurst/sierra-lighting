@@ -22,7 +22,7 @@ export const Typography = () => {
       <p className="font-quote">&ldquo;font-quote</p>
 
       {/* // TODO: document this */}
-      <p>Mixta should only be used on major headings</p>
+      <p>Font Serif (Mixta) should only be used on major headings</p>
 
       <hr />
 

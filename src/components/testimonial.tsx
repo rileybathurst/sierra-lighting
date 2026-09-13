@@ -33,7 +33,7 @@ function Testimonial({
             </h3>
           )}
 
-          <p className="testimonial--quote_mark">&ldquo;</p>
+          <p className="font-quote">&ldquo;</p>
           <p>{review}</p>
 
           <figcaption>

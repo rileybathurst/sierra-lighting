@@ -24,7 +24,7 @@ type ServiceProjectsTypes = {
     };
     strapiProject: {
       image: HeroSEOImageType;
-    }
+    };
     allStrapiTheme: {
       nodes: {
         id: React.Key;
@@ -74,8 +74,12 @@ const ServiceProjectsView = ({ data }: ServiceProjectsTypes) => {
       <Header />
 
       <main>
-        <h1 className="margin-block-end-vinson">{data.strapiService.name} Projects</h1>
-        <p className="margin-block-end-kilimanjaro">{data.strapiService.excerpt}</p>
+        <h1 className="margin-block-end-vinson">
+          {data.strapiService.name} Projects
+        </h1>
+        <p className="margin-block-end-kilimanjaro">
+          {data.strapiService.excerpt}
+        </p>
         <Start />
         <hr />
 
@@ -169,7 +173,7 @@ export const query = graphql`
       excerpt
 
       projects {
-        ...projectCard
+        ...projectCardFragment
 
         themes {
           id

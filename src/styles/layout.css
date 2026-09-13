@@ -1,6 +1,7 @@
 /* Index
 - cards
 - suite order
+- qualities
 - masthead
 */
 
@@ -278,56 +279,6 @@ header {
   max-width: var(--stork);
 }
 
-/*------------------*/
-/* SIDEKICK */
-/*------------------*/
-
-.area-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  /* if you go to 16 it splits in the center at max-width */
-  flex-flow: row wrap;
-  gap: var(--vinson);
-  list-style: none;
-  padding-inline-start: 0;
-  margin-block: 0;
-  align-items: start;
-}
-
-.area-card {
-  border-radius: var(--vinson);
-  box-shadow: var(--mesosphere);
-  padding: var(--vinson);
-  border: 1px solid var(--neutral-100);
-  background-color: var(--honey-100);
-  margin-block-end: var(--denali);
-
-  @media (prefers-color-scheme: dark) {
-    border-color: var(--denim-700);
-    background-color: var(--denim-700);
-    /* TODO these shouldnt match */
-  }
-
-  .poster,
-  .gatsby-image-wrapper {
-    border-radius: var(--spacing-half);
-  }
-
-  h3 {
-    margin-block-end: var(--spacing-half);
-  }
-
-  ul {
-    li {
-      list-style: inside;
-    }
-  }
-}
-
-.area-card:has(.poster) .poster {
-  margin-block-end: var(--vinson);
-}
-
 /*------------------------------------*/
 /* FOOTER */
 /* * this name isnt great as I also use it for vendors */
@@ -415,7 +366,6 @@ header {
   margin-block-start: var(--spacing-half);
   /*  skip var(--vinson) due to a flex gap from a sr-only element */
   flex-direction: column;
-  /* ! align changes the size when its linked */
   align-items: center;
 
   @supports (align-items: anchor-center) {
@@ -482,7 +432,7 @@ footer {
     }
   }
 
-  .testimonial--quote_mark {
+  .font-quote {
     grid-column: 1;
   }
 
@@ -668,140 +618,13 @@ footer {
 /*------------------*/
 /* VENUE */
 /*------------------*/
-
+/* TODO: this is a weird way of doing this */
 .venue {
   margin-block-end: calc(var(--line-height) * 3);
 }
 
-/*------------------*/
-/* SINGLES */
-/*------------------*/
-
-.margin-0 {
-  margin: 0;
-}
-
-.margin-block-start-0 {
-  margin-block-start: 0;
-}
-
-.margin-block-start-denali {
-  margin-block-start: var(--denali);
-}
-
-.margin-block-end-aconcagua {
-  margin-block-end: var(--aconcagua);
-}
-
 /*------------------------------------*/
-
-.lookbook {
-  /* TODO: work against grid-lanes */
-  @supports (grid-template-rows: grid-lanes) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    grid-template-rows: grid-lanes;
-    gap: var(--denali);
-  }
-
-  @supports not (grid-template-rows: grid-lanes) {
-    display: flex;
-    flex-flow: row wrap;
-    gap: var(--vinson);
-    align-items: flex-start;
-
-    /*  .look {
-      flex: auto;
-    } */
-
-    .gatsby-image-wrapper {
-      height: var(--denali);
-      width: auto;
-      min-width: 100%;
-      object-fit: cover;
-    }
-
-    > * {
-      flex: 1 1 15rem;
-      /* max-height: 90vh; */
-    }
-
-    /*     .flex-11 {
-      flex: 1 1 10rem;
-    } */
-
-    .flex-1 {
-      flex: 1 1 6rem;
-
-      @media (min-width: 30rem) {
-        flex: 1 1 15rem;
-      }
-    }
-
-    .flex-2 {
-      flex: 1 1 8rem;
-
-      @media (min-width: 30rem) {
-        flex: 1 1 20rem;
-      }
-    }
-
-    .flex-3 {
-      flex: 2 1 10rem;
-
-      @media (min-width: 30rem) {
-        flex: 3 1 30rem;
-      }
-    }
-
-    .flex-4 {
-      flex: 2 1 30rem;
-
-      @media (min-width: 30rem) {
-        flex: 3 1 40rem;
-      }
-    }
-
-    .true {
-      flex: 1 1 35rem;
-
-      .gatsby-image-wrapper {
-        height: fit-content;
-      }
-    }
-  }
-
-  > * {
-    text-align: center;
-  }
-
-  > .look {
-    background-color: var(--honey-100);
-    border-radius: var(--card-radius);
-    box-shadow: var(--mesosphere);
-    border: 2px solid var(--neutral-100);
-    transition: var(--moment);
-
-    @media (prefers-color-scheme: dark) {
-      border-color: var(--denim-700);
-      background-color: var(--denim-750);
-    }
-
-    /* > * a {
-      margin: var(--vinson);
-    } */
-
-    .gatsby-image-wrapper {
-      margin-block-end: var(--vinson);
-      border-radius: var(--card-radius);
-    }
-  }
-
-  > a:hover .gatsby-image-wrapper {
-    opacity: 0.9;
-  }
-}
-
+/* #QUALITIES */
 /*------------------------------------*/
 
 .qualities {
@@ -962,10 +785,32 @@ footer {
 }
 
 /*------------------------------------*/
+/* PINTEREST BUTTON */
+/*------------------------------------*/
 
 .pinterest-button {
   justify-self: end;
-  /* padding: var(--kosciuszko); */
-  padding: var(--elbrus);
   align-self: start;
+  padding: var(--vinson);
+
+  span {
+    display: inline-block;
+
+    svg {
+      min-width: var(--denali);
+    }
+  }
+}
+
+/*------------------------------------*/
+
+.masonry {
+  /* biome-ignore lint: overwrites the responsive masonry defaults */
+  gap: var(--vinson) !important;
+
+  /* biome-ignore lint: masonry package builds how it wants */
+  > * {
+    /* biome-ignore lint: overwrites the responsive masonry defaults */
+    gap: var(--vinson) !important;
+  }
 }
