@@ -75,7 +75,6 @@ interface VendorTemplateViewTypes {
 }
 
 const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
-
   return (
     <>
       <Header />
@@ -118,9 +117,9 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         ) : null}
 
         {data.strapiVendor.social.length > 0 ||
-          data.strapiVendor.instagram ||
-          data.strapiVendor.pinterest ||
-          data.strapiVendor.facebook ? (
+        data.strapiVendor.instagram ||
+        data.strapiVendor.pinterest ||
+        data.strapiVendor.facebook ? (
           <React.Fragment>
             <hr />
             {data.strapiVendor.social.length > 0 && (
@@ -129,8 +128,8 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
             {/* // * deprecated but theres too much here to migrate */}
             {data.strapiVendor.instagram ||
-              data.strapiVendor.pinterest ||
-              data.strapiVendor.facebook ? (
+            data.strapiVendor.pinterest ||
+            data.strapiVendor.facebook ? (
               <DeprecatedSocials
                 instagram={data.strapiVendor.instagram}
                 pinterest={data.strapiVendor.pinterest}
@@ -198,7 +197,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
       ) : null}
 
       {data.strapiVendor.projects.length === 0 &&
-        data.allStrapiVendor.nodes.length === 0 ? (
+      data.allStrapiVendor.nodes.length === 0 ? (
         <div className="main">
           <h3 className="crest">Looking for something else?</h3>
           <h2 className="range">
