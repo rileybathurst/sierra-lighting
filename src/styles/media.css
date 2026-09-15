@@ -92,7 +92,7 @@ svg {
     border-color: var(--denim-600);
   }
 
-  >* {
+  > * {
     grid-row: 1;
     grid-column: 1;
   }
@@ -145,7 +145,7 @@ a.poster:hover .gatsby-image-wrapper {
   filter: brightness(0.8);
 }
 
-.poster.ratio-16-9>.gatsby-image-wrapper {
+.poster.ratio-16-9 > .gatsby-image-wrapper {
   aspect-ratio: 16 / 9;
 }
 
@@ -211,14 +211,14 @@ header svg:active {
   flex-wrap: wrap;
   justify-content: space-evenly;
 
-  >a {
+  > a {
     /*  transition: 20s ease; /* TODO: this only seems to want to be either in or out */
     flex: 0 1 4rem;
     /*  guess and check */
     text-align: center;
     display: block;
 
-    >.gatsby-image-wrapper {
+    > .gatsby-image-wrapper {
       border-radius: 50%;
       max-height: 8rem;
       transition: 2s ease;
@@ -233,19 +233,19 @@ header svg:active {
     }
 
     @media (prefers-color-scheme: dark) {
-      >.gatsby-image-wrapper {
+      > .gatsby-image-wrapper {
         border-color: var(--denim-300);
       }
     }
 
-    >p {
+    > p {
       /* this is legal even tho not normally the way I do it */
       /* ? I dont know what I meant by that comment */
       transition: 2s ease;
     }
   }
 
-  >a:hover>.gatsby-image-wrapper {
+  > a:hover > .gatsby-image-wrapper {
     box-shadow: var(--stratosphere);
     border-color: var(--honey-400);
   }
@@ -271,8 +271,7 @@ header svg:active {
   &::before {
     transition:
       border-top-color 0.15s linear,
-      /*  Stagger border appearances */
-      border-right-color 0.15s linear 0.1s,
+      /*  Stagger border appearances */ border-right-color 0.15s linear 0.1s,
       border-bottom-color 0.15s linear 0.2s;
   }
 
@@ -360,12 +359,11 @@ header svg:active {
 
 /* ? was this a working 5th try what am I doing? */
 .look5 {
-
   /* > column > row */
   .pinterest-wrapper {
     display: grid;
 
-    >* {
+    > * {
       grid-row: 1;
       grid-column: 1;
     }
@@ -441,7 +439,7 @@ header svg:active {
     scroll-behavior: smooth;
     /* padding: 1.5rem; */
 
-    >* {
+    > * {
       grid-row: 1;
       scroll-snap-align: center;
     }
@@ -467,7 +465,7 @@ header svg:active {
     width: min(calc(var(--pelican) - 10rem), 100vw);
     height: auto;
 
-    >*:not(p, .pinterest-button) {
+    > *:not(p, .pinterest-button) {
       height: 100%;
     }
   }

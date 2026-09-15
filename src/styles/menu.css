@@ -155,7 +155,7 @@
   display: grid;
   place-items: center;
 
-  >* {
+  > * {
     grid-row: 1;
     grid-column: 1;
   }

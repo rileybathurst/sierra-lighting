@@ -115,15 +115,15 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
         {(data.strapiArea?.weddingDescription ||
           data.strapiArea?.xmasDescription) && (
-          <div className="react-markdown">
-            <hr />
-            <Markdown>
-              {Season() === "wedding"
-                ? data.strapiArea.weddingDescription.data.weddingDescription
-                : data.strapiArea.xmasDescription.data.xmasDescription}
-            </Markdown>
-          </div>
-        )}
+            <div className="react-markdown">
+              <hr />
+              <Markdown>
+                {Season() === "wedding"
+                  ? data.strapiArea.weddingDescription.data.weddingDescription
+                  : data.strapiArea.xmasDescription.data.xmasDescription}
+              </Markdown>
+            </div>
+          )}
 
         {data.strapiArea.areas.length > 0 && (
           <React.Fragment>
@@ -182,20 +182,23 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
         </section>
       ) : null}
 
-      <div className="above-deck">
-        <hr />
-        <h3 className="elbrus">
-          Wedding Venues in {data.strapiArea.title} we create lighting for
-        </h3>
-      </div>
+      {allVenues.length > 0 && (
+        <section>
+          <div className="above-deck">
+            <hr />
+            <h3 className="elbrus">
+              Wedding Venues in {data.strapiArea.title} we create lighting for
+            </h3>
+          </div>
 
-      <div className="deck">
-        {allVenues.map((venue: CardType) => (
-          <Card key={venue.id} {...venue} breadcrumb="venue" />
-        ))}
-      </div>
-
-      <hr />
+          <div className="deck">
+            {allVenues.map((venue: CardType) => (
+              <Card key={venue.id} {...venue} breadcrumb="venue" />
+            ))}
+          </div>
+          <hr />
+        </section>
+      )}
 
       <Breadcrumbs>
         <Breadcrumb>
@@ -251,6 +254,10 @@ export const query = graphql`
 
         image {
           ...heroSEOImageFragment
+        }
+
+        services {
+          slug
         }
       }
 

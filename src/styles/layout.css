@@ -9,7 +9,6 @@
 /* BASE */
 /*------------------------------------*/
 
-
 main {
   margin-block-start: var(--aconcagua);
 }
@@ -82,8 +81,7 @@ main,
 .deck,
 .service-deck,
 .suite {
-
-  >* {
+  > * {
     max-width: calc(100% - var(--vinson));
     margin-inline: 0;
   }
@@ -106,8 +104,10 @@ main,
   display: grid;
   column-gap: var(--vinson);
   /* ? am i using the other widths or should this be a variable? */
-  grid-template-columns: repeat(auto-fill,
-      minmax(calc(var(--vulture) - var(--vinson)), 1fr));
+  grid-template-columns: repeat(
+      auto-fill,
+      minmax(calc(var(--vulture) - var(--vinson)), 1fr)
+    );
 }
 
 .service-deck {
@@ -118,7 +118,7 @@ main,
   row-gap: var(--kilimanjaro);
 }
 
-.deck>* {
+.deck > * {
   max-width: calc(100% - var(--vinson));
   margin-inline: 0;
   padding-inline: 0;
@@ -142,7 +142,7 @@ main,
     order: 3;
   }
 
-  >a {
+  > a {
     order: 4;
   }
 }
@@ -188,7 +188,7 @@ header {
 
   svg,
   /* storybook */
-  .small {
+    .small {
     grid-row: 1;
     grid-column: 1;
     z-index: 2;
@@ -278,7 +278,7 @@ header {
   max-width: var(--pelican);
   margin-inline: auto;
 
-  >* {
+  > * {
     grid-row: 1;
     grid-column: 1;
   }
@@ -347,7 +347,7 @@ header {
       margin: 0;
     }
 
-    a>span[aria-hidden="true"] {
+    a > span[aria-hidden="true"] {
       display: block;
       line-height: 0;
     }
@@ -407,7 +407,7 @@ header {
     /*  skip var(--vinson) due to a flex gap from a sr-only element */
   }
 
-  >* {
+  > * {
     text-align: center;
     /* there shouldnt be a flex gap if you cant see the content */
   }
@@ -455,7 +455,7 @@ footer {
       gap: var(--vinson);
 
       /*  TODO inception rule */
-      >* {
+      > * {
         grid-column: 2;
       }
     }
@@ -517,7 +517,7 @@ footer {
     gap: var(--vinson);
   }
 
-  >* {
+  > * {
     width: 33%;
     box-shadow: var(--troposphere);
     border-radius: var(--border-radius);
@@ -547,7 +547,7 @@ footer {
   width: 100%;
   display: flex;
 
-  >* {
+  > * {
     flex: 1;
   }
 }
@@ -723,7 +723,7 @@ footer {
     }
   }
 
-  >.images {
+  > .images {
     z-index: var(--floor);
     grid-row: 2;
 
@@ -736,7 +736,7 @@ footer {
     display: grid;
     max-width: calc(100vw - 2rem);
 
-    >* {
+    > * {
       grid-row: 1;
       grid-column: 1;
       max-width: 100vw;
@@ -773,7 +773,7 @@ footer {
     align-self: center;
     z-index: var(--canopy);
 
-    >* {
+    > * {
       grid-column: 1;
     }
 
@@ -838,7 +838,7 @@ footer {
   gap: var(--vinson) !important;
 
   /* biome-ignore lint: masonry package builds how it wants */
-  >* {
+  > * {
     /* biome-ignore lint: overwrites the responsive masonry defaults */
     gap: var(--vinson) !important;
   }
