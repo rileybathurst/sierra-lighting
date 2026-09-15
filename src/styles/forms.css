@@ -7,7 +7,7 @@ form {
   textarea,
   input[type="checkbox"] {
     display: block;
-    width: calc(100% - var(--denali));
+    width: 100%;
     /* TODO: variable might be new, and document why */
     border-radius: calc(var(--border-radius) * 2);
     padding: var(--spacing-half);
@@ -61,6 +61,7 @@ form {
   .address-together {
     width: 100%;
     display: flex;
+    gap: var(--vinson);
 
     .address {
       flex: 2;

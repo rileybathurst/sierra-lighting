@@ -144,39 +144,42 @@ const IndexPage = ({ location }: { location: Location }) => {
             <Start path="hero" />
           </section>
         </div>
+      </main>
 
-        {/* // TODO: 2 columns becomes 1 or 3 and this seems like it should be repeated? */}
-        {/* * this is under the biggest specific image so its currently ok but will be updated */}
-        <section className="qualities albatross">
-          {allStrapiQuality.nodes.map((quality: QualityTypes) => (
-            <section key={quality.id}>
-              <h3 className="font-serif">{quality.name}</h3>
-              <p>{quality.description.data.description}</p>
-            </section>
-          ))}
-          <h3 className="eyebrow">
-            <Link to="/process">Learn more about our process</Link>
-          </h3>
-        </section>
+      {/* // TODO: 2 columns becomes 1 or 3 and this seems like it should be repeated? */}
+      {/* * this is under the biggest specific image so its currently ok but will be updated */}
+      {/* // ? this is albatross nested under albatross does it need to be or whats the best way to clean that up */}
 
-        <div className="slider-container">
-          <section className="slider testimonials">
-            <h4>Thanks From Our Customers</h4>
+      <section className="qualities albatross">
+        {allStrapiQuality.nodes.map((quality: QualityTypes) => (
+          <section key={quality.id}>
+            <h3 className="font-serif">{quality.name}</h3>
+            <p>{quality.description.data.description}</p>
+          </section>
+        ))}
+        <h3 className="eyebrow">
+          <Link to="/process">Learn more about our process</Link>
+        </h3>
+      </section>
 
-            <ul>
-              {/* // TODO: make this a component */}
-              {allStrapiTestimonial.nodes.map(
-                (testimonial: TestimonialTypes) => {
-                  const truncationPoint = testimonial.review.indexOf(" ", 160);
-                  const review =
-                    truncationPoint === -1
-                      ? testimonial.review
-                      : `${testimonial.review.slice(0, truncationPoint)}...`;
+      <div className="slider-container">
+        <section className="slider testimonials">
+          <h4>Thanks From Our Customers</h4>
 
-                  return (
-                    <li key={testimonial.id} className="slider">
-                      {/* // TODO: once testimonial projects are in place, re-add this */}
-                      {/* {testimonial.project ?
+          <ul>
+            {/* // TODO: make this a component */}
+            {allStrapiTestimonial.nodes.map(
+              (testimonial: TestimonialTypes) => {
+                const truncationPoint = testimonial.review.indexOf(" ", 160);
+                const review =
+                  truncationPoint === -1
+                    ? testimonial.review
+                    : `${testimonial.review.slice(0, truncationPoint)}...`;
+
+                return (
+                  <li key={testimonial.id} className="slider">
+                    {/* // TODO: once testimonial projects are in place, re-add this */}
+                    {/* {testimonial.project ?
                     <h4>
                       <Link to={`/project/${testimonial.project.slug}`}>
                         {testimonial.project.title}
@@ -184,29 +187,29 @@ const IndexPage = ({ location }: { location: Location }) => {
                     </h4>
                     : null} */}
 
-                      <p>{review}</p>
-                      {/* // TODO: className="together" is a bad name */}
-                      <div className="together">
-                        <h4>{testimonial.customer}</h4>
-                        <p>{testimonial.position}</p>
-                      </div>
-                    </li>
-                  );
-                },
-              )}
-            </ul>
+                    <p>{review}</p>
+                    {/* // TODO: className="together" is a bad name */}
+                    <div className="together">
+                      <h4>{testimonial.customer}</h4>
+                      <p>{testimonial.position}</p>
+                    </div>
+                  </li>
+                );
+              },
+            )}
+          </ul>
 
-            <div className="testimonial-links">
-              {/* // ? should I have two crests in a row? */}
-              <h3 className="crest">
-                <Link to="/testimonials">Read More Reviews</Link>
-              </h3>
-            </div>
-          </section>
-        </div>
+          <div className="testimonial-links">
+            {/* // ? should I have two crests in a row? */}
+            <h3 className="crest">
+              <Link to="/testimonials">Read More Reviews</Link>
+            </h3>
+          </div>
+        </section>
+      </div>
 
-        <Suite services={allStrapiService.nodes} />
-      </main>
+      <Suite services={allStrapiService.nodes} />
+
 
       <div className="main">
         {/* // TODO: if its just spaces do it in a better way */}

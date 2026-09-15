@@ -19,8 +19,8 @@ export const Qualities = ({ nestedAlbatross }: QualitiesTypes) => {
           ),
         )}
 
-        {/* // * this looks wrong on single due to the albatross not containing  */}
-        <hr />
+        {/* // * this is here due to process but Im thinking about doing that better  */}
+        {/* <hr /> */}
       </section>
     </div>
   );

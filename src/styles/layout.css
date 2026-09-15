@@ -15,13 +15,13 @@ main {
 }
 
 .swan {
-  max-width: var(--swan);
+  max-width: min(var(--swan), 100vw);
   margin-inline: auto;
   padding-inline: var(--vinson);
 }
 
 .vulture {
-  max-width: var(--vulture);
+  max-width: min(var(--vulture), 100vw);
   margin-inline: auto;
   padding-inline: var(--vinson);
 }
@@ -32,24 +32,23 @@ main,
 .main,
 .above-deck,
 .services,
-.testimonials,
 .testimonial,
 .slider,
 hr {
-  max-width: var(--stork);
+  max-width: min(var(--stork), 100vw);
   margin-inline: auto;
   padding-inline: var(--vinson);
 }
 
 .condor {
-  max-width: var(--condor);
+  max-width: min(var(--condor), 100vw);
   margin-inline: auto;
   padding-inline: var(--vinson);
 }
 
 /* * hero image */
 .pelican {
-  max-width: var(--pelican);
+  max-width: min(var(--pelican), 100vw);
   margin-inline: auto;
   padding-inline: var(--vinson);
 }
@@ -60,14 +59,38 @@ hr {
 .deck,
 .service-deck,
 .suite {
-  max-width: var(--albatross);
+  max-width: min(var(--albatross), 100vw);
   margin-inline: auto;
   padding-inline: var(--vinson);
+}
 
-  /* ! testing - if it works put it across all */
-  >*,
-  >*>* {
-    max-width: 100%;
+/* TODO: all of these, but this kinda needs a better version */
+.swan,
+.vulture,
+.stork,
+main,
+.main,
+.above-deck,
+.services,
+.testimonials,
+.testimonial,
+.slider,
+.condor,
+.pelican,
+.albatross,
+.footer_list,
+.deck,
+.service-deck,
+.suite {
+
+  >* {
+    max-width: calc(100% - var(--vinson));
+    margin-inline: 0;
+  }
+
+  button,
+  .button {
+    max-width: calc(100vw - 4rem);
   }
 }
 
@@ -96,7 +119,7 @@ hr {
 }
 
 .deck>* {
-  max-width: none;
+  max-width: calc(100% - var(--vinson));
   margin-inline: 0;
   padding-inline: 0;
 }
@@ -734,6 +757,7 @@ footer {
     }
   }
 
+  /* TODO: allow this to be widder its not really a grid and the measure is too short */
   .text {
     display: grid;
     margin-inline: auto;

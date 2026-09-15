@@ -1,11 +1,13 @@
 .slider {
   white-space: nowrap;
-  width: calc(100vw - var(--denali) * 2);
+  /* width: calc(100vw - var(--denali) * 2); */
+  width: 100%;
 
-  > ul {
+  >ul {
     overflow-x: hidden;
 
-    > li {
+    >li {
+      padding: 0;
       display: inline-block;
       animation-duration: 20s;
 

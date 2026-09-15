@@ -18,7 +18,7 @@ button,
   box-shadow: var(--mesosphere);
   transition: var(--moment);
   /* * .button--left-align if needed */
-  /* ! this kinda seems the wrong way around its a double negative */
+  /* ? this kinda seems the wrong way around its a double negative */
   margin-inline-start: var(--vinson);
   margin-block-end: var(--kilimanjaro);
   border-radius: var(--border-radius);
@@ -31,9 +31,7 @@ button,
 
   @media (max-width: 30rem) {
     white-space: break-spaces;
-    /* ! this isnt correct when its layered up like the front page its pushing too wide */
-    /* ? it might need a  */
-    max-width: calc(100vw - 5rem);
+    max-width: calc(100vw - 2rem);
   }
 }
 
@@ -86,6 +84,8 @@ button:disabled,
     border-color: var(--denim-600);
   }
 }
+
+
 
 /*------------------------------------*/
 /* COOKIE */

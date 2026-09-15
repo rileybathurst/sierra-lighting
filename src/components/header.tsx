@@ -48,6 +48,7 @@ const Header = ({ largeLogo }: { largeLogo?: boolean }) => {
                 Lighting
               </Link>
             </li>
+            {/* // TODO: update this to a button */}
             <li key="start" className="c">
               <Link to="/contact/?big-menu">
                 Start With A<br />
