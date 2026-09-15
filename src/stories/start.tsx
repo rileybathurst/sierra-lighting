@@ -1,11 +1,15 @@
 // this is the Start.tsx file
-import path from "path/win32";
 import React from "react";
+import { faker } from "@faker-js/faker"
 
-export const Start = () => {
+type startTypes = {
+  buttonLeftAlign?: boolean;
+}
+export const Start = (buttonLeftAlign: startTypes) => {
+
   return (
-    <a href="contact" className={`button button-hero`}>
-      Start with a free quote
+    <a href="contact" className={`button button-hero ${buttonLeftAlign && 'button--left-align'}`}>
+      {faker.company.catchPhrase()}
     </a>
   );
 };

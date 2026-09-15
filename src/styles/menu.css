@@ -17,6 +17,7 @@
     /*  reset; */
 
     ul {
+      padding-inline-start: 0;
       display: flex;
       flex-direction: column;
       list-style: none;
@@ -28,6 +29,10 @@
           padding-inline-start: 0;
           /*  reset; */
         }
+      }
+
+      .button-hero {
+        align-self: flex-start;
       }
     }
 
@@ -150,7 +155,7 @@
   display: grid;
   place-items: center;
 
-  > * {
+  >* {
     grid-row: 1;
     grid-column: 1;
   }

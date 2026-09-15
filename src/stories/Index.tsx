@@ -4,66 +4,22 @@ import { faker } from "@faker-js/faker";
 import PropTypes from "prop-types";
 import React from "react";
 import { Card } from "./Card";
-// import { Menu } from './Menu';
 import { Footer } from "./Footer";
-// import { Header } from './Header';
-import { Logo } from "./Logo";
-import { Poster } from "./poster";
+import { Header } from './Header';
 import { Slider } from "./slider";
 import { Start } from "./start";
 import { Suite } from "./suite";
-import { Topbar } from "./Topbar";
+import { Masthead } from "./masthead";
+import { Qualities } from "./qualities";
 
 export const Index = () => {
   return (
     <React.Fragment>
-      <Topbar />
-      {/* <Header
-        // largeLogo={false}
-      /> */}
+      <Header />
 
       <main className="albatross margin-block-start-0">
-        <div
-          className={`masthead ${faker.datatype.boolean() ? "wedding" : "xmas"}`}
-        >
-          <div className="large-visibility logo">
-            <Logo />
-          </div>
-
-          <h2>
-            {faker.company
-              .catchPhrase()
-              .split(" ")
-              .map((word) => (
-                <React.Fragment key={word}>
-                  {word}
-                  <br className="medium-up" />
-                </React.Fragment>
-              ))}
-          </h2>
-
-          <div className="images">
-            <Poster />
-          </div>
-
-          <section className="text">
-            <div className="background">{/* stay gold */}</div>
-            <div className="react-markdown">{faker.lorem.paragraphs(2)}</div>
-            <Start />
-          </section>
-        </div>
-
-        <section className="qualities albatross">
-          {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(
-            () => (
-              <section key={faker.string.uuid()}>
-                <h3 className="capitalize">{faker.company.buzzAdjective()}</h3>
-                <p>{faker.lorem.paragraphs(1)}</p>
-              </section>
-            ),
-          )}
-          <hr />
-        </section>
+        <Masthead nestedAlbatross />
+        <Qualities nestedAlbatross />
 
         {/* // TODO: move this outside the loop but needs a little more designing */}
         <section className="albatross">
@@ -122,7 +78,7 @@ export const Index = () => {
       </main>
 
       <Footer />
-    </React.Fragment>
+    </React.Fragment >
   );
 };
 

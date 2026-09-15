@@ -2,6 +2,7 @@
 
 import { faker } from "@faker-js/faker";
 import React, { useState } from "react";
+import { Start } from "./start"
 
 const Star = () => (
   <svg
@@ -43,6 +44,11 @@ export const Buttons = () => {
       <a href={faker.internet.url()} className="button button-focus-storybook">
         Link Focused Button
       </a>
+
+      <hr />
+      <h3>Start Buttons</h3>
+      <Start />
+
       <hr />
       <h3>Disabled Buttons</h3>
       <button type="button" disabled>

@@ -15,7 +15,7 @@ const Header = ({ largeLogo }: { largeLogo?: boolean }) => {
         {/* // * needed to hide the small menu */}
         <div className="stripe">{/* stay gold */}</div>
 
-        <Link to="/" className="small-visibility small-logo">
+        <Link to="/" className="small-visibility header__logo">
           <Logo />
         </Link>
         <SlideMenu />
