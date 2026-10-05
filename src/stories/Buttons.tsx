@@ -63,6 +63,12 @@ export const Buttons = () => {
       </a>
 
       <hr />
+      <h3>button-waiting Buttons</h3>
+      <button type="button" className="button-waiting" disabled>
+        Waiting Button
+      </button>
+
+      <hr />
       <h3>Feedback Stars</h3>
 
       <div className="feedback-stars">

@@ -61,9 +61,9 @@ const Footer = ({
 
   /*------------------------------------*/
 
-  let showQuote = true;
+  let showQuoteForm = true;
   if (quote === false) {
-    showQuote = false;
+    showQuoteForm = false;
   }
 
   /*------------------------------------*/
@@ -73,11 +73,18 @@ const Footer = ({
   /*------------------------------------*/
 
   const [canSend, setCanSend] = React.useState(true);
+  const [hasMinimumElapsed, setHasMinimumElapsed] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [emailProfanity, setEmailProfanity] = React.useState(false);
   const [messageProfanity, setMessageProfanity] = React.useState(false);
   const [referralProfanity, setReferralProfanity] = React.useState(false);
   const [addressLink, setAddressLink] = React.useState(false);
+
+  React.useEffect(() => {
+    const timer = window.setTimeout(() => setHasMinimumElapsed(true), 3000);
+
+    return () => window.clearTimeout(timer);
+  }, []);
 
   function profanityCheck(
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
@@ -96,9 +103,9 @@ const Footer = ({
 
     setCanSend(
       !hasProfanity &&
-        !emailProfanity &&
-        !messageProfanity &&
-        !referralProfanity,
+      !emailProfanity &&
+      !messageProfanity &&
+      !referralProfanity,
     );
 
     return null;
@@ -367,11 +374,13 @@ const Footer = ({
     <footer>
       <hr className="stork" />
 
-      {showQuote && (
+      {showQuoteForm && (
         <>
           <h3 className="stork">Request a Free Quote</h3>
 
-          {/* // ? should i be sanitizing inputs here */}
+          {/* // * passed through netlify and email so sanitizing is done at that level */}
+          {/* // * added a minimum time before allowing submissions for simple bots */}
+
           <form
             name="contact"
             data-netlify="true"
@@ -399,7 +408,12 @@ const Footer = ({
 
             <label>
               Name
-              <input type="text" name="name" autoComplete="name" />
+              <input
+                type="text"
+                name="name"
+                autoComplete="name"
+                maxLength={100}
+              />
             </label>
             <label>
               Email
@@ -413,7 +427,7 @@ const Footer = ({
             </label>
             <label>
               Phone
-              <input type="tel" name="tel" />
+              <input type="tel" name="tel" maxLength={32} />
             </label>
             <div className="address-together">
               <label className="address">
@@ -423,12 +437,13 @@ const Footer = ({
                   name="address"
                   onChange={addressCheck}
                   className={addressLink ? "error" : ""}
+                  maxLength={200}
                 />
               </label>
 
               <label className="zip">
                 City or Zip
-                <input type="text" name="zip" />
+                <input type="text" name="zip" maxLength={100} />
               </label>
             </div>
 
@@ -440,6 +455,7 @@ const Footer = ({
                 name="message"
                 onChange={profanityCheck}
                 className={messageProfanity ? "error" : ""}
+                maxLength={2000}
               />
             </label>
             <label>
@@ -449,6 +465,7 @@ const Footer = ({
                 name="referral"
                 onChange={profanityCheck}
                 className={referralProfanity ? "error" : ""}
+                maxLength={200}
               />
             </label>
 
@@ -469,8 +486,8 @@ const Footer = ({
 
             <button
               type="submit"
-              disabled={!canSend}
-              className="button--left-align"
+              disabled={!canSend || !hasMinimumElapsed}
+              className={`button--left-align${!hasMinimumElapsed ? " button-waiting" : ""}`}
             >
               Send
             </button>

@@ -85,6 +85,18 @@ button:disabled,
   }
 }
 
+.button-waiting:disabled {
+  background-color: var(--honey-200);
+  border-color: var(--neutral-100);
+  color: var(--honey-100);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--denim-700);
+    border-color: var(--denim-600);
+    color: var(--denim-600);
+  }
+}
+
 /*------------------------------------*/
 /* COOKIE */
 /*------------------------------------*/
@@ -139,14 +151,14 @@ button:disabled,
 
 .feedback-star.hover {
   background-color: var(--denim-500);
-  border-color: var(--honey-300);
+  border-color: var(--denim-300);
 
   @media (prefers-color-scheme: dark) {
     background-color: var(--honey-300);
   }
 
   svg {
-    fill: var(--honey-500);
+    fill: var(--neutral-100);
 
     @media (prefers-color-scheme: dark) {
       fill: var(--neutral-700);
