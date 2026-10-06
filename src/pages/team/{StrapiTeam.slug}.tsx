@@ -12,13 +12,23 @@ import Start from "../../components/start";
 import type { CardType } from "../../types/card-type";
 import type { HeroSEOImageType } from "../../types/hero-seo-image-type";
 
+type TeamCardType = CardType & {
+  bio?: {
+    data?: {
+      bio?: string | null;
+    } | null;
+  } | null;
+};
+
 export const query = graphql`
   query TeamQuery($slug: String!) {
     strapiTeam(slug: { eq: $slug }) {
       ...teamFragment
+    }
 
-      projects {
-        ...projectCardFragment
+    allStrapiTeam(filter: {slug: {ne: $slug}}) {
+      nodes {
+        ...teamFragment
       }
     }
 
@@ -33,16 +43,15 @@ type TeamTypes = {
   data: {
     strapiTeam: {
       id: React.Key;
-      name: string;
+      title: string;
       slug: string;
       excerpt: string;
-      bio: {
-        data: {
-          bio: string;
-        };
-      };
-      avatar: HeroSEOImageType;
+      bio: TeamCardType["bio"];
+      image: HeroSEOImageType;
       projects: CardType[];
+    };
+    allStrapiTeam: {
+      nodes: TeamCardType[];
     };
     strapiAbout: {
       url: string;
@@ -60,18 +69,18 @@ const TeamPage = ({ data }: TeamTypes) => {
         <div className="avatar-wrapper">
           <GatsbyImage
             image={
-              data.strapiTeam?.avatar?.localFile?.childImageSharp
+              data.strapiTeam?.image?.localFile?.childImageSharp
                 ?.gatsbyImageData
             }
             alt={
-              data.strapiTeam?.avatar?.alternativeText || data.strapiTeam.name
+              data.strapiTeam?.image?.alternativeText || data.strapiTeam.title
             }
             className="avatar"
           />
         </div>
-        <h1>{data.strapiTeam.name}</h1>
+        <h1>{data.strapiTeam.title}</h1>
 
-        {data.strapiTeam.bio ? (
+        {data.strapiTeam.bio?.data?.bio ? (
           <div className="react-markdown">
             <Markdown>{data.strapiTeam.bio.data.bio}</Markdown>
           </div>
@@ -79,15 +88,16 @@ const TeamPage = ({ data }: TeamTypes) => {
 
         <hr />
 
-        <h3>Would you like to work with {data.strapiTeam.name}</h3>
+        <h3>Would you like to work with {data.strapiTeam.title}</h3>
         <Start path={data.strapiTeam.slug} />
       </main>
 
-      {data.strapiTeam.projects ? (
+      {/* // * lets get rid of this and try other team members we dont really apply work to people
+{data.strapiTeam.projects ? (
         <>
           <div className="above-deck">
             <hr />
-            <h3>Projects {data.strapiTeam.name} has worked on</h3>
+            <h3>Projects {data.strapiTeam.title} has worked on</h3>
           </div>
           <div className="deck">
             {data.strapiTeam.projects.map((project: CardType) => (
@@ -95,7 +105,24 @@ const TeamPage = ({ data }: TeamTypes) => {
             ))}
           </div>
         </>
-      ) : null}
+      ) : null} */}
+
+      <hr />
+      <section>
+        <h3 className="above-deck">Other Team Members</h3>
+        <div className="deck">
+          {data.allStrapiTeam.nodes.map((team: TeamCardType) => (
+            <Card
+              key={team.id}
+              title={team.title}
+              slug={team.slug}
+              image={team.image}
+              breadcrumb="team"
+              excerpt={team.bio?.data?.bio ?? ""}
+            />
+          ))}
+        </div>
+      </section>
 
       <hr />
 
@@ -103,7 +130,7 @@ const TeamPage = ({ data }: TeamTypes) => {
         <Breadcrumb>
           <Link to="/team">Team</Link>
         </Breadcrumb>
-        <Breadcrumb>{data.strapiTeam.name}</Breadcrumb>
+        <Breadcrumb>{data.strapiTeam.title}</Breadcrumb>
       </Breadcrumbs>
 
       <Footer />
@@ -116,10 +143,9 @@ export default TeamPage;
 export const Head = ({ data }: TeamTypes) => {
   return (
     <SEO
-      title={`${data.strapiTeam.name}`}
-      // TODO image
+      title={`${data.strapiTeam.title}`}
       description={data.strapiTeam?.excerpt}
-      image={data.strapiTeam?.avatar}
+      image={data.strapiTeam?.image}
       url={`/team/${data.strapiTeam.slug}`}
       breadcrumbs={[
         {
@@ -127,13 +153,12 @@ export const Head = ({ data }: TeamTypes) => {
           item: "/team",
         },
         {
-          name: data.strapiTeam.name,
-          item: `/team/${data.strapiTeam.slug}`,
+          name: data.strapiTeam.title,
+          item: `/team/${data.strapiTeam.title}`,
         },
       ]}
     >
       {/* // TODO: jobTitle */}
-      {/* // TODO: move the organization to seo file */}
       {/* // TODO: locality is there */}
       {/* works for has to be an org but that needs an address so normally use local bus */}
       <Script type="application/ld+json">
@@ -141,9 +166,9 @@ export const Head = ({ data }: TeamTypes) => {
           {
             "@context": "https://schema.org/",
             "@type": "Person",
-            "name": "${data.strapiTeam.name}",
-            "url": "${data.strapiAbout.url}/team/${data.strapiTeam.slug}",
-            "image": "${data.strapiTeam.avatar?.localFile?.url}",
+            "name": "${data.strapiTeam.title}",
+            "url": "${data.strapiAbout.url}/team/${data.strapiTeam.title}",
+            "image": "${data.strapiTeam.image?.localFile?.url}",
             "description": "${data.strapiTeam?.excerpt}",
             "jobTitle": "Team Member",
             "worksFor": {

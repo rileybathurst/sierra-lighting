@@ -3,6 +3,7 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import * as React from "react";
+import truncateText from "./truncate-text";
 import type { CardProps } from "../types/card-type";
 
 const Card = ({
@@ -28,14 +29,14 @@ const Card = ({
   }
 
   const { strapiError } = useStaticQuery(graphql`
-      query cardQuery {
-        strapiError {
-          missingCard {
-            ...cardImageFragment
-          }
+    query cardQuery {
+      strapiError {
+        missingCard {
+          ...cardImageFragment
         }
       }
-    `);
+    }
+  `);
 
   return (
     <section className="card">
@@ -80,7 +81,7 @@ const Card = ({
         )}
       </h2>
       <div className="text">
-        <p>{excerpt}</p>
+        <p>{truncateText(excerpt)}</p>
         {areas && areas?.length > 0 && (
           <div>
             <p>Including:</p>

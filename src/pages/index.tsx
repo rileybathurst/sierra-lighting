@@ -9,6 +9,7 @@ import Season from "../components/season";
 import { SEO } from "../components/seo";
 import Start from "../components/start";
 import Suite from "../components/suite";
+import truncateText from "../components/truncate-text";
 import BackImage from "../images/BackImage";
 import HeroWeddingBackImage from "../images/HeroWeddingBackImage";
 import Logo from "../images/logo";
@@ -169,12 +170,6 @@ const IndexPage = ({ location }: { location: Location }) => {
           <ul>
             {/* // TODO: make this a component */}
             {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
-              const truncationPoint = testimonial.review.indexOf(" ", 160);
-              const review =
-                truncationPoint === -1
-                  ? testimonial.review
-                  : `${testimonial.review.slice(0, truncationPoint)}...`;
-
               return (
                 <li key={testimonial.id} className="slider">
                   {/* // TODO: once testimonial projects are in place, re-add this */}
@@ -186,7 +181,7 @@ const IndexPage = ({ location }: { location: Location }) => {
                     </h4>
                     : null} */}
 
-                  <p>{review}</p>
+                  <p>{truncateText(testimonial.review)}</p>
                   {/* // TODO: className="together" is a bad name */}
                   <div className="together">
                     <h4>{testimonial.customer}</h4>

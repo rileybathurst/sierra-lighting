@@ -1,6 +1,6 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
-import type { IGatsbyImageData } from "gatsby-plugin-image";
 import React from "react";
+import type { TeamTypes } from "../types/team-types";
 import Card from "../components/card";
 import Footer from "../components/footer";
 import Header from "../components/header";
@@ -21,25 +21,7 @@ const TeamPage = () => {
     }
   `);
 
-  type TeamTypes = {
-    id?: React.Key;
-    key?: React.Key;
-    name: string;
-    slug: string;
-    bio: {
-      data: {
-        bio: string;
-      };
-    };
-    avatar: {
-      localFile: {
-        childImageSharp: {
-          gatsbyImageData: IGatsbyImageData;
-        };
-      };
-      alternativeText: string;
-    };
-  };
+
 
   return (
     <>

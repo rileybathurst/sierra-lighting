@@ -344,7 +344,7 @@ const Footer = ({
           link: "/projects",
         },
         {
-          text: "Process",
+          text: "Process & Safety",
           link: "/process",
         },
         {

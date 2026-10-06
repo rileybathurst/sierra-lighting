@@ -3,12 +3,12 @@ import { graphql } from "gatsby";
 export const query = graphql`
   fragment teamFragment on STRAPI_TEAM {
     id
-    name
+    title: name
     slug
     excerpt
     bio { data { bio } }
 
-    avatar {
+    image: avatar {
       localFile {
         childImageSharp {
           gatsbyImageData (

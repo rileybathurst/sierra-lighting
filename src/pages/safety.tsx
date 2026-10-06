@@ -24,19 +24,19 @@ type SafetyPageTypes = {
 export const data = graphql`
   query useStrapiSafety {
     strapiSafety {
-    id
-    excerpt
-        description {
-          data {
-        description
+      id
+      excerpt
+          description {
+            data {
+          description
+        }
+      }
+
+      image {
+        ...heroSEOImageFragment
       }
     }
-
-    image {
-      ...heroSEOImageFragment
-    }
   }
-}
 `;
 
 const SafetyPage = ({ data }: SafetyPageTypes) => {
@@ -49,7 +49,7 @@ const SafetyPage = ({ data }: SafetyPageTypes) => {
       <main>
         <h1>Safety</h1>
 
-        {/* // TODO: this has a ul with kinda messy formatting */}
+        {/* // TODO: this has a ul with kinda messy formatting due to react-markdown formatting */}
         <div className="react-markdown">
           <Markdown>{data.strapiSafety.description.data.description}</Markdown>
         </div>
