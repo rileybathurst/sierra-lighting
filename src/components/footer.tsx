@@ -270,15 +270,15 @@ const Footer = ({
           link: false,
         },
         {
-          text: "Residential",
+          text: "Residential Xmas Lights",
           link: "/residential",
         },
         {
-          text: "Commercial",
+          text: "Commercial Xmas Lights",
           link: "/commercial",
         },
         {
-          text: "Christmas Lights",
+          text: "Christmas Light Styles",
           link: "/christmas-lights",
         },
       ],
@@ -287,7 +287,13 @@ const Footer = ({
       title: "wedding",
       body: [
         {
-          text: "Wedding Light Installation",
+          text: (
+            <>
+              Wedding Light
+              <br />
+              Installation
+            </>
+          ),
           link: "/wedding",
         },
         {
@@ -295,11 +301,11 @@ const Footer = ({
           link: "/wedding/lights",
         },
         {
-          text: "Venues",
+          text: "Wedding Venues",
           link: "/venue",
         },
         {
-          text: "Vendors",
+          text: "Recommended Vendors",
           link: "/vendor",
         },
       ],
@@ -312,11 +318,11 @@ const Footer = ({
           link: false,
         },
         {
-          text: "Social Events",
+          text: "Social Event Lighting",
           link: "/social-events",
         },
         {
-          text: "Commercial Events",
+          text: "Commercial Event Lighting",
           link: "/commercial-events",
         },
         // TODO: this shouldnt be here its just as the list is currently shorter and needs to be redesigned
@@ -372,7 +378,7 @@ const Footer = ({
 
   return (
     <footer>
-      <hr className="stork" />
+      <hr />
 
       {showQuoteForm && (
         <>
@@ -566,8 +572,8 @@ const Footer = ({
           {footerLists.map((list) => (
             <li key={list.title}>
               <ul>
-                {list.body.map((item) => (
-                  <li key={item.text}>
+                {list.body.map((item, index) => (
+                  <li key={typeof item.text === "string" ? item.text : index}>
                     {typeof item.link === "string" ? (
                       <Link to={item.link}>{item.text}</Link>
                     ) : (
@@ -598,7 +604,7 @@ const Footer = ({
         </p>
       )}
 
-      <hr className="stork" />
+      <hr />
 
       <div className="footer-copyright">
         <h4 className="sr-only footer-copyright__mind-the-gap">

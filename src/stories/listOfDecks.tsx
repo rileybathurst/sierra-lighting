@@ -23,13 +23,6 @@ export const ListofDecks = () => {
               <p className="">{faker.lorem.sentence()}</p>
             </div>
             <Deck />
-            {faker.datatype.boolean() && (
-              <h4 className="main">
-                <a href={faker.location.country()}>
-                  Explore more from {faker.location.country()}
-                </a>
-              </h4>
-            )}
           </React.Fragment>
         ),
       )}

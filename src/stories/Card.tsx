@@ -17,16 +17,18 @@ export const Card = () => {
       <h2>
         <a href={faker.animal.bird()}>{faker.animal.bird()}</a>
       </h2>
-      {faker.datatype.boolean() && (
-        <ul>
-          {Array.from({
-            length: faker.number.int({ min: 1, max: 5 }),
-          }).map(() => (
-            <li key={faker.number.int()}>{faker.lorem.word()}</li>
-          ))}
-        </ul>
-      )}
-      <p className="description">{faker.lorem.sentences(2)}</p>
+      <div className='text'>
+        <p className="description">{faker.lorem.sentences(2)}</p>
+        {faker.datatype.boolean() && (
+          <ul>
+            {Array.from({
+              length: faker.number.int({ min: 1, max: 5 }),
+            }).map(() => (
+              <li key={faker.number.int()}>{faker.lorem.word()}</li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

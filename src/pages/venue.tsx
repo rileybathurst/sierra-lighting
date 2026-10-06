@@ -65,7 +65,26 @@ const VenuePage = () => {
       <Header />
       <main>
         <h1>Wedding venues we create lighting at</h1>
+
+        {/* // TODO: nope but does need something here for areas */}
+        {/* <ul>
+          {venueArray.map((area) => (
+            <li key={area}>
+              <Link to={`/areas/${area}`}
+                className="capitalize"
+              >{area}</Link>
+            </li>
+          ))}
+        </ul> */}
       </main>
+
+      {/* // TODO: needs a search feature to bring up the venue easily */}
+
+      {/* // TODO: these need to be grouped by area */}
+      {/* // TODO: The links are weird some are top some are bottom */}
+      {/* // TODO: the super thin eyebrow text isnt really used any more */}
+
+      {/* // TODO: these need the link hover on the card */}
 
       {venueArray.map((area) => (
         <section key={area}>

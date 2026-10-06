@@ -121,29 +121,6 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
   const [reversedProjects] = React.useState(projects?.slice().reverse() ?? []);
   projects = reversedProjects;
 
-  /* const emptyCard = {
-    id: '',
-    slug: '',
-    excerpt: '',
-    breadcrumb: '',
-    title: '',
-    name: '',
-    image: {
-      localFile: {
-        childImageSharp: {
-          gatsbyImageData: {
-            images: {
-              fallback: {
-                src: ''
-              }
-            }
-          }
-        }
-      },
-      alternativeText: ''
-    }
-  }; */
-
   // empty card slots
   // * I know this has type issues
   const base: {
@@ -154,32 +131,32 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
     order: number;
     id: React.Key;
   }[] = [
-    // * default to project link to satisfy types
-    {
-      card: {},
-      title: false,
-      breadcrumb: "",
-      cardBreadcrumb: "project",
-      order: 0,
-      id: "",
-    },
-    {
-      card: {},
-      title: false,
-      breadcrumb: "",
-      cardBreadcrumb: "project",
-      order: 1,
-      id: "",
-    },
-    {
-      card: {},
-      title: false,
-      breadcrumb: "",
-      cardBreadcrumb: "project",
-      order: 2,
-      id: "",
-    },
-  ];
+      // * default to project link to satisfy types
+      {
+        card: {},
+        title: false,
+        breadcrumb: "",
+        cardBreadcrumb: "project",
+        order: 0,
+        id: "",
+      },
+      {
+        card: {},
+        title: false,
+        breadcrumb: "",
+        cardBreadcrumb: "project",
+        order: 1,
+        id: "",
+      },
+      {
+        card: {},
+        title: false,
+        breadcrumb: "",
+        cardBreadcrumb: "project",
+        order: 2,
+        id: "",
+      },
+    ];
 
   // console.log(base);
 
@@ -267,7 +244,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
                   {item.breadcrumb.includes("project")
                     ? "Projects"
                     : item.breadcrumb.charAt(0).toUpperCase() +
-                      item.breadcrumb.slice(1)}
+                    item.breadcrumb.slice(1)}
                 </Link>
               </h4>
             ) : null}
@@ -316,20 +293,29 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
 
   if (projects && !venue && !vendor) {
     return (
-      <div className="service-deck">
-        {projects.slice(0, 3).map((project, index) => (
-          <React.Fragment key={project.id}>
-            <div className="service-card">
-              {index === 0 ? (
-                <h4 className="capitalize project-title project-title">
-                  <Link to="/projects">Projects</Link>
-                </h4>
-              ) : null}
-            </div>
-            <Card key={project.id} {...project} breadcrumb="project" />
-          </React.Fragment>
-        ))}
-      </div>
+      <React.Fragment>
+        <div className="service-deck">
+          {projects.slice(0, 3).map((project, index) => (
+            <React.Fragment key={project.id}>
+              <div className="service-card">
+                {index === 0 ? (
+                  <h4 className="capitalize project-title project-title">
+                    <Link to="/projects">Projects</Link>
+                  </h4>
+                ) : null}
+              </div>
+              <Card key={project.id} {...project} breadcrumb="project" />
+            </React.Fragment>
+          ))}
+        </div>
+        {projects.length > 3 && (
+          <h2 className="stork margin-block-start-denali kilimanjaro">
+            <Link to={`/${serviceSlug}/projects`}>
+              Explore {projects.length - 3} More Projects
+            </Link>
+          </h2>
+        )}
+      </React.Fragment>
     );
   }
 
@@ -359,22 +345,20 @@ const ServiceView = ({ data }: ServiceTypes) => {
           />
         )}
 
-        <section className="stork">
-          <h1>
-            {/* // TODO: needs a clamp on the size */}
-            {data.strapiService.name} Lighting Installation
-          </h1>
+        <h1>
+          {/* // TODO: needs a clamp on the size */}
+          {data.strapiService.name} Lighting Installation
+        </h1>
 
-          <div className="react-markdown">
-            <Markdown>
-              {data.strapiService.description.data.description}
-            </Markdown>
-          </div>
-          <Start
-            className="button--left-align"
-            path={data.strapiService.slug}
-          />
-        </section>
+        <div className="react-markdown">
+          <Markdown>
+            {data.strapiService.description.data.description}
+          </Markdown>
+        </div>
+        <Start
+          className="button--left-align"
+          path={data.strapiService.slug}
+        />
 
         {/* // TODO: working section */}
         {/* <section className="triple">
@@ -390,7 +374,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
       </main>
 
       <section className="lights">
-        <hr className="stork" />
+        <hr />
 
         <div className="deck">
           {/* // ? cant I pass this as a spread? */}

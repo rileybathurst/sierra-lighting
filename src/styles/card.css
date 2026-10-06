@@ -14,7 +14,7 @@
   /* this is breaking when on the service page as theres title pushing the size */
   /* TODO: I can wrap it in a not */
 
-  > * {
+  >* {
     grid-column: 1;
   }
 
@@ -24,6 +24,7 @@
     box-shadow: var(--mesosphere);
     border: 2px solid var(--neutral-100);
     border-radius: var(--card-radius);
+    transition: var(--moment);
 
     @media (prefers-color-scheme: dark) {
       background-color: var(--denim-700);
@@ -68,8 +69,34 @@
     }
   }
 
-  > * {
+  >* {
     padding-inline: var(--vinson);
+  }
+
+  /* the image and title link to the same place so hover either shows both */
+  &:has(h2 a:hover) .image img {
+    transform: scale(1.05);
+  }
+
+  &:has(.image:hover) h2 a {
+    text-decoration: none;
+    color: var(--denim-600);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--honey-400);
+    }
+  }
+
+  &:has(h2 a:hover) .paper,
+  &:has(.image:hover) .paper {
+    background-color: var(--honey-200);
+    border: 2px solid var(--honey-100);
+    box-shadow: var(--stratosphere);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--denim-600);
+      border-color: var(--denim-500);
+    }
   }
 
   h2 {
@@ -84,8 +111,7 @@
     font-weight: 600;
   }
 
-  p,
-  .subarea {
+  .text {
     grid-row: 4;
     margin-block-end: var(--kilimanjaro);
     color: var(--neutral-600);
@@ -295,7 +321,7 @@
   /* * this has to be top level then drop down */
   text-decoration: none;
 
-  > * {
+  >* {
     grid-column: 1;
   }
 
@@ -349,7 +375,7 @@
     }
   }
 
-  > * {
+  >* {
     padding-inline: var(--vinson);
   }
 

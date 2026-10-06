@@ -7,20 +7,31 @@
 /* LISTS */
 /*------------------*/
 
-ul {
-  padding-inline-start: var(--spacing-half);
+ul,
+ol {
+  /* * keep the list in line with the p push the dot back */
+  /* * page 70 elements of typographic style */
+  padding-inline-start: 0;
 
+  li::marker {
+    color: var(--honey-400);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--denim-400);
+    }
+  }
+}
+
+
+ul {
   li {
     padding: 0;
     line-height: var(--kilimanjaro);
     margin: 0;
-    /*  https://caniuse.com/mdn-css_types_length_lh */
-    margin-block-end: 0.25lh;
-
-    @supports not (margin: var(--elbrus)) {
-      margin-block-end: 0.625rem;
-    }
+    margin-block-end: var(--vinson);
   }
+
+
 }
 
 .list-style-none {
@@ -28,17 +39,39 @@ ul {
 
   li {
     list-style: none;
+    margin-inline-start: 0;
   }
 }
+
+/*------------------------------------*/
+/* # NESTED */
+/*------------------------------------*/
 
 ol li {
   margin-block-end: var(--kilimanjaro);
 }
 
+ul ul {
+  list-style-type: disc;
+  margin-inline-start: var(--vinson);
+
+  li::marker {
+    color: var(--honey-200);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--denim-200);
+    }
+  }
+
+  li:first-child {
+    margin-block-start: var(--vinson);
+  }
+}
+
 .ol-title {
   display: block;
   font-size: var(--kilimanjaro);
-  margin-block-end: var(--kilimanjaro);
+  margin-block-end: var(--vinson);
 }
 
 /*------------------*/
@@ -87,7 +120,7 @@ ol li {
 /* FOOTER */
 /*------------------*/
 
-.footer_list > ul {
+.footer_list>ul {
   display: grid;
   padding-inline-start: 0;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
@@ -96,8 +129,9 @@ ol li {
   align-items: space-between;
 
   /*  theres not 1 number that does this its close but not there */
-  > li {
+  >li {
     flex: 1 1 1 var(--vinson);
+    margin-inline-start: 0;
 
     @media (min-width: 60rem) {
       flex: 1 1 9rem;
@@ -132,6 +166,7 @@ ol li {
       li {
         list-style: none;
         padding: 0;
+        margin-inline-start: 0;
       }
     }
   }
@@ -143,7 +178,7 @@ ol li {
   }
 }
 
-.footer_list > ul {
+.footer_list>ul {
   .wedding {
     order: 1;
   }
@@ -152,12 +187,13 @@ ol li {
     order: 2;
   }
 
-  > li {
+  >li {
     order: 3;
   }
 }
 
 .footer_list .xmas {
+
   .residential,
   .christmas {
     order: 1;
@@ -171,7 +207,7 @@ ol li {
     order: 3;
   }
 
-  > li {
+  >li {
     order: 4;
   }
 }
@@ -197,8 +233,9 @@ ol li {
 .testimonials__page {
   padding-inline-start: 0;
 
-  > li {
+  >li {
     list-style: none;
+    margin-inline-start: 0;
     background-color: hsl(var(--honey), 12%, 97.5%);
     padding: var(--vinson);
     border-radius: var(--spacing-half);
@@ -206,9 +243,13 @@ ol li {
     margin-block-end: var(--vinson);
     box-shadow: var(--mesosphere);
 
-    > ul {
+    >ul {
       /*  stars */
       padding-inline-start: 0;
+
+      li {
+        margin-inline-start: 0;
+      }
     }
 
     h2 {
@@ -240,7 +281,7 @@ ol li {
   flex-flow: row wrap;
   gap: var(--vinson);
 
-  > * {
+  >* {
     flex: 1 1 10rem;
   }
 }
@@ -259,7 +300,7 @@ ol li {
   list-style: none;
   margin-inline: auto;
 
-  > .affiliation {
+  >.affiliation {
     background-color: var(--neutral-100);
     border: 1px solid var(--honey-400);
     padding: var(--kosciuszko);
@@ -306,6 +347,7 @@ ol li {
 /*------------------*/
 
 .link-list {
+
   /*  this should be a variable of h2 named after a mountain */
   ul {
     list-style: none;
@@ -317,6 +359,7 @@ ol li {
       line-height: var(--aconcagua);
       margin-block-end: 1.875rem;
       padding-inline-start: 0;
+      margin-inline-start: 0;
 
       a {
         background-color: var(--honey-200);
@@ -369,6 +412,10 @@ ol li {
   padding-inline-start: 0;
   justify-content: center;
   grid-row: 2;
+
+  >li {
+    margin-inline-start: 0;
+  }
 
   @container (min-width: 35rem) {
     grid-row: 1;

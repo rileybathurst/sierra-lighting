@@ -17,7 +17,7 @@ export const CatchAll = ({ primary = false, ...props }: CatchAllProps) => {
     <>
       <Header />
 
-      <main className="stork">
+      <main>
         {/* // TODO: there are thin fonts we use where are they? */}
         <h1 className="denali">
           404 - {faker.company.buzzNoun()}

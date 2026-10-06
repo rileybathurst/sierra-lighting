@@ -1,3 +1,5 @@
+// ? why are we not linking at the top level its a card it has to link
+
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import * as React from "react";
@@ -49,7 +51,7 @@ const Card = ({
               image
                 ? image?.localFile?.childImageSharp?.gatsbyImageData
                 : strapiError.missingCard.localFile.childImageSharp
-                    .gatsbyImageData
+                  .gatsbyImageData
             }
             alt={image?.alternativeText ?? title}
           />
@@ -61,7 +63,7 @@ const Card = ({
               image
                 ? image?.localFile?.childImageSharp?.gatsbyImageData
                 : strapiError.missingCard.localFile.childImageSharp
-                    .gatsbyImageData
+                  .gatsbyImageData
             }
             alt={image?.alternativeText ?? title}
           />
@@ -77,25 +79,19 @@ const Card = ({
           <Link to={`/${breadcrumb}/${slug}?=${query ?? ""}`}>{title}</Link>
         )}
       </h2>
-      {areas ? (
-        areas?.length > 0 ? (
-          <div className="subarea">
-            <p>{excerpt}</p>
-            <div>
-              <p>Including:</p>
-              <ul>
-                {areas.map((area) => (
-                  <li key={area.name}>{area.name}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ) : (
-          <p>{excerpt}</p>
-        )
-      ) : (
+      <div className="text">
         <p>{excerpt}</p>
-      )}
+        {areas && areas?.length > 0 && (
+          <div>
+            <p>Including:</p>
+            <ul>
+              {areas.map((area) => (
+                <li key={area.name}>{area.name}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </section>
   );
 };
