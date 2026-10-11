@@ -14,6 +14,8 @@ import BackImage from "../images/BackImage";
 import HeroWeddingBackImage from "../images/HeroWeddingBackImage";
 import Logo from "../images/logo";
 import type TestimonialTypes from "../types/testimonial-types";
+import Card from "../components/card";
+import { CardType } from "../types/card-type";
 
 const IndexPage = ({ location }: { location: Location }) => {
   console.log(location);
@@ -24,6 +26,9 @@ const IndexPage = ({ location }: { location: Location }) => {
     allStrapiTestimonial,
     allStrapiQuality,
     strapiHero,
+    residentialLights,
+    commercialLights,
+    weddingLights,
   } = useStaticQuery(graphql`
     query IndexQuery {
       strapiAbout {
@@ -69,6 +74,28 @@ const IndexPage = ({ location }: { location: Location }) => {
         }
       }
 
+      residentialLights: allStrapiLight(
+        filter: {featured_service: {elemMatch: {slug: {eq: "residential"}}}},
+        limit: 1,
+        sort: {xmasOrder: ASC}) {
+        nodes {
+          ...lightCard
+        }
+      }
+
+      commercialLights: allStrapiLight(filter: {featured_service: {elemMatch: {slug: {eq: "commercial"}}}}, limit: 1,
+        sort: {xmasOrder: ASC}) {
+        nodes {
+          ...lightCard
+        }
+      }
+
+      weddingLights: allStrapiLight(filter: {featured_service: {elemMatch: {slug: {eq: "wedding"}}}}, limit: 1,
+        sort: {weddingOrder: ASC}) {
+        nodes {
+          ...lightCard
+        }
+      }
 
     }
   `);
@@ -83,6 +110,25 @@ const IndexPage = ({ location }: { location: Location }) => {
       };
     };
   }
+
+  type TriptychSection = {
+    title: string;
+    link: string;
+    card: {
+      nodes: CardType[];
+    };
+    // width?: "double" | "triple";
+  };
+
+  console.log(residentialLights);
+
+  const featuredServiceLights: TriptychSection[] = [
+    { title: "Residential Christmas", card: residentialLights, link: "/residential/lights" },
+    { title: "Commercial Christmas", card: commercialLights, link: "/commercial/lights" },
+    { title: "Wedding", card: weddingLights, link: "/wedding/lights" },
+  ];
+
+  console.log(featuredServiceLights);
 
   return (
     <>
@@ -208,6 +254,25 @@ const IndexPage = ({ location }: { location: Location }) => {
         <p>&nbsp;</p>
         <Start path="index-services" />
       </div>
+
+      <hr className="albatross " />
+
+      <section className="deck">
+        {featuredServiceLights.map(({ title, card, link }) => (
+          <div key={title}>
+            <h4>
+              <Link to={link}>{title} Lights</Link>
+            </h4>
+            {card.nodes.map((c: CardType) => (
+              <Card
+                key={c.id}
+                {...c}
+                breadcrumb="light"
+              />
+            ))}
+          </div>
+        ))}
+      </section>
 
       <hr className="albatross " />
 

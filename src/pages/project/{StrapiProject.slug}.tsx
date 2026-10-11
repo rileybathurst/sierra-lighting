@@ -256,7 +256,7 @@ export const query = graphql`
 `;
 
 const ProjectPage = ({ data }: ProjectPageTypes) => {
-  console.log(data.strapiProject.themes);
+  // console.log(data.strapiProject.themes);
 
   return (
     <>
@@ -315,9 +315,9 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
       )}
 
       {data.strapiProject.venue ||
-      data.strapiProject.area ||
-      data.strapiProject.vendors.length > 0 ||
-      data.strapiProject.project_single_use_links ? (
+        data.strapiProject.area ||
+        data.strapiProject.vendors.length > 0 ||
+        data.strapiProject.project_single_use_links ? (
         <React.Fragment>
           <hr className="pelican" />
           <div className="attributes">
@@ -347,28 +347,28 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
             {/* // TODO: florists shouldnt be plural im not sure which others are like this */}
             {data.strapiProject.vendors.length > 0
               ? data.strapiProject.vendors.map((vendor) =>
-                  vendor.collaborator?.industry ? (
-                    <Attribute
-                      key={String(vendor.id)}
-                      {...{
-                        [vendor.collaborator.industry]: {
-                          name: vendor.name,
-                          link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`,
-                        },
-                      }}
-                    />
-                  ) : vendor.collaboratorAncillary ? (
-                    <Attribute
-                      key={String(vendor.id)}
-                      {...{
-                        [vendor.collaboratorAncillary]: {
-                          name: vendor.name,
-                          link: `/vendor/${vendor.slug}`,
-                        },
-                      }}
-                    />
-                  ) : null,
-                )
+                vendor.collaborator?.industry ? (
+                  <Attribute
+                    key={String(vendor.id)}
+                    {...{
+                      [vendor.collaborator.industry]: {
+                        name: vendor.name,
+                        link: `/vendor/${vendor.collaborator.slug}/${vendor.slug}`,
+                      },
+                    }}
+                  />
+                ) : vendor.collaboratorAncillary ? (
+                  <Attribute
+                    key={String(vendor.id)}
+                    {...{
+                      [vendor.collaboratorAncillary]: {
+                        name: vendor.name,
+                        link: `/vendor/${vendor.slug}`,
+                      },
+                    }}
+                  />
+                ) : null,
+              )
               : null}
 
             {data.strapiProject.project_single_use_links?.map((singleLink) => (
@@ -427,22 +427,6 @@ const ProjectPage = ({ data }: ProjectPageTypes) => {
           </div>
         </React.Fragment>
       )}
-
-      {/* // TODO: this design need love // ? why attributes */}
-      {/* // TODO: attribute widths */}
-      {data.additional.nodes ? (
-        <div className="main">
-          <section className="attribute">
-            <ul>
-              {data.additional.nodes.map((light) => (
-                <li key={light.id} className="range denali">
-                  <Link to={`/light/${light.slug}`}>{light.name}</Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
-      ) : null}
 
       <hr />
 

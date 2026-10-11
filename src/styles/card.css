@@ -445,3 +445,25 @@ a.linked-card:focus {
 
   /* TODO: add dark mode styles */
 }
+
+/*------------------------------------*/
+/* #TRIPTYCH */
+/*------------------------------------*/
+/* * I know thise looses the sub-grid */
+/* * also grid gap is slightly smaller but thats fine it shows relation */
+
+.deck {
+  .double {
+    grid-column: span 2;
+  }
+
+  .triple {
+    grid-column: span 3;
+  }
+
+  .width {
+    display: grid;
+    column-gap: var(--vinson);
+    grid-template-columns: repeat(auto-fill, minmax(calc(var(--vulture) - var(--vinson)), 1fr));
+  }
+}

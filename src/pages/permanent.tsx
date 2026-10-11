@@ -20,7 +20,6 @@ type PermanentTypes = {
   };
 };
 const PermanentPage = ({ data }: PermanentTypes) => {
-
   console.log(data.strapiPermanent.explanation.data.explanation);
 
   return (
@@ -38,9 +37,7 @@ const PermanentPage = ({ data }: PermanentTypes) => {
 
 export default PermanentPage;
 
-export const Head = ({
-  data
-}: PermanentTypes) => {
+export const Head = ({ data }: PermanentTypes) => {
   return <SEO title="Permanent" description={data.strapiPermanent.excerpt} />;
 };
 

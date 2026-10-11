@@ -49,8 +49,7 @@ const lightsPage = () => {
     <>
       <Header />
       <main>
-        <h2 className="crest">What we build</h2>
-        <h1>Lights</h1>
+        <h1>Christmas Lighting Styles</h1>
         <hr />
 
         <p>Filter by type:</p>

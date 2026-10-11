@@ -227,13 +227,13 @@ type LightPageTypes = {
       residentialHero?: HeroSEOImageType | null;
       commercialHero?: HeroSEOImageType | null;
       bulbs?:
-        | {
-            id: React.Key;
-            name: string;
-            // excerpt: string;
-            detail: ImageType;
-          }[]
-        | null;
+      | {
+        id: React.Key;
+        name: string;
+        // excerpt: string;
+        detail: ImageType;
+      }[]
+      | null;
     };
     allStrapiLight: {
       nodes: CardType[];
@@ -430,6 +430,22 @@ const LightPage = ({ data, location }: LightPageTypes) => {
         </section>
       ) : null}
 
+      {/* // TODO: if more than 3 */}
+      {data.allStrapiProject.nodes.length > 0 ? (
+        <React.Fragment>
+          <div className="above-deck">
+            <hr />
+            <h3>Projects Using {data.strapiLight.name}</h3>
+          </div>
+
+          <div className="deck">
+            {data.allStrapiProject.nodes.map((project: CardType) => (
+              <Card key={project.id} {...project} breadcrumb="project" />
+            ))}
+          </div>
+        </React.Fragment>
+      ) : null}
+
       {/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device */}
       <section>
         <div className="above-deck">
@@ -451,11 +467,11 @@ const LightPage = ({ data, location }: LightPageTypes) => {
               service.slug === "residential" || service.slug === "commercial",
           )
             ? data.holiday.nodes.map((process) => {
-                return <li key={process.id}>{process.name}</li>;
-              })
+              return <li key={process.id}>{process.name}</li>;
+            })
             : data.wedding.nodes.map((process) => {
-                return <li key={process.id}>{process.name}</li>;
-              })}
+              return <li key={process.id}>{process.name}</li>;
+            })}
         </ol>
 
         {/* // TODO: design this in storybook  */}
@@ -501,22 +517,6 @@ const LightPage = ({ data, location }: LightPageTypes) => {
           </div>
         </React.Fragment>
       )}
-
-      {/* // TODO: if more than 3 */}
-      {data.allStrapiProject.nodes.length > 0 ? (
-        <React.Fragment>
-          <div className="above-deck">
-            <hr />
-            <h3>Projects Using {data.strapiLight.name}</h3>
-          </div>
-
-          <div className="deck">
-            {data.allStrapiProject.nodes.map((project: CardType) => (
-              <Card key={project.id} {...project} breadcrumb="project" />
-            ))}
-          </div>
-        </React.Fragment>
-      ) : null}
 
       <hr />
 

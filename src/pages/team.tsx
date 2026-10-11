@@ -1,10 +1,10 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
-import type { TeamTypes } from "../types/team-types";
 import Card from "../components/card";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import { SEO } from "../components/seo";
+import type { TeamTypes } from "../types/team-types";
 
 const TeamPage = () => {
   const { allStrapiTeam, strapiAbout } = useStaticQuery(graphql`
@@ -20,8 +20,6 @@ const TeamPage = () => {
       }
     }
   `);
-
-
 
   return (
     <>

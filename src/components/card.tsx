@@ -3,8 +3,8 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import * as React from "react";
-import truncateText from "./truncate-text";
 import type { CardProps } from "../types/card-type";
+import truncateText from "./truncate-text";
 
 const Card = ({
   image,
@@ -52,7 +52,7 @@ const Card = ({
               image
                 ? image?.localFile?.childImageSharp?.gatsbyImageData
                 : strapiError.missingCard.localFile.childImageSharp
-                  .gatsbyImageData
+                    .gatsbyImageData
             }
             alt={image?.alternativeText ?? title}
           />
@@ -64,7 +64,7 @@ const Card = ({
               image
                 ? image?.localFile?.childImageSharp?.gatsbyImageData
                 : strapiError.missingCard.localFile.childImageSharp
-                  .gatsbyImageData
+                    .gatsbyImageData
             }
             alt={image?.alternativeText ?? title}
           />

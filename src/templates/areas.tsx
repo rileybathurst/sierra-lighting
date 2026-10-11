@@ -96,6 +96,9 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
       ? data.strapiArea?.weddingImage
       : data.strapiArea.image;
 
+  // * this shows the spacing issue .react-markdown fixes
+  // console.log(data.strapiArea.xmasDescription.data.xmasDescription);
+
   return (
     <>
       <Header />
@@ -115,15 +118,15 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
         {(data.strapiArea?.weddingDescription ||
           data.strapiArea?.xmasDescription) && (
-          <div className="react-markdown">
-            <hr />
-            <Markdown>
-              {Season() === "wedding"
-                ? data.strapiArea.weddingDescription.data.weddingDescription
-                : data.strapiArea.xmasDescription.data.xmasDescription}
-            </Markdown>
-          </div>
-        )}
+            <div className="react-markdown">
+              <hr />
+              <Markdown>
+                {Season() === "wedding"
+                  ? data.strapiArea.weddingDescription.data.weddingDescription
+                  : data.strapiArea.xmasDescription.data.xmasDescription}
+              </Markdown>
+            </div>
+          )}
 
         {data.strapiArea.areas.length > 0 && (
           <React.Fragment>
@@ -154,7 +157,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
           <div className="above-deck">
             <hr />
             <h3>
-              Lighting projects we have installed in {data.strapiArea.title}
+              Lighting Projects We Have Installed in {data.strapiArea.title}
             </h3>
           </div>
           <div className="deck">

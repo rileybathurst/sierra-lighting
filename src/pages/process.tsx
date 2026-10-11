@@ -1,12 +1,12 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import Footer from "../components/footer";
 import Header from "../components/header";
+import Hero from "../components/hero";
 import Season from "../components/season";
 import { SEO } from "../components/seo";
-import Hero from "../components/hero";
-import Markdown from "react-markdown";
 
 type processTypes = {
   id: React.Key;
@@ -29,7 +29,11 @@ function ProcessDetail({ id, name, markdown }: processTypes) {
 }
 
 const ProcessPage = () => {
-  const { holiday, wedding: weddingProcesses, strapiSafety } = useStaticQuery(graphql`
+  const {
+    holiday,
+    wedding: weddingProcesses,
+    strapiSafety,
+  } = useStaticQuery(graphql`
     query ProcessQuery {
       holiday: allStrapiProcess(
         filter: {services: {elemMatch: {slug: {eq: "residential"}}}},
@@ -122,11 +126,11 @@ const ProcessPage = () => {
         <ol>
           {seasonRadio === "wedding"
             ? weddingProcesses.nodes.map((process: processTypes) => (
-              <ProcessDetail key={process.id} {...process} />
-            ))
+                <ProcessDetail key={process.id} {...process} />
+              ))
             : holiday.nodes.map((process: processTypes) => (
-              <ProcessDetail key={process.id} {...process} />
-            ))}
+                <ProcessDetail key={process.id} {...process} />
+              ))}
         </ol>
 
         <hr />
@@ -151,8 +155,8 @@ export const Head = () => {
       title="Our process for professional wedding or christmas lights installation"
       // TODO: needs a new description now
       description="Learn how Sierra Lighting can help you create memorable lighting with our design process."
-    // TODO:
-    // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
+      // TODO:
+      // image="https://sierralighting.s3.us-west-1.amazonaws.com/og-images/services-og-sierra_lighting.jpg"
     />
   );
 };

@@ -1,26 +1,26 @@
-[11:05:23.485] [INFO] storybook v10.4.6
-[11:05:23.661] [DEBUG] Getting package.json info for /Users/riley/Sites/sierra-lighting/package.json...
-[11:05:24.373] [DEBUG] Serving static files from [36mnode_modules/@chromatic-com/storybook/assets[39m at [36m/addon-visual-tests-assets[39m
-[11:05:24.375] [INFO] Starting...
-[11:05:24.409] [WARN] unable to find package.json for @mux/mux-player-react
-[11:05:24.581] [DEBUG] Starting preview..
-[11:05:24.590] [INFO] Addon-docs: using MDX3
-[11:05:24.603] [INFO] Using implicit CSS loaders
-[11:05:24.718] [INFO] Using default Webpack5 setup
-[11:05:25.067] [DEBUG] Using tsconfig paths for react-docgen
-[11:05:27.257] [ERROR] Failed to build the preview
-[11:05:27.262] [WARN] Force closed preview build
-[11:05:27.263] [ERROR] [38;2;241;97;97mSB_BUILDER-WEBPACK5_0003 (WebpackCompilationError): There were problems when compiling your code with Webpack.
+[12:05:45.419] [INFO] storybook v10.5.7
+[12:05:45.564] [DEBUG] Getting package.json info for /Users/riley/Sites/sierra-lighting/package.json...
+[12:05:46.047] [DEBUG] Could not determine @babel/preset-env version in use. In case of runtime errors with @babel/preset-env, you may need to set the babelRemoveBugfixes feature flag in your `main.ts` file.
+[12:05:46.337] [DEBUG] Serving static files from [36mnode_modules/@chromatic-com/storybook/assets[39m at [36m/addon-visual-tests-assets[39m
+[12:05:46.337] [INFO] Starting...
+[12:05:46.429] [DEBUG] Starting preview..
+[12:05:46.440] [INFO] Addon-docs: using MDX3
+[12:05:46.452] [INFO] Using implicit CSS loaders
+[12:05:46.464] [INFO] Using default Webpack5 setup
+[12:05:46.734] [DEBUG] Using tsconfig paths for react-docgen
+[12:05:47.869] [ERROR] Failed to build the preview
+[12:05:47.874] [WARN] Force closed preview build
+[12:05:47.876] [ERROR] [38;2;241;97;97mSB_BUILDER-WEBPACK5_0003 (WebpackCompilationError): There were problems when compiling your code with Webpack.
 Run Storybook with --debug-webpack for more information.[39m
     at starter (file://./node_modules/@storybook/builder-webpack5/dist/index.js:857:11)
     at starter.next (<anonymous>)
     at Module.start (file://./node_modules/@storybook/builder-webpack5/dist/index.js:915:34)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async storybookDevServer (file://./node_modules/storybook/dist/core-server/index.js:11496:158)
-    at async buildOrThrow (file://./node_modules/storybook/dist/core-server/index.js:8205:12)
-    at async buildDevStandalone (file://./node_modules/storybook/dist/core-server/index.js:12057:41)
-    at async withTelemetry (file://./node_modules/storybook/dist/_node-chunks/chunk-G7NXW2C2.js:650:12)
-    at async dev (file://./node_modules/storybook/dist/bin/core.js:2735:3)
-    at async _Command.<anonymous> (file://./node_modules/storybook/dist/bin/core.js:2805:92)
-[11:05:27.266] [WARN] Broken build, fix the error above.
+    at async storybookDevServer (file://./node_modules/storybook/dist/core-server/index.js:11225:59)
+    at async buildOrThrow (file://./node_modules/storybook/dist/core-server/index.js:8331:12)
+    at async buildDevStandalone (file://./node_modules/storybook/dist/core-server/index.js:11990:41)
+    at async withTelemetry (file://./node_modules/storybook/dist/_node-chunks/chunk-XYZ5NBEV.js:1785:12)
+    at async dev (file://./node_modules/storybook/dist/bin/core.js:3850:3)
+    at async _Command.<anonymous> (file://./node_modules/storybook/dist/bin/core.js:3958:3)
+[12:05:47.877] [WARN] Broken build, fix the error above.
 You may need to refresh the browser.

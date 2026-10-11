@@ -111,6 +111,8 @@ type SortTypes = {
   };
 };
 
+// TODO: fix this with triptych logic
+
 interface BaseTypes {
   projects: CardType[];
   venue: CardType;
@@ -122,7 +124,6 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
   projects = reversedProjects;
 
   // empty card slots
-  // * I know this has type issues
   const base: {
     card: CardType | Record<string, never>;
     title: boolean;
@@ -351,14 +352,9 @@ const ServiceView = ({ data }: ServiceTypes) => {
         </h1>
 
         <div className="react-markdown">
-          <Markdown>
-            {data.strapiService.description.data.description}
-          </Markdown>
+          <Markdown>{data.strapiService.description.data.description}</Markdown>
         </div>
-        <Start
-          className="button--left-align"
-          path={data.strapiService.slug}
-        />
+        <Start className="button--left-align" path={data.strapiService.slug} />
 
         {/* // TODO: working section */}
         {/* <section className="triple">
