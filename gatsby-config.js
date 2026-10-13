@@ -181,5 +181,15 @@ module.exports = {
         enableClientWebpackPlugin: false,
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: "G-PSZ3PWKQSC",
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: false,
+        enableWebVitalsTracking: true,
+      },
+    },
   ],
 };
