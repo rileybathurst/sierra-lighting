@@ -227,13 +227,13 @@ type LightPageTypes = {
       residentialHero?: HeroSEOImageType | null;
       commercialHero?: HeroSEOImageType | null;
       bulbs?:
-      | {
-        id: React.Key;
-        name: string;
-        // excerpt: string;
-        detail: ImageType;
-      }[]
-      | null;
+        | {
+            id: React.Key;
+            name: string;
+            // excerpt: string;
+            detail: ImageType;
+          }[]
+        | null;
     };
     allStrapiLight: {
       nodes: CardType[];
@@ -467,11 +467,11 @@ const LightPage = ({ data, location }: LightPageTypes) => {
               service.slug === "residential" || service.slug === "commercial",
           )
             ? data.holiday.nodes.map((process) => {
-              return <li key={process.id}>{process.name}</li>;
-            })
+                return <li key={process.id}>{process.name}</li>;
+              })
             : data.wedding.nodes.map((process) => {
-              return <li key={process.id}>{process.name}</li>;
-            })}
+                return <li key={process.id}>{process.name}</li>;
+              })}
         </ol>
 
         {/* // TODO: design this in storybook  */}

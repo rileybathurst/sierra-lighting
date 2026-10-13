@@ -3,6 +3,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import Markdown from "react-markdown";
 import Areas from "../components/areas";
+import Card from "../components/card";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import Season from "../components/season";
@@ -13,9 +14,8 @@ import truncateText from "../components/truncate-text";
 import BackImage from "../images/BackImage";
 import HeroWeddingBackImage from "../images/HeroWeddingBackImage";
 import Logo from "../images/logo";
+import type { CardType } from "../types/card-type";
 import type TestimonialTypes from "../types/testimonial-types";
-import Card from "../components/card";
-import { CardType } from "../types/card-type";
 
 const IndexPage = ({ location }: { location: Location }) => {
   console.log(location);
@@ -120,15 +120,19 @@ const IndexPage = ({ location }: { location: Location }) => {
     // width?: "double" | "triple";
   };
 
-  console.log(residentialLights);
-
   const featuredServiceLights: TriptychSection[] = [
-    { title: "Residential Christmas", card: residentialLights, link: "/residential/lights" },
-    { title: "Commercial Christmas", card: commercialLights, link: "/commercial/lights" },
+    {
+      title: "Residential Christmas",
+      card: residentialLights,
+      link: "/residential/lights",
+    },
+    {
+      title: "Commercial Christmas",
+      card: commercialLights,
+      link: "/commercial/lights",
+    },
     { title: "Wedding", card: weddingLights, link: "/wedding/lights" },
   ];
-
-  console.log(featuredServiceLights);
 
   return (
     <>
@@ -264,11 +268,7 @@ const IndexPage = ({ location }: { location: Location }) => {
               <Link to={link}>{title} Lights</Link>
             </h4>
             {card.nodes.map((c: CardType) => (
-              <Card
-                key={c.id}
-                {...c}
-                breadcrumb="light"
-              />
+              <Card key={c.id} {...c} breadcrumb="light" />
             ))}
           </div>
         ))}

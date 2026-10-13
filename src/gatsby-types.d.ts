@@ -2183,6 +2183,7 @@ type Query_strapiAboutArgs = {
   description: InputMaybe<STRAPI_ABOUTDescriptionFilterInput>;
   documentId: InputMaybe<StringQueryOperatorInput>;
   email: InputMaybe<StringQueryOperatorInput>;
+  foundingDate: InputMaybe<DateQueryOperatorInput>;
   geoLatitude: InputMaybe<FloatQueryOperatorInput>;
   geoLongitude: InputMaybe<FloatQueryOperatorInput>;
   geoRadius: InputMaybe<IntQueryOperatorInput>;
@@ -3261,6 +3262,7 @@ type STRAPI_ABOUT = Node & {
   readonly description: Maybe<STRAPI_ABOUTDescription>;
   readonly documentId: Maybe<Scalars['String']>;
   readonly email: Maybe<Scalars['String']>;
+  readonly foundingDate: Maybe<Scalars['Date']>;
   readonly geoLatitude: Maybe<Scalars['Float']>;
   readonly geoLongitude: Maybe<Scalars['Float']>;
   readonly geoRadius: Maybe<Scalars['Int']>;
@@ -3286,6 +3288,14 @@ type STRAPI_ABOUT = Node & {
 
 
 type STRAPI_ABOUT_createdAtArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type STRAPI_ABOUT_foundingDateArgs = {
   difference: InputMaybe<Scalars['String']>;
   formatString: InputMaybe<Scalars['String']>;
   fromNow: InputMaybe<Scalars['Boolean']>;
@@ -3379,6 +3389,7 @@ type STRAPI_ABOUTFieldSelector = {
   readonly description: InputMaybe<STRAPI_ABOUTDescriptionFieldSelector>;
   readonly documentId: InputMaybe<FieldSelectorEnum>;
   readonly email: InputMaybe<FieldSelectorEnum>;
+  readonly foundingDate: InputMaybe<FieldSelectorEnum>;
   readonly geoLatitude: InputMaybe<FieldSelectorEnum>;
   readonly geoLongitude: InputMaybe<FieldSelectorEnum>;
   readonly geoRadius: InputMaybe<FieldSelectorEnum>;
@@ -3412,6 +3423,7 @@ type STRAPI_ABOUTFilterInput = {
   readonly description: InputMaybe<STRAPI_ABOUTDescriptionFilterInput>;
   readonly documentId: InputMaybe<StringQueryOperatorInput>;
   readonly email: InputMaybe<StringQueryOperatorInput>;
+  readonly foundingDate: InputMaybe<DateQueryOperatorInput>;
   readonly geoLatitude: InputMaybe<FloatQueryOperatorInput>;
   readonly geoLongitude: InputMaybe<FloatQueryOperatorInput>;
   readonly geoRadius: InputMaybe<IntQueryOperatorInput>;
@@ -3486,6 +3498,7 @@ type STRAPI_ABOUTSortInput = {
   readonly description: InputMaybe<STRAPI_ABOUTDescriptionSortInput>;
   readonly documentId: InputMaybe<SortOrderEnum>;
   readonly email: InputMaybe<SortOrderEnum>;
+  readonly foundingDate: InputMaybe<SortOrderEnum>;
   readonly geoLatitude: InputMaybe<SortOrderEnum>;
   readonly geoLongitude: InputMaybe<SortOrderEnum>;
   readonly geoRadius: InputMaybe<SortOrderEnum>;
@@ -15266,7 +15279,7 @@ type SearchQueryQuery = { readonly allStrapiLight: { readonly nodes: ReadonlyArr
 type SEOQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type SEOQueryQuery = { readonly strapiAbout: { readonly businessName: string | null, readonly url: string | null, readonly slogan: string | null, readonly openingHours: string | null, readonly telephone: string | null, readonly email: string | null, readonly paymentAccepted: string | null, readonly alternateName: string | null, readonly geoLatitude: number | null, readonly geoLongitude: number | null, readonly geoRadius: number | null, readonly addressLocality: string | null, readonly addressRegion: string | null, readonly postalCode: string | null } | null, readonly strapiTopbar: { readonly title: string | null, readonly link: string | null, readonly default: boolean | null, readonly defaultXmas: string | null, readonly defaultXmasLink: string | null, readonly defaultWedding: string | null, readonly defaultWeddingLink: string | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly name: string | null }> }, readonly allStrapiArea: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly areas: ReadonlyArray<{ readonly name: string | null } | null> | null }> }, readonly allStrapiKeyword: { readonly nodes: ReadonlyArray<{ readonly keyword: string | null }> }, readonly wedding: { readonly hero_light: { readonly alternativeText: string | null, readonly caption: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData, readonly resize: { readonly aspectRatio: number | null } | null } | null } | null } | null } | null, readonly xmas: { readonly hero_light: { readonly alternativeText: string | null, readonly caption: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData, readonly resize: { readonly aspectRatio: number | null } | null } | null } | null } | null } | null };
+type SEOQueryQuery = { readonly strapiAbout: { readonly businessName: string | null, readonly url: string | null, readonly slogan: string | null, readonly openingHours: string | null, readonly telephone: string | null, readonly email: string | null, readonly paymentAccepted: string | null, readonly alternateName: string | null, readonly foundingDate: string | null, readonly geoLatitude: number | null, readonly geoLongitude: number | null, readonly geoRadius: number | null, readonly addressLocality: string | null, readonly addressRegion: string | null, readonly postalCode: string | null } | null, readonly strapiTopbar: { readonly title: string | null, readonly link: string | null, readonly default: boolean | null, readonly defaultXmas: string | null, readonly defaultXmasLink: string | null, readonly defaultWedding: string | null, readonly defaultWeddingLink: string | null } | null, readonly allStrapiService: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly excerpt: string | null }> }, readonly allStrapiArea: { readonly nodes: ReadonlyArray<{ readonly name: string | null, readonly areas: ReadonlyArray<{ readonly name: string | null } | null> | null }> }, readonly allStrapiKeyword: { readonly nodes: ReadonlyArray<{ readonly keyword: string | null }> }, readonly wedding: { readonly hero_light: { readonly alternativeText: string | null, readonly caption: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData, readonly resize: { readonly aspectRatio: number | null } | null } | null } | null } | null } | null, readonly xmas: { readonly hero_light: { readonly alternativeText: string | null, readonly caption: string | null, readonly localFile: { readonly url: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData, readonly resize: { readonly aspectRatio: number | null } | null } | null } | null } | null } | null };
 
 type ServiceLightsTemplateQueryVariables = Exact<{
   slug: Scalars['String'];

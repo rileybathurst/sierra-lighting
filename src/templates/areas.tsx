@@ -118,15 +118,15 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
         {(data.strapiArea?.weddingDescription ||
           data.strapiArea?.xmasDescription) && (
-            <div className="react-markdown">
-              <hr />
-              <Markdown>
-                {Season() === "wedding"
-                  ? data.strapiArea.weddingDescription.data.weddingDescription
-                  : data.strapiArea.xmasDescription.data.xmasDescription}
-              </Markdown>
-            </div>
-          )}
+          <div className="react-markdown">
+            <hr />
+            <Markdown>
+              {Season() === "wedding"
+                ? data.strapiArea.weddingDescription.data.weddingDescription
+                : data.strapiArea.xmasDescription.data.xmasDescription}
+            </Markdown>
+          </div>
+        )}
 
         {data.strapiArea.areas.length > 0 && (
           <React.Fragment>

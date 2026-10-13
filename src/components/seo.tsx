@@ -1,17 +1,6 @@
 // TODO: im getting a @type organization error for address but not sure from where
 
 {
-  /* // TODO: 
-  https://schema.org/ContactPoint
-  https://schema.org/skills
-  https://schema.org/knowsAbout
-  https://schema.org/foundingDate
-  https://schema.org/foundingLocation
-  https://schema.org/Service
-*/
-}
-
-{
   /* "about": "Creating ${allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${allStrapiArea.nodes.map((area) => area.name).join(', ')}", */
 }
 
@@ -44,15 +33,15 @@ const Breadcrumbs: React.FC<BreadcrumbsTypes> = ({ url, breadcrumbs }) => {
           "@type": "BreadcrumbList",
           "itemListElement": [
             ${Object.entries(breadcrumbs)
-              .map(([key, breadcrumb]) => {
-                return `{
+          .map(([key, breadcrumb]) => {
+            return `{
                 "@type": "ListItem",
                 "position": ${Number.parseInt(key, 10) + 1},
                 "name": "${breadcrumb.name}",
                 "item": "${url}/${breadcrumb.item}"
               }`;
-              })
-              .join(",\n")}
+          })
+          .join(",\n")}
             ]
           }
         `}
@@ -60,13 +49,18 @@ const Breadcrumbs: React.FC<BreadcrumbsTypes> = ({ url, breadcrumbs }) => {
   );
 };
 
-/* type VideoMuxTypes = {
+type VideoMuxTypes = {
   videos: VideoTypes[];
   pageUrl: string;
   url: string;
   businessName: string;
-}
-const VideoSchema: React.FC<VideoMuxTypes> = ({ videos, pageUrl, url, businessName }) => {
+};
+const VideoSchema: React.FC<VideoMuxTypes> = ({
+  videos,
+  pageUrl,
+  url,
+  businessName,
+}) => {
   if (videos.length === 0) return null;
 
   return (
@@ -89,7 +83,7 @@ const VideoSchema: React.FC<VideoMuxTypes> = ({ videos, pageUrl, url, businessNa
       ))}
     </>
   );
-} */
+};
 
 type SEOtypes = {
   title?: string;
@@ -124,7 +118,7 @@ export const SEO = (SEO: SEOtypes) => {
         email
         paymentAccepted
         alternateName
-        alternateName
+        foundingDate
         geoLatitude
         geoLongitude
         geoRadius
@@ -148,6 +142,7 @@ export const SEO = (SEO: SEOtypes) => {
       allStrapiService {
         nodes {
           name
+          excerpt
         }
       }
 
@@ -231,6 +226,7 @@ export const SEO = (SEO: SEOtypes) => {
     paymentAccepted: strapiAbout.paymentAccepted,
     telephone: strapiAbout.telephone,
     email: strapiAbout.email,
+    foundingDate: strapiAbout.foundingDate,
     geo: {
       "@type": "GeoCoordinates",
       latitude: strapiAbout.geoLatitude,
@@ -256,6 +252,17 @@ export const SEO = (SEO: SEOtypes) => {
       .map((service: { name: string }) => service.name)
       .concat(allStrapiKeyword.nodes.map((k: { keyword: string }) => k.keyword))
       .join(", "),
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Lighting Services",
+      itemListElement: allStrapiService.nodes.map(
+        (service: { name: string; excerpt: string }) => ({
+          "@type": "Offer",
+          name: `Professional ${service.name} lighting installation`,
+          description: service.excerpt,
+        }),
+      ),
+    },
   };
 
   return (
@@ -270,8 +277,6 @@ export const SEO = (SEO: SEOtypes) => {
         name="description"
         content={SEO.description ? SEO.description : strapiAbout.slogan}
       />
-      {/* <meta name="image" itemProp="image" content={pageImage} /> */}
-
       <meta property="og:type" content="website" />
       <meta property="og:url" itemProp="URL" content={SEO.url} />
       <meta property="og:title" content={pageTitle} />
@@ -284,14 +289,14 @@ export const SEO = (SEO: SEOtypes) => {
 
       <Breadcrumbs url={strapiAbout.url} breadcrumbs={SEO.breadcrumbs ?? []} />
 
-      {/*  {SEO.videos && (
-        <VideoMux
+      {SEO.videos && (
+        <VideoSchema
           videos={SEO.videos}
           pageUrl={SEO.url ?? ""}
           url={strapiAbout.url}
           businessName={strapiAbout.businessName}
         />
-      )} */}
+      )}
 
       {SEO.children}
     </React.Fragment>

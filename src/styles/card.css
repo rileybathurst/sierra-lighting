@@ -1,5 +1,6 @@
 /* Index
 - cards
+- triptych
 */
 
 /*------------------------------------*/
@@ -14,7 +15,7 @@
   /* this is breaking when on the service page as theres title pushing the size */
   /* TODO: I can wrap it in a not */
 
-  >* {
+  > * {
     grid-column: 1;
   }
 
@@ -69,7 +70,7 @@
     }
   }
 
-  >* {
+  > * {
     padding-inline: var(--vinson);
   }
 
@@ -321,7 +322,7 @@
   /* * this has to be top level then drop down */
   text-decoration: none;
 
-  >* {
+  > * {
     grid-column: 1;
   }
 
@@ -375,7 +376,7 @@
     }
   }
 
-  >* {
+  > * {
     padding-inline: var(--vinson);
   }
 
@@ -464,6 +465,9 @@ a.linked-card:focus {
   .width {
     display: grid;
     column-gap: var(--vinson);
-    grid-template-columns: repeat(auto-fill, minmax(calc(var(--vulture) - var(--vinson)), 1fr));
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(calc(var(--vulture) - var(--vinson)), 1fr)
+      );
   }
 }
