@@ -117,9 +117,9 @@ function Slider({ gallery, badge, pinterest }: GalleryType) {
               image={image?.localFile?.childImageSharp?.gatsbyImageData}
               alt={image.alternativeText || "Gallery Image"}
             />
-            {badge && image.caption ? (
+            {badge && image.caption && (
               <p className="capitalize">{image.caption}</p>
-            ) : null}
+            )}
             {pinterest &&
               image.localFile.childImageSharp.gatsbyImageData.images
                 .sources && (
@@ -185,7 +185,7 @@ function Hero({ image, gallery, badge, name, detail, pinterest }: HeroType) {
     return (
       <div className="hero-image">
         <Slider gallery={combinedGallery} badge={badge} pinterest={pinterest} />
-        {detail ? (
+        {detail && (
           <GatsbyImage
             image={detail?.localFile?.childImageSharp?.gatsbyImageData}
             alt={
@@ -195,7 +195,7 @@ function Hero({ image, gallery, badge, name, detail, pinterest }: HeroType) {
             }
             className="detail poster"
           />
-        ) : null}
+        )}
       </div>
     );
   }
@@ -206,14 +206,14 @@ function Hero({ image, gallery, badge, name, detail, pinterest }: HeroType) {
 
   return (
     <div
-      className={`hero-image  ${image.localFile.childImageSharp.gatsbyImageData.width <= 959 ? "hero-stork" : null}`}
+      className={`hero-image  ${image.localFile.childImageSharp.gatsbyImageData.width <= 959 && "hero-stork"}`}
     >
       <GatsbyImage
         image={image.localFile.childImageSharp.gatsbyImageData}
         alt={image.alternativeText || "Hero Image"}
         className="poster"
       />
-      {detail ? (
+      {detail && (
         <GatsbyImage
           image={detail?.localFile?.childImageSharp?.gatsbyImageData}
           alt={
@@ -223,7 +223,7 @@ function Hero({ image, gallery, badge, name, detail, pinterest }: HeroType) {
           }
           className="detail poster"
         />
-      ) : null}
+      )}
       {pinterest &&
         image.localFile.childImageSharp.gatsbyImageData.images.sources && (
           <PinterestHref

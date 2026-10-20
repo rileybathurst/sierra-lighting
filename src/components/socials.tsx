@@ -17,9 +17,9 @@ function Socials({ services }: { services: SocialTypes[] }): React.JSX.Element {
               target="_blank"
               rel="noopener noreferrer"
             >
-              {social.site.icon ? (
+              {social.site.icon && (
                 <SVG src={social.site.icon} aria-hidden="true" />
-              ) : null}
+              )}
               <span className="sr-only">{social.site.service}</span>
             </a>
           </li>

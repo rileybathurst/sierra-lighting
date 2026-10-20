@@ -29,7 +29,7 @@ export const Light = () => {
               : " for Wedding Lighting"}
           </h1>
 
-          {faker.datatype.boolean() ? (
+          {faker.datatype.boolean() && (
             <React.Fragment>
               <h3 className="kilimanjaro">Also known as:</h3>
               <ul>
@@ -40,7 +40,7 @@ export const Light = () => {
                 ))}
               </ul>
             </React.Fragment>
-          ) : null}
+          )}
 
           <p>{faker.lorem.paragraph()}</p>
           <hr />
@@ -64,11 +64,11 @@ export const Light = () => {
                     </a>
                   </h3>
                   {/* // * this seems overkill the description of wedding doesnt help */}
-                  {faker.datatype.boolean() ? (
+                  {faker.datatype.boolean() && (
                     <div className="react-markdown">
                       {faker.lorem.paragraph()}
                     </div>
-                  ) : null}
+                  )}
                 </li>
               ),
             )}

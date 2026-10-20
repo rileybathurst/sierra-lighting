@@ -68,9 +68,9 @@ const VenueView = ({ data }: VenueViewTypes) => {
     <>
       <Header />
 
-      {data.strapiVenue.venueImage ? (
+      {data.strapiVenue.venueImage && (
         <Hero image={data.strapiVenue.venueImage} />
-      ) : null}
+      )}
 
       {/* // ? whats the venue class doing? */}
       <main className="venue">
@@ -85,45 +85,45 @@ const VenueView = ({ data }: VenueViewTypes) => {
         <p>{data.strapiVenue.description}</p>
 
         {data.strapiVenue.testimonials &&
-        data.strapiVenue.testimonials.length > 0 ? (
-          <Testimonial {...data.strapiVenue.testimonials[0]} />
-        ) : null}
+          data.strapiVenue.testimonials.length > 0 && (
+            <Testimonial {...data.strapiVenue.testimonials[0]} />
+          )}
 
         <hr />
 
         {data.strapiVenue.streetAddress ||
-        data.strapiVenue.addressLocality ||
-        data.strapiVenue.addressRegion ||
-        data.strapiVenue.postalCode ? (
-          <address>
-            {data.strapiVenue.streetAddress &&
-              `${data.strapiVenue.streetAddress},`}
-            {data.strapiVenue.addressLocality &&
-              `${data.strapiVenue.addressLocality},`}
-            {data.strapiVenue.addressRegion &&
-              `${data.strapiVenue.addressRegion},`}
-            {data.strapiVenue.postalCode && `${data.strapiVenue.postalCode}`}
-          </address>
-        ) : null}
+          data.strapiVenue.addressLocality ||
+          data.strapiVenue.addressRegion ||
+          data.strapiVenue.postalCode && (
+            <address>
+              {data.strapiVenue.streetAddress &&
+                `${data.strapiVenue.streetAddress},`}
+              {data.strapiVenue.addressLocality &&
+                `${data.strapiVenue.addressLocality},`}
+              {data.strapiVenue.addressRegion &&
+                `${data.strapiVenue.addressRegion},`}
+              {data.strapiVenue.postalCode && `${data.strapiVenue.postalCode}`}
+            </address>
+          )}
 
         {/* // * this is the deprecated version */}
         {!data.strapiVenue.streetAddress &&
-        !data.strapiVenue.addressLocality &&
-        !data.strapiVenue.addressRegion &&
-        !data.strapiVenue.postalCode &&
-        data.strapiVenue?.address?.data?.address ? (
-          <address>
-            <div className="react-markdown">
-              <Markdown>{data.strapiVenue.address.data.address}</Markdown>
-            </div>
-          </address>
-        ) : null}
+          !data.strapiVenue.addressLocality &&
+          !data.strapiVenue.addressRegion &&
+          !data.strapiVenue.postalCode &&
+          data.strapiVenue?.address?.data?.address && (
+            <address>
+              <div className="react-markdown">
+                <Markdown>{data.strapiVenue.address.data.address}</Markdown>
+              </div>
+            </address>
+          )}
 
-        {data.strapiVenue.phone ? (
+        {data.strapiVenue.phone && (
           <p>
             Phone: <Phone phone={data.strapiVenue.phone} />
           </p>
-        ) : null}
+        )}
 
         <p>
           Website&nbsp;
@@ -172,7 +172,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
         <Link to="/wedding/lights">Browse all our wedding lighting styles</Link>
       </h4>
 
-      {data.strapiVenue.projects.length > 0 ? (
+      {data.strapiVenue.projects.length > 0 && (
         <>
           <div className="above-deck">
             <hr />
@@ -184,7 +184,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
             ))}
           </div>
         </>
-      ) : null}
+      )}
 
       {data.allStrapiVenue.nodes.length > 0 ? (
         <>

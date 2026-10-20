@@ -227,13 +227,13 @@ type LightPageTypes = {
       residentialHero?: HeroSEOImageType | null;
       commercialHero?: HeroSEOImageType | null;
       bulbs?:
-        | {
-            id: React.Key;
-            name: string;
-            // excerpt: string;
-            detail: ImageType;
-          }[]
-        | null;
+      | {
+        id: React.Key;
+        name: string;
+        // excerpt: string;
+        detail: ImageType;
+      }[]
+      | null;
     };
     allStrapiLight: {
       nodes: CardType[];
@@ -355,13 +355,13 @@ const LightPage = ({ data, location }: LightPageTypes) => {
       <main>
         <h1 className="denali">
           {data.strapiLight.name}
-          {holidayLight ? <span> For Christmas Lighting</span> : null}
-          {weddingLight ? <span> For Wedding Lighting</span> : null}
+          {holidayLight && <span> For Christmas Lighting</span>}
+          {weddingLight && <span> For Wedding Lighting</span>}
         </h1>
 
-        {data.strapiLight.alias ? (
+        {data.strapiLight.alias && (
           <Aliases alias={data.strapiLight.alias} />
-        ) : null}
+        )}
 
         {/* // TODO: styling of lower level headings */}
         {/* // * theres maybe a way to link these to show a full image */}
@@ -386,13 +386,13 @@ const LightPage = ({ data, location }: LightPageTypes) => {
 							<div className="team-heads">
 								{data.strapiLight.bulbs.map((bulb) => (
 									<div key={bulb.id}>
-										{bulb.detail ? (
+										{bulb.detail && (
 											<GatsbyImage
 												image={bulb.detail.localFile.childImageSharp.gatsbyImageData}
 												alt={bulb.detail.alternativeText || bulb.name}
 												className="poster"
 											/>
-										) : null}
+										)}
 										<p>{bulb.name}</p>
 										<p>{bulb.excerpt}</p>
 									</div>
@@ -405,7 +405,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
         <Start path={data.strapiLight.slug} />
       </main>
 
-      {lightConnections.length > 0 ? (
+      {lightConnections.length > 0 && (
         <section>
           <div className="above-deck">
             <hr />
@@ -428,10 +428,10 @@ const LightPage = ({ data, location }: LightPageTypes) => {
             })}
           </div>
         </section>
-      ) : null}
+      )}
 
       {/* // TODO: if more than 3 */}
-      {data.allStrapiProject.nodes.length > 0 ? (
+      {data.allStrapiProject.nodes.length > 0 && (
         <React.Fragment>
           <div className="above-deck">
             <hr />
@@ -444,7 +444,7 @@ const LightPage = ({ data, location }: LightPageTypes) => {
             ))}
           </div>
         </React.Fragment>
-      ) : null}
+      )}
 
       {/* // TODO: this isnt a card but its a little something closer to the idea, needs a new name possibly on a layering device */}
       <section>
@@ -467,11 +467,11 @@ const LightPage = ({ data, location }: LightPageTypes) => {
               service.slug === "residential" || service.slug === "commercial",
           )
             ? data.holiday.nodes.map((process) => {
-                return <li key={process.id}>{process.name}</li>;
-              })
+              return <li key={process.id}>{process.name}</li>;
+            })
             : data.wedding.nodes.map((process) => {
-                return <li key={process.id}>{process.name}</li>;
-              })}
+              return <li key={process.id}>{process.name}</li>;
+            })}
         </ol>
 
         {/* // TODO: design this in storybook  */}

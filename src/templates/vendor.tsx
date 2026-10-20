@@ -102,24 +102,24 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
     <React.Fragment>
       <Header />
 
-      {data.strapiVendor.profile ? (
+      {data.strapiVendor.profile && (
         <Hero
           image={data.strapiVendor.profile}
-          // gallery={heroImages}
+        // gallery={heroImages}
         />
-      ) : null}
+      )}
 
       <main>
         {/* // TODO: this is a triple title it looks silly */}
         <p>Sierra Lighting Collaborator</p>
         <h1 className="range">{data.strapiVendor.name}</h1>
-        {data.strapiVendor.collaboratorAncillary ? (
+        {data.strapiVendor.collaboratorAncillary && (
           <h2>{data.strapiVendor.collaboratorAncillary}</h2>
-        ) : null}
+        )}
         <hr />
         <p>{data.strapiVendor.description}</p>
 
-        {data.strapiVendor.testimonials.length > 0 ? (
+        {data.strapiVendor.testimonials.length > 0 && (
           <section className="testimonials">
             {data.strapiVendor.testimonials.map((testimonial) => (
               <Testimonial
@@ -131,9 +131,9 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
               />
             ))}
           </section>
-        ) : null}
+        )}
 
-        {data.strapiVendor.website ? (
+        {data.strapiVendor.website && (
           <React.Fragment>
             <hr />
 
@@ -141,42 +141,42 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
               Website <WebsiteLink website={data.strapiVendor.website} />
             </p>
           </React.Fragment>
-        ) : null}
+        )}
 
         {data.strapiVendor.social.length > 0 ||
-        data.strapiVendor.instagram ||
-        data.strapiVendor.pinterest ||
-        data.strapiVendor.facebook ? (
-          <React.Fragment>
-            <hr />
-            {data.strapiVendor.social.length > 0 && (
-              <Socials services={data.strapiVendor.social} />
-            )}
+          data.strapiVendor.instagram ||
+          data.strapiVendor.pinterest ||
+          data.strapiVendor.facebook && (
+            <React.Fragment>
+              <hr />
+              {data.strapiVendor.social.length > 0 && (
+                <Socials services={data.strapiVendor.social} />
+              )}
 
-            {/* // * deprecated but theres too much here to migrate */}
-            {data.strapiVendor.instagram ||
-            data.strapiVendor.pinterest ||
-            data.strapiVendor.facebook ? (
-              <DeprecatedSocials
-                instagram={data.strapiVendor.instagram}
-                pinterest={data.strapiVendor.pinterest}
-                facebook={data.strapiVendor.facebook}
-              />
-            ) : null}
-          </React.Fragment>
-        ) : null}
+              {/* // * deprecated but theres too much here to migrate */}
+              {data.strapiVendor.instagram ||
+                data.strapiVendor.pinterest ||
+                data.strapiVendor.facebook && (
+                  <DeprecatedSocials
+                    instagram={data.strapiVendor.instagram}
+                    pinterest={data.strapiVendor.pinterest}
+                    facebook={data.strapiVendor.facebook}
+                  />
+                )}
+            </React.Fragment>
+          )}
 
-        {data.strapiVendor.collaborator ? (
+        {data.strapiVendor.collaborator && (
           <React.Fragment>
             <hr />
             <BlocksRenderer
               content={data.strapiVendor.collaborator.description}
             />
           </React.Fragment>
-        ) : null}
+        )}
       </main>
 
-      {data.strapiVendor.projects.length > 0 ? (
+      {data.strapiVendor.projects.length > 0 && (
         <>
           <div className="above-deck">
             <hr />
@@ -188,11 +188,11 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
             ))}
           </div>
         </>
-      ) : null}
+      )}
 
-      {data.strapiVendor.collaborator ? (
-        data.allStrapiVendor.nodes.length > 0 ? (
-          <>
+      {data.strapiVendor.collaborator && (
+        data.allStrapiVendor.nodes.length > 0 && (
+          <React.Fragment>
             <div className="above-deck">
               <hr />
               <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
@@ -220,19 +220,19 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
                 ),
               )}
             </div>
-          </>
-        ) : null
-      ) : null}
+          </React.Fragment>
+        )
+      )}
 
       {data.strapiVendor.projects.length === 0 &&
-      data.allStrapiVendor.nodes.length === 0 ? (
-        <div className="main">
-          <h3 className="crest">Looking for something else?</h3>
-          <h2 className="range">
-            <Link to="/vendor">Other Wedding Vendors</Link>
-          </h2>
-        </div>
-      ) : null}
+        data.allStrapiVendor.nodes.length === 0 && (
+          <div className="main">
+            <h3 className="crest">Looking for something else?</h3>
+            <h2 className="range">
+              <Link to="/vendor">Other Wedding Vendors</Link>
+            </h2>
+          </div>
+        )}
 
       <hr />
 
@@ -241,13 +241,13 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
           <Link to="/vendor/">Vendors</Link>
         </Breadcrumb>
 
-        {data.strapiVendor.collaborator ? (
+        {data.strapiVendor.collaborator && (
           <Breadcrumb>
             <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
               {data.strapiVendor.collaborator.industry}
             </Link>
           </Breadcrumb>
-        ) : null}
+        )}
 
         <Breadcrumb>{data.strapiVendor.name}</Breadcrumb>
       </Breadcrumbs>

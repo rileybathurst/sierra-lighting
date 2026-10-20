@@ -81,7 +81,7 @@ const ProjectsPage = () => {
                     `${service.name} Projects`
                   )}
                 </h2>
-                {service.description ? (
+                {service.description && (
                   <section>
                     <div className="react-markdown double-baseline-drop">
                       <ReactMarkdown>
@@ -89,7 +89,7 @@ const ProjectsPage = () => {
                       </ReactMarkdown>
                     </div>
                   </section>
-                ) : null}
+                )}
               </div>
               <div className="deck">
                 {service.projects.slice(-3).map((project: CardType) => (
@@ -98,13 +98,13 @@ const ProjectsPage = () => {
               </div>
 
               <section className="main">
-                {service.projects.length > 3 ? (
+                {service.projects.length > 3 && (
                   <h3 className="elbrus">
                     <Link to={`/${service.slug}/projects/`}>
                       View all {service.projects.length} {service.name} projects
                     </Link>
                   </h3>
-                ) : null}
+                )}
               </section>
 
               <div className="main">

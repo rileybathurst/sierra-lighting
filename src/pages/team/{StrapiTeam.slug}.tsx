@@ -80,11 +80,11 @@ const TeamPage = ({ data }: TeamTypes) => {
         </div>
         <h1>{data.strapiTeam.title}</h1>
 
-        {data.strapiTeam.bio?.data?.bio ? (
+        {data.strapiTeam.bio?.data?.bio && (
           <div className="react-markdown">
             <Markdown>{data.strapiTeam.bio.data.bio}</Markdown>
           </div>
-        ) : null}
+        )}
 
         <hr />
 
@@ -93,7 +93,7 @@ const TeamPage = ({ data }: TeamTypes) => {
       </main>
 
       {/* // * lets get rid of this and try other team members we dont really apply work to people
-{data.strapiTeam.projects ? (
+{data.strapiTeam.projects && (
         <>
           <div className="above-deck">
             <hr />
@@ -105,7 +105,7 @@ const TeamPage = ({ data }: TeamTypes) => {
             ))}
           </div>
         </>
-      ) : null} */}
+      )} */}
 
       <hr />
       <section>

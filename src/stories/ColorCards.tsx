@@ -11,7 +11,7 @@ export const ColorCards = ({ color, variables }: ColorCardTypes) => (
       variables.map((variable) => (
         <div
           key={`${color}-${variable}`}
-          className={`color-card ${color}${variable ? "-" : null}${variable}`}
+          className={`color-card ${color}${variable && "-"}${variable}`}
         >
           {color} - {variable}
           {/* // TODO: we use color-card inside color card that can't be right */}

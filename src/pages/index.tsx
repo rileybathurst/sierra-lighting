@@ -173,7 +173,7 @@ const IndexPage = ({ location }: { location: Location }) => {
 
           <section className="text">
             <div className="background">{/* stay gold */}</div>
-            {strapiAbout ? (
+            {strapiAbout && (
               <Markdown
                 components={{
                   p: ({ node, ...props }) => (
@@ -183,7 +183,7 @@ const IndexPage = ({ location }: { location: Location }) => {
               >
                 {strapiAbout.description.data.description}
               </Markdown>
-            ) : null}
+            )}
             <Start path="hero" />
           </section>
         </div>

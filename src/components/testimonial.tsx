@@ -38,10 +38,10 @@ function Testimonial({
 
           <figcaption>
             <h4>
-              {customer} {position ? <span>- {position}</span> : null}
+              {customer} {position && <span>- {position}</span>}
             </h4>
 
-            {vendor ? (
+            {vendor && (
               <h5>
                 <Link
                   to={`/vendor${vendor?.collaborator ? `/${vendor.collaborator.slug}` : ""}/${vendor.slug}`}
@@ -49,7 +49,7 @@ function Testimonial({
                   {vendor.name}
                 </Link>
               </h5>
-            ) : null}
+            )}
           </figcaption>
         </blockquote>
       </figure>

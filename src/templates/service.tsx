@@ -132,32 +132,32 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
     order: number;
     id: React.Key;
   }[] = [
-    // * default to project link to satisfy types
-    {
-      card: {},
-      title: false,
-      breadcrumb: "",
-      cardBreadcrumb: "project",
-      order: 0,
-      id: "",
-    },
-    {
-      card: {},
-      title: false,
-      breadcrumb: "",
-      cardBreadcrumb: "project",
-      order: 1,
-      id: "",
-    },
-    {
-      card: {},
-      title: false,
-      breadcrumb: "",
-      cardBreadcrumb: "project",
-      order: 2,
-      id: "",
-    },
-  ];
+      // * default to project link to satisfy types
+      {
+        card: {},
+        title: false,
+        breadcrumb: "",
+        cardBreadcrumb: "project",
+        order: 0,
+        id: "",
+      },
+      {
+        card: {},
+        title: false,
+        breadcrumb: "",
+        cardBreadcrumb: "project",
+        order: 1,
+        id: "",
+      },
+      {
+        card: {},
+        title: false,
+        breadcrumb: "",
+        cardBreadcrumb: "project",
+        order: 2,
+        id: "",
+      },
+    ];
 
   // console.log(base);
 
@@ -235,7 +235,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
       <div className="service-deck">
         {base.map((item) => (
           <React.Fragment key={item.order}>
-            {item.title ? (
+            {item.title && (
               <h4
                 className={`capitalize project-title ${item.breadcrumb}-title`}
               >
@@ -245,10 +245,11 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
                   {item.breadcrumb.includes("project")
                     ? "Projects"
                     : item.breadcrumb.charAt(0).toUpperCase() +
-                      item.breadcrumb.slice(1)}
+                    item.breadcrumb.slice(1)}
                 </Link>
               </h4>
-            ) : null}
+            )}
+            {/* // * complains about && instead of ? : null */}
             {item.card?.id ? (
               <div key={`${item.id}-card`} className="service-card">
                 <Card
@@ -270,11 +271,11 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
         {projects.slice(0, 2).map((project, index) => (
           <React.Fragment key={project.id}>
             <div className="service-card">
-              {index === 0 ? (
+              {index === 0 && (
                 <h4 className="capitalize project-title project-title">
                   <Link to={`/${serviceSlug}/projects`}>Projects</Link>
                 </h4>
-              ) : null}
+              )}
             </div>
             <Card key={project.id} {...project} breadcrumb="project" />
           </React.Fragment>
@@ -299,11 +300,11 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
           {projects.slice(0, 3).map((project, index) => (
             <React.Fragment key={project.id}>
               <div className="service-card">
-                {index === 0 ? (
+                {index === 0 && (
                   <h4 className="capitalize project-title project-title">
                     <Link to="/projects">Projects</Link>
                   </h4>
-                ) : null}
+                )}
               </div>
               <Card key={project.id} {...project} breadcrumb="project" />
             </React.Fragment>
@@ -401,7 +402,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
         </div>
 
         {/* // TODO: this is a different size than the 1 or 3 columns so it sits a little weird */}
-        {data.allStrapiLookbook?.nodes.length > 0 ? (
+        {data.allStrapiLookbook?.nodes.length > 0 && (
           <>
             <hr className="pelican" />
             <Link
@@ -425,7 +426,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
               </h3>
             </Link>
           </>
-        ) : null}
+        )}
       </section>
 
       <section className="process stork">
@@ -460,7 +461,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
         <hr />
       </section>
 
-      {data.strapiService.after_the_triptych.data.after_the_triptych !== "" ? (
+      {data.strapiService.after_the_triptych.data.after_the_triptych !== "" && (
         <div className="consultant stork">
           <h3 className="kilimanjaro">
             Have you ever noticed how much lighting can affect the feeling of
@@ -474,7 +475,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
           </div>
           <hr />
         </div>
-      ) : null}
+      )}
 
       {/* // TODO: this needs a design maybe from the home page but thats pretty large and heavy */}
       <section className="stork">
@@ -495,7 +496,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
                     {data.strapiService.name} Lighting Installation
                   </span>
                 </Link>
-                {area.areas.length > 0 ? (
+                {area.areas.length > 0 && (
                   <ul className="sub-area-ul">
                     {area.areas.map((subArea) => (
                       <li key={subArea.id}>
@@ -506,13 +507,13 @@ const ServiceView = ({ data }: ServiceTypes) => {
                       </li>
                     ))}
                   </ul>
-                ) : null}
+                )}
               </li>
             ))}
         </ul>
       </section>
 
-      {data.strapiService.projects || data.strapiVenue || data.strapiVendor ? (
+      {(data.strapiService.projects || data.strapiVenue || data.strapiVendor) && (
         <React.Fragment>
           <hr className="pelican" />
           <Base
@@ -526,7 +527,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
             serviceSlug={data.strapiService.slug}
           />
         </React.Fragment>
-      ) : null}
+      )}
 
       <Footer />
     </>

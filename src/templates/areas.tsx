@@ -103,9 +103,9 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
     <>
       <Header />
 
-      {startingImage ? (
+      {startingImage && (
         <Hero image={startingImage} gallery={areaProjectHeros} />
-      ) : null}
+      )}
       <main>
         <h2 className="crest">{data.strapiArea.tagline}</h2>
         <h1 className="range">
@@ -118,15 +118,15 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
         {(data.strapiArea?.weddingDescription ||
           data.strapiArea?.xmasDescription) && (
-          <div className="react-markdown">
-            <hr />
-            <Markdown>
-              {Season() === "wedding"
-                ? data.strapiArea.weddingDescription.data.weddingDescription
-                : data.strapiArea.xmasDescription.data.xmasDescription}
-            </Markdown>
-          </div>
-        )}
+            <div className="react-markdown">
+              <hr />
+              <Markdown>
+                {Season() === "wedding"
+                  ? data.strapiArea.weddingDescription.data.weddingDescription
+                  : data.strapiArea.xmasDescription.data.xmasDescription}
+              </Markdown>
+            </div>
+          )}
 
         {data.strapiArea.areas.length > 0 && (
           <React.Fragment>
@@ -152,7 +152,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
 
       <Suite services={data.allStrapiService.nodes} />
 
-      {allProjects.length > 0 ? (
+      {allProjects.length > 0 && (
         <section>
           <div className="above-deck">
             <hr />
@@ -183,7 +183,7 @@ const AreasTemplate = ({ data }: AreasTemplateTypes) => {
               ))}
           </div>
         </section>
-      ) : null}
+      )}
 
       {allVenues.length > 0 && (
         <section>
@@ -325,7 +325,7 @@ export const Head = ({ data }: AreasTemplateTypes) => {
   return (
     <SEO
       title={`${data.strapiArea.title} professional ${seasonalOrder} light installation`}
-      description={`Professional ${servicesString} installations in ${data.strapiArea.title}${subAreasString ? `, ${subAreasString}` : null}.`}
+      description={`Professional ${servicesString} installations in ${data.strapiArea.title}${subAreasString && `, ${subAreasString}`}.`}
       image={data.strapiArea?.image}
       breadcrumbs={[
         {

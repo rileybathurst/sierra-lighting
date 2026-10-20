@@ -105,9 +105,9 @@ const Footer = ({
 
     setCanSend(
       !hasProfanity &&
-        !emailProfanity &&
-        !messageProfanity &&
-        !referralProfanity,
+      !emailProfanity &&
+      !messageProfanity &&
+      !referralProfanity,
     );
 
     return null;
@@ -625,13 +625,13 @@ const Footer = ({
               return (
                 <li key={testimonial.id} className="slider">
                   {/* // TODO: once testimonial projects are in place, re-add this */}
-                  {/* {testimonial.project ?
+                  {/* {testimonial.project &&
                     <h4>
                       <Link to={`/project/${testimonial.project.slug}`}>
                         {testimonial.project.title}
                       </Link>
                     </h4>
-                    : null} */}
+                    } */}
 
                   <p>{truncateText(testimonial.review)}</p>
                   {/* // TODO: className="together" is a bad name */}

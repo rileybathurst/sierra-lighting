@@ -39,14 +39,12 @@ export const Testimonial = () => {
             </h4>
 
             {/* company and position */}
-            {faker.datatype.boolean() ? (
+            {faker.datatype.boolean() && (
               <p>
                 <strong>{faker.company.name()}</strong>
-                {faker.datatype.boolean()
-                  ? ` - ${faker.person.jobTitle()}`
-                  : null}
+                {faker.datatype.boolean() && ` - ${faker.person.jobTitle()}`}
               </p>
-            ) : null}
+            )}
           </figcaption>
         </blockquote>
         {/* // TODO: project */}

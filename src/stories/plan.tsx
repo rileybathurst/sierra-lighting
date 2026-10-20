@@ -39,15 +39,15 @@ export const Plan = () => {
 
         <hr />
 
-        {faker.datatype.boolean() ? (
+        {faker.datatype.boolean() && (
           <React.Fragment>
             <h2>Notes</h2>
-            {faker.datatype.boolean() ? (
+            {faker.datatype.boolean() && (
               <p className="error">There are Notes instead of Block Notes</p>
-            ) : null}
+            )}
             <pre>{faker.lorem.lines()}</pre>
           </React.Fragment>
-        ) : null}
+        )}
 
         <div
           className="storybook-image"
@@ -57,9 +57,9 @@ export const Plan = () => {
         <hr />
 
         <p>Created at {faker.date.past().toLocaleDateString("en-US")}</p>
-        {faker.datatype.boolean() ? (
+        {faker.datatype.boolean() && (
           <p>Updated at {faker.date.recent().toLocaleDateString("en-US")}</p>
-        ) : null}
+        )}
       </main>
       <hr />
       footer

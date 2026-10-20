@@ -27,7 +27,7 @@ const AboutPage = ({ data }: AboutPageTypes) => {
       {/* <Hero /> */}
 
       <main>
-        {data.strapiAbout ? (
+        {data.strapiAbout && (
           <Markdown
             components={{
               p: ({ node, ...props }) => (
@@ -37,7 +37,7 @@ const AboutPage = ({ data }: AboutPageTypes) => {
           >
             {data.strapiAbout.description.data.description}
           </Markdown>
-        ) : null}
+        )}
       </main>
 
       <Footer />

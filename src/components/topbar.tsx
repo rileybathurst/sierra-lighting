@@ -46,9 +46,9 @@ const TopBar = () => {
 
   return (
     <h2 className="top-bar">
-      {SeasonalTopbarLink ? (
+      {SeasonalTopbarLink && (
         <Link to={`/${SeasonalTopbarLink}`}>{SeasonalTopbar}</Link>
-      ) : null}
+      )}
     </h2>
   );
 };
