@@ -203,7 +203,7 @@ const IndexPage = ({ location }: { location: Location }) => {
             <p>{quality.description.data.description}</p>
           </section>
         ))}
-        {/* ! this is a different text that the list items */}
+        {/* // TODO: this is a different text that the list items */}
         <h3 className="eyebrow">
           <Link to="/process">
             Learn More About Our Process And Safety Practices
