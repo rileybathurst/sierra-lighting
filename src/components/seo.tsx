@@ -33,15 +33,15 @@ const Breadcrumbs: React.FC<BreadcrumbsTypes> = ({ url, breadcrumbs }) => {
           "@type": "BreadcrumbList",
           "itemListElement": [
             ${Object.entries(breadcrumbs)
-          .map(([key, breadcrumb]) => {
-            return `{
+              .map(([key, breadcrumb]) => {
+                return `{
                 "@type": "ListItem",
                 "position": ${Number.parseInt(key, 10) + 1},
                 "name": "${breadcrumb.name}",
                 "item": "${url}/${breadcrumb.item}"
               }`;
-          })
-          .join(",\n")}
+              })
+              .join(",\n")}
             ]
           }
         `}
@@ -204,8 +204,12 @@ export const SEO = (SEO: SEOtypes) => {
     seasonFallBackImage = wedding?.hero_light.localFile.url;
   }
 
-  const seoImage = SEO.image?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src;
-  var pageImage = seoImage ? `${strapiAbout.url}/${seoImage}` : seasonFallBackImage;
+  const seoImage =
+    SEO.image?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback
+      ?.src;
+  var pageImage = seoImage
+    ? `${strapiAbout.url}/${seoImage}`
+    : seasonFallBackImage;
 
   /*------------------------------------*/
 

@@ -1,5 +1,3 @@
-// ! theres a couple different things pointing at sort of a template here
-
 import {
   type BlocksContent,
   BlocksRenderer,
@@ -105,12 +103,14 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
       <Header />
 
       {data.strapiVendor.profile ? (
-        <Hero image={data.strapiVendor.profile}
-        // gallery={heroImages}
+        <Hero
+          image={data.strapiVendor.profile}
+          // gallery={heroImages}
         />
       ) : null}
 
       <main>
+        {/* // TODO: this is a triple title it looks silly */}
         <p>Sierra Lighting Collaborator</p>
         <h1 className="range">{data.strapiVendor.name}</h1>
         {data.strapiVendor.collaboratorAncillary ? (
@@ -144,9 +144,9 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         ) : null}
 
         {data.strapiVendor.social.length > 0 ||
-          data.strapiVendor.instagram ||
-          data.strapiVendor.pinterest ||
-          data.strapiVendor.facebook ? (
+        data.strapiVendor.instagram ||
+        data.strapiVendor.pinterest ||
+        data.strapiVendor.facebook ? (
           <React.Fragment>
             <hr />
             {data.strapiVendor.social.length > 0 && (
@@ -155,8 +155,8 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
             {/* // * deprecated but theres too much here to migrate */}
             {data.strapiVendor.instagram ||
-              data.strapiVendor.pinterest ||
-              data.strapiVendor.facebook ? (
+            data.strapiVendor.pinterest ||
+            data.strapiVendor.facebook ? (
               <DeprecatedSocials
                 instagram={data.strapiVendor.instagram}
                 pinterest={data.strapiVendor.pinterest}
@@ -196,6 +196,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
             <div className="above-deck">
               <hr />
               <Link to={`/vendor/${data.strapiVendor.collaborator.slug}`}>
+                {/* // TODO: Other Planners Vendors is a dumb title */}
                 <h4>
                   Other{" "}
                   <span className="capitalize">
@@ -224,7 +225,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
       ) : null}
 
       {data.strapiVendor.projects.length === 0 &&
-        data.allStrapiVendor.nodes.length === 0 ? (
+      data.allStrapiVendor.nodes.length === 0 ? (
         <div className="main">
           <h3 className="crest">Looking for something else?</h3>
           <h2 className="range">
