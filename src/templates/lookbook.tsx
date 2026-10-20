@@ -108,7 +108,11 @@ function LinkedLook({
     );
   }
 
-  console.warn(image.alternativeText, "No lights available for this look");
+  // TODO: fallback to a project
+  console.warn(
+    image.alternativeText,
+    "No lights available for this lookbook image so it doesnt link anywhere",
+  );
   return (
     <div className="look">
       <GatsbyImage

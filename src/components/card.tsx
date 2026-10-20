@@ -21,11 +21,21 @@ const Card = ({
     (!areas || areas?.length === 0) &&
     !excerpt
   ) {
-    console.warn(`${title} card has no content`);
+    console.warn(
+      `${title} card has no content, check the breadcrumb at ${breadcrumb}`,
+    );
   }
 
-  if (!image?.alternativeText) {
-    console.warn(`${title} image has no alt`);
+  if (!image) {
+    console.warn(
+      `${title} card has no image, check the breadcrumb at ${breadcrumb}`,
+    );
+  }
+
+  if (image && !image?.alternativeText) {
+    console.warn(
+      `${title} card image has no alt, check the breadcrumb at ${breadcrumb}`,
+    );
   }
 
   const { strapiError } = useStaticQuery(graphql`
