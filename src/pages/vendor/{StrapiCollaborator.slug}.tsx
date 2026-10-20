@@ -55,6 +55,10 @@ type CollaboratorPageTypes = {
 };
 
 const CollaboratorPage = ({ data }: CollaboratorPageTypes) => {
+
+
+  console.log(data.strapiCollaborator.hero);
+
   return (
     <>
       <Header />

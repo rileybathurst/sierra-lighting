@@ -1,3 +1,5 @@
+// ! theres a couple different things pointing at sort of a template here
+
 import {
   type BlocksContent,
   BlocksRenderer,
@@ -103,7 +105,9 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
       <Header />
 
       {data.strapiVendor.profile ? (
-        <Hero image={data.strapiVendor.profile} gallery={heroImages} />
+        <Hero image={data.strapiVendor.profile}
+        // gallery={heroImages}
+        />
       ) : null}
 
       <main>
