@@ -347,7 +347,9 @@ h2.top-bar {
 /*------------------------------------*/
 
 /* * qualities show this off well */
-h3:has(+ p) {
+h2:has(+ p),
+h3:has(+ p),
+h4:has(+ p) {
   margin-block-end: var(--vinson);
 }
 

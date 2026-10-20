@@ -94,7 +94,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
         {data.strapiVenue.streetAddress ||
           data.strapiVenue.addressLocality ||
           data.strapiVenue.addressRegion ||
-          data.strapiVenue.postalCode && (
+          (data.strapiVenue.postalCode && (
             <address>
               {data.strapiVenue.streetAddress &&
                 `${data.strapiVenue.streetAddress},`}
@@ -104,7 +104,7 @@ const VenueView = ({ data }: VenueViewTypes) => {
                 `${data.strapiVenue.addressRegion},`}
               {data.strapiVenue.postalCode && `${data.strapiVenue.postalCode}`}
             </address>
-          )}
+          ))}
 
         {/* // * this is the deprecated version */}
         {!data.strapiVenue.streetAddress &&

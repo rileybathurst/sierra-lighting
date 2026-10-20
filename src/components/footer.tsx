@@ -142,7 +142,7 @@ const Footer = ({
 
   /*------------------------------------*/
 
-  const { allStrapiTeam, strapiAbout, strapiForm, allStrapiTestimonial } =
+  const { allStrapiTeam, strapiAbout, strapiForm, allStrapiTestimonial, strapiFar } =
     useStaticQuery(graphql`
     query FooterQuery {
       allStrapiTeam {
@@ -210,6 +210,11 @@ const Footer = ({
         nodes {
           ...testimonialCardFragment
         }
+      }
+
+      strapiFar(order: {eq: 1}) {
+        answer
+        question
       }
     }
   `);
@@ -385,6 +390,12 @@ const Footer = ({
     },
   ];
 
+  /*------------------------------------*/
+
+  function removeTheQuestion(question: string) {
+    return question.replace("?", "");
+  }
+
   return (
     <footer>
       <hr />
@@ -508,6 +519,18 @@ const Footer = ({
             </button>
           </form>
 
+          <section id="faq" className="stork">
+            <hr />
+            <h4>
+              <Link to="/faq">
+                {removeTheQuestion(strapiFar.question)} and other Frequently Asked Questions?
+              </Link>
+            </h4>
+            <p>
+              {strapiFar.answer}
+            </p>
+          </section>
+
           <section id="contact" className="stork">
             <hr />
 
@@ -615,15 +638,16 @@ const Footer = ({
 
       <hr />
 
+      {/* // TODO: needs design improvment */}
       <div className="slider-container">
-        <section className="slider testimonials">
+        <section className="slider">
           <h4>Thanks From Our Customers</h4>
 
           <ul>
             {/* // TODO: make this a component */}
             {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
               return (
-                <li key={testimonial.id} className="slider">
+                <li key={testimonial.id}>
                   {/* // TODO: once testimonial projects are in place, re-add this */}
                   {/* {testimonial.project &&
                     <h4>
@@ -634,22 +658,16 @@ const Footer = ({
                     } */}
 
                   <p>{truncateText(testimonial.review)}</p>
-                  {/* // TODO: className="together" is a bad name */}
-                  <div className="together">
-                    <h4>{testimonial.customer}</h4>
-                    <p>{testimonial.position}</p>
-                  </div>
+                  <h4>{testimonial.customer}</h4>
+                  <p>{testimonial.position}</p>
                 </li>
               );
             })}
           </ul>
 
-          <div className="testimonial-links">
-            {/* // ? should I have two crests in a row? */}
-            <h3 className="crest">
-              <Link to="/testimonials">Read More Reviews</Link>
-            </h3>
-          </div>
+          <h3 className="kilimanjaro">
+            <Link to="/testimonials">Read More Reviews</Link>
+          </h3>
         </section>
       </div>
 

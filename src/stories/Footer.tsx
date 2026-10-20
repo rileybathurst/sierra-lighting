@@ -144,7 +144,34 @@ export const Footer = () => {
         )}
       </ul>
 
-      <hr className="condor" />
+      <hr />
+
+
+      <div className="slider-container">
+        <section className="slider">
+
+          <h4>Thanks From Our Customers</h4>
+
+          <ul>
+            {Array.from({ length: faker.number.int({ min: 1, max: 10 }) }).map(() => (
+              <li key={faker.string.uuid()}>
+                <p>{faker.lorem.paragraph()}</p>
+
+                <h4>{faker.person.fullName()}</h4>
+                <p>{faker.person.jobTitle()}</p>
+              </li>
+            ))}
+          </ul>
+
+          <h3 className="kilimanjaro">
+            <a href="/testimonials">Read More Reviews</a>
+          </h3>
+        </section>
+      </div>
+
+      <hr />
+
+
 
       <div className="footer-copyright">
         <h4 className="sr-only footer-copyright__mind-the-gap">

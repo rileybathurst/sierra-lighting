@@ -1,3 +1,6 @@
+// TODO: update the content to wedding and holiday
+// TODO: link to one of these from the front page
+
 import { Script } from "gatsby";
 import React from "react";
 import Footer from "../components/footer";
@@ -25,6 +28,7 @@ const FaqsPage = () => {
             <li key={faq.id}>
               <hr />
               <h2 className="margin-block-end-vinson">{faq.question}</h2>
+              {/* // ? why so many nested divs for the answer? */}
               <div>
                 <div>{faq.answer}</div>
               </div>

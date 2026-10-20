@@ -1,6 +1,7 @@
 import { graphql, Link, useStaticQuery } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
+import SVG from "react-inlinesvg";
 import Markdown from "react-markdown";
 import Areas from "../components/areas";
 import Card from "../components/card";
@@ -27,6 +28,7 @@ const IndexPage = ({ location }: { location: Location }) => {
     residentialLights,
     commercialLights,
     weddingLights,
+    allStrapiAffiliation,
   } = useStaticQuery(graphql`
     query IndexQuery {
       strapiAbout {
@@ -84,10 +86,19 @@ const IndexPage = ({ location }: { location: Location }) => {
 
       weddingLights: allStrapiLight(filter: {featured_service: {elemMatch: {slug: {eq: "wedding"}}}}, limit: 1,
         sort: {weddingOrder: ASC}) {
-        nodes {
-          ...lightCard
+          nodes {
+            ...lightCard
+          }
         }
-      }
+
+        allStrapiAffiliation(filter: {featured: {eq: true}}) {
+          nodes {
+            id
+            name
+            svg
+            link
+          }
+        }
 
     }
   `);
@@ -207,7 +218,8 @@ const IndexPage = ({ location }: { location: Location }) => {
         <h3 className="eyebrow">
           <Link to="/process">
             Learn More About Our Process And Safety Practices
-          </Link>
+          </Link>{" "}
+          p
         </h3>
       </section>
 
@@ -238,6 +250,18 @@ const IndexPage = ({ location }: { location: Location }) => {
 
       {/* // TODO: this puts a second main in the page */}
       <Areas />
+
+      <hr />
+
+      <section className="condor unions">
+        {allStrapiAffiliation.nodes.map((affiliation: any) => (
+          <div key={affiliation.id}>
+            <a href={affiliation.link}>
+              <SVG src={affiliation.svg} aria-hidden="true" />
+            </a>
+          </div>
+        ))}
+      </section>
 
       <Footer location={location} />
     </>

@@ -1,3 +1,5 @@
+// * http://localhost:8000/vendor/planners/allisonkeasalevents/?=
+
 import {
   type BlocksContent,
   BlocksRenderer,
@@ -86,18 +88,6 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
     );
   }
 
-  let heroImages = [data.strapiVendor.profile];
-
-  // TODO: match whats done with light where this builds the gallery
-  if (data.strapiVendor.projects.length > 0) {
-    heroImages = [
-      ...heroImages,
-      ...data.strapiVendor.projects.map(
-        (project) => project.image as HeroSEOImageType,
-      ),
-    ];
-  }
-
   return (
     <React.Fragment>
       <Header />
@@ -105,7 +95,13 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
       {data.strapiVendor.profile && (
         <Hero
           image={data.strapiVendor.profile}
-        // gallery={heroImages}
+          gallery={
+            data.strapiVendor?.projects?.length > 0
+              ? (data.strapiVendor?.projects.map(
+                  (project) => project.image,
+                ) as unknown as HeroSEOImageType[])
+              : undefined
+          }
         />
       )}
 
@@ -144,27 +140,28 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         )}
 
         {data.strapiVendor.social.length > 0 ||
-          data.strapiVendor.instagram ||
-          data.strapiVendor.pinterest ||
-          data.strapiVendor.facebook && (
-            <React.Fragment>
-              <hr />
-              {data.strapiVendor.social.length > 0 && (
-                <Socials services={data.strapiVendor.social} />
-              )}
+        data.strapiVendor.instagram ||
+        data.strapiVendor.pinterest ||
+        data.strapiVendor.facebook ? (
+          <React.Fragment>
+            <hr />
+            {data.strapiVendor.social.length > 0 && (
+              <Socials services={data.strapiVendor.social} />
+            )}
 
-              {/* // * deprecated but theres too much here to migrate */}
-              {data.strapiVendor.instagram ||
-                data.strapiVendor.pinterest ||
-                data.strapiVendor.facebook && (
-                  <DeprecatedSocials
-                    instagram={data.strapiVendor.instagram}
-                    pinterest={data.strapiVendor.pinterest}
-                    facebook={data.strapiVendor.facebook}
-                  />
-                )}
-            </React.Fragment>
-          )}
+            {/* // * deprecated but theres too much here to migrate */}
+            {data.strapiVendor.instagram ||
+            data.strapiVendor.pinterest ||
+            data.strapiVendor.facebook ? (
+              <DeprecatedSocials
+                instagram={data.strapiVendor.instagram}
+                pinterest={data.strapiVendor.pinterest}
+                facebook={data.strapiVendor.facebook}
+              />
+            ) : null}
+          </React.Fragment>
+          // * doesnt work without the null
+        ) : null}
 
         {data.strapiVendor.collaborator && (
           <React.Fragment>
@@ -190,7 +187,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         </>
       )}
 
-      {data.strapiVendor.collaborator && (
+      {data.strapiVendor.collaborator &&
         data.allStrapiVendor.nodes.length > 0 && (
           <React.Fragment>
             <div className="above-deck">
@@ -221,8 +218,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
               )}
             </div>
           </React.Fragment>
-        )
-      )}
+        )}
 
       {data.strapiVendor.projects.length === 0 &&
         data.allStrapiVendor.nodes.length === 0 && (

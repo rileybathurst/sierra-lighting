@@ -8,6 +8,9 @@ export const query = graphql`
           breakpoints: [111, 165, 222, 444, 880]
           width: 222
         )
+        resize {
+          aspectRatio
+        }
       }
     }
     alternativeText

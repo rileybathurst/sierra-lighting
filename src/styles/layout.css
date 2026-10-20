@@ -3,6 +3,7 @@
 - suite order
 - qualities
 - masthead
+- union
 */
 
 /*------------------------------------*/
@@ -812,5 +813,38 @@ footer {
   > * {
     /* biome-ignore lint: overwrites the responsive masonry defaults */
     gap: var(--vinson) !important;
+  }
+}
+
+/*------------------------------------*/
+/* #UNION */
+/*------------------------------------*/
+
+.unions {
+  display: flex;
+  flex-flow: row wrap;
+  gap: var(--vinson);
+  justify-content: center;
+
+  /* biome-ignore lint: specificity works here */
+  svg {
+    max-width: 20rem;
+    height: 5rem;
+    padding: var(--spacing-half);
+    border-radius: var(--border-radius);
+    border: 2px solid transparent;
+  }
+
+  /* biome-ignore lint: specificity works here */
+  a:hover svg {
+    background-color: var(--honey-100);
+    border-color: var(--neutral-100);
+    fill: var(--denim-500);
+
+    @media (prefers-color-scheme: dark) {
+      background-color: var(--denim-700);
+      border-color: var(--denim-600);
+      fill: white;
+    }
   }
 }
