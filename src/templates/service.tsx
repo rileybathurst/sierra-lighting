@@ -337,7 +337,7 @@ const ServiceView = ({ data }: ServiceTypes) => {
   return (
     <>
       <Header />
-      {/* // ! no hero? */}
+      {/* // TODO: no hero? */}
 
       <main>
         {data.strapiService.videoMux && (
