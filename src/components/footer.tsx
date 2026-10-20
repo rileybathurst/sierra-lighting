@@ -522,7 +522,7 @@ const Footer = ({
           <section id="faq" className="stork">
             <hr />
             <h4>
-              <Link to="/faq">
+              <Link to="/faqs">
                 {removeTheQuestion(strapiFar.question)} and other Frequently Asked Questions?
               </Link>
             </h4>
