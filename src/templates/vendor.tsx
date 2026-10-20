@@ -56,7 +56,6 @@ interface VendorTemplateViewTypes {
 
       testimonials: {
         id: React.Key;
-        title: string;
         review: string;
         stars: number;
         customer: string;
@@ -301,7 +300,6 @@ export const query = graphql`
 
         testimonials {
           id
-          title
           review
           stars
           customer
@@ -330,6 +328,10 @@ export const query = graphql`
 
   }
 `;
+
+// TODO: this should be from a fragment
+/* testimonials {
+          id */
 
 export const Head = ({ data }: VendorTemplateViewTypes) => {
   return (

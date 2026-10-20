@@ -11,9 +11,18 @@ function Testimonial({
   vendor,
   stars,
   project,
+  services,
 }: TestimonialTypes) {
   return (
     <li className="testimonial">
+      {services?.map((service) => (
+        <React.Fragment key={service.slug}>
+          <p>
+            <Link to={`/${service.slug}`}>{service.name}</Link> testimonial
+          </p>
+          <hr />
+        </React.Fragment>
+      ))}
       <figure>
         <blockquote>
           {stars && (

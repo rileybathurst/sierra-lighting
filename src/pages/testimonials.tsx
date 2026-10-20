@@ -17,30 +17,7 @@ const TestimonialsPage = () => {
         sort: {order: ASC}
       ) {
         nodes {
-          id
-          customer
-          stars
-          review
-          title
-          slug
-          link
-          position
-          platform
-
-          vendor {
-            name
-            slug
-
-            collaborator {
-              industry
-              slug
-            }
-          }
-
-          project {
-            title
-            slug
-          }
+          ...testimonialCardFragment
         }
       }
 

@@ -105,9 +105,9 @@ const Footer = ({
 
     setCanSend(
       !hasProfanity &&
-      !emailProfanity &&
-      !messageProfanity &&
-      !referralProfanity,
+        !emailProfanity &&
+        !messageProfanity &&
+        !referralProfanity,
     );
 
     return null;
@@ -142,8 +142,13 @@ const Footer = ({
 
   /*------------------------------------*/
 
-  const { allStrapiTeam, strapiAbout, strapiForm, allStrapiTestimonial, strapiFar } =
-    useStaticQuery(graphql`
+  const {
+    allStrapiTeam,
+    strapiAbout,
+    strapiForm,
+    allStrapiTestimonial,
+    strapiFar,
+  } = useStaticQuery(graphql`
     query FooterQuery {
       allStrapiTeam {
         nodes {
@@ -523,12 +528,11 @@ const Footer = ({
             <hr />
             <h4>
               <Link to="/faqs">
-                {removeTheQuestion(strapiFar.question)} and other Frequently Asked Questions?
+                {removeTheQuestion(strapiFar.question)} and other Frequently
+                Asked Questions?
               </Link>
             </h4>
-            <p>
-              {strapiFar.answer}
-            </p>
+            <p>{strapiFar.answer}</p>
           </section>
 
           <section id="contact" className="stork">

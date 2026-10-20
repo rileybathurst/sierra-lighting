@@ -19,6 +19,10 @@ type TestimonialTypes = {
     title: string;
     slug: string;
   };
+  services?: {
+    name: string;
+    slug: string;
+  }[];
 };
 
 export default TestimonialTypes;
