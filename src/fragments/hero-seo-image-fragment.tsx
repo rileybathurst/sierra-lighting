@@ -4,7 +4,7 @@ export const query = graphql`
   fragment heroSEOImageFragment on STRAPI__MEDIA {
     localFile {
       childImageSharp {
-        gatsbyImageData
+        gatsbyImageData 
         resize {
           aspectRatio
         }

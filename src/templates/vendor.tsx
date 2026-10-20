@@ -10,11 +10,11 @@ import DeprecatedSocials from "../components/deprecated-socials";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import Hero from "../components/hero";
-import StrShort from "../components/StrShort";
+// import StrShort from "../components/StrShort";
 import { SEO } from "../components/seo";
 import Socials from "../components/socials";
 import Testimonial from "../components/testimonial";
-import TestimonialRanking from "../components/testimonial-ranking";
+// import TestimonialRanking from "../components/testimonial-ranking";
 import WebsiteLink from "../components/website-link";
 import type { CardType } from "../types/card-type";
 import type { HeroSEOImageType } from "../types/hero-seo-image-type";
@@ -75,12 +75,35 @@ interface VendorTemplateViewTypes {
 }
 
 const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
+  if (
+    data.strapiVendor.social.length > 0 &&
+    (data.strapiVendor.instagram ||
+      data.strapiVendor.pinterest ||
+      data.strapiVendor.facebook)
+  ) {
+    console.warn(
+      `${data.strapiVendor.name} has both types of social this breaks the layout`,
+    );
+  }
+
+  let heroImages = [data.strapiVendor.profile];
+
+  // TODO: match whats done with light where this builds the gallery
+  if (data.strapiVendor.projects.length > 0) {
+    heroImages = [
+      ...heroImages,
+      ...data.strapiVendor.projects.map(
+        (project) => project.image as HeroSEOImageType,
+      ),
+    ];
+  }
+
   return (
-    <>
+    <React.Fragment>
       <Header />
 
       {data.strapiVendor.profile ? (
-        <Hero image={data.strapiVendor.profile} />
+        <Hero image={data.strapiVendor.profile} gallery={heroImages} />
       ) : null}
 
       <main>
@@ -117,9 +140,9 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
         ) : null}
 
         {data.strapiVendor.social.length > 0 ||
-        data.strapiVendor.instagram ||
-        data.strapiVendor.pinterest ||
-        data.strapiVendor.facebook ? (
+          data.strapiVendor.instagram ||
+          data.strapiVendor.pinterest ||
+          data.strapiVendor.facebook ? (
           <React.Fragment>
             <hr />
             {data.strapiVendor.social.length > 0 && (
@@ -128,8 +151,8 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
 
             {/* // * deprecated but theres too much here to migrate */}
             {data.strapiVendor.instagram ||
-            data.strapiVendor.pinterest ||
-            data.strapiVendor.facebook ? (
+              data.strapiVendor.pinterest ||
+              data.strapiVendor.facebook ? (
               <DeprecatedSocials
                 instagram={data.strapiVendor.instagram}
                 pinterest={data.strapiVendor.pinterest}
@@ -197,7 +220,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
       ) : null}
 
       {data.strapiVendor.projects.length === 0 &&
-      data.allStrapiVendor.nodes.length === 0 ? (
+        data.allStrapiVendor.nodes.length === 0 ? (
         <div className="main">
           <h3 className="crest">Looking for something else?</h3>
           <h2 className="range">
@@ -225,7 +248,7 @@ const VendorTemplateView = ({ data }: VendorTemplateViewTypes) => {
       </Breadcrumbs>
 
       <Footer />
-    </>
+    </React.Fragment>
   );
 };
 

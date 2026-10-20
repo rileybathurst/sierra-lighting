@@ -328,9 +328,6 @@ h2.top-bar {
 /*------------------------------------*/
 
 .react-markdown {
-  white-space: pre-wrap;
-  /* * this does some weird stuff with hidden margins */
-
   h2 {
     font-size: var(--denali);
     margin-block-end: var(--elbrus);
@@ -340,4 +337,21 @@ h2.top-bar {
     font-size: var(--kilimanjaro);
     margin-block-end: var(--vinson);
   }
+
+  p {
+    /* * this does some weird stuff with hidden margins */
+    white-space: pre-wrap;
+  }
+}
+
+/*------------------------------------*/
+
+/* * qualities show this off well */
+h3:has(+ p) {
+  margin-block-end: var(--vinson);
+}
+
+p:has(+ h2),
+p:has(+ h3) {
+  margin-block-end: var(--kilimanjaro);
 }

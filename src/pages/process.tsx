@@ -90,6 +90,7 @@ const ProcessPage = () => {
       <Hero image={strapiSafety.image} />
 
       <main>
+        {/* TODO: this text is now smaller than the list titles */}
         <h1 className="denali">
           Our Process for professional lighting installation
         </h1>

@@ -12,6 +12,7 @@ ul,
 ol {
   /* * keep the list in line with the p push the dot back */
   /* * page 70 elements of typographic style */
+  margin-block-start: 0;
   margin-inline-start: 0;
   padding-inline-start: 0;
 

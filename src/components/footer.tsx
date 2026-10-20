@@ -5,11 +5,13 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import * as React from "react";
 
 import Logo from "../images/logo";
+import type TestimonialTypes from "../types/testimonial-types";
 import { useIsWithinBusinessHours } from "./business-hours";
 import { days } from "./days";
 import { Phone } from "./phone";
 import Season from "./season";
 import Socials from "./socials";
+import truncateText from "./truncate-text";
 
 const Footer = ({
   quote,
@@ -140,7 +142,8 @@ const Footer = ({
 
   /*------------------------------------*/
 
-  const { allStrapiTeam, strapiAbout, strapiForm } = useStaticQuery(graphql`
+  const { allStrapiTeam, strapiAbout, strapiForm, allStrapiTestimonial } =
+    useStaticQuery(graphql`
     query FooterQuery {
       allStrapiTeam {
         nodes {
@@ -200,6 +203,12 @@ const Footer = ({
           friday
           saturday
           sunday
+        }
+      }
+
+      allStrapiTestimonial(sort: {position: ASC}) {
+        nodes {
+          ...testimonialCardFragment
         }
       }
     }
@@ -603,6 +612,46 @@ const Footer = ({
           </a>
         </p>
       )}
+
+      <hr />
+
+      <div className="slider-container">
+        <section className="slider testimonials">
+          <h4>Thanks From Our Customers</h4>
+
+          <ul>
+            {/* // TODO: make this a component */}
+            {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
+              return (
+                <li key={testimonial.id} className="slider">
+                  {/* // TODO: once testimonial projects are in place, re-add this */}
+                  {/* {testimonial.project ?
+                    <h4>
+                      <Link to={`/project/${testimonial.project.slug}`}>
+                        {testimonial.project.title}
+                      </Link>
+                    </h4>
+                    : null} */}
+
+                  <p>{truncateText(testimonial.review)}</p>
+                  {/* // TODO: className="together" is a bad name */}
+                  <div className="together">
+                    <h4>{testimonial.customer}</h4>
+                    <p>{testimonial.position}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="testimonial-links">
+            {/* // ? should I have two crests in a row? */}
+            <h3 className="crest">
+              <Link to="/testimonials">Read More Reviews</Link>
+            </h3>
+          </div>
+        </section>
+      </div>
 
       <hr />
 

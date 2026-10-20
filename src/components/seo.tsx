@@ -197,17 +197,15 @@ export const SEO = (SEO: SEOtypes) => {
 
   /*------------------------------------*/
 
-  let seasonFallBackImage: string | undefined;
+  let seasonFallBackImage: string;
   if (Season() === "xmas") {
     seasonFallBackImage = xmas?.hero_light.localFile.url;
-  } else if (Season() === "wedding") {
-    seasonFallBackImage = wedding?.hero_light.localFile.url;
   } else {
-    seasonFallBackImage = undefined;
+    seasonFallBackImage = wedding?.hero_light.localFile.url;
   }
 
-  var pageImage: string | undefined =
-    SEO.image?.localFile?.url || seasonFallBackImage;
+  const seoImage = SEO.image?.localFile?.childImageSharp?.gatsbyImageData?.images?.fallback?.src;
+  var pageImage = seoImage ? `${strapiAbout.url}/${seoImage}` : seasonFallBackImage;
 
   /*------------------------------------*/
 

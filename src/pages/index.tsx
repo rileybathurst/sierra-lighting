@@ -10,20 +10,18 @@ import Season from "../components/season";
 import { SEO } from "../components/seo";
 import Start from "../components/start";
 import Suite from "../components/suite";
-import truncateText from "../components/truncate-text";
+
 import BackImage from "../images/BackImage";
 import HeroWeddingBackImage from "../images/HeroWeddingBackImage";
 import Logo from "../images/logo";
 import type { CardType } from "../types/card-type";
-import type TestimonialTypes from "../types/testimonial-types";
 
 const IndexPage = ({ location }: { location: Location }) => {
-  console.log(location);
+  // console.log(location);
 
   const {
     strapiAbout,
     allStrapiService,
-    allStrapiTestimonial,
     allStrapiQuality,
     strapiHero,
     residentialLights,
@@ -43,12 +41,6 @@ const IndexPage = ({ location }: { location: Location }) => {
       allStrapiService {
         nodes {
           ...suiteFragment
-        }
-      }
-
-      allStrapiTestimonial(sort: {position: ASC}) {
-        nodes {
-          ...testimonialCardFragment
         }
       }
 
@@ -201,6 +193,9 @@ const IndexPage = ({ location }: { location: Location }) => {
       {/* * this is under the biggest specific image so its currently ok but will be updated */}
       {/* // ? this is albatross nested under albatross does it need to be or whats the best way to clean that up */}
 
+      {/* // TODO: the text in these is old and weird it needs updating */}
+      {/* // TODO: qualities and process are similar but different I kinda think need to differentiate more */}
+      {/* // TODO: move these also to services */}
       <section className="qualities albatross">
         {allStrapiQuality.nodes.map((quality: QualityTypes) => (
           <section key={quality.id}>
@@ -208,48 +203,13 @@ const IndexPage = ({ location }: { location: Location }) => {
             <p>{quality.description.data.description}</p>
           </section>
         ))}
+        {/* ! this is a different text that the list items */}
         <h3 className="eyebrow">
-          <Link to="/process">Learn more about our process</Link>
+          <Link to="/process">
+            Learn More About Our Process And Safety Practices
+          </Link>
         </h3>
       </section>
-
-      <div className="slider-container">
-        <section className="slider testimonials">
-          <h4>Thanks From Our Customers</h4>
-
-          <ul>
-            {/* // TODO: make this a component */}
-            {allStrapiTestimonial.nodes.map((testimonial: TestimonialTypes) => {
-              return (
-                <li key={testimonial.id} className="slider">
-                  {/* // TODO: once testimonial projects are in place, re-add this */}
-                  {/* {testimonial.project ?
-                    <h4>
-                      <Link to={`/project/${testimonial.project.slug}`}>
-                        {testimonial.project.title}
-                      </Link>
-                    </h4>
-                    : null} */}
-
-                  <p>{truncateText(testimonial.review)}</p>
-                  {/* // TODO: className="together" is a bad name */}
-                  <div className="together">
-                    <h4>{testimonial.customer}</h4>
-                    <p>{testimonial.position}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-
-          <div className="testimonial-links">
-            {/* // ? should I have two crests in a row? */}
-            <h3 className="crest">
-              <Link to="/testimonials">Read More Reviews</Link>
-            </h3>
-          </div>
-        </section>
-      </div>
 
       <Suite services={allStrapiService.nodes} />
 
