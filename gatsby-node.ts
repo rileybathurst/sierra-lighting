@@ -4,8 +4,54 @@
 // notice the dumb pluralization that was bad
 
 const path = require(`path`);
+const fs = require("fs");
 
 import type { GatsbyNode } from "gatsby";
+
+exports.onPreBuild = (async ({ reporter }) => {
+  const placeId = "ChIJKUUETZhHmYARR--Ow646_BU";
+  const apiKey = process.env.GATSBY_GOOGLE_MAPS_API_KEY;
+
+  if (!apiKey) {
+    reporter.warn(
+      "Missing GATSBY_GOOGLE_MAPS_API_KEY: Google Places data will not be fetched",
+    );
+    return;
+  }
+
+  try {
+    const url = `https://places.googleapis.com/v1/places/${placeId}?fields=rating,userRatingCount&key=${apiKey}`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Google Places API returned ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    const googleReviewsData = {
+      reviewCount: data.userRatingCount ?? null,
+      starRating: data.rating ?? null,
+      fetchedAt: new Date().toISOString(),
+    };
+
+    const publicDir = path.join(__dirname, "public");
+    if (!fs.existsSync(publicDir)) {
+      fs.mkdirSync(publicDir, { recursive: true });
+    }
+
+    fs.writeFileSync(
+      path.join(publicDir, "google-reviews.json"),
+      JSON.stringify(googleReviewsData, null, 2),
+    );
+
+    reporter.info(
+      `Google Places data fetched: ${googleReviewsData.reviewCount} reviews, ${googleReviewsData.starRating} stars`,
+    );
+  } catch (error) {
+    reporter.warn(`Failed to fetch Google Places data: ${String(error)}`);
+  }
+}) as GatsbyNode["onPreBuild"];
 
 exports.onPostBuild = (({ reporter }) => {
   reporter.info("Your Gatsby site has been built!");

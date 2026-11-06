@@ -25,40 +25,20 @@ const Footer = ({
   const [reviewCount, setReviewCount] = React.useState<number | null>(null);
   const [starRating, setStarRating] = React.useState<number | null>(null);
 
-  // TODO: I tried implementing caching on this and was getting stuck
   React.useEffect(() => {
-    const placeId = "ChIJKUUETZhHmYARR--Ow646_BU";
-    const apiKey = process.env.GATSBY_GOOGLE_MAPS_API_KEY;
-
-    if (!apiKey) {
-      console.error("Missing GATSBY_GOOGLE_MAPS_API_KEY");
-      return;
-    }
-
-    const url = `https://places.googleapis.com/v1/places/${placeId}?fields=rating,userRatingCount&key=${apiKey}`;
-
-    async function fetchGoogleReviews() {
+    async function loadGoogleReviews() {
       try {
-        const response = await fetch(url);
+        const response = await fetch("/google-reviews.json");
         const data = await response.json();
 
-        const reviewCount = data.userRatingCount;
-        const starRating = data.rating;
-
-        setReviewCount(reviewCount ?? null);
-        setStarRating(starRating ?? null);
-
-        // console.log(`Google Reviews: ${reviewCount} reviews, ${starRating} stars`);
-
-        // Update your website's HTML elements
-        // document.getElementById('google-count').innerText = `${reviewCount} reviews`;
-        // document.getElementById('google-stars').innerText = `${starRating} / 5 Stars`;
+        setReviewCount(data.reviewCount ?? null);
+        setStarRating(data.starRating ?? null);
       } catch (error) {
-        console.error("Error fetching Google Places data:", error);
+        console.warn("Could not load Google Places data:", error);
       }
     }
 
-    fetchGoogleReviews();
+    loadGoogleReviews();
   }, []);
 
   /*------------------------------------*/
@@ -105,9 +85,9 @@ const Footer = ({
 
     setCanSend(
       !hasProfanity &&
-        !emailProfanity &&
-        !messageProfanity &&
-        !referralProfanity,
+      !emailProfanity &&
+      !messageProfanity &&
+      !referralProfanity,
     );
 
     return null;
