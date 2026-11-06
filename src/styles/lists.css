@@ -416,6 +416,7 @@ ul ul {
   }
 
   @container (min-width: 35rem) {
+    /* biome-ignore lint: min width specificity should overwrite this */
     grid-row: 1;
   }
 }

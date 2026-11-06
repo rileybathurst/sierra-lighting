@@ -13,6 +13,29 @@ import Season from "./season";
 import Socials from "./socials";
 import truncateText from "./truncate-text";
 
+// seems kinda a weird place to define this function, but am i using it anywhere else?
+function Hours(time: string): JSX.Element {
+  const hour = Number(time.split(":")[0]);
+  const minute = time.split(":")[1];
+  const minuteStr = minute !== "00" ? `:${minute}` : "";
+
+  if (hour >= 12) {
+    return (
+      <>
+        {hour - 12}
+        {minuteStr} <span className="all-small-caps">PM</span>
+      </>
+    );
+  } else {
+    return (
+      <>
+        {hour}
+        {minuteStr} <span className="all-small-caps">AM</span>
+      </>
+    );
+  }
+}
+
 const Footer = ({
   quote,
   location,
@@ -85,9 +108,9 @@ const Footer = ({
 
     setCanSend(
       !hasProfanity &&
-      !emailProfanity &&
-      !messageProfanity &&
-      !referralProfanity,
+        !emailProfanity &&
+        !messageProfanity &&
+        !referralProfanity,
     );
 
     return null;
@@ -203,30 +226,6 @@ const Footer = ({
       }
     }
   `);
-
-  /*------------------------------------*/
-
-  function Hours(time: string): JSX.Element {
-    const hour = Number(time.split(":")[0]);
-    const minute = time.split(":")[1];
-    const minuteStr = minute !== "00" ? `:${minute}` : "";
-
-    if (hour >= 12) {
-      return (
-        <>
-          {hour - 12}
-          {minuteStr} <span className="all-small-caps">PM</span>
-        </>
-      );
-    } else {
-      return (
-        <>
-          {hour}
-          {minuteStr} <span className="all-small-caps">AM</span>
-        </>
-      );
-    }
-  }
 
   /*------------------------------------*/
 
@@ -504,7 +503,8 @@ const Footer = ({
             </button>
           </form>
 
-          <section id="faq" className="stork">
+          {/* id="faq" biome doesnt like this */}
+          <section className="stork">
             <hr />
             <h4>
               <Link to="/faqs">
@@ -515,7 +515,8 @@ const Footer = ({
             <p>{strapiFar.answer}</p>
           </section>
 
-          <section id="contact" className="stork">
+          {/* id="contact" biome doesnt like this */}
+          <section className="stork">
             <hr />
 
             <h3 className="margin-block-end-vinson">Contact</h3>
@@ -552,7 +553,8 @@ const Footer = ({
         </>
       )}
 
-      <div id="team" className="stork">
+      {/* id=team but biome doesnt like this */}
+      <div className="stork">
         <h3 className="margin-block-end-vinson">
           <Link to="/team" className="link--subtle">
             Meet Our Team

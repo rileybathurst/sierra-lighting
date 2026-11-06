@@ -1,8 +1,6 @@
 // TODO: im getting a @type organization error for address but not sure from where
 
-{
-  /* "about": "Creating ${allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${allStrapiArea.nodes.map((area) => area.name).join(', ')}", */
-}
+// * "about": "Creating ${allStrapiService.nodes.map((service) => service.name).join(' lighting installation, ')} lighting installations in ${allStrapiArea.nodes.map((area) => area.name).join(', ')}", */
 
 import { graphql, Script, useStaticQuery } from "gatsby";
 import type { ReactNode } from "react";

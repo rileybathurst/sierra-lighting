@@ -135,32 +135,32 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
     order: number;
     id: React.Key;
   }[] = [
-      // * default to project link to satisfy types
-      {
-        card: {},
-        title: false,
-        breadcrumb: "",
-        cardBreadcrumb: "project",
-        order: 0,
-        id: "",
-      },
-      {
-        card: {},
-        title: false,
-        breadcrumb: "",
-        cardBreadcrumb: "project",
-        order: 1,
-        id: "",
-      },
-      {
-        card: {},
-        title: false,
-        breadcrumb: "",
-        cardBreadcrumb: "project",
-        order: 2,
-        id: "",
-      },
-    ];
+    // * default to project link to satisfy types
+    {
+      card: {},
+      title: false,
+      breadcrumb: "",
+      cardBreadcrumb: "project",
+      order: 0,
+      id: "",
+    },
+    {
+      card: {},
+      title: false,
+      breadcrumb: "",
+      cardBreadcrumb: "project",
+      order: 1,
+      id: "",
+    },
+    {
+      card: {},
+      title: false,
+      breadcrumb: "",
+      cardBreadcrumb: "project",
+      order: 2,
+      id: "",
+    },
+  ];
 
   // console.log(base);
 
@@ -248,7 +248,7 @@ function Base({ projects, venue, vendor, serviceSlug }: BaseTypes) {
                   {item.breadcrumb.includes("project")
                     ? "Projects"
                     : item.breadcrumb.charAt(0).toUpperCase() +
-                    item.breadcrumb.slice(1)}
+                      item.breadcrumb.slice(1)}
                 </Link>
               </h4>
             )}
@@ -520,20 +520,20 @@ const ServiceView = ({ data }: ServiceTypes) => {
       {(data.strapiService.projects ||
         data.strapiVenue ||
         data.strapiVendor) && (
-          <React.Fragment>
-            <hr className="pelican" />
-            <Base
-              projects={data.strapiService?.projects}
-              venue={data.strapiVenue}
-              vendor={
-                data.strapiService.slug === "wedding"
-                  ? data.strapiVendor
-                  : data.strapiService?.vendors?.[0]
-              }
-              serviceSlug={data.strapiService.slug}
-            />
-          </React.Fragment>
-        )}
+        <React.Fragment>
+          <hr className="pelican" />
+          <Base
+            projects={data.strapiService?.projects}
+            venue={data.strapiVenue}
+            vendor={
+              data.strapiService.slug === "wedding"
+                ? data.strapiVendor
+                : data.strapiService?.vendors?.[0]
+            }
+            serviceSlug={data.strapiService.slug}
+          />
+        </React.Fragment>
+      )}
 
       {/* // ? what if I did a triple card array here? */}
       {data.strapiService.testimonials?.length > 0 && <hr />}

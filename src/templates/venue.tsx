@@ -11,7 +11,6 @@ import StrShort from "../components/StrShort";
 import { SEO } from "../components/seo";
 import StateAbbreviation from "../components/state-abbreviation";
 import Testimonial from "../components/testimonial";
-import { data } from "../pages/about";
 import type { CardType } from "../types/card-type";
 import type { HeroSEOImageType } from "../types/hero-seo-image-type";
 import type TestimonialTypes from "../types/testimonial-types";

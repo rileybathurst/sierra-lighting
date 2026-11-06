@@ -3,8 +3,6 @@
 import { graphql, useStaticQuery } from "gatsby";
 import * as React from "react";
 import Markdown from "react-markdown";
-// TODO: testing
-import { useIsWithinBusinessHours } from "../components/business-hours";
 import Footer from "../components/footer";
 import Header from "../components/header";
 import { SEO } from "../components/seo";

@@ -254,13 +254,22 @@ const IndexPage = ({ location }: { location: Location }) => {
       <hr />
 
       <section className="condor unions">
-        {allStrapiAffiliation.nodes.map((affiliation: any) => (
-          <div key={affiliation.id}>
-            <a href={affiliation.link}>
-              <SVG src={affiliation.svg} aria-hidden="true" />
-            </a>
-          </div>
-        ))}
+        {allStrapiAffiliation.nodes.map(
+          (affiliation: {
+            id: string;
+            name?: string;
+            svg?: string;
+            link?: string;
+          }) => (
+            <div key={affiliation.id}>
+              <a href={affiliation.link || "#"}>
+                {affiliation.svg && (
+                  <SVG src={affiliation.svg} aria-hidden="true" />
+                )}
+              </a>
+            </div>
+          ),
+        )}
       </section>
 
       <Footer location={location} />

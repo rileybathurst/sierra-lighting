@@ -124,8 +124,9 @@ const ServiceProjectsView = ({ data }: ServiceProjectsTypes) => {
         );
       })}
 
+      {/* id="other-projects" biome doesnt like this */}
       {ungroupedProjects.length > 0 && (
-        <section id="other-projects">
+        <section>
           {hasThemedProjects && (
             <div className="above-deck">
               <h2>Other Projects</h2>

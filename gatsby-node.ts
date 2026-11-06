@@ -3,9 +3,8 @@
 // https://sierra.lighting/project/waterside-wedding/
 // notice the dumb pluralization that was bad
 
-const path = require(`path`);
-const fs = require("fs");
-
+import * as fs from "node:fs";
+import * as path from "node:path";
 import type { GatsbyNode } from "gatsby";
 
 exports.onPreBuild = (async ({ reporter }) => {
@@ -21,10 +20,24 @@ exports.onPreBuild = (async ({ reporter }) => {
 
   try {
     const url = `https://places.googleapis.com/v1/places/${placeId}?fields=rating,userRatingCount&key=${apiKey}`;
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        Referer: "https://sierra.lighting",
+      },
+    });
 
     if (!response.ok) {
-      throw new Error(`Google Places API returned ${response.status}`);
+      let errorDetails = `HTTP ${response.status}`;
+      try {
+        const errorData = await response.json();
+        errorDetails = `HTTP ${response.status}: ${JSON.stringify(errorData)}`;
+      } catch {
+        const errorText = await response.text();
+        if (errorText) {
+          errorDetails = `HTTP ${response.status}: ${errorText}`;
+        }
+      }
+      throw new Error(`Google Places API error: ${errorDetails}`);
     }
 
     const data = await response.json();

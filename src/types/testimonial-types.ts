@@ -1,3 +1,5 @@
+import type React from "react";
+
 type TestimonialTypes = {
   id?: React.Key;
   customer: string;
